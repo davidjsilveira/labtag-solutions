@@ -24,9 +24,9 @@ Everything included in the printing kit, plus the printer and software capabilit
 
 ## What’s Included in the Printing Kit
 
-![Printing kit contents](https://cdn.labtag.com/wp-content/uploads/PKT-LWCS-506-thumb.jpg "/media/dymo-labelwriter-550/PKT-LWCS-506-thumb.jpg")
-
 ### DYMO-Branded CryoSTUCK® Labels
+
+![CryoSTUCK labels with DYMO and GA branding](https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg "/media/dymo-labelwriter-550/LWCS-504-DYMOxGA.jpg")
 
 Cryogenic labels designed for storage in liquid nitrogen, ultra-low temperature freezers, and transport on dry ice (min. −196°C/−321°F). Ideal for labeling ambient-temperature and frozen surfaces without thawing (min. −80°C/−112°F). Chemical resistance covers common lab chemicals, including incidental exposure to alcohols and solvents. Authentic DYMO-branded labels are automatically detected by LabelWriter® 5-Series printers (550, 550 Turbo, 5XL).
 
@@ -42,8 +42,6 @@ Compatible with both Windows and Mac OS. Print in bulk from Microsoft Excel and 
 
 ## Cryogenic Labels for DYMO® LabelWriter™ 550
 
-![DYMO LabelWriter 5-Series cryogenic labels](https://cdn.labtag.com/wp-content/uploads/LWCS-504-WH.jpg "/media/dymo-labelwriter-550/LWCS-504-WH.jpg")
-![CryoSTUCK labels with DYMO and GA branding](https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg "/media/dymo-labelwriter-550/LWCS-504-DYMOxGA.jpg")
 ![Cryogenic labeling with LabelWriter 550](https://cdn.labtag.com/wp-content/uploads/LWCS-504-use4-1-1.jpg "/media/dymo-labelwriter-550/LWCS-504-use4-1-1.jpg")
 
 LWCS-class CryoSTUCK® labels for the LabelWriter™ 5-Series are available in multiple sizes, including 2″ × 1″, 2″ × 0.25″, 1″ × 1″, 1″ × 0.5″, and 0.94″ × 0.5″ with a 0.375″ circle. Try the labels before you buy—LabTAG will send pre-printed samples for testing.
