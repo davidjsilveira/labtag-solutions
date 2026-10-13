@@ -2,74 +2,61 @@
 
 Source: [https://www.labtag.com/solutions/animal-healthcare/](https://www.labtag.com/solutions/animal-healthcare/)
 
-![Animal Healthcare](https://cdn.labtag.com/wp-content/uploads/2021/07/cryogenic-storage-animalcare.png "/media/animal-healthcare/cryogenic-storage-animalcare.png")
+![Animal healthcare cryogenic storage labels](https://cdn.labtag.com/wp-content/uploads/2021/07/cryogenic-storage-animalcare.png "/media/animal-healthcare/cryogenic-storage-animalcare.png")
 
-LabTAG® offers a range of specialty labels designed for the animal health care industry, including veterinary clinics, animal housing, husbandry, and research. Our durable identification solutions help safely and securely identify medication and vaccines used by veterinary professionals, animal samples and specimen used for research or preservation, as well as animal cages and other animal care products.
 
-These animal healthcare labels are available in a range of sizes, colors, and configurations and are compatible with your printing method of choice, including thermal-transfer, laser, and DYMO printers. This includes veterinary labels for extended cold storage in liquid nitrogen, chemical-resistant labels that will withstand exposure and immersion in harsh solvents and alcohols, as well sterilization and medication labels to ensure all procedures are conducted safely.
 
-## Labels for Cryogenic Storage
+LabTAG® offers specialty labels designed for the animal health care industry, including veterinary clinics, animal housing, husbandry, and research. Our durable identification solutions help safely and securely identify medication and vaccines used by veterinary professionals. They also identify animal samples and specimens used for research or preservation, as well as cages and other animal care products.
 
-Withstand long-term storage in ultra-low temperature freezers (-80°C/-112°F) and liquid nitrogen tanks (-196°C/-321°F)
+These labels are available in a range of sizes, colors, and configurations for thermal-transfer, laser, and DYMO printers, including cryogenic, chemical-resistant, and sterilization options.
 
-Cryo-StrawTAG™ labels are perfect for the preservation of oocytes, sperm, and embryos for animal husbandry
+## Animal Healthcare Label Guide
 
-Tamper-evident solutions are available to ensure valuable samples are kept secure
+Everything you need to know before choosing animal healthcare labels. Browse options by category below.
 
-We also offer labels for already frozen surfaces and blackout labels for covering up existing labels
+### By Category
 
-## Chemical-Resistant Labels
+- **Cryogenic Storage** — Ultra-low freezers (−80°C) and liquid nitrogen (−196°C); Cryo-StrawTAG™ for oocytes, sperm, and embryos
+- **Chemical-Resistant** — Spraying, wiping, and immersion in harsh chemicals and solvents
+- **Autoclave-Resistant** — Steam, dry heat, gamma, and EtO sterilization up to +150°C
+- **Medication** — Blank and pre-printed veterinary medicine, supplement, vaccine, and syringe labels
+- **Cage & Chart** — Static-cling cage labels and writable care instruction labels
+- **Print & Scan** — Printers, ribbons, barcoding software, scanners, and ready-made kits
 
-![Chemical-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/XFLA-117-use1.jpg "/media/animal-healthcare/XFLA-117-use1.jpg")
+## Labels by Category
 
-These labels will withstand spraying, wiping, and immersion in various harsh chemicals and solvents
+### Labels for Cryogenic Storage
 
-Designed to identify various containers and surfaces, including microscope slides, paraffin wax blocks, volumetric labware, and plastic containers
+Withstand long-term storage in ultra-low temperature freezers (−80°C/−112°F) and liquid nitrogen tanks (−196°C/−321°F). Cryo-StrawTAG™ labels are suited to preservation of oocytes, sperm, and embryos for animal husbandry. Tamper-evident solutions help keep valuable samples secure. Labels for already frozen surfaces and blackout labels for covering up existing labels are also available.
 
-Perfect for use during histology/pathology procedures, as well as preservation of tissues in formalin
+### Chemical-Resistant Labels
 
-Ideal for identifying containers and material that will undergo regular decontamination or disinfecting
+![Chemical-resistant animal healthcare labels](https://cdn.labtag.com/wp-content/uploads/XFLA-117-use1.jpg "/media/animal-healthcare/XFLA-117-use1.jpg")
 
-## Autoclave-Resistant Labels
+These labels withstand spraying, wiping, and immersion in various harsh chemicals and solvents. Designed to identify microscope slides, paraffin wax blocks, volumetric labware, and plastic containers, they are suited to histology/pathology procedures, tissue preservation in formalin, and containers that undergo regular decontamination or disinfecting.
 
-![Autoclave-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/autoclave-animal-healthcare.png "/media/animal-healthcare/autoclave-animal-healthcare.png")
+### Autoclave-Resistant Labels
 
-Withstand elevated temperatures (up to +150°C/+302°F) as well as high pressure and moisture, perfect for various sterilization protocols
+![Autoclave-resistant animal healthcare labels](https://cdn.labtag.com/wp-content/uploads/autoclave-animal-healthcare.png "/media/animal-healthcare/autoclave-animal-healthcare.png")
 
-Labels can withstand sterilization in steam autoclaves, dry-heat ovens, as well as by gamma irradiation and ethylene oxide gas
+Withstand elevated temperatures (up to +150°C/+302°F) as well as high pressure and moisture—suited to sterilization in steam autoclaves, dry-heat ovens, gamma irradiation, and ethylene oxide gas. Ideal for sterilizing surgical equipment used by veterinarians and vet technicians, and for large animal housing facilities that use industrial autoclaves to sterilize cages and material.
 
-Perfect for sterilizing surgical equipment and material used by veterinarians and vet technicians
+### Medication Labels
 
-Can also be used by big animal housing facilities that use large industrial autoclaves to sterilize their animal cages and material
+![Veterinary medication labels](https://cdn.labtag.com/wp-content/uploads/medication-labels.png "/media/animal-healthcare/medication-labels.png")
 
-## Medication Labels
+Blank and pre-printed veterinary labels for identifying veterinary medicine, supplements, and vaccines. They help display accurate information clearly—including name, dose, and preparation date. Warning and pharmacy communication labels are available for medication containers. Blank and pre-printed syringe labels with a unique flag design keep syringe contents clearly visible.
 
-![Medication Labels](https://cdn.labtag.com/wp-content/uploads/medication-labels.png "/media/animal-healthcare/medication-labels.png")
+### Animal Cage & Chart Labels
 
-Blank and pre-printed veterinary labels for the identification of veterinary medicine, supplements, and vaccines
+![Animal cage and chart labels](https://cdn.labtag.com/wp-content/uploads/animal-cage-healthcare.png "/media/animal-healthcare/animal-cage-healthcare.png")
 
-Enhance the ease of administering the drug, ensuring accurate information is clearly displayed, including name, dose, preparation date
+Used by veterinary offices and clinics to provide additional information on the animal’s current care. Static-cling animal cage labels are easily repositionable for delicate surfaces including animal cages, aquariums, and terrariums. Blank writable labels allow technicians to inscribe special instructions on the spot. Available in various colors for color coding and easy visual identification.
 
-Warning and pharmacy communication labels are also available for adding necessary information to medication containers
+### Printers, Scanners & Software
 
-Blank and pre-printed syringe labels with a unique flag design ensure the contents of the syringe remain clearly visible
+Equip your lab, clinic, hospital, or business with a complete labeling solution. LabTAG offers printers, ribbons, barcoding software, scanners, and related tools to securely and accurately identify medication, samples, cages, and documentation. Ready-made printing kits are available, or you can build your own animal healthcare printing solution with help from our scientific experts.
 
-## Animal Cage & Chart Labels
+## Need Expert Help?
 
-![Animal Cage & Chart Labels](https://cdn.labtag.com/wp-content/uploads/animal-cage-healthcare.png "/media/animal-healthcare/animal-cage-healthcare.png")
-
-Used by veterinary offices and clinics to provide additional information on the current state of the animal’s care
-
-Static-cling animal cage labels are easily repositionable, perfect for identifying delicate surfaces, including animal cages, aquariums, and terrariums
-
-Blank writable labels allow technicians to inscribe, on-the-spot, special instructions for the animal’s continued care
-
-These labels can be provided in various colors for color coding and easy visual identification
-
-## Printers, Scanners, & Software
-
-Equip your lab, clinic, hospital, or business with a complete labeling solution.
-
-LabTAG offers printers, ribbons, barcoding software, scanners, and everything else you’ll need to securely and accurately identify your medication, samples, cages, and documentation.
-
-Ready-made printing kits are available, or you can build your own animal healthcare printing solution with the help of our knowledgeable scientific experts.
+Tell us a little about your veterinary or animal research labeling workflow and one of our experts will help you choose the right animal healthcare labeling solution.

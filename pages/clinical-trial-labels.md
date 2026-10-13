@@ -2,121 +2,56 @@
 
 Source: [https://www.labtag.com/solutions/clinical-trial-labels/](https://www.labtag.com/solutions/clinical-trial-labels/)
 
-![Clinical Trial Labels](https://cdn.labtag.com/wp-content/uploads/2021/12/Clinical-Trial-Labels-Labtag-Use3.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use3.jpg")
+![Clinical trial labels](https://cdn.labtag.com/wp-content/uploads/2021/12/Clinical-Trial-Labels-Labtag-Use3.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use3.jpg")
 
-LabTAG® understands that your clinical trials team has a tremendous responsibility to meet the demands of your sponsors, patients, and doctors. With the drug development process being accelerated, and the number of clinical trials on the rise, the pressure for trials to succeed has never been higher. Increasing costs, new regulations, and mounting competition makes having the right clinical labeling in place even more of a priority. We have the demonstrated expertise and experience to fulfill any clinical trial label requirements—on time, with precision, and always hassle-free.
 
-This includes a wide range of customization options, to meet your specific needs and requirements.
 
-## Custom Label Constructs
+LabTAG® understands that clinical trials teams have a tremendous responsibility to sponsors, patients, and doctors. With accelerated drug development and rising trial volumes, having the right clinical labeling in place is a priority. We fulfill clinical trial label requirements on time, with precision, and with a wide range of customization options for trial teams.
 
-We can produce customized labels, using our high-quality materials, in any dimension, shape, color, and configuration requested.
+LabTAG consults, designs, and prints custom clinical trial labels in sheet, roll, or booklet formats, including cryogenic, autoclave, syringe, wrap-around, piggyback, barcode, and RFID options.
 
-## Custom Printing
+## Clinical Trial Label Guide
 
-We can provide any of our vast catalog of labels pre-printed with your desired information, reducing handling time, as they can simply be peeled and applied.
+Everything you need to know before choosing clinical trial labels. Browse options by capability or format below.
 
-## Serialization & Database
+### By Capability
 
-We can also print your labels from a supplied database. This includes printing serialized information, variable data, and custom barcode serialization.
+- **Custom Constructs** — Labels in any dimension, shape, color, and configuration from high-quality materials
+- **Custom Printing** — Pre-printed labels ready to peel and apply, reducing handling time
+- **Serialization & Database** — Serialized information, variable data, and custom barcode serialization from supplied databases
+- **Full-Color Graphics** — Pre-printed graphics, images, and company logos
+- **RFID Technology** — RFID inlays inserted into durable constructs; available encoded and printed
 
-## Full-Color Graphics
+### By Format & Material
 
-In addition to text, your labels can be provided pre-printed with full-colors graphics, images, as well as marked with company logos.
+- **Formats** — Roll, sheet, die cut, fanfold, butt cut, continuous, front & back, multi-part
+- **Printing** — Laser (digital), flexographic, inkjet rolls/sheets, LED
+- **Materials** — Film, foil, paper, matte, glossy, holographic, laminated, varnished
+- **Resistance** — Waterproof, weatherproof, heat-, scratch-, solvent-, chemical-, acid-, and base-resistant
 
-## RFID Technology
+## Capabilities in Detail
 
-We now have the ability to insert an RFID inlay into any of our durable label constructs. These labels can even be provided encoded and printed with your desired data.
+### Custom Constructs and Printing
 
-Choose LabTAG® as your trusted clinical trial labeling partner to:
+We produce customized labels using high-quality materials in any dimension, shape, color, and configuration requested. Labels can be pre-printed with your desired information so they can simply be peeled and applied. Full-color graphics, images, and company logos are available in addition to text.
 
-- Print full-color logos and graphic images
-- Provide high-quality barcodes to track samples accurately and consistently
-- Print variable serialized data from databases
-- Provide labels that are resistant to water, chemicals, heat, low temperature, and scratches
-- Comply with local language labeling requirements
-- Meet delivery expectations to most locations worldwide
-- Safeguard the confidentiality of your data
-- Ensure the accuracy of all printed information
+### Serialization, Barcodes, and RFID
 
-## State of the Art Technology
+![Clinical trial serialized and barcode labels](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use4.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use4.jpg")
+![Clinical trial label applications](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use5.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use5.jpg")
 
-Providing clinical labeling services for the pharmaceutical and biotechnology industries requires a robust supply chain that is able to quickly adapt, and a company with a global presence, to deliver the labels where they’re needed. LabTAG® has complete in-house printing capabilities, and advanced inspection software, perfectly suited for on-demand manufacturing of labels for clinical trials, helping to reduce turn-around time.
+We can print labels from a supplied database, including serialized information, variable data, and custom barcode serialization. RFID inlays can be inserted into durable label constructs and provided encoded and printed with your desired data. High-quality barcodes support accurate, consistent sample tracking.
 
-LabTAG® is equipped with the latest printing technology, and consult, design, manufacture, and print customized clinical trial labels of any dimension, shape, color, and configuration. We can provide labels in sheet or roll formats, as well as booklet labels for clinical trials, providing important drug information to patients. Choose from cryogenic (cryo), autoclave, syringe, wrap-around, piggyback, blackout, and chemical resistant labels. Need sample tracking? Ask about our barcode and RFID labels.
+### In-House Manufacturing and Expertise
 
-## Unmatched Expertise in Clinical Trial Labels
+LabTAG has complete in-house printing capabilities and advanced inspection software suited to on-demand manufacturing of clinical trial labels, helping reduce turnaround time. A robust supply chain and global presence support delivery where labels are needed. Our specialists—with backgrounds spanning molecular and cellular biology, pharmacology and toxicology, biochemistry, and medicine—understand laboratory label technologies and the need for clinical trial labeling exactness and on-time delivery.
 
-![Unmatched Expertise in Clinical Trial Labels](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use4.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use4.jpg")
-![Unmatched Expertise in Clinical Trial Labels](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use5.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use5.jpg")
-![Unmatched Expertise in Clinical Trial Labels](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use6.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use6.jpg")
+Clinical trial label production requires greater care to meet stringent regulatory requirements and preserve the integrity of critical drug trials. Our goal is to facilitate a fast trial launch and support unexpected amendments so they are quickly processed, eliminating costly delays.
 
-![Unmatched Expertise in Clinical Trial Labels](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use5.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use5.jpg")
+### Application Surfaces and Data Formats
 
-The ever-increasing complexity of clinical trials, coupled with the rise in costs has led to the need for clinical healthcare labels that are cost-effective, supplied by a company that is flexible in its manufacturing operations. LabTAG® offers a level of expertise unmatched in the industry with its team of highly skilled scientists. Possessing post-doctorates in molecular and cellular biology, pharmacology and toxicology, biochemistry, and medicine, our specialists have a comprehensive understanding of laboratory label technologies and the critical need for clinical trial labeling exactness and on-time delivery.
+Clinical trial labels support vials and tubes, glass tubes, syringes, blood bags, resin embedding, paraffin wax blocks, vitrification devices, and plastic containers or boxes. Data can be supplied via database, barcoding software, 1D/2D/QR barcodes, vector formats, and spreadsheets. Labels resist water, chemicals, heat, low temperature, and scratches; support local language labeling requirements; and are produced with safeguards for data confidentiality and printed-information accuracy.
 
-We understand that clinical trial label production necessitates greater care in order to meet the stringent regulatory requirements needed to preserve the integrity of critical drug trials. Our goal is to facilitate a fast trial launch, and provide support to ensure unexpected amendments are quickly processed, eliminating costly delays.
+## Need Expert Help?
 
-## Label Formats
-
-- Roll
-- Sheet
-- Die Cut
-- Fanfold
-- Butt Cut
-- Continuous
-- Front & Back
-- Multi-part Label
-
-## Printing Method
-
-- Laser (Digital)
-- Flexographic
-- Inkjet Rolls
-- Inkjet Sheets
-- LED
-
-## Material Selection
-
-- Film
-- Foil
-- Paper
-- Matte
-- Glossy
-- Holographic
-- Laminated
-- Varnished
-
-## Resistance
-
-- Waterproof
-- Weatherproof
-- Heat-Resistant
-- Scratch-Resistant
-- Solvent-Resistant
-- Chemical-Resistant
-- Acid-Resistant
-- Base-Resistant
-
-## Application Surface
-
-- Vial & Tubes
-- Glass Tubes
-- Syringes
-- Blood bags
-- Resin Embedding
-- Parafin Wax Blocks
-- Vitrification Devices
-- Plastic Container/Box
-
-## Data Format
-
-- Database
-- Barcoding Software
-- 1D, 2D, QR barcodes
-- Vector Formats
-- Spreadsheets
-
-## Make Your Project a Reality
-
-Deciding which label is best for a particular clinical trial project isn’t always easy.
+Tell us a little about your clinical trial labeling project and one of our experts will help you choose the right solution.

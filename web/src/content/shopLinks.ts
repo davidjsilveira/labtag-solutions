@@ -16,10 +16,6 @@ export function shopUrlForClass(code: string): string {
   return `https://www.labtag.com/label_class/${code.toLowerCase()}/`
 }
 
-export function shopSearchUrl(query: string): string {
-  return `https://www.labtag.com/?s=${encodeURIComponent(query)}`
-}
-
 export function resolveBulletItem(raw: string): BulletShopItem {
   const trimmed = raw.trim()
   const linked = trimmed.match(MARKDOWN_LINK)
@@ -32,10 +28,12 @@ export function resolveBulletItem(raw: string): BulletShopItem {
     return { label: trimmed, href: shopUrlForClass(code) }
   }
 
-  // Short chip-style items → LabTAG site search (shop-relevant browse)
-  if (trimmed.length <= 42 && !/[.!?]/.test(trimmed)) {
-    return { label: trimmed, href: shopSearchUrl(trimmed) }
-  }
-
   return { label: trimmed }
+}
+
+/** Product-class lists (e.g. FJT / JTTA) use chip + shop-link styling. */
+export function isShopChipList(items: string[]): boolean {
+  if (!items.length) return false
+  const coded = items.filter((item) => Boolean(extractProductClass(item))).length
+  return coded >= Math.ceil(items.length * 0.6)
 }

@@ -85,15 +85,37 @@ function parseList(lines: string[], start: number): { items: string[]; next: num
 function parseNumberedSteps(
   lines: string[],
   start: number,
-): { steps: { title: string; body: string }[]; next: number } | null {
+): {
+  steps: { title: string; body: string; image?: { src: string; alt: string; fallbackSrc?: string } }[]
+  next: number
+} | null {
   if (!STEP_LINE.test(lines[start] ?? '')) return null
-  const steps: { title: string; body: string }[] = []
+  const steps: {
+    title: string
+    body: string
+    image?: { src: string; alt: string; fallbackSrc?: string }
+  }[] = []
   let i = start
   while (i < lines.length) {
     const match = lines[i].match(STEP_LINE)
     if (!match) break
-    steps.push({ title: match[1].trim(), body: match[2].trim() })
+    const step: {
+      title: string
+      body: string
+      image?: { src: string; alt: string; fallbackSrc?: string }
+    } = { title: match[1].trim(), body: match[2].trim() }
     i += 1
+    while (i < lines.length && !lines[i].trim()) i += 1
+    const imageMatch = lines[i]?.match(IMAGE_LINE)
+    if (imageMatch) {
+      step.image = {
+        alt: imageMatch[1] || '',
+        src: imageMatch[2],
+        fallbackSrc: imageMatch[3] || undefined,
+      }
+      i += 1
+    }
+    steps.push(step)
   }
   return steps.length ? { steps, next: i } : null
 }
@@ -245,16 +267,27 @@ function collapseFeatureRuns(blocks: ContentBlock[]): ContentBlock[] {
 }
 
 function promoteCta(blocks: ContentBlock[]): ContentBlock[] {
-  return blocks.map((block) => {
-    if (
-      block.type === 'section' &&
-      CTA_TITLES.test(block.title) &&
-      block.paragraphs.length
-    ) {
-      return { type: 'cta', title: block.title, body: block.paragraphs.join(' ') }
+  const out: ContentBlock[] = []
+  for (let i = 0; i < blocks.length; i += 1) {
+    const block = blocks[i]
+    if (block.type === 'section' && CTA_TITLES.test(block.title)) {
+      const following = blocks[i + 1]
+      const body = block.paragraphs.length
+        ? block.paragraphs.join(' ')
+        : following?.type === 'text'
+          ? following.paragraphs.join(' ')
+          : ''
+      if (body) {
+        out.push({ type: 'cta', title: block.title, body })
+        if (!block.paragraphs.length && following?.type === 'text') {
+          i += 1
+        }
+        continue
+      }
     }
-    return block
-  })
+    out.push(block)
+  }
+  return out
 }
 
 export function parseMarkdown(slug: string, markdown: string): SolutionPage {

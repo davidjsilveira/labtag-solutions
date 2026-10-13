@@ -74,9 +74,15 @@ export function BlockRenderer({ blocks }: Props) {
       if (images.length) {
         let next = afterImages
         let paragraphs = [...block.paragraphs]
+        let bullets: ContentBlock | undefined
+
         const following = blocks[next]
         if (following?.type === 'text') {
           paragraphs = [...paragraphs, ...following.paragraphs]
+          next += 1
+        }
+        if (blocks[next]?.type === 'bulletList') {
+          bullets = blocks[next]
           next += 1
         }
 
@@ -89,6 +95,9 @@ export function BlockRenderer({ blocks }: Props) {
           <div key={`split-${i}`} className="content-split">
             <div className="content-split-copy">
               <SectionBlockView block={section} />
+              {bullets?.type === 'bulletList' ? (
+                <BulletListBlockView block={bullets} variant="plain" />
+              ) : null}
             </div>
             <ImageSlider images={images} className="content-split-media" />
           </div>,

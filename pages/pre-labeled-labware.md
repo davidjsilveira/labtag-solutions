@@ -2,46 +2,43 @@
 
 Source: [https://www.labtag.com/solutions/pre-labeled-labware/](https://www.labtag.com/solutions/pre-labeled-labware/)
 
-![Pre-Labeled Labware](https://cdn.labtag.com/wp-content/uploads/2025/01/Kitting-Service-7v2.jpg "/media/pre-labeled-labware/Kitting-Service-7v2.jpg")
+![Pre-labeled labware kitting service](https://cdn.labtag.com/wp-content/uploads/2025/01/Kitting-Service-7v2.jpg "/media/pre-labeled-labware/Kitting-Service-7v2.jpg")
 
-Pre-Labeled Labware Service
 
-Purchasing and labeling labware in high volumes can be a burden. Let our team of experts print and label your tubes, vials, and other labware according to your specifications. You can choose to send us your labware or let us procure it for you.
 
-Book a Free Consultation
+Purchasing and labeling labware in high volumes can be a burden for busy laboratory teams. LabTAG’s pre-labeled labware service lets our experts print and label your tubes, vials, and other labware according to your specifications. You can send us your labware or let us procure it for a hands-off, stress-free workflow.
 
-"We received the bar coded tubes, superbly organized in the respective boxes. I doubt you ever had a more satisfied customer!!! We are truly grateful!"
+Personalized labeling covers custom barcodes, variable text, graphics and logos, precise application, and barcode grading for quality assurance and accuracy before shipment to your lab.
 
-Dr. Jose A. Halperin, M.D. | Harvard Medical School
+## Pre-Labeled Labware Guide
 
-The tubes were used in large NIH-funded epidemiological studies conducted at Harvard Medical School to explore the potential of a novel diabetes biomarker for screening and diagnosis of Gestational Diabetes Mellitus, a major public health priority worldwide.
+Everything you need to know before choosing pre-labeled labware. Browse options by service model or capability below.
 
-Personalized to your exact needs
+### By Service Model
 
-Wide range of label materials
+- **Send Your Labware** — Ship your tubes, vials, or other labware; we label to your specifications
+- **We Procure** — We source the labware you need and ship it fully labeled to your lab
 
-Custom 1D/2D barcodes and variable text
+### By Capability
 
-Print graphics & logos
+- **Custom Barcodes & Text** — 1D/2D barcodes and variable text matched to your protocol
+- **Graphics & Logos** — Printed branding applied with the labels
+- **Precise Application** — Labels applied to labware according to your placement requirements
+- **Barcode Grading** — Quality checks to ensure scannable, accurate barcodes
+- **Material Range** — Wide selection of label materials suited to your storage and handling conditions
 
-Applied to the labware precisely
+## How the Service Works
 
-Barcode grading to ensure quality and accuracy
+### Send Us Your Labware
 
-Hands-off and stress-free
+Ship your labware to us, and we take care of the labeling process to match your specifications—personalized to your exact needs with the materials, barcodes, and print you require.
 
-Designed to simplify your operations and boost productivity.
+### Or Let Us Procure the Labware
 
-Send us your labware
+![Pre-labeled labware procurement and kitting](https://cdn.labtag.com/wp-content/uploads/Kitting-Service-1v2.jpg "/media/pre-labeled-labware/Kitting-Service-1v2.jpg")
 
-Ship your labware to us, and we'll take care of the labeling process to match your specifications.
+We can source the labware you need and ship it to your lab, fully labeled. Designed for high-volume studies and operations that need consistent, organized, barcoded tubes and containers without diverting lab staff to labeling work.
 
-OR Let us procure the labware for you
+## Need Expert Help?
 
-We can source the labware you need and ship it to your lab, fully labeled.
-
-Schedule a meeting with one of our experts today to get a customized solution tailored to your needs!
-
-Book a Free Consultation
-
-![Kitting-Service-1v2.jpg](https://cdn.labtag.com/wp-content/uploads/Kitting-Service-1v2.jpg "/media/pre-labeled-labware/Kitting-Service-1v2.jpg")
+Tell us a little about your labware and labeling requirements and one of our experts will help you plan a pre-labeled labware solution.

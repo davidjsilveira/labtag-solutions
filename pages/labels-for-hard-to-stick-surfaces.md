@@ -1,43 +1,44 @@
-# Labels for Hard to Stick Surfaces
+# Labels for Hard-to-Stick Surfaces
 
 Source: [https://www.labtag.com/solutions/labels-for-hard-to-stick-surfaces/](https://www.labtag.com/solutions/labels-for-hard-to-stick-surfaces/)
 
-![Labels for Hard to Stick Surfaces](https://cdn.labtag.com/wp-content/uploads/2023/03/PRF-67-Use1-2-2.jpg "/media/labels-for-hard-to-stick-surfaces/PRF-67-Use1-2-2.jpg")
+![Labels for hard-to-stick surfaces](https://cdn.labtag.com/wp-content/uploads/2023/03/PRF-67-Use1-2-2.jpg "/media/labels-for-hard-to-stick-surfaces/PRF-67-Use1-2-2.jpg")
 
-## Labels for Hard-to-Stick Surfaces
 
-![Labels for Hard-to-Stick Surfaces](https://cdn.labtag.com/wp-content/uploads/RF3-PRF-67-use1-1-2.jpg "/media/labels-for-hard-to-stick-surfaces/RF3-PRF-67-use1-1-2.jpg")
 
-Adhere to hard-to-stick surfaces, such as Teflon, Polytetrafluoroethylene (PTFE), Perfluoroalkoxy (PFA), Parchment paper, and paraffin wax
+LabTAG provides labels engineered to adhere to hard-to-stick surfaces such as Teflon, polytetrafluoroethylene (PTFE), perfluoroalkoxy (PFA), parchment paper, and paraffin wax. Available in various sizes and configurations, these durable labels support demanding laboratory identification where standard adhesives often fail to bond and stay affixed through tough lab work conditions.
 
-Available in various sizes and configurations for added functionality
+Compatible with common thermal-transfer barcode printers, including ParafiTAG™ options for paraffin wax blocks with chemical-resistant, metal-detectable, and RFID formats on PTFE and paraffin surfaces.
 
-Compatible with all common thermal-transfer barcode printers
+## Hard-to-Stick Surface Label Guide
 
-ParafiTAG™
+Everything you need to know before choosing labels for difficult surfaces. Browse options by product below.
 
-## Xylene-Resistant Labels for Paraffin Wax Blocks
+### By Product
 
-![Xylene-Resistant Labels for Paraffin Wax Blocks](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif "/media/labels-for-hard-to-stick-surfaces/ParafiGARD-Application400x400px-1-2.gif")
+- **ParafiTAG™** — Chemical-resistant labels for hard-to-stick surfaces including FFPE tissue cassettes
+- **ParafiGARD™** — Xylene-resistant labeling for paraffin wax blocks with solvent-resistant ribbons
+- **Metal-Detectable** — Metallic-layer labels detectable with a hand-held metal detector
+- **RFID ParafiTAG™** — Encodable RFID inlays for cassette management and LIMS tracking
 
-Chemical-resistant labels for hard-to-stick surfaces, including Formalin-Fixed Paraffin-Embedded (FFPE) tissue cassettes in histology labs. When printed with a XAR-class solvent-resistant ribbon, the printout obtained will resist exposure to various histological chemicals and solvents, such as xylene, toluene, alcohols, as well as other organic solvents. These labels for paraffin wax blocks will also withstand a wide range of temperatures, suitable for labeling recently cooled blocks.
+## Paraffin Wax Block Labels
 
-Temperature range -55°C to +70°C (-67°F to +158°F)
+### ParafiTAG™ / ParafiGARD™
 
-ParafiGARD™
+![ParafiGARD application on paraffin wax block](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif "/media/labels-for-hard-to-stick-surfaces/ParafiGARD-Application400x400px-1-2.gif")
 
-## Metal-Detectable Thermal-Transfer Labels for Paraffin Wax Blocks
+Chemical-resistant labels for hard-to-stick surfaces, including Formalin-Fixed Paraffin-Embedded (FFPE) tissue cassettes in histology labs. When printed with a XAR-class solvent-resistant ribbon, the printout resists exposure to histological chemicals and solvents such as xylene, toluene, alcohols, and other organic solvents. These labels for paraffin wax blocks also withstand a wide temperature range, suitable for labeling recently cooled blocks (−55°C to +70°C / −67°F to +158°F).
 
-Incorporating a unique metallic layer, these labels for hard-to-stick surfaces can be detected using a hand-held metal detector. Perfect for identifying paraffin-embedded cassettes, these metal-detectable labels help reduce the chance of accidental loss of wax blocks and other valuable samples when used in conjunction with an appropriate lab waste screening program. They also offer excellent chemical and solvent resistance, ensuring printed text remains legible and barcodes scannable.
+### Metal-Detectable Thermal-Transfer Labels
 
-Temperature range -20°C to +120°C (-4°F to +248°F)
+Incorporating a unique metallic layer, these labels can be detected using a hand-held metal detector. Perfect for identifying paraffin-embedded cassettes, metal-detectable labels help reduce the chance of accidental loss of wax blocks and other valuable samples when used with an appropriate lab waste screening program. They also offer excellent chemical and solvent resistance so printed text remains legible and barcodes scannable. Temperature range: −20°C to +120°C (−4°F to +248°F). Patent pending.
 
-Patent Pending
+### RFID ParafiTAG™
 
-RFID ParafiTAG™
+![RFID ParafiTAG labels for hard-to-stick surfaces](https://cdn.labtag.com/wp-content/uploads/RF3-PRF-67-use1-1-2.jpg "/media/labels-for-hard-to-stick-surfaces/RF3-PRF-67-use1-1-2.jpg")
 
-## Xylene-Resistant RFID Labels for Paraffin Wax Blocks
+Chemical-resistant RFID labels incorporate an encodable RFID inlay for improved cassette management and enhanced tracking. Designed to integrate with specimen management systems, these RFID labels can also identify labware, containers, tubing, and medical devices for tracking in LIMS or hospital systems. Printable with 1D/2D barcodes for added traceability and customizable upon request. Temperature range: −55°C to +70°C (−67°F to +158°F).
 
-Chemical-resistant RFID labels incorporate an encodable RFID inlay for improved cassette management and enhanced tracking. Specifically designed to integrate with specimen management systems to boost sample traceability, these RFID labels for hard-to-stick surfaces can also be used to identify labware, containers, tubing, and medical devices for improved tracking in LIMS or hospital systems. Can be printed with 1D/2D barcodes for added traceability. Customizable upon request.
+## Need Expert Help?
 
-Temperature range -55°C to +70°C (-67°F to +158°F)
+Tell us a little about your surface and histology workflow and one of our experts will help you choose the right hard-to-stick labeling solution.

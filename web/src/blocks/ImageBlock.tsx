@@ -12,13 +12,16 @@ export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: P
   const resolved = resolveImageSrc(src, fallbackSrc)
   const [current, setCurrent] = useState(resolved.primary)
   const [failed, setFailed] = useState(false)
+  const isIcon = /\.svg(?:$|\?)/i.test(resolved.primary) || /\.svg(?:$|\?)/i.test(fallbackSrc ?? '')
 
   if (failed && !resolved.fallback) {
     return null
   }
 
   return (
-    <figure className={`block block-image block-image-${variant}`}>
+    <figure
+      className={`block block-image block-image-${variant}${isIcon ? ' block-image-icon' : ''}`}
+    >
       <img
         src={current}
         alt={alt}
@@ -32,7 +35,7 @@ export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: P
           setFailed(true)
         }}
       />
-      {alt ? <figcaption>{alt}</figcaption> : null}
+      {alt && !isIcon ? <figcaption>{alt}</figcaption> : null}
     </figure>
   )
 }

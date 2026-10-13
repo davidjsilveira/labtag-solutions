@@ -24,11 +24,17 @@ export type BulletListBlock = {
   items: string[]
 }
 
+export type NumberedStepImage = {
+  src: string
+  alt: string
+  fallbackSrc?: string
+}
+
 export type NumberedStepsBlock = {
   type: 'numberedSteps'
   title?: string
   intro?: string
-  steps: { title: string; body: string }[]
+  steps: { title: string; body: string; image?: NumberedStepImage }[]
 }
 
 export type FeatureGridBlock = {

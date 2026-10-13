@@ -4,62 +4,60 @@ Sources:
 - [https://www.labtag.com/solutions/snappeel-labels/](https://www.labtag.com/solutions/snappeel-labels/)
 - [https://www.labtag.com/solutions/snappeel-2/](https://www.labtag.com/solutions/snappeel-2/)
 
-![SnapPEEL](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
+![SnapPEEL labels for tube tops and sides](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
 
-Effortless labeling of tube tops and sides. Patent Pending SnapPEEL™ technology makes identifying cryo vials and microtubes quick and easy with its unique 2-in-1 rectangle + circle design. Both labels peel from the liner in a single motion, which makes applying the circle on the vial cap more precise. Once the circle is attached, the rectangle snaps off and is applied to the side of the vial.
 
-## The Technology
 
-SnapPEEL is a combination of a circular label and rectangular label that can be peeled off the liner together and snapped apart during application.
+Patent-pending SnapPEEL™ technology makes identifying cryo vials and microtubes quick and easy with a unique 2-in-1 rectangle plus circle design. Both labels peel from the liner in a single motion for precise cap placement. Once the circle is attached, the rectangle snaps off and is applied to the side of the vial.
+
+SnapPEEL joins a circular cap label and rectangular side label so dual labeling is faster when critical information must stay visible in freezer boxes.
+
+## SnapPEEL™ Guide
+
+Everything you need to know before choosing SnapPEEL™ labels. Browse options by benefit or material below.
+
+### By Benefit
+
+- **Precision** — The rectangle acts as a handle for accurate circle placement on the cap
+- **Efficiency** — Joined side and top labels reduce handling time versus two separate labels
+- **Visibility** — Cap and side labeling keeps sample identity readable from every angle
+
+### By Material
+
+- **FJT** — SnapPEEL available in LabTAG’s FJT label material
+- **JTTA** — SnapPEEL available in LabTAG’s JTTA label material
+- **DTU** — SnapPEEL available in LabTAG’s DTU label material
+- **LCS** — SnapPEEL available in LCS material, including for frozen vials
 
 ## The Challenge
 
-It is desirable to label both the side and cap of sample tubes or vials to avoid cross contamination. Top labeling can also decrease the time spent trying to find the correct sample from a freezer box. Using separate side and top labels can lead to:
+### Why Dual Labeling Is Hard
 
-- Frustration from time spent removing and placing two labels per sample tube or vial
-- Improper placement of the small, round top label onto the tube cap
-- Skipping cap labels altogether, which makes samples harder to find in a freezer box
+Labeling both the side and cap of sample tubes or vials helps avoid cross-contamination and reduces time spent finding the correct sample in a freezer box. Using separate side and top labels can lead to:
 
-## The LabTAG Solution
+- Time spent removing and placing two labels per tube or vial
+- Improper placement of the small round top label onto the tube cap
+- Skipping cap labels altogether, which makes samples harder to find
 
-The SnapPEEL™ label joins a round cap label and a rectangular side label so dual labeling is faster and more accurate:
+### The LabTAG Solution
 
-- Joined side and top labels decrease the time and frustration of handling labels one at a time
-- The larger rectangular label makes it easier to position the small circular label
-- Easier application makes it practical to label both the tube side and cap
+SnapPEEL™ joins a round cap label and a rectangular side label so dual labeling is faster and more accurate. Joined side and top labels decrease handling time; the larger rectangular label makes it easier to position the small circular label; and easier application makes it practical to label both the tube side and cap.
 
-## The Process
+## How SnapPEEL™ Works
 
-Peel once, apply twice. Peeling tiny circle labels can be frustrating, but labeling the top of a vial is crucial.
+### Peel, Apply, Snap, Apply
 
-1. **Peel** — Peel the label off of the liner
-2. **Apply** — Apply the circle label
+Peel once, apply twice:
 
-![Step 2](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step2.jpg "/media/snappeel-labels/SnapPEEL-Step2.jpg")
-
+1. **Peel** — Peel the joined label off the liner
+![SnapPEEL peel joined label from liner](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
+2. **Apply** — Apply the circle label to the vial cap
+![SnapPEEL apply circle to vial cap](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step2.jpg "/media/snappeel-labels/SnapPEEL-Step2.jpg")
 3. **Snap** — Snap the labels apart
+![SnapPEEL snap labels apart](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step3.jpg "/media/snappeel-labels/SnapPEEL-Step3.jpg")
+4. **Apply** — Apply the rectangle label to the vial side
+![SnapPEEL apply rectangle to vial side](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step4.jpg "/media/snappeel-labels/SnapPEEL-Step4.jpg")
 
-![Step 3](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step3.jpg "/media/snappeel-labels/SnapPEEL-Step3.jpg")
+## Need Expert Help?
 
-4. **Apply** — Apply the rectangle label
-
-![Step 4](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step4.jpg "/media/snappeel-labels/SnapPEEL-Step4.jpg")
-
-## The Benefits
-
-Work smarter, not harder:
-
-- **Precision** — The rectangle label acts as a handle for applying the circle labels accurately
-- **Efficiency** — Saves time and effort by streamlining the labeling process
-- **Visibility** — Labeling both the cap and side keeps critical information visible from every angle
-
-## The Products
-
-SnapPEEL™ is available in LabTAG’s best-selling label materials:
-
-- FJT
-- JTTA
-- DTU
-- LCS (including frozen vials)
-
-Take advantage of free label samples and try SnapPEEL for yourself.
+Tell us a little about your tube and vial labeling workflow and one of our experts will help you choose the right SnapPEEL™ solution.

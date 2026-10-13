@@ -2,24 +2,35 @@
 
 Source: [https://www.labtag.com/solutions/cryogenic-clinical-requisition-forms/](https://www.labtag.com/solutions/cryogenic-clinical-requisition-forms/)
 
-![Cryogenic Clinical Requisition Forms](https://cdn.labtag.com/wp-content/uploads/Requisition-Form-Sheets.png "/media/cryogenic-clinical-requisition-forms/Requisition-Form-Sheets.png")
+![Cryogenic clinical requisition form sheets](https://cdn.labtag.com/wp-content/uploads/Requisition-Form-Sheets.png "/media/cryogenic-clinical-requisition-forms/Requisition-Form-Sheets.png")
 
-We understand that clinical requisition forms and labels are a mainstay of the clinical team’s effort to indentify, track, and store valuable biological specimens. As such, our cryo laser printable requisition forms are a 1-stop solution for identifying sample vials destined for cryogenic storage, as well as associated containers or documentation.
 
-Laser Printable Forms & Labels from LabTAG Trusted Supplier:
 
-We are a major supplier of laser requisition forms and labels to certified CROs.
+Clinical requisition forms and labels are a mainstay of the clinical team’s effort to identify, track, and store valuable biological specimens. LabTAG’s cryo laser printable requisition forms are a one-stop solution for identifying sample vials destined for cryogenic storage, as well as associated containers or documentation in clinical settings.
 
-Customization:
+We supply laser requisition forms and labels to certified CROs, with custom solutions that help maintain the data integrity of valuable cryogenic samples in storage.
 
-We have experience developing custom solutions tailored to our client’s exact requirements.
+## Cryogenic Requisition Form Guide
 
-## Durability
+Everything you need to know before choosing cryogenic clinical requisition forms. Browse options by need below.
 
-: Our durable identification solutions ensure the data integrity of valuable samples is maintained.
+### By Need
 
-Cryogenic Storage:
+- **Cryogenic Storage** — Cryo labels that withstand long-term storage at −196°C, including liquid nitrogen
+- **Laser Printing** — Print with existing lab and office laser printers
+- **Customization** — Custom forms and labels tailored to CRO and clinical workflows
+- **Durability** — Identification solutions designed to protect sample data integrity
 
-- Our cryo labels withstand long-term storage in cryo conditions (-196 °C), includng liquid nitrogen
-- Easy Printing:
-- They can be printed with existing lab and office printers, making the easy to print and use
+## Forms and Labels for Cryogenic Specimens
+
+### Laser Printable Forms and Labels
+
+Cryo laser printable requisition forms support identification of sample vials destined for cryogenic storage along with related containers and documentation. They can be printed with existing lab and office printers, making them straightforward to print and use in clinical and CRO settings.
+
+### Cryogenic Durability
+
+Our cryo labels withstand long-term storage in cryogenic conditions (−196°C), including liquid nitrogen, so specimen identity remains linked from requisition through deep-freeze storage.
+
+## Need Expert Help?
+
+Tell us a little about your clinical requisition and cryogenic labeling workflow and one of our experts will help you choose the right forms and labels.
