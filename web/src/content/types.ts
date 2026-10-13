@@ -1,0 +1,83 @@
+export type ImageBlock = {
+  type: 'image'
+  src: string
+  alt: string
+  fallbackSrc?: string
+  variant?: 'hero' | 'gallery'
+}
+
+export type TextBlock = {
+  type: 'text'
+  paragraphs: string[]
+}
+
+export type SectionBlock = {
+  type: 'section'
+  title: string
+  level: 2 | 3
+  paragraphs: string[]
+}
+
+export type BulletListBlock = {
+  type: 'bulletList'
+  title?: string
+  items: string[]
+}
+
+export type NumberedStepsBlock = {
+  type: 'numberedSteps'
+  title?: string
+  intro?: string
+  steps: { title: string; body: string }[]
+}
+
+export type FeatureGridBlock = {
+  type: 'featureGrid'
+  title?: string
+  items: { title: string; body: string }[]
+}
+
+export type TableBlock = {
+  type: 'table'
+  title?: string
+  headers: string[]
+  rows: string[][]
+}
+
+export type QuoteBlock = {
+  type: 'quote'
+  text: string
+  attribution?: string
+}
+
+export type FaqBlock = {
+  type: 'faq'
+  title?: string
+  items: { question: string; answer: string }[]
+}
+
+export type CtaBlock = {
+  type: 'cta'
+  title: string
+  body: string
+}
+
+export type ContentBlock =
+  | ImageBlock
+  | TextBlock
+  | SectionBlock
+  | BulletListBlock
+  | NumberedStepsBlock
+  | FeatureGridBlock
+  | TableBlock
+  | QuoteBlock
+  | FaqBlock
+  | CtaBlock
+
+export type SolutionPage = {
+  slug: string
+  title: string
+  sources: string[]
+  excerpt: string
+  blocks: ContentBlock[]
+}

@@ -1,0 +1,157 @@
+# GA International Cody-3 Printer
+
+Source: [https://www.labtag.com/solutions/ga-international-cody-3-printer/](https://www.labtag.com/solutions/ga-international-cody-3-printer/)
+
+
+![GA International Cody-3 Printer](/assets/ga-international-cody-3-printer/Cody-3-use3-1.jpg "https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg")
+
+## GA Cody-3™ Thermal Printer
+
+Can be used in either direct thermal or thermal transfer mode
+
+300 dpi print resolution
+
+Accepts label rolls up to 4.64″ wide
+
+Quickly and easily design professional labels using the provided software
+
+USB, serial, and ethernet are all included as connectivity options
+
+## Overview
+
+Tech Specs
+
+Downloads
+
+## Overview
+
+The Cody-3 desktop thermal printer is capable of printing high quality 300 dpi text, barcodes, and graphics on many label types and configurations. It can print directly on thermal media or by thermal transfer mode using an ink ribbon. Professional looking labels can be achieved by following the easy-to-use software (included). Multiple connectivity options are also included.
+
+What’s in the Box
+
+Cody-3 Thermal-Transfer/ Direct Thermal Printer
+
+Power cord*
+
+Power adapter
+
+USB cable
+
+Ribbon holder and take-up spools
+
+Flash drive with BarTender UltraLite software and printer driver installation instructions
+
+Cardboard take-up core
+
+*Printer comes with a North American power cord and adapter (European or UK power cord is included accordingly). Other country-specific power cords may be purchased locally and separately.
+
+Technical Specifications
+
+Print Method:
+
+- Thermal-Transfer / Direct Thermal
+- Print Resolution:
+- 300 dpi
+- Interfaces:
+- USB, Serial, Ethernet
+- Print Speed:
+- up to 4 inch/s (102mm/s)
+- Max. Print Width:
+- 4.16” (105.7mm)
+- Max. Print Length:
+- 30” (762mm)
+- Label Height:
+- Min 0.157”(4mm)/Max 30” (762mm)
+- Media Types:
+- Continuous, Die-cut/gap Labels (Black Marked, Notch), Fanfold
+- Media Width:
+- Min 1” (25.4mm)/Max 4.64” (118mm)
+- Media Roll Core Size:
+- 1″ to 1.5″ (25.4mm to 38mm). (3” core with external unwinder)
+- Media Maximum Roll OD:
+- 5″ (127mm)
+- Ribbon Maximum OD:
+- 2.64” (67mm)
+- Ribbon Maximum Length:
+- 984’ (300m)
+- Ribbon Core Size:
+- 1” (25.4mm)
+- Ribbon Width:
+- Min. 1.18” (30mm), Max. 4.3” (110mm)
+- Ribbon Winding:
+- Ink Side Out (ISO)
+- Downloads
+- User Manual
+- Quick Set-Up Guide
+- Driver Installation Instructions
+
+
+## Product images
+
+![Cody-3-use9](/assets/ga-international-cody-3-printer/Cody-3-use9.jpg "https://cdn.labtag.com/wp-content/uploads/Cody-3-use9.jpg")
+
+![Cody-3-use2-3.jpg](/assets/ga-international-cody-3-printer/Cody-3-use2-3.jpg "https://cdn.labtag.com/wp-content/uploads/Cody-3-use2-3.jpg")
+
+![Cody3-UserManual-v2.jpg](/assets/ga-international-cody-3-printer/Cody3-UserManual-v2.jpg "https://cdn.labtag.com/wp-content/uploads/Cody3-UserManual-v2.jpg")
+
+![Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg](/assets/ga-international-cody-3-printer/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg "https://cdn.labtag.com/wp-content/uploads/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg")
+
+![Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg](/assets/ga-international-cody-3-printer/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg "https://cdn.labtag.com/wp-content/uploads/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg")
+
+## Frequently Asked Questions
+
+Does the Cody-3™ require an ink ribbon
+
+No, an ink ribbon is only required for printing thermal-transfer labels (e.g., JTTA, AUTT, or FTT). Please contact our technical support team with any questions you may have.
+
+## Can I print direct thermal labels without using an ink ribbon?
+
+Yes, this printer can print both in thermal-transfer mode (see above) and direct thermal mode. No ink ribbon is required when using direct thermal labels, allowing for an ink-free printing process. Please contact our technical support team for recommendations or if you have any questions.
+
+## Does the Cody-3™ require labels to be on a special cartridge?
+
+No, this printer can use labels on a 1’’/25.4mm cardboard or plastic core.
+
+## What kind of ribbon is required for this printer?
+
+In general, this printer can accept ribbons with a core diameter of 1’’/25.4mm. The maximum ribbon length usable in this printer is 984’/300m.
+
+We recommend specific ribbons depending on the type of label you would like to print, as stated on each label’s product page. Please contact our technical support team if you require more information.
+
+Does the Cody-3™ use DRM to prevent the use of labels from different manufacturers?
+
+No, the Cody-3™ contains no DRM technology and can be used with labels from various third-party manufacturers.
+
+My printout is faint and not clearly legible. How can I improve this?
+
+This issue can be addressed by increasing the heat transferred to the ink ribbon. Please refer to this page if you are using the BarTender software. Please contact our technical support team if you require further assistance.
+
+How do I calibrate the printer when changing rolls with different label sizes?
+
+The printer will receive the actual label size when you send a print job to the printer and thus usually does not require calibration. However, the printer also has a calibration button if manual calibration should be needed. Please refer to page 11 of the manual on the flash drive you received with the printer to locate the button. Hold the button until the LEDs on the printer start to flash orange to initiate manual calibration.
+
+## What kind of software is included with this printer?
+
+This printer comes standard with a 30-day trial of BarTender. Please contact our technical support team to inquire about other software options.
+
+## What kind of labels are compatible with this printer?
+
+This printer can print various types of thermal-transfer and direct thermal labels and tags. Please contact our technical support team if you would like to receive further information on if a specific label can be used with this printer.
+
+## Can I use an external unwinder with this printer?
+
+Yes, the printer has an opening in the back to allow feeding of labels from an external source in case you would like to use larger label rolls.
+
+## Can the Cody-3™ encode RFID labels?
+
+No, this printer does not contain an RFID encoder. Please contact our technical support team in case you are looking for a label printer with RFID encoding capabilities.
+
+## What is the recommended maximum number of labels I can print per day?
+
+We do not recommend exceeding 500 printed labels per day with this model. Please contact our technical support team if you need a recommendation for a printer that can print more labels than that on a daily basis.
+
+The Cody-3™—A premium quality label Printer at an unbeatable price
+
+Buy Now
+
+Get a Quote

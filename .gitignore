@@ -1,0 +1,31 @@
+# Dependencies and build
+web/node_modules/
+web/dist/
+web/dist-ssr/
+*.local
+
+# Logs / editor
+logs/
+*.log
+.DS_Store
+.idea/
+.vscode/*
+
+# Ephemeral scrape/download helpers
+scripts/image-work/batches/
+scripts/image-work/.cdp_*
+scripts/image-work/.current_*
+scripts/image-work/.expr*
+scripts/image-work/.last_*
+scripts/image-work/apply_*.py
+scripts/image-work/build_batch_expression.py
+scripts/image-work/browser_cdp_call.json
+scripts/image-work/cdp_*
+scripts/image-work/do_batch.py
+scripts/image-work/download_all_cdp.py
+scripts/image-work/run_cdp_downloads.py
+scripts/image-work/write_cdp_request.py
+scripts/browser_scrape_expr.json
+
+# Empty / unused local folder at repo root (not web/public/assets)
+/assets/
