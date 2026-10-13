@@ -29,6 +29,14 @@ Everything you need to know before choosing SnapPEEL™ labels. Browse options b
 - **DTU** — SnapPEEL available in LabTAG’s DTU label material
 - **LCS** — SnapPEEL available in LCS material, including for frozen vials
 
+## The Technology
+
+### What is SnapPEEL™?
+
+![SnapPEEL peel-and-snap animation](https://cdn.labtag.com/wp-content/uploads/Michael_Animation_02_Aria_V06-2.mp4 "/media/snappeel-labels/Michael_Animation_02_Aria_V06-2.mp4")
+
+SnapPEEL is a combination of a circular label and rectangular label that can be peeled off the liner together and snapped apart during application. The joined design makes dual labeling of vial caps and sides faster and more precise.
+
 ## The Challenge
 
 ### Why Dual Labeling Is Hard

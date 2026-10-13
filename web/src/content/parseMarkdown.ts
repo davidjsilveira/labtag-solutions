@@ -6,10 +6,37 @@ const FEATURE_BULLET = /^-\s+\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
 const BOLD_LEAD = /^\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
 const IMAGE_LINE = /^!\[(.*?)\]\((.*?)(?:\s+"(.*?)")?\)$/
 
+function isVideoSrc(src: string): boolean {
+  return /\.(mp4|webm|ogg)(?:$|[?#])/i.test(src)
+}
+
 function imageVariant(alt: string, isHero = false): 'hero' | 'gallery' | 'logo' {
   if (isHero) return 'hero'
   if (/\blogo\b/i.test(alt)) return 'logo'
   return 'gallery'
+}
+
+function mediaBlockFromMatch(
+  alt: string,
+  src: string,
+  fallbackSrc: string | undefined,
+  isHero = false,
+): ContentBlock {
+  if (isVideoSrc(src) || (fallbackSrc && isVideoSrc(fallbackSrc))) {
+    return {
+      type: 'video',
+      alt: alt || '',
+      src,
+      fallbackSrc,
+    }
+  }
+  return {
+    type: 'image',
+    alt: alt || '',
+    src,
+    fallbackSrc,
+    variant: imageVariant(alt || '', isHero),
+  }
 }
 const CTA_TITLES = /^(need expert|get in touch|make your project|experience the benefits|try the labels)/i
 
@@ -341,13 +368,7 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
         }
         const img = lines[i].match(IMAGE_LINE)
         if (!img) break
-        blocks.push({
-          type: 'image',
-          alt: img[1] || '',
-          src: img[2],
-          fallbackSrc: img[3] || undefined,
-          variant: imageVariant(img[1] || ''),
-        })
+        blocks.push(mediaBlockFromMatch(img[1] || '', img[2], img[3] || undefined))
         i += 1
       }
       continue
@@ -355,14 +376,8 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
 
     const imageMatch = line.match(IMAGE_LINE)
     if (imageMatch) {
-      const isHero = !leadDone && blocks.every((b) => b.type === 'image')
-      blocks.push({
-        type: 'image',
-        alt: imageMatch[1] || '',
-        src: imageMatch[2],
-        fallbackSrc: imageMatch[3] || undefined,
-        variant: imageVariant(imageMatch[1] || '', isHero),
-      })
+      const isHero = !leadDone && blocks.every((b) => b.type === 'image' || b.type === 'video')
+      blocks.push(mediaBlockFromMatch(imageMatch[1] || '', imageMatch[2], imageMatch[3] || undefined, isHero))
       i += 1
       continue
     }

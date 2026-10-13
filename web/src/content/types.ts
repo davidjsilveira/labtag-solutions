@@ -6,6 +6,13 @@ export type ImageBlock = {
   variant?: 'hero' | 'gallery' | 'logo'
 }
 
+export type VideoBlock = {
+  type: 'video'
+  src: string
+  alt: string
+  fallbackSrc?: string
+}
+
 export type TextBlock = {
   type: 'text'
   paragraphs: string[]
@@ -70,6 +77,7 @@ export type CtaBlock = {
 
 export type ContentBlock =
   | ImageBlock
+  | VideoBlock
   | TextBlock
   | SectionBlock
   | BulletListBlock

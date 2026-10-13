@@ -580,6 +580,37 @@ tr:last-child td {
   margin: 0;
 }
 
+.block-video {
+  margin: 0;
+}
+
+.block-video video {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.content-split-media.block-video video {
+  max-width: none;
+}
+
+.block-video figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.content-split-media.block-video figcaption {
+  display: none;
+}
+
 .block-image img {
   display: block;
   width: 100%;

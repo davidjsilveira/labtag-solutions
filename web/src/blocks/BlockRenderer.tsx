@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
+import type { ContentBlock, ImageBlock, SectionBlock, VideoBlock } from '@/content/types'
 import { BulletListBlockView } from './BulletListBlock'
 import { CtaBlockView } from './CtaBlock'
 import { FaqBlockView } from './FaqBlock'
@@ -11,6 +11,7 @@ import { QuoteBlockView } from './QuoteBlock'
 import { SectionBlockView } from './SectionBlock'
 import { TableBlockView } from './TableBlock'
 import { TextBlockView } from './TextBlock'
+import { VideoBlockView } from './VideoBlock'
 
 type Props = {
   blocks: ContentBlock[]
@@ -28,6 +29,10 @@ function renderBlock(block: ContentBlock, index: number) {
           fallbackSrc={block.fallbackSrc}
           variant={block.variant}
         />
+      )
+    case 'video':
+      return (
+        <VideoBlockView key={key} src={block.src} alt={block.alt} fallbackSrc={block.fallbackSrc} />
       )
     case 'text':
       return <TextBlockView key={key} block={block} />
@@ -62,6 +67,32 @@ function takeImages(blocks: ContentBlock[], start: number): { images: ImageBlock
   return { images, next: i }
 }
 
+function absorbFollowingCopy(
+  blocks: ContentBlock[],
+  start: number,
+  section: SectionBlock,
+): { section: SectionBlock; bullets?: ContentBlock; next: number } {
+  let next = start
+  let paragraphs = [...section.paragraphs]
+  let bullets: ContentBlock | undefined
+
+  const following = blocks[next]
+  if (following?.type === 'text') {
+    paragraphs = [...paragraphs, ...following.paragraphs]
+    next += 1
+  }
+  if (blocks[next]?.type === 'bulletList') {
+    bullets = blocks[next]
+    next += 1
+  }
+
+  return {
+    section: { ...section, paragraphs },
+    bullets,
+    next,
+  }
+}
+
 export function BlockRenderer({ blocks }: Props) {
   const nodes: ReactNode[] = []
   let i = 0
@@ -70,54 +101,60 @@ export function BlockRenderer({ blocks }: Props) {
     const block = blocks[i]
 
     if (block.type === 'section') {
+      const following = blocks[i + 1]
+      if (following?.type === 'video') {
+        const video = following as VideoBlock
+        const absorbed = absorbFollowingCopy(blocks, i + 2, block)
+        nodes.push(
+          <div key={`video-split-${i}`} className="content-split">
+            <div className="content-split-copy">
+              <SectionBlockView block={absorbed.section} />
+              {absorbed.bullets?.type === 'bulletList' ? (
+                <BulletListBlockView block={absorbed.bullets} variant="plain" />
+              ) : null}
+            </div>
+            <VideoBlockView
+              src={video.src}
+              alt={video.alt}
+              fallbackSrc={video.fallbackSrc}
+              className="content-split-media"
+            />
+          </div>,
+        )
+        i = absorbed.next
+        continue
+      }
+
       const { images, next: afterImages } = takeImages(blocks, i + 1)
       if (images.length) {
-        let next = afterImages
-        let paragraphs = [...block.paragraphs]
-        let bullets: ContentBlock | undefined
-
-        const following = blocks[next]
-        if (following?.type === 'text') {
-          paragraphs = [...paragraphs, ...following.paragraphs]
-          next += 1
-        }
-        if (blocks[next]?.type === 'bulletList') {
-          bullets = blocks[next]
-          next += 1
-        }
-
-        const section: SectionBlock = {
-          ...block,
-          paragraphs,
-        }
-
+        const absorbed = absorbFollowingCopy(blocks, afterImages, block)
         const allLogos = images.every((image) => image.variant === 'logo')
         if (allLogos) {
           nodes.push(
             <div key={`logo-section-${i}`} className="logo-section">
-              <SectionBlockView block={section} />
-              {bullets?.type === 'bulletList' ? (
-                <BulletListBlockView block={bullets} variant="plain" />
+              <SectionBlockView block={absorbed.section} />
+              {absorbed.bullets?.type === 'bulletList' ? (
+                <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
               <ImageSlider images={images} />
             </div>,
           )
-          i = next
+          i = absorbed.next
           continue
         }
 
         nodes.push(
           <div key={`split-${i}`} className="content-split">
             <div className="content-split-copy">
-              <SectionBlockView block={section} />
-              {bullets?.type === 'bulletList' ? (
-                <BulletListBlockView block={bullets} variant="plain" />
+              <SectionBlockView block={absorbed.section} />
+              {absorbed.bullets?.type === 'bulletList' ? (
+                <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
             </div>
             <ImageSlider images={images} className="content-split-media" />
           </div>,
         )
-        i = next
+        i = absorbed.next
         continue
       }
     }
