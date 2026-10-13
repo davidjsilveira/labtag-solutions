@@ -2,12 +2,21 @@
 
 Source: [https://www.labtag.com/solutions/ga-international-cody-3-printer/](https://www.labtag.com/solutions/ga-international-cody-3-printer/)
 
-
-![GA International Cody-3 Printer](/assets/ga-international-cody-3-printer/Cody-3-use3-1.jpg "https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg")
+![GA International Cody-3 Printer](https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg "/media/ga-international-cody-3-printer/Cody-3-use3-1.jpg")
 
 ## GA Cody-3™ Thermal Printer
 
+![Cody-3-use9](https://cdn.labtag.com/wp-content/uploads/Cody-3-use9.jpg "/media/ga-international-cody-3-printer/Cody-3-use9.jpg")
+![GA Cody-3™ Thermal Printer](https://cdn.labtag.com/wp-content/uploads/Cody-3-use2-3.jpg "/media/ga-international-cody-3-printer/Cody-3-use2-3.jpg")
+![GA Cody-3™ Thermal Printer](https://cdn.labtag.com/wp-content/uploads/Cody3-UserManual-v2.jpg "/media/ga-international-cody-3-printer/Cody3-UserManual-v2.jpg")
+![GA Cody-3™ Thermal Printer](https://cdn.labtag.com/wp-content/uploads/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg "/media/ga-international-cody-3-printer/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg")
+
+![GA Cody-3™ Thermal Printer](https://cdn.labtag.com/wp-content/uploads/Cody-3-use2-3.jpg "/media/ga-international-cody-3-printer/Cody-3-use2-3.jpg")
+![GA Cody-3™ Thermal Printer](https://cdn.labtag.com/wp-content/uploads/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg "/media/ga-international-cody-3-printer/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg")
+
 Can be used in either direct thermal or thermal transfer mode
+
+![GA Cody-3™ Thermal Printer](https://cdn.labtag.com/wp-content/uploads/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg "/media/ga-international-cody-3-printer/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg")
 
 300 dpi print resolution
 
@@ -85,19 +94,6 @@ Print Method:
 - Quick Set-Up Guide
 - Driver Installation Instructions
 
-
-## Product images
-
-![Cody-3-use9](/assets/ga-international-cody-3-printer/Cody-3-use9.jpg "https://cdn.labtag.com/wp-content/uploads/Cody-3-use9.jpg")
-
-![Cody-3-use2-3.jpg](/assets/ga-international-cody-3-printer/Cody-3-use2-3.jpg "https://cdn.labtag.com/wp-content/uploads/Cody-3-use2-3.jpg")
-
-![Cody3-UserManual-v2.jpg](/assets/ga-international-cody-3-printer/Cody3-UserManual-v2.jpg "https://cdn.labtag.com/wp-content/uploads/Cody3-UserManual-v2.jpg")
-
-![Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg](/assets/ga-international-cody-3-printer/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg "https://cdn.labtag.com/wp-content/uploads/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg")
-
-![Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg](/assets/ga-international-cody-3-printer/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg "https://cdn.labtag.com/wp-content/uploads/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg")
-
 ## Frequently Asked Questions
 
 Does the Cody-3™ require an ink ribbon
@@ -105,6 +101,8 @@ Does the Cody-3™ require an ink ribbon
 No, an ink ribbon is only required for printing thermal-transfer labels (e.g., JTTA, AUTT, or FTT). Please contact our technical support team with any questions you may have.
 
 ## Can I print direct thermal labels without using an ink ribbon?
+
+![Can I print direct thermal labels without using an ink ribbon?](https://cdn.labtag.com/wp-content/uploads/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg "/media/ga-international-cody-3-printer/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg")
 
 Yes, this printer can print both in thermal-transfer mode (see above) and direct thermal mode. No ink ribbon is required when using direct thermal labels, allowing for an ink-free printing process. Please contact our technical support team for recommendations or if you have any questions.
 

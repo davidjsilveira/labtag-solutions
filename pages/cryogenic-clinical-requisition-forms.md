@@ -2,8 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/cryogenic-clinical-requisition-forms/](https://www.labtag.com/solutions/cryogenic-clinical-requisition-forms/)
 
-
-![Cryogenic Clinical Requisition Forms](/assets/cryogenic-clinical-requisition-forms/Requisition-Form-Sheets.png "https://cdn.labtag.com/wp-content/uploads/Requisition-Form-Sheets.png")
+![Cryogenic Clinical Requisition Forms](https://cdn.labtag.com/wp-content/uploads/Requisition-Form-Sheets.png "/media/cryogenic-clinical-requisition-forms/Requisition-Form-Sheets.png")
 
 We understand that clinical requisition forms and labels are a mainstay of the clinical team’s effort to indentify, track, and store valuable biological specimens. As such, our cryo laser printable requisition forms are a 1-stop solution for identifying sample vials destined for cryogenic storage, as well as associated containers or documentation.
 

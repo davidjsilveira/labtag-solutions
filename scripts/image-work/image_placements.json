@@ -1,0 +1,679 @@
+{
+  "animal-healthcare": {
+    "hero": "cryogenic-storage-animalcare.png",
+    "sections": {
+      "Animal Cage & Chart Labels": [
+        "animal-cage-healthcare.png"
+      ],
+      "Medication Labels": [
+        "medication-labels.png"
+      ],
+      "Autoclave-Resistant Labels": [
+        "autoclave-animal-healthcare.png"
+      ],
+      "Chemical-Resistant Labels": [
+        "XFLA-117-use1.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "autoclave-labels": {
+    "hero": "Guide-Autoclave-Resistant-Labels-EN022023-February-23-2023.jpg",
+    "sections": {
+      "Autoclave Labels by Adhesive": [
+        "RF3-AUTT-28-use8.jpg"
+      ],
+      "Autoclave Labels by Feature": [
+        "RF3-AUTT-28-use6-1.jpg"
+      ],
+      "Inkjet": [
+        "RF3-AUTT-28-use5.jpg",
+        "testimonial.png"
+      ],
+      "Autoclave Labels by Printing Method": [
+        "RF3-AUTT-28-use3.jpg",
+        "AUTT-94-use-2.png"
+      ],
+      "Autoclave-Resistant Label Guide": [
+        "DFSL-13-Use-Autoclave-1.png"
+      ]
+    },
+    "leftover": []
+  },
+  "automated-labels": {
+    "hero": "20241128_084524.jpg",
+    "sections": {
+      "MP2+ Automated Microplate Labeler": [
+        "Microplates.jpg"
+      ],
+      "AQ Aliquoting System": [
+        "Scinomix_AQ-Aliquoting-System_Hero-Shot.png"
+      ],
+      "Bulk Tube Feeder Add-Ons": [
+        "Vxi-bulk-tube-feeder-1-1.png"
+      ],
+      "Scinomix Fully-Automated Tube Handling": [
+        "Scinomix-vx2-1-1.png",
+        "Scinomix-Vxl-1-1.png"
+      ],
+      "HTI Automated Tube & Vial Handling": [
+        "HTI-X-TubeProcessor-BASIC.png",
+        "HTI-X-TubeProcessor-SIGN.png",
+        "HTI-X-TubeProcessor-SMART.png"
+      ],
+      "Boost Productivity With The Power of Automation": [
+        "Untitled-1.png"
+      ]
+    },
+    "leftover": []
+  },
+  "biobanking-labels": {
+    "hero": "Biobank-Tile-1.jpg",
+    "sections": {
+      "Automation Solutions": [
+        "Thumb-WhitePaper-1.jpg",
+        "CST-29-use2-2-e1617029869217.jpg"
+      ],
+      "Cryo Tapes": [
+        "FTT-67_Hologic-2-scaled-e1610657254625.jpg",
+        "AEA-5-use-e1617037057507.jpg"
+      ],
+      "Cryo C-kurTAG\u2122": [
+        "JTTA-29-use2-Copie-e1617026541770.jpg"
+      ],
+      "Recommended Labels for Biobanking": [
+        "Printing-Solution-Main-Image-scaled-e1610656448123.jpg",
+        "CL-23-Use3-e1617028341242.jpg"
+      ],
+      "Empowering Your Biobank's Labeling Process": [
+        "shutterstock_75994732-scaled-e1610655645448.jpg",
+        "L2FS-1-Tile-1.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "cannabis-labels": {
+    "hero": "Cannabis-Labels-Testersv4.jpg",
+    "sections": {
+      "Printers, Scanners, & Software": [
+        "ivf-softwarepkt.jpg"
+      ],
+      "Plant Identification Labels for Cannabis Growers": [
+        "Cannabis-Labels-onplantv3.jpg"
+      ],
+      "Packaging Labels for Cannabis Brands, Distributors, & Retailers": [
+        "ivf-scanner.jpg"
+      ],
+      "Cannabis Labels for Growing, Testing & Selling": [
+        "Cannabis-Labels-Testersv2-1.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "chemical-container-labeling": {
+    "hero": "DymoCard.png",
+    "sections": {
+      "Pre-Printed Chemical-Resistant Labels": [
+        "WL-015-2.jpg"
+      ],
+      "Chemical-Resistant Labels by Printing Method": [
+        "L-010-0.5R-2.jpg",
+        "CALA-2.jpg"
+      ],
+      "Chemical-Resistant Labels by Container": [
+        "Inkjet.png",
+        "WL-004-1P-2-2.jpg"
+      ],
+      "Chemical-Resistant Labels": [
+        "Xylene-Chemica-Resistant-Labels.png"
+      ]
+    },
+    "leftover": []
+  },
+  "clinical-data-printing-2": {
+    "hero": "Clinical-Trial-Labels-Labtag-Use5.jpg",
+    "sections": {
+      "Why Use a Data Printing Service?": [
+        "Variable-Data-Printing-Services.jpg"
+      ],
+      "(unmatched)": [
+        "Clinical-Trial-Labels-Labtag-Use6.jpg"
+      ]
+    },
+    "leftover": [
+      "Clinical-Trial-Labels-Labtag-Use6.jpg"
+    ]
+  },
+  "clinical-trial-labels": {
+    "hero": "Clinical-Trial-Labels-Labtag-Use3.jpg",
+    "sections": {
+      "Unmatched Expertise in Clinical Trial Labels": [
+        "Clinical-Trial-Labels-Labtag-Use4.jpg",
+        "Clinical-Trial-Labels-Labtag-Use5.jpg",
+        "Clinical-Trial-Labels-Labtag-Use6.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "covid-19-laboratory-labels": {
+    "hero": "Covid-Img4.jpg",
+    "sections": {
+      "Deep-Freeze Labels": [
+        "deep-freeze-1.jpg"
+      ],
+      "Xylene-Resistant Labels": [
+        "xylene-label.jpg"
+      ],
+      "Rapid Response Testing": [
+        "PCR-1.jpg"
+      ],
+      "COVID-19 Labels for clinical trials": [
+        "covid-smaller-img.jpg",
+        "clinical.jpg"
+      ],
+      "Custom printing of serialized and/or barcoded labels": [
+        "autoclave-1.jpg",
+        "Pic-5_CL-23T1-Use2_.png"
+      ],
+      "Labels for sample collection and diagnostic kits": [
+        "cryogenic-1.jpg",
+        "testimonial.png"
+      ]
+    },
+    "leftover": []
+  },
+  "cryogenic-clinical-requisition-forms": {
+    "hero": "Requisition-Form-Sheets.png",
+    "sections": {},
+    "leftover": []
+  },
+  "cryogenic-labels": {
+    "hero": "JTTA-103-Use-vials.png",
+    "sections": {
+      "SimPEEL\u2122 Technology": [
+        "CL-23T1-Use.png"
+      ],
+      "Cryogenic Labels by Feature": [
+        "XST-251-with-printer-NO-RIBBON-NEEDED.png"
+      ],
+      "Automation": [
+        "XST-251-with-printer-1.png"
+      ],
+      "Writable": [
+        "AWA-28-Use-1.png"
+      ],
+      "Inkjet": [
+        "AMA-227-use-1.png"
+      ],
+      "Cryogenic Labels by Printing Method": [
+        "RF3-HBTT-308-use4-1-e1659556113158.jpg"
+      ],
+      "PCR": [
+        "PCRJTT-269-use-on-rack.png"
+      ],
+      "Tubes, Vials, & Boxes": [
+        "CIJ-28-use3-1-e1655839005709.jpg"
+      ],
+      "Cryogenic Labels by Container": [
+        "LWCS-504-use2-crop.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "cryostuck": {
+    "hero": "DTU-7-use4-wp.jpg",
+    "sections": {
+      "Our CryoSTUCK\u00ae Labels?": [
+        "UC-29-use4.jpg"
+      ],
+      "Industries Served": [
+        "BUC-29-use5-resized.jpg"
+      ],
+      "Printing CryoSTUCK labels": [
+        "LCY-9TR-Use2-square.jpg"
+      ],
+      "Affixing of Labels": [
+        "DTU-52-use4-wp-resized.jpg"
+      ],
+      "Laminating Existing Labels": [
+        "UC-7-use4-resized.jpg"
+      ],
+      "The Challenge of Labeling Frozen Vials": [
+        "PKT-LWCS-506-thumb-2.jpg"
+      ],
+      "CryoSTUCK\u00ae Labels for Frozen Vials and Containers": [
+        "LCS-9-LaserFormatCryoSTUCKv3.jpg",
+        "EDCS-070-cryostuckv3.jpg",
+        "FIX-332-Cryostuck.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "custom-laboratory-labels": {
+    "hero": "Die-Cut-Labels.jpg",
+    "sections": {
+      "Barcode Grading": [
+        "Barcode-Grading.jpg"
+      ],
+      "Variable Data Printing": [
+        "Variable-Data-Printing-Services-2.jpg"
+      ],
+      "Die Cut Laboratory Labels": [
+        "Full-Color-Graphics_.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "deep-freeze": {
+    "hero": "FJT-556-use1.jpg",
+    "sections": {
+      "Deep-Freeze Labels by Printing Method": [
+        "CL-23T1-use.png"
+      ],
+      "PCR": [
+        "PCRJTT-269-use-on-rack.jpg"
+      ],
+      "Blood Bag": [
+        "AMA-227-use.png"
+      ],
+      "Deep-Freeze Labels by Container": [
+        "EDFT-070-Use1-1-e1619107948990.jpg",
+        "EDFT-070-Use2-2-scaled-e1619191877578.jpg",
+        "EDFT-070-Use4-e1619107109917.jpg",
+        "FJT-9-Deep-Freeze-Main-Image-e1619192126273.png"
+      ],
+      "Writable": [
+        "FJT-29-use.png"
+      ]
+    },
+    "leftover": []
+  },
+  "dymo-compatible-laboratory-labels": {
+    "hero": "LWCS-501-use2.jpg",
+    "sections": {
+      "General Use Labels": [
+        "EDWA-010-Use-4.jpg"
+      ],
+      "Heat-Resistant Labels (Patent Pending)": [
+        "EDAP-070-use2.jpg"
+      ],
+      "Cryogenic Labels for Frozen Surfaces with SimPEEL\u2122 Technology (Patented)": [
+        "EDFT-070-Use1.jpg"
+      ],
+      "Cryogenic Labels for Frozen Vials (Patented)": [
+        "SPED1F-070WH-Use2.jpg"
+      ],
+      "Laboratory Labels for DYMO\u00ae LabelWriter\u2122": [
+        "EDCS-070-Use5.jpg",
+        "ECY-050-Use.jpg"
+      ],
+      "Cryogenic Labels for Frozen Vials": [
+        "EC1F-072-Use.png"
+      ],
+      "Laboratory Labels for DYMO\u00ae LabelWriter\u2122 5-Series & 4-Series": [
+        "LWCS-504-DYMOxGA.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "dymo-labelwriter-550": {
+    "hero": "PKT-LWCS-506-Box.png",
+    "sections": {
+      "Cryogenic labeling has never been easier": [
+        "LWCS-504-use4-1-1.jpg",
+        "LWCS-501-illu.jpg"
+      ],
+      "Cryogenic labels for DYMO\u00ae LabelWriter\u2122 550": [
+        "LWCS-504-WH.jpg",
+        "Dymo-LabelWriter-550-Printer-2-2-1.jpg",
+        "LWCS-504-DYMOxGA.jpg",
+        "DYMO-Connect-Software-Screenshot-1.png"
+      ],
+      "What\u2019s included in the printing kit": [
+        "PKT-LWCS-506-thumb.jpg",
+        "LWCS-504-WH.png",
+        "LWCS-502-illu.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "ga-international-cody-3-printer": {
+    "hero": "Cody-3-use3-1.jpg",
+    "sections": {
+      "Can I print direct thermal labels without using an ink ribbon?": [
+        "Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg"
+      ],
+      "GA Cody-3\u2122 Thermal Printer": [
+        "Cody-3-use9.jpg",
+        "Cody-3-use2-3.jpg",
+        "Cody3-UserManual-v2.jpg",
+        "Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "gatorcut": {
+    "hero": "TXS-25-use2.jpg",
+    "sections": {
+      "Hand-Cuttable Lab Tapes": [
+        "TXC-25-use3.jpg",
+        "TDF-25-use3-1-2.jpg",
+        "TJTG-19-use9-2.jpg",
+        "TFNG-25-use1-2.jpg",
+        "TGS-25-use7-2.jpg",
+        "TGC-25-Use2-1-2.jpg",
+        "TARG-25-Use10-2.jpg",
+        "TG-01-Use4-1-2.jpg",
+        "FST-50-use-1-1-1.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "histology-labels": {
+    "hero": "XAL-117-use4.jpg",
+    "sections": {
+      "Xylene-Resistant Labels for Paraffin Wax Blocks": [
+        "Xylene-resistant-labels-for-paraffin-blocks-1-e1564071986838.png",
+        "Chemical-resistant-labels-for-paraffin-embedding-4-e1564072882448.png"
+      ],
+      "Labels for Microscope Slide": [
+        "Guide-Microscope-Slide-Label-Sizing-Guide-Cover.jpg"
+      ],
+      "Xylene & Chemical-Resistant Labels for Microscope Slides": [
+        "Solvent-resistant-labels-for-histology-procedures-2-e1564071355243.png"
+      ],
+      "Printers, Scanners, Software": [
+        "XAL-67-use5.jpg"
+      ],
+      "Freezer Labels for Slide Storage": [
+        "PRF-67-Use1-1.jpg"
+      ],
+      "Labels for Paraffin Wax Blocks": [
+        "AFT-1-use2.jpg"
+      ],
+      "Labels for Microscope Slides": [
+        "XAL-67SB-use1.jpg"
+      ],
+      "Labels for Histology": [
+        "PRF-67-Use2-1.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "industrial-labels": {
+    "hero": "oil-e1699463041935.webp",
+    "sections": {
+      "Labels for Lumber": [
+        "frozen-food-e1699465618482.webp",
+        "plant-e1699465354476.webp",
+        "steel-manufacturing-e1699464764285.webp"
+      ],
+      "Labels for Bricks": [
+        "tires-e1699463879931.webp",
+        "automotive-e1699464682869.webp",
+        "agriculture-e1699464601380.webp"
+      ],
+      "Labels for Construction": [
+        "rfid-e1699465845460.webp",
+        "price-tag-e1699465098236.webp",
+        "electronic-e1699464839636.webp"
+      ]
+    },
+    "leftover": []
+  },
+  "ivf-labeling-solutions": {
+    "hero": "ivf-strawtags.jpg",
+    "sections": {
+      "Patient Record and Datasheet Labels": [
+        "ivf-gpa-28-e1705606211927.jpg"
+      ],
+      "Compatible with all common thermal-transfer printer brands": [
+        "ivf-fjt-169.jpg"
+      ],
+      "Labels for Cryo Canes, Metal Racks and Canisters": [
+        "ivf-awa-236.jpg"
+      ],
+      "Cryogenic Labels for Vitrification Devices": [
+        "ivf-strawtagsv2.jpg",
+        "ivf-hbcl-7.jpg",
+        "ivf-jtta-52.jpg",
+        "ivf-wraparound.jpg",
+        "ivf-cryostuck.jpg"
+      ],
+      "IVF labeling solutions": [
+        "PID-1-multicolor-use-V3.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "lab-tapes": {
+    "hero": "Cryogenic-GatorCUT-1280-x-200-px-V4.jpg",
+    "sections": {
+      "General Purpose Lab Tapes": [
+        "TARG-25-use3-e1655743758451.jpg",
+        "TGS-25-Use3-e1655746376913.jpg"
+      ],
+      "Translucent Freezer Tape": [
+        "TARG-25-use2-e1655744365700.jpg",
+        "TGS-25-Use1-e1655746335565.jpg"
+      ],
+      "Frozen Container Tape": [
+        "TARG-25-use1-1-e1655745941372.jpg",
+        "TGS-25-Use7-e1655746627896.jpg"
+      ],
+      "Permanent Cryogenic Tape": [
+        "Ultra-Removable-Tape-TUR-18use.png"
+      ],
+      "Lab Tapes": [
+        "TARG-25-use5-e1655744227487.jpg",
+        "TARG-25-use4-e1655744274298.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "label-printing-solutions": {
+    "hero": "Main-Image1.png",
+    "sections": {
+      "Label Printer Buying Guide": [
+        "Guide-The-Ultimate-Label-Printer-Guide-EN092022-September-14-2022.jpg",
+        "Print-Service1.png",
+        "Zebra-Printing-Kit.png"
+      ],
+      "(unmatched)": [
+        "Ribbons-1.png",
+        "ivf-scanner.jpg",
+        "BarTender.png"
+      ]
+    },
+    "leftover": [
+      "Ribbons-1.png",
+      "ivf-scanner.jpg",
+      "BarTender.png"
+    ]
+  },
+  "label-software": {
+    "hero": "printing-labels.png",
+    "sections": {
+      "Which software is right for you?": [
+        "ldms2.jpg"
+      ],
+      "Informatics Software": [
+        "labmate-v2.jpg",
+        "GenoFAB.jpg"
+      ],
+      "Label Design Software": [
+        "CYB_L_H_C.png",
+        "eivf-3.jpg"
+      ],
+      "Label Software": [
+        "QR_logix.png",
+        "fluics3.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "labels-for-hard-to-stick-surfaces": {
+    "hero": "PRF-67-Use1-2-2.jpg",
+    "sections": {
+      "Xylene-Resistant Labels for Paraffin Wax Blocks": [
+        "ParafiGARD-Application400x400px-1-2.gif"
+      ],
+      "Labels for Hard-to-Stick Surfaces": [
+        "RF3-PRF-67-use1-1-2.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "laboratory-labels": {
+    "hero": "cryogenic-1.jpg",
+    "sections": {
+      "Our Most Popular and Innovative Products": [
+        "ivf-1.jpg",
+        "clinical.jpg",
+        "covid.jpg",
+        "AboutLabtag-NitrotagSnappeel.jpg"
+      ],
+      "Print Solutions for Laboratory Labels": [
+        "autoclave-1.jpg",
+        "deep-freeze-1.jpg",
+        "PCR-1.jpg",
+        "cannabis-1.jpg"
+      ],
+      "Xylene-Resistant Labels": [
+        "xylene-label.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "microscope-slide-over-labeling": {
+    "hero": "Histo-PinTAG-postProd-2026-2.gif",
+    "sections": {
+      "Laminating Existing Labels": [
+        "AZA-559-Step1-1-scaled-1-1.jpg"
+      ],
+      "Covering Up Existing Information": [
+        "AZA-559-Step4-1-scaled-1-1.jpg"
+      ],
+      "Applying Histo-PinTAG Labels": [
+        "AZA-559-Step3-1-scaled-1-1.jpg"
+      ],
+      "The Challenge of Re-Labeling Slides": [
+        "AZA-559-Step2-1-scaled-1-1.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "pcr-labels-and-tags": {
+    "hero": "FJT-557-use13.jpg",
+    "sections": {
+      "Cryogenic PCR Tube and Cap Labels": [
+        "FJT-269-Use-2.jpg"
+      ],
+      "The LabTAG Solution": [
+        "FJT-269-Use-5.jpg"
+      ],
+      "The Challenge": [
+        "FJT-269-Use-8.jpg",
+        "AMA-11-use.jpg"
+      ],
+      "PCR Labels & Tags": [
+        "PCRJTT-269-use2.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "pre-labeled-labware": {
+    "hero": "Kitting-Service-7v2.jpg",
+    "sections": {
+      "(unmatched)": [
+        "Kitting-Service-1v2.jpg"
+      ]
+    },
+    "leftover": [
+      "Kitting-Service-1v2.jpg"
+    ]
+  },
+  "resitag-2": {
+    "hero": "XST-251-use2.jpg",
+    "sections": {
+      "Chemical-resistant labels withstand embedding in resin used in microscopy": [
+        "XST-251-use.png"
+      ]
+    },
+    "leftover": []
+  },
+  "rfid-labels-tags": {
+    "hero": "RF3-JTTA-9-use2-1.jpg",
+    "sections": {
+      "Looking for industrial grade RFID solutions?": [
+        "RF3-VPT-73BM-use3-2.jpg",
+        "RF3-AUTT-28-use6-1.jpg"
+      ],
+      "Custom RFID Identification Solutions": [
+        "RF3-FTT-98-use5.jpg"
+      ],
+      "Xylene & Chemical-Resistant Labels": [
+        "RFP-550-use3.jpg",
+        "ZD621R-800x600px.jpg",
+        "EARG630-KIT-thumb5.jpg"
+      ]
+    },
+    "leftover": []
+  },
+  "snappeel-labels": {
+    "hero": "SnapPEEL-Step1.jpg",
+    "sections": {},
+    "leftover": []
+  },
+  "vaccine-labels": {
+    "hero": "shutterstock_1739345507.jpg",
+    "sections": {
+      "RFID Labels & Smart Labels": [
+        "FTT-67_Hologic-2-e1606927155900.png"
+      ],
+      "Syringe Labels": [
+        "SYRA-2-Covid-19.jpg"
+      ],
+      "Frozen Vaccine Labels": [
+        "JTTA-9-e1606927014865.png"
+      ],
+      "Refrigerated Vaccine Labels": [
+        "iStock-1288578873-v5.png"
+      ]
+    },
+    "leftover": []
+  },
+  "xylene-chemical-resistant-labels": {
+    "hero": "Thumb-Guide-Xylene-Chemical-Resistant-Label-Guide-EN022024-February-23-2024.jpg",
+    "sections": {
+      "Xylene & Chemical Resistant Labels by Adhesive": [
+        "AUAR-186-use21.png"
+      ],
+      "Acid & Base-Resistant": [
+        "AUAR-186-use1.png"
+      ],
+      "Xylene & Chemical-Resistant Labels by Feature": [
+        "AUAR-186-use3.png"
+      ],
+      "Xylene & Chemical Resistant Labels by Printing Method": [
+        "PRF-67-use21.png"
+      ],
+      "Xylene & Chemical Resistant Labels by Surface": [
+        "PRF-67-use1.png"
+      ],
+      "Xylene & Chemical-Resistant Labels for Histology": [
+        "PRF-149-use1.png"
+      ],
+      "Acid & Base-Resistant Labels": [
+        "FTT-152-Use3-605x348px.jpg"
+      ],
+      "Everything you need to know before choosing the right chemical-resistant labels": [
+        "FTT-152-Use1-605x348px.jpg"
+      ],
+      "Chemical-Resistant Label Guide": [
+        "XRM-117-use8-v2-1.jpg"
+      ]
+    },
+    "leftover": []
+  }
+}

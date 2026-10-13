@@ -4,8 +4,7 @@ Sources:
 - [https://www.labtag.com/solutions/snappeel-labels/](https://www.labtag.com/solutions/snappeel-labels/)
 - [https://www.labtag.com/solutions/snappeel-2/](https://www.labtag.com/solutions/snappeel-2/)
 
-
-![SnapPEEL](/assets/snappeel-labels/SnapPEEL-Step1.jpg "https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg")
+![SnapPEEL](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
 
 Effortless labeling of tube tops and sides. Patent Pending SnapPEEL™ technology makes identifying cryo vials and microtubes quick and easy with its unique 2-in-1 rectangle + circle design. Both labels peel from the liner in a single motion, which makes applying the circle on the vial cap more precise. Once the circle is attached, the rectangle snaps off and is applied to the side of the vial.
 
@@ -35,8 +34,16 @@ Peel once, apply twice. Peeling tiny circle labels can be frustrating, but label
 
 1. **Peel** — Peel the label off of the liner
 2. **Apply** — Apply the circle label
+
+![Step 2](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step2.jpg "/media/snappeel-labels/SnapPEEL-Step2.jpg")
+
 3. **Snap** — Snap the labels apart
+
+![Step 3](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step3.jpg "/media/snappeel-labels/SnapPEEL-Step3.jpg")
+
 4. **Apply** — Apply the rectangle label
+
+![Step 4](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step4.jpg "/media/snappeel-labels/SnapPEEL-Step4.jpg")
 
 ## The Benefits
 
@@ -56,11 +63,3 @@ SnapPEEL™ is available in LabTAG’s best-selling label materials:
 - LCS (including frozen vials)
 
 Take advantage of free label samples and try SnapPEEL for yourself.
-
-## Product images
-
-![SnapPEEL-Step2.jpg](/assets/snappeel-labels/SnapPEEL-Step2.jpg "https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step2.jpg")
-
-![SnapPEEL-Step3.jpg](/assets/snappeel-labels/SnapPEEL-Step3.jpg "https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step3.jpg")
-
-![SnapPEEL-Step4.jpg](/assets/snappeel-labels/SnapPEEL-Step4.jpg "https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step4.jpg")

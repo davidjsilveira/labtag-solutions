@@ -2,8 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/cryogenic-labels/](https://www.labtag.com/solutions/cryogenic-labels/)
 
-
-![Cryogenic Labels](/assets/cryogenic-labels/JTTA-103-Use-vials.png "https://cdn.labtag.com/wp-content/uploads/2020/02/JTTA-103-Use-vials.png")
+![Cryogenic Labels](https://cdn.labtag.com/wp-content/uploads/2020/02/JTTA-103-Use-vials.png "/media/cryogenic-labels/JTTA-103-Use-vials.png")
 
 LabTAG® provides a variety of cryogenic labels, which are designed to withstand extended storage in liquid or vapor phase liquid nitrogen and ultra-low temperature freezers, for use in medical research, clinical laboratories, fertility clinics, and biobanks. These cryo labels are perfectly suited for labeling a wide variety of containers, including cryo vials and tubes, microplates, PCR tubes, and other commonly used laboratory products.
 
@@ -11,13 +10,19 @@ Available in a range of sizes and configurations, and compatible with both therm
 
 ## Cryogenic Labels by Container
 
+![Cryogenic Labels by Container](https://cdn.labtag.com/wp-content/uploads/LWCS-504-use2-crop.jpg "/media/cryogenic-labels/LWCS-504-use2-crop.jpg")
+
 ## Tubes, Vials, & Boxes
+
+![Tubes, Vials, & Boxes](https://cdn.labtag.com/wp-content/uploads/CIJ-28-use3-1-e1655839005709.jpg "/media/cryogenic-labels/CIJ-28-use3-1-e1655839005709.jpg")
 
 Our cryogenic labels for cryo vials, microtubes (i.e, Eppendorf), cryo boxes, freezer boxes, tube and vial caps, and other cryogenic containers are available for thermal-transfer, direct thermal, laser, and inkjet printers. These cryo labels are designed to withstand long-term storage in liquid or vapor phase liquid nitrogen (-196°C/-321°F), laboratory freezers (-80°C/-112°F), and transportation on dry ice.
 
 Waterproof thermoplastic labels are ideal for use on cell culture plates, microwell plates, 96 and 384-well PCR plates and petri dishes, and are available for thermal-transfer and laser printers, as well as for automated labelers. Easy to manipulate, these labels don’t bend upon removal from the support liner, which facilitates the application of the label to any multi-well plate or petri dish.
 
 ## PCR
+
+![PCR](https://cdn.labtag.com/wp-content/uploads/PCRJTT-269-use-on-rack.png "/media/cryogenic-labels/PCRJTT-269-use-on-rack.png")
 
 Cryogenic and freezer-safe labels designed to quickly and easily identify high-profile 0.2 ml PCR tubes, 8-well PCR tube strips, and PCR plates. These labels are safe for use in any thermocycler and come with a variety of options. This includes labels designed to identify the side or tops of tubes, as well as non-adhesive printable tags (PCR-TagTrax™) that allow for a range of labeling configurations.
 
@@ -31,6 +36,8 @@ Cryo-StrawTAG™ low-VOC cryogenic labels have been carefully tested and approve
 
 ## Cryogenic Labels by Printing Method
 
+![Cryogenic Labels by Printing Method](https://cdn.labtag.com/wp-content/uploads/RF3-HBTT-308-use4-1-e1659556113158.jpg "/media/cryogenic-labels/RF3-HBTT-308-use4-1-e1659556113158.jpg")
+
 Cryogenic barcode labels are waterproof and durable, able to adhere to wet surfaces and withstand a range of extreme temperatures with zero curing time, including multiple freeze-thaw cycles. Ideal for the storage of small diameter cryo tubes & cryo vials, cardboard freezer boxes, and polypropylene cryo boxes transportation on liquid or vapor phase liquid nitrogen (-196°C), lab freezers, and dry ice action.
 
 Cryogenic waterproof barcode labels are designed to remain intact and avoid cracking when exposed to cryogenic conditions, with a strong affinity for plastic and glass surfaces. These direct thermal labels are well suited for cryo vials, microtubes, microplates, glass tubes, freezer boxes, and plastic bags for long-term storage in liquid nitrogen (-196°C), lab freezers, and transportation on dry ice.
@@ -38,6 +45,8 @@ Cryogenic waterproof barcode labels are designed to remain intact and avoid crac
 Our laser printable labels identify tubes and cryo vials, microtubes (i.e. Eppendorf), cryo/freezer boxes, cell culture plates, microplates, and other cryogenic containers. These cryogenic laser labels are designed to withstand long-term storage in liquid nitrogen (-196°C), freezers, and dry ice. They are supplied in letter and A4 sheet formats for printing with all standard desktop laser printers.
 
 ## Inkjet
+
+![Inkjet](https://cdn.labtag.com/wp-content/uploads/AMA-227-use-1.png "/media/cryogenic-labels/AMA-227-use-1.png")
 
 Cryogenic and chemical-resistant inkjet labels can be color printed with logos and graphics for cryogenic storage applications. They are perfectly suited for identification of cryo tubes, cryo vials, freezer/cryo boxes, and cell culture plates. Our labels are available in both sheet and roll formats to accommodate standard desktop inkjet printers as well as full-color roll label printers.
 
@@ -55,13 +64,19 @@ CryoSTUCK® labels can now be printed with DYMO LabelWriter 5-Series printers. T
 
 ## Writable
 
+![Writable](https://cdn.labtag.com/wp-content/uploads/AWA-28-Use-1.png "/media/cryogenic-labels/AWA-28-Use-1.png")
+
 LabTAG® cryo color dots are ideal for sticking on textured caps and the side of tubes and cryo vials because of their specially designed adhesive for cold and rough surfaces. Made from durable thermoplastic materials, they are available in sheet and roll format, are easily writable with our smudge-proof cryogenic markers, and designed to withstand long-term storage in liquid nitrogen and lab freezers.
 
 ## Automation
 
+![Automation](https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer-1.png "/media/cryogenic-labels/XST-251-with-printer-1.png")
+
 Our cryogenic labels are intended for use with automated thermal-transfer print-and-apply systems for vials, tubes, and microplates, and are designed to withstand long-term storage in liquid nitrogen (-196°C), lab freezers, and dry ice transport. Cryo barcode automation labels are completely customizable and can also be provided with enhanced easy-to-peel internal properties for certain automated printers.
 
 ## Cryogenic Labels by Feature
+
+![Cryogenic Labels by Feature](https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer-NO-RIBBON-NEEDED.png "/media/cryogenic-labels/XST-251-with-printer-NO-RIBBON-NEEDED.png")
 
 Frozen Surface
 
@@ -83,18 +98,8 @@ Our transparent cryogenic thermoplastic labels are compatible with laser and the
 
 ## SimPEEL™ Technology
 
+![SimPEEL™ Technology](https://cdn.labtag.com/wp-content/uploads/CL-23T1-Use.png "/media/cryogenic-labels/CL-23T1-Use.png")
+
 Our patented SimPEEL™ technology makes peeling labels off their liner quick and easy with its innovative adhesive-free tab that ensures the label will not stick to your hands or gloves. Available for our thermal-transfer and direct thermal cryogenic labels, SimPEEL can be added to any of our cryogenic labels, providing added functionality.
 
 Our cryogenic line of RFID labels have a flexible UHF inlay and strong permanent adhesive, ideal for identifying vials and tubes stored in liquid nitrogen with printed visible data (text, graphics, barcodes) and electronic encoding. Scannable even while immersed in liquid nitrogen, these labels can be read without the need to be in direct line-of-sight, eliminating unwanted freeze-thaw cycles.
-
-## Product images
-
-![LWCS-504-use2-crop.jpg](/assets/cryogenic-labels/LWCS-504-use2-crop.jpg "https://cdn.labtag.com/wp-content/uploads/LWCS-504-use2-crop.jpg")
-
-![CIJ-28-use3-1-e1655839005709.jpg](/assets/cryogenic-labels/CIJ-28-use3-1-e1655839005709.jpg "https://cdn.labtag.com/wp-content/uploads/CIJ-28-use3-1-e1655839005709.jpg")
-
-![RF3-HBTT-308-use4-1-e1659556113158.jpg](/assets/cryogenic-labels/RF3-HBTT-308-use4-1-e1659556113158.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-HBTT-308-use4-1-e1659556113158.jpg")
-
-![AMA-227-use-1.png](/assets/cryogenic-labels/AMA-227-use-1.png "https://cdn.labtag.com/wp-content/uploads/AMA-227-use-1.png")
-
-![PCRJTT-269-use-on-rack.png](/assets/cryogenic-labels/PCRJTT-269-use-on-rack.png "https://cdn.labtag.com/wp-content/uploads/PCRJTT-269-use-on-rack.png")

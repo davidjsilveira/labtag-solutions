@@ -2,8 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/automated-labels/](https://www.labtag.com/solutions/automated-labels/)
 
-
-![Automated Tube Labelers](/assets/automated-labels/20241128_084524.jpg "https://cdn.labtag.com/wp-content/uploads/2025/01/20241128_084524.jpg")
+![Automated Tube Labelers](https://cdn.labtag.com/wp-content/uploads/2025/01/20241128_084524.jpg "/media/automated-labels/20241128_084524.jpg")
 
 Automated Labeling Machines
 
@@ -12,6 +11,8 @@ Perfect for high-volume labs, automation solutions save time, reduce errors, and
 They ensure consistent, reliable barcode scanning and minimize issues like wrinkling or peeling, even during high-throughput operations. Focus your team on critical tasks while automation handles the rest!
 
 ## Boost Productivity With The Power of Automation
+
+![Boost Productivity With The Power of Automation](https://cdn.labtag.com/wp-content/uploads/Untitled-1.png "/media/automated-labels/Untitled-1.png")
 
 Automated labeling provides valuable walk-away time
 
@@ -28,6 +29,12 @@ Increases productivity and efficiency in the lab
 Automation devices designed by HTI and Scinomix enhance efficiency, accuracy, and productivity in your lab.
 
 ## HTI Automated Tube & Vial Handling
+
+![HTI Automated Tube & Vial Handling](https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-BASIC.png "/media/automated-labels/HTI-X-TubeProcessor-BASIC.png")
+![HTI Automated Tube & Vial Handling](https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-SIGN.png "/media/automated-labels/HTI-X-TubeProcessor-SIGN.png")
+![HTI Automated Tube & Vial Handling](https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-SMART.png "/media/automated-labels/HTI-X-TubeProcessor-SMART.png")
+
+![HTI Automated Tube & Vial Handling](https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-SIGN.png "/media/automated-labels/HTI-X-TubeProcessor-SIGN.png")
 
 HTI standard devices are designed exclusively for batch operations and are also suitable for filling tasks in small and medium-sized laboratories in terms of size, throughput and costs.
 
@@ -67,6 +74,11 @@ Schedule a meeting with one of our experts today to get a customized solution ta
 
 ## Scinomix Fully-Automated Tube Handling
 
+![Scinomix Fully-Automated Tube Handling](https://cdn.labtag.com/wp-content/uploads/Scinomix-vx2-1-1.png "/media/automated-labels/Scinomix-vx2-1-1.png")
+![Scinomix Fully-Automated Tube Handling](https://cdn.labtag.com/wp-content/uploads/Scinomix-Vxl-1-1.png "/media/automated-labels/Scinomix-Vxl-1-1.png")
+
+![Scinomix Fully-Automated Tube Handling](https://cdn.labtag.com/wp-content/uploads/Scinomix-Vxl-1-1.png "/media/automated-labels/Scinomix-Vxl-1-1.png")
+
 Scinomix offers fully-automated benchtop tube and microplate labeling technology that can handle tubes of various sizes, microplates, and 2D vials. The Sci-Print VX2 and Sci-Print VXL vial labelers share similar functionality, with the only difference being the number of tubes each can hold.
 
 VX2 Automatic Tube Labeler
@@ -87,6 +99,8 @@ Uncapping and recapping of screw top lids (if filling option is required)
 
 ## Bulk Tube Feeder Add-Ons
 
+![Bulk Tube Feeder Add-Ons](https://cdn.labtag.com/wp-content/uploads/Vxi-bulk-tube-feeder-1-1.png "/media/automated-labels/Vxi-bulk-tube-feeder-1-1.png")
+
 Works with a variety of vials ranging from 0.5 mL to 15 mL
 
 Easily create, store, and change multiple tube definitions
@@ -94,6 +108,8 @@ Easily create, store, and change multiple tube definitions
 Throughput of 400 tubes/hour
 
 ## AQ Aliquoting System
+
+![AQ Aliquoting System](https://cdn.labtag.com/wp-content/uploads/Scinomix_AQ-Aliquoting-System_Hero-Shot.png "/media/automated-labels/Scinomix_AQ-Aliquoting-System_Hero-Shot.png")
 
 Designed to aliquot reagents or samples with labeling, validation, and sample tracking
 
@@ -103,6 +119,8 @@ Easily create, store, and change multiple tube definitions
 
 ## MP2+ Automated Microplate Labeler
 
+![MP2+ Automated Microplate Labeler](https://cdn.labtag.com/wp-content/uploads/Microplates.jpg "/media/automated-labels/Microplates.jpg")
+
 Labels can be applied to all sides of the plate
 
 Removable racks for easy loading & unloading
@@ -110,15 +128,3 @@ Removable racks for easy loading & unloading
 Includes barcode reader for validation
 
 Contact us today, and let our in-house experts help you make an informed decision
-
-## Product images
-
-![Scinomix-vx2-1-1.png](/assets/automated-labels/Scinomix-vx2-1-1.png "https://cdn.labtag.com/wp-content/uploads/Scinomix-vx2-1-1.png")
-
-![Scinomix-Vxl-1-1.png](/assets/automated-labels/Scinomix-Vxl-1-1.png "https://cdn.labtag.com/wp-content/uploads/Scinomix-Vxl-1-1.png")
-
-![Untitled-1.png](/assets/automated-labels/Untitled-1.png "https://cdn.labtag.com/wp-content/uploads/Untitled-1.png")
-
-![Vxi-bulk-tube-feeder-1-1.png](/assets/automated-labels/Vxi-bulk-tube-feeder-1-1.png "https://cdn.labtag.com/wp-content/uploads/Vxi-bulk-tube-feeder-1-1.png")
-
-![Scinomix_AQ-Aliquoting-System_Hero-Shot.png](/assets/automated-labels/Scinomix_AQ-Aliquoting-System_Hero-Shot.png "https://cdn.labtag.com/wp-content/uploads/Scinomix_AQ-Aliquoting-System_Hero-Shot.png")

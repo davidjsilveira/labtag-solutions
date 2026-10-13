@@ -2,8 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/pre-labeled-labware/](https://www.labtag.com/solutions/pre-labeled-labware/)
 
-
-![Pre-Labeled Labware](/assets/pre-labeled-labware/Kitting-Service-7v2.jpg "https://cdn.labtag.com/wp-content/uploads/2025/01/Kitting-Service-7v2.jpg")
+![Pre-Labeled Labware](https://cdn.labtag.com/wp-content/uploads/2025/01/Kitting-Service-7v2.jpg "/media/pre-labeled-labware/Kitting-Service-7v2.jpg")
 
 Pre-Labeled Labware Service
 
@@ -45,6 +44,4 @@ Schedule a meeting with one of our experts today to get a customized solution ta
 
 Book a Free Consultation
 
-## Product images
-
-![Kitting-Service-1v2.jpg](/assets/pre-labeled-labware/Kitting-Service-1v2.jpg "https://cdn.labtag.com/wp-content/uploads/Kitting-Service-1v2.jpg")
+![Kitting-Service-1v2.jpg](https://cdn.labtag.com/wp-content/uploads/Kitting-Service-1v2.jpg "/media/pre-labeled-labware/Kitting-Service-1v2.jpg")

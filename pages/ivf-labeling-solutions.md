@@ -2,10 +2,11 @@
 
 Source: [https://www.labtag.com/solutions/ivf-labeling-solutions/](https://www.labtag.com/solutions/ivf-labeling-solutions/)
 
-
-![IVF Labeling Solutions](/assets/ivf-labeling-solutions/ivf-strawtags.jpg "https://cdn.labtag.com/wp-content/uploads/2019/05/ivf-strawtags.jpg")
+![IVF Labeling Solutions](https://cdn.labtag.com/wp-content/uploads/2019/05/ivf-strawtags.jpg "/media/ivf-labeling-solutions/ivf-strawtags.jpg")
 
 ## IVF labeling solutions
+
+![IVF labeling solutions](https://cdn.labtag.com/wp-content/uploads/PID-1-multicolor-use-V3.jpg "/media/ivf-labeling-solutions/PID-1-multicolor-use-V3.jpg")
 
 LabTAG® is an industry-trusted manufacturer and provider of innovative IVF labeling solutions. We understand the strict specifications and quality of care needed in Assisted Reproductive Technology (ART) clinics and labs.
 
@@ -27,7 +28,18 @@ Print and Scan
 
 ## Cryogenic Labels for Vitrification Devices
 
+![Gloved hands applying a color wrap-around Cryo-StrawTAG cryogenic label to an IVF cryo straw. The label is printed with text and a 1D barcode. IVF labeling solutions.](https://cdn.labtag.com/wp-content/uploads/ivf-strawtagsv2.jpg "/media/ivf-labeling-solutions/ivf-strawtagsv2.jpg")
+![An IVF culture plate with the bottom labeled with a reverse-printed clear label, next to a strand of barcode printed cryo plate labels.](https://cdn.labtag.com/wp-content/uploads/ivf-hbcl-7.jpg "/media/ivf-labeling-solutions/ivf-hbcl-7.jpg")
+![Five cryo vials, three standing, and two on their sides, labeled with color cryogenic thermal-transfer labels and 2D barcode printed dot labels.](https://cdn.labtag.com/wp-content/uploads/ivf-jtta-52.jpg "/media/ivf-labeling-solutions/ivf-jtta-52.jpg")
+![A microtube, filled with a red liquid, being labeled with a wrap-around cryogenic label, thermal-transfer printed with text and a 2D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-wraparound.jpg "/media/ivf-labeling-solutions/ivf-wraparound.jpg")
+![An already frozen cryo vial, covered in frost, being labeled with a blackout thermal-transfer cryogenic label, printed with text and barcodes.](https://cdn.labtag.com/wp-content/uploads/ivf-cryostuck.jpg "/media/ivf-labeling-solutions/ivf-cryostuck.jpg")
+
+![An IVF culture plate with the bottom labeled with a reverse-printed clear label, next to a strand of barcode printed cryo plate labels.](https://cdn.labtag.com/wp-content/uploads/ivf-hbcl-7.jpg "/media/ivf-labeling-solutions/ivf-hbcl-7.jpg")
+![A microtube, filled with a red liquid, being labeled with a wrap-around cryogenic label, thermal-transfer printed with text and a 2D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-wraparound.jpg "/media/ivf-labeling-solutions/ivf-wraparound.jpg")
+
 StrawTAG™ labels are compatible with all standard and high-security straws, as well as vitrification devices like Cryotop®, and CryoLock®
+
+![A microtube, filled with a red liquid, being labeled with a wrap-around cryogenic label, thermal-transfer printed with text and a 2D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-wraparound.jpg "/media/ivf-labeling-solutions/ivf-wraparound.jpg")
 
 These cryo straw labels are designed to withstand long-term cryo preservation inside liquid nitrogen (-196°C/-321°F), and transport on dry ice
 
@@ -69,15 +81,21 @@ Clear cryo labels are perfect for various laboratory conditions including incuba
 
 ## Labels for Cryo Canes, Metal Racks and Canisters
 
+![A steel canister inside a liquid nitrogen cryogenic Dewar, containing several metal cryo canes labeled with MetaliTAG barcode cryogenic labels.](https://cdn.labtag.com/wp-content/uploads/ivf-awa-236.jpg "/media/ivf-labeling-solutions/ivf-awa-236.jpg")
+
 Designed specifically to stick to metal surfaces like metal racks, aluminum cryo canes, and steel canisters, to be stored in cryogenic conditions, such as liquid nitrogen (-196°C/-321°F)
 
 Creates a snapshot of the contents of your containers, eliminating the need to take containers out of storage
 
 ## Compatible with all common thermal-transfer printer brands
 
+![The side of a clear IVF cell culture plate labeled with a narrow FreezerTAG thermal-transfer dish label, printed with text and a 2D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-fjt-169.jpg "/media/ivf-labeling-solutions/ivf-fjt-169.jpg")
+
 Get in touch with an expert today and claim your FREE samples
 
 ## Patient Record and Datasheet Labels
+
+![A gloved hand applying a thermal-transfer paper datasheet label on a patient record form. The white label is printed with patient info and a barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-gpa-28-e1705606211927.jpg "/media/ivf-labeling-solutions/ivf-gpa-28-e1705606211927.jpg")
 
 We provide a wide range of paper labels, for barcode thermal-transfer printers. These labels can be printed with a crisp, clear printout, to ensure the scannability of your barcodes. The general use labels are also available in colors, for office use, patient records and requisition forms.
 
@@ -88,15 +106,3 @@ Equip your lab with a complete IVF printing solution and ensure your PCR reactio
 PCR Solutions
 
 Related Articles
-
-## Product images
-
-![Gloved hands applying a color wrap-around Cryo-StrawTAG cryogenic label to an IVF cryo straw. The label is printed with text and a 1D barcode. IVF labeling solutions.](/assets/ivf-labeling-solutions/ivf-strawtagsv2.jpg "https://cdn.labtag.com/wp-content/uploads/ivf-strawtagsv2.jpg")
-
-![The side of a clear IVF cell culture plate labeled with a narrow FreezerTAG thermal-transfer dish label, printed with text and a 2D barcode.](/assets/ivf-labeling-solutions/ivf-fjt-169.jpg "https://cdn.labtag.com/wp-content/uploads/ivf-fjt-169.jpg")
-
-![An IVF culture plate with the bottom labeled with a reverse-printed clear label, next to a strand of barcode printed cryo plate labels.](/assets/ivf-labeling-solutions/ivf-hbcl-7.jpg "https://cdn.labtag.com/wp-content/uploads/ivf-hbcl-7.jpg")
-
-![A steel canister inside a liquid nitrogen cryogenic Dewar, containing several metal cryo canes labeled with MetaliTAG barcode cryogenic labels.](/assets/ivf-labeling-solutions/ivf-awa-236.jpg "https://cdn.labtag.com/wp-content/uploads/ivf-awa-236.jpg")
-
-![PID-1-multicolor-use-V3.jpg](/assets/ivf-labeling-solutions/PID-1-multicolor-use-V3.jpg "https://cdn.labtag.com/wp-content/uploads/PID-1-multicolor-use-V3.jpg")

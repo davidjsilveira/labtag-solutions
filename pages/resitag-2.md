@@ -2,8 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/resitag-2/](https://www.labtag.com/solutions/resitag-2/)
 
-
-![ResiTAG®](/assets/resitag-2/XST-251-use2.jpg "https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg")
+![ResiTAG®](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag-2/XST-251-use2.jpg")
 
 Identify Resin-Embedding Capsules for Electron Microscopy
 
@@ -27,6 +26,8 @@ ResiTAG® labels are easy to use. Simply print the labels on a thermal-transfer 
 
 ## Chemical-resistant labels withstand embedding in resin used in microscopy
 
+![A thermal-transfer printer printing chemical resistant labels for resin-embedding, next to a blank roll of ResiTAG labels, on a lab table.](https://cdn.labtag.com/wp-content/uploads/XST-251-use.png "/media/resitag-2/XST-251-use.png")
+
 Identify resin-embedded samples in BEEM® capsules, gelatin capsules, and molds
 
 Withstand resin-baking temperatures up to +150°C
@@ -38,7 +39,3 @@ Compatible with all major brands of thermal-transfer printers
 Take advantage of our free label samples and try ResiTAG® for yourself today.
 
 View Product
-
-## Product images
-
-![A thermal-transfer printer printing chemical resistant labels for resin-embedding, next to a blank roll of ResiTAG labels, on a lab table.](/assets/resitag-2/XST-251-use.png "https://cdn.labtag.com/wp-content/uploads/XST-251-use.png")

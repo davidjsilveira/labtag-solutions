@@ -27,5 +27,5 @@ scripts/image-work/run_cdp_downloads.py
 scripts/image-work/write_cdp_request.py
 scripts/browser_scrape_expr.json
 
-# Empty / unused local folder at repo root (not web/public/assets)
+# Empty / unused local folder at repo root
 /assets/

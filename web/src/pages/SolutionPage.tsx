@@ -29,7 +29,13 @@ export function SolutionPage() {
         <span>{page.title}</span>
       </p>
 
-      <PageHero title={page.title} sources={page.sources} />
+      <PageHero
+        key={page.slug}
+        title={page.title}
+        description={page.description}
+        image={page.heroImage}
+        sources={page.sources}
+      />
       <BlockRenderer blocks={page.blocks} />
 
       <nav className="pager" aria-label="Adjacent solutions">

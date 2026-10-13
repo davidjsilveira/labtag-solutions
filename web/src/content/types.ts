@@ -74,10 +74,20 @@ export type ContentBlock =
   | FaqBlock
   | CtaBlock
 
+export type HeroImage = {
+  src: string
+  alt: string
+  fallbackSrc?: string
+}
+
 export type SolutionPage = {
   slug: string
   title: string
   sources: string[]
+  /** Short blurb for index cards */
   excerpt: string
+  /** Lead copy shown in the page hero */
+  description: string[]
+  heroImage?: HeroImage
   blocks: ContentBlock[]
 }

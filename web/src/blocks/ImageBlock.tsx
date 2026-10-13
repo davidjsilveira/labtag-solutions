@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { resolveImageSrc } from '@/content/resolveImage'
 
 type Props = {
   src: string
@@ -8,7 +9,13 @@ type Props = {
 }
 
 export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: Props) {
-  const [current, setCurrent] = useState(src)
+  const resolved = resolveImageSrc(src, fallbackSrc)
+  const [current, setCurrent] = useState(resolved.primary)
+  const [failed, setFailed] = useState(false)
+
+  if (failed && !resolved.fallback) {
+    return null
+  }
 
   return (
     <figure className={`block block-image block-image-${variant}`}>
@@ -16,8 +23,13 @@ export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: P
         src={current}
         alt={alt}
         loading="lazy"
+        decoding="async"
         onError={() => {
-          if (fallbackSrc && current !== fallbackSrc) setCurrent(fallbackSrc)
+          if (resolved.fallback && current !== resolved.fallback) {
+            setCurrent(resolved.fallback)
+            return
+          }
+          setFailed(true)
         }}
       />
       {alt ? <figcaption>{alt}</figcaption> : null}

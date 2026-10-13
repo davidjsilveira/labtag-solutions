@@ -2,8 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/rfid-labels-tags/](https://www.labtag.com/solutions/rfid-labels-tags/)
 
-
-![RFID Labels & RFID Tags | LabTAG by GA International](/assets/rfid-labels-tags/RF3-JTTA-9-use2-1.jpg "https://cdn.labtag.com/wp-content/uploads/2021/09/RF3-JTTA-9-use2-1.jpg")
+![RFID Labels & RFID Tags | LabTAG by GA International](https://cdn.labtag.com/wp-content/uploads/2021/09/RF3-JTTA-9-use2-1.jpg "/media/rfid-labels-tags/RF3-JTTA-9-use2-1.jpg")
 
 RFID Labels & RFID Tags | LabTAG by GA International
 
@@ -18,6 +17,12 @@ Autoclave-Resistant RFID Labels
 Deep-Freeze RFID Microplate Labels
 
 ## Xylene & Chemical-Resistant Labels
+
+![Xylene & Chemical-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/RFP-550-use3.jpg "/media/rfid-labels-tags/RFP-550-use3.jpg")
+![Xylene & Chemical-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/ZD621R-800x600px.jpg "/media/rfid-labels-tags/ZD621R-800x600px.jpg")
+![Xylene & Chemical-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/EARG630-KIT-thumb5.jpg "/media/rfid-labels-tags/EARG630-KIT-thumb5.jpg")
+
+![Xylene & Chemical-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/ZD621R-800x600px.jpg "/media/rfid-labels-tags/ZD621R-800x600px.jpg")
 
 RFID Printers
 
@@ -45,20 +50,15 @@ RFID thermal labels make tracking and monitoring workflows easier.
 
 ## Custom RFID Identification Solutions
 
+![Custom RFID Identification Solutions](https://cdn.labtag.com/wp-content/uploads/RF3-FTT-98-use5.jpg "/media/rfid-labels-tags/RF3-FTT-98-use5.jpg")
+
 In addition to our printable RFID labels and RFID tags, RFID solutions can be custom printed with serialized barcodes, color logos, and encoded with alphanumerical values. We also offer TID and UID reading and printing on RFID labels and flexible/non-adhesive RFID tags. This service includes a verification system to verify the unique RFID code matches the printed data. TID and UID are factory-locked and cannot be changed following production. This simplifies the process of detecting if an RFID tag has been replaced, perfect for instances where tamper detection is crucial, such as anti-counterfeiting. Our full customization options can utilize our durable label facestocks to produce an RFID label that can withstand chemical exposure and a wide range of temperatures. From inlay, antennae, chip, and size to configuration and material selection, GA International offers performant specialty RFID labels and RFID tags to produce unique and dependable identification and tracking solutions.
 
 ## Looking for industrial grade RFID solutions?
 
+![Looking for industrial grade RFID solutions?](https://cdn.labtag.com/wp-content/uploads/RF3-VPT-73BM-use3-2.jpg "/media/rfid-labels-tags/RF3-VPT-73BM-use3-2.jpg")
+![Looking for industrial grade RFID solutions?](https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use6-1.jpg "/media/rfid-labels-tags/RF3-AUTT-28-use6-1.jpg")
+
+![Looking for industrial grade RFID solutions?](https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use6-1.jpg "/media/rfid-labels-tags/RF3-AUTT-28-use6-1.jpg")
+
 We also offer industrial-grade RFID solutions for the industrial sector. These extra-durable RFID labels and tags are designed with specific industries in mind and made to endure the harshest working environments and conditions. Click here to see our industry RFID labels.
-
-## Product images
-
-![RF3-AUTT-28-use6-1.jpg](/assets/rfid-labels-tags/RF3-AUTT-28-use6-1.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use6-1.jpg")
-
-![RFP-550-use3.jpg](/assets/rfid-labels-tags/RFP-550-use3.jpg "https://cdn.labtag.com/wp-content/uploads/RFP-550-use3.jpg")
-
-![RF3-FTT-98-use5.jpg](/assets/rfid-labels-tags/RF3-FTT-98-use5.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-FTT-98-use5.jpg")
-
-![RF3-VPT-73BM-use3-2.jpg](/assets/rfid-labels-tags/RF3-VPT-73BM-use3-2.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-VPT-73BM-use3-2.jpg")
-
-![ZD621R-800x600px.jpg](/assets/rfid-labels-tags/ZD621R-800x600px.jpg "https://cdn.labtag.com/wp-content/uploads/ZD621R-800x600px.jpg")

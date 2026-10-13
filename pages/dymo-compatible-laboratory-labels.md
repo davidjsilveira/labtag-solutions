@@ -2,10 +2,11 @@
 
 Source: [https://www.labtag.com/solutions/dymo-compatible-laboratory-labels/](https://www.labtag.com/solutions/dymo-compatible-laboratory-labels/)
 
-
-![Dymo-Compatible Laboratory Labels](/assets/dymo-compatible-laboratory-labels/LWCS-501-use2.jpg "https://cdn.labtag.com/wp-content/uploads/2024/12/LWCS-501-use2.jpg")
+![Dymo-Compatible Laboratory Labels](https://cdn.labtag.com/wp-content/uploads/2024/12/LWCS-501-use2.jpg "/media/dymo-compatible-laboratory-labels/LWCS-501-use2.jpg")
 
 ## Laboratory Labels for DYMO® LabelWriter™ 5-Series & 4-Series
+
+![Laboratory Labels for DYMO® LabelWriter™ 5-Series & 4-Series](https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg "/media/dymo-compatible-laboratory-labels/LWCS-504-DYMOxGA.jpg")
 
 Ideal for the identification of vials, tubes, boxes, and other laboratory containers
 
@@ -17,11 +18,18 @@ Shop 4-Series
 
 ## Laboratory Labels for DYMO® LabelWriter™
 
+![Laboratory Labels for DYMO® LabelWriter™](https://cdn.labtag.com/wp-content/uploads/EDCS-070-Use5.jpg "/media/dymo-compatible-laboratory-labels/EDCS-070-Use5.jpg")
+![Laboratory Labels for DYMO® LabelWriter™](https://cdn.labtag.com/wp-content/uploads/ECY-050-Use.jpg "/media/dymo-compatible-laboratory-labels/ECY-050-Use.jpg")
+
+![Laboratory Labels for DYMO® LabelWriter™](https://cdn.labtag.com/wp-content/uploads/ECY-050-Use.jpg "/media/dymo-compatible-laboratory-labels/ECY-050-Use.jpg")
+
 5-Series Printers (550, 550 Turbo, 5XL)
 
 LWCS-Class
 
 ## Cryogenic Labels for Frozen Vials
+
+![A gloved hand holding a microtube labeled with a DYMO-compatible cryogenic label, next to two labeled cryo vials and a conical tube on a lab table.](https://cdn.labtag.com/wp-content/uploads/EC1F-072-Use.png "/media/dymo-compatible-laboratory-labels/EC1F-072-Use.png")
 
 -196°C to +70°C (-321°F to +158°F)
 
@@ -29,11 +37,15 @@ CryoSTUCK® labels are now available for DYMO LabelWriter 5-Series printers for 
 
 ## Laboratory Labels for DYMO® LabelWriter™
 
+![Laboratory Labels for DYMO® LabelWriter™](https://cdn.labtag.com/wp-content/uploads/SPEDCS-070WH-Use1.jpg "/media/dymo-compatible-laboratory-labels/SPEDCS-070WH-Use1.jpg")
+
 4-Series Printers (450, 450 Turbo, 4XL)
 
 EDCS-Class
 
 ## Cryogenic Labels for Frozen Vials (Patented)
+
+![Cryogenic Labels for Frozen Vials (Patented)](https://cdn.labtag.com/wp-content/uploads/SPED1F-070WH-Use2.jpg "/media/dymo-compatible-laboratory-labels/SPED1F-070WH-Use2.jpg")
 
 From -196°C to +70°C (-321°F to +158°F)
 
@@ -42,6 +54,8 @@ These DYMO-compatible, solvent-resistant cryogenic labels will rapidly adhere to
 SPEDCS-Class
 
 ## Cryogenic Labels for Frozen Surfaces with SimPEEL™ Technology (Patented)
+
+![Cryogenic Labels for Frozen Surfaces with SimPEEL™ Technology (Patented)](https://cdn.labtag.com/wp-content/uploads/EDFT-070-Use1.jpg "/media/dymo-compatible-laboratory-labels/EDFT-070-Use1.jpg")
 
 From -196°C to +70°C (-321°F to +158°F)
 
@@ -75,6 +89,8 @@ EDAP-Class
 
 ## Heat-Resistant Labels (Patent Pending)
 
+![Heat-Resistant Labels (Patent Pending)](https://cdn.labtag.com/wp-content/uploads/EDAP-070-use2.jpg "/media/dymo-compatible-laboratory-labels/EDAP-070-use2.jpg")
+
 From -80°C to +95°C (-112°F to +203°F)
 
 EDAP-class labels are compatible with DYMO 450 and 4XL LabelWriter® printers and can withstand elevated temperatures in dry (ovens) and wet (water baths) conditions. Unlike other direct thermal labels, they will not turn entirely dark when exposed to high-heat conditions, perfect for labeling various containers or devices destined for high-heat applications.
@@ -91,16 +107,6 @@ EDY/ECY-Class
 
 ## General Use Labels
 
+![General Use Labels](https://cdn.labtag.com/wp-content/uploads/EDWA-010-Use-4.jpg "/media/dymo-compatible-laboratory-labels/EDWA-010-Use-4.jpg")
+
 These DYMO-compatible paper labels can be printed with the 450-series of DYMO LabelWriter printers to include alphanumeric text, serialized information, and 1D/2D barcodes for improved tracking and organization. Available in a variety of colors, they are ideal for all general use applications, both in the lab and office, such as the identification of folders, notebooks, boxes, paperwork, and as shipping labels.
-
-## Product images
-
-![EDCS-070-Use5.jpg](/assets/dymo-compatible-laboratory-labels/EDCS-070-Use5.jpg "https://cdn.labtag.com/wp-content/uploads/EDCS-070-Use5.jpg")
-
-![SPEDCS-070WH-Use1.jpg](/assets/dymo-compatible-laboratory-labels/SPEDCS-070WH-Use1.jpg "https://cdn.labtag.com/wp-content/uploads/SPEDCS-070WH-Use1.jpg")
-
-![A gloved hand holding a microtube labeled with a DYMO-compatible cryogenic label, next to two labeled cryo vials and a conical tube on a lab table.](/assets/dymo-compatible-laboratory-labels/EC1F-072-Use.png "https://cdn.labtag.com/wp-content/uploads/EC1F-072-Use.png")
-
-![SPED1F-070WH-Use2.jpg](/assets/dymo-compatible-laboratory-labels/SPED1F-070WH-Use2.jpg "https://cdn.labtag.com/wp-content/uploads/SPED1F-070WH-Use2.jpg")
-
-![EDFT-070-Use1.jpg](/assets/dymo-compatible-laboratory-labels/EDFT-070-Use1.jpg "https://cdn.labtag.com/wp-content/uploads/EDFT-070-Use1.jpg")

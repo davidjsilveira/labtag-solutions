@@ -2,12 +2,29 @@
 
 Source: [https://www.labtag.com/solutions/gatorcut/](https://www.labtag.com/solutions/gatorcut/)
 
-
-![gatorcut](/assets/gatorcut/TXS-25-use2.jpg "https://cdn.labtag.com/wp-content/uploads/TXS-25-use2.jpg")
+![gatorcut](https://cdn.labtag.com/wp-content/uploads/TXS-25-use2.jpg "/media/gatorcut/TXS-25-use2.jpg")
 
 ## Hand-Cuttable Lab Tapes
 
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TXC-25-use3.jpg "/media/gatorcut/TXC-25-use3.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TDF-25-use3-1-2.jpg "/media/gatorcut/TDF-25-use3-1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use9-2.jpg "/media/gatorcut/TJTG-19-use9-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TFNG-25-use1-2.jpg "/media/gatorcut/TFNG-25-use1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TGS-25-use7-2.jpg "/media/gatorcut/TGS-25-use7-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TGC-25-Use2-1-2.jpg "/media/gatorcut/TGC-25-Use2-1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TARG-25-Use10-2.jpg "/media/gatorcut/TARG-25-Use10-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TG-01-Use4-1-2.jpg "/media/gatorcut/TG-01-Use4-1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/FST-50-use-1-1-1.jpg "/media/gatorcut/FST-50-use-1-1-1.jpg")
+
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TDF-25-use3-1-2.jpg "/media/gatorcut/TDF-25-use3-1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TFNG-25-use1-2.jpg "/media/gatorcut/TFNG-25-use1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TGC-25-Use2-1-2.jpg "/media/gatorcut/TGC-25-Use2-1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TG-01-Use4-1-2.jpg "/media/gatorcut/TG-01-Use4-1-2.jpg")
+
 Our specialty tapes featuring our exclusive GatorCUT technology are hand-cuttable, eliminating the need for scissors, tape dispensers, or other cumbersome cutting instruments. Every lab coat pocket should hold a roll of GatorCUT tape! Use it on the go, wherever and whenever. Currently available for cryogenic, deep-freeze, autoclave-resistant, and adhesive-free, static cling applications.
+
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TFNG-25-use1-2.jpg "/media/gatorcut/TFNG-25-use1-2.jpg")
+![Hand-Cuttable Lab Tapes](https://cdn.labtag.com/wp-content/uploads/TG-01-Use4-1-2.jpg "/media/gatorcut/TG-01-Use4-1-2.jpg")
 
 Patented
 
@@ -58,15 +75,3 @@ SteriTAPE™ (TARG-Class)
 Removable, autoclave-resistant tape is ideal for identifying reusable sterilization containers intended for use in steam autoclaves, such as Genesis® containers, as well as single-use sterilization bags and pouches. Its removable adhesive ensures it will not leave any adhesive residue upon removal.
 
 Shop our Cryo Markers
-
-## Product images
-
-![TXC-25-use3.jpg](/assets/gatorcut/TXC-25-use3.jpg "https://cdn.labtag.com/wp-content/uploads/TXC-25-use3.jpg")
-
-![TDF-25-use3-1-2.jpg](/assets/gatorcut/TDF-25-use3-1-2.jpg "https://cdn.labtag.com/wp-content/uploads/TDF-25-use3-1-2.jpg")
-
-![TJTG-19-use9-2.jpg](/assets/gatorcut/TJTG-19-use9-2.jpg "https://cdn.labtag.com/wp-content/uploads/TJTG-19-use9-2.jpg")
-
-![TFNG-25-use1-2.jpg](/assets/gatorcut/TFNG-25-use1-2.jpg "https://cdn.labtag.com/wp-content/uploads/TFNG-25-use1-2.jpg")
-
-![TGS-25-use7-2.jpg](/assets/gatorcut/TGS-25-use7-2.jpg "https://cdn.labtag.com/wp-content/uploads/TGS-25-use7-2.jpg")

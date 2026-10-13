@@ -4,7 +4,7 @@ Each LabTAG solutions page from the 2026-10-13 scrape is saved as its own Markdo
 
 **Web viewer:** `cd web && npm install && npm run dev` — renders every page with reusable content blocks (sections, lists, steps, feature grids, tables, FAQ, CTA, images).
 
-Product images were pulled from the live LabTAG solution pages into `web/public/assets/<slug>/` and referenced from each Markdown page.
+Product images were pulled from the live LabTAG solution pages into `web/public/media/<slug>/` and referenced inline in each Markdown page (CDN URLs with local fallbacks).
 
 **34 pages** · Original hub: [labtag.com/solutions](https://www.labtag.com/solutions/)
 

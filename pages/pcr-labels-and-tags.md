@@ -2,10 +2,11 @@
 
 Source: [https://www.labtag.com/solutions/pcr-labels-and-tags/](https://www.labtag.com/solutions/pcr-labels-and-tags/)
 
-
-![pcr-labels-and-tags](/assets/pcr-labels-and-tags/FJT-557-use13.jpg "https://cdn.labtag.com/wp-content/uploads/FJT-557-use13.jpg")
+![pcr-labels-and-tags](https://cdn.labtag.com/wp-content/uploads/FJT-557-use13.jpg "/media/pcr-labels-and-tags/FJT-557-use13.jpg")
 
 ## PCR Labels & Tags
+
+![PCR Labels & Tags](https://cdn.labtag.com/wp-content/uploads/PCRJTT-269-use2.jpg "/media/pcr-labels-and-tags/PCRJTT-269-use2.jpg")
 
 PCR labels and tags offer the capability of simplifying workflows involving PCR reactions, including:
 
@@ -15,6 +16,11 @@ PCR labels and tags offer the capability of simplifying workflows involving PCR 
 LabTAG provides a wide selection of labels, tags, and label dots for use with 0.2 mL PCR tubes, high-profile 8-well PCR strips, as well as skirted, semi-skirted, and non-skirted PCR plates, to allow single label identification through every stage of a PCR workflow
 
 ## PCR Labels & Tags
+
+![PCR Labels & Tags](https://cdn.labtag.com/wp-content/uploads/Thermal-Transfer-Roll-Format-Buttonsv3.jpg "/media/pcr-labels-and-tags/Thermal-Transfer-Roll-Format-Buttonsv3.jpg")
+![PCR Labels & Tags](https://cdn.labtag.com/wp-content/uploads/PID-1-use.png "/media/pcr-labels-and-tags/PID-1-use.png")
+
+![PCR Labels & Tags](https://cdn.labtag.com/wp-content/uploads/PID-1-use.png "/media/pcr-labels-and-tags/PID-1-use.png")
 
 PCR labels and tags offer the capability of simplifying workflows involving PCR reactions, including:
 
@@ -35,7 +41,14 @@ Polymerase chain reaction (PCR) is a highly sensitive laboratory technique used 
 
 ## The Challenge
 
+![The Challenge](https://cdn.labtag.com/wp-content/uploads/FJT-269-Use-8.jpg "/media/pcr-labels-and-tags/FJT-269-Use-8.jpg")
+![The Challenge](https://cdn.labtag.com/wp-content/uploads/AMA-11-use.jpg "/media/pcr-labels-and-tags/AMA-11-use.jpg")
+
+![The Challenge](https://cdn.labtag.com/wp-content/uploads/AMA-11-use.jpg "/media/pcr-labels-and-tags/AMA-11-use.jpg")
+
 ## The LabTAG Solution
+
+![The LabTAG Solution](https://cdn.labtag.com/wp-content/uploads/FJT-269-Use-5.jpg "/media/pcr-labels-and-tags/FJT-269-Use-5.jpg")
 
 One commonly overlooked factor when PCR workflows fail is labeling. Tubes and plates move between instruments, benches, and freezers. Samples go through temperature extremes and freeze–thaw cycles. Workflows scale from a few samples to hundreds overnight. Leaving sample labeling to an afterthought can lead to:
 
@@ -62,6 +75,8 @@ Polymerase chain reaction (PCR) is a highly sensitive laboratory technique used 
 
 ## The Challenge
 
+![The Challenge](https://cdn.labtag.com/wp-content/uploads/AWA-28-MetaliTAG-Labels-on-Freezer-Use1-1.jpg "/media/pcr-labels-and-tags/AWA-28-MetaliTAG-Labels-on-Freezer-Use1-1.jpg")
+
 One commonly overlooked factor when PCR workflows fail is labeling. Tubes and plates move between instruments, benches, and freezers. Samples go through temperature extremes and freeze–thaw cycles. Workflows scale from a few samples to hundreds overnight. Leaving sample labeling to an afterthought can lead to:
 
 - Re-labeling between steps
@@ -71,6 +86,8 @@ One commonly overlooked factor when PCR workflows fail is labeling. Tubes and pl
 - Excessive label purchase and storage to meet throughput needs
 
 ## The LabTAG Solution
+
+![The LabTAG Solution](https://cdn.labtag.com/wp-content/uploads/AdobeStock_304078731.jpeg "/media/pcr-labels-and-tags/AdobeStock_304078731.jpeg")
 
 In order to make the most efficient process possible, it is necessary to not only optimize the PCR, itself, but every step of the workflow, including labeling solutions. LabTAG PCR solutions enable reliable sample identification from setup, through thermal cycling, to storage, all from the same label or tag. Including:
 
@@ -84,6 +101,8 @@ In order to make the most efficient process possible, it is necessary to not onl
 - 0.2 mL PCR Tube Labels
 
 ## Cryogenic PCR Tube and Cap Labels
+
+![Cryogenic PCR Tube and Cap Labels](https://cdn.labtag.com/wp-content/uploads/FJT-269-Use-2.jpg "/media/pcr-labels-and-tags/FJT-269-Use-2.jpg")
 
 Dot and rectangular labels designed to be applied to single PCR tubes. Easy application, and a strong permanent thermal/cryo adhesive ensure proper sample identification during multi-user PCR runs. Compatible with laser and thermal-transfer printers, as well as cryogenic markers for hand labeling. Multiple color choices, and barcode addition capability further enhance easy, accurate sample tracking.
 
@@ -134,15 +153,3 @@ Patented
 PikaTAG®–Label Applicator Kit for 0.25″ & 0.354″ Dots (Patented)
 
 C$65.40
-
-## Product images
-
-![Thermal-Transfer-Roll-Format-Buttonsv3.jpg](/assets/pcr-labels-and-tags/Thermal-Transfer-Roll-Format-Buttonsv3.jpg "https://cdn.labtag.com/wp-content/uploads/Thermal-Transfer-Roll-Format-Buttonsv3.jpg")
-
-![FJT-269-Use-8.jpg](/assets/pcr-labels-and-tags/FJT-269-Use-8.jpg "https://cdn.labtag.com/wp-content/uploads/FJT-269-Use-8.jpg")
-
-![FJT-269-Use-5.jpg](/assets/pcr-labels-and-tags/FJT-269-Use-5.jpg "https://cdn.labtag.com/wp-content/uploads/FJT-269-Use-5.jpg")
-
-![AWA-28-MetaliTAG-Labels-on-Freezer-Use1-1.jpg](/assets/pcr-labels-and-tags/AWA-28-MetaliTAG-Labels-on-Freezer-Use1-1.jpg "https://cdn.labtag.com/wp-content/uploads/AWA-28-MetaliTAG-Labels-on-Freezer-Use1-1.jpg")
-
-![AdobeStock_304078731.jpeg](/assets/pcr-labels-and-tags/AdobeStock_304078731.jpeg "https://cdn.labtag.com/wp-content/uploads/AdobeStock_304078731.jpeg")

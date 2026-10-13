@@ -4,8 +4,7 @@ Sources:
 - [https://www.labtag.com/solutions/dymo-labelwriter-550/](https://www.labtag.com/solutions/dymo-labelwriter-550/)
 - [https://www.labtag.com/solutions/dymo-labelwriter-550-2/](https://www.labtag.com/solutions/dymo-labelwriter-550-2/)
 
-
-![Dymo Labelwriter 550](/assets/dymo-labelwriter-550/PKT-LWCS-506-Box.png "https://cdn.labtag.com/wp-content/uploads/2026/04/PKT-LWCS-506-Box.png")
+![Dymo Labelwriter 550](https://cdn.labtag.com/wp-content/uploads/2026/04/PKT-LWCS-506-Box.png "/media/dymo-labelwriter-550/PKT-LWCS-506-Box.png")
 
 DYMO® LabelWriter™ 550 Cryogenic Label Printing Kit
 
@@ -18,6 +17,12 @@ DYMO® partners with GA International
 > Liesbet De Soomer, Global Marketing Director of DYMO
 
 ## What’s included in the printing kit
+
+![What’s included in the printing kit](https://cdn.labtag.com/wp-content/uploads/PKT-LWCS-506-thumb.jpg "/media/dymo-labelwriter-550/PKT-LWCS-506-thumb.jpg")
+![lwcs 504 wh](https://cdn.labtag.com/wp-content/uploads/LWCS-504-WH.png "/media/dymo-labelwriter-550/LWCS-504-WH.png")
+![LWCS-502-illu](https://cdn.labtag.com/wp-content/uploads/LWCS-502-illu.jpg "/media/dymo-labelwriter-550/LWCS-502-illu.jpg")
+
+![lwcs 504 wh](https://cdn.labtag.com/wp-content/uploads/LWCS-504-WH.png "/media/dymo-labelwriter-550/LWCS-504-WH.png")
 
 ### DYMO-Branded CryoSTUCK® Labels
 
@@ -43,6 +48,14 @@ DYMO® partners with GA International
 
 ## Cryogenic labels for DYMO® LabelWriter™ 550
 
+![DYMO® LabelWriter™ 5–Series Cryogenic Labels for Frozen Surfaces image](https://cdn.labtag.com/wp-content/uploads/LWCS-504-WH.jpg "/media/dymo-labelwriter-550/LWCS-504-WH.jpg")
+![Labelwriter 550 printer](https://cdn.labtag.com/wp-content/uploads/Dymo-LabelWriter-550-Printer-2-2-1.jpg "/media/dymo-labelwriter-550/Dymo-LabelWriter-550-Printer-2-2-1.jpg")
+![Cryogenic labels for DYMO® LabelWriter™ 550](https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg "/media/dymo-labelwriter-550/LWCS-504-DYMOxGA.jpg")
+![Connect Software Screenshot](https://cdn.labtag.com/wp-content/uploads/DYMO-Connect-Software-Screenshot-1.png "/media/dymo-labelwriter-550/DYMO-Connect-Software-Screenshot-1.png")
+
+![Labelwriter 550 printer](https://cdn.labtag.com/wp-content/uploads/Dymo-LabelWriter-550-Printer-2-2-1.jpg "/media/dymo-labelwriter-550/Dymo-LabelWriter-550-Printer-2-2-1.jpg")
+![Connect Software Screenshot](https://cdn.labtag.com/wp-content/uploads/DYMO-Connect-Software-Screenshot-1.png "/media/dymo-labelwriter-550/DYMO-Connect-Software-Screenshot-1.png")
+
 | SKU | Product | Size | Price |
 | --- | --- | --- | --- |
 | `#LWCS-501-WH` | DYMO® LabelWriter™ 5-Series Cryogenic Labels for Frozen Surfaces | 2″ × 1″ (50.8 × 25.4 mm) | C$153.60 (C$0.154/label) |
@@ -51,9 +64,16 @@ DYMO® partners with GA International
 | `#LWCS-505-WH` | DYMO® LabelWriter™ 5-Series Cryogenic Labels for Frozen Surfaces | 1″ × 0.5″ (25.4 × 12.7 mm) | C$83.00 (C$0.111/label) |
 | `#LWCS-506-WH` | DYMO® LabelWriter™ 5-Series Cryogenic Labels for Frozen Surfaces | 0.94″ × 0.5″ + 0.375″ circle (23.9 × 12.7 + 9.5 mm) | C$112.70 (C$0.15/label) |
 
+![Connect Software Screenshot](https://cdn.labtag.com/wp-content/uploads/DYMO-Connect-Software-Screenshot-1.png "/media/dymo-labelwriter-550/DYMO-Connect-Software-Screenshot-1.png")
+
 Try the labels before you buy. LabTAG will send pre-printed samples to test them yourself.
 
 ## Cryogenic labeling has never been easier
+
+![Cryogenic labeling has never been easier](https://cdn.labtag.com/wp-content/uploads/LWCS-504-use4-1-1.jpg "/media/dymo-labelwriter-550/LWCS-504-use4-1-1.jpg")
+![LWCS-501-illu](https://cdn.labtag.com/wp-content/uploads/LWCS-501-illu.jpg "/media/dymo-labelwriter-550/LWCS-501-illu.jpg")
+
+![LWCS-501-illu](https://cdn.labtag.com/wp-content/uploads/LWCS-501-illu.jpg "/media/dymo-labelwriter-550/LWCS-501-illu.jpg")
 
 **Compact** — Small and portable, takes little desk space
 
@@ -66,19 +86,6 @@ Try the labels before you buy. LabTAG will send pre-printed samples to test them
 **High-quality** — Prints clear, smudge-proof barcodes, QR codes, and text
 
 **Cost-efficient** — Requires no additional inks or software subscriptions
-
-
-## Product images
-
-![DYMO® LabelWriter™ 5–Series Cryogenic Labels for Frozen Surfaces image](/assets/dymo-labelwriter-550/LWCS-504-WH.jpg "https://cdn.labtag.com/wp-content/uploads/LWCS-504-WH.jpg")
-
-![PKT-LWCS-506-thumb.jpg](/assets/dymo-labelwriter-550/PKT-LWCS-506-thumb.jpg "https://cdn.labtag.com/wp-content/uploads/PKT-LWCS-506-thumb.jpg")
-
-![LWCS-504-use4-1-1.jpg](/assets/dymo-labelwriter-550/LWCS-504-use4-1-1.jpg "https://cdn.labtag.com/wp-content/uploads/LWCS-504-use4-1-1.jpg")
-
-![Labelwriter 550 printer](/assets/dymo-labelwriter-550/Dymo-LabelWriter-550-Printer-2-2-1.jpg "https://cdn.labtag.com/wp-content/uploads/Dymo-LabelWriter-550-Printer-2-2-1.jpg")
-
-![LWCS-504-DYMOxGA.jpg](/assets/dymo-labelwriter-550/LWCS-504-DYMOxGA.jpg "https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg")
 
 ## Frequently Asked Questions
 

@@ -67,6 +67,30 @@
       "alt": "RF3-AUTT-28-use8",
       "role": "content",
       "file": "RF3-AUTT-28-use8.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/DFSL-13-Use-Autoclave-1.png",
+      "alt": "DFSL-13-Use-Autoclave",
+      "role": "content",
+      "file": "DFSL-13-Use-Autoclave-1.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/testimonial.png",
+      "alt": "",
+      "role": "content",
+      "file": "testimonial.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AUTT-94-use-2.png",
+      "alt": "AUTT-94-use",
+      "role": "content",
+      "file": "AUTT-94-use-2.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AUTR-56-use-2.png",
+      "alt": "AUTR-56-use",
+      "role": "content",
+      "file": "AUTR-56-use-2.png"
     }
   ],
   "automated-labels": [
@@ -105,6 +129,30 @@
       "alt": "",
       "role": "content",
       "file": "Scinomix_AQ-Aliquoting-System_Hero-Shot.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-BASIC.png",
+      "alt": "",
+      "role": "content",
+      "file": "HTI-X-TubeProcessor-BASIC.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-SIGN.png",
+      "alt": "",
+      "role": "content",
+      "file": "HTI-X-TubeProcessor-SIGN.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-SMART.png",
+      "alt": "",
+      "role": "content",
+      "file": "HTI-X-TubeProcessor-SMART.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Microplates.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "Microplates.jpg"
     }
   ],
   "biobanking-labels": [
@@ -143,6 +191,30 @@
       "alt": "",
       "role": "content",
       "file": "L2FS-1-Tile-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/JTTA-29-use2-Copie-e1617026541770.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "JTTA-29-use2-Copie-e1617026541770.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/CL-23-Use3-e1617028341242.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "CL-23-Use3-e1617028341242.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AEA-5-use-e1617037057507.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "AEA-5-use-e1617037057507.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/CST-29-use2-2-e1617029869217.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "CST-29-use2-2-e1617029869217.jpg"
     }
   ],
   "cannabis-labels": [
@@ -213,6 +285,12 @@
       "alt": "",
       "role": "content",
       "file": "CALA-2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Xylene-Chemica-Resistant-Labels.png",
+      "alt": "",
+      "role": "content",
+      "file": "Xylene-Chemica-Resistant-Labels.png"
     }
   ],
   "clinical-data-printing-2": [
@@ -243,12 +321,6 @@
       "file": "Clinical-Trial-Labels-Labtag-Use3.jpg"
     },
     {
-      "src": "https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use6.jpg",
-      "alt": "",
-      "role": "content",
-      "file": "Clinical-Trial-Labels-Labtag-Use6.jpg"
-    },
-    {
       "src": "https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use4.jpg",
       "alt": "",
       "role": "content",
@@ -259,6 +331,12 @@
       "alt": "",
       "role": "content",
       "file": "Clinical-Trial-Labels-Labtag-Use5.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use6.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "Clinical-Trial-Labels-Labtag-Use6.jpg"
     }
   ],
   "covid-19-laboratory-labels": [
@@ -297,6 +375,30 @@
       "alt": "",
       "role": "content",
       "file": "cryogenic-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/autoclave-1.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "autoclave-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/PCR-1.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "PCR-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/testimonial.png",
+      "alt": "",
+      "role": "content",
+      "file": "testimonial.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Pic-5_CL-23T1-Use2_.png",
+      "alt": "",
+      "role": "content",
+      "file": "Pic-5_CL-23T1-Use2_.png"
     }
   ],
   "cryogenic-clinical-requisition-forms": [
@@ -343,6 +445,30 @@
       "alt": "",
       "role": "content",
       "file": "PCRJTT-269-use-on-rack.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AWA-28-Use-1.png",
+      "alt": "",
+      "role": "content",
+      "file": "AWA-28-Use-1.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer-1.png",
+      "alt": "",
+      "role": "content",
+      "file": "XST-251-with-printer-1.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer-NO-RIBBON-NEEDED.png",
+      "alt": "",
+      "role": "content",
+      "file": "XST-251-with-printer-NO-RIBBON-NEEDED.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/CL-23T1-Use.png",
+      "alt": "",
+      "role": "content",
+      "file": "CL-23T1-Use.png"
     }
   ],
   "cryostuck": [
@@ -381,6 +507,30 @@
       "alt": "",
       "role": "content",
       "file": "UC-7-use4-resized.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/DTU-52-use4-wp-resized.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "DTU-52-use4-wp-resized.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/LCY-9TR-Use2-square.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "LCY-9TR-Use2-square.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/BUC-29-use5-resized.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "BUC-29-use5-resized.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/UC-29-use4.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "UC-29-use4.jpg"
     }
   ],
   "custom-laboratory-labels": [
@@ -445,6 +595,30 @@
       "alt": "",
       "role": "content",
       "file": "PCRJTT-269-use-on-rack.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/FJT-29-use.png",
+      "alt": "",
+      "role": "content",
+      "file": "FJT-29-use.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AMA-227-use.png",
+      "alt": "",
+      "role": "content",
+      "file": "AMA-227-use.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer.png",
+      "alt": "",
+      "role": "content",
+      "file": "XST-251-with-printer.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/CL-23T1-use.png",
+      "alt": "",
+      "role": "content",
+      "file": "CL-23T1-use.png"
     }
   ],
   "dymo-compatible-laboratory-labels": [
@@ -483,6 +657,30 @@
       "alt": "",
       "role": "content",
       "file": "EDFT-070-Use1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/EDAP-070-use2.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "EDAP-070-use2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/EDWA-010-Use-4.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "EDWA-010-Use-4.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/ECY-050-Use.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "ECY-050-Use.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "LWCS-504-DYMOxGA.jpg"
     }
   ],
   "dymo-labelwriter-550": [
@@ -521,6 +719,30 @@
       "alt": "",
       "role": "content",
       "file": "LWCS-504-DYMOxGA.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/DYMO-Connect-Software-Screenshot-1.png",
+      "alt": "Connect Software Screenshot",
+      "role": "content",
+      "file": "DYMO-Connect-Software-Screenshot-1.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/LWCS-504-WH.png",
+      "alt": "lwcs 504 wh",
+      "role": "content",
+      "file": "LWCS-504-WH.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/LWCS-501-illu.jpg",
+      "alt": "LWCS-501-illu",
+      "role": "content",
+      "file": "LWCS-501-illu.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/LWCS-502-illu.jpg",
+      "alt": "LWCS-502-illu",
+      "role": "content",
+      "file": "LWCS-502-illu.jpg"
     }
   ],
   "ga-international-cody-3-printer": [
@@ -597,6 +819,30 @@
       "alt": "",
       "role": "content",
       "file": "TGS-25-use7-2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/TGC-25-Use2-1-2.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "TGC-25-Use2-1-2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/TARG-25-Use10-2.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "TARG-25-Use10-2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/TG-01-Use4-1-2.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "TG-01-Use4-1-2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/FST-50-use-1-1-1.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "FST-50-use-1-1-1.jpg"
     }
   ],
   "histology-labels": [
@@ -635,6 +881,30 @@
       "alt": "PRF-67-Use1",
       "role": "content",
       "file": "PRF-67-Use1-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Solvent-resistant-labels-for-histology-procedures-2-e1564071355243.png",
+      "alt": "A gloved hand holding a glass microscope slide, labeled with a xylene-resistant barcode printed thermal-transfer label, in front of a microscope.",
+      "role": "content",
+      "file": "Solvent-resistant-labels-for-histology-procedures-2-e1564071355243.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Xylene-resistant-labels-for-paraffin-blocks-1-e1564071986838.png",
+      "alt": "An orange histology tissue cassette encased in a paraffin wax block, labeled with a barcode printed label, in front of 3 other color cassettes.",
+      "role": "content",
+      "file": "Xylene-resistant-labels-for-paraffin-blocks-1-e1564071986838.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/XAL-67-use5.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "XAL-67-use5.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Chemical-resistant-labels-for-paraffin-embedding-4-e1564072882448.png",
+      "alt": "A gloved hand holding a paraffin wax block suspended from a thermal-transfer label with a strong permanent adhesive printed with text and a barcode.",
+      "role": "content",
+      "file": "Chemical-resistant-labels-for-paraffin-embedding-4-e1564072882448.png"
     }
   ],
   "industrial-labels": [
@@ -673,6 +943,30 @@
       "alt": "",
       "role": "content",
       "file": "automotive-e1699464682869.webp"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/plant-e1699465354476.webp",
+      "alt": "",
+      "role": "content",
+      "file": "plant-e1699465354476.webp"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/electronic-e1699464839636.webp",
+      "alt": "",
+      "role": "content",
+      "file": "electronic-e1699464839636.webp"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/agriculture-e1699464601380.webp",
+      "alt": "",
+      "role": "content",
+      "file": "agriculture-e1699464601380.webp"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/steel-manufacturing-e1699464764285.webp",
+      "alt": "",
+      "role": "content",
+      "file": "steel-manufacturing-e1699464764285.webp"
     }
   ],
   "ivf-labeling-solutions": [
@@ -711,6 +1005,30 @@
       "alt": "",
       "role": "content",
       "file": "PID-1-multicolor-use-V3.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-gpa-28-e1705606211927.jpg",
+      "alt": "A gloved hand applying a thermal-transfer paper datasheet label on a patient record form. The white label is printed with patient info and a barcode.",
+      "role": "content",
+      "file": "ivf-gpa-28-e1705606211927.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-jtta-52.jpg",
+      "alt": "Five cryo vials, three standing, and two on their sides, labeled with color cryogenic thermal-transfer labels and 2D barcode printed dot labels.",
+      "role": "content",
+      "file": "ivf-jtta-52.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-wraparound.jpg",
+      "alt": "A microtube, filled with a red liquid, being labeled with a wrap-around cryogenic label, thermal-transfer printed with text and a 2D barcode.",
+      "role": "content",
+      "file": "ivf-wraparound.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-cryostuck.jpg",
+      "alt": "An already frozen cryo vial, covered in frost, being labeled with a blackout thermal-transfer cryogenic label, printed with text and barcodes.",
+      "role": "content",
+      "file": "ivf-cryostuck.jpg"
     }
   ],
   "lab-tapes": [
@@ -749,6 +1067,30 @@
       "alt": "TARG-25-use4",
       "role": "content",
       "file": "TARG-25-use4-e1655744274298.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/Ultra-Removable-Tape-TUR-18use.png",
+      "alt": "Ultra-Removable-Tape-#TUR-18use",
+      "role": "content",
+      "file": "Ultra-Removable-Tape-TUR-18use.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/TGS-25-Use7-e1655746627896.jpg",
+      "alt": "TGS-25-Use7",
+      "role": "content",
+      "file": "TGS-25-Use7-e1655746627896.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/TGS-25-Use1-e1655746335565.jpg",
+      "alt": "TGS-25-Use1",
+      "role": "content",
+      "file": "TGS-25-Use1-e1655746335565.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/TGS-25-Use3-e1655746376913.jpg",
+      "alt": "TGS-25-Use3",
+      "role": "content",
+      "file": "TGS-25-Use3-e1655746376913.jpg"
     }
   ],
   "label-printing-solutions": [
@@ -763,12 +1105,6 @@
       "alt": "",
       "role": "content",
       "file": "Guide-The-Ultimate-Label-Printer-Guide-EN092022-September-14-2022.jpg"
-    },
-    {
-      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-scanner.jpg",
-      "alt": "A black Honeywell voyager 1452G omni-directional scanner, for scanning 1D and 2D barcodes. Scanner is standing upright, while sitting in its base.",
-      "role": "content",
-      "file": "ivf-scanner.jpg"
     },
     {
       "src": "https://cdn.labtag.com/wp-content/uploads/Print-Service1.png",
@@ -787,6 +1123,18 @@
       "alt": "",
       "role": "content",
       "file": "Ribbons-1.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-scanner.jpg",
+      "alt": "A black Honeywell voyager 1452G omni-directional scanner, for scanning 1D and 2D barcodes. Scanner is standing upright, while sitting in its base.",
+      "role": "content",
+      "file": "ivf-scanner.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/BarTender.png",
+      "alt": "",
+      "role": "content",
+      "file": "BarTender.png"
     }
   ],
   "label-software": [
@@ -825,6 +1173,18 @@
       "alt": "",
       "role": "content",
       "file": "fluics3.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/eivf-3.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "eivf-3.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/GenoFAB.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "GenoFAB.jpg"
     }
   ],
   "labels-for-hard-to-stick-surfaces": [
@@ -855,6 +1215,18 @@
       "file": "cryogenic-1.jpg"
     },
     {
+      "src": "https://cdn.labtag.com/wp-content/uploads/autoclave-1.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "autoclave-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-1.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "ivf-1.jpg"
+    },
+    {
       "src": "https://cdn.labtag.com/wp-content/uploads/xylene-label.jpg",
       "alt": "",
       "role": "content",
@@ -873,16 +1245,28 @@
       "file": "clinical.jpg"
     },
     {
-      "src": "https://cdn.labtag.com/wp-content/uploads/autoclave-1.jpg",
+      "src": "https://cdn.labtag.com/wp-content/uploads/PCR-1.jpg",
       "alt": "",
       "role": "content",
-      "file": "autoclave-1.jpg"
+      "file": "PCR-1.jpg"
     },
     {
-      "src": "https://cdn.labtag.com/wp-content/uploads/ivf-1.jpg",
+      "src": "https://cdn.labtag.com/wp-content/uploads/covid.jpg",
       "alt": "",
       "role": "content",
-      "file": "ivf-1.jpg"
+      "file": "covid.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/cannabis-1.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "cannabis-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AboutLabtag-NitrotagSnappeel.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "AboutLabtag-NitrotagSnappeel.jpg"
     }
   ],
   "microscope-slide-over-labeling": [
@@ -953,6 +1337,30 @@
       "alt": "",
       "role": "content",
       "file": "AdobeStock_304078731.jpeg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/FJT-269-Use-2.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "FJT-269-Use-2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/PCRJTT-269-use2.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "PCRJTT-269-use2.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/PID-1-use.png",
+      "alt": "",
+      "role": "content",
+      "file": "PID-1-use.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AMA-11-use.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "AMA-11-use.jpg"
     }
   ],
   "pre-labeled-labware": [
@@ -991,12 +1399,6 @@
       "file": "RF3-JTTA-9-use2-1.jpg"
     },
     {
-      "src": "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use6-1.jpg",
-      "alt": "",
-      "role": "content",
-      "file": "RF3-AUTT-28-use6-1.jpg"
-    },
-    {
       "src": "https://cdn.labtag.com/wp-content/uploads/RFP-550-use3.jpg",
       "alt": "",
       "role": "content",
@@ -1019,6 +1421,18 @@
       "alt": "",
       "role": "content",
       "file": "ZD621R-800x600px.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use6-1.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "RF3-AUTT-28-use6-1.jpg"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/EARG630-KIT-thumb5.jpg",
+      "alt": "",
+      "role": "content",
+      "file": "EARG630-KIT-thumb5.jpg"
     }
   ],
   "snappeel-labels": [
@@ -1115,6 +1529,30 @@
       "alt": "PRF-67-use",
       "role": "content",
       "file": "PRF-67-use1.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/PRF-67-use21.png",
+      "alt": "PRF-67-use2",
+      "role": "content",
+      "file": "PRF-67-use21.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AUAR-186-use3.png",
+      "alt": "AUAR-186-use3",
+      "role": "content",
+      "file": "AUAR-186-use3.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AUAR-186-use1.png",
+      "alt": "AUAR-186-use",
+      "role": "content",
+      "file": "AUAR-186-use1.png"
+    },
+    {
+      "src": "https://cdn.labtag.com/wp-content/uploads/AUAR-186-use21.png",
+      "alt": "AUAR-186-use2",
+      "role": "content",
+      "file": "AUAR-186-use21.png"
     }
   ]
 }

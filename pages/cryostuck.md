@@ -2,10 +2,15 @@
 
 Source: [https://www.labtag.com/solutions/cryostuck/](https://www.labtag.com/solutions/cryostuck/)
 
-
-![CryoSTUCK®- Cryo Labels and Tapes for Frozen Vials and Containers](/assets/cryostuck/DTU-7-use4-wp.jpg "https://cdn.labtag.com/wp-content/uploads/2022/07/DTU-7-use4-wp.jpg")
+![CryoSTUCK®- Cryo Labels and Tapes for Frozen Vials and Containers](https://cdn.labtag.com/wp-content/uploads/2022/07/DTU-7-use4-wp.jpg "/media/cryostuck/DTU-7-use4-wp.jpg")
 
 ## CryoSTUCK® Labels for Frozen Vials and Containers
+
+![CryoSTUCK® Labels for Frozen Vials and Containers](https://cdn.labtag.com/wp-content/uploads/LCS-9-LaserFormatCryoSTUCKv3.jpg "/media/cryostuck/LCS-9-LaserFormatCryoSTUCKv3.jpg")
+![CryoSTUCK® Labels for Frozen Vials and Containers](https://cdn.labtag.com/wp-content/uploads/EDCS-070-cryostuckv3.jpg "/media/cryostuck/EDCS-070-cryostuckv3.jpg")
+![CryoSTUCK® Labels for Frozen Vials and Containers](https://cdn.labtag.com/wp-content/uploads/FIX-332-Cryostuck.jpg "/media/cryostuck/FIX-332-Cryostuck.jpg")
+
+![CryoSTUCK® Labels for Frozen Vials and Containers](https://cdn.labtag.com/wp-content/uploads/EDCS-070-cryostuckv3.jpg "/media/cryostuck/EDCS-070-cryostuckv3.jpg")
 
 LabTAG's innovative CryoSTUCK technology is available in 3 printing formats representing a wide range of options to choose from. Labeling at -80°C and subsequent storage at -196°C means no more room temperature thawing of precious biological samples in order to apply labels. LabTAG is your leader in frozen surface labeling solutions.
 
@@ -29,6 +34,8 @@ Cover-Up
 
 ## The Challenge of Labeling Frozen Vials
 
+![The Challenge of Labeling Frozen Vials](https://cdn.labtag.com/wp-content/uploads/PKT-LWCS-506-thumb-2.jpg "/media/cryostuck/PKT-LWCS-506-thumb-2.jpg")
+
 Labeling frozen vials is a significant challenge for many bio-pharma research labs, cell banks, biorepositories and other laboratories involved in the biopreservation and biobanking of samples in liquid nitrogen and ultra-low temperature freezers. Vials containing biological materials cannot be thawed due to the temperature sensitivity of their content. In most cases, the re-labeling of these vials has to be done below -70°C so as not to compromise the viability of the frozen cells.
 
 The Solution to Labeling Frozen Vials
@@ -45,15 +52,21 @@ Blackout CryoSTUCK have a unique opaque design, perfect for over labeling legacy
 
 ## Laminating Existing Labels
 
+![Laminating Existing Labels](https://cdn.labtag.com/wp-content/uploads/UC-7-use4-resized.jpg "/media/cryostuck/UC-7-use4-resized.jpg")
+
 Our Clear CryoSTUCK labels can also be used to over-label vials and tubes, as their transparent design will not obscure the underlying label. Ideal for laminating existing labels, these robust labels will provide an extra layer of protection, safeguarding your printed information from chemicals, abrasion, and extreme temperatures.
 
 ## Affixing of Labels
+
+![Affixing of Labels](https://cdn.labtag.com/wp-content/uploads/DTU-52-use4-wp-resized.jpg "/media/cryostuck/DTU-52-use4-wp-resized.jpg")
 
 For optimal adhesion, wipe away any visibly accumulated frost with a clean lint-free disposable wipe (e.g: KimWipe™). Avoid excessive contact with the label adhesive during application. Apply the edge of the label first and press firmly to anchor it. Then press the label securely into position along the vials’ entire circumference. The vials can be stored in liquid nitrogen (-196°C) or ultra-low temperature freezers (-80°C) immediately following label application, requiring no cure time.
 
 Our latest CryoSTUCK labels do not require an overlap to produce a secure adhesion to frozen vials and tubes, and require no cure time before returning them to cryo storage.
 
 ## Printing CryoSTUCK labels
+
+![Printing CryoSTUCK labels](https://cdn.labtag.com/wp-content/uploads/LCY-9TR-Use2-square.jpg "/media/cryostuck/LCY-9TR-Use2-square.jpg")
 
 Thermal-transfer CryoSTUCK labels can be printed using all standard barcode printer brands. We recommend our versatile UC-class labels for most applications. We suggest using our XAR-class ribbon for optimal printout resistance. They also accept writing with permanent markers, such as our cryogenic markers. Blackout and SimPEEL formats are also available.
 
@@ -65,20 +78,12 @@ DYMO-Compatible CryoSTUCK labels are printable using DYMO® LabelWriter™ 450-S
 
 ## Industries Served
 
+![Industries Served](https://cdn.labtag.com/wp-content/uploads/BUC-29-use5-resized.jpg "/media/cryostuck/BUC-29-use5-resized.jpg")
+
 These unique cryogenic labels can provide an ideal solution to many laboratories involved in long-term biopreservation of tissue samples such as cord blood banks, cell banks, tissue banks, seed banks, sperm banks and other cryogenic storage facilities in the biomedical and veterinary fields.
 
 Would You Like to Test
 
 ## Our CryoSTUCK® Labels?
 
-## Product images
-
-![LCS-9-LaserFormatCryoSTUCKv3.jpg](/assets/cryostuck/LCS-9-LaserFormatCryoSTUCKv3.jpg "https://cdn.labtag.com/wp-content/uploads/LCS-9-LaserFormatCryoSTUCKv3.jpg")
-
-![EDCS-070-cryostuckv3.jpg](/assets/cryostuck/EDCS-070-cryostuckv3.jpg "https://cdn.labtag.com/wp-content/uploads/EDCS-070-cryostuckv3.jpg")
-
-![PKT-LWCS-506-thumb-2.jpg](/assets/cryostuck/PKT-LWCS-506-thumb-2.jpg "https://cdn.labtag.com/wp-content/uploads/PKT-LWCS-506-thumb-2.jpg")
-
-![FIX-332-Cryostuck.jpg](/assets/cryostuck/FIX-332-Cryostuck.jpg "https://cdn.labtag.com/wp-content/uploads/FIX-332-Cryostuck.jpg")
-
-![UC-7-use4-resized.jpg](/assets/cryostuck/UC-7-use4-resized.jpg "https://cdn.labtag.com/wp-content/uploads/UC-7-use4-resized.jpg")
+![Our CryoSTUCK® Labels?](https://cdn.labtag.com/wp-content/uploads/UC-29-use4.jpg "/media/cryostuck/UC-29-use4.jpg")

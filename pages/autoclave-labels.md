@@ -2,8 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/autoclave-labels/](https://www.labtag.com/solutions/autoclave-labels/)
 
-
-![Guide - Autoclave-Resistant Labels-EN022023 - February 23 2023](/assets/autoclave-labels/Guide-Autoclave-Resistant-Labels-EN022023-February-23-2023.jpg "https://cdn.labtag.com/wp-content/uploads/Guide-Autoclave-Resistant-Labels-EN022023-February-23-2023.jpg")
+![Guide - Autoclave-Resistant Labels-EN022023 - February 23 2023](https://cdn.labtag.com/wp-content/uploads/Guide-Autoclave-Resistant-Labels-EN022023-February-23-2023.jpg "/media/autoclave-labels/Guide-Autoclave-Resistant-Labels-EN022023-February-23-2023.jpg")
 
 LabTAG provides high-temperature autoclave-resistant labels for the identification of materials that require sterilization. These durable labels have been tested and approved for use in gamma irradiators (up to 50 KGy), steam autoclaves (121°C/250°F and 17 psi), dry heat ovens (up to 150°C/302°F), and ethylene oxide gas chambers (759 mg/L at 55°C/131°F). These labels are manufactured with a high-performance adhesive that adheres to a number of different surfaces, making them perfect for identifying metal (stainless-steel and aluminum), glass (Pyrex), and plastic (polypropylene) containers, as well as Genesis™ sterilization containers.
 
@@ -11,11 +10,23 @@ We offer sterilization labels for thermal-transfer, laser, and inkjet printers, 
 
 ## Autoclave-Resistant Label Guide
 
+![DFSL-13-Use-Autoclave](https://cdn.labtag.com/wp-content/uploads/DFSL-13-Use-Autoclave-1.png "/media/autoclave-labels/DFSL-13-Use-Autoclave-1.png")
+
 Everything you need to know before choosing the right sterilization labels
 
 ## Inkjet
 
+![RF3-AUTT-28-use5](https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use5.jpg "/media/autoclave-labels/RF3-AUTT-28-use5.jpg")
+![Inkjet](https://cdn.labtag.com/wp-content/uploads/testimonial.png "/media/autoclave-labels/testimonial.png")
+
+![Inkjet](https://cdn.labtag.com/wp-content/uploads/testimonial.png "/media/autoclave-labels/testimonial.png")
+
 ## Autoclave Labels by Printing Method
+
+![RF3-AUTT-28-use3](https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use3.jpg "/media/autoclave-labels/RF3-AUTT-28-use3.jpg")
+![AUTT-94-use](https://cdn.labtag.com/wp-content/uploads/AUTT-94-use-2.png "/media/autoclave-labels/AUTT-94-use-2.png")
+
+![AUTT-94-use](https://cdn.labtag.com/wp-content/uploads/AUTT-94-use-2.png "/media/autoclave-labels/AUTT-94-use-2.png")
 
 Steri-ThermoTAG™ autoclave-resistant thermal-transfer labels are made from heat-resistant thermoplastic material and can withstand temperatures ranging from -60°C to +150°C as well as exposure to alcohols and detergents. Perfect for labeling materials with high-quality barcodes and serialized information.
 
@@ -25,11 +36,18 @@ Steri-LazrTAG™ are waterproof and durable autoclavable laser labels that can b
 
 ## Inkjet
 
+![RF3-AUTT-28-use1](https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use1.jpg "/media/autoclave-labels/RF3-AUTT-28-use1.jpg")
+![AUTR-56-use](https://cdn.labtag.com/wp-content/uploads/AUTR-56-use-2.png "/media/autoclave-labels/AUTR-56-use-2.png")
+
+![AUTR-56-use](https://cdn.labtag.com/wp-content/uploads/AUTR-56-use-2.png "/media/autoclave-labels/AUTR-56-use-2.png")
+
 Steri-JetTAG™ are heat-resistant inkjet labels that come with a strong permanent adhesive that withstands spraying with ethanol, isopropanol, and other alcohols, and can resist continuous wiping and rubbing with surface sanitizing wipes.
 
 Our autoclave inkjet printable labels are durable, weatherproof, waterproof, and have been tested to endure multiple autoclave cycles. Compatible with all common desktop inkjet printer brands, they can be printed with full-color text, graphics, and logos to be printed. We provide free Microsoft Word online templates for quick and easy formatting.
 
 ## Autoclave Labels by Feature
+
+![RF3-AUTT-28-use6](https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use6-1.jpg "/media/autoclave-labels/RF3-AUTT-28-use6-1.jpg")
 
 Wrap-around laser and thermal-transfer autoclave labels are ideal for identifying small-diameter round containers as well as materials destined for sterilization or storage in ultra-low temperature conditions. These high-temperature and cryogenic-resistant labels can withstand a wide range of temperatures, from -196°C/-321°F up to +150°C/+302°F. These versatile self-laminating labels are protected by a transparent laminate that wraps around and covers the label, providing additional protection against abrasion, chemical exposure, and scratching.
 
@@ -43,18 +61,8 @@ Autoclave-resistant RFID labels have a strong permanent adhesive and can withsta
 
 ## Autoclave Labels by Adhesive
 
+![RF3-AUTT-28-use8](https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use8.jpg "/media/autoclave-labels/RF3-AUTT-28-use8.jpg")
+
 LabTAG Helps PrintParts Fulfill Government Contract for COVID-19 Testing
 
 Early in the COVID-19 pandemic, New York City was devastated by the coronavirus’s first wave. Hospitalizations reached record highs, and the need for COVID-19 response supplies…
-
-## Product images
-
-![RF3-AUTT-28-use5](/assets/autoclave-labels/RF3-AUTT-28-use5.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use5.jpg")
-
-![RF3-AUTT-28-use3](/assets/autoclave-labels/RF3-AUTT-28-use3.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use3.jpg")
-
-![RF3-AUTT-28-use1](/assets/autoclave-labels/RF3-AUTT-28-use1.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use1.jpg")
-
-![RF3-AUTT-28-use6](/assets/autoclave-labels/RF3-AUTT-28-use6-1.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use6-1.jpg")
-
-![RF3-AUTT-28-use8](/assets/autoclave-labels/RF3-AUTT-28-use8.jpg "https://cdn.labtag.com/wp-content/uploads/RF3-AUTT-28-use8.jpg")

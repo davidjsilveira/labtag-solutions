@@ -4,16 +4,22 @@ Sources:
 - [https://www.labtag.com/solutions/chemical-container-labeling/](https://www.labtag.com/solutions/chemical-container-labeling/)
 - [https://www.labtag.com/solutions/chemical-container-labeling-2/](https://www.labtag.com/solutions/chemical-container-labeling-2/)
 
-
-![chemical-container-labeling](/assets/chemical-container-labeling/DymoCard.png "https://cdn.labtag.com/wp-content/uploads/DymoCard.png")
+![chemical-container-labeling](https://cdn.labtag.com/wp-content/uploads/DymoCard.png "/media/chemical-container-labeling/DymoCard.png")
 
 Chemical manufacturers must follow labeling requirements when identifying chemical containers, ensuring the label is clearly legible and includes the chemical/product’s name. Laboratories and research facilities typically purchase these hazardous chemicals in bulk, then transfer them to smaller secondary containers such as vials and bottles. Those secondary containers must also be correctly labeled so workers know the contents and hazards. Affixed labels need to withstand accidental exposure to the containers’ chemicals so that important information is not lost or obscured.
 
 ## Chemical-Resistant Labels
 
+![Chemical-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/Xylene-Chemica-Resistant-Labels.png "/media/chemical-container-labeling/Xylene-Chemica-Resistant-Labels.png")
+
 Options include chemical-resistant and solvent-resistant labels, cryo and chemical-resistant labels for frozen surfaces, DYMO-compatible labels for LabelWriter™ 450-series printers, inkjet-printable chemical-resistant labels, GHS container labels, HMIS warning labels, NFPA warning labels, and calibration and maintenance labels.
 
 ## Chemical-Resistant Labels by Container
+
+![Chemical-Resistant Labels by Container](https://cdn.labtag.com/wp-content/uploads/Inkjet.png "/media/chemical-container-labeling/Inkjet.png")
+![Chemical-Resistant Labels by Container](https://cdn.labtag.com/wp-content/uploads/WL-004-1P-2-2.jpg "/media/chemical-container-labeling/WL-004-1P-2-2.jpg")
+
+![Chemical-Resistant Labels by Container](https://cdn.labtag.com/wp-content/uploads/WL-004-1P-2-2.jpg "/media/chemical-container-labeling/WL-004-1P-2-2.jpg")
 
 ### Drums & IBC Totes
 
@@ -29,6 +35,11 @@ Chemical-resistant labels for tubes and vials, printable with either inkjet or t
 
 ## Chemical-Resistant Labels by Printing Method
 
+![Chemical-Resistant Labels by Printing Method](https://cdn.labtag.com/wp-content/uploads/L-010-0.5R-2.jpg "/media/chemical-container-labeling/L-010-0.5R-2.jpg")
+![Chemical-Resistant Labels by Printing Method](https://cdn.labtag.com/wp-content/uploads/CALA-2.jpg "/media/chemical-container-labeling/CALA-2.jpg")
+
+![Chemical-Resistant Labels by Printing Method](https://cdn.labtag.com/wp-content/uploads/CALA-2.jpg "/media/chemical-container-labeling/CALA-2.jpg")
+
 Thermal-transfer printers provide a printout that withstands harsh environments and conditions. When printing with a solvent-resistant resin ribbon, the printout offers the most resistance against harsh solvents, as well as extreme temperatures, smudging, and scratching. Thermal-transfer printing also offers the most options for different label materials, which is useful for customized labeling solutions.
 
 Direct thermal printers use rolls of labels coated with a leuco dye, a chemical that changes color when heat from the print head is applied. They do not require an additional ink source to print. As a result, these labels are prone to fading over time, especially with exposure to chemicals. Specialty direct thermal labels are available that withstand direct exposure to harsh chemicals.
@@ -38,6 +49,8 @@ DYMO printers are a type of direct thermal printer and have the same limitations
 Inkjet-printable labels are available in sheet and roll formats for full-color desktop and roll label printers. These inkjet labels resist various harsh chemicals, including spraying and wiping with alcohol, and also withstand prolonged storage in cryogenic conditions. They are well suited to color logos, graphics, and images on containers exposed to chemicals and low temperatures.
 
 ## Pre-Printed Chemical-Resistant Labels
+
+![Pre-Printed Chemical-Resistant Labels](https://cdn.labtag.com/wp-content/uploads/WL-015-2.jpg "/media/chemical-container-labeling/WL-015-2.jpg")
 
 ### GHS Container Labels
 
@@ -54,15 +67,3 @@ Blank and pre-printed NFPA warning labels identify hazardous chemicals and mater
 ### Calibration and Maintenance Labels
 
 These self-laminating labels record inspection and calibration data on equipment and instruments that are regularly calibrated. Data can be inscribed on the base label, then covered with the laminate to protect the information from chemical and mechanical damage. Removable and permanent options are available.
-
-## Product images
-
-![Inkjet.png](/assets/chemical-container-labeling/Inkjet.png "https://cdn.labtag.com/wp-content/uploads/Inkjet.png")
-
-![L-010-0.5R-2.jpg](/assets/chemical-container-labeling/L-010-0.5R-2.jpg "https://cdn.labtag.com/wp-content/uploads/L-010-0.5R-2.jpg")
-
-![WL-015-2.jpg](/assets/chemical-container-labeling/WL-015-2.jpg "https://cdn.labtag.com/wp-content/uploads/WL-015-2.jpg")
-
-![WL-004-1P-2-2.jpg](/assets/chemical-container-labeling/WL-004-1P-2-2.jpg "https://cdn.labtag.com/wp-content/uploads/WL-004-1P-2-2.jpg")
-
-![CALA-2.jpg](/assets/chemical-container-labeling/CALA-2.jpg "https://cdn.labtag.com/wp-content/uploads/CALA-2.jpg")

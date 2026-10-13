@@ -2,14 +2,23 @@
 
 Source: [https://www.labtag.com/solutions/biobanking-labels/](https://www.labtag.com/solutions/biobanking-labels/)
 
-
-![Biobanks](/assets/biobanking-labels/Biobank-Tile-1.jpg "https://cdn.labtag.com/wp-content/uploads/2021/02/Biobank-Tile-1.jpg")
+![Biobanks](https://cdn.labtag.com/wp-content/uploads/2021/02/Biobank-Tile-1.jpg "/media/biobanking-labels/Biobank-Tile-1.jpg")
 
 ## Empowering Your Biobank's Labeling Process
+
+![Empowering Your Biobank's Labeling Process](https://cdn.labtag.com/wp-content/uploads/shutterstock_75994732-scaled-e1610655645448.jpg "/media/biobanking-labels/shutterstock_75994732-scaled-e1610655645448.jpg")
+![Empowering Your Biobank's Labeling Process](https://cdn.labtag.com/wp-content/uploads/L2FS-1-Tile-1.jpg "/media/biobanking-labels/L2FS-1-Tile-1.jpg")
+
+![Empowering Your Biobank's Labeling Process](https://cdn.labtag.com/wp-content/uploads/L2FS-1-Tile-1.jpg "/media/biobanking-labels/L2FS-1-Tile-1.jpg")
 
 Biobanks and biorepositories trust LabTAG to provide accurate and durable biospecimen identification solutions. As the leader in cryogenic labeling, we empower the biobanking and biopreservation process with innovative products and expert teams dedicated to your success. Our specimen labels integrate with automation tools and tracking systems to streamline a sustainable sample management process throughout the biobanking lifecycle. We are proud to serve biobanking institutions that fuel scientific discovery, track new diseases, and preserve life.
 
 ## Recommended Labels for Biobanking
+
+![Recommended Labels for Biobanking](https://cdn.labtag.com/wp-content/uploads/Printing-Solution-Main-Image-scaled-e1610656448123.jpg "/media/biobanking-labels/Printing-Solution-Main-Image-scaled-e1610656448123.jpg")
+![Recommended Labels for Biobanking](https://cdn.labtag.com/wp-content/uploads/CL-23-Use3-e1617028341242.jpg "/media/biobanking-labels/CL-23-Use3-e1617028341242.jpg")
+
+![Recommended Labels for Biobanking](https://cdn.labtag.com/wp-content/uploads/CL-23-Use3-e1617028341242.jpg "/media/biobanking-labels/CL-23-Use3-e1617028341242.jpg")
 
 We offer an assortment of cryogenic labels and tapes designed for prolonged specimen storage in ultra-low temperature freezers (-80°C/-112°F), as well as in liquid and vapor phase liquid nitrogen (-196°C/-321°F). These cryogenic labels each serve a unique purpose or are intended for a particular type of cryo container. Compatible with laboratory sample management systems and biobank LIMS.
 
@@ -43,9 +52,16 @@ Cryogenic direct thermal labels for frozen surfaces featuring our novel SimPEEL 
 
 ## Cryo C-kurTAG™
 
+![Cryo C-kurTAG™](https://cdn.labtag.com/wp-content/uploads/JTTA-29-use2-Copie-e1617026541770.jpg "/media/biobanking-labels/JTTA-29-use2-Copie-e1617026541770.jpg")
+
 Our tamper-evident cryo labels offer secure and reliable sealing of microtubes, cryo vials, and cryo boxes. Once applied, these specimen labels will tear-up upon any attempt to remove them. Perfect for securely storing and transporting valuable biological samples in biobanks and biorepositories.
 
 ## Cryo Tapes
+
+![Cryo Tapes](https://cdn.labtag.com/wp-content/uploads/FTT-67_Hologic-2-scaled-e1610657254625.jpg "/media/biobanking-labels/FTT-67_Hologic-2-scaled-e1610657254625.jpg")
+![Cryo Tapes](https://cdn.labtag.com/wp-content/uploads/AEA-5-use-e1617037057507.jpg "/media/biobanking-labels/AEA-5-use-e1617037057507.jpg")
+
+![Cryo Tapes](https://cdn.labtag.com/wp-content/uploads/AEA-5-use-e1617037057507.jpg "/media/biobanking-labels/AEA-5-use-e1617037057507.jpg")
 
 LabTAG offers a range of cryogenic tapes, including specialty tapes for unique applications. We also provide several of our tapes with our added GatorCUT technology, which allows them to be hand cuttable for convenient use whenever needed.
 
@@ -54,6 +70,11 @@ View All Cryogenic Labels
 Solutions for Biobanks
 
 ## Automation Solutions
+
+![Automation Solutions](https://cdn.labtag.com/wp-content/uploads/Thumb-WhitePaper-1.jpg "/media/biobanking-labels/Thumb-WhitePaper-1.jpg")
+![Automation Solutions](https://cdn.labtag.com/wp-content/uploads/CST-29-use2-2-e1617029869217.jpg "/media/biobanking-labels/CST-29-use2-2-e1617029869217.jpg")
+
+![Automation Solutions](https://cdn.labtag.com/wp-content/uploads/CST-29-use2-2-e1617029869217.jpg "/media/biobanking-labels/CST-29-use2-2-e1617029869217.jpg")
 
 RFID Solutions
 
@@ -78,15 +99,3 @@ Watch Webinar
 Labeling Best Practices for Biobanks
 
 Read the White Paper
-
-## Product images
-
-![shutterstock_75994732-scaled-e1610655645448.jpg](/assets/biobanking-labels/shutterstock_75994732-scaled-e1610655645448.jpg "https://cdn.labtag.com/wp-content/uploads/shutterstock_75994732-scaled-e1610655645448.jpg")
-
-![Printing-Solution-Main-Image-scaled-e1610656448123.jpg](/assets/biobanking-labels/Printing-Solution-Main-Image-scaled-e1610656448123.jpg "https://cdn.labtag.com/wp-content/uploads/Printing-Solution-Main-Image-scaled-e1610656448123.jpg")
-
-![FTT-67_Hologic-2-scaled-e1610657254625.jpg](/assets/biobanking-labels/FTT-67_Hologic-2-scaled-e1610657254625.jpg "https://cdn.labtag.com/wp-content/uploads/FTT-67_Hologic-2-scaled-e1610657254625.jpg")
-
-![Thumb-WhitePaper-1.jpg](/assets/biobanking-labels/Thumb-WhitePaper-1.jpg "https://cdn.labtag.com/wp-content/uploads/Thumb-WhitePaper-1.jpg")
-
-![L2FS-1-Tile-1.jpg](/assets/biobanking-labels/L2FS-1-Tile-1.jpg "https://cdn.labtag.com/wp-content/uploads/L2FS-1-Tile-1.jpg")

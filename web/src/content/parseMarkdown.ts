@@ -278,15 +278,39 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
     const headingLevel = isHeading(line)
     if (headingLevel) {
       const titleText = line.replace(/^#{2,3}\s+/, '').trim()
+      i += 1
       if (/^product images$/i.test(titleText)) {
         pendingTitle = undefined
         pendingLevel = undefined
-        i += 1
         continue
       }
-      pendingTitle = titleText
-      pendingLevel = headingLevel
-      i += 1
+
+      // Emit heading now so following images appear under it in the viewer.
+      blocks.push({
+        type: 'section',
+        title: titleText,
+        level: headingLevel,
+        paragraphs: [],
+      })
+      pendingTitle = undefined
+      pendingLevel = undefined
+
+      while (i < lines.length) {
+        if (!lines[i].trim()) {
+          i += 1
+          continue
+        }
+        const img = lines[i].match(IMAGE_LINE)
+        if (!img) break
+        blocks.push({
+          type: 'image',
+          alt: img[1] || '',
+          src: img[2],
+          fallbackSrc: img[3] || undefined,
+          variant: 'gallery',
+        })
+        i += 1
+      }
       continue
     }
 
@@ -434,12 +458,31 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
   }
 
   const refined = promoteCta(collapseFeatureRuns(collapseFaq(blocks)))
-  const textBlock = refined.find((b) => b.type === 'text')
-  const sectionBlock = refined.find((b) => b.type === 'section' && b.paragraphs.length > 0)
+  const contentBlocks = [...refined]
+
+  let heroImage: SolutionPage['heroImage']
+  const leadImage = contentBlocks[0]
+  if (leadImage?.type === 'image') {
+    contentBlocks.shift()
+    heroImage = {
+      src: leadImage.src,
+      alt: leadImage.alt,
+      fallbackSrc: leadImage.fallbackSrc,
+    }
+  }
+
+  let description: string[] = []
+  const leadText = contentBlocks[0]
+  if (leadText?.type === 'text') {
+    contentBlocks.shift()
+    description = leadText.paragraphs
+  }
+
+  const sectionBlock = contentBlocks.find((b) => b.type === 'section' && b.paragraphs.length > 0)
   const excerpt =
-    (textBlock?.type === 'text' ? textBlock.paragraphs[0] : undefined) ??
+    description[0] ??
     (sectionBlock?.type === 'section' ? sectionBlock.paragraphs[0] : undefined) ??
     ''
 
-  return { slug, title, sources, excerpt, blocks: refined }
+  return { slug, title, sources, excerpt, description, heroImage, blocks: contentBlocks }
 }

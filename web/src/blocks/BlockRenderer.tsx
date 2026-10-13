@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react'
-import type { ContentBlock } from '@/content/types'
+import type { ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { BulletListBlockView } from './BulletListBlock'
 import { CtaBlockView } from './CtaBlock'
 import { FaqBlockView } from './FaqBlock'
 import { FeatureGridBlockView } from './FeatureGridBlock'
 import { ImageBlockView } from './ImageBlock'
+import { ImageSlider } from './ImageSlider'
 import { NumberedStepsBlockView } from './NumberedStepsBlock'
 import { QuoteBlockView } from './QuoteBlock'
 import { SectionBlockView } from './SectionBlock'
@@ -51,26 +52,59 @@ function renderBlock(block: ContentBlock, index: number) {
   }
 }
 
+function takeImages(blocks: ContentBlock[], start: number): { images: ImageBlock[]; next: number } {
+  const images: ImageBlock[] = []
+  let i = start
+  while (i < blocks.length && blocks[i].type === 'image') {
+    images.push(blocks[i] as ImageBlock)
+    i += 1
+  }
+  return { images, next: i }
+}
+
 export function BlockRenderer({ blocks }: Props) {
   const nodes: ReactNode[] = []
   let i = 0
+
   while (i < blocks.length) {
     const block = blocks[i]
-    if (block.type === 'image' && block.variant === 'gallery') {
-      const gallery: ReactNode[] = []
-      while (i < blocks.length) {
-        const next = blocks[i]
-        if (next.type !== 'image' || next.variant !== 'gallery') break
-        gallery.push(renderBlock(next, i))
-        i += 1
+
+    if (block.type === 'section') {
+      const { images, next: afterImages } = takeImages(blocks, i + 1)
+      if (images.length) {
+        let next = afterImages
+        let paragraphs = [...block.paragraphs]
+        const following = blocks[next]
+        if (following?.type === 'text') {
+          paragraphs = [...paragraphs, ...following.paragraphs]
+          next += 1
+        }
+
+        const section: SectionBlock = {
+          ...block,
+          paragraphs,
+        }
+
+        nodes.push(
+          <div key={`split-${i}`} className="content-split">
+            <div className="content-split-copy">
+              <SectionBlockView block={section} />
+            </div>
+            <ImageSlider images={images} className="content-split-media" />
+          </div>,
+        )
+        i = next
+        continue
       }
-      nodes.push(
-        <div key={`gallery-${i}`} className="image-gallery">
-          {gallery}
-        </div>,
-      )
+    }
+
+    if (block.type === 'image' && block.variant === 'gallery') {
+      const { images, next } = takeImages(blocks, i)
+      nodes.push(<ImageSlider key={`gallery-${i}`} images={images} className="image-gallery" />)
+      i = next
       continue
     }
+
     nodes.push(renderBlock(block, i))
     i += 1
   }
