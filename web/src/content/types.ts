@@ -3,7 +3,7 @@ export type ImageBlock = {
   src: string
   alt: string
   fallbackSrc?: string
-  variant?: 'hero' | 'gallery'
+  variant?: 'hero' | 'gallery' | 'logo'
 }
 
 export type TextBlock = {

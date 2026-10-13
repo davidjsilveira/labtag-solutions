@@ -13,6 +13,24 @@ export function ImageSlider({ images, className = '' }: Props) {
 
   if (!images.length) return null
 
+  const allLogos = images.every((image) => image.variant === 'logo')
+  if (allLogos) {
+    return (
+      <div className={`logo-grid ${className}`.trim()} role="list" aria-label="Software partners">
+        {images.map((image, logoIndex) => (
+          <div key={`${image.src}-${logoIndex}`} className="logo-grid-item" role="listitem">
+            <ImageBlockView
+              src={image.src}
+              alt={image.alt}
+              fallbackSrc={image.fallbackSrc}
+              variant="logo"
+            />
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   if (images.length === 1) {
     const image = images[0]
     return (

@@ -21,18 +21,26 @@ Everything you need to know before choosing the right software. Browse options b
 
 ## Label Design Software
 
-![Label design software](https://cdn.labtag.com/wp-content/uploads/QR_logix.png "/media/label-software/QR_logix.png")
-![Label design and printing](https://cdn.labtag.com/wp-content/uploads/CYB_L_H_C.png "/media/label-software/CYB_L_H_C.png")
-![Fluics label software](https://cdn.labtag.com/wp-content/uploads/fluics3.jpg "/media/label-software/fluics3.jpg")
-
 Label design and print software allows you to create and customize label templates with text, numbers, serialized numbers, barcodes, logos, and graphics. They can also connect and integrate information from a database. However, they do not store information like informatics software does. LabTAG® sells and supports label design software for laboratory and clinical workflows.
 
 ## Informatics Software
 
-![LabMate informatics](https://cdn.labtag.com/wp-content/uploads/labmate-v2.jpg "/media/label-software/labmate-v2.jpg")
-![LDMS informatics software](https://cdn.labtag.com/wp-content/uploads/ldms2.jpg "/media/label-software/ldms2.jpg")
+Laboratory informatics software is used to manage freezers, track samples, record patient data, or store any type of information. Informatics come in the form of LIMS, LIS, ELN, EWS, EMR, and EHR. Informatics software usually includes a label design module or comes with the option to integrate with a label design software. LabTAG’s labels and labeling systems integrate with the following trusted partners.
 
-Laboratory informatics software is used to manage freezers, track samples, record patient data, or store any type of information. Informatics come in the form of LIMS, LIS, ELN, EWS, EMR, and EHR. Informatics software usually includes a label design module or comes with the option to integrate with a label design software. LabTAG’s labels and labeling systems integrate with trusted informatics partners.
+### Our Software Partners
+
+![LabMate logo](https://cdn.labtag.com/wp-content/uploads/labmate-v2.jpg "/media/label-software/labmate-v2.jpg")
+![LDMS logo](https://cdn.labtag.com/wp-content/uploads/ldms2.jpg "/media/label-software/ldms2.jpg")
+![Fluics CONNECT logo](https://cdn.labtag.com/wp-content/uploads/fluics3.jpg "/media/label-software/fluics3.jpg")
+![eIVF logo](https://cdn.labtag.com/wp-content/uploads/eivf-3.jpg "/media/label-software/eivf-3.jpg")
+![Labguru logo](https://cdn.labtag.com/wp-content/uploads/Labguru-Logo-black-1024x313.png "/media/label-software/Labguru-Logo-black-1024x313.png")
+![GenoFAB logo](https://cdn.labtag.com/wp-content/uploads/GenoFAB.jpg "/media/label-software/GenoFAB.jpg")
+![SciSure logo](https://cdn.labtag.com/wp-content/uploads/SciSure-logo-1024x225.png "/media/label-software/SciSure-logo-1024x225.png")
+![Genemod logo](https://cdn.labtag.com/wp-content/uploads/Genemod_logo.png "/media/label-software/Genemod_logo.png")
+![Clustermarket logo](https://cdn.labtag.com/wp-content/uploads/CM-Logo-black.png "/media/label-software/CM-Logo-black.png")
+![QRlogix logo](https://cdn.labtag.com/wp-content/uploads/QR_logix.png "/media/label-software/QR_logix.png")
+![ATMPS logo](https://cdn.labtag.com/wp-content/uploads/ATMPS-logo_309x143px.jpg "/media/label-software/ATMPS-logo_309x143px.jpg")
+![CYBRA logo](https://cdn.labtag.com/wp-content/uploads/CYB_L_H_C.png "/media/label-software/CYB_L_H_C.png")
 
 ## Need Expert Help?
 

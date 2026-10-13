@@ -5,6 +5,12 @@ const STEP_LINE = /^\d+\.\s+\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
 const FEATURE_BULLET = /^-\s+\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
 const BOLD_LEAD = /^\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
 const IMAGE_LINE = /^!\[(.*?)\]\((.*?)(?:\s+"(.*?)")?\)$/
+
+function imageVariant(alt: string, isHero = false): 'hero' | 'gallery' | 'logo' {
+  if (isHero) return 'hero'
+  if (/\blogo\b/i.test(alt)) return 'logo'
+  return 'gallery'
+}
 const CTA_TITLES = /^(need expert|get in touch|make your project|experience the benefits|try the labels)/i
 
 function cleanInline(text: string): string {
@@ -340,7 +346,7 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
           alt: img[1] || '',
           src: img[2],
           fallbackSrc: img[3] || undefined,
-          variant: 'gallery',
+          variant: imageVariant(img[1] || ''),
         })
         i += 1
       }
@@ -355,7 +361,7 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
         alt: imageMatch[1] || '',
         src: imageMatch[2],
         fallbackSrc: imageMatch[3] || undefined,
-        variant: isHero ? 'hero' : 'gallery',
+        variant: imageVariant(imageMatch[1] || '', isHero),
       })
       i += 1
       continue

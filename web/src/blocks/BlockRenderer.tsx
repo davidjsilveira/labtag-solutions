@@ -91,6 +91,21 @@ export function BlockRenderer({ blocks }: Props) {
           paragraphs,
         }
 
+        const allLogos = images.every((image) => image.variant === 'logo')
+        if (allLogos) {
+          nodes.push(
+            <div key={`logo-section-${i}`} className="logo-section">
+              <SectionBlockView block={section} />
+              {bullets?.type === 'bulletList' ? (
+                <BulletListBlockView block={bullets} variant="plain" />
+              ) : null}
+              <ImageSlider images={images} />
+            </div>,
+          )
+          i = next
+          continue
+        }
+
         nodes.push(
           <div key={`split-${i}`} className="content-split">
             <div className="content-split-copy">

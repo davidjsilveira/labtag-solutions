@@ -5,14 +5,15 @@ type Props = {
   src: string
   alt: string
   fallbackSrc?: string
-  variant?: 'hero' | 'gallery'
+  variant?: 'hero' | 'gallery' | 'logo'
 }
 
 export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: Props) {
   const resolved = resolveImageSrc(src, fallbackSrc)
   const [current, setCurrent] = useState(resolved.primary)
   const [failed, setFailed] = useState(false)
-  const isIcon = /\.svg(?:$|\?)/i.test(resolved.primary) || /\.svg(?:$|\?)/i.test(fallbackSrc ?? '')
+  const isSvg = /\.svg(?:$|\?)/i.test(resolved.primary) || /\.svg(?:$|\?)/i.test(fallbackSrc ?? '')
+  const isLogo = variant === 'logo' || isSvg
 
   if (failed && !resolved.fallback) {
     return null
@@ -20,7 +21,7 @@ export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: P
 
   return (
     <figure
-      className={`block block-image block-image-${variant}${isIcon ? ' block-image-icon' : ''}`}
+      className={`block block-image block-image-${variant}${isLogo ? ' block-image-icon' : ''}`}
     >
       <img
         src={current}
@@ -35,7 +36,7 @@ export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: P
           setFailed(true)
         }}
       />
-      {alt && !isIcon ? <figcaption>{alt}</figcaption> : null}
+      {alt && !isLogo ? <figcaption>{alt}</figcaption> : null}
     </figure>
   )
 }
