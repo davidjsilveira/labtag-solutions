@@ -1,8 +1,6 @@
 # DYMO LabelWriter 550
 
-Sources:
-- [https://www.labtag.com/solutions/dymo-labelwriter-550/](https://www.labtag.com/solutions/dymo-labelwriter-550/)
-- [https://www.labtag.com/solutions/dymo-labelwriter-550-2/](https://www.labtag.com/solutions/dymo-labelwriter-550-2/)
+Source: [https://www.labtag.com/solutions/dymo-labelwriter-550/](https://www.labtag.com/solutions/dymo-labelwriter-550/)
 
 ![DYMO LabelWriter 550 Cryogenic Label Printing Kit](https://cdn.labtag.com/wp-content/uploads/2026/04/PKT-LWCS-506-Box.png "/media/dymo-labelwriter-550/PKT-LWCS-506-Box.png")
 

@@ -2,7 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/resitag-2/](https://www.labtag.com/solutions/resitag-2/)
 
-![ResiTAG labels for resin-embedding capsules](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag-2/XST-251-use2.jpg")
+![ResiTAG labels for resin-embedding capsules](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/XST-251-use2.jpg")
 
 
 
@@ -26,7 +26,7 @@ Everything you need to know before choosing ResiTAG®. Browse options by capabil
 
 ### Clear, Legible Sample IDs
 
-![ResiTAG thermal-transfer labels and printer](https://cdn.labtag.com/wp-content/uploads/XST-251-use.png "/media/resitag-2/XST-251-use.png")
+![ResiTAG thermal-transfer labels and printer](https://cdn.labtag.com/wp-content/uploads/XST-251-use.png "/media/resitag/XST-251-use.png")
 
 With ResiTAG® you can print many lines of text on a tiny label—far more than handwriting allows. Print hundreds of labels at once for clear, legible identifiers. The chemical-resistant printout will not smear in liquid or baked resin. You can scan barcodes into Excel, reducing the possibility of human error.
 

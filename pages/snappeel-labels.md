@@ -1,8 +1,6 @@
 # SnapPEEL™ Labels
 
-Sources:
-- [https://www.labtag.com/solutions/snappeel-labels/](https://www.labtag.com/solutions/snappeel-labels/)
-- [https://www.labtag.com/solutions/snappeel-2/](https://www.labtag.com/solutions/snappeel-2/)
+Source: [https://www.labtag.com/solutions/snappeel-labels/](https://www.labtag.com/solutions/snappeel-labels/)
 
 ![SnapPEEL labels for tube tops and sides](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
 

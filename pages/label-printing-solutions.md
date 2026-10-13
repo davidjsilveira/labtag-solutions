@@ -2,7 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/label-printing-solutions/](https://www.labtag.com/solutions/label-printing-solutions/)
 
-![Label Printing Solutions](https://cdn.labtag.com/wp-content/uploads/2019/10/Main-Image1.png "/media/label-printing-solutions/Main-Image1.png")
+![Label Printing Solutions](https://cdn.labtag.com/wp-content/uploads/Label-Printing-Solutions-2.jpg "/media/label-printing-solutions/Label-Printing-Solutions-2.jpg")
 
 
 

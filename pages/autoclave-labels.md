@@ -2,7 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/autoclave-labels/](https://www.labtag.com/solutions/autoclave-labels/)
 
-![Autoclave Labels](https://cdn.labtag.com/wp-content/uploads/Guide-Autoclave-Resistant-Labels-EN022023-February-23-2023.jpg "/media/autoclave-labels/Guide-Autoclave-Resistant-Labels-EN022023-February-23-2023.jpg")
+![Autoclave Labels](https://cdn.labtag.com/wp-content/uploads/Autoclave-Labels-2.jpg "/media/autoclave-labels/Autoclave-Labels-2.jpg")
 
 
 

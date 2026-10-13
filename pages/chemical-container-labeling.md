@@ -1,8 +1,6 @@
 # Chemical Container Labeling
 
-Sources:
-- [https://www.labtag.com/solutions/chemical-container-labeling/](https://www.labtag.com/solutions/chemical-container-labeling/)
-- [https://www.labtag.com/solutions/chemical-container-labeling-2/](https://www.labtag.com/solutions/chemical-container-labeling-2/)
+Source: [https://www.labtag.com/solutions/chemical-container-labeling/](https://www.labtag.com/solutions/chemical-container-labeling/)
 
 ![Chemical container labeling](https://cdn.labtag.com/wp-content/uploads/L-010-0.5R-2.jpg "/media/chemical-container-labeling/L-010-0.5R-2.jpg")
 
