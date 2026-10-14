@@ -352,7 +352,7 @@ main {
   object-position: 78% center;
 }
 
-/* Light left wash — photo stays visible; copy sits on the pale negative space */
+/* Soft left wash so brand/headline stay readable over the photo */
 .lander-hero::after {
   content: '';
   position: absolute;
@@ -361,9 +361,10 @@ main {
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    color-mix(in srgb, var(--color-paper) 45%, transparent) 0%,
-    color-mix(in srgb, var(--color-paper) 18%, transparent) 36%,
-    transparent 58%
+    color-mix(in srgb, var(--color-paper) 72%, transparent) 0%,
+    color-mix(in srgb, var(--color-paper) 48%, transparent) 28%,
+    color-mix(in srgb, var(--color-paper) 18%, transparent) 48%,
+    transparent 66%
   );
 }
 
@@ -940,9 +941,10 @@ main {
   .lander-hero::after {
     background: linear-gradient(
       90deg,
-      color-mix(in srgb, var(--color-paper) 55%, transparent) 0%,
-      color-mix(in srgb, var(--color-paper) 22%, transparent) 42%,
-      transparent 68%
+      color-mix(in srgb, var(--color-paper) 78%, transparent) 0%,
+      color-mix(in srgb, var(--color-paper) 42%, transparent) 40%,
+      color-mix(in srgb, var(--color-paper) 12%, transparent) 58%,
+      transparent 74%
     );
   }
 
