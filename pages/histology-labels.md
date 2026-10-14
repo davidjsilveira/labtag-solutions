@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/histology-labels/](https://www.labtag.
 
 ![Histology Labels | Xylene Resistant](https://cdn.labtag.com/wp-content/uploads/2025/07/XAL-117-use4.jpg "/media/histology-labels/XAL-117-use4.jpg")
 
-
-
 LabTAG® provides labels and ribbons for every step of the histological process, from tissue extraction and preparation to staining and imaging. Our xylene-resistant labels for histology are designed for microscope slides, paraffin wax blocks, plastic containers, slide boxes stored in deep-freeze conditions, and resin embedding in clinical and research labs.
 
 Our chemical-resistant labels withstand immersion in xylene, toluene, alcohols, formalin, hexane, acetone, DMSO, acetonitrile, and other harsh chemicals and solvents for slide and cassette labeling.
-
-## Histology Label Guide
-
-Everything you need to know before choosing the right histology labels. Browse options by surface or feature below.
 
 ### By Surface
 

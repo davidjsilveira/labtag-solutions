@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/biobanking-labels/](https://www.labtag
 
 ![Biobanking Labels](https://cdn.labtag.com/wp-content/uploads/2021/02/Biobank-Tile-1.jpg "/media/biobanking-labels/Biobank-Tile-1.jpg")
 
-
-
 Biobanks and biorepositories trust LabTAG to provide accurate and durable biospecimen identification solutions. As a leader in cryogenic labeling, LabTAG supports the biobanking and biopreservation process with cryogenic labels, tapes, and expert guidance. Our specimen labels help protect long-term sample integrity and integrate with tracking systems throughout the biobanking lifecycle.
 
 We offer cryogenic labels and tapes for prolonged storage in ultra-low freezers and liquid nitrogen, with formats suited to cryo containers and biobank LIMS systems.
-
-## Biobanking Label Guide
-
-Everything you need to know before choosing the right biobanking labels. Browse options by container or feature below.
 
 ### By Container
 

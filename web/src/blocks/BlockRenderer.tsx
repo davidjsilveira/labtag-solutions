@@ -157,6 +157,22 @@ export function BlockRenderer({ blocks }: Props) {
         i = absorbed.next
         continue
       }
+
+      // Title-only heading with following copy (no media): keep them in one unit
+      // so block-stack gap does not sit between the heading and its intro.
+      const absorbed = absorbFollowingCopy(blocks, i + 1, block)
+      if (absorbed.next > i + 1) {
+        nodes.push(
+          <div key={`section-copy-${i}`} className="block">
+            <SectionBlockView block={absorbed.section} />
+            {absorbed.bullets?.type === 'bulletList' ? (
+              <BulletListBlockView block={absorbed.bullets} variant="plain" />
+            ) : null}
+          </div>,
+        )
+        i = absorbed.next
+        continue
+      }
     }
 
     if (block.type === 'image' && block.variant === 'gallery') {

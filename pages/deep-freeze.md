@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/deep-freeze/](https://www.labtag.com/s
 
 ![Deep-Freeze Labels](https://cdn.labtag.com/wp-content/uploads/2021/09/FJT-556-use1.jpg "/media/deep-freeze/FJT-556-use1.jpg")
 
-
-
 LabTAG® offers deep-freeze labels that withstand short and long-term storage in ultra-low temperature laboratory freezers (−80°C/−112°F, −20°C/−4°F) and transportation on dry ice. Perfectly suited for microtubes, vials, freezer boxes, blood bags, microplates, and PCR tubes, these freezer labels adhere to wet and damp surfaces and resist multiple freeze-thaw cycles.
 
 Provided in rolls or sheets across colors and configurations for thermal-transfer, laser, writable, and DYMO formats, including RFID and blackout cover-up options for freezer workflows.
-
-## Deep-Freeze Label Guide
-
-Everything you need to know before choosing the right freezer labels. Browse options by container, printing method, feature, or adhesive below.
 
 ### By Container
 

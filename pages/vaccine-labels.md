@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/vaccine-labels/](https://www.labtag.co
 
 ![Vaccine labels for cold chain identification](https://cdn.labtag.com/wp-content/uploads/2020/11/shutterstock_1739345507.jpg "/media/vaccine-labels/shutterstock_1739345507.jpg")
 
-
-
 Maintaining a sustainable cold chain is vital to the production and distribution of vaccines, especially for mRNA vaccines that require freezing down to −80°C. LabTAG® provides cryogenic vaccine information labels recommended to meet these low-temperature requirements for pharmaceutical, biotechnology, hospital, and clinic cold-chain packing and distribution workflow programs.
 
 LabTAG® vaccine label options include low-temperature constructs, smart labeling solutions, and customizable vaccine syringe labels for reliable pharma and clinic cold-chain identification at scale.
-
-## Vaccine Label Guide
-
-Everything you need to know before choosing vaccine labels. Browse options by storage condition or feature below.
 
 ### By Storage Condition
 

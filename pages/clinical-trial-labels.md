@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/clinical-trial-labels/](https://www.la
 
 ![Clinical trial labels](https://cdn.labtag.com/wp-content/uploads/2021/12/Clinical-Trial-Labels-Labtag-Use3.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use3.jpg")
 
-
-
 LabTAG® understands that clinical trials teams have a tremendous responsibility to sponsors, patients, and doctors. With accelerated drug development and rising trial volumes, having the right clinical labeling in place is a priority. We fulfill clinical trial label requirements on time, with precision, and with a wide range of customization options for trial teams.
 
 LabTAG consults, designs, and prints custom clinical trial labels in sheet, roll, or booklet formats, including cryogenic, autoclave, syringe, wrap-around, piggyback, barcode, and RFID options.
-
-## Clinical Trial Label Guide
-
-Everything you need to know before choosing clinical trial labels. Browse options by capability or format below.
 
 ### By Capability
 

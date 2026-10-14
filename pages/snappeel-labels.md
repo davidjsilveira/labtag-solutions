@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/snappeel-labels/](https://www.labtag.c
 
 ![SnapPEEL labels for tube tops and sides](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
 
-
-
 Patent-pending SnapPEEL™ technology makes identifying cryo vials and microtubes quick and easy with a unique 2-in-1 rectangle plus circle design. Both labels peel from the liner in a single motion for precise cap placement. Once the circle is attached, the rectangle snaps off and is applied to the side of the vial.
 
 SnapPEEL joins a circular cap label and rectangular side label so dual labeling is faster when critical information must stay visible in freezer boxes.
-
-## SnapPEEL™ Guide
-
-Everything you need to know before choosing SnapPEEL™ labels. Browse options by benefit or material below.
 
 ### By Benefit
 

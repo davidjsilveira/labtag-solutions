@@ -11,6 +11,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   overflow-x: clip;
@@ -290,7 +294,7 @@ main {
 }
 
 .page-hero-description {
-  margin-top: var(--space-md);
+  margin-top: var(--space-xs);
   display: grid;
   gap: var(--space-sm);
 }
@@ -354,7 +358,7 @@ main {
 
 .block-stack {
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-2xl);
   max-width: none;
 }
 
@@ -363,12 +367,18 @@ main {
 }
 
 .block h2,
+.block h3,
+.block-section {
+  scroll-margin-top: var(--anchor-scroll-margin);
+}
+
+.block h2,
 .block h3 {
   font-family: var(--font-display);
   font-weight: 700;
   font-style: normal;
   letter-spacing: -0.02em;
-  margin: 0 0 var(--space-sm);
+  margin: 0 0 var(--space-2xs);
   line-height: 1.2;
   color: var(--color-ink);
 }
@@ -410,7 +420,7 @@ main {
 }
 
 .content-split-copy .block-bullets {
-  margin-top: var(--space-sm);
+  margin-top: var(--space-2xs);
 }
 
 .block-bullets .bullet-chip-list {
@@ -539,20 +549,37 @@ a.bullet-chip:hover {
   border: 1px solid var(--color-rule);
   border-radius: var(--radius-md);
   background: var(--color-surface);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color var(--dur-short) var(--ease-out),
+    box-shadow var(--dur-short) var(--ease-out);
 }
 
+a.feature-item-link:hover {
+  border-color: var(--color-accent-soft);
+  box-shadow: var(--shadow-card);
+}
+
+a.feature-item-link:hover .feature-item-title {
+  color: var(--color-accent);
+}
+
+.feature-item-title,
 .feature-item h3 {
-  margin-bottom: var(--space-3xs);
+  margin: 0 0 var(--space-3xs);
   color: var(--color-accent-deep);
   font-size: var(--text-md);
   font-family: var(--font-body);
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .feature-item p {
   margin: 0;
   font-size: var(--text-sm);
   max-width: var(--measure);
+  color: var(--color-ink-2);
 }
 
 .table-wrap {
@@ -759,7 +786,7 @@ tr:last-child td {
 .content-split {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: var(--space-md) var(--space-xl);
+  gap: var(--space-sm) var(--space-xl);
   align-items: center;
 }
 
@@ -954,6 +981,10 @@ tr:last-child td {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {

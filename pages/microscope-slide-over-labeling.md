@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/microscope-slide-over-labeling/](https
 
 ![Histo-PinTAG microscope slide over-labeling](https://cdn.labtag.com/wp-content/uploads/2026/03/Histo-PinTAG-postProd-2026-2.gif "/media/microscope-slide-over-labeling/Histo-PinTAG-postProd-2026-2.gif")
 
-
-
 Histology consulting facilities often re-process large numbers of tissue slides from a variety of locations. Incoming microscope slides must be re-labeled with a new unique identifier for compatibility with the facility’s internal digital scanners and databases. LabTAG offers an innovative solution designed to improve efficiency without compromising original label integrity.
 
 Histo-PinTAG™ and related over-labeling options obscure existing barcodes, add new identifiers, or protect original print without focus issues from conventional double labeling on microscope slides.
-
-## Microscope Slide Over-Labeling Guide
-
-Everything you need to know before choosing slide over-labeling solutions. Browse options by approach below.
 
 ### By Approach
 

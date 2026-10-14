@@ -44,10 +44,18 @@ export type NumberedStepsBlock = {
   steps: { title: string; body: string; image?: NumberedStepImage }[]
 }
 
+export type FeatureGridItem = {
+  title: string
+  body: string
+  /** In-page anchor to the matching article section, e.g. `#microplates`. */
+  href?: string
+}
+
 export type FeatureGridBlock = {
   type: 'featureGrid'
   title?: string
-  items: { title: string; body: string }[]
+  level?: 2 | 3
+  items: FeatureGridItem[]
 }
 
 export type TableBlock = {

@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/label-software/](https://www.labtag.co
 
 ![Label Printing Software](https://cdn.labtag.com/wp-content/uploads/2020/02/printing-labels.png "/media/label-software/printing-labels.png")
 
-
-
 Harness the power of software to give purpose to your data. Label design and printing software lets you design, create, automate, and manage labels, barcodes, RFID tags, and more. Informatics software gives you the added power to store, track, trace, and report on sample and patient data across laboratory workflows.
 
 Choose label design, printing automation, and informatics options that streamline barcode and RFID workflows while supporting sample tracking and reporting needs in the lab.
-
-## Label Software Guide
-
-Everything you need to know before choosing the right software. Browse options by category below.
 
 ### By Category
 

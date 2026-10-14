@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/pcr-labels-and-tags/](https://www.labt
 
 ![PCR Labels and Tags](https://cdn.labtag.com/wp-content/uploads/FJT-557-use13.jpg "/media/pcr-labels-and-tags/FJT-557-use13.jpg")
 
-
-
 LabTAG provides labels, tags, and label dots for 0.2 mL PCR tubes, high-profile 8-well PCR strips, and skirted, semi-skirted, and non-skirted PCR plates. Across academic and pharma labs, these durable identifiers keep PCR samples tracked through sample prep, thermal cycling, analysis, and cold storage from setup through final storage.
 
 Suitable for clinical PCR, qPCR/RT-PCR, molecular biology research, forensics, and mRNA workflows, with color coding and barcode options for clearer sample tracking through cold storage.
-
-## PCR Label Guide
-
-Everything you need to know before choosing the right PCR labels and tags. Browse options by vessel or feature below.
 
 ### By Vessel
 

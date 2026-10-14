@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/xylene-chemical-resistant-labels/](htt
 
 ![Xylene & Chemical Resistant Labels](https://cdn.labtag.com/wp-content/uploads/2024/05/Thumb-Guide-Xylene-Chemical-Resistant-Label-Guide-EN022024-February-23-2024.jpg "/media/xylene-chemical-resistant-labels/Thumb-Guide-Xylene-Chemical-Resistant-Label-Guide-EN022024-February-23-2024.jpg")
 
-
-
 LabTAG® provides xylene-resistant labels, ribbons, and tags for use in clinical and medical research labs, including histology, pathology, and chemistry labs. Our laminate-free chemical-resistant labels identify microscope slides, paraffin wax blocks, plastic containers, volumetric labware, deep-freeze slide boxes, formalin preservation, and resin embedding across all histology lab workflows.
 
 These labels withstand immersion in xylene, toluene, alcohols such as ethanol, formalin, hexane, acetone, DMSO, acetonitrile, and other harsh chemicals and organic solvents used in pathology labs.
-
-## Chemical-Resistant Label Guide
-
-Everything you need to know before choosing the right chemical-resistant labels. Browse options by surface, printing method, feature, or adhesive below.
 
 ### By Surface
 

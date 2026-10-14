@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/label-printing-solutions/](https://www
 
 ![Label Printing Solutions](https://cdn.labtag.com/wp-content/uploads/Label-Printing-Solutions-2.jpg "/media/label-printing-solutions/Label-Printing-Solutions-2.jpg")
 
-
-
 LabTAG® offers comprehensive label printing solutions designed to keep laboratory operations running smoothly and that can be easily integrated into your existing workflow. Set up a complete printing solution that helps you manage inventory and samples, connect with your LIMS, and keep identification processes reliable and efficient day after day.
 
 Our expert team of scientists provides free technical support to help you select printers, media, and accessories matched to your laboratory printing setup and workflow needs.
-
-## Label Printer Guide
-
-Everything you need to know before choosing the right printing setup. Browse options by component below.
 
 ### By Component
 

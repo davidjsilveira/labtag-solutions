@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/ga-international-cody-3-printer/](http
 
 ![GA International Cody-3 Printer](https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg "/media/ga-international-cody-3-printer/Cody-3-use3-1.jpg")
 
-
-
 The Cody-3™ desktop thermal printer prints high-quality 300 dpi text, barcodes, and graphics on many label types and configurations. It can print directly on thermal media or by thermal-transfer mode using an ink ribbon. Professional-looking labels can be achieved for laboratory and industrial identification workflows on the benchtop.
 
 Included design software and multiple connectivity options help you create and print labels quickly across common thermal and thermal-transfer media formats for benchtop label printing.
-
-## Cody-3 Printer Guide
-
-Everything you need to know before choosing the Cody-3™. Browse key capabilities below.
 
 ### Key Capabilities
 

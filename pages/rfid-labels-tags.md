@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/rfid-labels-tags/](https://www.labtag.
 
 ![RFID NitroTAG cryogenic labels with printer and reader](https://cdn.labtag.com/wp-content/uploads/2021/09/RF3-JTTA-9-use2-1.jpg "/media/rfid-labels-tags/RF3-JTTA-9-use2-1.jpg")
 
-
-
 Radio-frequency identification (RFID) helps hospitals, histopathology labs, research facilities, and IVF labs with record keeping, access control, inventory tracking, and sample management. Our RFID solutions use flexible NFC, HF, and UHF inlays on durable resistant labels, creating RFID labels suited to harsh laboratory and clinical environments for sample tracking.
 
 RFID smart labels support batch reading without line of sight and print serialized text and barcodes on compatible thermal-transfer printers alongside encoded RFID data.
-
-## RFID Label Guide
-
-Everything you need to know before choosing the right RFID labels and tags. Browse options by frequency or resistance below.
 
 ### By Frequency
 

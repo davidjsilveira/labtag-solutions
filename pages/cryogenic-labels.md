@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/cryogenic-labels/](https://www.labtag.
 
 ![Cryogenic Labels](https://cdn.labtag.com/wp-content/uploads/Cryogenic-Labels-5.jpg "/media/cryogenic-labels/Cryogenic-Labels-5.jpg")
 
-
-
 LabTAG® provides a variety of cryogenic labels designed to withstand extended storage in liquid or vapor phase liquid nitrogen and ultra-low temperature freezers. They are used in medical research, clinical laboratories, fertility clinics, and biobanks for labeling cryo vials and tubes, microplates, PCR tubes, and other commonly used laboratory products.
 
 Available for thermal-transfer, laser, and inkjet printers, with permanent or removable adhesives plus SnapPEEL™, SimPEEL™, blackout, wrap-around, tamper-evident, and CryoSTUCK® options for cryogenic workflows.
-
-## Cryogenic Label Guide
-
-Everything you need to know before choosing the right cryogenic labels. Browse options by container, printing method, feature, or adhesive below.
 
 ### By Container
 

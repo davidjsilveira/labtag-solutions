@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/gatorcut/](https://www.labtag.com/solu
 
 ![GatorCUT hand-cuttable cryogenic tape](https://cdn.labtag.com/wp-content/uploads/TXS-25-use2.jpg "/media/gatorcut/TXS-25-use2.jpg")
 
-
-
 Our specialty tapes featuring exclusive GatorCUT technology are hand-cuttable, eliminating the need for scissors, tape dispensers, or other cumbersome cutting instruments. Every lab coat pocket can hold a roll for use on the go. GatorCUT is currently available for cryogenic, deep-freeze, autoclave-resistant, and adhesive-free static cling applications throughout the lab.
 
 Hand writable and tearable GatorCUT tape peels and applies quickly anywhere in the lab—patented convenience with no scissors or tape dispensers needed during busy lab shifts.
-
-## GatorCUT Tape Guide
-
-Everything you need to know before choosing the right GatorCUT™ tape. Browse options by temperature or condition below.
 
 ### By Temperature or Condition
 

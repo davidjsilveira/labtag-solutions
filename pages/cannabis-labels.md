@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/cannabis-labels/](https://www.labtag.c
 
 ![CBD and cannabis labels](https://cdn.labtag.com/wp-content/uploads/2020/10/Cannabis-Labels-Testersv4.jpg "/media/cannabis-labels/Cannabis-Labels-Testersv4.jpg")
 
-
-
 Cannabis labeling is a tightly regulated industry from seed to sale. GA International provides labeling solutions across growing, packaging, and testing, including CBD plant labels with optional RFID tracking. CBD product labels support branding needs and are FDA approved for indirect food contact, while chemical-resistant labels withstand alcohols, oils, and moisture for tubes, vials, and containers.
 
 As a manufacturer, GA International provides custom manufacturing covering full-color logos, tamper-evident constructs, RFID and barcode tracking, plus state- and country-specific compliance warning labels.
-
-## Cannabis Label Guide
-
-Everything you need to know before choosing CBD and cannabis labels. Browse options by stage below.
 
 ### By Stage
 

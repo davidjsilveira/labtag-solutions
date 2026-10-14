@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/custom-laboratory-labels/](https://www
 
 ![Custom die-cut laboratory labels](https://cdn.labtag.com/wp-content/uploads/2019/12/Die-Cut-Labels.jpg "/media/custom-laboratory-labels/Die-Cut-Labels.jpg")
 
-
-
 LabTAG® has the know-how, flexibility, tools, and material selection to provide custom laboratory labels. With years of experience in the life sciences industry and label manufacturing, our experts create tailored solutions that combine die cutting, full-color graphics, and variable data printing (VDP). Ask about DataGARD™—laminated VDP labels that protect serialized data.
 
 Choose the right shape, size, material, and configuration from our inventory—or design a new ISO 9001:2015 certified solution when a standard product is not available.
-
-## Custom Laboratory Label Guide
-
-Everything you need to know before choosing custom laboratory labels. Browse options by capability or specification below.
 
 ### By Capability
 

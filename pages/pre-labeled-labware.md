@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/pre-labeled-labware/](https://www.labt
 
 ![Pre-labeled labware kitting service](https://cdn.labtag.com/wp-content/uploads/2025/01/Kitting-Service-7v2.jpg "/media/pre-labeled-labware/Kitting-Service-7v2.jpg")
 
-
-
 Purchasing and labeling labware in high volumes can be a burden for busy laboratory teams. LabTAG’s pre-labeled labware service lets our experts print and label your tubes, vials, and other labware according to your specifications. You can send us your labware or let us procure it for a hands-off, stress-free workflow.
 
 Personalized labeling covers custom barcodes, variable text, graphics and logos, precise application, and barcode grading for quality assurance and accuracy before shipment to your lab.
-
-## Pre-Labeled Labware Guide
-
-Everything you need to know before choosing pre-labeled labware. Browse options by service model or capability below.
 
 ### By Service Model
 

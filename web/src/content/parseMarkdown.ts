@@ -1,8 +1,9 @@
-import type { ContentBlock, SolutionPage } from './types'
+import type { ContentBlock, FeatureGridBlock, SectionBlock, SolutionPage } from './types'
+import { resolveSectionAnchor, stripExplicitAnchor } from './slugify'
 
 const SOURCE_URL = /https:\/\/www\.labtag\.com\/solutions\/[a-z0-9-]+\/?/g
 const STEP_LINE = /^\d+\.\s+\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
-const FEATURE_BULLET = /^-\s+\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
+const FEATURE_BULLET = /^-\s+\*\*(.+?)\*\*(?:\s*\{#([a-z0-9-]+)\})?\s*[—–-]\s*(.+)$/i
 const BOLD_LEAD = /^\*\*(.+?)\*\*\s*[—–-]\s*(.+)$/
 const IMAGE_LINE = /^!\[(.*?)\]\((.*?)(?:\s+"(.*?)")?\)$/
 
@@ -185,10 +186,21 @@ function collectParagraphs(lines: string[], start: number): { paragraphs: string
 
 function maybeFeatureGrid(
   title: string | undefined,
-  items: { title: string; body: string }[],
+  items: { title: string; body: string; href?: string }[],
 ): ContentBlock | null {
   if (items.length < 2) return null
   return { type: 'featureGrid', title, items }
+}
+
+function parseFeatureBullet(
+  line: string,
+): { title: string; body: string; href?: string } | null {
+  const match = line.match(FEATURE_BULLET)
+  if (!match) return null
+  const title = stripExplicitAnchor(match[1].trim())
+  const explicit = match[2]?.trim()
+  const body = stripExplicitAnchor(match[3].trim())
+  return explicit ? { title, body, href: `#${explicit.toLowerCase()}` } : { title, body }
 }
 
 function parseQuoteBlock(lines: string[], start: number): { block: ContentBlock; next: number } | null {
@@ -323,6 +335,58 @@ function promoteCta(blocks: ContentBlock[]): ContentBlock[] {
   return out
 }
 
+/** Drop the stock “X Label Guide” intro banner above browse grids. */
+function stripGuideBanners(blocks: ContentBlock[]): ContentBlock[] {
+  return blocks.filter(
+    (block) => !(block.type === 'section' && /\bguide$/i.test(block.title.trim())),
+  )
+}
+
+/** Merge title-only sections into the following untitled feature grid. */
+function mergeGuideFeatureHeadings(blocks: ContentBlock[]): ContentBlock[] {
+  const out: ContentBlock[] = []
+  for (let i = 0; i < blocks.length; i += 1) {
+    const block = blocks[i]
+    const next = blocks[i + 1]
+    if (
+      block.type === 'section' &&
+      block.paragraphs.length === 0 &&
+      next?.type === 'featureGrid' &&
+      !next.title
+    ) {
+      out.push({
+        ...next,
+        title: block.title,
+        level: block.level,
+      })
+      i += 1
+      continue
+    }
+    out.push(block)
+  }
+  return out
+}
+
+/** Point guide feature items at matching article section headings below. */
+function linkFeatureGridsToSections(blocks: ContentBlock[]): ContentBlock[] {
+  const sections = blocks
+    .filter((block): block is SectionBlock => block.type === 'section')
+    .map((block) => ({ title: block.title, level: block.level }))
+
+  return blocks.map((block) => {
+    if (block.type !== 'featureGrid') return block
+    const linked: FeatureGridBlock = {
+      ...block,
+      items: block.items.map((item) => {
+        if (item.href) return item
+        const href = resolveSectionAnchor(item.title, sections, item.body)
+        return href ? { ...item, href } : item
+      }),
+    }
+    return linked
+  })
+}
+
 export function parseMarkdown(slug: string, markdown: string): SolutionPage {
   const sources = extractSources(markdown)
   const { title, body } = stripFront(markdown)
@@ -351,15 +415,43 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
         continue
       }
 
+      pendingTitle = undefined
+      pendingLevel = undefined
+
+      // Guide headings like "By Container" are followed by **label** — body lists.
+      // Emit a titled feature grid in one block (no orphan heading + grid gap).
+      {
+        let j = i
+        while (j < lines.length && !lines[j].trim()) j += 1
+        const featureItems: { title: string; body: string; href?: string }[] = []
+        let k = j
+        while (k < lines.length) {
+          const item = parseFeatureBullet(lines[k])
+          if (!item) break
+          featureItems.push(item)
+          k += 1
+        }
+        if (featureItems.length >= 2) {
+          const grid = maybeFeatureGrid(titleText, featureItems)
+          if (grid && grid.type === 'featureGrid') {
+            grid.level = headingLevel
+            blocks.push(grid)
+            i = k
+            continue
+          }
+        }
+      }
+
       // Emit heading now so following images appear under it in the viewer.
-      blocks.push({
+      // Keep a mutable handle so intro copy can attach to this same section
+      // (avoids a huge block-stack gap between a title-only heading and its body).
+      const sectionBlock: SectionBlock = {
         type: 'section',
         title: titleText,
         level: headingLevel,
         paragraphs: [],
-      })
-      pendingTitle = undefined
-      pendingLevel = undefined
+      }
+      blocks.push(sectionBlock)
 
       while (i < lines.length) {
         if (!lines[i].trim()) {
@@ -370,6 +462,12 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
         if (!img) break
         blocks.push(mediaBlockFromMatch(img[1] || '', img[2], img[3] || undefined))
         i += 1
+      }
+
+      const { paragraphs, next } = collectParagraphs(lines, i)
+      if (paragraphs.length) {
+        sectionBlock.paragraphs = paragraphs
+        i = next
       }
       continue
     }
@@ -415,12 +513,12 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
     }
 
     if (lines[i].startsWith('- ')) {
-      const featureItems: { title: string; body: string }[] = []
+      const featureItems: { title: string; body: string; href?: string }[] = []
       let j = i
       while (j < lines.length) {
-        const match = lines[j].match(FEATURE_BULLET)
-        if (!match) break
-        featureItems.push({ title: match[1].trim(), body: match[2].trim() })
+        const item = parseFeatureBullet(lines[j])
+        if (!item) break
+        featureItems.push(item)
         j += 1
       }
       if (featureItems.length >= 2) {
@@ -511,7 +609,11 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
     })
   }
 
-  const refined = promoteCta(collapseFeatureRuns(collapseFaq(blocks)))
+  const refined = linkFeatureGridsToSections(
+    mergeGuideFeatureHeadings(
+      stripGuideBanners(promoteCta(collapseFeatureRuns(collapseFaq(blocks)))),
+    ),
+  )
   const contentBlocks = [...refined]
 
   let heroImage: SolutionPage['heroImage']

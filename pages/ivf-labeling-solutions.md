@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/ivf-labeling-solutions/](https://www.l
 
 ![IVF Labeling Solutions](https://cdn.labtag.com/wp-content/uploads/2019/05/ivf-strawtags.jpg "/media/ivf-labeling-solutions/ivf-strawtags.jpg")
 
-
-
 LabTAG® is an industry-trusted manufacturer and provider of innovative IVF labeling solutions for Assisted Reproductive Technology (ART) clinics and labs. We understand the strict specifications and quality of care needed when securely identifying sperm, oocytes, and embryos through cryopreservation and processing workflows across fertility clinics and ART laboratory programs.
 
 Our low-VOC labels integrate with Electronic Witnessing Systems (EWS) and support secure cryopreservation identification for IVF and ART cryopreservation and sample tracking workflow needs.
-
-## IVF Label Guide
-
-Everything you need to know before choosing the right IVF labels. Browse options by container or printing need below.
 
 ### By Container
 

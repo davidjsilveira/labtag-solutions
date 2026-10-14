@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/dymo-labelwriter-550/](https://www.lab
 
 ![DYMO LabelWriter 550 Cryogenic Label Printing Kit](https://cdn.labtag.com/wp-content/uploads/2026/04/PKT-LWCS-506-Box.png "/media/dymo-labelwriter-550/PKT-LWCS-506-Box.png")
 
-
-
 The DYMO® LabelWriter™ 550 Cryogenic Label Printing Kit pairs high-quality CryoSTUCK® cryogenic labels with the DYMO LabelWriter 5-Series for laboratory identification. A free DYMO® LabelWriter™ 550 printer is available when purchasing eight rolls of CryoSTUCK® cryogenic labels, giving cryogenic labs a ready desktop printing solution for frozen vials.
 
 DYMO® partners with GA International to deliver exceptional laboratory labeling solutions designed for the DYMO LabelWriter 5-Series desktop printers for frozen vials and tubes.
-
-## Kit Guide
-
-Everything included in the printing kit, plus the printer and software capabilities.
 
 ### What’s Included
 

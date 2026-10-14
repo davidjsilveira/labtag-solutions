@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/labels-for-hard-to-stick-surfaces/](ht
 
 ![Labels for hard-to-stick surfaces](https://cdn.labtag.com/wp-content/uploads/2023/03/PRF-67-Use1-2-2.jpg "/media/labels-for-hard-to-stick-surfaces/PRF-67-Use1-2-2.jpg")
 
-
-
 LabTAG provides labels engineered to adhere to hard-to-stick surfaces such as Teflon, polytetrafluoroethylene (PTFE), perfluoroalkoxy (PFA), parchment paper, and paraffin wax. Available in various sizes and configurations, these durable labels support demanding laboratory identification where standard adhesives often fail to bond and stay affixed through tough lab work conditions.
 
 Compatible with common thermal-transfer barcode printers, including ParafiTAG™ options for paraffin wax blocks with chemical-resistant, metal-detectable, and RFID formats on PTFE and paraffin surfaces.
-
-## Hard-to-Stick Surface Label Guide
-
-Everything you need to know before choosing labels for difficult surfaces. Browse options by product below.
 
 ### By Product
 

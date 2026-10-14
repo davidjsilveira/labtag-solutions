@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/clinical-data-printing-2/](https://www
 
 ![Clinical data printing services](https://cdn.labtag.com/wp-content/uploads/2021/12/Clinical-Trial-Labels-Labtag-Use5.jpg "/media/clinical-data-printing/Clinical-Trial-Labels-Labtag-Use5.jpg")
 
-
-
 Clinical trials and studies still rely on printed materials as essential tools for keeping staff and patients engaged and well-informed. While the clinical trial process can be complex, LabTAG helps make data printing easy and hassle-free with variable data printing (VDP) services for clinical labels, kits, and related study materials.
 
 VDP automates printing from a spreadsheet or database so finished labels can simply be peeled and applied—without finding a printer or changing ribbons on site.
-
-## Clinical Data Printing Guide
-
-Everything you need to know before choosing clinical data printing. Browse options by benefit below.
 
 ### By Benefit
 

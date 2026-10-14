@@ -1,4 +1,5 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
+import { ScrollToTop } from '@/ScrollToTop'
 import { solutionPages } from '@/content/loadPages'
 import { HomePage } from '@/pages/HomePage'
 import { SolutionPage } from '@/pages/SolutionPage'
@@ -6,6 +7,7 @@ import { SolutionPage } from '@/pages/SolutionPage'
 export default function App() {
   return (
     <div className="app-shell">
+      <ScrollToTop />
       <header className="site-header">
         <Link className="logo" to="/">
           LabTAG <span>Solutions</span>

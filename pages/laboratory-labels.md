@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/laboratory-labels/](https://www.labtag
 
 ![Laboratory Labels](https://cdn.labtag.com/wp-content/uploads/2021/04/cryogenic-1.jpg "/media/laboratory-labels/cryogenic-1.jpg")
 
-
-
 LabTAG® specializes in laboratory identification solutions, supplying high-quality labels, printers, accessories, and software to biomedical research labs, hospitals, and other healthcare facilities. As a leading manufacturer of cryogenic and xylene-resistant labels, we focus on R&D and customer service to address the evolving challenges faced by our customers across science disciplines.
 
 Explore cryogenic, chemical-resistant, and specialty laboratory labels plus printers and software built for durable biomedical identification workflows across research labs, hospitals, and clinical care facility networks.
-
-## Laboratory Label Guide
-
-Everything you need to know before choosing the right laboratory labels. Browse options by application or resistance below.
 
 ### By Application
 

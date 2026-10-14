@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/covid-19-laboratory-labels/](https://w
 
 ![Laboratory labels for kits, clinical trials, and storage](https://cdn.labtag.com/wp-content/uploads/2020/04/Covid-Img4.jpg "/media/covid-19-laboratory-labels/Covid-Img4.jpg")
 
-
-
 LabTAG provides laboratory labeling solutions for diagnostic and PCR testing kits, clinical sample workflows, cryogenic and deep-freeze storage, histological tissue processing, research and vaccine development, and sterilization of lab equipment and medical devices. GA International supports pharmaceutical and healthcare facilities with durable identification for high-volume collection and testing.
 
 Whether you need serialized kit labels, clinical trial constructs, or ready-to-print PCR, xylene, and freezer labels, samples stay identified from collection through final storage.
-
-## Laboratory Labeling Guide
-
-Everything you need to know before choosing labels for kits, clinical work, and storage. Browse options by workflow below.
 
 ### By Workflow
 

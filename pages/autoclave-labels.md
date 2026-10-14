@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/autoclave-labels/](https://www.labtag.
 
 ![Autoclave Labels](https://cdn.labtag.com/wp-content/uploads/Autoclave-Labels-2.jpg "/media/autoclave-labels/Autoclave-Labels-2.jpg")
 
-
-
 LabTAG provides high-temperature autoclave-resistant labels for the identification of materials that require sterilization. These durable labels are tested for gamma irradiation, steam autoclaves, dry heat, and ethylene oxide. A high-performance adhesive bonds to metal, glass, and plastic containers, as well as Genesis™ sterilization containers used across laboratory workflows.
 
 We offer sterilization labels for thermal-transfer, laser, and inkjet printers, with a range of additional options including wrap-around, blackout, indicator strip, and piggyback formats.
-
-## Autoclave-Resistant Label Guide
-
-Everything you need to know before choosing the right sterilization labels. Browse options by printing method, feature, or adhesive below.
 
 ### By Printing Method
 

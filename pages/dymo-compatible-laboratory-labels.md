@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/dymo-compatible-laboratory-labels/](ht
 
 ![Dymo-Compatible Laboratory Labels](https://cdn.labtag.com/wp-content/uploads/2024/12/LWCS-501-use2.jpg "/media/dymo-compatible-laboratory-labels/LWCS-501-use2.jpg")
 
-
-
 LabTAG provides laboratory labels compatible with DYMO® LabelWriter™ 5-Series and 4-Series printers for identifying vials, tubes, boxes, and other laboratory containers. Available in various sizes and configurations, these durable labels offer resistance to a wide range of temperatures and harsh chemical exposure during routine cryogenic and chemical lab identification.
 
 Options cover cryogenic storage—including labels that adhere to already frozen surfaces—plus deep-freeze, heat-resistant, water-dissolvable, and general-use formats designed for lab and office DYMO LabelWriter printing.
-
-## DYMO-Compatible Label Guide
-
-Everything you need to know before choosing the right DYMO-compatible labels. Browse options by printer series or application below.
 
 ### By Printer Series
 

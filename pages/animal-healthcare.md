@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/animal-healthcare/](https://www.labtag
 
 ![Animal healthcare cryogenic storage labels](https://cdn.labtag.com/wp-content/uploads/2021/07/cryogenic-storage-animalcare.png "/media/animal-healthcare/cryogenic-storage-animalcare.png")
 
-
-
 LabTAG® offers specialty labels designed for the animal health care industry, including veterinary clinics, animal housing, husbandry, and research. Our durable identification solutions help safely and securely identify medication and vaccines used by veterinary professionals. They also identify animal samples and specimens used for research or preservation, as well as cages and other animal care products.
 
 These labels are available in a range of sizes, colors, and configurations for thermal-transfer, laser, and DYMO printers, including cryogenic, chemical-resistant, and sterilization options.
-
-## Animal Healthcare Label Guide
-
-Everything you need to know before choosing animal healthcare labels. Browse options by category below.
 
 ### By Category
 

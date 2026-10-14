@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/automated-labels/](https://www.labtag.
 
 ![Automated Tube Labelers](https://cdn.labtag.com/wp-content/uploads/2025/01/20241128_084524.jpg "/media/automated-labels/20241128_084524.jpg")
 
-
-
 Automated labeling machines are suited to high-volume labs: they save time, reduce errors, and cut labor costs by eliminating the need for manual labeling. Whether in biobanks, clinical research, or drug development, automated label systems streamline processes such as tube and cap handling, sorting and storage, and sterile applications for demanding production environments.
 
 Automation devices from HTI and Scinomix support consistent barcode scanning and high-throughput labeling while reducing wrinkling, peeling, and manual handling errors in the lab.
-
-## Automated Labeler Guide
-
-Everything you need to know before choosing an automated labeling system. Browse options by vendor below.
 
 ### By Vendor
 

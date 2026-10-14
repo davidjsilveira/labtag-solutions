@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/lab-tapes/](https://www.labtag.com/sol
 
 ![Lab Tapes and Cryogenic Tapes](https://cdn.labtag.com/wp-content/uploads/2022/06/Cryogenic-GatorCUT-1280-x-200-px-V4.jpg "/media/lab-tapes/Cryogenic-GatorCUT-1280-x-200-px-V4.jpg")
 
-
-
 LabTAG® offers a range of cryogenic, freezer, autoclave, and general-use tapes for identifying samples, equipment, and materials in the lab. Specialty options include CryoSTUCK® tape for already frozen containers, Cryo C-Kur™ tamper-evident tape for added security, and PluroTAPE™ hand-writable self-laminating tape for regularly inspected equipment across the laboratory.
 
 Our durable tapes come in colors, sizes, and configurations for easy color coding, including patented GatorCUT™ technology for effortless hand cutting without scissors in daily lab work.
-
-## Lab Tape Guide
-
-Everything you need to know before choosing the right lab tape. Browse options by temperature or condition below.
 
 ### By Temperature or Condition
 

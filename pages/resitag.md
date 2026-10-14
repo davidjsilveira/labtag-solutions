@@ -4,15 +4,9 @@ Source: [https://www.labtag.com/solutions/resitag-2/](https://www.labtag.com/sol
 
 ![ResiTAG labels for resin-embedding capsules](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/XST-251-use2.jpg")
 
-
-
 ResiTAG® is an identification solution for samples used in electron microscopy. While imaging technologies have advanced, sample identification often remains handwritten on paper embedded in resin blocks or limited to the storage container. That practice can lead to mix-ups, so ResiTAG® provides secure, permanent identification for resin blocks.
 
 These resin- and baking-resistant labels are available alone or in a kit with a thermal-transfer printer, barcode printing software, and matching ribbon for resin-embedded samples.
-
-## ResiTAG® Guide
-
-Everything you need to know before choosing ResiTAG®. Browse options by capability below.
 
 ### By Capability
 
