@@ -37,7 +37,7 @@ export function HomePage() {
                 </div>
               ) : null}
               <div className="solution-card-body">
-                <h2>{page.title}</h2>
+                <h2 className="solution-card-title">{page.title}</h2>
                 <p>{page.excerpt || 'Open solution page'}</p>
               </div>
             </Link>

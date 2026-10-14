@@ -7,16 +7,9 @@ type Props = {
   description?: string[]
   image?: HeroImage
   sources?: string[]
-  eyebrow?: string
 }
 
-export function PageHero({
-  title,
-  description = [],
-  image,
-  sources = [],
-  eyebrow = 'LabTAG Solutions',
-}: Props) {
+export function PageHero({ title, description = [], image, sources = [] }: Props) {
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
   const [current, setCurrent] = useState(resolved?.primary ?? '')
   const [imageFailed, setImageFailed] = useState(false)
@@ -25,7 +18,6 @@ export function PageHero({
   return (
     <header className={`page-hero${showImage ? ' page-hero-split' : ''}`}>
       <div className="page-hero-copy">
-        <p className="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
         {description.length ? (
           <div className="page-hero-description">
@@ -53,6 +45,7 @@ export function PageHero({
             src={current}
             alt={image.alt || title}
             decoding="async"
+            fetchPriority="high"
             onError={() => {
               if (resolved?.fallback && current !== resolved.fallback) {
                 setCurrent(resolved.fallback)

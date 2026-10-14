@@ -1,4 +1,5 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
+import { solutionPages } from '@/content/loadPages'
 import { HomePage } from '@/pages/HomePage'
 import { SolutionPage } from '@/pages/SolutionPage'
 
@@ -9,6 +10,7 @@ export default function App() {
         <Link className="logo" to="/">
           LabTAG <span>Solutions</span>
         </Link>
+        <p className="site-header-meta">{solutionPages.length} pages</p>
       </header>
       <main>
         <Routes>
@@ -17,6 +19,9 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <footer className="site-footer">
+        <p>LabTAG Solutions · labeling systems for the lab</p>
+      </footer>
     </div>
   )
 }

@@ -1,0 +1,51 @@
+/* Hallmark · genre: editorial · design-system: design.md · designed-as-app
+ * theme: custom (LabTAG teal) · paper mid-light · display Source Sans 3 · accent cool-teal
+ * axes: paper-band=light / display-style=geometric-sans / accent-hue=cool
+ */
+
+:root {
+  --color-paper: oklch(97.5% 0.008 175);
+  --color-paper-2: oklch(94.5% 0.012 175);
+  --color-ink: oklch(28% 0.025 230);
+  --color-ink-2: oklch(45% 0.02 220);
+  --color-rule: oklch(28% 0.025 230 / 0.14);
+  --color-rule-strong: oklch(28% 0.025 230 / 0.28);
+  --color-accent-soft: oklch(48% 0.09 180 / 0.45);
+  --color-accent: oklch(48% 0.09 180);
+  --color-accent-deep: oklch(38% 0.08 180);
+  --color-accent-ink: oklch(98% 0.01 175);
+  --color-focus: oklch(48% 0.12 180);
+  --color-surface: oklch(99% 0.004 175);
+
+  --font-display: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 7rem;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.25rem;
+  --text-display: clamp(2.25rem, 5vw, 3.75rem);
+  --text-display-s: clamp(1.75rem, 3.5vw, 2.5rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-short: 180ms;
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --measure: 65ch;
+  --content-width: 42rem;
+  --shell-width: 68rem;
+}
