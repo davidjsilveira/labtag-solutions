@@ -182,15 +182,22 @@ main {
   background: var(--color-surface);
   text-decoration: none;
   color: inherit;
-  transition: border-color var(--dur-short) var(--ease-out);
+  transition:
+    border-color var(--dur-short) var(--ease-out),
+    box-shadow var(--dur-short) var(--ease-out);
 }
 
 .solution-card:hover {
   border-color: var(--color-accent-soft);
+  box-shadow: var(--shadow-card);
 }
 
 .solution-card:hover .solution-card-title {
   color: var(--color-accent-deep);
+}
+
+.solution-card:hover .solution-card-media img {
+  transform: scale(var(--scale-image-hover));
 }
 
 .solution-card-media {
@@ -204,6 +211,8 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1);
+  transition: transform var(--dur-media) var(--ease-out);
 }
 
 .solution-card-body {
