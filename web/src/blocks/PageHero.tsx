@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { HeroImage } from '@/content/types'
 
@@ -26,6 +27,14 @@ export function PageHero({ title, description = [], image, sources = [] }: Props
             ))}
           </div>
         ) : null}
+        <div className="page-hero-actions">
+          <a className="btn btn-primary" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
+            Shop labels
+          </a>
+          <a className="btn btn-secondary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
+            Request a free sample
+          </a>
+        </div>
         {sources.length ? (
           <ul className="source-list">
             {sources.map((url) => (

@@ -8,9 +8,17 @@ system needs to grow.
 editorial
 
 ## Macrostructure family
-- Marketing pages (home hub): Catalogue — responsive card grid of solution pages
-- Content pages (solution detail): Long Document — memo-like prose with inline media splits
+- Marketing pages (home hub): Split Studio — alternating industry/use-case diptychs that route into cryogenic solution pages (temperature quick-picks + categorized image-card catalogue)
+- Category indexes: `/solutions/use-cases` · `/solutions/features` · `/solutions/services`
+- Content pages (solution detail): Long Document — memo-like prose with inline media splits; hero includes Shop + Request free sample actions; URLs `/solutions/{category}/{slug}`
 - App pages: n/a
+
+## Sitemap
+- Home `/`
+- Use cases `/solutions/use-cases` → industry & workflow solution pages
+- Features `/solutions/features` → specialty constructs & capabilities
+- Services `/solutions/services` → printing, software, automation, custom/kitting
+- Breadcrumbs: Solutions / {Category} / {Page title}
 
 ## Theme
 LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
@@ -58,19 +66,21 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 - Footer: Ft2 inline single line (colophon)
 
 ## Per-page allowances
-- Marketing (home): Catalogue rows with product thumbnails; no enrichment chrome
-- Content (solutions): Long Document measure; content-split media allowed; no eyebrows; no card-in-card feature grids
+- Marketing (home): Split Studio industry diptychs with solution hero photography; temperature quick-picks; framed sample CTA; full catalogue index at end
+- Content (solutions): Long Document measure; content-split media allowed; no eyebrows; hero Shop + free-sample buttons; no card-in-card feature grids
 
 ## What pages MUST share
 - LabTAG wordmark treatment
 - Highlight orange ≤ ~5% of viewport (CTAs, step numerals); cyan for links/focus
 - Source Sans 3 for display and body
-- CTA voice (framed accent panel)
+- CTA voice (framed accent panel + primary/secondary button pair)
 - Hairline rules as primary dividers
+- External shop: `https://www.labtag.com/shop/` · samples: `https://www.labtag.com/contact-us/samples`
 
 ## What pages MAY differ on
-- Home uses Catalogue row rhythm; solutions use Long Document prose rhythm
+- Home uses Split Studio industry rhythm; solutions use Long Document prose rhythm
 - Hero may be title+lede only or title+lede+inline figure when content supplies an image
+- Friendly lab-tech voice on marketing copy; solution pages keep source-faithful product prose
 
 ## Exports
 Canonical tokens live in `web/src/tokens.css`.

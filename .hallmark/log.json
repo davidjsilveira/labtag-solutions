@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-10-14",
+    "macrostructure": "Split Studio",
+    "theme": "LabTAG Colors",
+    "theme_axes": "light / geometric-sans / warm",
+    "enrichment": "solution hero photography",
+    "nav": "N9",
+    "footer": "Ft2",
+    "brief": "Cryogenic industries lander routing labs/universities/clinics to solution pages; shop + free sample on solution heroes"
+  },
+  {
+    "date": "2026-10-14",
     "macrostructure": "Catalogue / Long Document",
     "theme": "custom",
     "theme_axes": "light / geometric-sans / warm",
