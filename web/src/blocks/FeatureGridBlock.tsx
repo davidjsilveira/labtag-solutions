@@ -1,3 +1,4 @@
+import { resolveFeatureIcon } from '@/content/featureIcons'
 import type { FeatureGridBlock } from '@/content/types'
 
 export function FeatureGridBlockView({ block }: { block: FeatureGridBlock }) {
@@ -8,10 +9,16 @@ export function FeatureGridBlockView({ block }: { block: FeatureGridBlock }) {
       {block.title ? <Heading>{block.title}</Heading> : null}
       <div className="feature-grid">
         {block.items.map((item) => {
+          const Icon = resolveFeatureIcon(item.title, item.body)
           const body = (
             <>
-              <p className="feature-item-title">{item.title}</p>
-              <p>{item.body}</p>
+              <span className="feature-item-icon" aria-hidden="true">
+                <Icon weight="duotone" size={28} />
+              </span>
+              <div className="feature-item-copy">
+                <p className="feature-item-title">{item.title}</p>
+                <p className="feature-item-body">{item.body}</p>
+              </div>
             </>
           )
 

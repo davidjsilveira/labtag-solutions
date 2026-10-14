@@ -293,6 +293,12 @@ main {
   max-width: var(--content-width);
 }
 
+h1,
+.page-hero h1,
+.home-hero h1 {
+  color: var(--color-ink);
+}
+
 .page-hero h1 {
   margin: 0;
   font-family: var(--font-display);
@@ -556,6 +562,10 @@ a.bullet-chip:hover {
 }
 
 .feature-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-sm);
+  align-items: start;
   padding: var(--space-sm) var(--space-md);
   border: 1px solid var(--color-rule);
   border-radius: var(--radius-md);
@@ -567,18 +577,42 @@ a.bullet-chip:hover {
     box-shadow var(--dur-short) var(--ease-out);
 }
 
+.feature-item-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  color: var(--labtag-text-primary-main);
+  line-height: 0;
+}
+
+.feature-item-icon svg {
+  display: block;
+}
+
+.feature-item-copy {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-3xs);
+}
+
 a.feature-item-link:hover {
   border-color: var(--color-accent-soft);
   box-shadow: var(--shadow-card);
 }
 
 a.feature-item-link:hover .feature-item-title {
-  color: var(--color-link-hover);
+  color: var(--color-ink);
+}
+
+a.feature-item-link:hover .feature-item-icon {
+  color: var(--labtag-text-primary-dark);
 }
 
 .feature-item-title,
 .feature-item h3 {
-  margin: 0 0 var(--space-3xs);
+  margin: 0;
   color: var(--color-ink);
   font-size: var(--text-md);
   font-family: var(--font-body);
@@ -586,11 +620,13 @@ a.feature-item-link:hover .feature-item-title {
   line-height: 1.25;
 }
 
+.feature-item-body,
 .feature-item p {
   margin: 0;
   font-size: var(--text-sm);
   max-width: var(--measure);
   color: var(--color-ink-2);
+  line-height: 1.45;
 }
 
 .table-wrap {
