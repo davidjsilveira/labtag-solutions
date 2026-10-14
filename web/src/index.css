@@ -1344,19 +1344,6 @@ a.bullet-chip:hover {
   transition: border-color var(--dur-short) var(--ease-out);
 }
 
-.feature-item-icon {
-  display: block;
-  margin: 0 0 var(--space-3xs);
-  color: var(--labtag-text-primary-main);
-  line-height: 0;
-}
-
-.feature-item-icon svg {
-  display: block;
-  width: 1.35rem;
-  height: 1.35rem;
-}
-
 a.feature-item-link:hover {
   border-color: var(--color-rule-strong);
   background: var(--color-paper-2);
