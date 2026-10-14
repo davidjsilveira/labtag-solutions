@@ -32,10 +32,18 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
   const [filter, setFilter] = useState<FilterId>(categoryId ?? 'all')
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(false)
+  const blockRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLUListElement>(null)
 
   const pages = pagesForFilter(categoryId ?? filter)
   const showFilters = !categoryId
+
+  function syncInset() {
+    const block = blockRef.current
+    if (!block) return
+    const inset = Math.max(0, Math.round(block.getBoundingClientRect().left))
+    block.style.setProperty('--carousel-page-gutter', `${inset}px`)
+  }
 
   function updateArrows() {
     const el = trackRef.current
@@ -46,11 +54,12 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
   }
 
   useEffect(() => {
-    const el = trackRef.current
-    if (!el) return
+    const track = trackRef.current
+    if (!track) return
 
     const resetScroll = () => {
-      el.scrollLeft = 0
+      syncInset()
+      track.scrollLeft = 0
       updateArrows()
     }
 
@@ -58,12 +67,17 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
     const frame = window.requestAnimationFrame(resetScroll)
 
     const onScroll = () => updateArrows()
-    el.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', updateArrows)
+    const onResize = () => {
+      syncInset()
+      updateArrows()
+    }
+
+    track.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize)
     return () => {
       window.cancelAnimationFrame(frame)
-      el.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', updateArrows)
+      track.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
     }
   }, [filter, categoryId, pages.length])
 
@@ -75,7 +89,7 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
   }
 
   return (
-    <div className="solution-carousel-block">
+    <div className="solution-carousel-block" ref={blockRef}>
       {(heading || showFilters) && (
         <header className="lander-all-head">
           {heading ? <h2>{heading}</h2> : null}

@@ -445,14 +445,14 @@ main {
 }
 
 .solution-carousel-block {
-  /* Resolve against the content column (not the bled shell) */
+  /* Set in JS from the content column’s left edge; CSS fallback for first paint */
   --carousel-page-gutter: max(0px, (100vw - 100%) / 2);
   min-width: 0;
 }
 
 .solution-carousel-shell {
   position: relative;
-  /* Bleed exactly one content-gutter past each side of the column */
+  /* Bleed from content column to both viewport edges via measured inset */
   width: calc(100% + 2 * var(--carousel-page-gutter));
   max-width: none;
   min-width: 0;
@@ -461,9 +461,9 @@ main {
 }
 
 /*
- * Inline padding matches the content column inset, so the first card’s
- * initial position lines up with the left edge of the page max-width.
- * Overflow still peeks into the gutters while scrolling.
+ * Pad by the measured content inset so card 1 starts on the max-width
+ * left edge. The full-bleed track lets cards peek in the gutters while
+ * scrolling; arrows sit on the viewport edges.
  */
 .solution-carousel {
   --carousel-card: clamp(15rem, 22vw, 18.5rem);
