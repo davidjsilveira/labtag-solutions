@@ -155,7 +155,6 @@ export function HomePage() {
           />
         </div>
         <div className="lander-hero-copy">
-          <p className="brand">LabTAG</p>
           <h1>Cryogenic labels for the labs that freeze work that matters</h1>
           <p className="lede">
             From university freezers to biobanks and fertility clinics — pick the industry or

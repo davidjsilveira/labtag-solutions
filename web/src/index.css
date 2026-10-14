@@ -309,19 +309,6 @@ main {
 
 /* —— Home · Split Studio cryogenic lander —— */
 
-.brand {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-style: normal;
-  font-size: var(--text-display);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  color: var(--color-ink);
-  overflow-wrap: anywhere;
-  min-width: 0;
-}
-
 .lander-hero {
   position: relative;
   display: grid;
@@ -398,7 +385,7 @@ main {
 }
 
 .lander-hero h1 {
-  margin: var(--space-xs) 0 0;
+  margin: 0;
   max-width: 18ch;
   font-family: var(--font-display);
   font-weight: 700;
@@ -408,10 +395,6 @@ main {
   line-height: 1.15;
   overflow-wrap: anywhere;
   min-width: 0;
-}
-
-.lander-hero .brand {
-  color: var(--color-ink);
 }
 
 .lander-hero .lede {
