@@ -10,17 +10,17 @@ Our low-VOC labels integrate with Electronic Witnessing Systems (EWS) and suppor
 
 ### By Container
 
-- **Straws & Vitrification Devices** — Cryo-StrawTAG™ for standard and high-security straws, Cryotop®, and CryoLock®
-- **Tubes & Vials** — Standard, self-laminating, and frozen-surface cryo labels for IVF tubes and vials
-- **Plates & Dishes** — Narrow side labels and clear underside labels for culture plates
-- **Metal Racks & Canes** — MetaliTAG™ for cryo canes, metal racks, and steel canisters
-- **Patient Records** — Paper thermal-transfer labels for forms, datasheets, and requisitions
+- **Straws & Vitrification Devices** — Cryo-StrawTAG™ for straws, Cryotop®, and CryoLock®
+- **Tubes & Vials** — Standard, self-laminating, and frozen-surface cryo labels
+- **Plates & Dishes** — Narrow side and clear underside culture plate labels
+- **Metal Racks & Canes** — MetaliTAG™ for canes, racks, and steel canisters
+- **Patient Records** — Paper thermal-transfer labels for forms and requisitions
 
 ### By Printing
 
-- **Thermal-Transfer** — Barcode printers for crisp, scannable 1D/2D IVF labels
-- **Color Coding** — Multiple colors and configurations for visual patient and sample tracking
-- **Print & Scan Kits** — Printers, scanners, and ready-made IVF printing kits
+- **Thermal-Transfer** — Barcode printers for crisp, scannable 1D/2D labels
+- **Color Coding** — Multiple colors for visual patient and sample tracking
+- **Print & Scan Kits** — Printers, scanners, and ready-made IVF kits
 
 ## Cryogenic Labels for Straws
 

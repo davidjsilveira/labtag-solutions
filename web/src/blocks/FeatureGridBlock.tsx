@@ -1,6 +1,15 @@
 import { resolveFeatureIcon } from '@/content/featureIcons'
 import type { FeatureGridBlock } from '@/content/types'
 
+/** Keep blurbs roughly even so cards share the same rhythm. */
+function trimBody(text: string, max = 88): string {
+  const clean = text.replace(/\s+/g, ' ').trim()
+  if (clean.length <= max) return clean
+  const cut = clean.slice(0, max)
+  const at = cut.lastIndexOf(' ')
+  return `${(at > 48 ? cut.slice(0, at) : cut).trimEnd()}…`
+}
+
 export function FeatureGridBlockView({ block }: { block: FeatureGridBlock }) {
   const Heading = block.level === 3 ? 'h3' : 'h2'
 
@@ -13,12 +22,10 @@ export function FeatureGridBlockView({ block }: { block: FeatureGridBlock }) {
           const body = (
             <>
               <span className="feature-item-icon" aria-hidden="true">
-                <Icon weight="duotone" size={28} />
+                <Icon weight="duotone" size={22} />
               </span>
-              <div className="feature-item-copy">
-                <p className="feature-item-title">{item.title}</p>
-                <p className="feature-item-body">{item.body}</p>
-              </div>
+              <h4 className="feature-item-title">{item.title}</h4>
+              <p className="feature-item-body">{trimBody(item.body)}</p>
             </>
           )
 

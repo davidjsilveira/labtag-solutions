@@ -10,18 +10,18 @@ Our chemical-resistant labels withstand immersion in xylene, toluene, alcohols, 
 
 ### By Surface
 
-- **Microscope Slides** — Xylene-resistant thermal-transfer labels for routine and special staining
-- **Paraffin Wax Blocks** — Labels that adhere to hard-to-stick paraffin and FFPE cassettes
-- **Slide Storage Boxes** — Freezer-grade alcohol-resistant labels for boxes and containers
-- **Metal-Detectable Blocks** — ParafiGARD™ labels that can be tracked with a metal detector
+- **Microscope Slides** — Xylene-resistant labels for routine and special staining
+- **Paraffin Wax Blocks** — Labels that adhere to paraffin and FFPE cassettes
+- **Slide Storage Boxes** — Freezer-grade alcohol-resistant labels for boxes
+- **Metal-Detectable Blocks** — ParafiGARD™ labels tracked with a metal detector
 
 ### By Feature
 
-- **Xylene Resistant** — Print and adhesive hold through immersion in xylene and solvent substitutes
-- **Self-Laminating** — Over-laminating flap for long-term xylene immersion and IHC protocols
-- **Re-Identification** — Removable Histo-PinTAG™ cover-up for quick slide re-labeling
-- **RFID** — Encoded paraffin-block labels for specimen management systems
-- **Thermal-Transfer Printable** — Compatible with common barcode printers and histology kits
+- **Xylene Resistant** — Print and adhesive hold through xylene immersion
+- **Self-Laminating** — Over-laminating flap for long-term IHC protocols
+- **Re-Identification** — Removable Histo-PinTAG™ cover-up for re-labeling
+- **RFID** — Encoded paraffin-block labels for specimen systems
+- **Thermal-Transfer Printable** — Compatible with barcode printers and kits
 
 ## Labels for Microscope Slides
 

@@ -10,22 +10,24 @@ LabTAG consults, designs, and prints custom clinical trial labels in sheet, roll
 
 ### By Capability
 
-- **Custom Constructs** — Labels in any dimension, shape, color, and configuration from high-quality materials
-- **Custom Printing** — Pre-printed labels ready to peel and apply, reducing handling time
-- **Serialization & Database** — Serialized information, variable data, and custom barcode serialization from supplied databases
+- **Custom Constructs** — Any dimension, shape, color, and configuration
+- **Custom Printing** — Pre-printed labels ready to peel and apply
+- **Serialization & Database** — Variable data and barcodes from supplied databases
 - **Full-Color Graphics** — Pre-printed graphics, images, and company logos
-- **RFID Technology** — RFID inlays inserted into durable constructs; available encoded and printed
+- **RFID Technology** — Encoded RFID inlays in durable label constructs
 
 ### By Format & Material
 
-- **Formats** — Roll, sheet, die cut, fanfold, butt cut, continuous, front & back, multi-part
-- **Printing** — Laser (digital), flexographic, inkjet rolls/sheets, LED
-- **Materials** — Film, foil, paper, matte, glossy, holographic, laminated, varnished
-- **Resistance** — Waterproof, weatherproof, heat-, scratch-, solvent-, chemical-, acid-, and base-resistant
+- **Formats** — Roll, sheet, die cut, fanfold, butt cut, and multi-part
+- **Printing** — Laser, flexographic, inkjet, and LED
+- **Materials** — Film, foil, paper, matte, glossy, and laminated
+- **Resistance** — Waterproof, heat-, solvent-, and chemical-resistant
 
 ## Capabilities in Detail
 
 ### Custom Constructs and Printing
+
+![Clinical trial custom label constructs](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use6.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use6.jpg")
 
 We produce customized labels using high-quality materials in any dimension, shape, color, and configuration requested. Labels can be pre-printed with your desired information so they can simply be peeled and applied. Full-color graphics, images, and company logos are available in addition to text.
 

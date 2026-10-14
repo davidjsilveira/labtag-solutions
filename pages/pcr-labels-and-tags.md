@@ -10,18 +10,18 @@ Suitable for clinical PCR, qPCR/RT-PCR, molecular biology research, forensics, a
 
 ### By Vessel
 
-- **PCR Tubes** — Dot and rectangular labels for single 0.2 mL tubes and caps
-- **PCR Strips** — Perforated PCR-TAG™ labels that identify an entire high-profile 8-well strip
-- **PCR Plates** — IDenti-PCR™ and PlateTAG™ for skirted, semi-skirted, non-skirted, and breakable plates
-- **Non-Adhesive Tags** — PCR-TagTrax® adhesive-free tags for strips and non-/semi-skirted plates
+- **PCR Tubes** — Dot and rectangular labels for 0.2 mL tubes and caps
+- **PCR Strips** — Perforated PCR-TAG™ labels for high-profile 8-well strips
+- **PCR Plates** — IDenti-PCR™ and PlateTAG™ for skirted and non-skirted plates
+- **Non-Adhesive Tags** — PCR-TagTrax® tags for strips and semi-skirted plates
 
 ### By Feature
 
-- **Cryogenic Adhesive** — Thermal/cryo adhesive that holds through cycling and deep-freeze storage
+- **Cryogenic Adhesive** — Holds through thermal cycling and deep-freeze storage
 - **Color Coding** — Multiple colors for visual sample tracking across runs
-- **Barcode Ready** — Compatible with laser and thermal-transfer printers for 1D/2D barcodes
+- **Barcode Ready** — Laser and thermal-transfer printers for 1D/2D barcodes
 - **Hand Writable** — Compatible with cryogenic markers for manual labeling
-- **Applicators** — Tools that speed application of PCR-TagTrax® tags and small label dots
+- **Applicators** — Tools that speed PCR-TagTrax® and small-dot application
 
 ## PCR Tube and Cap Labels
 

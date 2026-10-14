@@ -10,18 +10,18 @@ Choose the right shape, size, material, and configuration from our inventory—o
 
 ### By Capability
 
-- **Die Cut** — Custom shape, size, material, and configuration from 6000+ products or made-to-order designs
-- **Variable Data Printing** — Serialized data and 1D/2D barcodes from a database or spreadsheet
-- **Full-Color Graphics** — Logos and branding via flexographic or short-run digital printing
-- **Barcode Grading** — Verified 1D and 2D barcodes with TruCheck Omni™ grading
-- **DataGARD™** — Laminated VDP for protected, scannable serialized printouts
+- **Die Cut** — Custom shape, size, and material from stock or made-to-order
+- **Variable Data Printing** — Serialized data and barcodes from a database
+- **Full-Color Graphics** — Logos via flexographic or short-run digital print
+- **Barcode Grading** — Verified 1D and 2D barcodes with TruCheck Omni™
+- **DataGARD™** — Laminated VDP for protected, scannable serialization
 
 ### By Specification
 
-- **Formats** — Roll, sheet, die cut, fanfold, butt cut, continuous, front & back, multi-part
-- **Printing** — Laser (digital), flexographic, inkjet rolls or sheets
-- **Materials** — Foil, film, paper, matte, glossy, holographic, laminated, varnished
-- **Resistance** — Waterproof, weatherproof, heat-, scratch-, and chemical-resistant
+- **Formats** — Roll, sheet, die cut, fanfold, butt cut, and multi-part
+- **Printing** — Laser, flexographic, and inkjet on rolls or sheets
+- **Materials** — Foil, film, paper, matte, glossy, and laminated
+- **Resistance** — Waterproof, weatherproof, heat-, and chemical-resistant
 
 ## Custom Label Capabilities
 
