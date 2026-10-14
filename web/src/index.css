@@ -1,6 +1,6 @@
 /* Hallmark · genre: editorial · macrostructure: Catalogue grid (home) / Long Document (solutions)
  * design-system: design.md · designed-as-app · nav: N9 · footer: Ft2
- * theme: custom LabTAG teal · type: Source Sans 3 · enrichment: none
+ * theme: LabTAG Colors · type: Source Sans 3 · enrichment: none
  */
 
 @import './tokens.css';
@@ -28,7 +28,7 @@ body,
 
 body {
   margin: 0;
-  color: var(--color-ink);
+  color: var(--color-ink-2);
   background: var(--color-paper);
   font-family: var(--font-body);
   font-size: var(--text-md);
@@ -39,13 +39,13 @@ body {
 }
 
 a {
-  color: var(--color-accent-deep);
+  color: var(--color-link);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
 
 a:hover {
-  color: var(--color-accent);
+  color: var(--color-link-hover);
 }
 
 :focus-visible {
@@ -147,7 +147,7 @@ main {
   font-size: var(--text-display);
   line-height: 0.95;
   letter-spacing: -0.04em;
-  color: var(--color-accent-deep);
+  color: var(--color-ink);
 }
 
 .home-hero h1 {
@@ -168,11 +168,23 @@ main {
 
 .solution-index {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-sm);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
   margin-top: var(--space-md);
   padding: 0;
   list-style: none;
+}
+
+@media (max-width: 960px) {
+  .solution-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .solution-index {
+    grid-template-columns: 1fr;
+  }
 }
 
 .solution-card {
@@ -197,7 +209,7 @@ main {
 }
 
 .solution-card:hover .solution-card-title {
-  color: var(--color-accent-deep);
+  color: var(--color-ink);
 }
 
 .solution-card:hover .solution-card-media img {
@@ -232,18 +244,17 @@ main {
   font-weight: 700;
   font-size: var(--text-lg);
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--color-ink);
+  overflow-wrap: anywhere;
 }
 
 .solution-card p {
   margin: 0;
   color: var(--color-ink-2);
   font-size: var(--text-sm);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .missing {
@@ -308,7 +319,7 @@ main {
 }
 
 .page-hero-description p:first-child {
-  color: var(--color-ink);
+  color: var(--color-ink-2);
   font-size: var(--text-lg);
   line-height: 1.5;
 }
@@ -405,7 +416,7 @@ main {
 
 .block-text p:first-child {
   font-size: var(--text-lg);
-  color: var(--color-ink);
+  color: var(--color-ink-2);
 }
 
 .block-bullets .bullet-plain-list {
@@ -440,7 +451,7 @@ main {
   border: 1px solid var(--color-rule);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  color: var(--color-accent-deep);
+  color: var(--color-ink);
   font-size: var(--text-sm);
   font-weight: 600;
   line-height: 1.25;
@@ -455,7 +466,7 @@ main {
 a.bullet-chip:hover {
   border-color: var(--color-rule-strong);
   background: var(--color-paper-2);
-  color: var(--color-accent);
+  color: var(--color-link-hover);
 }
 
 .bullet-chip-static {
@@ -562,13 +573,13 @@ a.feature-item-link:hover {
 }
 
 a.feature-item-link:hover .feature-item-title {
-  color: var(--color-accent);
+  color: var(--color-link-hover);
 }
 
 .feature-item-title,
 .feature-item h3 {
   margin: 0 0 var(--space-3xs);
-  color: var(--color-accent-deep);
+  color: var(--color-ink);
   font-size: var(--text-md);
   font-family: var(--font-body);
   font-weight: 700;
@@ -939,7 +950,7 @@ tr:last-child td {
 }
 
 .pager-link:hover strong {
-  color: var(--color-accent-deep);
+  color: var(--color-ink);
 }
 
 .pager-link span {
@@ -959,6 +970,42 @@ tr:last-child td {
 
 .pager-link.next {
   text-align: right;
+}
+
+.scroll-top-button {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--color-accent-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-accent-deep);
+  color: var(--color-accent-ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    transform var(--dur-short) var(--ease-out);
+}
+
+.scroll-top-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.scroll-top-button:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.scroll-top-button:active {
+  transform: translateY(1px);
 }
 
 @media (max-width: 640px) {

@@ -13,16 +13,20 @@ editorial
 - App pages: n/a
 
 ## Theme
-Custom OKLCH palette anchored on LabTAG brand teal.
+LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 
-- `--color-paper`   oklch(97.5% 0.008 175)
-- `--color-paper-2` oklch(94.5% 0.012 175)
-- `--color-ink`     oklch(28% 0.025 230)
-- `--color-ink-2`   oklch(45% 0.02 220)
-- `--color-rule`    oklch(28% 0.025 230 / 0.14)
-- `--color-accent`  oklch(48% 0.09 180)
-- `--color-accent-ink` oklch(98% 0.01 175)
-- `--color-focus`   oklch(48% 0.12 180)
+- `--color-paper`        `#F3F5F6` (ui-background-main)
+- `--color-paper-2`      `#ECEFF1` (ui-background-dark)
+- `--color-surface`      `#F9FAFB` (ui-background-light)
+- `--color-ink`          `#251647` (text-primary-dark) — headings & titles
+- `--color-ink-2`        `#5A527A` (text-primary-light) — body text
+- `--color-rule`         `#D7D2E0` (ui-stroke-main)
+- `--color-rule-strong`  `#C2BDCA` (ui-stroke-dark)
+- `--color-accent`       `#FC7A22` (highlight-main)
+- `--color-accent-deep`  `#C84612` (highlight-dark)
+- `--color-accent-ink`   `#FFFFFF` (pure-white)
+- `--color-focus`        `#20B4E2` (seconday-main)
+- `--color-link`         `#1B79A7` (seconday-dark)
 
 ## Typography
 - Display: Source Sans 3, weight 700, style normal
@@ -46,8 +50,8 @@ Custom OKLCH palette anchored on LabTAG brand teal.
 - focus delay 0 ms; visible `:focus-visible` ring instantly
 
 ## CTA voice
-- Primary CTA: framed accent panel (rounded border + teal fill) — “Need Expert Help?” style
-- Secondary CTA: underline link in body measure
+- Primary CTA: framed accent panel (rounded border + highlight orange fill) — “Need Expert Help?” style
+- Secondary CTA: underline link in secondary cyan
 
 ## Nav / Footer
 - Nav: N9 edge-aligned minimal (wordmark left, quiet meta right)
@@ -59,7 +63,7 @@ Custom OKLCH palette anchored on LabTAG brand teal.
 
 ## What pages MUST share
 - LabTAG wordmark treatment
-- Accent teal ≤ ~5% of viewport (rules, links, step numerals, focus)
+- Highlight orange ≤ ~5% of viewport (CTAs, step numerals); cyan for links/focus
 - Source Sans 3 for display and body
 - CTA voice (framed accent panel)
 - Hairline rules as primary dividers
