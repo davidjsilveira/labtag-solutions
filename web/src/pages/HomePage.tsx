@@ -144,20 +144,32 @@ export function HomePage() {
   return (
     <div className="home lander">
       <section className="lander-hero">
-        <p className="brand">LabTAG</p>
-        <h1>Cryogenic labels for the labs that freeze work that matters</h1>
-        <p className="lede">
-          From university freezers to biobanks and fertility clinics — pick the industry or
-          temperature that sounds like your bench, and we will send you to the right solution
-          page.
-        </p>
-        <div className="lander-hero-actions">
-          <a className="btn btn-primary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
-            Request a free sample
-          </a>
-          <a className="btn btn-secondary" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
-            Browse the shop
-          </a>
+        <div className="lander-hero-media">
+          <img
+            src={resolveImageSrc('/media/lander-hero.jpg').primary}
+            alt="Scientist in a lab coat and blue gloves working with a vial at the bench"
+            width={1024}
+            height={461}
+            decoding="async"
+            fetchPriority="high"
+          />
+        </div>
+        <div className="lander-hero-copy">
+          <p className="brand">LabTAG</p>
+          <h1>Cryogenic labels for the labs that freeze work that matters</h1>
+          <p className="lede">
+            From university freezers to biobanks and fertility clinics — pick the industry or
+            temperature that sounds like your bench, and we will send you to the right solution
+            page.
+          </p>
+          <div className="lander-hero-actions">
+            <a className="btn btn-primary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
+              Request a free sample
+            </a>
+            <a className="btn btn-secondary" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
+              Browse the shop
+            </a>
+          </div>
         </div>
       </section>
 
