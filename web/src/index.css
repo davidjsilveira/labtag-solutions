@@ -1215,6 +1215,17 @@ main {
   border-color: var(--labtag-text-primary-main);
 }
 
+.temp-tag-ambient {
+  background: color-mix(in srgb, var(--color-ink) 8%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+  color: var(--color-ink);
+}
+
+.temp-tag-ambient.is-active {
+  background: color-mix(in srgb, var(--color-ink) 12%, var(--color-surface));
+  border-color: var(--color-ink);
+}
+
 .temp-tag-heat {
   background: color-mix(in srgb, var(--labtag-fail) 22%, var(--color-surface));
   border-color: color-mix(in srgb, var(--labtag-fail) 40%, transparent);
