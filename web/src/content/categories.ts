@@ -1,84 +1,170 @@
-import { getPage, solutionPages } from '@/content/loadPages'
+import { solutionPages } from '@/content/loadPages'
 import type { SolutionPage } from '@/content/types'
 
-export type SolutionCategoryId = 'use-cases' | 'features' | 'services'
+export type BrowseFilterId =
+  | 'all'
+  | 'cryogenic'
+  | 'deep-freeze'
+  | 'biobanking'
+  | 'vaccines'
+  | 'clinical'
+  | 'pcr'
+  | 'histology'
+  | 'autoclave'
+  | 'constructs'
+  | 'tracking'
+  | 'printers'
+  | 'automation'
+  | 'custom'
+  | 'industries'
 
-export type SolutionCategory = {
-  id: SolutionCategoryId
+export type BrowseFilter = {
+  id: BrowseFilterId
   label: string
-  singular: string
-  description: string
-  slugs: string[]
+  /** When omitted, the filter shows every page (All). Pages may appear in multiple themes. */
+  slugs?: string[]
 }
 
-/** Information architecture for the solutions sitemap. */
-export const solutionCategories: SolutionCategory[] = [
+/** Thematic chips for the home “Browse all” carousel — not URL categories. */
+export const browseFilters: BrowseFilter[] = [
+  { id: 'all', label: 'All' },
   {
-    id: 'use-cases',
-    label: 'Use cases',
-    singular: 'Use case',
-    description:
-      'Industry and workflow guides — cryogenic storage, biobanking, IVF, PCR, trials, and more.',
+    id: 'cryogenic',
+    label: 'Cryogenic',
     slugs: [
       'cryogenic-labels',
-      'deep-freeze',
+      'cryostuck',
       'biobanking-labels',
       'ivf-labeling-solutions',
       'cryogenic-clinical-requisition-forms',
-      'laboratory-labels',
-      'pcr-labels-and-tags',
-      'vaccine-labels',
-      'clinical-trial-labels',
-      'covid-19-laboratory-labels',
-      'autoclave-labels',
-      'histology-labels',
-      'animal-healthcare',
-      'industrial-labels',
-      'chemical-container-labeling',
-      'cannabis-labels',
     ],
   },
   {
-    id: 'features',
-    label: 'Features',
-    singular: 'Feature',
-    description:
-      'Specialty constructs and capabilities — CryoSTUCK®, SnapPEEL™, RFID, tapes, and hard-to-stick surfaces.',
+    id: 'deep-freeze',
+    label: 'Deep-freeze',
+    slugs: ['deep-freeze', 'vaccine-labels', 'cryogenic-labels', 'cryostuck'],
+  },
+  {
+    id: 'biobanking',
+    label: 'Biobanking & IVF',
     slugs: [
-      'cryostuck',
-      'lab-tapes',
-      'labels-for-hard-to-stick-surfaces',
-      'snappeel-labels',
+      'biobanking-labels',
+      'ivf-labeling-solutions',
+      'cryogenic-clinical-requisition-forms',
+      'cryogenic-labels',
+      'rfid-labels-tags',
+    ],
+  },
+  {
+    id: 'vaccines',
+    label: 'Vaccines & COVID',
+    slugs: ['vaccine-labels', 'covid-19-laboratory-labels', 'deep-freeze'],
+  },
+  {
+    id: 'clinical',
+    label: 'Clinical trials',
+    slugs: [
+      'clinical-trial-labels',
+      'clinical-data-printing',
+      'cryogenic-clinical-requisition-forms',
+      'covid-19-laboratory-labels',
+    ],
+  },
+  {
+    id: 'pcr',
+    label: 'PCR & molecular',
+    slugs: ['pcr-labels-and-tags', 'laboratory-labels', 'cryogenic-labels'],
+  },
+  {
+    id: 'histology',
+    label: 'Histology',
+    slugs: [
+      'histology-labels',
       'xylene-chemical-resistant-labels',
       'microscope-slide-over-labeling',
       'resitag',
-      'rfid-labels-tags',
-      'dymo-compatible-laboratory-labels',
-      'gatorcut',
     ],
   },
   {
-    id: 'services',
-    label: 'Services',
-    singular: 'Service',
-    description:
-      'Printing systems, software, automation, custom constructs, and pre-labeled labware.',
+    id: 'autoclave',
+    label: 'Autoclave & heat',
+    slugs: ['autoclave-labels', 'laboratory-labels', 'industrial-labels'],
+  },
+  {
+    id: 'constructs',
+    label: 'Specialty constructs',
+    slugs: [
+      'snappeel-labels',
+      'resitag',
+      'gatorcut',
+      'cryostuck',
+      'labels-for-hard-to-stick-surfaces',
+      'lab-tapes',
+      'dymo-compatible-laboratory-labels',
+    ],
+  },
+  {
+    id: 'tracking',
+    label: 'RFID & tracking',
+    slugs: ['rfid-labels-tags', 'biobanking-labels', 'clinical-trial-labels'],
+  },
+  {
+    id: 'printers',
+    label: 'Printers',
     slugs: [
       'label-printing-solutions',
       'dymo-labelwriter-550',
       'ga-international-cody-3-printer',
+      'dymo-compatible-laboratory-labels',
+    ],
+  },
+  {
+    id: 'automation',
+    label: 'Software & automation',
+    slugs: [
       'label-software',
       'automated-labels',
       'pre-labeled-labware',
+      'label-printing-solutions',
+    ],
+  },
+  {
+    id: 'custom',
+    label: 'Custom & printing',
+    slugs: [
       'custom-laboratory-labels',
       'clinical-data-printing',
+      'pre-labeled-labware',
+      'label-printing-solutions',
+    ],
+  },
+  {
+    id: 'industries',
+    label: 'Industries',
+    slugs: [
+      'animal-healthcare',
+      'industrial-labels',
+      'chemical-container-labeling',
+      'cannabis-labels',
+      'laboratory-labels',
     ],
   },
 ]
 
+export function pagesForBrowseFilter(filterId: BrowseFilterId): SolutionPage[] {
+  if (filterId === 'all') return pagesForBrowseAll()
+
+  const filter = browseFilters.find((item) => item.id === filterId)
+  if (!filter?.slugs) return pagesForBrowseAll()
+
+  const ordered = pagesForBrowseAll()
+  const wanted = new Set(filter.slugs)
+  return ordered.filter((page) => wanted.has(page.slug))
+}
+
 /**
- * Home “Browse all” order: cryogenic / cold-storage first, niche industries last.
- * Any slug missing here is appended (alphabetically) before the niche tail.
+ * Browse / sitemap order: cryogenic / cold-storage first, niche industries last.
+ * Any slug missing here is appended alphabetically.
  */
 const BROWSE_ALL_ORDER: string[] = [
   'cryogenic-labels',
@@ -118,7 +204,7 @@ const BROWSE_ALL_ORDER: string[] = [
   'cannabis-labels',
 ]
 
-/** Ordered pages for the home browse-all carousel. */
+/** Ordered pages for carousel, lander index, footer, and pager. */
 export function pagesForBrowseAll(): SolutionPage[] {
   const bySlug = new Map(solutionPages.map((page) => [page.slug, page]))
   const ordered: SolutionPage[] = []
@@ -137,37 +223,4 @@ export function pagesForBrowseAll(): SolutionPage[] {
   ordered.push(...leftovers)
 
   return ordered
-}
-
-const categoryBySlug = new Map<string, SolutionCategoryId>()
-for (const category of solutionCategories) {
-  for (const slug of category.slugs) {
-    categoryBySlug.set(slug, category.id)
-  }
-}
-
-export function getCategory(id: string): SolutionCategory | undefined {
-  return solutionCategories.find((category) => category.id === id)
-}
-
-export function getCategoryIdForSlug(slug: string): SolutionCategoryId | undefined {
-  return categoryBySlug.get(slug)
-}
-
-export function getCategoryForSlug(slug: string): SolutionCategory | undefined {
-  const id = getCategoryIdForSlug(slug)
-  return id ? getCategory(id) : undefined
-}
-
-export function pagesInCategory(id: SolutionCategoryId): SolutionPage[] {
-  const category = getCategory(id)
-  if (!category) return []
-  return category.slugs
-    .map((slug) => getPage(slug))
-    .filter((page): page is SolutionPage => Boolean(page))
-}
-
-/** Ensures every loaded solution page is assigned exactly once. */
-export function uncategorizedSlugs(): string[] {
-  return solutionPages.map((page) => page.slug).filter((slug) => !categoryBySlug.has(slug))
 }

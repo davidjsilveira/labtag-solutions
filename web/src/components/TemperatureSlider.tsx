@@ -1,6 +1,5 @@
 import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getCategoryForSlug } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { FeatureGridItem } from '@/content/types'
@@ -113,8 +112,7 @@ function formatTemp(celsius: number): string {
 }
 
 function solutionPath(slug: string): string {
-  const category = getCategoryForSlug(slug)
-  return category ? `/solutions/${category.id}/${slug}` : `/solutions/${slug}`
+  return `/solutions/${slug}`
 }
 
 function matchGuide(tempC: number): GuideMatch {

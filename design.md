@@ -8,17 +8,14 @@ system needs to grow.
 editorial
 
 ## Macrostructure family
-- Marketing pages (home hub): Split Studio — alternating industry/use-case diptychs that route into cryogenic solution pages (temperature quick-picks + categorized image-card catalogue)
-- Category indexes: `/solutions/use-cases` · `/solutions/features` · `/solutions/services`
-- Content pages (solution detail): Long Document — memo-like prose with inline media splits; hero includes Shop + Request free sample actions; URLs `/solutions/{category}/{slug}`
+- Marketing pages (home hub): Split Studio — alternating industry/use-case diptychs that route into cryogenic solution pages (temperature quick-picks + image-card catalogue)
+- Content pages (solution detail): Long Document — memo-like prose with inline media splits; hero includes Shop + Request free sample actions; URLs `/solutions/{slug}`
 - App pages: n/a
 
 ## Sitemap
 - Home `/`
-- Use cases `/solutions/use-cases` → industry & workflow solution pages
-- Features `/solutions/features` → specialty constructs & capabilities
-- Services `/solutions/services` → printing, software, automation, custom/kitting
-- Breadcrumbs: Solutions / {Category} / {Page title}
+- Solution pages `/solutions/{slug}`
+- Breadcrumbs: Solutions / {Page title}
 
 ## Theme
 LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).

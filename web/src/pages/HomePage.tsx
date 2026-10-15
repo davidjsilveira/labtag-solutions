@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { RotatingAudience } from '@/components/RotatingAudience'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
-import { getCategoryForSlug, solutionCategories } from '@/content/categories'
+import { pagesForBrowseAll } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
@@ -99,8 +99,7 @@ const industries: Industry[] = [
 ]
 
 function solutionPath(slug: string): string {
-  const category = getCategoryForSlug(slug)
-  return category ? `/solutions/${category.id}/${slug}` : `/solutions/${slug}`
+  return `/solutions/${slug}`
 }
 
 function SolutionMedia({ slug, title }: { slug: string; title: string }) {
@@ -170,7 +169,7 @@ export function HomePage() {
       <section className="lander-all" aria-label="All solution pages">
         <SolutionCarousel
           heading="Browse all solutions"
-          lede="Filter by use cases, features, or services — then scroll the row, or use the arrows."
+          lede="Filter by theme, then scroll the row or use the arrows."
         />
       </section>
 
@@ -232,31 +231,15 @@ export function HomePage() {
       <section className="lander-index" aria-label="All solution pages">
         <header className="lander-index-head">
           <h2>All solution pages</h2>
-          <p className="lander-section-lede">
-            Every guide on this site, grouped the same way as the navigation — use cases,
-            features, and services.
-          </p>
+          <p className="lander-section-lede">Every guide on this site, in one list.</p>
         </header>
-        <div className="lander-index-grid">
-          {solutionCategories.map((category) => (
-            <div key={category.id} className="lander-index-col">
-              <Link to={`/solutions/${category.id}`} className="lander-index-heading">
-                {category.label}
-              </Link>
-              <ul>
-                {category.slugs.map((slug) => {
-                  const page = getPage(slug)
-                  if (!page) return null
-                  return (
-                    <li key={slug}>
-                      <Link to={solutionPath(slug)}>{page.title}</Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+        <ul className="lander-index-list">
+          {pagesForBrowseAll().map((page) => (
+            <li key={page.slug}>
+              <Link to={solutionPath(page.slug)}>{page.title}</Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       <aside className="lander-cta block-cta">

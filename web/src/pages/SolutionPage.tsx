@@ -1,18 +1,12 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { BlockRenderer } from '@/blocks/BlockRenderer'
 import { PageHero } from '@/blocks/PageHero'
-import {
-  getCategory,
-  getCategoryForSlug,
-  pagesInCategory,
-} from '@/content/categories'
+import { pagesForBrowseAll } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 
 export function SolutionPage() {
-  const { categoryId = '', slug = '' } = useParams()
+  const { slug = '' } = useParams()
   const page = getPage(slug)
-  const category = getCategory(categoryId)
-  const expected = getCategoryForSlug(slug)
 
   if (!page) {
     return (
@@ -24,15 +18,7 @@ export function SolutionPage() {
     )
   }
 
-  if (!category || !expected || expected.id !== category.id) {
-    const fallback = expected ?? getCategoryForSlug(page.slug)
-    if (fallback) {
-      return <Navigate to={`/solutions/${fallback.id}/${page.slug}`} replace />
-    }
-    return <Navigate to="/" replace />
-  }
-
-  const siblings = pagesInCategory(category.id)
+  const siblings = pagesForBrowseAll()
   const index = siblings.findIndex((item) => item.slug === page.slug)
   const prev = siblings[index - 1]
   const next = siblings[index + 1]
@@ -41,8 +27,6 @@ export function SolutionPage() {
     <article className="solution-page">
       <p className="crumb">
         <Link to="/">Solutions</Link>
-        <span aria-hidden="true"> / </span>
-        <Link to={`/solutions/${category.id}`}>{category.label}</Link>
         <span aria-hidden="true"> / </span>
         <span>{page.title}</span>
       </p>
@@ -58,7 +42,7 @@ export function SolutionPage() {
 
       <nav className="pager" aria-label="Adjacent solutions">
         {prev ? (
-          <Link to={`/solutions/${category.id}/${prev.slug}`} className="pager-link prev">
+          <Link to={`/solutions/${prev.slug}`} className="pager-link prev">
             <span>Previous</span>
             <strong>{prev.title}</strong>
           </Link>
@@ -66,7 +50,7 @@ export function SolutionPage() {
           <span />
         )}
         {next ? (
-          <Link to={`/solutions/${category.id}/${next.slug}`} className="pager-link next">
+          <Link to={`/solutions/${next.slug}`} className="pager-link next">
             <span>Next</span>
             <strong>{next.title}</strong>
           </Link>

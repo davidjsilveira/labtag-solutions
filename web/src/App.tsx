@@ -2,30 +2,30 @@ import { Link, Navigate, Route, Routes, useParams } from 'react-router-dom'
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { SiteSitemap } from '@/components/SiteSitemap'
-import {
-  getCategory,
-  getCategoryForSlug,
-  solutionCategories,
-} from '@/content/categories'
 import { getPage } from '@/content/loadPages'
-import { CategoryPage } from '@/pages/CategoryPage'
 import { HomePage } from '@/pages/HomePage'
 import { SolutionPage } from '@/pages/SolutionPage'
 
-/** `/solutions/:segment` is either a category index or a legacy flat solution URL. */
-function SolutionsSegment() {
-  const { segment = '' } = useParams()
+const LEGACY_CATEGORY_IDS = new Set(['use-cases', 'features', 'services'])
 
-  if (getCategory(segment)) {
-    return <CategoryPage categoryId={segment} />
+/** Old `/solutions/:category/:slug` URLs redirect to `/solutions/:slug`. */
+function LegacyCategorySolutionRedirect() {
+  const { slug = '' } = useParams()
+  if (getPage(slug)) {
+    return <Navigate to={`/solutions/${slug}`} replace />
   }
-
-  const category = getCategoryForSlug(segment)
-  if (category && getPage(segment)) {
-    return <Navigate to={`/solutions/${category.id}/${segment}`} replace />
-  }
-
   return <Navigate to="/" replace />
+}
+
+/** `/solutions/:slug` — solution pages, or redirect away from old category indexes. */
+function SolutionsSlugRoute() {
+  const { slug = '' } = useParams()
+
+  if (LEGACY_CATEGORY_IDS.has(slug)) {
+    return <Navigate to="/" replace />
+  }
+
+  return <SolutionPage />
 }
 
 export default function App() {
@@ -37,19 +37,15 @@ export default function App() {
         <Link className="logo" to="/">
           LabTAG <span>Solutions</span>
         </Link>
-        <nav className="site-nav" aria-label="Solution categories">
-          {solutionCategories.map((category) => (
-            <Link key={category.id} to={`/solutions/${category.id}`}>
-              {category.label}
-            </Link>
-          ))}
-        </nav>
       </header>
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/solutions/:categoryId/:slug" element={<SolutionPage />} />
-          <Route path="/solutions/:segment" element={<SolutionsSegment />} />
+          <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
+          <Route
+            path="/solutions/:categoryId/:slug"
+            element={<LegacyCategorySolutionRedirect />}
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

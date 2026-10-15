@@ -1,42 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
 import { SolutionCard } from '@/components/SolutionCard'
 import {
-  getCategoryForSlug,
-  pagesForBrowseAll,
-  pagesInCategory,
-  solutionCategories,
-  type SolutionCategoryId,
+  browseFilters,
+  pagesForBrowseFilter,
+  type BrowseFilterId,
 } from '@/content/categories'
-import type { SolutionPage } from '@/content/types'
-
-type FilterId = 'all' | SolutionCategoryId
 
 type Props = {
-  /** When set, lock to one category and hide filter chips. */
-  categoryId?: SolutionCategoryId
   heading?: string
   lede?: string
 }
 
-function pagesForFilter(filter: FilterId): SolutionPage[] {
-  if (filter === 'all') return pagesForBrowseAll()
-  return pagesInCategory(filter)
-}
-
-function categoryPathFor(page: SolutionPage, locked?: SolutionCategoryId): string | undefined {
-  if (locked) return locked
-  return getCategoryForSlug(page.slug)?.id
-}
-
-export function SolutionCarousel({ categoryId, heading, lede }: Props) {
-  const [filter, setFilter] = useState<FilterId>(categoryId ?? 'all')
+export function SolutionCarousel({ heading, lede }: Props) {
+  const [filter, setFilter] = useState<BrowseFilterId>('all')
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(false)
   const blockRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLUListElement>(null)
 
-  const pages = pagesForFilter(categoryId ?? filter)
-  const showFilters = !categoryId
+  const pages = pagesForBrowseFilter(filter)
+  const activeLabel = browseFilters.find((item) => item.id === filter)?.label ?? 'All'
 
   function syncInset() {
     const block = blockRef.current
@@ -153,7 +136,7 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
       track.removeEventListener('click', onClickCapture, true)
       window.removeEventListener('resize', onResize)
     }
-  }, [filter, categoryId, pages.length])
+  }, [filter, pages.length])
 
   function scrollByPage(direction: -1 | 1) {
     const el = trackRef.current
@@ -164,37 +147,24 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
 
   return (
     <div className="solution-carousel-block" ref={blockRef}>
-      {(heading || showFilters) && (
-        <header className="lander-all-head">
-          {heading ? <h2>{heading}</h2> : null}
-          {lede ? <p className="lander-section-lede">{lede}</p> : null}
-          {showFilters ? (
-            <div className="category-jump" role="tablist" aria-label="Filter solutions">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={filter === 'all'}
-                className={filter === 'all' ? 'is-active' : undefined}
-                onClick={() => setFilter('all')}
-              >
-                All
-              </button>
-              {solutionCategories.map((category) => (
-                <button
-                  key={category.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={filter === category.id}
-                  className={filter === category.id ? 'is-active' : undefined}
-                  onClick={() => setFilter(category.id)}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </div>
-          ) : null}
-        </header>
-      )}
+      <header className="lander-all-head">
+        {heading ? <h2>{heading}</h2> : null}
+        {lede ? <p className="lander-section-lede">{lede}</p> : null}
+        <div className="category-jump" role="tablist" aria-label="Filter solutions">
+          {browseFilters.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              role="tab"
+              aria-selected={filter === item.id}
+              className={filter === item.id ? 'is-active' : undefined}
+              onClick={() => setFilter(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </header>
 
       <div className="solution-carousel-shell">
         <div className="carousel-arrows" role="group" aria-label="Carousel controls">
@@ -239,17 +209,11 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
         <ul
           ref={trackRef}
           className="solution-carousel"
-          aria-label={
-            categoryId
-              ? `${solutionCategories.find((c) => c.id === categoryId)?.label ?? ''} solutions`
-              : filter === 'all'
-                ? 'All solutions'
-                : `${solutionCategories.find((c) => c.id === filter)?.label ?? ''} solutions`
-          }
+          aria-label={filter === 'all' ? 'All solutions' : `${activeLabel} solutions`}
         >
           {pages.map((page) => (
             <li key={page.slug}>
-              <SolutionCard page={page} categoryPath={categoryPathFor(page, categoryId)} />
+              <SolutionCard page={page} />
             </li>
           ))}
         </ul>

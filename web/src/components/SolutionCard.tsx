@@ -4,18 +4,14 @@ import type { SolutionPage } from '@/content/types'
 
 type Props = {
   page: SolutionPage
-  categoryPath?: string
 }
 
-export function SolutionCard({ page, categoryPath }: Props) {
-  const to = categoryPath
-    ? `/solutions/${categoryPath}/${page.slug}`
-    : `/solutions/${page.slug}`
+export function SolutionCard({ page }: Props) {
   const image = page.heroImage
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
 
   return (
-    <Link to={to} className="solution-card">
+    <Link to={`/solutions/${page.slug}`} className="solution-card">
       {resolved ? (
         <div className="solution-card-media">
           <img
