@@ -46,7 +46,7 @@ export const browseFilters: BrowseFilter[] = [
   },
   {
     id: 'biobanking',
-    label: 'Biobanking & IVF',
+    label: 'Biobanking',
     slugs: [
       'biobanking-labels',
       'ivf-labeling-solutions',
@@ -57,12 +57,12 @@ export const browseFilters: BrowseFilter[] = [
   },
   {
     id: 'vaccines',
-    label: 'Vaccines & COVID',
+    label: 'Vaccines',
     slugs: ['vaccine-labels', 'covid-19-laboratory-labels', 'deep-freeze'],
   },
   {
     id: 'clinical',
-    label: 'Clinical trials',
+    label: 'Clinical',
     slugs: [
       'clinical-trial-labels',
       'clinical-data-printing',
@@ -72,7 +72,7 @@ export const browseFilters: BrowseFilter[] = [
   },
   {
     id: 'pcr',
-    label: 'PCR & molecular',
+    label: 'PCR',
     slugs: ['pcr-labels-and-tags', 'laboratory-labels', 'cryogenic-labels'],
   },
   {
@@ -87,12 +87,12 @@ export const browseFilters: BrowseFilter[] = [
   },
   {
     id: 'autoclave',
-    label: 'Autoclave & heat',
+    label: 'Autoclave',
     slugs: ['autoclave-labels', 'laboratory-labels', 'industrial-labels'],
   },
   {
     id: 'constructs',
-    label: 'Specialty constructs',
+    label: 'Specialty',
     slugs: [
       'snappeel-labels',
       'resitag',
@@ -105,7 +105,7 @@ export const browseFilters: BrowseFilter[] = [
   },
   {
     id: 'tracking',
-    label: 'RFID & tracking',
+    label: 'RFID',
     slugs: ['rfid-labels-tags', 'biobanking-labels', 'clinical-trial-labels'],
   },
   {
@@ -120,7 +120,7 @@ export const browseFilters: BrowseFilter[] = [
   },
   {
     id: 'automation',
-    label: 'Software & automation',
+    label: 'Automation',
     slugs: [
       'label-software',
       'automated-labels',
@@ -130,7 +130,7 @@ export const browseFilters: BrowseFilter[] = [
   },
   {
     id: 'custom',
-    label: 'Custom & printing',
+    label: 'Custom',
     slugs: [
       'custom-laboratory-labels',
       'clinical-data-printing',

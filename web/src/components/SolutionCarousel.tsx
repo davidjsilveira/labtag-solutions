@@ -9,10 +9,9 @@ import {
 
 type Props = {
   heading?: string
-  lede?: string
 }
 
-export function SolutionCarousel({ heading, lede }: Props) {
+export function SolutionCarousel({ heading }: Props) {
   const [filter, setFilter] = useState<BrowseFilterId>('all')
   const [visibleFilters, setVisibleFilters] = useState<BrowseFilter[]>(browseFilters)
   const [canPrev, setCanPrev] = useState(false)
@@ -203,11 +202,54 @@ export function SolutionCarousel({ heading, lede }: Props) {
     el.scrollBy({ left: direction * amount, behavior: 'smooth' })
   }
 
+  const showArrows = pages.length >= 4
+
   return (
     <div className="solution-carousel-block" ref={blockRef}>
       <header className="lander-all-head">
-        {heading ? <h2>{heading}</h2> : null}
-        {lede ? <p className="lander-section-lede">{lede}</p> : null}
+        <div className="lander-all-title-row">
+          {heading ? <h2>{heading}</h2> : null}
+          {showArrows ? (
+            <div className="carousel-arrows" role="group" aria-label="Carousel controls">
+              <button
+                type="button"
+                className="carousel-arrow carousel-arrow-prev"
+                aria-label="Previous solutions"
+                disabled={!canPrev}
+                onClick={() => scrollByPage(-1)}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M15 5 8 12l7 7"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="carousel-arrow carousel-arrow-next"
+                aria-label="Next solutions"
+                disabled={!canNext}
+                onClick={() => scrollByPage(1)}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="m9 5 7 7-7 7"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          ) : null}
+        </div>
         <div
           ref={filterMeasureRef}
           className="category-jump category-jump-measure"
@@ -241,47 +283,6 @@ export function SolutionCarousel({ heading, lede }: Props) {
       </header>
 
       <div className="solution-carousel-shell">
-        {pages.length >= 4 ? (
-          <div className="carousel-arrows" role="group" aria-label="Carousel controls">
-            <button
-              type="button"
-              className="carousel-arrow carousel-arrow-prev"
-              aria-label="Previous solutions"
-              disabled={!canPrev}
-              onClick={() => scrollByPage(-1)}
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M15 5 8 12l7 7"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            <button
-              type="button"
-              className="carousel-arrow carousel-arrow-next"
-              aria-label="Next solutions"
-              disabled={!canNext}
-              onClick={() => scrollByPage(1)}
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="m9 5 7 7-7 7"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        ) : null}
-
         <ul
           ref={trackRef}
           className="solution-carousel"

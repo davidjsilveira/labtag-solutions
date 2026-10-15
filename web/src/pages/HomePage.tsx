@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { RotatingAudience } from '@/components/RotatingAudience'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
-import { pagesForBrowseAll } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
@@ -167,10 +166,7 @@ export function HomePage() {
       </section>
 
       <section className="lander-all" aria-label="All solution pages">
-        <SolutionCarousel
-          heading="Browse all solutions"
-          lede="Filter by theme, then browse the row with the arrows."
-        />
+        <SolutionCarousel heading="Browse all solutions" />
       </section>
 
       <section className="lander-temps" aria-label="Pick by storage temperature">
@@ -226,20 +222,6 @@ export function HomePage() {
             </article>
           )
         })}
-      </section>
-
-      <section className="lander-index" aria-label="All solution pages">
-        <header className="lander-index-head">
-          <h2>All solution pages</h2>
-          <p className="lander-section-lede">Every guide on this site, in one list.</p>
-        </header>
-        <ul className="lander-index-list">
-          {pagesForBrowseAll().map((page) => (
-            <li key={page.slug}>
-              <Link to={solutionPath(page.slug)}>{page.title}</Link>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <aside className="lander-cta block-cta">
