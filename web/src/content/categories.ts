@@ -20,22 +20,22 @@ export const solutionCategories: SolutionCategory[] = [
     description:
       'Industry and workflow guides — cryogenic storage, biobanking, IVF, PCR, trials, and more.',
     slugs: [
-      'animal-healthcare',
-      'autoclave-labels',
-      'biobanking-labels',
-      'cannabis-labels',
-      'chemical-container-labeling',
-      'clinical-trial-labels',
-      'covid-19-laboratory-labels',
-      'cryogenic-clinical-requisition-forms',
       'cryogenic-labels',
       'deep-freeze',
-      'histology-labels',
-      'industrial-labels',
+      'biobanking-labels',
       'ivf-labeling-solutions',
+      'cryogenic-clinical-requisition-forms',
       'laboratory-labels',
       'pcr-labels-and-tags',
       'vaccine-labels',
+      'clinical-trial-labels',
+      'covid-19-laboratory-labels',
+      'autoclave-labels',
+      'histology-labels',
+      'animal-healthcare',
+      'industrial-labels',
+      'chemical-container-labeling',
+      'cannabis-labels',
     ],
   },
   {
@@ -46,15 +46,15 @@ export const solutionCategories: SolutionCategory[] = [
       'Specialty constructs and capabilities — CryoSTUCK®, SnapPEEL™, RFID, tapes, and hard-to-stick surfaces.',
     slugs: [
       'cryostuck',
-      'dymo-compatible-laboratory-labels',
-      'gatorcut',
       'lab-tapes',
       'labels-for-hard-to-stick-surfaces',
+      'snappeel-labels',
+      'xylene-chemical-resistant-labels',
       'microscope-slide-over-labeling',
       'resitag',
       'rfid-labels-tags',
-      'snappeel-labels',
-      'xylene-chemical-resistant-labels',
+      'dymo-compatible-laboratory-labels',
+      'gatorcut',
     ],
   },
   {
@@ -64,17 +64,80 @@ export const solutionCategories: SolutionCategory[] = [
     description:
       'Printing systems, software, automation, custom constructs, and pre-labeled labware.',
     slugs: [
-      'automated-labels',
-      'clinical-data-printing',
-      'custom-laboratory-labels',
+      'label-printing-solutions',
       'dymo-labelwriter-550',
       'ga-international-cody-3-printer',
-      'label-printing-solutions',
       'label-software',
+      'automated-labels',
       'pre-labeled-labware',
+      'custom-laboratory-labels',
+      'clinical-data-printing',
     ],
   },
 ]
+
+/**
+ * Home “Browse all” order: cryogenic / cold-storage first, niche industries last.
+ * Any slug missing here is appended (alphabetically) before the niche tail.
+ */
+const BROWSE_ALL_ORDER: string[] = [
+  'cryogenic-labels',
+  'deep-freeze',
+  'cryostuck',
+  'biobanking-labels',
+  'ivf-labeling-solutions',
+  'cryogenic-clinical-requisition-forms',
+  'lab-tapes',
+  'labels-for-hard-to-stick-surfaces',
+  'laboratory-labels',
+  'pcr-labels-and-tags',
+  'vaccine-labels',
+  'clinical-trial-labels',
+  'covid-19-laboratory-labels',
+  'autoclave-labels',
+  'histology-labels',
+  'xylene-chemical-resistant-labels',
+  'microscope-slide-over-labeling',
+  'snappeel-labels',
+  'resitag',
+  'rfid-labels-tags',
+  'dymo-compatible-laboratory-labels',
+  'gatorcut',
+  'label-printing-solutions',
+  'dymo-labelwriter-550',
+  'ga-international-cody-3-printer',
+  'label-software',
+  'automated-labels',
+  'pre-labeled-labware',
+  'custom-laboratory-labels',
+  'clinical-data-printing',
+  // Niche / specialty industries last
+  'animal-healthcare',
+  'industrial-labels',
+  'chemical-container-labeling',
+  'cannabis-labels',
+]
+
+/** Ordered pages for the home browse-all carousel. */
+export function pagesForBrowseAll(): SolutionPage[] {
+  const bySlug = new Map(solutionPages.map((page) => [page.slug, page]))
+  const ordered: SolutionPage[] = []
+  const seen = new Set<string>()
+
+  for (const slug of BROWSE_ALL_ORDER) {
+    const page = bySlug.get(slug)
+    if (!page) continue
+    ordered.push(page)
+    seen.add(slug)
+  }
+
+  const leftovers = solutionPages
+    .filter((page) => !seen.has(page.slug))
+    .sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }))
+  ordered.push(...leftovers)
+
+  return ordered
+}
 
 const categoryBySlug = new Map<string, SolutionCategoryId>()
 for (const category of solutionCategories) {

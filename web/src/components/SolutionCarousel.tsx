@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { SolutionCard } from '@/components/SolutionCard'
 import {
   getCategoryForSlug,
+  pagesForBrowseAll,
   pagesInCategory,
   solutionCategories,
   type SolutionCategoryId,
 } from '@/content/categories'
-import { solutionPages } from '@/content/loadPages'
 import type { SolutionPage } from '@/content/types'
 
 type FilterId = 'all' | SolutionCategoryId
@@ -19,7 +19,7 @@ type Props = {
 }
 
 function pagesForFilter(filter: FilterId): SolutionPage[] {
-  if (filter === 'all') return solutionPages
+  if (filter === 'all') return pagesForBrowseAll()
   return pagesInCategory(filter)
 }
 
