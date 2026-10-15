@@ -167,44 +167,46 @@ export function SolutionCarousel({ heading, lede }: Props) {
       </header>
 
       <div className="solution-carousel-shell">
-        <div className="carousel-arrows" role="group" aria-label="Carousel controls">
-          <button
-            type="button"
-            className="carousel-arrow carousel-arrow-prev"
-            aria-label="Previous solutions"
-            disabled={!canPrev}
-            onClick={() => scrollByPage(-1)}
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M15 5 8 12l7 7"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            type="button"
-            className="carousel-arrow carousel-arrow-next"
-            aria-label="Next solutions"
-            disabled={!canNext}
-            onClick={() => scrollByPage(1)}
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="m9 5 7 7-7 7"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+        {pages.length >= 4 ? (
+          <div className="carousel-arrows" role="group" aria-label="Carousel controls">
+            <button
+              type="button"
+              className="carousel-arrow carousel-arrow-prev"
+              aria-label="Previous solutions"
+              disabled={!canPrev}
+              onClick={() => scrollByPage(-1)}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 5 8 12l7 7"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className="carousel-arrow carousel-arrow-next"
+              aria-label="Next solutions"
+              disabled={!canNext}
+              onClick={() => scrollByPage(1)}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="m9 5 7 7-7 7"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        ) : null}
 
         <ul
           ref={trackRef}
