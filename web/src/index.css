@@ -449,7 +449,6 @@ main {
 }
 
 .lander-temps h2,
-.lander-industries-head h2,
 .lander-related h2,
 .lander-all-head h2,
 .category-hero h1 {
@@ -776,16 +775,6 @@ main {
   .carousel-arrow:active:not(:disabled) {
     transition: none;
   }
-}
-
-.lander-industries-head {
-  max-width: var(--measure);
-  margin-bottom: var(--space-xl);
-}
-
-.lander-industries-head p {
-  margin: var(--space-xs) 0 0;
-  color: var(--color-ink-2);
 }
 
 .temp-slider-layout {

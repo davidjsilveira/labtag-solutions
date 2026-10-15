@@ -86,31 +86,39 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
       updateArrows()
     }
 
+    const DRAG_THRESHOLD_PX = 10
     let dragOriginX = 0
     let dragScrollLeft = 0
+    let pointerActive = false
     let dragging = false
-    let moved = false
+    let suppressClick = false
 
     const onPointerDown = (event: PointerEvent) => {
       if (event.pointerType === 'mouse' && event.button !== 0) return
-      dragging = true
-      moved = false
+      pointerActive = true
+      dragging = false
+      suppressClick = false
       dragOriginX = event.clientX
       dragScrollLeft = track.scrollLeft
-      track.classList.add('is-dragging')
-      track.setPointerCapture(event.pointerId)
     }
 
     const onPointerMove = (event: PointerEvent) => {
-      if (!dragging) return
+      if (!pointerActive) return
       const dx = event.clientX - dragOriginX
-      if (Math.abs(dx) > 3) moved = true
+      if (!dragging) {
+        if (Math.abs(dx) < DRAG_THRESHOLD_PX) return
+        dragging = true
+        suppressClick = true
+        track.classList.add('is-dragging')
+        track.setPointerCapture(event.pointerId)
+      }
       track.scrollLeft = dragScrollLeft - dx
       updateArrows()
     }
 
     const endDrag = (event: PointerEvent) => {
-      if (!dragging) return
+      if (!pointerActive) return
+      pointerActive = false
       dragging = false
       track.classList.remove('is-dragging')
       if (track.hasPointerCapture(event.pointerId)) {
@@ -120,10 +128,10 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
 
     /** Ignore click-through after a drag so cards don’t navigate mid-swipe. */
     const onClickCapture = (event: MouseEvent) => {
-      if (!moved) return
+      if (!suppressClick) return
       event.preventDefault()
       event.stopPropagation()
-      moved = false
+      suppressClick = false
     }
 
     track.addEventListener('scroll', onScroll, { passive: true })

@@ -166,14 +166,6 @@ export function HomePage() {
       </section>
 
       <section className="lander-industries" aria-label="Industries and use cases">
-        <header className="lander-industries-head">
-          <h2>Find your industry</h2>
-          <p>
-            Each path opens a full solution page with containers, print methods, and product
-            classes — written the way a lab tech would explain it on a walk-through.
-          </p>
-        </header>
-
         {industries.map((industry, index) => {
           const flip = index % 2 === 1
           return (
