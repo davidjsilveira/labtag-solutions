@@ -148,8 +148,8 @@ export function HomePage() {
           <img
             src={resolveImageSrc('/media/lander-hero.jpg').primary}
             alt="Lab workstation with label printer, barcode scanner, sample vials, and a gloved hand at the keyboard"
-            width={1024}
-            height={425}
+            width={2880}
+            height={1196}
             decoding="async"
             fetchPriority="high"
           />
