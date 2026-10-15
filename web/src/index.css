@@ -835,9 +835,9 @@ main {
 .temp-slider-layout {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: var(--space-xl);
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-xl) var(--space-2xl);
+  align-items: start;
   margin: var(--space-lg) 0 0;
   padding: var(--space-xl);
   overflow: hidden;
@@ -921,6 +921,7 @@ main {
   z-index: 1;
   display: grid;
   gap: var(--space-md);
+  align-content: start;
   min-width: 0;
 }
 
@@ -929,27 +930,16 @@ main {
   z-index: 1;
   display: grid;
   gap: var(--space-md);
-  align-content: end;
-  justify-items: end;
+  align-content: start;
+  justify-items: start;
   min-width: 0;
-  text-align: right;
 }
 
 .temp-slider-feature-copy {
   display: grid;
   gap: var(--space-2xs);
-  max-width: 28rem;
+  max-width: 32rem;
   animation: temp-slider-bg-in var(--dur-media) var(--ease-out) both;
-}
-
-.temp-slider-feature-kicker {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-  color: var(--color-ink-2);
 }
 
 .temp-slider-feature-title {
@@ -965,7 +955,7 @@ main {
 .temp-slider-feature-body {
   margin: 0;
   font-size: var(--text-sm);
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--color-ink-2);
   text-wrap: pretty;
 }
@@ -973,7 +963,7 @@ main {
 .temp-slider-chips {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: var(--space-2xs);
   margin: 0;
   padding: 0;
@@ -1006,11 +996,6 @@ main {
   border-color: var(--labtag-pure-white);
 }
 
-.temp-slider-readout {
-  display: grid;
-  gap: var(--space-3xs);
-}
-
 .temp-slider-value {
   margin: 0;
   font-family: var(--font-mono);
@@ -1020,17 +1005,6 @@ main {
   font-variant-numeric: tabular-nums;
   line-height: 1;
   color: var(--color-ink);
-}
-
-.temp-slider-match {
-  margin: 0;
-  font-size: var(--text-sm);
-  color: var(--color-ink-2);
-}
-
-.temp-slider-match strong {
-  color: var(--color-ink);
-  font-weight: 600;
 }
 
 .temp-slider-control {
@@ -1398,17 +1372,7 @@ main {
 
   .temp-slider-layout {
     grid-template-columns: 1fr;
-    align-items: stretch;
     padding: var(--space-lg);
-  }
-
-  .temp-slider-feature {
-    justify-items: start;
-    text-align: left;
-  }
-
-  .temp-slider-chips {
-    justify-content: flex-start;
   }
 
 }

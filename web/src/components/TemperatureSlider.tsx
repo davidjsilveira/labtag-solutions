@@ -200,14 +200,9 @@ export function TemperatureSlider() {
       </div>
 
       <div className="temp-slider">
-        <div className="temp-slider-readout">
-          <p id={labelId} className="temp-slider-value">
-            {formatTemp(tempC)}
-          </p>
-          <p className="temp-slider-match">
-            Best match: <strong>{guide.title}</strong>
-          </p>
-        </div>
+        <p id={labelId} className="temp-slider-value">
+          {formatTemp(tempC)}
+        </p>
 
         <div className="temp-slider-control">
           <div className="temp-slider-track" aria-hidden="true">
@@ -222,7 +217,7 @@ export function TemperatureSlider() {
             step={1}
             value={tempC}
             aria-labelledby={labelId}
-            aria-valuetext={`${formatTemp(tempC)} — ${guide.title}`}
+            aria-valuetext={`${formatTemp(tempC)} — ${guide.headline}`}
             onChange={(event) => setTempC(Number(event.target.value))}
           />
           <div className="temp-slider-scale" aria-hidden="true">
@@ -247,21 +242,16 @@ export function TemperatureSlider() {
             )
           })}
         </div>
-
-        <Link className="btn btn-secondary" to={path}>
-          Open {pageTitle}
-        </Link>
       </div>
 
       <aside className="temp-slider-feature" aria-live="polite">
         <div className="temp-slider-feature-copy" key={guide.slug}>
-          <p className="temp-slider-feature-kicker">{formatTemp(tempC)}</p>
           <h3 className="temp-slider-feature-title">{guide.headline}</h3>
           <p className="temp-slider-feature-body">{guide.body}</p>
         </div>
 
         {chips.length > 0 ? (
-          <ul className="temp-slider-chips" aria-label={`${pageTitle} categories`}>
+          <ul className="temp-slider-chips" aria-label="Related paths">
             {chips.map((chip) => (
               <li key={chip.title}>
                 <Link to={chip.to} className="temp-slider-chip">
@@ -271,6 +261,10 @@ export function TemperatureSlider() {
             ))}
           </ul>
         ) : null}
+
+        <Link className="btn btn-secondary" to={path}>
+          Open {pageTitle}
+        </Link>
       </aside>
     </div>
   )
