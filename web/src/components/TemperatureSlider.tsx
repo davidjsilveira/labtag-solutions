@@ -31,6 +31,8 @@ type GuideMatch = {
   maxExclusive: number
   slug: string
   title: string
+  headline: string
+  body: string
   tags: TempTag[]
 }
 
@@ -40,30 +42,40 @@ const GUIDE_BANDS: GuideMatch[] = [
     maxExclusive: -150,
     slug: 'cryogenic-labels',
     title: 'Cryogenic Labels',
+    headline: 'Liquid nitrogen territory',
+    body: 'Vials, boxes, metal canes, and straws living in LN₂ or vapor phase need adhesives that stay put through immersion and freeze–thaw cycles.',
     tags: ['cryo'],
   },
   {
     maxExclusive: -60,
     slug: 'deep-freeze',
     title: 'Deep-Freeze Labels',
+    headline: 'Ultra-low freezer storage',
+    body: '−80°C freezers and dry-ice transport call for freezer-grade labels on microtubes, plates, blood bags, and cardboard or polypropylene boxes.',
     tags: ['deep-freeze'],
   },
   {
     maxExclusive: 25,
     slug: 'cryostuck',
     title: 'CryoSTUCK® for frozen surfaces',
+    headline: 'Already frozen — no thaw',
+    body: 'When the vial cannot warm up, CryoSTUCK® applies straight onto −80°C surfaces so you can re-ID without interrupting the cold chain.',
     tags: ['cryo', 'deep-freeze'],
   },
   {
     maxExclusive: 100,
     slug: 'laboratory-labels',
     title: 'Laboratory Labels',
+    headline: 'Bench, fridge, and warm workflow',
+    body: 'Ambient and refrigerated work still needs durable ID — from kits and cultureware to general lab containers that move between rooms.',
     tags: ['heat'],
   },
   {
     maxExclusive: Number.POSITIVE_INFINITY,
     slug: 'autoclave-labels',
     title: 'Autoclave Labels',
+    headline: 'Sterilization heat',
+    body: 'Steam, dry heat, gamma, and EtO cycles need constructs that survive autoclaving without smearing, peeling, or losing barcode scannability.',
     tags: ['heat', 'autoclave'],
   },
 ]
@@ -102,19 +114,20 @@ function chipsForPage(slug: string): FeatureGridItem[] {
   return grid.items.slice(0, CHIP_LIMIT)
 }
 
-function FeatureMedia({ slug, title }: { slug: string; title: string }) {
+function FeatureBackdrop({ slug }: { slug: string }) {
   const page = getPage(slug)
   const image = page?.heroImage
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
 
   if (!resolved) {
-    return <div className="lander-media-fallback" aria-hidden="true" />
+    return <div className="temp-slider-bg-fallback" aria-hidden="true" />
   }
 
   return (
     <img
+      key={slug}
       src={resolved.primary}
-      alt={image?.alt || title}
+      alt=""
       loading="lazy"
       onError={(event) => {
         if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
@@ -139,6 +152,10 @@ export function TemperatureSlider() {
 
   return (
     <div className="temp-slider-layout">
+      <div className="temp-slider-bg" aria-hidden="true">
+        <FeatureBackdrop slug={guide.slug} />
+      </div>
+
       <div className="temp-slider">
         <div className="temp-slider-readout">
           <p id={labelId} className="temp-slider-value">
@@ -194,30 +211,26 @@ export function TemperatureSlider() {
       </div>
 
       <aside className="temp-slider-feature" aria-live="polite">
-        <div className="temp-slider-feature-frame">
-          <Link
-            to={path}
-            className="temp-slider-feature-media"
-            aria-label={`View ${pageTitle}`}
-          >
-            <FeatureMedia slug={guide.slug} title={pageTitle} />
-          </Link>
-
-          {chips.length > 0 ? (
-            <ul className="temp-slider-chips" aria-label={`${pageTitle} categories`}>
-              {chips.map((chip) => (
-                <li key={chip.title}>
-                  <Link
-                    to={chip.href ? `${path}${chip.href}` : path}
-                    className="temp-slider-chip"
-                  >
-                    {chip.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : null}
+        <div className="temp-slider-feature-copy" key={guide.slug}>
+          <p className="temp-slider-feature-kicker">{formatTemp(tempC)}</p>
+          <h3 className="temp-slider-feature-title">{guide.headline}</h3>
+          <p className="temp-slider-feature-body">{guide.body}</p>
         </div>
+
+        {chips.length > 0 ? (
+          <ul className="temp-slider-chips" aria-label={`${pageTitle} categories`}>
+            {chips.map((chip) => (
+              <li key={chip.title}>
+                <Link
+                  to={chip.href ? `${path}${chip.href}` : path}
+                  className="temp-slider-chip"
+                >
+                  {chip.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </aside>
     </div>
   )

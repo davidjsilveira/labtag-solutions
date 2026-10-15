@@ -7,7 +7,7 @@ import {
   getCategoryForSlug,
   solutionCategories,
 } from '@/content/categories'
-import { getPage, solutionPages } from '@/content/loadPages'
+import { getPage } from '@/content/loadPages'
 import { CategoryPage } from '@/pages/CategoryPage'
 import { HomePage } from '@/pages/HomePage'
 import { SolutionPage } from '@/pages/SolutionPage'
@@ -44,7 +44,6 @@ export default function App() {
             </Link>
           ))}
         </nav>
-        <p className="site-header-meta">{solutionPages.length} pages</p>
       </header>
       <main>
         <Routes>
