@@ -5,11 +5,17 @@ import { getPage } from '@/content/loadPages'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { FeatureGridItem } from '@/content/types'
 
-type TempTag = 'cryo' | 'deep-freeze' | 'heat' | 'autoclave'
+type TempTag = 'cryo' | 'deep-freeze' | 'neutral' | 'heat' | 'autoclave'
+
+type GuideChip = {
+  title: string
+  slug: string
+}
 
 const TEMP_TAG_LABEL: Record<TempTag, string> = {
   cryo: 'Cryo',
   'deep-freeze': 'Deep-Freeze',
+  neutral: 'Neutral',
   heat: 'Heat',
   autoclave: 'Autoclave',
 }
@@ -18,6 +24,7 @@ const TEMP_TAG_LABEL: Record<TempTag, string> = {
 const TEMP_TAG_JUMP: Record<TempTag, number> = {
   cryo: -196,
   'deep-freeze': -80,
+  neutral: 22,
   heat: 37,
   autoclave: 120,
 }
@@ -27,6 +34,16 @@ const TEMP_SCALE_MAX = 120
 const TEMP_DEFAULT = -80
 const CHIP_LIMIT = 6
 
+/** Usability-focused feature pages highlighted at room temperature. */
+const NEUTRAL_USABILITY_CHIPS: GuideChip[] = [
+  { title: 'SnapPEEL™', slug: 'snappeel-labels' },
+  { title: 'Hard-to-stick surfaces', slug: 'labels-for-hard-to-stick-surfaces' },
+  { title: 'GatorCUT™', slug: 'gatorcut' },
+  { title: 'ResiTAG®', slug: 'resitag' },
+  { title: 'Lab tapes', slug: 'lab-tapes' },
+  { title: 'DYMO-compatible', slug: 'dymo-compatible-laboratory-labels' },
+]
+
 type GuideMatch = {
   maxExclusive: number
   slug: string
@@ -34,6 +51,7 @@ type GuideMatch = {
   headline: string
   body: string
   tags: TempTag[]
+  chips?: GuideChip[]
 }
 
 /** First matching band wins (cold → warm). */
@@ -55,7 +73,7 @@ const GUIDE_BANDS: GuideMatch[] = [
     tags: ['deep-freeze'],
   },
   {
-    maxExclusive: 25,
+    maxExclusive: 5,
     slug: 'cryostuck',
     title: 'CryoSTUCK® for frozen surfaces',
     headline: 'Already frozen — no thaw',
@@ -63,11 +81,20 @@ const GUIDE_BANDS: GuideMatch[] = [
     tags: ['cryo', 'deep-freeze'],
   },
   {
+    maxExclusive: 32,
+    slug: 'snappeel-labels',
+    title: 'Usability Features',
+    headline: 'Room-temp labeling that works faster',
+    body: 'At ambient conditions the bottleneck is handling — SnapPEEL™, glove-friendly peels, hard-to-stick surfaces, and tearable tapes that keep techs moving.',
+    tags: ['neutral'],
+    chips: NEUTRAL_USABILITY_CHIPS,
+  },
+  {
     maxExclusive: 100,
     slug: 'laboratory-labels',
     title: 'Laboratory Labels',
-    headline: 'Bench, fridge, and warm workflow',
-    body: 'Ambient and refrigerated work still needs durable ID — from kits and cultureware to general lab containers that move between rooms.',
+    headline: 'Warm benches and incubators',
+    body: 'Elevated lab temps still need durable ID — from cultureware and kits to containers that move between rooms, fridges, and warm workstations.',
     tags: ['heat'],
   },
   {
@@ -98,7 +125,8 @@ function tagsForTemp(tempC: number): TempTag[] {
   const tags: TempTag[] = []
   if (tempC <= -150) tags.push('cryo')
   if (tempC > -196 && tempC <= -20) tags.push('deep-freeze')
-  if (tempC > 0 && tempC <= 110) tags.push('heat')
+  if (tempC >= 15 && tempC <= 28) tags.push('neutral')
+  if (tempC > 28 && tempC <= 100) tags.push('heat')
   if (tempC > 100) tags.push('autoclave')
   if (tags.length === 0) {
     return matchGuide(tempC).tags
@@ -112,6 +140,21 @@ function chipsForPage(slug: string): FeatureGridItem[] {
   const grid = page.blocks.find((block) => block.type === 'featureGrid')
   if (!grid || grid.type !== 'featureGrid') return []
   return grid.items.slice(0, CHIP_LIMIT)
+}
+
+function resolveChips(guide: GuideMatch): { title: string; to: string }[] {
+  if (guide.chips?.length) {
+    return guide.chips.slice(0, CHIP_LIMIT).map((chip) => ({
+      title: chip.title,
+      to: solutionPath(chip.slug),
+    }))
+  }
+
+  const path = solutionPath(guide.slug)
+  return chipsForPage(guide.slug).map((chip) => ({
+    title: chip.title,
+    to: chip.href ? `${path}${chip.href}` : path,
+  }))
 }
 
 function FeatureBackdrop({ slug }: { slug: string }) {
@@ -144,7 +187,7 @@ export function TemperatureSlider() {
 
   const guide = matchGuide(tempC)
   const tags = tagsForTemp(tempC)
-  const chips = chipsForPage(guide.slug)
+  const chips = resolveChips(guide)
   const path = solutionPath(guide.slug)
   const pageTitle = getPage(guide.slug)?.title ?? guide.title
   const thumbPercent =
@@ -221,10 +264,7 @@ export function TemperatureSlider() {
           <ul className="temp-slider-chips" aria-label={`${pageTitle} categories`}>
             {chips.map((chip) => (
               <li key={chip.title}>
-                <Link
-                  to={chip.href ? `${path}${chip.href}` : path}
-                  className="temp-slider-chip"
-                >
+                <Link to={chip.to} className="temp-slider-chip">
                   {chip.title}
                 </Link>
               </li>

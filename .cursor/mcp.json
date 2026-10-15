@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "midjourney-api": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "env": {
+        "API_BASE_URL": "https://api.thenextleg.io/v2",
+        "AUTHORIZATION": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}
