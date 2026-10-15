@@ -157,20 +157,20 @@ function resolveChips(guide: GuideMatch): { title: string; to: string }[] {
   }))
 }
 
-function FeatureBackdrop({ slug }: { slug: string }) {
+function FeatureMedia({ slug, title }: { slug: string; title: string }) {
   const page = getPage(slug)
   const image = page?.heroImage
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
 
   if (!resolved) {
-    return <div className="temp-slider-bg-fallback" aria-hidden="true" />
+    return <div className="temp-slider-media-fallback" aria-hidden="true" />
   }
 
   return (
     <img
       key={slug}
       src={resolved.primary}
-      alt=""
+      alt={image?.alt || title}
       loading="lazy"
       onError={(event) => {
         if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
@@ -195,10 +195,6 @@ export function TemperatureSlider() {
 
   return (
     <div className="temp-slider-layout">
-      <div className="temp-slider-bg" aria-hidden="true">
-        <FeatureBackdrop slug={guide.slug} />
-      </div>
-
       <div className="temp-slider">
         <p id={labelId} className="temp-slider-value">
           {formatTemp(tempC)}
@@ -242,10 +238,8 @@ export function TemperatureSlider() {
             )
           })}
         </div>
-      </div>
 
-      <aside className="temp-slider-feature" aria-live="polite">
-        <div className="temp-slider-feature-copy" key={guide.slug}>
+        <div className="temp-slider-feature-copy" key={guide.slug} aria-live="polite">
           <h3 className="temp-slider-feature-title">{guide.headline}</h3>
           <p className="temp-slider-feature-body">{guide.body}</p>
         </div>
@@ -265,7 +259,15 @@ export function TemperatureSlider() {
         <Link className="btn btn-secondary" to={path}>
           Open {pageTitle}
         </Link>
-      </aside>
+      </div>
+
+      <Link
+        to={path}
+        className="temp-slider-media"
+        aria-label={`View ${pageTitle}`}
+      >
+        <FeatureMedia slug={guide.slug} title={pageTitle} />
+      </Link>
     </div>
   )
 }

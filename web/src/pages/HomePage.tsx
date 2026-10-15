@@ -185,12 +185,16 @@ export function HomePage() {
       <section className="lander-industries" aria-label="Industries and use cases">
         {industries.map((industry, index) => {
           const flip = index % 2 === 1
+          const folio = String(index + 1).padStart(2, '0')
           return (
             <article
               key={industry.id}
               id={industry.id}
-              className={`industry-split${flip ? ' industry-split-flip' : ''}`}
+              className={`industry-spread${flip ? ' industry-spread-flip' : ''}`}
             >
+              <p className="industry-folio" aria-hidden="true">
+                {folio}
+              </p>
               <div className="industry-copy">
                 <p className="industry-audience">{industry.audience}</p>
                 <h3>{industry.title}</h3>
