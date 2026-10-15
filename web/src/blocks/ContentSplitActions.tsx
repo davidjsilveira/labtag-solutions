@@ -6,9 +6,9 @@ type Props = {
   solutionSlug?: string
 }
 
-/** Contextual Shop + Request a free sample CTAs for content-split cards. */
+/** Contextual Shop, sample, and video CTAs for content-split cards. */
 export function ContentSplitActions({ sectionSlug, sectionTitle, solutionSlug }: Props) {
-  const { shopHref, shopLabel, sampleHref } = resolveSplitCardActions(
+  const { shopHref, shopLabel, sampleHref, videoHref } = resolveSplitCardActions(
     sectionSlug,
     solutionSlug,
     sectionTitle,
@@ -21,6 +21,9 @@ export function ContentSplitActions({ sectionSlug, sectionTitle, solutionSlug }:
       </a>
       <a className="content-split-sample" href={sampleHref} target="_blank" rel="noreferrer">
         Request a free sample
+      </a>
+      <a className="content-split-video" href={videoHref} target="_blank" rel="noreferrer">
+        Watch video
       </a>
     </div>
   )

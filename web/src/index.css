@@ -2382,7 +2382,7 @@ tr:last-child td {
 }
 
 .content-split-sample,
-.page-hero-video {
+.content-split-video {
   color: var(--color-ink-2);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -2397,14 +2397,9 @@ tr:last-child td {
 }
 
 .content-split-sample:hover,
-.page-hero-video:hover {
+.content-split-video:hover {
   color: var(--color-link);
   border-bottom-color: var(--color-link);
-}
-
-.page-hero-actions .page-hero-video {
-  align-self: center;
-  margin-left: var(--space-2xs);
 }
 
 .content-split-media {

@@ -1,6 +1,6 @@
 import { type ReactNode, useState } from 'react'
 import { LABTAG_SAMPLE_URL } from '@/content/labtagLinks'
-import { resolveSolutionShopHref, resolveVideosHref } from '@/content/splitActions'
+import { resolveSolutionShopHref } from '@/content/splitActions'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { HeroImage } from '@/content/types'
 
@@ -18,7 +18,6 @@ export function PageHero({ title, description = [], image, crumb, solutionSlug }
   const [imageFailed, setImageFailed] = useState(false)
   const showImage = Boolean(image && resolved && !imageFailed)
   const shopHref = resolveSolutionShopHref(solutionSlug)
-  const videosHref = resolveVideosHref(solutionSlug)
 
   return (
     <header className={`page-hero${showImage ? ' page-hero-split' : ''}`}>
@@ -38,9 +37,6 @@ export function PageHero({ title, description = [], image, crumb, solutionSlug }
           </a>
           <a className="btn btn-secondary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
             Request a free sample
-          </a>
-          <a className="page-hero-video" href={videosHref} target="_blank" rel="noreferrer">
-            Watch videos
           </a>
         </div>
       </div>
