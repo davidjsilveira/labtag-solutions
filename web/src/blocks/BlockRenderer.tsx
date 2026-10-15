@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { slugify } from '@/content/slugify'
 import type { ContentBlock, ImageBlock, SectionBlock, VideoBlock } from '@/content/types'
 import { BulletListBlockView } from './BulletListBlock'
 import { CtaBlockView } from './CtaBlock'
@@ -101,14 +102,15 @@ export function BlockRenderer({ blocks }: Props) {
     const block = blocks[i]
 
     if (block.type === 'section') {
+      const sectionAnchor = slugify(block.title)
       const following = blocks[i + 1]
       if (following?.type === 'video') {
         const video = following as VideoBlock
         const absorbed = absorbFollowingCopy(blocks, i + 2, block)
         nodes.push(
-          <div key={`video-split-${i}`} className="content-split">
+          <div key={`video-split-${i}`} id={sectionAnchor} className="content-split">
             <div className="content-split-copy">
-              <SectionBlockView block={absorbed.section} />
+              <SectionBlockView block={absorbed.section} withAnchor={false} />
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
@@ -131,8 +133,8 @@ export function BlockRenderer({ blocks }: Props) {
         const allLogos = images.every((image) => image.variant === 'logo')
         if (allLogos) {
           nodes.push(
-            <div key={`logo-section-${i}`} className="logo-section">
-              <SectionBlockView block={absorbed.section} />
+            <div key={`logo-section-${i}`} id={sectionAnchor} className="logo-section">
+              <SectionBlockView block={absorbed.section} withAnchor={false} />
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
@@ -144,9 +146,9 @@ export function BlockRenderer({ blocks }: Props) {
         }
 
         nodes.push(
-          <div key={`split-${i}`} className="content-split">
+          <div key={`split-${i}`} id={sectionAnchor} className="content-split">
             <div className="content-split-copy">
-              <SectionBlockView block={absorbed.section} />
+              <SectionBlockView block={absorbed.section} withAnchor={false} />
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
@@ -163,8 +165,8 @@ export function BlockRenderer({ blocks }: Props) {
       const absorbed = absorbFollowingCopy(blocks, i + 1, block)
       if (absorbed.next > i + 1) {
         nodes.push(
-          <div key={`section-copy-${i}`} className="block">
-            <SectionBlockView block={absorbed.section} />
+          <div key={`section-copy-${i}`} id={sectionAnchor} className="block section-unit">
+            <SectionBlockView block={absorbed.section} withAnchor={false} />
             {absorbed.bullets?.type === 'bulletList' ? (
               <BulletListBlockView block={absorbed.bullets} variant="plain" />
             ) : null}

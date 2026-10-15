@@ -81,6 +81,6 @@
   --measure: 65ch;
   --content-width: 48rem;
   --shell-width: 84rem;
-  /* Sticky header (~3.5rem) + 48px gap under the nav */
+  /* Sticky header (~3.5rem) + ~48px clearance above the section (keeps media in view) */
   --anchor-scroll-margin: calc(3.5rem + 48px);
 }

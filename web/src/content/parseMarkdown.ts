@@ -238,7 +238,7 @@ function collapseFaq(blocks: ContentBlock[]): ContentBlock[] {
     const block = blocks[i]
     const isFaqHeading =
       block.type === 'section' &&
-      /frequently asked questions/i.test(block.title) &&
+      (/^faq$/i.test(block.title.trim()) || /frequently asked questions/i.test(block.title)) &&
       block.paragraphs.length === 0
 
     if (!isFaqHeading) {
@@ -251,7 +251,13 @@ function collapseFaq(blocks: ContentBlock[]): ContentBlock[] {
     let j = i + 1
     while (j < blocks.length) {
       const next = blocks[j]
-      if (next.type === 'section' && next.title.endsWith('?') && next.paragraphs.length) {
+      // FAQ answers are ### questions; stop at the next ## section (e.g. CTA).
+      if (
+        next.type === 'section' &&
+        next.level === 3 &&
+        next.title.endsWith('?') &&
+        next.paragraphs.length
+      ) {
         items.push({ question: next.title, answer: next.paragraphs.join(' ') })
         j += 1
         continue

@@ -147,9 +147,9 @@ export function HomePage() {
         <div className="lander-hero-media">
           <img
             src={resolveImageSrc('/media/lander-hero.jpg').primary}
-            alt="Scientist in a lab coat and blue gloves working with a vial at the bench"
+            alt="Lab workstation with label printer, barcode scanner, sample vials, and a gloved hand at the keyboard"
             width={1024}
-            height={461}
+            height={425}
             decoding="async"
             fetchPriority="high"
           />

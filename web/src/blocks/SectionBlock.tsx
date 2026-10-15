@@ -1,9 +1,15 @@
 import { slugify } from '@/content/slugify'
 import type { SectionBlock } from '@/content/types'
 
-export function SectionBlockView({ block }: { block: SectionBlock }) {
+type Props = {
+  block: SectionBlock
+  /** When false, parent owns the hash id (e.g. content-split wrappers). */
+  withAnchor?: boolean
+}
+
+export function SectionBlockView({ block, withAnchor = true }: Props) {
   const Heading = block.level === 3 ? 'h3' : 'h2'
-  const id = slugify(block.title)
+  const id = withAnchor ? slugify(block.title) : undefined
 
   return (
     <section className="block block-section" id={id}>
