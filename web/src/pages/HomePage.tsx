@@ -1,10 +1,18 @@
+import { Printer, SealCheck, Stack } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
+import { RotatingAudience } from '@/components/RotatingAudience'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
 import { getCategoryForSlug } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
-import { LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
+import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
+
+const heroQualifiers = [
+  { label: 'Free Samples', Icon: Stack },
+  { label: 'Custom Printing', Icon: Printer },
+  { label: 'Satisfaction Guarantee', Icon: SealCheck },
+] as const
 
 type Industry = {
   id: string
@@ -133,20 +141,29 @@ export function HomePage() {
           />
         </div>
         <div className="lander-hero-copy">
-          <h1>Cryogenic labels for the labs that freeze work that matters</h1>
+          <h1>
+            Labels & Identification Solutions for <RotatingAudience />
+          </h1>
           <p className="lede">
-            From university freezers to biobanks and fertility clinics — pick the industry or
-            temperature that sounds like your bench, and we will send you to the right solution
-            page.
+            Identify, track, and store every sample with labels built for the temperatures,
+            chemicals, and workflows your research demands.
           </p>
           <div className="lander-hero-actions">
-            <a className="btn btn-primary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
-              Request a free sample
+            <a className="btn btn-primary" href={LABTAG_CONTACT_URL} target="_blank" rel="noreferrer">
+              Chat with an expert
             </a>
-            <a className="btn btn-secondary" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
-              Browse the shop
+            <a className="btn btn-secondary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
+              Get Free Samples
             </a>
           </div>
+          <ul className="lander-hero-qualifiers" aria-label="Why LabTAG">
+            {heroQualifiers.map(({ label, Icon }) => (
+              <li key={label}>
+                <Icon size={18} weight="regular" aria-hidden="true" />
+                <span>{label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
