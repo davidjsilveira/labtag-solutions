@@ -1,0 +1,224 @@
+import { useId, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getCategoryForSlug } from '@/content/categories'
+import { getPage } from '@/content/loadPages'
+import { resolveImageSrc } from '@/content/resolveImage'
+import type { FeatureGridItem } from '@/content/types'
+
+type TempTag = 'cryo' | 'deep-freeze' | 'heat' | 'autoclave'
+
+const TEMP_TAG_LABEL: Record<TempTag, string> = {
+  cryo: 'Cryo',
+  'deep-freeze': 'Deep-Freeze',
+  heat: 'Heat',
+  autoclave: 'Autoclave',
+}
+
+/** Representative storage temps the class chips jump to. */
+const TEMP_TAG_JUMP: Record<TempTag, number> = {
+  cryo: -196,
+  'deep-freeze': -80,
+  heat: 37,
+  autoclave: 120,
+}
+
+const TEMP_SCALE_MIN = -196
+const TEMP_SCALE_MAX = 120
+const TEMP_DEFAULT = -80
+const CHIP_LIMIT = 6
+
+type GuideMatch = {
+  maxExclusive: number
+  slug: string
+  title: string
+  tags: TempTag[]
+}
+
+/** First matching band wins (cold → warm). */
+const GUIDE_BANDS: GuideMatch[] = [
+  {
+    maxExclusive: -150,
+    slug: 'cryogenic-labels',
+    title: 'Cryogenic Labels',
+    tags: ['cryo'],
+  },
+  {
+    maxExclusive: -60,
+    slug: 'deep-freeze',
+    title: 'Deep-Freeze Labels',
+    tags: ['deep-freeze'],
+  },
+  {
+    maxExclusive: 25,
+    slug: 'cryostuck',
+    title: 'CryoSTUCK® for frozen surfaces',
+    tags: ['cryo', 'deep-freeze'],
+  },
+  {
+    maxExclusive: 100,
+    slug: 'laboratory-labels',
+    title: 'Laboratory Labels',
+    tags: ['heat'],
+  },
+  {
+    maxExclusive: Number.POSITIVE_INFINITY,
+    slug: 'autoclave-labels',
+    title: 'Autoclave Labels',
+    tags: ['heat', 'autoclave'],
+  },
+]
+
+function formatTemp(celsius: number): string {
+  const sign = celsius > 0 ? '+' : ''
+  return `${sign}${celsius}°C`
+}
+
+function solutionPath(slug: string): string {
+  const category = getCategoryForSlug(slug)
+  return category ? `/solutions/${category.id}/${slug}` : `/solutions/${slug}`
+}
+
+function matchGuide(tempC: number): GuideMatch {
+  return GUIDE_BANDS.find((band) => tempC < band.maxExclusive) ?? GUIDE_BANDS[GUIDE_BANDS.length - 1]
+}
+
+function tagsForTemp(tempC: number): TempTag[] {
+  const tags: TempTag[] = []
+  if (tempC <= -150) tags.push('cryo')
+  if (tempC > -196 && tempC <= -20) tags.push('deep-freeze')
+  if (tempC > 0 && tempC <= 110) tags.push('heat')
+  if (tempC > 100) tags.push('autoclave')
+  if (tags.length === 0) {
+    return matchGuide(tempC).tags
+  }
+  return tags
+}
+
+function chipsForPage(slug: string): FeatureGridItem[] {
+  const page = getPage(slug)
+  if (!page) return []
+  const grid = page.blocks.find((block) => block.type === 'featureGrid')
+  if (!grid || grid.type !== 'featureGrid') return []
+  return grid.items.slice(0, CHIP_LIMIT)
+}
+
+function FeatureMedia({ slug, title }: { slug: string; title: string }) {
+  const page = getPage(slug)
+  const image = page?.heroImage
+  const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
+
+  if (!resolved) {
+    return <div className="lander-media-fallback" aria-hidden="true" />
+  }
+
+  return (
+    <img
+      src={resolved.primary}
+      alt={image?.alt || title}
+      loading="lazy"
+      onError={(event) => {
+        if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
+          event.currentTarget.src = resolved.fallback
+        }
+      }}
+    />
+  )
+}
+
+export function TemperatureSlider() {
+  const labelId = useId()
+  const [tempC, setTempC] = useState(TEMP_DEFAULT)
+
+  const guide = matchGuide(tempC)
+  const tags = tagsForTemp(tempC)
+  const chips = chipsForPage(guide.slug)
+  const path = solutionPath(guide.slug)
+  const pageTitle = getPage(guide.slug)?.title ?? guide.title
+  const thumbPercent =
+    ((tempC - TEMP_SCALE_MIN) / (TEMP_SCALE_MAX - TEMP_SCALE_MIN)) * 100
+
+  return (
+    <div className="temp-slider-layout">
+      <div className="temp-slider">
+        <div className="temp-slider-readout">
+          <p id={labelId} className="temp-slider-value">
+            {formatTemp(tempC)}
+          </p>
+          <p className="temp-slider-match">
+            Best match: <strong>{guide.title}</strong>
+          </p>
+        </div>
+
+        <div className="temp-slider-control">
+          <div className="temp-slider-track" aria-hidden="true">
+            <span className="temp-slider-spectrum" />
+            <span className="temp-slider-thumb-glow" style={{ left: `${thumbPercent}%` }} />
+          </div>
+          <input
+            className="temp-slider-input"
+            type="range"
+            min={TEMP_SCALE_MIN}
+            max={TEMP_SCALE_MAX}
+            step={1}
+            value={tempC}
+            aria-labelledby={labelId}
+            aria-valuetext={`${formatTemp(tempC)} — ${guide.title}`}
+            onChange={(event) => setTempC(Number(event.target.value))}
+          />
+          <div className="temp-slider-scale" aria-hidden="true">
+            <span>{formatTemp(TEMP_SCALE_MIN)}</span>
+            <span>{formatTemp(TEMP_SCALE_MAX)}</span>
+          </div>
+        </div>
+
+        <div className="temp-range-tags" role="group" aria-label="Jump to temperature class">
+          {(Object.keys(TEMP_TAG_LABEL) as TempTag[]).map((tag) => {
+            const active = tags.includes(tag)
+            return (
+              <button
+                key={tag}
+                type="button"
+                className={`temp-tag temp-tag-${tag}${active ? ' is-active' : ''}`}
+                aria-pressed={active}
+                onClick={() => setTempC(TEMP_TAG_JUMP[tag])}
+              >
+                {TEMP_TAG_LABEL[tag]}
+              </button>
+            )
+          })}
+        </div>
+
+        <Link className="btn btn-secondary" to={path}>
+          Open {pageTitle}
+        </Link>
+      </div>
+
+      <aside className="temp-slider-feature" aria-live="polite">
+        <div className="temp-slider-feature-frame">
+          <Link
+            to={path}
+            className="temp-slider-feature-media"
+            aria-label={`View ${pageTitle}`}
+          >
+            <FeatureMedia slug={guide.slug} title={pageTitle} />
+          </Link>
+
+          {chips.length > 0 ? (
+            <ul className="temp-slider-chips" aria-label={`${pageTitle} categories`}>
+              {chips.map((chip) => (
+                <li key={chip.title}>
+                  <Link
+                    to={chip.href ? `${path}${chip.href}` : path}
+                    className="temp-slider-chip"
+                  >
+                    {chip.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </aside>
+    </div>
+  )
+}

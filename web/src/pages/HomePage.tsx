@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
-import { getCategoryForSlug, solutionCategories } from '@/content/categories'
+import { TemperatureSlider } from '@/components/TemperatureSlider'
+import { getCategoryForSlug } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 import { LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
@@ -89,29 +90,6 @@ const industries: Industry[] = [
   },
 ]
 
-const tempPicks = [
-  {
-    label: 'Liquid nitrogen (−196°C)',
-    hint: 'Vials, boxes, metal canes',
-    slug: 'cryogenic-labels',
-  },
-  {
-    label: 'ULT freezers (−80°C)',
-    hint: 'Microtubes, plates, blood bags',
-    slug: 'deep-freeze',
-  },
-  {
-    label: 'Already frozen',
-    hint: 'Apply without thawing',
-    slug: 'cryostuck',
-  },
-  {
-    label: 'IVF straws',
-    hint: 'Vitrification & ART',
-    slug: 'ivf-labeling-solutions',
-  },
-]
-
 function solutionPath(slug: string): string {
   const category = getCategoryForSlug(slug)
   return category ? `/solutions/${category.id}/${slug}` : `/solutions/${slug}`
@@ -182,25 +160,9 @@ export function HomePage() {
       <section className="lander-temps" aria-label="Pick by storage temperature">
         <h2>Not sure where to start? Pick a temperature.</h2>
         <p className="lander-section-lede">
-          Same idea as asking the person next to you at the freezer bank — match the cold, then
-          open the matching guide.
+          Drag to your storage temperature — we will point you at the matching guide.
         </p>
-        <ul className="temp-grid">
-          {tempPicks.map((pick) => {
-            const category = solutionCategories.find((item) => item.slugs.includes(pick.slug))
-            const to = category
-              ? `/solutions/${category.id}/${pick.slug}`
-              : `/solutions/${pick.slug}`
-            return (
-              <li key={pick.slug}>
-                <Link to={to} className="temp-card">
-                  <strong>{pick.label}</strong>
-                  <span>{pick.hint}</span>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        <TemperatureSlider />
       </section>
 
       <section className="lander-industries" aria-label="Industries and use cases">
