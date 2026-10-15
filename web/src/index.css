@@ -235,7 +235,8 @@ main {
   transition:
     background-color var(--dur-short) var(--ease-out),
     border-color var(--dur-short) var(--ease-out),
-    color var(--dur-short) var(--ease-out);
+    color var(--dur-short) var(--ease-out),
+    box-shadow var(--dur-short) var(--ease-out);
 }
 
 .btn:focus-visible {
@@ -248,25 +249,45 @@ main {
 }
 
 .btn-primary {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  display: inline-flex;
+  padding: var(--space-sm);
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2xs);
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--labtag-text-primary-main) 20%, transparent);
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--labtag-ga-black) 5%, transparent) 100%
+    ),
+    var(--color-accent);
   color: var(--color-accent-ink);
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-deep);
-  border-color: var(--color-accent-deep);
+  border-color: color-mix(in srgb, var(--labtag-text-primary-main) 20%, transparent);
+  background: var(--color-accent);
   color: var(--color-accent-ink);
+  box-shadow: var(--shadow-card);
 }
 
 .btn-secondary {
-  background: var(--color-surface);
-  border-color: var(--color-rule-strong);
+  display: inline-flex;
+  padding: var(--space-sm) var(--space-md);
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2xs);
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-rule);
+  background: color-mix(in srgb, var(--labtag-pure-white) 50%, transparent);
   color: var(--color-ink);
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-ink);
+  border-color: var(--color-rule);
+  background: var(--labtag-pure-white);
   color: var(--color-ink);
 }
 
