@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { SolutionCard } from '@/components/SolutionCard'
 import {
   browseFilters,
   pagesForBrowseFilter,
+  type BrowseFilter,
   type BrowseFilterId,
 } from '@/content/categories'
 
@@ -13,10 +14,13 @@ type Props = {
 
 export function SolutionCarousel({ heading, lede }: Props) {
   const [filter, setFilter] = useState<BrowseFilterId>('all')
+  const [visibleFilters, setVisibleFilters] = useState<BrowseFilter[]>(browseFilters)
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(false)
   const blockRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLUListElement>(null)
+  const filterTrackRef = useRef<HTMLDivElement>(null)
+  const filterMeasureRef = useRef<HTMLDivElement>(null)
 
   const pages = pagesForBrowseFilter(filter)
   const activeLabel = browseFilters.find((item) => item.id === filter)?.label ?? 'All'
@@ -35,6 +39,60 @@ export function SolutionCarousel({ heading, lede }: Props) {
     setCanPrev(el.scrollLeft > 4)
     setCanNext(el.scrollLeft < max - 4)
   }
+
+  /** Show only the theme chips that fit on one row — no horizontal scroll. */
+  useLayoutEffect(() => {
+    const track = filterTrackRef.current
+    const measure = filterMeasureRef.current
+    if (!track || !measure) return
+
+    const fit = () => {
+      const maxWidth = track.clientWidth
+      if (maxWidth <= 0) return
+
+      const styles = getComputedStyle(measure)
+      const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0
+      const buttons = [...measure.querySelectorAll<HTMLButtonElement>('button')]
+      let used = 0
+      let count = 0
+
+      for (const button of buttons) {
+        const width = button.getBoundingClientRect().width
+        const next = used + (count > 0 ? gap : 0) + width
+        if (next > maxWidth + 0.5) break
+        used = next
+        count += 1
+      }
+
+      const nextVisible = browseFilters.slice(0, Math.max(1, count))
+      setVisibleFilters((prev) => {
+        if (
+          prev.length === nextVisible.length &&
+          prev.every((item, index) => item.id === nextVisible[index]?.id)
+        ) {
+          return prev
+        }
+        return nextVisible
+      })
+    }
+
+    fit()
+    const frame = window.requestAnimationFrame(fit)
+    const observer = new ResizeObserver(fit)
+    observer.observe(track)
+    window.addEventListener('resize', fit)
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      observer.disconnect()
+      window.removeEventListener('resize', fit)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (visibleFilters.some((item) => item.id === filter)) return
+    setFilter('all')
+  }, [filter, visibleFilters])
 
   useEffect(() => {
     const track = trackRef.current
@@ -150,8 +208,24 @@ export function SolutionCarousel({ heading, lede }: Props) {
       <header className="lander-all-head">
         {heading ? <h2>{heading}</h2> : null}
         {lede ? <p className="lander-section-lede">{lede}</p> : null}
-        <div className="category-jump" role="tablist" aria-label="Filter solutions">
+        <div
+          ref={filterMeasureRef}
+          className="category-jump category-jump-measure"
+          aria-hidden="true"
+        >
           {browseFilters.map((item) => (
+            <button key={item.id} type="button" tabIndex={-1}>
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <div
+          ref={filterTrackRef}
+          className="category-jump"
+          role="tablist"
+          aria-label="Filter solutions"
+        >
+          {visibleFilters.map((item) => (
             <button
               key={item.id}
               type="button"

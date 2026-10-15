@@ -169,7 +169,7 @@ export function HomePage() {
       <section className="lander-all" aria-label="All solution pages">
         <SolutionCarousel
           heading="Browse all solutions"
-          lede="Filter by theme, then scroll the row or use the arrows."
+          lede="Filter by theme, then browse the row with the arrows."
         />
       </section>
 

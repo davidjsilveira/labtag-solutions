@@ -557,6 +557,7 @@ main {
 }
 
 .lander-all-head {
+  position: relative;
   margin-bottom: var(--space-md);
 }
 
@@ -566,12 +567,27 @@ main {
 
 .category-jump {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--space-2xs);
   margin-top: var(--space-md);
+  /* Visible so active/focus outlines aren’t clipped under the row */
+  overflow: visible;
+}
+
+/* Invisible full-width row used only to measure chip widths. */
+.category-jump-measure {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  margin: 0;
+  z-index: -1;
 }
 
 .category-jump button {
+  flex: 0 0 auto;
+  white-space: nowrap;
   min-height: 2.5rem;
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-rule);
@@ -604,10 +620,6 @@ main {
   background: var(--labtag-text-primary-main);
   border-color: var(--labtag-text-primary-main);
   color: var(--color-accent-ink);
-}
-
-.category-jump button:active {
-  transform: translateY(1px);
 }
 
 .category-hero {
