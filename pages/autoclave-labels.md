@@ -2,7 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/autoclave-labels/](https://www.labtag.com/solutions/autoclave-labels/)
 
-![Autoclave Labels](https://cdn.labtag.com/wp-content/uploads/Autoclave-Labels-2.jpg "/media/autoclave-labels/Autoclave-Labels-2.jpg")
+![Autoclave Labels](https://cdn.labtag.com/wp-content/uploads/AUTT-94-use-2.png "/media/autoclave-labels/AUTT-94-use-2.png")
 
 LabTAG provides high-temperature autoclave-resistant labels for the identification of materials that require sterilization. These durable labels are tested for gamma irradiation, steam autoclaves, dry heat, and ethylene oxide. A high-performance adhesive bonds to metal, glass, and plastic containers, as well as Genesis™ sterilization containers used across laboratory workflows.
 

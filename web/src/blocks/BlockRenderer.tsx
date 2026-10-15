@@ -1,7 +1,14 @@
 import type { ReactNode } from 'react'
 import { slugify } from '@/content/slugify'
-import type { ContentBlock, ImageBlock, SectionBlock, VideoBlock } from '@/content/types'
+import type {
+  ContentBlock,
+  FeatureGridBlock,
+  ImageBlock,
+  SectionBlock,
+  VideoBlock,
+} from '@/content/types'
 import { BulletListBlockView } from './BulletListBlock'
+import { ContentSplitActions } from './ContentSplitActions'
 import { CtaBlockView } from './CtaBlock'
 import { FaqBlockView } from './FaqBlock'
 import { FeatureGridBlockView } from './FeatureGridBlock'
@@ -16,6 +23,8 @@ import { VideoBlockView } from './VideoBlock'
 
 type Props = {
   blocks: ContentBlock[]
+  /** Current solution page slug — used for shop/video destinations on split cards. */
+  solutionSlug?: string
 }
 
 function renderBlock(block: ContentBlock, index: number) {
@@ -94,9 +103,34 @@ function absorbFollowingCopy(
   }
 }
 
-export function BlockRenderer({ blocks }: Props) {
+function flushSplitGrid(nodes: ReactNode[], splits: ReactNode[], key: string) {
+  if (!splits.length) return
+  if (splits.length === 1) {
+    nodes.push(splits[0])
+    return
+  }
+  nodes.push(
+    <div key={key} className="content-split-grid">
+      {splits}
+    </div>,
+  )
+}
+
+/** Guide “By …” TOC rows that sit under the hero as a quick menu. */
+function isGuideFeatureGrid(block: ContentBlock): block is FeatureGridBlock {
+  return block.type === 'featureGrid' && Boolean(block.title && /^by\s+/i.test(block.title))
+}
+
+export function BlockRenderer({ blocks, solutionSlug }: Props) {
   const nodes: ReactNode[] = []
+  const pendingSplits: ReactNode[] = []
+  let splitRunKey = 'split-grid-0'
   let i = 0
+
+  const pushNonSplit = (node: ReactNode) => {
+    flushSplitGrid(nodes, pendingSplits.splice(0, pendingSplits.length), splitRunKey)
+    nodes.push(node)
+  }
 
   while (i < blocks.length) {
     const block = blocks[i]
@@ -107,13 +141,19 @@ export function BlockRenderer({ blocks }: Props) {
       if (following?.type === 'video') {
         const video = following as VideoBlock
         const absorbed = absorbFollowingCopy(blocks, i + 2, block)
-        nodes.push(
+        if (!pendingSplits.length) splitRunKey = `split-grid-${i}`
+        pendingSplits.push(
           <div key={`video-split-${i}`} id={sectionAnchor} className="content-split">
             <div className="content-split-copy">
               <SectionBlockView block={absorbed.section} withAnchor={false} />
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
+              <ContentSplitActions
+                sectionSlug={sectionAnchor}
+                sectionTitle={block.title}
+                solutionSlug={solutionSlug}
+              />
             </div>
             <VideoBlockView
               src={video.src}
@@ -132,7 +172,7 @@ export function BlockRenderer({ blocks }: Props) {
         const absorbed = absorbFollowingCopy(blocks, afterImages, block)
         const allLogos = images.every((image) => image.variant === 'logo')
         if (allLogos) {
-          nodes.push(
+          pushNonSplit(
             <div key={`logo-section-${i}`} id={sectionAnchor} className="logo-section">
               <SectionBlockView block={absorbed.section} withAnchor={false} />
               {absorbed.bullets?.type === 'bulletList' ? (
@@ -145,13 +185,19 @@ export function BlockRenderer({ blocks }: Props) {
           continue
         }
 
-        nodes.push(
+        if (!pendingSplits.length) splitRunKey = `split-grid-${i}`
+        pendingSplits.push(
           <div key={`split-${i}`} id={sectionAnchor} className="content-split">
             <div className="content-split-copy">
               <SectionBlockView block={absorbed.section} withAnchor={false} />
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
+              <ContentSplitActions
+                sectionSlug={sectionAnchor}
+                sectionTitle={block.title}
+                solutionSlug={solutionSlug}
+              />
             </div>
             <ImageSlider images={images} className="content-split-media" />
           </div>,
@@ -164,7 +210,7 @@ export function BlockRenderer({ blocks }: Props) {
       // so block-stack gap does not sit between the heading and its intro.
       const absorbed = absorbFollowingCopy(blocks, i + 1, block)
       if (absorbed.next > i + 1) {
-        nodes.push(
+        pushNonSplit(
           <div key={`section-copy-${i}`} id={sectionAnchor} className="block section-unit">
             <SectionBlockView block={absorbed.section} withAnchor={false} />
             {absorbed.bullets?.type === 'bulletList' ? (
@@ -179,14 +225,31 @@ export function BlockRenderer({ blocks }: Props) {
 
     if (block.type === 'image' && block.variant === 'gallery') {
       const { images, next } = takeImages(blocks, i)
-      nodes.push(<ImageSlider key={`gallery-${i}`} images={images} className="image-gallery" />)
+      pushNonSplit(<ImageSlider key={`gallery-${i}`} images={images} className="image-gallery" />)
       i = next
       continue
     }
 
-    nodes.push(renderBlock(block, i))
+    if (isGuideFeatureGrid(block)) {
+      const jumpNodes: ReactNode[] = []
+      const start = i
+      while (i < blocks.length && isGuideFeatureGrid(blocks[i])) {
+        jumpNodes.push(renderBlock(blocks[i], i))
+        i += 1
+      }
+      pushNonSplit(
+        <nav key={`quick-menu-${start}`} className="solution-quick-menu" aria-label="On this page">
+          {jumpNodes}
+        </nav>,
+      )
+      continue
+    }
+
+    pushNonSplit(renderBlock(block, i))
     i += 1
   }
+
+  flushSplitGrid(nodes, pendingSplits, splitRunKey)
 
   return <div className="block-stack">{nodes}</div>
 }

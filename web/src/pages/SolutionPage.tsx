@@ -3,10 +3,12 @@ import { BlockRenderer } from '@/blocks/BlockRenderer'
 import { PageHero } from '@/blocks/PageHero'
 import { pagesForBrowseAll } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
+import { useAnchorHighlight } from '@/hooks/useAnchorHighlight'
 
 export function SolutionPage() {
   const { slug = '' } = useParams()
   const page = getPage(slug)
+  useAnchorHighlight(page?.slug ?? slug)
 
   if (!page) {
     return (
@@ -25,20 +27,21 @@ export function SolutionPage() {
 
   return (
     <article className="solution-page">
-      <p className="crumb">
-        <Link to="/">Solutions</Link>
-        <span aria-hidden="true"> / </span>
-        <span>{page.title}</span>
-      </p>
-
       <PageHero
         key={page.slug}
         title={page.title}
         description={page.description}
         image={page.heroImage}
-        sources={page.sources}
+        solutionSlug={page.slug}
+        crumb={
+          <p className="crumb">
+            <Link to="/">Solutions</Link>
+            <span aria-hidden="true"> / </span>
+            <span>{page.title}</span>
+          </p>
+        }
       />
-      <BlockRenderer blocks={page.blocks} />
+      <BlockRenderer blocks={page.blocks} solutionSlug={page.slug} />
 
       <nav className="pager" aria-label="Adjacent solutions">
         {prev ? (

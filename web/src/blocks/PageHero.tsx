@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
+import { type ReactNode, useState } from 'react'
+import { LABTAG_SAMPLE_URL } from '@/content/labtagLinks'
+import { resolveSolutionShopHref, resolveVideosHref } from '@/content/splitActions'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { HeroImage } from '@/content/types'
 
@@ -7,18 +8,22 @@ type Props = {
   title: string
   description?: string[]
   image?: HeroImage
-  sources?: string[]
+  crumb?: ReactNode
+  solutionSlug?: string
 }
 
-export function PageHero({ title, description = [], image, sources = [] }: Props) {
+export function PageHero({ title, description = [], image, crumb, solutionSlug }: Props) {
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
   const [current, setCurrent] = useState(resolved?.primary ?? '')
   const [imageFailed, setImageFailed] = useState(false)
   const showImage = Boolean(image && resolved && !imageFailed)
+  const shopHref = resolveSolutionShopHref(solutionSlug)
+  const videosHref = resolveVideosHref(solutionSlug)
 
   return (
     <header className={`page-hero${showImage ? ' page-hero-split' : ''}`}>
       <div className="page-hero-copy">
+        {crumb}
         <h1>{title}</h1>
         {description.length ? (
           <div className="page-hero-description">
@@ -28,24 +33,16 @@ export function PageHero({ title, description = [], image, sources = [] }: Props
           </div>
         ) : null}
         <div className="page-hero-actions">
-          <a className="btn btn-primary" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
-            Shop labels
+          <a className="btn btn-primary" href={shopHref} target="_blank" rel="noreferrer">
+            Shop {title}
           </a>
           <a className="btn btn-secondary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
             Request a free sample
           </a>
+          <a className="page-hero-video" href={videosHref} target="_blank" rel="noreferrer">
+            Watch videos
+          </a>
         </div>
-        {sources.length ? (
-          <ul className="source-list">
-            {sources.map((url) => (
-              <li key={url}>
-                <a href={url} target="_blank" rel="noreferrer">
-                  {url.replace('https://www.labtag.com', '')}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : null}
       </div>
 
       {showImage && image ? (

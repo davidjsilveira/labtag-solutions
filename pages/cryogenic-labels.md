@@ -2,7 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/cryogenic-labels/](https://www.labtag.com/solutions/cryogenic-labels/)
 
-![Cryogenic Labels](https://cdn.labtag.com/wp-content/uploads/Cryogenic-Labels-5.jpg "/media/cryogenic-labels/Cryogenic-Labels-5.jpg")
+![Cryogenic Labels](https://cdn.labtag.com/wp-content/uploads/UC-7-use4.jpg "/media/cryogenic-labels/UC-7-use4.jpg")
 
 LabTAG® provides a variety of cryogenic labels designed to withstand extended storage in liquid or vapor phase liquid nitrogen and ultra-low temperature freezers. They are used in medical research, clinical laboratories, fertility clinics, and biobanks for labeling cryo vials and tubes, microplates, PCR tubes, and other commonly used laboratory products.
 
@@ -80,13 +80,13 @@ Cryo-StrawTAG™ low-VOC cryogenic labels have been carefully tested and approve
 
 ### Thermal-Transfer
 
-![Thermal-transfer cryogenic barcode labels](https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer-1.png "/media/cryogenic-labels/XST-251-with-printer-1.png")
+![Thermal-transfer cryogenic barcode labels](https://cdn.labtag.com/wp-content/uploads/JTTA-29-use2-Copie-e1617026541770.jpg "/media/cryogenic-labels/JTTA-29-use2-Copie-e1617026541770.jpg")
 
 Cryogenic barcode labels are waterproof and durable, able to adhere to wet surfaces and withstand a range of extreme temperatures with zero curing time, including multiple freeze-thaw cycles. Ideal for the storage of small-diameter cryo tubes and cryo vials, cardboard freezer boxes, and polypropylene cryo boxes, as well as transportation on liquid or vapor phase liquid nitrogen (−196°C), lab freezers, and dry ice.
 
 ### Direct Thermal
 
-![Direct thermal cryogenic labels](https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer-NO-RIBBON-NEEDED.png "/media/cryogenic-labels/XST-251-with-printer-NO-RIBBON-NEEDED.png")
+![Direct thermal cryogenic labels](https://cdn.labtag.com/wp-content/uploads/DTU-7-use4-wp.jpg "/media/cryogenic-labels/DTU-7-use4-wp.jpg")
 
 Cryogenic waterproof barcode labels are designed to remain intact and avoid cracking when exposed to cryogenic conditions, with a strong affinity for plastic and glass surfaces. These direct thermal labels are well suited for cryo vials, microtubes, microplates, glass tubes, freezer boxes, and plastic bags for long-term storage in liquid nitrogen (−196°C), lab freezers, and transportation on dry ice.
 
