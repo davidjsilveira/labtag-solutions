@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { RotatingAudience } from '@/components/RotatingAudience'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
-import { getCategoryForSlug } from '@/content/categories'
+import { getCategoryForSlug, solutionCategories } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
@@ -209,7 +209,7 @@ export function HomePage() {
                   {industry.also?.map((item) => (
                     <Link
                       key={item.slug}
-                      className="btn btn-ghost"
+                      className="industry-also"
                       to={solutionPath(item.slug)}
                     >
                       {item.label}
@@ -229,26 +229,34 @@ export function HomePage() {
         })}
       </section>
 
-      <section className="lander-related" aria-label="Related cryogenic paths">
-        <h2>Also useful in cryo workflows</h2>
-        <ul className="related-chips">
-          {[
-            'snappeel-labels',
-            'rfid-labels-tags',
-            'custom-laboratory-labels',
-            'label-printing-solutions',
-            'histology-labels',
-            'autoclave-labels',
-          ].map((slug) => {
-            const page = getPage(slug)
-            if (!page) return null
-            return (
-              <li key={slug}>
-                <Link to={solutionPath(slug)}>{page.title}</Link>
-              </li>
-            )
-          })}
-        </ul>
+      <section className="lander-index" aria-label="All solution pages">
+        <header className="lander-index-head">
+          <h2>All solution pages</h2>
+          <p className="lander-section-lede">
+            Every guide on this site, grouped the same way as the navigation — use cases,
+            features, and services.
+          </p>
+        </header>
+        <div className="lander-index-grid">
+          {solutionCategories.map((category) => (
+            <div key={category.id} className="lander-index-col">
+              <Link to={`/solutions/${category.id}`} className="lander-index-heading">
+                {category.label}
+              </Link>
+              <ul>
+                {category.slugs.map((slug) => {
+                  const page = getPage(slug)
+                  if (!page) return null
+                  return (
+                    <li key={slug}>
+                      <Link to={solutionPath(slug)}>{page.title}</Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
       </section>
 
       <aside className="lander-cta block-cta">
