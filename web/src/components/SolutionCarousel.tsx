@@ -72,11 +72,77 @@ export function SolutionCarousel({ categoryId, heading, lede }: Props) {
       updateArrows()
     }
 
+    /** Horizontal wheel / trackpad — native overflow is hidden to kill scrollbars. */
+    const onWheel = (event: WheelEvent) => {
+      const delta =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY
+      if (!delta) return
+      const max = track.scrollWidth - track.clientWidth
+      if (max <= 0) return
+      const next = Math.min(max, Math.max(0, track.scrollLeft + delta))
+      if (next === track.scrollLeft) return
+      event.preventDefault()
+      track.scrollLeft = next
+      updateArrows()
+    }
+
+    let dragOriginX = 0
+    let dragScrollLeft = 0
+    let dragging = false
+    let moved = false
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return
+      dragging = true
+      moved = false
+      dragOriginX = event.clientX
+      dragScrollLeft = track.scrollLeft
+      track.classList.add('is-dragging')
+      track.setPointerCapture(event.pointerId)
+    }
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (!dragging) return
+      const dx = event.clientX - dragOriginX
+      if (Math.abs(dx) > 3) moved = true
+      track.scrollLeft = dragScrollLeft - dx
+      updateArrows()
+    }
+
+    const endDrag = (event: PointerEvent) => {
+      if (!dragging) return
+      dragging = false
+      track.classList.remove('is-dragging')
+      if (track.hasPointerCapture(event.pointerId)) {
+        track.releasePointerCapture(event.pointerId)
+      }
+    }
+
+    /** Ignore click-through after a drag so cards don’t navigate mid-swipe. */
+    const onClickCapture = (event: MouseEvent) => {
+      if (!moved) return
+      event.preventDefault()
+      event.stopPropagation()
+      moved = false
+    }
+
     track.addEventListener('scroll', onScroll, { passive: true })
+    track.addEventListener('wheel', onWheel, { passive: false })
+    track.addEventListener('pointerdown', onPointerDown)
+    track.addEventListener('pointermove', onPointerMove)
+    track.addEventListener('pointerup', endDrag)
+    track.addEventListener('pointercancel', endDrag)
+    track.addEventListener('click', onClickCapture, true)
     window.addEventListener('resize', onResize)
     return () => {
       window.cancelAnimationFrame(frame)
       track.removeEventListener('scroll', onScroll)
+      track.removeEventListener('wheel', onWheel)
+      track.removeEventListener('pointerdown', onPointerDown)
+      track.removeEventListener('pointermove', onPointerMove)
+      track.removeEventListener('pointerup', endDrag)
+      track.removeEventListener('pointercancel', endDrag)
+      track.removeEventListener('click', onClickCapture, true)
       window.removeEventListener('resize', onResize)
     }
   }, [filter, categoryId, pages.length])

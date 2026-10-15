@@ -523,6 +523,9 @@ main {
  * Pad by the measured content inset so card 1 starts on the max-width
  * left edge. The full-bleed track lets cards peek in the gutters while
  * scrolling; arrows sit on the viewport edges.
+ *
+ * overflow-x: hidden — no native scrollport, so no scrollbar (Cursor preview
+ * forces thin overlay scrollbars with !important). Wheel/touch scroll via JS.
  */
 .solution-carousel {
   --carousel-card: clamp(15rem, 22vw, 18.5rem);
@@ -536,23 +539,19 @@ main {
   margin: 0;
   padding: 0 var(--carousel-page-gutter) var(--space-md);
   list-style: none;
-  overflow-x: auto;
-  overflow-y: visible;
+  overflow-x: hidden;
+  overflow-y: hidden;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--carousel-page-gutter);
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-rule-strong) transparent;
-  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  cursor: grab;
 }
 
-.solution-carousel::-webkit-scrollbar {
-  height: 0.4rem;
-}
-
-.solution-carousel::-webkit-scrollbar-thumb {
-  background: var(--color-rule-strong);
-  border-radius: var(--radius-sm);
+.solution-carousel.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
 }
 
 .solution-carousel > li {
