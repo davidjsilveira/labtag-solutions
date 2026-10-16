@@ -21,6 +21,19 @@ SnapPEEL joins a circular cap label and rectangular side label so dual labeling 
 - **DTU** — SnapPEEL available in LabTAG’s DTU label material
 - **LCS** — SnapPEEL available in LCS material, including for frozen vials
 
+## How SnapPEEL™ Works
+
+Peel once, apply twice:
+
+1. **Peel** — Peel the joined label off the liner
+![SnapPEEL peel joined label from liner](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
+2. **Apply Cap** — Apply the circle label to the vial cap
+![SnapPEEL apply circle to vial cap](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step2.jpg "/media/snappeel-labels/SnapPEEL-Step2.jpg")
+3. **Snap** — Snap the labels apart
+![SnapPEEL snap labels apart](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step3.jpg "/media/snappeel-labels/SnapPEEL-Step3.jpg")
+4. **Apply Side** — Apply the rectangle label to the vial side
+![SnapPEEL apply rectangle to vial side](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step4.jpg "/media/snappeel-labels/SnapPEEL-Step4.jpg")
+
 ## SnapPEEL by Benefit
 
 ### Precision
@@ -66,19 +79,6 @@ SnapPEEL™ is available in LabTAG’s DTU label material for dual cap-and-side 
 ![LCS SnapPEEL labels for frozen vials](https://cdn.labtag.com/wp-content/uploads/LCS-9-LaserFormatCryoSTUCKv3.jpg "/media/cryostuck/LCS-9-LaserFormatCryoSTUCKv3.jpg")
 
 SnapPEEL™ is available in LCS material, including formats suited to frozen vials—so dual labeling stays practical even when samples must remain identified through harsh cold-chain conditions.
-
-## How SnapPEEL™ Works
-
-Peel once, apply twice:
-
-1. **Peel** — Peel the joined label off the liner
-![SnapPEEL peel joined label from liner](https://cdn.labtag.com/wp-content/uploads/2024/08/SnapPEEL-Step1.jpg "/media/snappeel-labels/SnapPEEL-Step1.jpg")
-2. **Apply Cap** — Apply the circle label to the vial cap
-![SnapPEEL apply circle to vial cap](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step2.jpg "/media/snappeel-labels/SnapPEEL-Step2.jpg")
-3. **Snap** — Snap the labels apart
-![SnapPEEL snap labels apart](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step3.jpg "/media/snappeel-labels/SnapPEEL-Step3.jpg")
-4. **Apply Side** — Apply the rectangle label to the vial side
-![SnapPEEL apply rectangle to vial side](https://cdn.labtag.com/wp-content/uploads/SnapPEEL-Step4.jpg "/media/snappeel-labels/SnapPEEL-Step4.jpg")
 
 ## Need Expert Help?
 

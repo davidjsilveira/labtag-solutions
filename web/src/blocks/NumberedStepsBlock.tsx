@@ -27,16 +27,20 @@ export function NumberedStepsBlockView({ block }: { block: NumberedStepsBlock })
   const hasImages = block.steps.some((step) => step.image)
 
   return (
-    <section className={`block block-steps${hasImages ? ' block-steps-imaged' : ''}`}>
-      {block.title ? <h2>{block.title}</h2> : null}
-      {block.intro ? <p className="block-intro">{block.intro}</p> : null}
+    <section
+      className={`block block-steps${hasImages ? ' block-steps-imaged block-steps-spotlight' : ''}`}
+    >
+      {block.title ? <h2 className="steps-heading">{block.title}</h2> : null}
+      {block.intro ? <p className="block-intro steps-intro">{block.intro}</p> : null}
       <ol className={`step-list${hasImages ? ' step-list-imaged' : ''}`}>
         {block.steps.map((step, index) => (
           <li key={`${step.title}-${index}`} className={step.image ? 'step-with-image' : undefined}>
             {step.image ? <StepImage image={step.image} /> : null}
             <div className="step-copy">
-              <span className="step-index">{index + 1}</span>
-              <div>
+              <span className="step-index" aria-hidden="true">
+                {index + 1}
+              </span>
+              <div className="step-text">
                 <strong>{step.title}</strong>
                 <p>{step.body}</p>
               </div>

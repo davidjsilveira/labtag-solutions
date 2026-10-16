@@ -477,6 +477,36 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
         }
       }
 
+      // Heading + optional one-line intro + numbered steps → single steps block.
+      {
+        let j = i
+        while (j < lines.length && !lines[j].trim()) j += 1
+        let intro: string | undefined
+        if (
+          j < lines.length &&
+          !isHeading(lines[j]) &&
+          !lines[j].startsWith('- ') &&
+          !STEP_LINE.test(lines[j]) &&
+          !IMAGE_LINE.test(lines[j]) &&
+          !lines[j].startsWith('|')
+        ) {
+          intro = cleanInline(lines[j])
+          j += 1
+          while (j < lines.length && !lines[j].trim()) j += 1
+        }
+        const steps = parseNumberedSteps(lines, j)
+        if (steps) {
+          blocks.push({
+            type: 'numberedSteps',
+            title: titleText,
+            intro,
+            steps: steps.steps,
+          })
+          i = steps.next
+          continue
+        }
+      }
+
       // Emit heading now so following images appear under it in the viewer.
       // Keep a mutable handle so intro copy can attach to this same section
       // (avoids a huge block-stack gap between a title-only heading and its body).
