@@ -9,19 +9,47 @@ function scrollTargetIntoView(el: Element) {
   el.scrollIntoView({ block: 'start', behavior: 'auto' })
 }
 
+function readScrollMarginPx(): number {
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue('--anchor-scroll-margin')
+    .trim()
+  const parsed = Number.parseFloat(raw)
+  return Number.isFinite(parsed) ? parsed : 96
+}
+
+function jumpTargetIds(): string[] {
+  const ids: string[] = []
+  const seen = new Set<string>()
+  document
+    .querySelectorAll<HTMLAnchorElement>('.solution-quick-menu a.feature-jump-link[href^="#"]')
+    .forEach((link) => {
+      const id = decodeURIComponent((link.getAttribute('href') || '').replace(/^#/, ''))
+      if (!id || seen.has(id)) return
+      seen.add(id)
+      ids.push(id)
+    })
+  return ids
+}
+
 /**
  * Highlight the hash target until it scrolls out of view.
  * Clears the URL hash when the highlight is dismissed so :target does not linger.
  * Marks the matching quick-menu jump via `html[data-active-jump]` + a dynamic
  * style rule so dimming/active styles survive React remounts of the menu.
+ * Also scroll-spies jump targets so the sticky bar always shows the section in view.
  */
 export function useAnchorHighlight(pageKey: string) {
   useEffect(() => {
-    let observer: IntersectionObserver | null = null
-    let active: Element | null = null
+    let hashObserver: IntersectionObserver | null = null
+    let spyObserver: IntersectionObserver | null = null
+    let hashTarget: Element | null = null
     let hasBeenVisible = false
+    let activeJumpId: string | null = null
+    let spyLockedUntil = 0
+    const visibleIds = new Set<string>()
 
     const clearJump = () => {
+      activeJumpId = null
       delete document.documentElement.dataset.activeJump
       document.getElementById(JUMP_STYLE_ID)?.remove()
       document
@@ -32,19 +60,23 @@ export function useAnchorHighlight(pageKey: string) {
         .forEach((link) => link.classList.remove('is-jump-active'))
     }
 
-    const clear = () => {
-      active?.classList.remove('is-anchor-highlight')
-      active = null
+    const clearHashHighlight = () => {
+      hashTarget?.classList.remove('is-anchor-highlight')
+      hashTarget = null
       hasBeenVisible = false
-      observer?.disconnect()
-      observer = null
-      clearJump()
+      hashObserver?.disconnect()
+      hashObserver = null
       if (window.location.hash) {
         history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
       }
     }
 
     const activateJump = (id: string) => {
+      if (activeJumpId === id) {
+        // Re-apply class/attrs in case the menu remounted.
+      } else {
+        activeJumpId = id
+      }
       document.documentElement.dataset.activeJump = id
 
       let style = document.getElementById(JUMP_STYLE_ID) as HTMLStyleElement | null
@@ -75,50 +107,114 @@ export function useAnchorHighlight(pageKey: string) {
       })
     }
 
-    const activate = (el: Element | null, id: string, scroll = false) => {
+    const pickSpySection = () => {
+      if (performance.now() < spyLockedUntil) return
+
+      const margin = readScrollMarginPx()
+      const probe = margin + 8
+      const ids = jumpTargetIds()
+      if (!ids.length) {
+        if (activeJumpId) clearJump()
+        return
+      }
+
+      let current: string | null = null
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        const top = el.getBoundingClientRect().top
+        if (top <= probe) current = id
+      }
+
+      if (!current) {
+        // Above the first section — prefer a visible target, else the first link.
+        current =
+          ids.find((id) => visibleIds.has(id)) ??
+          ids.find((id) => document.getElementById(id)) ??
+          null
+      }
+
+      if (current) activateJump(current)
+    }
+
+    const bindSpy = () => {
+      spyObserver?.disconnect()
+      visibleIds.clear()
+      const ids = jumpTargetIds()
+      if (!ids.length) return
+
+      const margin = readScrollMarginPx()
+      spyObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            const id = entry.target.id
+            if (!id) continue
+            if (entry.isIntersecting) visibleIds.add(id)
+            else visibleIds.delete(id)
+          }
+          pickSpySection()
+        },
+        {
+          // Band under sticky chrome where the “current” section lives.
+          rootMargin: `-${Math.round(margin)}px 0px -45% 0px`,
+          threshold: [0, 0.05, 0.2, 0.5, 1],
+        },
+      )
+
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (el) spyObserver.observe(el)
+      }
+      pickSpySection()
+    }
+
+    const activateHashTarget = (el: Element | null, id: string, scroll = false) => {
       if (!el) return
-      if (el === active) {
+      if (el === hashTarget) {
         activateJump(id)
         if (scroll) scrollTargetIntoView(el)
         return
       }
 
-      active?.classList.remove('is-anchor-highlight')
-      observer?.disconnect()
+      hashTarget?.classList.remove('is-anchor-highlight')
+      hashObserver?.disconnect()
 
-      active = el
+      hashTarget = el
       hasBeenVisible = false
       el.classList.add('is-anchor-highlight')
       activateJump(id)
-      if (scroll) scrollTargetIntoView(el)
+      if (scroll) {
+        spyLockedUntil = performance.now() + 700
+        scrollTargetIntoView(el)
+      }
       requestAnimationFrame(() => {
-        if (active === el) activateJump(id)
+        if (hashTarget === el) activateJump(id)
       })
 
-      observer = new IntersectionObserver(
+      hashObserver = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
             hasBeenVisible = true
             return
           }
-          if (hasBeenVisible) clear()
+          if (hasBeenVisible) clearHashHighlight()
         },
         { threshold: 0, rootMargin: '-12% 0px -12% 0px' },
       )
-      observer.observe(el)
+      hashObserver.observe(el)
     }
 
     const syncFromHash = (scroll = false) => {
       const id = decodeURIComponent(window.location.hash.replace(/^#/, ''))
       if (!id) {
-        if (active) clear()
+        if (hashTarget) clearHashHighlight()
+        pickSpySection()
         return
       }
-      activate(document.getElementById(id), id, scroll)
+      activateHashTarget(document.getElementById(id), id, scroll)
     }
 
     const onHashChange = () => {
-      // Native hash scroll often uses a stale fixed margin; correct after paint.
       requestAnimationFrame(() => syncFromHash(true))
     }
 
@@ -131,18 +227,35 @@ export function useAnchorHighlight(pageKey: string) {
       if (!link) return
       const id = decodeURIComponent((link.getAttribute('href') || '').replace(/^#/, ''))
       if (!id) return
-      requestAnimationFrame(() => activate(document.getElementById(id), id, true))
+      spyLockedUntil = performance.now() + 700
+      activateJump(id)
+      requestAnimationFrame(() => activateHashTarget(document.getElementById(id), id, true))
     }
 
-    requestAnimationFrame(() => requestAnimationFrame(() => syncFromHash(false)))
+    const onScroll = () => {
+      pickSpySection()
+    }
+
+    const boot = () => {
+      syncAnchorScrollMargin()
+      bindSpy()
+      syncFromHash(false)
+    }
+
+    requestAnimationFrame(() => requestAnimationFrame(boot))
     window.addEventListener('hashchange', onHashChange)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', bindSpy)
     document.addEventListener('click', onJumpClick)
 
     return () => {
       window.removeEventListener('hashchange', onHashChange)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', bindSpy)
       document.removeEventListener('click', onJumpClick)
-      observer?.disconnect()
-      active?.classList.remove('is-anchor-highlight')
+      hashObserver?.disconnect()
+      spyObserver?.disconnect()
+      hashTarget?.classList.remove('is-anchor-highlight')
       clearJump()
     }
   }, [pageKey])

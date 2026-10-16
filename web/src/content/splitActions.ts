@@ -119,6 +119,16 @@ const VIDEO_FEATURE_BY_SECTION: Record<string, string> = {
   'cryostuck-tape': 'frozen-containers',
   gatorcut: 'gatorcut',
   'gatorcut-technology': 'gatorcut',
+  'freezertape-tg': 'gatorcut',
+  'freezertape-tdf': 'gatorcut',
+  frozenstuck: 'gatorcut',
+  nitrotape: 'gatorcut',
+  'cryostuck-tfng': 'gatorcut',
+  'cryostuck-txs': 'gatorcut',
+  'cryostuck-txc': 'gatorcut',
+  ubicling: 'gatorcut',
+  'clear-ubicling': 'gatorcut',
+  steritape: 'gatorcut',
 }
 
 /**
@@ -345,6 +355,15 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
   pikatag: { label: 'PikaTAG', query: 'PikaTAG' },
   'rfid-cryo-wraptag': { label: 'RFID Cryo-WrapTAG', query: 'RFID Cryo-WrapTAG' },
   'gatorcut-technology': { label: 'GatorCUT', query: 'GatorCUT' },
+  'freezertape-tg': { label: 'FreezerTAPE TG', query: 'FreezerTAPE TG' },
+  'freezertape-tdf': { label: 'FreezerTAPE TDF', query: 'FreezerTAPE TDF' },
+  frozenstuck: { label: 'FrozenSTUCK', query: 'FrozenSTUCK' },
+  nitrotape: { label: 'NitroTAPE', query: 'NitroTAPE' },
+  'cryostuck-tfng': { label: 'CryoSTUCK TFNG', query: 'CryoSTUCK TFNG tape' },
+  'cryostuck-txs': { label: 'CryoSTUCK TXS', query: 'CryoSTUCK TXS tape' },
+  'cryostuck-txc': { label: 'CryoSTUCK TXC', query: 'CryoSTUCK TXC tape' },
+  'clear-ubicling': { label: 'Clear UbiCling', query: 'Clear UbiCling' },
+  steritape: { label: 'SteriTAPE', query: 'SteriTAPE GatorCUT' },
   'print-solutions': { label: 'Printers', query: 'laboratory label printers' },
 }
 
