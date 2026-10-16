@@ -26,6 +26,8 @@ type Props = {
   blocks: ContentBlock[]
   /** Current solution page slug — used for shop/video destinations on split cards. */
   solutionSlug?: string
+  /** Solution page title — shown on the right of the sticky jump menu. */
+  solutionTitle?: string
 }
 
 function renderBlock(block: ContentBlock, index: number) {
@@ -122,7 +124,7 @@ function isGuideFeatureGrid(block: ContentBlock): block is FeatureGridBlock {
   return block.type === 'featureGrid' && Boolean(block.title && /^by\s+/i.test(block.title))
 }
 
-export function BlockRenderer({ blocks, solutionSlug }: Props) {
+export function BlockRenderer({ blocks, solutionSlug, solutionTitle }: Props) {
   const nodes: ReactNode[] = []
   const pendingSplits: ReactNode[] = []
   let splitRunKey = 'split-grid-0'
@@ -239,7 +241,9 @@ export function BlockRenderer({ blocks, solutionSlug }: Props) {
         i += 1
       }
       pushNonSplit(
-        <SolutionQuickMenu key={`quick-menu-${start}`}>{jumpNodes}</SolutionQuickMenu>,
+        <SolutionQuickMenu key={`quick-menu-${start}`} title={solutionTitle}>
+          {jumpNodes}
+        </SolutionQuickMenu>,
       )
       continue
     }

@@ -365,6 +365,15 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
   'clear-ubicling': { label: 'Clear UbiCling', query: 'Clear UbiCling' },
   steritape: { label: 'SteriTAPE', query: 'SteriTAPE GatorCUT' },
   'print-solutions': { label: 'Printers', query: 'laboratory label printers' },
+  'print-modes': { label: 'Cody-3', query: 'Cody-3 printer' },
+  resolution: { label: 'Cody-3', query: 'Cody-3 thermal printer' },
+  'media-width': { label: 'Cody-3', query: 'Cody-3 labels' },
+  software: { label: 'BarTender', query: 'BarTender Cody-3' },
+  connectivity: { label: 'Cody-3', query: 'Cody-3 printer' },
+  overview: { label: 'Cody-3', query: 'Cody-3 printer' },
+  'what-s-in-the-box': { label: 'Cody-3', query: 'Cody-3 printer kit' },
+  'tech-specs': { label: 'Cody-3 Specs', query: 'Cody-3 printer' },
+  downloads: { label: 'Cody-3 Downloads', query: 'Cody-3 printer' },
 }
 
 const CRYO_SOLUTION_SLUGS = new Set([

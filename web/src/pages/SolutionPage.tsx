@@ -41,7 +41,11 @@ export function SolutionPage() {
           </p>
         }
       />
-      <BlockRenderer blocks={page.blocks} solutionSlug={page.slug} />
+      <BlockRenderer
+        blocks={page.blocks}
+        solutionSlug={page.slug}
+        solutionTitle={page.title}
+      />
 
       <nav className="pager" aria-label="Adjacent solutions">
         {prev ? (

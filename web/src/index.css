@@ -1553,8 +1553,11 @@ main {
   top: var(--quick-menu-top);
   z-index: 20;
   display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-md);
   justify-items: stretch;
-  gap: 0.15rem;
+  gap: 0.15rem var(--space-md);
   width: auto;
   margin: 0;
   padding: var(--space-sm) 0;
@@ -1564,6 +1567,30 @@ main {
   box-shadow: 0 14px 28px -8px color-mix(in srgb, var(--labtag-ga-black) 28%, transparent);
   transition: transform var(--dur-short) var(--ease-out);
   will-change: transform;
+}
+
+.solution-quick-menu-jumps {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.solution-quick-menu-title {
+  margin: 0;
+  max-width: min(16rem, 28vw);
+  justify-self: start;
+  align-self: center;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  text-align: left;
+  color: color-mix(in srgb, var(--labtag-pure-white) 42%, transparent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .solution-quick-menu.is-scroll-hidden {
@@ -2066,7 +2093,10 @@ a.bullet-chip:hover {
 
 .solution-quick-menu .feature-jump-label,
 .solution-quick-menu .block .feature-jump-label {
-  color: color-mix(in srgb, var(--labtag-pure-white) 55%, transparent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--labtag-pure-white);
 }
 
 .feature-jump {
@@ -2157,6 +2187,14 @@ html[data-active-jump] .solution-quick-menu .feature-jump-link.is-jump-active,
 }
 
 @media (max-width: 720px) {
+  .solution-quick-menu {
+    grid-template-columns: 1fr;
+  }
+
+  .solution-quick-menu-title {
+    display: none;
+  }
+
   .block-features-jump {
     grid-template-columns: 1fr;
     align-items: start;

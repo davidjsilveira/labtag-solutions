@@ -1,31 +1,73 @@
-# GA International Cody-3 Printer
+# GA International Cody-3™ Printer
 
 Source: [https://www.labtag.com/solutions/ga-international-cody-3-printer/](https://www.labtag.com/solutions/ga-international-cody-3-printer/)
 
-![GA International Cody-3 Printer](https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg "/media/ga-international-cody-3-printer/Cody-3-use3-1.jpg")
+![GA International Cody-3™ thermal printer](https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg "/media/ga-international-cody-3-printer/Cody-3-use3-1.jpg")
 
 The Cody-3™ desktop thermal printer prints high-quality 300 dpi text, barcodes, and graphics on many label types and configurations. It can print directly on thermal media or by thermal-transfer mode using an ink ribbon. Professional-looking labels can be achieved for laboratory and industrial identification workflows on the benchtop.
 
 Included design software and multiple connectivity options help you create and print labels quickly across common thermal and thermal-transfer media formats for benchtop label printing.
 
-### Key Capabilities
+### By Capability
 
 - **Print Modes** — Direct thermal or thermal-transfer with an ink ribbon
-- **Resolution** — 300 dpi print resolution
+- **Resolution** — 300 dpi print resolution for text, barcodes, and graphics
 - **Media Width** — Accepts label rolls up to 4.64″ wide
 - **Software** — Design professional labels with the provided BarTender software
 - **Connectivity** — USB, serial, and ethernet included
 
-## Overview
+### By Resource
 
-![Cody-3 thermal printer in use](https://cdn.labtag.com/wp-content/uploads/Cody-3-use9.jpg "/media/ga-international-cody-3-printer/Cody-3-use9.jpg")
+- **Overview** — Benchtop thermal printing for lab and industrial IDs
+- **What's in the Box** — Printer, cables, ribbon hardware, and software
+- **Tech Specs** — Print method, speed, media, and ribbon specifications
+- **Downloads** — User manual, quick set-up guide, and driver instructions
+
+## Cody-3™ by Capability
+
+### Print Modes
+
+![Cody-3 thermal printer printing labels](https://cdn.labtag.com/wp-content/uploads/Cody-3-use9.jpg "/media/ga-international-cody-3-printer/Cody-3-use9.jpg")
+
+Print in direct thermal mode on thermal media or in thermal-transfer mode with an ink ribbon. Switch modes to match cryogenic, chemical-resistant, and general-use LabTAG label stocks without changing printers.
+
+### Resolution
+
 ![Cody-3 printer close-up](https://cdn.labtag.com/wp-content/uploads/Cody-3-use2-3.jpg "/media/ga-international-cody-3-printer/Cody-3-use2-3.jpg")
 
-The Cody-3 desktop thermal printer is capable of printing high-quality 300 dpi text, barcodes, and graphics on many label types and configurations. It can print directly on thermal media or by thermal-transfer mode using an ink ribbon. Professional-looking labels can be achieved by following the easy-to-use software (included). Multiple connectivity options are also included.
+300 dpi print resolution delivers crisp text, barcodes, and graphics suited to laboratory sample IDs, inventory labels, and industrial identification on the benchtop.
 
-## What’s in the Box
+### Media Width
 
-- Cody-3 Thermal-Transfer / Direct Thermal Printer
+![Cody-3 accepting wide label media](https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg "/media/ga-international-cody-3-printer/Cody-3-use3-1.jpg")
+
+Accepts label rolls from 1″ to 4.64″ wide (25.4–118 mm), covering continuous, die-cut/gap, black-marked, notch, and fanfold media for vials, tubes, boxes, and larger containers.
+
+### Software
+
+![BarTender and printer driver installation](https://cdn.labtag.com/wp-content/uploads/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg "/media/ga-international-cody-3-printer/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg")
+
+Design professional labels with the included BarTender software. Create text, barcodes, and graphics, then print from the Cody-3™ across supported thermal and thermal-transfer formats.
+
+### Connectivity
+
+![Cody-3 desktop thermal printer](https://cdn.labtag.com/wp-content/uploads/Cody-3-use9.jpg "/media/ga-international-cody-3-printer/Cody-3-use9.jpg")
+
+USB, serial, and ethernet interfaces are included so the Cody-3™ connects to common lab PCs and networked workstations without add-on adapters.
+
+## Cody-3™ by Resource
+
+### Overview
+
+![Cody-3 thermal printer in lab use](https://cdn.labtag.com/wp-content/uploads/Cody-3-use9.jpg "/media/ga-international-cody-3-printer/Cody-3-use9.jpg")
+
+The Cody-3™ desktop thermal printer prints high-quality 300 dpi text, barcodes, and graphics on many label types and configurations. Print directly on thermal media or by thermal-transfer mode using an ink ribbon. Easy-to-use software and multiple connectivity options support professional-looking labels for laboratory and industrial workflows.
+
+### What's in the Box
+
+![Cody-3 printer package contents](https://cdn.labtag.com/wp-content/uploads/Cody-3-use2-3.jpg "/media/ga-international-cody-3-printer/Cody-3-use2-3.jpg")
+
+- Cody-3™ Thermal-Transfer / Direct Thermal Printer
 - Power cord*
 - Power adapter
 - USB cable
@@ -35,7 +77,9 @@ The Cody-3 desktop thermal printer is capable of printing high-quality 300 dpi t
 
 \*Printer comes with a North American power cord and adapter (European or UK power cord is included accordingly). Other country-specific power cords may be purchased locally and separately.
 
-## Technical Specifications
+### Tech Specs
+
+![Cody-3 printer specifications](https://cdn.labtag.com/wp-content/uploads/2022/03/Cody-3-use3-1.jpg "/media/ga-international-cody-3-printer/Cody-3-use3-1.jpg")
 
 | Spec | Detail |
 | --- | --- |
@@ -61,7 +105,7 @@ The Cody-3 desktop thermal printer is capable of printing high-quality 300 dpi t
 ![Cody-3 user manual](https://cdn.labtag.com/wp-content/uploads/Cody3-UserManual-v2.jpg "/media/ga-international-cody-3-printer/Cody3-UserManual-v2.jpg")
 ![Cody-3 quick set-up guide](https://cdn.labtag.com/wp-content/uploads/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg "/media/ga-international-cody-3-printer/Labtag-Cody-Quick-Set-up-Guide-EN052022-May-04-20222.jpg")
 
-User Manual, Quick Set-Up Guide, and Driver Installation Instructions are provided with the printer.
+User Manual, Quick Set-Up Guide, and Driver Installation Instructions are provided with the printer on the included flash drive.
 
 ## FAQ
 
@@ -70,8 +114,6 @@ User Manual, Quick Set-Up Guide, and Driver Installation Instructions are provid
 No, an ink ribbon is only required for printing thermal-transfer labels (e.g., JTTA, AUTT, or FTT). Please contact our technical support team with any questions you may have.
 
 ### Can I print direct thermal labels without using an ink ribbon?
-
-![BarTender and printer driver installation](https://cdn.labtag.com/wp-content/uploads/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg "/media/ga-international-cody-3-printer/Bartender-and-Printer-Driver-Installation-Instructions-V2.005MAY2022-May-05-2022-1.jpg")
 
 Yes, this printer can print both in thermal-transfer mode and direct thermal mode. No ink ribbon is required when using direct thermal labels, allowing for an ink-free printing process. Please contact our technical support team for recommendations or if you have any questions.
 
