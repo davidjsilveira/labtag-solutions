@@ -4,33 +4,35 @@ Source: [https://www.labtag.com/solutions/biobanking-labels/](https://www.labtag
 
 ![Biobanking Labels](https://cdn.labtag.com/wp-content/uploads/2021/02/Biobank-Tile-1.jpg "/media/biobanking-labels/Biobank-Tile-1.jpg")
 
-Biobanks and biorepositories trust LabTAG to provide accurate and durable biospecimen identification solutions. As a leader in cryogenic labeling, LabTAG supports the biobanking and biopreservation process with cryogenic labels, tapes, and expert guidance. Our specimen labels help protect long-term sample integrity and integrate with tracking systems throughout the biobanking lifecycle.
+LabTAG® provides accurate and durable biospecimen identification for biobanks and biorepositories. As a leader in cryogenic labeling, LabTAG supports the biobanking and biopreservation process with cryogenic labels, tapes, and expert guidance that protect long-term sample integrity and integrate with tracking systems throughout the biobanking lifecycle.
 
-We offer cryogenic labels and tapes for prolonged storage in ultra-low freezers and liquid nitrogen, with formats suited to cryo containers and biobank LIMS systems.
+Available for thermal-transfer, laser, and direct thermal printers, with CryoSTUCK® frozen-surface options, RFID, tamper-evident seals, and specialty cryo tapes suited to cryo containers and biobank LIMS workflows.
 
-### By Container
+### By Product
 
-- **Cryo Tubes & Vials** — NitroTAG® and Cryo-LazrTAG™ for small-diameter tubes, vials, and boxes
-- **Frozen Surfaces** — CryoSTUCK® labels that adhere to already frozen vials at -80°C
-- **IVF Straws** — Cryo-StrawTAG™ for standard and high-security straws and vitrification devices
-- **Metal Racks & Canes** — MetaliTAG™ for stainless-steel boxes, sleeves, and goblet canes
-- **2D Storage Tubes** — PinTAG™ for side-and-bottom identification on slim automated tubes
+- **NitroTAG®** — Thermal-transfer labels for small-diameter cryo tubes, vials, and freezer boxes
+- **Cryo-LazrTAG™** — Sheet-format laser labels for cryo vials, microtubes, and microplates
+- **CryoSTUCK®** — Labels that adhere to already frozen vials at −80°C
+- **Direct Thermal CryoSTUCK®** — Ribbon-free frozen-surface labels with SimPEEL™
+- **Cryo-StrawTAG™** — Low-VOC labels for IVF straws and vitrification devices
+- **MetaliTAG™** — Thermal-transfer labels for metal racks, sleeves, and goblet canes
+- **PinTAG™** — Side-and-bottom labels for slim 2D automated storage tubes
+- **Cryo C-kurTAG™** — Tamper-evident seals for microtubes, cryo vials, and cryo boxes
 
-### By Feature
+### By Solution
 
-- **Cryogenic** — Withstands liquid nitrogen, vapor phase LN2, and ultra-low freezers
-- **Laser Printable** — Sheet-format Cryo-LazrTAG™ for desktop laser printers
-- **Tamper-Evident** — Cryo C-kurTAG™ seals that tear upon removal attempts
-- **Automation Ready** — Labels compatible with liquid handlers and print-and-apply systems
-- **RFID & LIMS** — Encoded and barcode options for biobank tracking systems
+- **Cryogenic Specialty Tapes** — Hand-cuttable cryo tapes, including GatorCUT™ options
+- **RFID Solutions** — UHF labels scannable in freezers and LN₂ without line-of-sight
+- **Printing Solutions** — Printers, ribbons, kits, and software for biobank workflows
+- **LIMS Integration** — Barcode and encoded labels that connect to sample management systems
 
-## Recommended Labels for Biobanking
+## Biobanking Labels by Product
 
 ### NitroTAG®
 
 ![NitroTAG cryogenic biobank labels](https://cdn.labtag.com/wp-content/uploads/JTTA-29-use2-Copie-e1617026541770.jpg "/media/biobanking-labels/JTTA-29-use2-Copie-e1617026541770.jpg")
 
-Cryogenic thermal-transfer labels designed for small diameter cryo tubes, vials, and freezer boxes used for biobanking and biopreservation. Resistant to spraying with ethanol and other alcohols, these cryo labels will also withstand multiple freeze-thaw cycles and high humidity environments.
+Cryogenic thermal-transfer labels designed for small-diameter cryo tubes, vials, and freezer boxes used for biobanking and biopreservation. Resistant to spraying with ethanol and other alcohols, these cryo labels will also withstand multiple freeze-thaw cycles and high-humidity environments.
 
 ### Cryo-LazrTAG™
 
@@ -42,31 +44,31 @@ Our laser printable labels identify cryo vials, microtubes, and microplates. The
 
 ![CryoSTUCK frozen-surface labels](https://cdn.labtag.com/wp-content/uploads/AEA-5-use-e1617037057507.jpg "/media/biobanking-labels/AEA-5-use-e1617037057507.jpg")
 
-CryoSTUCK thermal-transfer and laser cryogenic labels will adhere to already frozen cryo vials at -80°C, prior to storage in liquid nitrogen. Blackout and transparent CryoSTUCK labels are also available for biobanks relabeling legacy vials and for over-labeling.
+CryoSTUCK® thermal-transfer and laser cryogenic labels adhere to already frozen cryo vials at −80°C, prior to storage in liquid nitrogen. Blackout and transparent CryoSTUCK® labels are also available for biobanks relabeling legacy vials and for over-labeling.
 
 ### Direct Thermal CryoSTUCK®
 
 ![Direct Thermal CryoSTUCK labels with SimPEEL](https://cdn.labtag.com/wp-content/uploads/SPDTU-29-use4-v02.jpg "/media/biobanking-labels/SPDTU-29-use4-v02.jpg")
 
-Cryogenic direct thermal labels for frozen surfaces featuring our novel SimPEEL technology, making peeling the labels off their liners quick and easy, and simplifying label application. These cryo labels offer excellent resistance to common lab chemicals.
+Cryogenic direct thermal labels for frozen surfaces featuring our novel SimPEEL™ technology, making peeling the labels off their liners quick and easy, and simplifying label application. These cryo labels offer excellent resistance to common lab chemicals.
 
 ### Cryo-StrawTAG™
 
 ![Cryo-StrawTAG IVF straw labels](https://cdn.labtag.com/wp-content/uploads/CST-29-use2-2-e1617029869217.jpg "/media/biobanking-labels/CST-29-use2-2-e1617029869217.jpg")
 
-Cryo-StrawTAG labels are low-VOC cryogenic labels designed to identify standard and high-security IVF straws and vitrification devices. These cryo labels will withstand the vitrification process, perfect for biorepositories preserving oocytes, sperm, and embryos.
+Cryo-StrawTAG™ labels are low-VOC cryogenic labels designed to identify standard and high-security IVF straws and vitrification devices. These cryo labels will withstand the vitrification process—perfect for biorepositories preserving oocytes, sperm, and embryos.
 
 ### MetaliTAG™
 
 ![MetaliTAG metal rack cryogenic labels](https://cdn.labtag.com/wp-content/uploads/AWA-28-use2-1-e1617031623653.jpg "/media/biobanking-labels/AWA-28-use2-1-e1617031623653.jpg")
 
-Cryogenic thermal-transfer labels for the identification of metal racks, stainless-steel boxes, metal sleeves, as well as vial and straw goblet canes. These barcode labels can be applied on the top and sides of metal racks to identify them and their content easily.
+Cryogenic thermal-transfer labels for the identification of metal racks, stainless-steel boxes, metal sleeves, as well as vial and straw goblet canes. These barcode labels can be applied on the top and sides of metal racks to identify them and their contents easily.
 
 ### PinTAG™
 
 ![PinTAG 2D storage tube labels](https://cdn.labtag.com/wp-content/uploads/JTTA-553-use4-1-e1617032588357.jpg "/media/biobanking-labels/JTTA-553-use4-1-e1617032588357.jpg")
 
-PinTAG cryo specimen labels simultaneously identify the side and bottom of slim profile 2D automated sample storage tubes. Compatible with automatic liquid handling systems, they are perfect for the identification and tracking of 2D-barcoded tubes.
+PinTAG™ cryo specimen labels simultaneously identify the side and bottom of slim-profile 2D automated sample storage tubes. Compatible with automatic liquid handling systems, they are perfect for the identification and tracking of 2D-barcoded tubes.
 
 ### Cryo C-kurTAG™
 
@@ -74,15 +76,13 @@ PinTAG cryo specimen labels simultaneously identify the side and bottom of slim 
 
 Our tamper-evident cryo labels offer secure and reliable sealing of microtubes, cryo vials, and cryo boxes. Once applied, these specimen labels will tear upon any attempt to remove them. Perfect for securely storing and transporting valuable biological samples in biobanks and biorepositories.
 
-## Cryo Tapes
+## Biobanking Labels by Solution
 
 ### Cryogenic Specialty Tapes
 
 ![Cryogenic specialty tapes with GatorCUT](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use-step1-2-e1617036746653.jpg "/media/biobanking-labels/TJTG-19-use-step1-2-e1617036746653.jpg")
 
-LabTAG offers a range of cryogenic tapes, including specialty tapes for unique applications. Several tapes are available with GatorCUT technology, which allows them to be hand cuttable for convenient use whenever needed.
-
-## Automation and RFID Solutions
+LabTAG® offers a range of cryogenic tapes, including specialty tapes for unique biobank applications. Several tapes are available with GatorCUT™ technology, which allows them to be hand-cuttable for convenient use whenever needed.
 
 ### RFID Solutions
 

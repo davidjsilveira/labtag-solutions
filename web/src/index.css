@@ -1488,10 +1488,13 @@ main {
   border: none;
 }
 
-/* Dark quick-menu band flush under the hero (full-bleed bg; content aligns with main) */
+/* Dark quick-menu band flush under the hero (full-bleed bg; content aligns with main).
+ * Sticky under the site header; slides away on scroll-down, returns on scroll-up. */
 .solution-quick-menu {
-  position: relative;
-  z-index: 1;
+  --quick-menu-top: 3.5rem;
+  position: sticky;
+  top: var(--quick-menu-top);
+  z-index: 20;
   display: grid;
   justify-items: stretch;
   gap: 0.15rem;
@@ -1502,6 +1505,19 @@ main {
   background: var(--labtag-ga-black);
   color: var(--labtag-pure-white);
   box-shadow: 0 14px 28px -8px color-mix(in srgb, var(--labtag-ga-black) 28%, transparent);
+  transition: transform var(--dur-short) var(--ease-out);
+  will-change: transform;
+}
+
+.solution-quick-menu.is-scroll-hidden {
+  transform: translateY(calc(-100% - var(--quick-menu-top)));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-quick-menu {
+    transition: none;
+  }
 }
 
 .solution-quick-menu::before {
@@ -1669,18 +1685,34 @@ h1,
   scroll-margin-top: var(--anchor-scroll-margin);
 }
 
-/* White highlight on the landed block until it scrolls out of view */
+/* Dim siblings in a split grid while one card is selected */
+.content-split-grid:has(.is-anchor-highlight) .content-split:not(.is-anchor-highlight) {
+  opacity: 0.38;
+  filter: saturate(0.7);
+  transition:
+    opacity var(--dur-short) var(--ease-out),
+    filter var(--dur-short) var(--ease-out);
+}
+
+/* Strong highlight on the landed block until it scrolls out of view */
 .content-split.is-anchor-highlight,
 .logo-section.is-anchor-highlight,
 .section-unit.is-anchor-highlight,
 .block-section.is-anchor-highlight {
+  position: relative;
+  z-index: 1;
   box-sizing: border-box;
   width: 100%;
   padding: var(--space-sm);
   margin: calc(-1 * var(--space-sm));
   border-radius: var(--radius-md);
   background: var(--labtag-pure-white);
-  box-shadow: var(--shadow-card);
+  box-shadow:
+    0 0 0 2px var(--labtag-orange-main, var(--color-accent)),
+    0 16px 36px color-mix(in srgb, var(--labtag-ga-black) 18%, transparent);
+  transition:
+    box-shadow var(--dur-short) var(--ease-out),
+    background-color var(--dur-short) var(--ease-out);
 }
 
 .block h2,
@@ -1910,6 +1942,28 @@ a.bullet-chip:hover {
 
 .solution-quick-menu .feature-jump-link {
   color: var(--labtag-pure-white);
+  transition:
+    color var(--dur-short) var(--ease-out),
+    opacity var(--dur-short) var(--ease-out);
+}
+
+/* Dim non-selected jump links while one section is active.
+ * `html[data-active-jump]` survives React remounts of the menu. */
+html[data-active-jump] .solution-quick-menu .feature-jump-link,
+html[data-active-jump] .solution-quick-menu .feature-jump-text,
+html[data-active-jump] .solution-quick-menu .feature-jump-sep {
+  opacity: 0.35;
+}
+
+html[data-active-jump] .solution-quick-menu .feature-jump-link.is-jump-active,
+.solution-quick-menu .feature-jump-link.is-jump-active {
+  color: var(--labtag-pure-white);
+  opacity: 1;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--labtag-orange-main, var(--color-accent));
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
 }
 
 .feature-jump-link:hover {
@@ -1919,6 +1973,7 @@ a.bullet-chip:hover {
 
 .solution-quick-menu .feature-jump-link:hover {
   color: var(--labtag-secondary-light);
+  opacity: 1;
 }
 
 .feature-jump-text,
@@ -2360,7 +2415,6 @@ tr:last-child td {
   font-size: var(--text-sm);
 }
 
-.content-split-sample,
 .content-split-video {
   color: var(--color-ink-2);
   font-size: var(--text-sm);
@@ -2375,7 +2429,6 @@ tr:last-child td {
     border-color var(--dur-short) var(--ease-out);
 }
 
-.content-split-sample:hover,
 .content-split-video:hover {
   color: var(--color-link);
   border-bottom-color: var(--color-link);

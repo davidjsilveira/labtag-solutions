@@ -1,8 +1,12 @@
 import { useEffect } from 'react'
 
+const JUMP_STYLE_ID = 'anchor-jump-active-style'
+
 /**
  * Highlight the hash target until it scrolls out of view.
  * Clears the URL hash when the highlight is dismissed so :target does not linger.
+ * Marks the matching quick-menu jump via `html[data-active-jump]` + a dynamic
+ * style rule so dimming/active styles survive React remounts of the menu.
  */
 export function useAnchorHighlight(pageKey: string) {
   useEffect(() => {
@@ -10,20 +14,66 @@ export function useAnchorHighlight(pageKey: string) {
     let active: Element | null = null
     let hasBeenVisible = false
 
+    const clearJump = () => {
+      delete document.documentElement.dataset.activeJump
+      document.getElementById(JUMP_STYLE_ID)?.remove()
+      document
+        .querySelectorAll('.solution-quick-menu.is-jump-filtered')
+        .forEach((menu) => menu.classList.remove('is-jump-filtered'))
+      document
+        .querySelectorAll('.feature-jump-link.is-jump-active')
+        .forEach((link) => link.classList.remove('is-jump-active'))
+    }
+
     const clear = () => {
       active?.classList.remove('is-anchor-highlight')
       active = null
       hasBeenVisible = false
       observer?.disconnect()
       observer = null
+      clearJump()
       if (window.location.hash) {
         history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
       }
     }
 
-    const activate = (el: Element | null) => {
+    const activateJump = (id: string) => {
+      document.documentElement.dataset.activeJump = id
+
+      let style = document.getElementById(JUMP_STYLE_ID) as HTMLStyleElement | null
+      if (!style) {
+        style = document.createElement('style')
+        style.id = JUMP_STYLE_ID
+        document.head.appendChild(style)
+      }
+      const escaped = CSS.escape(id)
+      style.textContent = `
+        html[data-active-jump="${escaped}"] .solution-quick-menu a.feature-jump-link[href="#${escaped}"] {
+          color: var(--labtag-pure-white);
+          opacity: 1;
+          font-weight: 700;
+          text-decoration: underline;
+          text-decoration-color: var(--labtag-orange-main, var(--color-accent));
+          text-decoration-thickness: 2px;
+          text-underline-offset: 0.22em;
+        }
+      `
+
+      document.querySelectorAll('.solution-quick-menu').forEach((menu) => {
+        menu.classList.add('is-jump-filtered')
+        menu.querySelectorAll('a.feature-jump-link').forEach((link) => {
+          const href = link.getAttribute('href')
+          link.classList.toggle('is-jump-active', href === `#${id}`)
+        })
+      })
+    }
+
+    const activate = (el: Element | null, id: string) => {
       if (!el) return
-      if (el === active) return
+      if (el === active) {
+        activateJump(id)
+        return
+      }
 
       active?.classList.remove('is-anchor-highlight')
       observer?.disconnect()
@@ -31,6 +81,10 @@ export function useAnchorHighlight(pageKey: string) {
       active = el
       hasBeenVisible = false
       el.classList.add('is-anchor-highlight')
+      activateJump(id)
+      requestAnimationFrame(() => {
+        if (active === el) activateJump(id)
+      })
 
       observer = new IntersectionObserver(
         ([entry]) => {
@@ -51,20 +105,35 @@ export function useAnchorHighlight(pageKey: string) {
         if (active) clear()
         return
       }
-      activate(document.getElementById(id))
+      activate(document.getElementById(id), id)
     }
 
     const onHashChange = () => {
       requestAnimationFrame(syncFromHash)
     }
 
-    syncFromHash()
+    const onJumpClick = (event: MouseEvent) => {
+      const target = event.target
+      if (!(target instanceof Element)) return
+      const link = target.closest<HTMLAnchorElement>(
+        '.solution-quick-menu a.feature-jump-link[href^="#"]',
+      )
+      if (!link) return
+      const id = decodeURIComponent((link.getAttribute('href') || '').replace(/^#/, ''))
+      if (!id) return
+      requestAnimationFrame(() => activate(document.getElementById(id), id))
+    }
+
+    requestAnimationFrame(() => requestAnimationFrame(syncFromHash))
     window.addEventListener('hashchange', onHashChange)
+    document.addEventListener('click', onJumpClick)
 
     return () => {
       window.removeEventListener('hashchange', onHashChange)
+      document.removeEventListener('click', onJumpClick)
       observer?.disconnect()
       active?.classList.remove('is-anchor-highlight')
+      clearJump()
     }
   }, [pageKey])
 }

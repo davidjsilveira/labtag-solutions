@@ -373,11 +373,25 @@ function mergeGuideFeatureHeadings(blocks: ContentBlock[]): ContentBlock[] {
   return out
 }
 
-/** Point guide feature items at matching article section headings below. */
+/** Point guide feature items at matching article section / feature-card headings below. */
 function linkFeatureGridsToSections(blocks: ContentBlock[]): ContentBlock[] {
-  const sections = blocks
-    .filter((block): block is SectionBlock => block.type === 'section')
-    .map((block) => ({ title: block.title, level: block.level }))
+  const sections: { title: string; level: 2 | 3 }[] = []
+
+  for (const block of blocks) {
+    if (block.type === 'section') {
+      sections.push({ title: block.title, level: block.level })
+      continue
+    }
+    // Content feature cards (not “By …” jump rows) also expose anchors.
+    if (
+      block.type === 'featureGrid' &&
+      !(block.title && /^by\s+/i.test(block.title))
+    ) {
+      for (const item of block.items) {
+        sections.push({ title: item.title, level: 3 })
+      }
+    }
+  }
 
   return blocks.map((block) => {
     if (block.type !== 'featureGrid') return block

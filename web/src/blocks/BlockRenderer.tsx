@@ -17,6 +17,7 @@ import { ImageSlider } from './ImageSlider'
 import { NumberedStepsBlockView } from './NumberedStepsBlock'
 import { QuoteBlockView } from './QuoteBlock'
 import { SectionBlockView } from './SectionBlock'
+import { SolutionQuickMenu } from './SolutionQuickMenu'
 import { TableBlockView } from './TableBlock'
 import { TextBlockView } from './TextBlock'
 import { VideoBlockView } from './VideoBlock'
@@ -238,9 +239,7 @@ export function BlockRenderer({ blocks, solutionSlug }: Props) {
         i += 1
       }
       pushNonSplit(
-        <nav key={`quick-menu-${start}`} className="solution-quick-menu" aria-label="On this page">
-          {jumpNodes}
-        </nav>,
+        <SolutionQuickMenu key={`quick-menu-${start}`}>{jumpNodes}</SolutionQuickMenu>,
       )
       continue
     }
