@@ -8,34 +8,51 @@ LabTAG® offers a range of cryogenic, freezer, autoclave, and general-use tapes 
 
 Our durable tapes come in colors, sizes, and configurations for easy color coding, including patented GatorCUT™ technology for effortless hand cutting without scissors in daily lab work.
 
-### By Temperature or Condition
+### By Cryogenic & Frozen
 
-- **Cryogenic** — Permanent cryo tape, MetaliTAPE™ for metal racks, Cryo-Laminate™, and C-Kur™ tamper-evident tape for liquid nitrogen storage
-- **Frozen** — CryoSTUCK® tape for identifying already frozen plastic containers
-- **Freezer** — TransluTAPE™ and removable freezer-grade tape for ultra-low temperature freezers and dry ice
-- **Autoclave** — Removable SteriTAPE™, printable autoclave tape, and sterilization indicator tape
-- **Static Cling** — UbiCling™ repositionable tape for temporary labeling on smooth surfaces
-- **General & Specialty** — Color Lab-TAPE™, glow-in-the-dark, ultra-removable, PluroTAPE™, CryoHUG™, and tape dispensers
+- **Permanent Cryogenic Tape** — Writable cryo tape for vials, tubes, and boxes through LN₂ and dry ice
+- **MetaliTAPE™ for Metal Racks** — Cryo tape for stainless-steel racks, canes, and metal sleeves
+- **Cryo-Laminate™** — Ultra-thin laminating tape that protects IDs in LN₂ and −80°C freezers
+- **C-Kur™ Tamper-Evident Cryo Tape** — Destructible seals for cryo vials, boxes, and cassettes
+- **CryoSTUCK® Tape** — Tape that sticks to already frozen plastic containers
 
-## Cryogenic Tapes
+### By Freezer & Autoclave
+
+- **TransluTAPE™** — See-through freezer tape for sealed containers at −80°C and on dry ice
+- **Removable Freezer Tape** — Residue-free freezer-grade tape for microtubes, vials, and boxes
+- **Removable SteriTAPE™** — Autoclave-resistant tape with GatorCUT™ for reusable instruments
+- **Printable Autoclave Tape** — Thermal-transfer sterilization tape for trays and containers
+- **Sterilization Indicator Tape** — Steam/dry-heat indicator strips that blacken after a cycle
+
+### By Specialty & General
+
+- **UbiCling™** — Repositionable static-cling tape for temporary IDs on smooth surfaces
+- **PluroTAPE™** — Hand-writable self-laminating tape for equipment and calibration tags
+- **CryoHUG™** — Adhesive-free elastic wrap that seals vials, boxes, and microplates
+- **Color Lab-TAPE™** — General-use color coding for cardboard, glass, plastic, and metal
+- **Glow-In-The-Dark Tape** — Phosphorescent tape for dark spaces and exit marking
+- **Ultra-Removable Tape** — Clean peel after long-term use on glass, metal, and plastic
+- **Tape Dispensers** — Bench dispensers that separate liner and cut exact lengths
+
+## Lab Tapes by Cryogenic & Frozen
 
 ### Permanent Cryogenic Tape
 
 ![Permanent cryogenic GatorCUT tape](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use9-2.jpg "/media/lab-tapes/TJTG-19-use9-2.jpg")
 
-Our permanent cryogenic tape is perfect for labeling cryo vials, tubes, and boxes and withstands long-term storage in liquid nitrogen Dewars (-196°C/-321°F), laboratory freezers, multiple freeze-thaw cycles, and transport on dry ice. This writable cryo tape is waterproof, won’t peel or crack when exposed to liquid nitrogen, and is available in a variety of colors. Our cryogenic tape is now also available with our patented GatorCUT technology, making it conveniently portable for use whenever and wherever needed.
+Our permanent cryogenic tape is perfect for labeling cryo vials, tubes, and boxes and withstands long-term storage in liquid nitrogen Dewars (−196°C/−321°F), laboratory freezers, multiple freeze-thaw cycles, and transport on dry ice. This writable cryo tape is waterproof, won’t peel or crack when exposed to liquid nitrogen, and is available in a variety of colors. Our cryogenic tape is now also available with our patented GatorCUT technology, making it conveniently portable for use whenever and wherever needed.
 
 ### MetaliTAPE™ for Metal Racks
 
 ![MetaliTAPE for metal racks](https://cdn.labtag.com/wp-content/uploads/Cryo-Tape-for-Metal-Racks.png "/media/lab-tapes/Cryo-Tape-for-Metal-Racks.png")
 
-MetaliTAPE™ for metal racks can be used to identify stainless-steel and aluminum racks, X-ray cassettes, storage canes, and metal sleeves. Our cryo tape for metal containers withstands storage in liquid nitrogen (-196°C/-321°F), transportation on dry ice, multiple freeze-thaw cycles, and gamma irradiation. Writable with our permanent cryo markers.
+MetaliTAPE™ for metal racks can be used to identify stainless-steel and aluminum racks, X-ray cassettes, storage canes, and metal sleeves. Our cryo tape for metal containers withstands storage in liquid nitrogen (−196°C/−321°F), transportation on dry ice, multiple freeze-thaw cycles, and gamma irradiation. Writable with our permanent cryo markers.
 
 ### Cryo-Laminate™
 
 ![Cryo-Laminate cryogenic lamination tape](https://cdn.labtag.com/wp-content/uploads/Cryogenic-Lamination-Tape-CLAM-50C3.png "/media/lab-tapes/Cryogenic-Lamination-Tape-CLAM-50C3.png")
 
-Cryo-Laminate™ is an ultra-thin cryo laminating tape that provides excellent protection against scratching, abrasion, and chemical exposure. Our cryogenic lamination tape has been designed to withstand long-term storage in liquid nitrogen tanks (-196°C/-321°F) and ultra-low temperature freezers (-80°C/-112°F) when applied on cryo vials and tubes.
+Cryo-Laminate™ is an ultra-thin cryo laminating tape that provides excellent protection against scratching, abrasion, and chemical exposure. Our cryogenic lamination tape has been designed to withstand long-term storage in liquid nitrogen tanks (−196°C/−321°F) and ultra-low temperature freezers (−80°C/−112°F) when applied on cryo vials and tubes.
 
 ### C-Kur™ Tamper-Evident Cryo Tape
 
@@ -43,29 +60,25 @@ Cryo-Laminate™ is an ultra-thin cryo laminating tape that provides excellent p
 
 C-Kur™ is ideal for sealing cryo containers such as microtubes, cryo vials, cryo/freezer boxes, and cryo cassettes. The continuous tape will tear up upon any attempt to remove it, indicating that the contents have been tampered with. Durable and waterproof, our destructible tape is available in a range of colors for easy identification.
 
-## Frozen Container Tapes
-
 ### CryoSTUCK® Tape
 
 ![CryoSTUCK frozen container tape](https://cdn.labtag.com/wp-content/uploads/Frozen-Container-Tape-TAQ-25.png "/media/lab-tapes/Frozen-Container-Tape-TAQ-25.png")
 
-Our CryoSTUCK® tape is specifically designed for identifying already frozen plastic containers. Ideal for long-term cryo-preservation in liquid nitrogen (-196°C/-321°F), low-temperature freezers (-80°C/-112°F), and on dry ice, this tape is also available in a clear format and can be easily inscribed with our permanent ink cryogenic markers. This tape is also provided with GatorCUT™ technology to effortlessly hand tear as little or as much as needed without needing tape dispensers or scissors.
+Our CryoSTUCK® tape is specifically designed for identifying already frozen plastic containers. Ideal for long-term cryo-preservation in liquid nitrogen (−196°C/−321°F), low-temperature freezers (−80°C/−112°F), and on dry ice, this tape is also available in a clear format and can be easily inscribed with our permanent ink cryogenic markers. This tape is also provided with GatorCUT™ technology to effortlessly hand tear as little or as much as needed without needing tape dispensers or scissors.
 
-## Freezer Tapes
+## Lab Tapes by Freezer & Autoclave
 
 ### TransluTAPE™
 
 ![TransluTAPE translucent freezer tape](https://cdn.labtag.com/wp-content/uploads/Translucent-Freezer-Tape-FTP-24.png "/media/lab-tapes/Translucent-Freezer-Tape-FTP-24.png")
 
-Our translucent freezer-safe tape, provided in various colors, is see-through for the easy identification of the contents of sealed containers. Ideal for long-term storage in ultra-low temperature freezers (-80°C/-112°F) and on dry ice, TransluTAPE™ resists exposure to harsh chemicals and reagents, multiple freeze-thaw cycles, and other harsh laboratory environments.
+Our translucent freezer-safe tape, provided in various colors, is see-through for the easy identification of the contents of sealed containers. Ideal for long-term storage in ultra-low temperature freezers (−80°C/−112°F) and on dry ice, TransluTAPE™ resists exposure to harsh chemicals and reagents, multiple freeze-thaw cycles, and other harsh laboratory environments.
 
 ### Removable Freezer Tape
 
 ![Removable freezer-grade tape](https://cdn.labtag.com/wp-content/uploads/Removable-Freezer-Tapes-TRM-25.png "/media/lab-tapes/Removable-Freezer-Tapes-TRM-25.png")
 
-Removable tape for deep-freeze applications can be used to identify microtubes, vials, and cryo/freezer boxes. Our freezer-grade tape is intended for short and long-term storage in lab freezers (-80°C) as well as transport on dry ice and withstands multiple freeze-thaw cycles. Its glove-friendly adhesive ensures it can be removed without leaving behind any residue.
-
-## Autoclave Tapes
+Removable tape for deep-freeze applications can be used to identify microtubes, vials, and cryo/freezer boxes. Our freezer-grade tape is intended for short and long-term storage in lab freezers (−80°C) as well as transport on dry ice and withstands multiple freeze-thaw cycles. Its glove-friendly adhesive ensures it can be removed without leaving behind any residue.
 
 ### Removable SteriTAPE™
 
@@ -85,7 +98,7 @@ Thermal-transfer printable sterilization tape for identifying plastic, glass, an
 
 Steam sterilization indicator tape has nearly invisible marking strips that blacken when put through a sterilization cycle. This autoclave tape can be used to confirm whether the labeled material has successfully completed an autoclave cycle. Compatible with both steam autoclaves and dry heat ovens, this continuous tape is writable with permanent markers.
 
-## Static Cling & Specialty Tapes
+## Lab Tapes by Specialty & General
 
 ### UbiCling™
 
@@ -104,8 +117,6 @@ Our perforated self-laminating tape can produce on-demand laminated labels. This
 ![CryoHUG self-adhering elastic tape](https://cdn.labtag.com/wp-content/uploads/CryoHUG-THG-25use4.png "/media/lab-tapes/CryoHUG-THG-25use4.png")
 
 Our adhesive-free inert elastic tape permanently adheres to itself, making it ideal for wrapping and sealing vials, bottles, cryo/freezer boxes, and microplates. Alcohol-resistant, it allows containers to be sprayed with alcohol or other disinfecting solutions prior to wrapping with CryoHUG™, keeping the containers sterile for extended periods of time and prevent contamination.
-
-## General Purpose Lab Tapes
 
 ### Color Lab-TAPE™
 

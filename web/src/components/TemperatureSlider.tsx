@@ -11,6 +11,11 @@ type GuideChip = {
   slug: string
 }
 
+type TempRange = {
+  min: number
+  max: number
+}
+
 const TEMP_TAG_LABEL: Record<TempTag, string> = {
   cryo: 'Cryo',
   'deep-freeze': 'Deep-Freeze',
@@ -28,10 +33,24 @@ const TEMP_TAG_JUMP: Record<TempTag, number> = {
   autoclave: 120,
 }
 
+/**
+ * Operating window each label class covers on the meter.
+ * Cold end must cover every temp where that class is suggested so the
+ * focus marker never sits outside the bar. Cryo / deep-freeze still span warm.
+ */
+const TEMP_TAG_RANGE: Record<TempTag, TempRange> = {
+  cryo: { min: -196, max: 120 },
+  'deep-freeze': { min: -150, max: 120 },
+  ambient: { min: 5, max: 32 },
+  heat: { min: 32, max: 100 },
+  autoclave: { min: 100, max: 120 },
+}
+
 const TEMP_SCALE_MIN = -196
 const TEMP_SCALE_MAX = 120
 const TEMP_DEFAULT = -80
 const CHIP_LIMIT = 6
+const TEMP_SPAN = TEMP_SCALE_MAX - TEMP_SCALE_MIN
 
 /** Usability-focused feature pages highlighted at room temperature. */
 const AMBIENT_USABILITY_CHIPS: GuideChip[] = [
@@ -60,7 +79,7 @@ const GUIDE_BANDS: GuideMatch[] = [
     slug: 'cryogenic-labels',
     title: 'Cryogenic Labels',
     headline: 'Liquid nitrogen territory',
-    body: 'Vials, boxes, metal canes, and straws living in LN₂ or vapor phase need adhesives that stay put through immersion and freeze–thaw cycles.',
+    body: 'Vials, boxes, metal canes, and straws living in LN₂ or vapor phase need adhesives that stay put through immersion and freeze–thaw cycles — and the same constructs still hold at the bench.',
     tags: ['cryo'],
   },
   {
@@ -68,7 +87,7 @@ const GUIDE_BANDS: GuideMatch[] = [
     slug: 'deep-freeze',
     title: 'Deep-Freeze Labels',
     headline: 'Ultra-low freezer storage',
-    body: '−80°C freezers and dry-ice transport call for freezer-grade labels on microtubes, plates, blood bags, and cardboard or polypropylene boxes.',
+    body: '−80°C freezers and dry-ice transport call for freezer-grade labels on microtubes, plates, blood bags, and cardboard or polypropylene boxes — rated through warmer lab handling too.',
     tags: ['deep-freeze'],
   },
   {
@@ -84,7 +103,7 @@ const GUIDE_BANDS: GuideMatch[] = [
     slug: 'snappeel-labels',
     title: 'Usability Features',
     headline: 'Room-temp labeling that works faster',
-    body: 'At ambient conditions the bottleneck is handling — SnapPEEL™, glove-friendly peels, hard-to-stick surfaces, and tearable tapes that keep techs moving.',
+    body: 'At ambient conditions the bottleneck is handling — SnapPEEL™, glove-friendly peels, hard-to-stick surfaces, and tearable tapes that keep techs moving. These are built for a narrow room-temp window, not LN₂.',
     tags: ['ambient'],
     chips: AMBIENT_USABILITY_CHIPS,
   },
@@ -111,6 +130,14 @@ function formatTemp(celsius: number): string {
   return `${sign}${celsius}°C`
 }
 
+function formatRange(range: TempRange): string {
+  return `${formatTemp(range.min)} – ${formatTemp(range.max)}`
+}
+
+function tempToPercent(tempC: number): number {
+  return ((tempC - TEMP_SCALE_MIN) / TEMP_SPAN) * 100
+}
+
 function solutionPath(slug: string): string {
   return `/solutions/${slug}`
 }
@@ -130,6 +157,30 @@ function tagsForTemp(tempC: number): TempTag[] {
     return matchGuide(tempC).tags
   }
   return tags
+}
+
+/** Widest operating window among the active class tags. */
+function operatingRangeFor(tags: TempTag[]): TempRange {
+  if (!tags.length) return TEMP_TAG_RANGE.ambient
+  return tags.reduce<TempRange>(
+    (acc, tag) => {
+      const next = TEMP_TAG_RANGE[tag]
+      return {
+        min: Math.min(acc.min, next.min),
+        max: Math.max(acc.max, next.max),
+      }
+    },
+    { min: TEMP_TAG_RANGE[tags[0]].min, max: TEMP_TAG_RANGE[tags[0]].max },
+  )
+}
+
+/** Painted bar always includes the current focus (edge bands / safety net). */
+function paintedRangeFor(tags: TempTag[], tempC: number): TempRange {
+  const base = operatingRangeFor(tags)
+  return {
+    min: Math.min(base.min, tempC),
+    max: Math.max(base.max, tempC),
+  }
 }
 
 function chipsForPage(slug: string): FeatureGridItem[] {
@@ -185,23 +236,43 @@ export function TemperatureSlider() {
 
   const guide = matchGuide(tempC)
   const tags = tagsForTemp(tempC)
+  const range = paintedRangeFor(guide.tags, tempC)
   const chips = resolveChips(guide)
   const path = solutionPath(guide.slug)
   const pageTitle = getPage(guide.slug)?.title ?? guide.title
-  const thumbPercent =
-    ((tempC - TEMP_SCALE_MIN) / (TEMP_SCALE_MAX - TEMP_SCALE_MIN)) * 100
+  const rangeStart = tempToPercent(range.min)
+  const rangeWidth = Math.max(tempToPercent(range.max) - rangeStart, 2.2)
+  const focusPercent = tempToPercent(tempC)
 
   return (
     <div className="temp-slider-layout">
       <div className="temp-slider">
-        <p id={labelId} className="temp-slider-value">
-          {formatTemp(tempC)}
-        </p>
+        <div className="temp-slider-value-block">
+          <p id={labelId} className="temp-slider-value">
+            {formatRange(range)}
+          </p>
+          <p className="temp-slider-value-hint">Operating range · focused at {formatTemp(tempC)}</p>
+        </div>
 
         <div className="temp-slider-control">
           <div className="temp-slider-track" aria-hidden="true">
             <span className="temp-slider-spectrum" />
-            <span className="temp-slider-thumb-glow" style={{ left: `${thumbPercent}%` }} />
+            <span
+              className="temp-slider-range-dim temp-slider-range-dim-before"
+              style={{ width: `${rangeStart}%` }}
+            />
+            <span
+              className="temp-slider-range-dim temp-slider-range-dim-after"
+              style={{ left: `${rangeStart + rangeWidth}%`, width: `${Math.max(0, 100 - rangeStart - rangeWidth)}%` }}
+            />
+            <span
+              className="temp-slider-range-handle"
+              style={{ left: `${rangeStart}%`, width: `${rangeWidth}%` }}
+            />
+            <span
+              className="temp-slider-range-marker"
+              style={{ left: `${focusPercent}%` }}
+            />
           </div>
           <input
             className="temp-slider-input"
@@ -211,7 +282,7 @@ export function TemperatureSlider() {
             step={1}
             value={tempC}
             aria-labelledby={labelId}
-            aria-valuetext={`${formatTemp(tempC)} — ${guide.headline}`}
+            aria-valuetext={`${formatTemp(tempC)} — ${guide.headline}. Operating range ${formatRange(range)}`}
             onChange={(event) => setTempC(Number(event.target.value))}
           />
           <div className="temp-slider-scale" aria-hidden="true">

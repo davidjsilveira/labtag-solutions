@@ -10,17 +10,17 @@ LabTAG® vaccine label options include low-temperature constructs, smart labelin
 
 ### By Storage Condition
 
-- **Refrigerated** — Vaccine refrigerator labels for +2°C to +8°C storage and insulated transport
-- **Frozen** — Cryogenic vaccine labels for −15°C to −50°C freezers and dry-ice transport
-- **Ultra-Low / Cryogenic** — Labels suited to mRNA and other vaccines requiring deep freeze down to −80°C
+- **Refrigerated Vaccine Labels** — Refrigerator labels for +2°C to +8°C storage and insulated transport
+- **Frozen Vaccine Labels** — Cryogenic labels for −15°C to −50°C freezers and dry-ice transport
+- **Ultra-Low Vaccine Labels** — Deep-freeze constructs for mRNA and other vaccines down to −80°C
 
 ### By Feature
 
-- **Syringe Flags** — Two-sided flag labels that keep contents visible from all sides
-- **RFID & Smart Labels** — Real-time inventory tracking and cold-chain monitoring options
-- **Custom & Clinical** — Warning, communication, and made-to-order vaccine labeling
+- **Syringe Labels** — Two-sided flag labels that keep syringe contents visible from all sides
+- **RFID Labels & Smart Labels** — Real-time inventory tracking and cold-chain monitoring options
+- **Custom Labels & Clinical Trial Labels** — Warning, communication, and made-to-order vaccine labeling
 
-## Labels by Storage and Use
+## Vaccine Labels by Storage Condition
 
 ### Refrigerated Vaccine Labels
 
@@ -34,6 +34,14 @@ Refrigerated vaccines are optimally stored between +2°C and +8°C (+35°F and +
 
 Frozen vaccines should ideally be kept between −15°C and −50°C (+5°F and −58°F) in a dedicated freezer. Transport should only be done on dry ice to maintain a stable temperature. Cryogenic vaccine labels provide a reliable option for identifying these vaccines—they will not fail, peel, or wrinkle under ultra-low temperature conditions and can be printed with barcodes and variable data for improved tracking.
 
+### Ultra-Low Vaccine Labels
+
+![Ultra-low vaccine cryogenic labels](https://cdn.labtag.com/wp-content/uploads/FJT-29-use.png "/media/vaccine-labels/ultra-low-vaccine.png")
+
+mRNA and other next-generation vaccines often require ultra-low storage down to −80°C (−112°F) through manufacture, distribution, and clinic staging. Cryogenic vaccine labels rated for deep-freeze conditions stay legible and adhered through freeze–thaw handling, dry-ice shipping, and ultra-low freezer storage so cold-chain IDs remain scannable end to end.
+
+## Vaccine Labels by Feature
+
 ### Syringe Labels
 
 ![Vaccine syringe flag labels](https://cdn.labtag.com/wp-content/uploads/SYRA-2-Covid-19.jpg "/media/vaccine-labels/SYRA-2-Covid-19.jpg")
@@ -42,13 +50,15 @@ Flag syringe labels are suited to identifying syringes used in hospitals and cli
 
 ### RFID Labels & Smart Labels
 
-![RFID vaccine smart labels](https://cdn.labtag.com/wp-content/uploads/FTT-67_Hologic-2-e1606927155900.png "/media/vaccine-labels/FTT-67_Hologic-2-e1606927155900.png")
+![RFID vaccine smart labels](https://cdn.labtag.com/wp-content/uploads/RFID-550-use-rfid-icon-v2.png "/media/vaccine-labels/RFID-550-use-rfid-icon-v2.png")
 
 RFID vaccine labels allow vials and syringes to be tracked in real time, providing an up-to-date picture of inventory. RFID-tagged vaccination labels also allow information to be updated after labeling, including adding specific country languages or encoding vaccine shelf-life changes. Smart labels can help monitor temperature and inform staff if cold-chain breaches have occurred.
 
 ### Custom Labels & Clinical Trial Labels
 
-Vaccine development, testing, handling, and administration can require additional custom labeling—including vaccine warning labels, communication labels advising staff on safe and proper use, and labels to identify used or inactivated vaccines. LabTAG provides made-to-order labeling solutions for unique vaccine labeling needs.
+![Custom vaccine and clinical trial labels](https://cdn.labtag.com/wp-content/uploads/FTT-67_Hologic-2-e1606927155900.png "/media/vaccine-labels/FTT-67_Hologic-2-e1606927155900.png")
+
+Vaccine development, testing, handling, and administration can require additional custom labeling—including vaccine warning labels, communication labels advising staff on safe and proper use, and labels to identify used or inactivated vaccines. LabTAG provides made-to-order labeling solutions for unique vaccine labeling needs and clinical trial workflows.
 
 ## Need Expert Help?
 

@@ -1,6 +1,13 @@
 import { useEffect } from 'react'
+import { syncAnchorScrollMargin } from '@/hooks/syncAnchorScrollMargin'
 
 const JUMP_STYLE_ID = 'anchor-jump-active-style'
+
+/** Land the target fully below sticky header + jump menu. */
+function scrollTargetIntoView(el: Element) {
+  syncAnchorScrollMargin()
+  el.scrollIntoView({ block: 'start', behavior: 'auto' })
+}
 
 /**
  * Highlight the hash target until it scrolls out of view.
@@ -68,10 +75,11 @@ export function useAnchorHighlight(pageKey: string) {
       })
     }
 
-    const activate = (el: Element | null, id: string) => {
+    const activate = (el: Element | null, id: string, scroll = false) => {
       if (!el) return
       if (el === active) {
         activateJump(id)
+        if (scroll) scrollTargetIntoView(el)
         return
       }
 
@@ -82,6 +90,7 @@ export function useAnchorHighlight(pageKey: string) {
       hasBeenVisible = false
       el.classList.add('is-anchor-highlight')
       activateJump(id)
+      if (scroll) scrollTargetIntoView(el)
       requestAnimationFrame(() => {
         if (active === el) activateJump(id)
       })
@@ -99,17 +108,18 @@ export function useAnchorHighlight(pageKey: string) {
       observer.observe(el)
     }
 
-    const syncFromHash = () => {
+    const syncFromHash = (scroll = false) => {
       const id = decodeURIComponent(window.location.hash.replace(/^#/, ''))
       if (!id) {
         if (active) clear()
         return
       }
-      activate(document.getElementById(id), id)
+      activate(document.getElementById(id), id, scroll)
     }
 
     const onHashChange = () => {
-      requestAnimationFrame(syncFromHash)
+      // Native hash scroll often uses a stale fixed margin; correct after paint.
+      requestAnimationFrame(() => syncFromHash(true))
     }
 
     const onJumpClick = (event: MouseEvent) => {
@@ -121,7 +131,7 @@ export function useAnchorHighlight(pageKey: string) {
       if (!link) return
       const id = decodeURIComponent((link.getAttribute('href') || '').replace(/^#/, ''))
       if (!id) return
-      requestAnimationFrame(() => activate(document.getElementById(id), id))
+      requestAnimationFrame(() => activate(document.getElementById(id), id, true))
     }
 
     requestAnimationFrame(() => requestAnimationFrame(syncFromHash))

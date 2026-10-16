@@ -534,7 +534,6 @@ main {
 }
 
 .lander-temps,
-.lander-industries,
 .lander-index,
 .lander-all {
   padding: var(--space-xl) 0;
@@ -955,22 +954,35 @@ main {
   background: var(--color-paper);
 }
 
+.temp-slider-value-block {
+  display: grid;
+  gap: 0.35rem;
+}
+
 .temp-slider-value {
   margin: 0;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-size: clamp(1.55rem, 3.6vw, 2.1rem);
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-  line-height: 1;
+  line-height: 1.1;
   color: var(--color-ink);
+}
+
+.temp-slider-value-hint {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-ink-2);
 }
 
 .temp-slider-control {
   position: relative;
   display: grid;
   gap: var(--space-2xs);
-  padding-block: 0.35rem;
+  padding-block: 0.55rem;
 }
 
 .temp-slider-track {
@@ -995,25 +1007,69 @@ main {
   );
 }
 
-.temp-slider-thumb-glow {
+/* Mute spectrum outside the operating window so the active span reads clearly. */
+.temp-slider-range-dim {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: color-mix(in srgb, var(--color-paper) 72%, transparent);
+  pointer-events: none;
+  transition:
+    left var(--dur-short) var(--ease-out),
+    width var(--dur-short) var(--ease-out);
+}
+
+.temp-slider-range-dim-before {
+  left: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.temp-slider-range-dim-after {
+  border-radius: 0 999px 999px 0;
+}
+
+/* Operating-range handle: spans the class’s usable window on the meter. */
+.temp-slider-range-handle {
   position: absolute;
   top: 50%;
-  width: 1.15rem;
-  height: 1.15rem;
-  margin-left: -0.575rem;
-  border-radius: 50%;
-  background: var(--color-surface);
-  border: 2px solid var(--color-ink);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-surface) 80%, transparent);
+  z-index: 1;
+  min-width: 1.15rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 28%, transparent);
+  border: 3px solid var(--color-ink);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-surface) 65%, transparent),
+    0 8px 18px color-mix(in srgb, var(--labtag-ga-black) 18%, transparent);
   transform: translateY(-50%);
   pointer-events: none;
+  transition:
+    left var(--dur-short) var(--ease-out),
+    width var(--dur-short) var(--ease-out);
+}
+
+.temp-slider-range-marker {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-left: -0.425rem;
+  border-radius: 50%;
+  background: var(--labtag-orange-main, var(--color-accent));
+  border: 2px solid var(--color-surface);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--color-ink) 40%, transparent),
+    0 2px 8px color-mix(in srgb, var(--labtag-ga-black) 22%, transparent);
+  transform: translateY(-50%);
+  transition: left var(--dur-short) var(--ease-out);
 }
 
 .temp-slider-input {
   position: absolute;
   inset: 0 0 auto;
   width: 100%;
-  height: 1.4rem;
+  height: 1.6rem;
   margin: 0;
   padding: 0;
   appearance: none;
@@ -1026,10 +1082,11 @@ main {
   outline: none;
 }
 
-.temp-slider-control:has(.temp-slider-input:focus-visible) .temp-slider-thumb-glow {
+.temp-slider-control:has(.temp-slider-input:focus-visible) .temp-slider-range-handle {
   box-shadow:
     0 0 0 3px color-mix(in srgb, var(--color-surface) 80%, transparent),
-    0 0 0 5px var(--color-focus);
+    0 0 0 5px var(--color-focus),
+    0 6px 16px color-mix(in srgb, var(--labtag-ga-black) 16%, transparent);
 }
 
 .temp-slider-input::-webkit-slider-runnable-track {
