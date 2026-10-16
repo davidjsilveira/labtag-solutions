@@ -2,7 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/label-software/](https://www.labtag.com/solutions/label-software/)
 
-![Label Printing Software](https://cdn.labtag.com/wp-content/uploads/2020/02/printing-labels.png "/media/label-software/printing-labels.png")
+![Label printing software for barcodes and templates](https://cdn.labtag.com/wp-content/uploads/2020/02/printing-labels.png "/media/label-software/printing-labels.png")
 
 Harness the power of software to give purpose to your data. Label design and printing software lets you design, create, automate, and manage labels, barcodes, RFID tags, and more. Informatics software gives you the added power to store, track, trace, and report on sample and patient data across laboratory workflows.
 
@@ -12,16 +12,23 @@ Choose label design, printing automation, and informatics options that streamlin
 
 - **Design Software** — Create and customize templates with text, barcodes, logos, and database connections
 - **Informatics Software** — LIMS, LIS, ELN, and related systems that store, track, and report on sample and patient data
+- **Software Partners** — Trusted informatics partners that integrate with LabTAG labels and systems
 
-## Label Design Software
+## Label Software by Category
 
-Label design and print software allows you to create and customize label templates with text, numbers, serialized numbers, barcodes, logos, and graphics. They can also connect and integrate information from a database. However, they do not store information like informatics software does. LabTAG® sells and supports label design software for laboratory and clinical workflows.
+### Design Software
 
-## Informatics Software
+![Label design and barcode printing software](https://cdn.labtag.com/wp-content/uploads/2020/02/printing-labels.png "/media/label-software/printing-labels.png")
 
-Laboratory informatics software is used to manage freezers, track samples, record patient data, or store any type of information. Informatics come in the form of LIMS, LIS, ELN, EWS, EMR, and EHR. Informatics software usually includes a label design module or comes with the option to integrate with a label design software. LabTAG’s labels and labeling systems integrate with the following trusted partners.
+Label design and print software lets you create and customize label templates with text, numbers, serialized numbers, barcodes, logos, and graphics. These tools can also connect and integrate information from a database—but they do not store information the way informatics software does. LabTAG® sells and supports label design software for laboratory and clinical workflows.
 
-### Our Software Partners
+### Informatics Software
+
+![Laboratory informatics and sample tracking](https://cdn.labtag.com/wp-content/uploads/2020/02/printing-labels.png "/media/label-software/printing-labels.png")
+
+Laboratory informatics software is used to manage freezers, track samples, record patient data, or store any type of information. Informatics come in the form of LIMS, LIS, ELN, EWS, EMR, and EHR. Informatics software usually includes a label design module or integrates with label design software—so LabTAG labels and labeling systems connect cleanly into your data workflows.
+
+### Software Partners
 
 ![LabMate logo](https://cdn.labtag.com/wp-content/uploads/labmate-v2.jpg "/media/label-software/labmate-v2.jpg")
 ![LDMS logo](https://cdn.labtag.com/wp-content/uploads/ldms2.jpg "/media/label-software/ldms2.jpg")
@@ -35,6 +42,8 @@ Laboratory informatics software is used to manage freezers, track samples, recor
 ![QRlogix logo](https://cdn.labtag.com/wp-content/uploads/QR_logix.png "/media/label-software/QR_logix.png")
 ![ATMPS logo](https://cdn.labtag.com/wp-content/uploads/ATMPS-logo_309x143px.jpg "/media/label-software/ATMPS-logo_309x143px.jpg")
 ![CYBRA logo](https://cdn.labtag.com/wp-content/uploads/CYB_L_H_C.png "/media/label-software/CYB_L_H_C.png")
+
+LabTAG’s labels and labeling systems integrate with these trusted informatics partners.
 
 ## Need Expert Help?
 

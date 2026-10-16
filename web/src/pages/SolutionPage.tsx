@@ -37,7 +37,7 @@ export function SolutionPage() {
           <p className="crumb">
             <Link to="/">Solutions</Link>
             <span aria-hidden="true"> / </span>
-            <span>{page.title}</span>
+            <span aria-current="page">. . .</span>
           </p>
         }
       />

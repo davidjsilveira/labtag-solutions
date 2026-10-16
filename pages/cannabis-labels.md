@@ -17,23 +17,25 @@ As a manufacturer, GA International provides custom manufacturing covering full-
 
 ## Labels by Stage
 
-### Packaging Labels for Brands, Distributors & Retailers
+### Packaging
 
-![Cannabis packaging and testing labels](https://cdn.labtag.com/wp-content/uploads/Cannabis-Labels-Testersv2-1.jpg "/media/cannabis-labels/Cannabis-Labels-Testersv2-1.jpg")
+![Cannabis packaging labels for brands and retailers](https://cdn.labtag.com/wp-content/uploads/Cannabis-Labels-Testersv2-1.jpg "/media/cannabis-labels/Cannabis-Labels-Testersv2-1.jpg")
 
 Full-color custom printing of logos and designs is available in digital, flexographic, and thermal formats to shorten turnaround so product is ready to ship. A wide selection of cannabis packaging labels suits plastic bags, jars, and bottles for dried flowers, seeds, edibles, tinctures, oils, or pre-rolled products. Labels meet FDA regulations for indirect food contact and are RoHS compliant. State- and country-specific warning and compliance labels are available. Tamper-evident labels can be used on bags and jars for additional security.
 
-### Plant Identification Labels for Growers
+### Growing
 
 ![Cannabis plant identification labels](https://cdn.labtag.com/wp-content/uploads/Cannabis-Labels-onplantv3.jpg "/media/cannabis-labels/Cannabis-Labels-onplantv3.jpg")
 
 These labels identify the plant, not the pot, so every plant remains clearly labeled from seed to sale—even if repotted or moved. Durable and waterproof, they remain attached and legible in damp, humid environments. Available in a variety of colors for color coding and breeding of unique plant strains. Printable with high-quality barcodes and variable information for enhanced tracking and traceability.
 
-### Tube, Vial & Dish Labels for Testing Labs
+### Testing
+
+![Cannabis testing lab tube and vial labels](https://cdn.labtag.com/wp-content/uploads/2020/10/Cannabis-Labels-Testersv4.jpg "/media/cannabis-labels/Cannabis-Labels-Testersv4.jpg")
 
 We provide durable labels that adhere to small-diameter tubes and vials of different sizes, including small LC vials, 50 ml Falcons, and culture plates. These labels resist spraying and wiping with alcohols such as ethanol and isopropanol, as well as other chemicals and detergents. They also withstand deep-freeze conditions when cold storage is required (for example, batch retention). Thermal-transfer printable for barcodes.
 
-### Printers, Scanners & Software
+### Print & Scan
 
 ![Cannabis labeling printers and software kit](https://cdn.labtag.com/wp-content/uploads/ivf-softwarepkt.jpg "/media/cannabis-labels/ivf-softwarepkt.jpg")
 

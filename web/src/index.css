@@ -1522,10 +1522,6 @@ main {
   font-size: var(--text-sm);
 }
 
-.page-hero .crumb {
-  margin: 0 0 var(--space-xs);
-}
-
 .crumb a {
   text-decoration: none;
   font-weight: 600;

@@ -32,25 +32,27 @@ Chemical-resistant label options support primary and secondary container identif
 
 ### Drums & IBC Totes
 
-![Drums & IBC Totes](https://cdn.labtag.com/wp-content/uploads/Icon-Drums-IBC-Totes1-1.svg "/media/chemical-container-labeling/Icon-Drums-IBC-Totes1-1.svg")
+![Chemical-resistant labels for drums and IBC totes](https://cdn.labtag.com/wp-content/uploads/L-010-0.5R-2.jpg "/media/chemical-container-labeling/L-010-0.5R-2.jpg")
 
 These larger containers are used to ship large quantities of hazardous chemicals and are typically labeled by the manufacturer. They can be made of plastic or metal and require a label with a strong adhesive that will not fall off during transport. The label must also comply with regulations such as OSHA, and will most likely require a GHS label to indicate danger and prevent accidents.
 
 ### Bottles & Secondary Containers
 
-![Bottles & Secondary Containers](https://cdn.labtag.com/wp-content/uploads/Icon-Bottles-New.svg "/media/chemical-container-labeling/Icon-Bottles-New.svg")
+![Solvent-resistant labels for bottles and secondary containers](https://cdn.labtag.com/wp-content/uploads/Inkjet.png "/media/chemical-container-labeling/Inkjet.png")
 
 Solvent-resistant color labels for bottles and containers allow secondary chemical containers to be easily identified and color coded. These thermal-transfer printable labels can be printed with serialized text as well as 1D/2D barcodes for enhanced tracking. They withstand exposure to harsh chemicals, including xylene, toluene, methyl ethyl ketone (MEK), acetone, thinners, and commercial cleaners.
 
 ### Reagent Vials & Tubes
 
-![Reagent Vials & Tubes](https://cdn.labtag.com/wp-content/uploads/Icon-Reagent-Vials-Tubes-2.svg "/media/chemical-container-labeling/Icon-Reagent-Vials-Tubes-2.svg")
+![Chemical-resistant labels for reagent vials and tubes](https://cdn.labtag.com/wp-content/uploads/CALA-2.jpg "/media/chemical-container-labeling/CALA-2.jpg")
 
 Chemical-resistant labels for tubes and vials, printable with either inkjet or thermal printers, are suited for various lab applications. These vial labels withstand spraying and swabbing with alcohol solutions, as well as sanitizing alcohol wipes. They also resist long-term storage in low-temperature conditions, including lab freezers.
 
 ## Chemical-Resistant Labels by Printing Method
 
 ### Thermal-Transfer
+
+![Thermal-transfer chemical-resistant labels](https://cdn.labtag.com/wp-content/uploads/Xylene-Chemica-Resistant-Labels.png "/media/chemical-container-labeling/Xylene-Chemica-Resistant-Labels.png")
 
 Thermal-transfer printers provide a printout that withstands harsh environments and conditions. When printing with a solvent-resistant resin ribbon, the printout offers the most resistance against harsh solvents, as well as extreme temperatures, smudging, and scratching. Thermal-transfer printing also offers the most options for different label materials, which is useful for customized labeling solutions.
 
@@ -62,6 +64,8 @@ Direct thermal printers use rolls of labels coated with a leuco dye, a chemical 
 
 ### DYMO-Compatible
 
+![DYMO-compatible chemical-resistant labels](https://cdn.labtag.com/wp-content/uploads/DymoCard.png "/media/chemical-container-labeling/DymoCard.png")
+
 DYMO printers are a type of direct thermal printer and have the same limitations. DYMO-compatible labels are available that resist chemical exposure as well as cryogenic and deep-freeze storage, for DYMO 450-series LabelWriter printer models.
 
 ### Inkjet
@@ -72,23 +76,27 @@ Inkjet-printable labels are available in sheet and roll formats for full-color d
 
 ## Pre-Printed Chemical-Resistant Labels
 
-![Pre-printed chemical-resistant labels](https://cdn.labtag.com/wp-content/uploads/WL-015-2.jpg "/media/chemical-container-labeling/WL-015-2.jpg")
-
 ### GHS Container Labels
 
-![GHS Container Labels](https://cdn.labtag.com/wp-content/uploads/WL-004-1P-2-2.jpg "/media/chemical-container-labeling/WL-004-1P-2-2.jpg")
+![GHS container hazard labels](https://cdn.labtag.com/wp-content/uploads/WL-004-1P-2-2.jpg "/media/chemical-container-labeling/WL-004-1P-2-2.jpg")
 
 The Globally Harmonized System (GHS) is an international system created to classify and label chemicals and other hazards. These labels include hazard pictograms that identify common risk groups and informational text. Supplemental information can also be inscribed using permanent markers or printed with industrial printers.
 
 ### HMIS Warning Labels
 
+![HMIS warning labels for hazardous materials](https://cdn.labtag.com/wp-content/uploads/WL-015-2.jpg "/media/chemical-container-labeling/WL-015-2.jpg")
+
 Hazardous Materials Identification System (HMIS) warning labels provide broad health warning information. The labels are divided into four color-coded bars: red for flammability, blue for health hazards, yellow for physical hazards, and white for personal protection. The numbers represent the level of risk from minimal hazard (0) to severe hazard (4).
 
 ### NFPA Warning Labels
 
+![NFPA warning labels for chemical hazards](https://cdn.labtag.com/wp-content/uploads/WL-004-1P-2-2.jpg "/media/chemical-container-labeling/WL-004-1P-2-2.jpg")
+
 Blank and pre-printed NFPA warning labels identify hazardous chemicals and materials. The labels are divided into four color-coded sections: red for flammability, blue for health hazards, yellow for chemical reactivity, and white for special hazards. Hazard ratings range from 0 to 4, with 4 being the most hazardous.
 
-### Calibration and Maintenance Labels
+### Calibration & Maintenance
+
+![Self-laminating calibration and maintenance labels](https://cdn.labtag.com/wp-content/uploads/CALA-2.jpg "/media/chemical-container-labeling/CALA-2.jpg")
 
 These self-laminating labels record inspection and calibration data on equipment and instruments that are regularly calibrated. Data can be inscribed on the base label, then covered with the laminate to protect the information from chemical and mechanical damage. Removable and permanent options are available.
 

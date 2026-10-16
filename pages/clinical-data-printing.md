@@ -18,19 +18,33 @@ VDP automates printing from a spreadsheet or database so finished labels can sim
 
 ## Why Use a Data Printing Service?
 
-### Speed and Ease of Use
+### Speed
 
 ![Variable data printing for clinical labels](https://cdn.labtag.com/wp-content/uploads/Variable-Data-Printing-Services.jpg "/media/clinical-data-printing/Variable-Data-Printing-Services.jpg")
 
-VDP allows the printing process to be automated by printing user data from a spreadsheet or database. Finished labels can simply be peeled and applied—no need to find a printer or fumble to change ink or rolls.
+VDP automates the printing process by pulling user data from a spreadsheet or database. Serialized text, barcodes, and study-specific fields print accurately at volume so sites receive ready-to-use clinical labels without local print setup.
 
-### Durability and Quality
+### User-Friendly
 
-![Clinical trial labels with printed variable data](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use6.jpg "/media/clinical-data-printing/Clinical-Trial-Labels-Labtag-Use6.jpg")
+![Clinical trial labels ready to peel and apply](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use6.jpg "/media/clinical-data-printing/Clinical-Trial-Labels-Labtag-Use6.jpg")
 
-Laminated variable data printing provides additional protection against abrasion and chemical exposure, as well as extreme temperature variations. Superior raw materials and printing can be provided, along with quality control testing to ensure labels and print meet your requirements—including barcode grading services.
+Finished labels simply peel and apply—no need to find a printer or fumble with ink, ribbons, or rolls at the clinic or depot. Hands-off VDP keeps trial staff focused on patients and protocol work instead of label production.
 
-### Design and Branding
+### Durability
+
+![Laminated clinical variable data labels](https://cdn.labtag.com/wp-content/uploads/2021/12/Clinical-Trial-Labels-Labtag-Use5.jpg "/media/clinical-data-printing/Clinical-Trial-Labels-Labtag-Use5.jpg")
+
+Laminated variable data printing adds protection against abrasion, chemical exposure, and extreme temperature variations—so serialized IDs and barcodes stay legible and scannable through handling, shipping, and storage.
+
+### Quality
+
+![Barcode grading and QC for clinical labels](https://cdn.labtag.com/wp-content/uploads/Variable-Data-Printing-Services.jpg "/media/clinical-data-printing/Variable-Data-Printing-Services.jpg")
+
+Superior raw materials and printing are backed by quality control testing so labels and printouts meet your requirements—including barcode grading services that verify consistent, accurate scans across sites and amendments.
+
+### Design
+
+![Full-color clinical label branding and graphics](https://cdn.labtag.com/wp-content/uploads/Clinical-Trial-Labels-Labtag-Use6.jpg "/media/clinical-data-printing/Clinical-Trial-Labels-Labtag-Use6.jpg")
 
 Materials can be supplied with full-color, high-resolution company logos and branding, as well as other images or graphics, so clinical printed materials stay consistent with your trial identity.
 
