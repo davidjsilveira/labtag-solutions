@@ -92,7 +92,6 @@ const ITEM_TO_SECTION: Record<string, string[]> = {
   visibility: ['what is snappeel'],
   'barcode ready': ['pcr tag'],
   'hand writable': ['tube and cap dots'],
-  'color coding': ['tube and cap dots'],
   fjt: ['what is snappeel'],
   jtta: ['what is snappeel'],
   dtu: ['what is snappeel'],

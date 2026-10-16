@@ -134,7 +134,7 @@ export function useAnchorHighlight(pageKey: string) {
       requestAnimationFrame(() => activate(document.getElementById(id), id, true))
     }
 
-    requestAnimationFrame(() => requestAnimationFrame(syncFromHash))
+    requestAnimationFrame(() => requestAnimationFrame(() => syncFromHash(false)))
     window.addEventListener('hashchange', onHashChange)
     document.addEventListener('click', onJumpClick)
 
