@@ -32,7 +32,7 @@ function jumpTargetIds(): string[] {
 }
 
 /**
- * Highlight the hash target until it scrolls out of view.
+ * Highlight the hash target until it scrolls out of view or the user clicks outside it.
  * Clears the URL hash when the highlight is dismissed so :target does not linger.
  * Marks the matching quick-menu jump via `html[data-active-jump]` + a dynamic
  * style rule so dimming/active styles survive React remounts of the menu.
@@ -232,6 +232,19 @@ export function useAnchorHighlight(pageKey: string) {
       requestAnimationFrame(() => activateHashTarget(document.getElementById(id), id, true))
     }
 
+    /** Dismiss the orange hash highlight when the user clicks outside it. */
+    const onOutsideClick = (event: MouseEvent) => {
+      if (!hashTarget) return
+      const target = event.target
+      if (!(target instanceof Node)) return
+      if (target instanceof Element) {
+        // Jump links activate their own highlight; don't clear underneath them.
+        if (target.closest('.solution-quick-menu a.feature-jump-link[href^="#"]')) return
+      }
+      if (hashTarget.contains(target)) return
+      clearHashHighlight()
+    }
+
     const onScroll = () => {
       pickSpySection()
     }
@@ -247,12 +260,14 @@ export function useAnchorHighlight(pageKey: string) {
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', bindSpy)
     document.addEventListener('click', onJumpClick)
+    document.addEventListener('click', onOutsideClick)
 
     return () => {
       window.removeEventListener('hashchange', onHashChange)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', bindSpy)
       document.removeEventListener('click', onJumpClick)
+      document.removeEventListener('click', onOutsideClick)
       hashObserver?.disconnect()
       spyObserver?.disconnect()
       hashTarget?.classList.remove('is-anchor-highlight')
