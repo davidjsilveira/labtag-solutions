@@ -88,8 +88,17 @@ Autoclave-resistant RFID labels have a strong permanent adhesive and can withsta
 
 ## Autoclave Labels by Adhesive
 
-- **Permanent** — Stays bonded through repeated autoclave, dry-heat, and EtO cycles on metal, glass, and plastic surfaces
-- **Removable** — Clean peel-away after sterilization when temporary identification is required
+### Permanent
+
+![Permanent autoclave sterilization labels](https://cdn.labtag.com/wp-content/uploads/AUTT-94-use-2.png "/media/autoclave-labels/AUTT-94-use-2.png")
+
+Permanent autoclave adhesive stays bonded through repeated autoclave, dry-heat, and EtO cycles on metal, glass, and plastic surfaces so sterilized containers and devices keep durable, scannable IDs.
+
+### Removable
+
+![Removable autoclave sterilization labels](https://cdn.labtag.com/wp-content/uploads/PAUTR-6-use1.png "/media/autoclave-labels/PAUTR-6-use1.png")
+
+Removable autoclave adhesive offers clean peel-away after sterilization when temporary identification is required—useful for reusable trays and instruments that need fresh IDs between cycles.
 
 ## Need Expert Help?
 

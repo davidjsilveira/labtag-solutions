@@ -4,7 +4,7 @@ Source: [https://www.labtag.com/solutions/xylene-chemical-resistant-labels/](htt
 
 ![Xylene & Chemical Resistant Labels](https://cdn.labtag.com/wp-content/uploads/2024/05/Thumb-Guide-Xylene-Chemical-Resistant-Label-Guide-EN022024-February-23-2024.jpg "/media/xylene-chemical-resistant-labels/Thumb-Guide-Xylene-Chemical-Resistant-Label-Guide-EN022024-February-23-2024.jpg")
 
-LabTAG® provides xylene-resistant labels, ribbons, and tags for use in clinical and medical research labs, including histology, pathology, and chemistry labs. Our laminate-free chemical-resistant labels identify microscope slides, paraffin wax blocks, plastic containers, volumetric labware, deep-freeze slide boxes, formalin preservation, and resin embedding across all histology lab workflows.
+LabTAG® provides xylene-resistant labels, ribbons, and tags for clinical and medical research labs—including histology, pathology, and chemistry. Laminate-free chemical-resistant labels identify microscope slides, paraffin wax blocks, plastic containers, volumetric labware, deep-freeze slide boxes, formalin preservation, and resin embedding across histology workflows.
 
 These labels withstand immersion in xylene, toluene, alcohols such as ethanol, formalin, hexane, acetone, DMSO, acetonitrile, and other harsh chemicals and organic solvents used in pathology labs.
 
@@ -35,57 +35,68 @@ These labels withstand immersion in xylene, toluene, alcohols such as ethanol, f
 ### Microscope Slides
 
 ![Microscope slide chemical-resistant labels](https://cdn.labtag.com/wp-content/uploads/PRF-67-use1.png "/media/xylene-chemical-resistant-labels/PRF-67-use1.png")
-![Xylene-resistant histology labels](https://cdn.labtag.com/wp-content/uploads/XRM-117-use8-v2-1.jpg "/media/xylene-chemical-resistant-labels/XRM-117-use8-v2-1.jpg")
 
-Our xylene-resistant labels are ideal for labeling glass microscope slides, commonly used in histology. When printed with our solvent-resistant ribbons, the labels are resistant to xylene, toluene, hexanes, alcohols, acetone, and the new generation of safer, non-toxic xylene alternatives/substitutes. These slide labels are particularly resistant to histological stains, such as eosin Y and hematoxylin, and will not acquire colors during staining protocols. These thermal-transfer printable labels are also suitable for use in automated slide processors.
+Xylene-resistant labels for glass microscope slides used in histology. Printed with solvent-resistant ribbons, they resist xylene, toluene, hexanes, alcohols, acetone, and safer non-toxic xylene alternatives. Particularly resistant to histological stains such as eosin Y and hematoxylin—labels will not take on stain color during protocols. Thermal-transfer printable and suitable for automated slide processors.
 
 ### Paraffin Wax Blocks
 
 ![Paraffin wax block labels](https://cdn.labtag.com/wp-content/uploads/PRF-149-use1.png "/media/xylene-chemical-resistant-labels/PRF-149-use1.png")
 
-Durable barcode labels designed to adhere to hard-to-stick surfaces, including hot paraffin wax used for histology applications. Able to withstand a range of temperatures (−55°C/−67°F to +70°C/+158°F), these solvent-resistant labels are suitable for use on recently cooled wax blocks used to encase tissue cassettes for histological applications. The printout obtained when printing with our xylene-resistant ribbons will resist harsh chemicals and solvents, including xylene, toluene, hexanes, alcohols, acetone, and methyl ethyl ketone (MEK). Perfect for identifying paraffin blocks with barcodes for use with tissue microarrays, including the Galileo TMA CK4600.
+Durable barcode labels that adhere to hard-to-stick surfaces, including hot paraffin wax. Withstand −55°C/−67°F to +70°C/+158°F and suit recently cooled wax blocks encasing tissue cassettes. Print with xylene-resistant ribbons resists xylene, toluene, hexanes, alcohols, acetone, and methyl ethyl ketone (MEK)—ideal for paraffin block barcodes and tissue microarrays such as the Galileo TMA CK4600.
 
 ### Glass Bottles & Labware
 
 ![Chemical-resistant bottle and labware labels](https://cdn.labtag.com/wp-content/uploads/FTT-152-Use1-605x348px.jpg "/media/xylene-chemical-resistant-labels/FTT-152-Use1-605x348px.jpg")
 
-Solvent and chemical-resistant labels, available with a permanent or removable adhesive, are well suited for glass bottles and beakers used to store harsh solvents, as well as any other container or lab material that will come in contact with abrasive chemicals. Provided in a variety of colors, these thermal-transfer labels are perfectly suited for use in animal facilities, medical and clinical laboratories, veterinary clinics, as well as the medical research industry. Ideal for color-coding, as well as high-quality printing of alphanumeric text, 1D and 2D barcodes.
+Solvent and chemical-resistant labels with permanent or removable adhesive for glass bottles and beakers that store harsh solvents—and any lab material that contacts abrasive chemicals. Available in a variety of colors for color-coding, with high-quality alphanumeric text and 1D/2D barcodes for animal facilities, medical and clinical laboratories, veterinary clinics, and medical research.
 
 ### Tubes, Vials & Boxes
 
-Chemical-resistant labels for thermal-transfer printers, perfectly suited for laboratory use as well as cryogenic storage applications such as identification of cryo tubes, cryo vials, freezer/cryo boxes, microscope slides, and slide storage boxes. Coated with a strong permanent adhesive that ensures the labels conform to small-diameter vials and tubes and resist immersion in liquid nitrogen, as well as multiple freeze-thaw cycles. These tube labels withstand spraying and swabbing with alcohol solutions, including ethanol and isopropanol, and exposure to formalin solutions.
+![Chemical-resistant tube vial and box labels](https://cdn.labtag.com/wp-content/uploads/EDFT-070-Use4-e1619107109917.jpg "/media/deep-freeze/EDFT-070-Use4-e1619107109917.jpg")
+
+Chemical-resistant thermal-transfer labels for cryo tubes, cryo vials, freezer/cryo boxes, microscope slides, and slide storage boxes. Strong permanent adhesive conforms to small-diameter vials and tubes, resists liquid nitrogen immersion and multiple freeze-thaw cycles, and withstands spraying and swabbing with ethanol or isopropanol plus exposure to formalin.
 
 ## Xylene & Chemical Resistant Labels by Printing Method
 
 ### Thermal-Transfer
 
-![Thermal-transfer xylene-resistant labels](https://cdn.labtag.com/wp-content/uploads/PRF-149-use1.png "/media/xylene-chemical-resistant-labels/PRF-149-use1.png")
+![Thermal-transfer xylene-resistant labels](https://cdn.labtag.com/wp-content/uploads/XAL-67-use5.jpg "/media/histology-labels/XAL-67-use5.jpg")
 
-Thermal-transfer, xylene-resistant labels are capable of withstanding direct contact with, and immersion in, harsh organic solvents such as xylene, alcohols, formalin, toluene, and acetone. They can be used in a multitude of histological staining processes, from tissue fixation using alcohols, aldehydes, and ketones, to incubation in different alcohol mixtures during dehydration processes. These barcode labels will remain permanently adherent, even when exposed to harsh chemicals and during long-term archival storage after processing.
+Thermal-transfer xylene-resistant labels withstand direct contact with and immersion in harsh organic solvents such as xylene, alcohols, formalin, toluene, and acetone. Use them through histological staining—from tissue fixation with alcohols, aldehydes, and ketones to dehydration alcohol mixtures. Barcodes stay permanently adherent through chemical exposure and long-term archival storage after processing.
 
 ### DYMO-Compatible
 
-Dymo-compatible, direct thermal labels can both withstand exposure to harsh chemicals and solvents, as well as long-term storage in cryogenic conditions. These chemical-resistant labels resist immersion (up to 3 min) in alcohols, including ethanol and isopropanol, and exposure to solvents such as xylene. Coated with a unique protective coating and a strong permanent adhesive, these direct thermal labels can also be immersed in liquid nitrogen directly following application and can withstand multiple freeze-thaw cycles.
+![DYMO-compatible chemical-resistant labels](https://cdn.labtag.com/wp-content/uploads/EDCS-070-Use5.jpg "/media/dymo-compatible-laboratory-labels/EDCS-070-Use5.jpg")
 
-## Xylene & Chemical-Resistant Labels by Feature
+DYMO-compatible direct thermal labels resist harsh chemicals and solvents as well as long-term cryogenic storage. They withstand immersion (up to 3 min) in alcohols including ethanol and isopropanol, and exposure to solvents such as xylene. A protective coating and strong permanent adhesive allow immersion in liquid nitrogen immediately after application and repeated freeze-thaw cycles.
+
+## Xylene & Chemical Resistant Labels by Feature
 
 ### Acid & Base-Resistant
 
-![Acid and base-resistant labels](https://cdn.labtag.com/wp-content/uploads/FTT-152-Use1-605x348px.jpg "/media/xylene-chemical-resistant-labels/FTT-152-Use1-605x348px.jpg")
 ![Acid and base-resistant label application](https://cdn.labtag.com/wp-content/uploads/FTT-152-Use3-605x348px.jpg "/media/xylene-chemical-resistant-labels/FTT-152-Use3-605x348px.jpg")
 
-These permanent acid- and base-proof labels will withstand long-term exposure as well as immersion in concentrated acids, such as sulfuric acid (H₂SO₄) and trichloroacetic acid (TCA), as well as aggressive bases, including sodium hydroxide (NaOH). Ideal for the identification of containers used to store highly corrosive reagents used in organic chemistry and forensics, analytical research, and by environmental/agriculture laboratories. These acid-resistant labels can be used for protein work, as well as mass spectrometry, and acid hydrolysis of tissue for non-heme iron assays.
+Permanent acid- and base-proof labels withstand long-term exposure and immersion in concentrated acids such as sulfuric acid (H₂SO₄) and trichloroacetic acid (TCA), as well as aggressive bases including sodium hydroxide (NaOH). Ideal for containers of highly corrosive reagents in organic chemistry, forensics, analytical research, and environmental/agriculture labs—and for protein work, mass spectrometry, and acid hydrolysis of tissue for non-heme iron assays.
 
 ### Blackout
 
 ![Blackout chemical-resistant slide labels](https://cdn.labtag.com/wp-content/uploads/XRM-117-use8-v2-1.jpg "/media/xylene-chemical-resistant-labels/XRM-117-use8-v2-1.jpg")
 
-Solvent-resistant blackout labels designed for flat surfaces, such as glass microscope slides. These removable cover-up labels conceal any pre-existing information, while their glove-friendly adhesive allows them to be easily removed without leaving behind any residue or damaging the information underneath. Ideal for re-identifying histology slides marked with unclear, inaccurate, or lacking information, these thermal-transfer printable labels will resist harsh chemicals, solvents, and detergents when printed with our xylene-resistant resin ribbons.
+Solvent-resistant blackout labels for flat surfaces such as glass microscope slides. Removable cover-up labels conceal pre-existing information; glove-friendly adhesive peels away without residue or damage underneath. Ideal for re-identifying histology slides with unclear, inaccurate, or missing information. Thermal-transfer printable and resistant to harsh chemicals, solvents, and detergents when printed with xylene-resistant resin ribbons.
 
 ## Xylene & Chemical Resistant Labels by Adhesive
 
-- **Permanent** — Stays bonded through solvent immersion, staining protocols, and long-term archival storage
-- **Removable** — Glove-friendly peel-away without residue when re-identifying slides or temporary ID is enough
+### Permanent
+
+![Permanent xylene-resistant slide labels](https://cdn.labtag.com/wp-content/uploads/PRF-67-use1.png "/media/xylene-chemical-resistant-labels/PRF-67-use1.png")
+
+Permanent solvent-resistant adhesive stays bonded through solvent immersion, staining protocols, and long-term archival storage so histology and chemical-container IDs remain affixed end to end.
+
+### Removable
+
+![Removable chemical-resistant cover-up labels](https://cdn.labtag.com/wp-content/uploads/XRM-117-use8-v2-1.jpg "/media/xylene-chemical-resistant-labels/XRM-117-use8-v2-1.jpg")
+
+Removable glove-friendly adhesive peels away without residue when re-identifying slides or when temporary ID is enough—ideal for cover-up workflows that must not damage underlying print.
 
 ## Need Expert Help?
 

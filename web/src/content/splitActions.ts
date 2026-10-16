@@ -23,6 +23,11 @@ const VIDEO_CONTAINER_BY_SECTION: Record<string, string> = {
   'cryo-straws': 'straw',
   'cryo-strawtag': 'straw',
   straws: 'straw',
+  'self-laminating-wrap-around': 'tubes-vials',
+  'cryostuck-frozen-surfaces': 'tubes-vials',
+  'side-labels-for-culture-plates': 'microplates',
+  'bottom-labels-for-culture-plates': 'microplates',
+  'patient-record-labels': 'tubes-vials',
   nitrotag: 'tubes-vials',
   metalitag: 'metal-rack',
   pintag: 'tubes-vials',
@@ -57,19 +62,26 @@ const VIDEO_FEATURE_BY_SECTION: Record<string, string> = {
   'frozen-surface-cryostuck': 'frozen-containers',
   'frozen-surfaces': 'frozen-containers',
   cryostuck: 'frozen-containers',
+  'cryostuck-frozen-surfaces': 'frozen-containers',
   'clear-over-label': 'transparent',
   blackout: 'blackout',
   'tamper-evident': 'tamper-proof',
   snappeel: 'self-laminating',
+  'snappeel-technology': 'self-laminating',
+  'self-laminating-wrap-around': 'wrap-around',
   'wrap-around': 'wrap-around',
+  'color-coding': 'color',
   transparent: 'transparent',
   rfid: 'rfid',
   'rfid-solutions': 'rfid',
   'rfid-labels-and-smart-labels': 'rfid',
+  'rfid-parafitag': 'rfid',
+  'rfid-cryo-wraptag': 'rfid',
   'cryo-c-kurtag': 'tamper-proof',
   'c-kur-tamper-evident-cryo-tape': 'tamper-proof',
   'cryostuck-tape': 'frozen-containers',
   gatorcut: 'gatorcut',
+  'gatorcut-technology': 'gatorcut',
 }
 
 /**
@@ -87,6 +99,9 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
   platetag: { label: 'PlateTAG', query: 'PlateTAG PCR' },
   'pcr-tagtrax': { label: 'PCR-TagTrax', query: 'PCR-TagTrax' },
   applicators: { label: 'Applicators', query: 'PCR label applicator' },
+  'cryogenic-adhesive': { label: 'PCR Labels', query: 'cryogenic PCR labels' },
+  'barcode-ready': { label: 'Barcode PCR Labels', query: 'barcode PCR labels' },
+  'hand-writable': { label: 'Writable PCR Labels', query: 'writable PCR labels' },
   'metal-racks-and-canes': { label: 'Metal Racks', query: 'cryogenic metal racks' },
   'cryo-straws': { label: 'Cryo Straws', query: 'cryo straw labels' },
   straws: { label: 'Cryo Straws', query: 'cryo straw labels' },
@@ -126,6 +141,21 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
   'cryo-lazrtag': { label: 'Cryo-LazrTAG', query: 'Cryo-LazrTAG' },
   'direct-thermal-cryostuck': { label: 'DT CryoSTUCK', query: 'direct thermal CryoSTUCK' },
   'cryo-strawtag': { label: 'Cryo-StrawTAG', query: 'Cryo-StrawTAG' },
+  'self-laminating-wrap-around': { label: 'Wrap-Around', query: 'self laminating wrap-around cryogenic' },
+  'cryostuck-frozen-surfaces': { label: 'CryoSTUCK', query: 'CryoSTUCK' },
+  'side-labels-for-culture-plates': { label: 'Plate Side Labels', query: 'culture plate side labels' },
+  'bottom-labels-for-culture-plates': {
+    label: 'Plate Bottom Labels',
+    query: 'culture plate bottom labels',
+  },
+  'patient-record-labels': { label: 'Patient Records', query: 'patient record labels' },
+  'color-coding': { label: 'Color Labels', query: 'color coded labels' },
+  'print-and-scan-kits': { label: 'Print Kits', query: 'IVF printing kit' },
+  'trusted-supplier': { label: 'Requisition Forms', query: 'cryogenic requisition forms' },
+  customization: { label: 'Custom Forms', query: 'custom clinical requisition forms' },
+  'cryogenic-storage': { label: 'Cryo Labels', query: 'cryogenic laser labels' },
+  'easy-printing': { label: 'Laser Labels', query: 'laser printable cryogenic labels' },
+  durability: { label: 'Cryo Labels', query: 'cryogenic labels' },
   metalitag: { label: 'MetaliTAG', query: 'MetaliTAG' },
   pintag: { label: 'PinTAG', query: 'PinTAG' },
   'cryo-c-kurtag': { label: 'Cryo C-kurTAG', query: 'Cryo C-kurTAG' },
@@ -150,6 +180,45 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
   'rfid-solutions': { label: 'RFID', query: 'RFID cryogenic' },
   'printing-solutions': { label: 'Printing', query: 'label printer laboratory' },
   'lims-integration': { label: 'LIMS Labels', query: 'LIMS laboratory labels' },
+  parafitag: { label: 'ParafiTAG', query: 'ParafiTAG' },
+  parafigard: { label: 'ParafiGARD', query: 'ParafiGARD' },
+  'rfid-parafitag': { label: 'RFID ParafiTAG', query: 'RFID ParafiTAG' },
+  'metal-detectable': { label: 'ParafiGARD', query: 'ParafiGARD metal detectable' },
+  'microscope-slides': { label: 'Slide Labels', query: 'xylene resistant slide labels' },
+  'paraffin-wax-blocks': { label: 'Paraffin Labels', query: 'paraffin wax block labels' },
+  'glass-bottles-and-labware': {
+    label: 'Bottle Labels',
+    query: 'chemical resistant bottle labels',
+  },
+  'slide-storage-boxes': { label: 'Storage Labels', query: 'freezer slide storage labels' },
+  'metal-detectable-blocks': { label: 'ParafiGARD', query: 'ParafiGARD' },
+  'self-laminating': { label: 'HistoLAM', query: 'HistoLAM' },
+  're-identification': { label: 'Histo-PinTAG', query: 'Histo-PinTAG' },
+  'thermal-transfer-printable': {
+    label: 'Histology Labels',
+    query: 'xylene resistant histology labels',
+  },
+  'acid-and-base-resistant': {
+    label: 'Acid-Resistant',
+    query: 'acid base resistant labels',
+  },
+  'custom-constructs': { label: 'Custom Labels', query: 'custom clinical trial labels' },
+  'custom-printing': { label: 'Custom Printing', query: 'custom printed clinical labels' },
+  'serialization-and-database': {
+    label: 'Serialized Labels',
+    query: 'serialized clinical trial labels',
+  },
+  'full-color-graphics': { label: 'Full-Color Labels', query: 'full color clinical trial labels' },
+  'rfid-technology': { label: 'RFID Labels', query: 'RFID clinical trial labels' },
+  'in-house-manufacturing': { label: 'Clinical Labels', query: 'clinical trial labels' },
+  'scientific-expertise': { label: 'Clinical Labels', query: 'clinical trial labels' },
+  'global-delivery': { label: 'Clinical Labels', query: 'clinical trial labels' },
+  'diagnostic-kits': { label: 'Kit Labels', query: 'diagnostic kit labels' },
+  'clinical-trials': { label: 'Clinical Trial Labels', query: 'clinical trial labels' },
+  'sample-processing': { label: 'PCR Labels', query: 'PCR laboratory labels' },
+  histology: { label: 'Histology Labels', query: 'xylene resistant histology labels' },
+  'cold-storage': { label: 'Cryo Labels', query: 'cryogenic deep freeze labels' },
+  sterilization: { label: 'Autoclave Labels', query: 'autoclave sterilization labels' },
   blackout: { label: 'Blackout', query: 'blackout cryogenic' },
   'tamper-evident': { label: 'Tamper-Evident', query: 'tamper evident cryogenic' },
   snappeel: { label: 'SnapPEEL', query: 'SnapPEEL cryogenic' },
@@ -160,6 +229,18 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
   rfid: { label: 'RFID', query: 'RFID cryogenic' },
   permanent: { label: 'Permanent', query: 'permanent cryogenic labels' },
   removable: { label: 'Removable', query: 'removable cryogenic labels' },
+  cryogenic: { label: 'Cryogenic', query: 'cryogenic labels' },
+  ivf: { label: 'IVF Labels', query: 'IVF labels' },
+  'kits-and-storage': { label: 'Kit Labels', query: 'diagnostic kit labels' },
+  cannabis: { label: 'Cannabis Labels', query: 'cannabis labels' },
+  'xylene-and-chemical': { label: 'Xylene Labels', query: 'xylene resistant labels' },
+  autoclave: { label: 'Autoclave Labels', query: 'autoclave labels' },
+  'deep-freeze': { label: 'Deep-Freeze', query: 'deep freeze labels' },
+  'snappeel-technology': { label: 'SnapPEEL', query: 'SnapPEEL' },
+  pikatag: { label: 'PikaTAG', query: 'PikaTAG' },
+  'rfid-cryo-wraptag': { label: 'RFID Cryo-WrapTAG', query: 'RFID Cryo-WrapTAG' },
+  'gatorcut-technology': { label: 'GatorCUT', query: 'GatorCUT' },
+  'print-solutions': { label: 'Printers', query: 'laboratory label printers' },
 }
 
 const CRYO_SOLUTION_SLUGS = new Set([
@@ -176,7 +257,8 @@ export type SplitCardActions = {
   shopHref: string
   shopLabel: string
   sampleHref: string
-  videoHref: string
+  /** Only set when the section maps to a specific LabTAG video filter. */
+  videoHref?: string
 }
 
 function videoContainerUrl(container: string): string {
@@ -206,7 +288,8 @@ function titleToShopLabel(title?: string): string {
     .trim()
 }
 
-function resolveVideoHref(sectionSlug: string, cryo: boolean): string {
+/** Section-specific video filter URL, or undefined when none applies. */
+function resolveVideoHref(sectionSlug: string): string | undefined {
   const container = VIDEO_CONTAINER_BY_SECTION[sectionSlug]
   if (container) return videoContainerUrl(container)
 
@@ -216,7 +299,7 @@ function resolveVideoHref(sectionSlug: string, cryo: boolean): string {
   const feature = VIDEO_FEATURE_BY_SECTION[sectionSlug]
   if (feature) return videoFeatureUrl(feature)
 
-  return cryo ? LABTAG_CRYO_VIDEOS_URL : LABTAG_VIDEOS_URL
+  return undefined
 }
 
 export function resolveVideosHref(solutionSlug?: string): string {
@@ -249,6 +332,6 @@ export function resolveSplitCardActions(
     shopHref,
     shopLabel,
     sampleHref: LABTAG_SAMPLE_URL,
-    videoHref: resolveVideoHref(sectionSlug, cryo),
+    videoHref: resolveVideoHref(sectionSlug),
   }
 }

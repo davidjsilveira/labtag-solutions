@@ -4,6 +4,7 @@ import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { SiteSitemap } from '@/components/SiteSitemap'
 import { getPage } from '@/content/loadPages'
 import { HomePage } from '@/pages/HomePage'
+import { RequestFormPage } from '@/pages/RequestFormPage'
 import { SolutionPage } from '@/pages/SolutionPage'
 
 const LEGACY_CATEGORY_IDS = new Set(['use-cases', 'features', 'services'])
@@ -46,6 +47,7 @@ export default function App() {
             path="/solutions/:categoryId/:slug"
             element={<LegacyCategorySolutionRedirect />}
           />
+          <Route path="/request/:formSlug" element={<RequestFormPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

@@ -112,8 +112,17 @@ Our permanent deep-freeze blackout labels are designed to obscure any pre-existi
 
 ## Deep-Freeze Labels by Adhesive
 
-- **Permanent** — Stays bonded through −80°C freezers, dry ice transport, and repeated freeze-thaw cycles
-- **Removable** — Clean peel-away for microplates and temporary freezer identification
+### Permanent
+
+![Permanent deep-freeze vial labels](https://cdn.labtag.com/wp-content/uploads/EDFT-070-Use4-e1619107109917.jpg "/media/deep-freeze/EDFT-070-Use4-e1619107109917.jpg")
+
+Permanent freezer-grade adhesive stays bonded through −80°C freezers, dry-ice transport, and repeated freeze-thaw cycles so tube, vial, and box IDs remain secure for long-term ultra-low storage.
+
+### Removable
+
+![Removable deep-freeze microplate labels](https://cdn.labtag.com/wp-content/uploads/AMA-227-use.png "/media/deep-freeze/AMA-227-use.png")
+
+Removable freezer adhesive offers clean peel-away for microplates and temporary freezer identification—ideal when vessels are reused or labels must be replaced without leaving residue.
 
 ## Need Expert Help?
 

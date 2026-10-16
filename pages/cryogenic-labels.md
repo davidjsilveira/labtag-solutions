@@ -184,8 +184,17 @@ Our cryogenic line of RFID labels have a flexible UHF inlay and strong permanent
 
 ## Cryogenic Labels by Adhesive
 
-- **Permanent** — Stays bonded through liquid nitrogen immersion, ultra-low freezers, and repeated freeze-thaw cycles
-- **Removable** — Clean peel-away when temporary cryogenic identification is required
+### Permanent
+
+![Permanent cryogenic labels on vials](https://cdn.labtag.com/wp-content/uploads/JTTA-29-use2-Copie-e1617026541770.jpg "/media/cryogenic-labels/JTTA-29-use2-Copie-e1617026541770.jpg")
+
+Permanent cryogenic adhesive stays bonded through liquid nitrogen immersion (−196°C), ultra-low freezers, dry-ice transport, and repeated freeze-thaw cycles so sample IDs remain affixed for long-term cryostorage.
+
+### Removable
+
+![Removable cryogenic labels](https://cdn.labtag.com/wp-content/uploads/DFSL-13-Use-1.png "/media/cryogenic-labels/DFSL-13-Use-1.png")
+
+Removable cryogenic adhesive offers clean peel-away when temporary cryogenic identification is required—useful for short-term workflows, re-labeling, or containers that must return to unmarked use without residue.
 
 ## Need Expert Help?
 

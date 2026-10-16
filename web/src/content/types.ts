@@ -81,6 +81,8 @@ export type CtaBlock = {
   type: 'cta'
   title: string
   body: string
+  actionHref?: string
+  actionLabel?: string
 }
 
 export type ContentBlock =

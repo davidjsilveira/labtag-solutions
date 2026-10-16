@@ -65,11 +65,35 @@ PCR-TagTrax® applicators and PikaTAG® label applicator kits help place adhesiv
 
 ## PCR Labels by Feature
 
-- **Cryogenic Adhesive** — Stays bonded through thermal cycling, freeze–thaw cycles, and deep-freeze storage
-- **Color Coding** — Multiple colors for visual sample tracking across tubes, strips, and plates
-- **Barcode Ready** — Compatible with laser and thermal-transfer printers for 1D and 2D barcodes
-- **Hand Writable** — Accepts smudge-proof cryogenic markers for manual labeling at the bench
-- **Removable** — Clean peel-away options when temporary PCR identification is enough
+### Cryogenic Adhesive
+
+![Cryogenic adhesive PCR tube labels](https://cdn.labtag.com/wp-content/uploads/PCRJTT-269-use2.jpg "/media/pcr-labels-and-tags/PCRJTT-269-use2.jpg")
+
+PCR labels use a strong permanent thermal/cryo adhesive that stays bonded through multi-hour thermal cycling, freeze–thaw cycles, and deep-freeze storage (−80°C). That bond keeps tube, strip, and plate IDs in place from sample prep through analysis and cold storage.
+
+### Color Coding
+
+![Color-coded PCR labels](https://cdn.labtag.com/wp-content/uploads/FJT-269-Use-2.jpg "/media/pcr-labels-and-tags/FJT-269-Use-2.jpg")
+
+Multiple colors support visual sample tracking across tubes, strips, and plates so runs, conditions, and cohorts stay distinguishable at a glance—alongside barcodes when you need full digital traceability.
+
+### Barcode Ready
+
+![Thermal-transfer barcode printable PCR labels](https://cdn.labtag.com/wp-content/uploads/Thermal-Transfer-Roll-Format-Buttonsv3.jpg "/media/pcr-labels-and-tags/Thermal-Transfer-Roll-Format-Buttonsv3.jpg")
+
+Compatible with laser and thermal-transfer printers for crisp 1D and 2D barcodes. Print patient, sample, or assay IDs on demand so PCR vessels scan cleanly through automated and manual workflows.
+
+### Hand Writable
+
+![Hand-writable PCR labels and markers](https://cdn.labtag.com/wp-content/uploads/AdobeStock_304078731.jpeg "/media/pcr-labels-and-tags/AdobeStock_304078731.jpeg")
+
+Accepts smudge-proof cryogenic markers for manual labeling at the bench when a printer is not at hand. Hand-writable PCR dots and rectangles are ideal for quick notes, temporary IDs, and hybrid print-plus-write workflows.
+
+### Removable
+
+![Removable PlateTAG PCR plate labels](https://cdn.labtag.com/wp-content/uploads/AMA-11-use.jpg "/media/pcr-labels-and-tags/AMA-11-use.jpg")
+
+Clean peel-away options—including PlateTAG™ side labels—remove without leaving adhesive residue when temporary PCR identification is enough. Remains intact through thermal cycling and deep-freeze storage, then lifts cleanly when the vessel is reused or re-labeled.
 
 ## Need Expert Help?
 

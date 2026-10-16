@@ -6,7 +6,7 @@ type Props = {
   solutionSlug?: string
 }
 
-/** Contextual Shop and video CTAs for content-split cards. */
+/** Contextual Shop and optional video CTAs for content-split cards. */
 export function ContentSplitActions({ sectionSlug, sectionTitle, solutionSlug }: Props) {
   const { shopHref, shopLabel, videoHref } = resolveSplitCardActions(
     sectionSlug,
@@ -19,9 +19,11 @@ export function ContentSplitActions({ sectionSlug, sectionTitle, solutionSlug }:
       <a className="btn btn-primary" href={shopHref} target="_blank" rel="noreferrer">
         Shop {shopLabel}
       </a>
-      <a className="content-split-video" href={videoHref} target="_blank" rel="noreferrer">
-        Watch video
-      </a>
+      {videoHref ? (
+        <a className="content-split-video" href={videoHref} target="_blank" rel="noreferrer">
+          Watch video
+        </a>
+      ) : null}
     </div>
   )
 }

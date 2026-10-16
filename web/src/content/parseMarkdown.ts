@@ -39,7 +39,10 @@ function mediaBlockFromMatch(
     variant: imageVariant(alt || '', isHero),
   }
 }
-const CTA_TITLES = /^(need expert|get in touch|make your project|experience the benefits|try the labels)/i
+const CTA_TITLES =
+  /^(need expert|get in touch|make your project|experience the benefits|try the labels|request custom forms|request clinical trial labels)/i
+
+const CTA_LINK = /\[([^\]]+)\]\(([^)]+)\)/
 
 function cleanInline(text: string): string {
   return text
@@ -317,19 +320,31 @@ function collapseFeatureRuns(blocks: ContentBlock[]): ContentBlock[] {
   return out
 }
 
+function extractCtaAction(rawBody: string): {
+  body: string
+  actionHref?: string
+  actionLabel?: string
+} {
+  const match = rawBody.match(CTA_LINK)
+  if (!match) return { body: rawBody.trim() }
+  const body = rawBody.replace(match[0], '').replace(/\s{2,}/g, ' ').trim()
+  return { body, actionLabel: match[1].trim(), actionHref: match[2].trim() }
+}
+
 function promoteCta(blocks: ContentBlock[]): ContentBlock[] {
   const out: ContentBlock[] = []
   for (let i = 0; i < blocks.length; i += 1) {
     const block = blocks[i]
     if (block.type === 'section' && CTA_TITLES.test(block.title)) {
       const following = blocks[i + 1]
-      const body = block.paragraphs.length
+      const rawBody = block.paragraphs.length
         ? block.paragraphs.join(' ')
         : following?.type === 'text'
           ? following.paragraphs.join(' ')
           : ''
-      if (body) {
-        out.push({ type: 'cta', title: block.title, body })
+      if (rawBody) {
+        const { body, actionHref, actionLabel } = extractCtaAction(rawBody)
+        out.push({ type: 'cta', title: block.title, body, actionHref, actionLabel })
         if (!block.paragraphs.length && following?.type === 'text') {
           i += 1
         }

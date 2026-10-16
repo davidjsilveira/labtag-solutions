@@ -5,10 +5,36 @@ import { syncAnchorScrollMargin } from '@/hooks/syncAnchorScrollMargin'
 const SCROLL_DELTA = 8
 /** Extra distance past stick before the menu may hide on scroll-down. */
 const HIDE_AFTER_PX = 220
+/** Hide-on-scroll only when jump links wrap past this many rows. */
+const HIDE_AFTER_LINES = 2
+/** Cluster link tops within this many px as the same row. */
+const LINE_CLUSTER_PX = 8
+
+/** Count wrapped rows of jump links inside the sticky menu. */
+function countJumpLines(el: HTMLElement): number {
+  const links = Array.from(el.querySelectorAll<HTMLElement>('.feature-jump-link'))
+  if (!links.length) return 0
+
+  const tops = links
+    .map((link) => link.getBoundingClientRect().top)
+    .sort((a, b) => a - b)
+
+  let rows = 1
+  let rowTop = tops[0]
+  for (const top of tops) {
+    if (top - rowTop > LINE_CLUSTER_PX) {
+      rows += 1
+      rowTop = top
+    }
+  }
+  return rows
+}
 
 /**
- * Sticky on-page menu: stays under the site header, slides away on scroll-down
- * (after a short grace distance), and returns on scroll-up.
+ * Sticky on-page menu: stays under the site header.
+ * Short menus (≤2 jump-link rows) stay open while stuck.
+ * Taller menus (3+ rows) slide away on scroll-down after a grace distance
+ * and return on scroll-up.
  * Also keeps `--anchor-scroll-margin` in sync with header + this menu’s height.
  */
 export function useStickyScrollMenu<T extends HTMLElement>() {
@@ -21,12 +47,15 @@ export function useStickyScrollMenu<T extends HTMLElement>() {
     let lastY = window.scrollY
     let hidden = false
     let stuckAtY: number | null = null
+    let canHide = false
     let ticking = false
 
     const syncOffsets = () => {
       const header = document.querySelector<HTMLElement>('.site-header')
       const height = header?.getBoundingClientRect().height ?? 0
       el.style.setProperty('--quick-menu-top', `${Math.round(height)}px`)
+      canHide = countJumpLines(el) > HIDE_AFTER_LINES
+      if (!canHide) applyHidden(false)
       syncAnchorScrollMargin(el)
     }
 
@@ -49,7 +78,7 @@ export function useStickyScrollMenu<T extends HTMLElement>() {
         const topOffset = parseFloat(el.style.getPropertyValue('--quick-menu-top') || '0')
         const stuck = el.getBoundingClientRect().top <= topOffset + 1
 
-        if (!stuck || y < 8) {
+        if (!stuck || y < 8 || !canHide) {
           stuckAtY = null
           applyHidden(false)
           return
