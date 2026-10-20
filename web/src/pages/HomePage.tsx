@@ -1,7 +1,9 @@
 import { Printer, SealCheck, Stack } from '@phosphor-icons/react'
+import { Link } from 'react-router-dom'
 import { RotatingAudience } from '@/components/RotatingAudience'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
+import { pagesForBrowseAll } from '@/content/categories'
 import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 
@@ -12,6 +14,8 @@ const heroQualifiers = [
 ] as const
 
 export function HomePage() {
+  const solutions = pagesForBrowseAll()
+
   return (
     <div className="home lander">
       <section className="lander-hero">
@@ -50,6 +54,22 @@ export function HomePage() {
             ))}
           </ul>
         </div>
+      </section>
+
+      <section className="lander-index" aria-labelledby="lander-solutions-heading">
+        <header className="lander-index-head">
+          <h2 id="lander-solutions-heading">Solutions</h2>
+          <p className="lander-section-lede">
+            Browse LabTAG labeling guides by application, environment, and workflow.
+          </p>
+        </header>
+        <ul className="lander-index-list">
+          {solutions.map((page) => (
+            <li key={page.slug}>
+              <Link to={`/solutions/${page.slug}`}>{page.title}</Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="lander-all" aria-label="All solution pages">
