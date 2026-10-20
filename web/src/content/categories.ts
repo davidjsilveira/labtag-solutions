@@ -157,9 +157,11 @@ export function pagesForBrowseFilter(filterId: BrowseFilterId): SolutionPage[] {
   const filter = browseFilters.find((item) => item.id === filterId)
   if (!filter?.slugs) return pagesForBrowseAll()
 
-  const ordered = pagesForBrowseAll()
-  const wanted = new Set(filter.slugs)
-  return ordered.filter((page) => wanted.has(page.slug))
+  // Keep each theme’s slug list order so the primary solution sits leftmost.
+  const bySlug = new Map(solutionPages.map((page) => [page.slug, page]))
+  return filter.slugs
+    .map((slug) => bySlug.get(slug))
+    .filter((page): page is SolutionPage => Boolean(page))
 }
 
 /**
