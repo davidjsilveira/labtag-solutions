@@ -202,7 +202,7 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
-              {showSplitActions ? (
+              {showSplitActions && sectionAnchor ? (
                 <ContentSplitActions
                   sectionSlug={sectionAnchor}
                   sectionTitle={block.title}
@@ -260,7 +260,7 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
-              {showSplitActions ? (
+              {showSplitActions && sectionAnchor ? (
                 <ContentSplitActions
                   sectionSlug={sectionAnchor}
                   sectionTitle={block.title}
