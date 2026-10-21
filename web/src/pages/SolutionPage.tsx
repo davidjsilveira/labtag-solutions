@@ -96,9 +96,6 @@ export function SolutionPage() {
                   <strong>{prev.title}</strong>
                 </span>
               </Link>
-              <p className="catalog-cycle-status">
-                {index + 1} of {siblings.length}
-              </p>
               <Link to={`/solutions/${next.slug}`} className="catalog-cycle-item next" rel="next">
                 <span className="catalog-cycle-copy">
                   <span className="catalog-cycle-label">Next</span>
