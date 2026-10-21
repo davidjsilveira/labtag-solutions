@@ -46,7 +46,7 @@ export function SolutionPage() {
         description={page.description}
         image={page.heroImage}
         solutionSlug={page.slug}
-        layout={combined ? 'stack' : 'split'}
+        layout="split"
         crumb={
           <p className="crumb">
             {crumbHome}

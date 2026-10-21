@@ -135,15 +135,17 @@ function catalogSection(
   media: ReactNode,
 ) {
   return (
-    <section key={key} className="block catalog-section">
-      <h2>{absorbed.section.title}</h2>
+    <section key={key} className="catalog-split">
+      <div className="block catalog-split-copy">
+        <h2>{absorbed.section.title}</h2>
+        {absorbed.section.paragraphs.map((paragraph) => (
+          <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+        ))}
+        {absorbed.bullets?.type === 'bulletList' ? (
+          <BulletListBlockView block={absorbed.bullets} variant="plain" />
+        ) : null}
+      </div>
       {media}
-      {absorbed.section.paragraphs.map((paragraph) => (
-        <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-      ))}
-      {absorbed.bullets?.type === 'bulletList' ? (
-        <BulletListBlockView block={absorbed.bullets} variant="plain" />
-      ) : null}
     </section>
   )
 }
