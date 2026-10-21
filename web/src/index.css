@@ -1391,16 +1391,44 @@ main {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md) var(--space-lg);
+  gap: var(--space-md);
+}
+
+.lander-new-list > li {
+  display: flex;
+  min-width: 0;
 }
 
 .lander-new-link {
   display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr);
+  grid-template-columns: 8rem minmax(0, 1fr);
   gap: var(--space-sm) var(--space-md);
   align-items: start;
+  width: 100%;
+  padding: var(--space-sm);
   text-decoration: none;
   color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--dur-short) var(--ease-out),
+    background-color var(--dur-short) var(--ease-out);
+}
+
+.lander-new-link:hover {
+  color: inherit;
+  text-decoration: none;
+  border-color: var(--color-link);
+  background: var(--labtag-pure-white);
+}
+
+.lander-new-link:hover .lander-new-copy strong {
+  color: var(--color-link);
+}
+
+.lander-new-link:hover .lander-new-copy strong::after {
+  opacity: 1;
 }
 
 .lander-new-media,
@@ -1409,8 +1437,8 @@ main {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border: 1px solid var(--color-rule);
-  border-radius: var(--radius-image);
+  border: 0;
+  border-radius: var(--radius-sm);
   background: var(--color-paper-2);
 }
 
@@ -1425,6 +1453,14 @@ main {
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--color-ink);
+  transition: color var(--dur-short) var(--ease-out);
+}
+
+.lander-new-copy strong::after {
+  content: " →";
+  color: var(--color-link);
+  opacity: 0;
+  transition: opacity var(--dur-short) var(--ease-out);
 }
 
 .lander-new-copy span {
@@ -1432,15 +1468,6 @@ main {
   line-height: 1.45;
   color: var(--color-ink-2);
   font-weight: 400;
-}
-
-.lander-new-link:hover .lander-new-copy strong {
-  color: var(--color-link);
-  text-decoration: underline;
-}
-
-.lander-new-link:hover .lander-new-media {
-  border-color: var(--color-rule-strong);
 }
 
 @media (max-width: 720px) {
@@ -1614,7 +1641,7 @@ main {
 .page-hero {
   /* Full-bleed elevated band; pull up past main’s top padding to meet the nav */
   position: relative;
-  z-index: 0;
+  z-index: 1;
   width: 100vw;
   max-width: 100vw;
   margin: calc(-1 * var(--space-lg)) calc(50% - 50vw) 0;
@@ -1622,10 +1649,6 @@ main {
     max(var(--space-md), calc((100vw - min(var(--shell-width), 100vw - 2 * var(--space-md))) / 2));
   background: var(--color-surface); /* #F9FAFB */
   border: none;
-}
-
-.solution-page.is-catalog .page-hero {
-  z-index: 1;
   box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
 }
 

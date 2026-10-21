@@ -61,13 +61,7 @@ export function HomePage() {
         </div>
       </header>
 
-      <section className="lander-index lander-new" aria-labelledby="lander-new-heading" id="new-articles">
-        <header className="lander-index-head">
-          <h2 id="lander-new-heading">New articles</h2>
-          <p className="lander-section-lede">
-            Unique guides that combine overlapping LabTAG topics into one article.
-          </p>
-        </header>
+      <section className="lander-index lander-new" aria-label="New articles" id="new-articles">
         <ul className="lander-new-list">
           {newArticles.map((page) => (
             <li key={page.slug}>
