@@ -1404,10 +1404,11 @@ main {
 .lander-new-link {
   display: grid;
   grid-template-columns: 8rem minmax(0, 1fr);
-  gap: var(--space-sm) var(--space-md);
-  align-items: start;
+  align-items: stretch;
   width: 100%;
-  padding: var(--space-sm);
+  min-height: 7.5rem;
+  padding: 0;
+  overflow: hidden;
   text-decoration: none;
   color: inherit;
   background: var(--color-surface);
@@ -1435,17 +1436,21 @@ main {
 .lander-new-media-empty {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+  min-height: 100%;
   object-fit: cover;
+  object-position: center;
   border: 0;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   background: var(--color-paper-2);
 }
 
 .lander-new-copy {
   display: grid;
+  align-content: center;
   gap: var(--space-3xs);
   min-width: 0;
+  padding: var(--space-sm) var(--space-md);
 }
 
 .lander-new-copy strong {
@@ -1483,6 +1488,10 @@ main {
 @media (max-width: 560px) {
   .lander-new-link {
     grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  .lander-new-copy {
+    padding: var(--space-sm);
   }
 }
 
