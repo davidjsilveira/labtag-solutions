@@ -52,7 +52,7 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 
 ## Microinteractions stance
 - silent success
-- hover: border/color shift only — no lift, no scale
+- hover: color/shadow shift — no lift, no scale
 - focus delay 0 ms; visible `:focus-visible` ring instantly
 
 ## CTA voice
@@ -64,7 +64,7 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 - Footer: Ft2 inline single line (colophon)
 
 ## Per-page allowances
-- Marketing (home): standard title (no lander photography); light drop shadow under the hero; New articles list; Browse-all carousel; temperature quick-picks; Archive index at end; framed sample CTA
+- Marketing (home): standard title (no lander photography); light drop shadow under the hero; New articles list and Browse-all cards share surface + drop shadow (no strokes); temperature quick-picks; Archive index at end; framed sample CTA
 - Content (solutions): Long Document measure; content-split media allowed; no eyebrows; hero Shop + free-sample buttons; no card-in-card feature grids
 - Combined catalog articles: real breadcrumb title; consistent split (copy left, 4:3 figure right) from hero through body — no alternating sides, no full-bleed banners; shared hero drop shadow; no By … jump menu, section hashes, or per-section Shop / Watch chrome; hero “Also in the archive” source links. Archive scrape pages keep the split hero, sticky jump menu, split-card shop/video actions, and a hero link to the current article.
 
