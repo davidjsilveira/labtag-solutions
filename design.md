@@ -8,14 +8,15 @@ system needs to grow.
 editorial
 
 ## Macrostructure family
-- Marketing pages (home hub): Split Studio — alternating industry/use-case diptychs that route into cryogenic solution pages (temperature quick-picks + image-card catalogue)
-- Content pages (solution detail): Long Document — memo-like prose with inline media splits; hero includes Shop + Request free sample actions; URLs `/solutions/{slug}`
+- Marketing pages (home hub): standard page title, New articles list of combined editorial guides, Browse-all carousel of current catalog articles, temperature quick-picks, Archive index of original scrape pages, framed sample CTA
+- Content pages (solution detail): Long Document — memo-like prose with inline media splits; hero includes Shop + Request free sample actions; current catalog URLs `/solutions/{slug}` (unique slugs); archived originals keep their historical `/solutions/{slug}` URLs
 - App pages: n/a
 
 ## Sitemap
 - Home `/`
-- Solution pages `/solutions/{slug}`
-- Breadcrumbs: Solutions / {Page title}
+- Current catalog `/solutions/{slug}` (24 unique slugs)
+- Archive originals `/solutions/{slug}` (34 historical slugs)
+- Breadcrumbs: Solutions / {Page title} for catalog; Archive / {Page title} for legacy pages
 
 ## Theme
 LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
@@ -63,8 +64,9 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 - Footer: Ft2 inline single line (colophon)
 
 ## Per-page allowances
-- Marketing (home): Split Studio industry diptychs with solution hero photography; temperature quick-picks; framed sample CTA; full catalogue index at end
+- Marketing (home): standard title (no lander photography); New articles list; Browse-all carousel; temperature quick-picks; Archive index at end; framed sample CTA
 - Content (solutions): Long Document measure; content-split media allowed; no eyebrows; hero Shop + free-sample buttons; no card-in-card feature grids
+- Combined catalog articles: real breadcrumb title; stacked document hero (figure under the lede); Long Document at shell width; no By … jump menu, section hashes, or per-section Shop / Watch chrome; hero “Also in the archive” source links. Archive scrape pages keep the split hero, sticky jump menu, split-card shop/video actions, and a hero link to the current article.
 
 ## What pages MUST share
 - LabTAG wordmark treatment
@@ -77,7 +79,7 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 ## What pages MAY differ on
 - Home uses Split Studio industry rhythm; solutions use Long Document prose rhythm
 - Hero may be title+lede only or title+lede+inline figure when content supplies an image
-- Friendly lab-tech voice on marketing copy; solution pages keep source-faithful product prose
+- Friendly lab-tech voice on marketing copy; combined catalog articles are rewritten editorial guides; archive pages keep source-faithful product prose
 
 ## Exports
 Canonical tokens live in `web/src/tokens.css`.

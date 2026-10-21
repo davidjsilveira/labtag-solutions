@@ -11,6 +11,10 @@ type Props = {
   image?: HeroImage
   crumb?: ReactNode
   solutionSlug?: string
+  /** Related catalog or archive links shown under the hero CTAs. */
+  related?: ReactNode
+  /** Combined catalog articles stack the figure under the title instead of a two-column split. */
+  layout?: 'split' | 'stack'
 }
 
 type HeroAction = {
@@ -60,15 +64,44 @@ function HeroActionLink({ action, className }: { action: HeroAction; className: 
   )
 }
 
-export function PageHero({ title, description = [], image, crumb, solutionSlug }: Props) {
+export function PageHero({
+  title,
+  description = [],
+  image,
+  crumb,
+  solutionSlug,
+  related,
+  layout = 'split',
+}: Props) {
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
   const [current, setCurrent] = useState(resolved?.primary ?? '')
   const [imageFailed, setImageFailed] = useState(false)
   const showImage = Boolean(image && resolved && !imageFailed)
   const actions = resolveHeroActions(title, solutionSlug)
+  const stacked = layout === 'stack'
+  const media =
+    showImage && image ? (
+      <figure className="page-hero-media">
+        <img
+          src={current}
+          alt={image.alt || title}
+          decoding="async"
+          fetchPriority="high"
+          onError={() => {
+            if (resolved?.fallback && current !== resolved.fallback) {
+              setCurrent(resolved.fallback)
+              return
+            }
+            setImageFailed(true)
+          }}
+        />
+      </figure>
+    ) : null
 
   return (
-    <header className={`page-hero${showImage ? ' page-hero-split' : ''}`}>
+    <header
+      className={`page-hero${showImage ? (stacked ? ' page-hero-stack' : ' page-hero-split') : ''}`}
+    >
       <div className="page-hero-copy">
         {crumb}
         <h1>{title}</h1>
@@ -79,29 +112,15 @@ export function PageHero({ title, description = [], image, crumb, solutionSlug }
             ))}
           </div>
         ) : null}
+        {stacked ? media : null}
         <div className="page-hero-actions">
           <HeroActionLink action={actions.primary} className="btn btn-primary" />
           <HeroActionLink action={actions.secondary} className="btn btn-secondary" />
         </div>
+        {related}
       </div>
 
-      {showImage && image ? (
-        <figure className="page-hero-media">
-          <img
-            src={current}
-            alt={image.alt || title}
-            decoding="async"
-            fetchPriority="high"
-            onError={() => {
-              if (resolved?.fallback && current !== resolved.fallback) {
-                setCurrent(resolved.fallback)
-                return
-              }
-              setImageFailed(true)
-            }}
-          />
-        </figure>
-      ) : null}
+      {stacked ? null : media}
     </header>
   )
 }

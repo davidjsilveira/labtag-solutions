@@ -1,4 +1,5 @@
-import { solutionPages } from '@/content/loadPages'
+import { isCombinedCatalogSlug } from '@/content/legacyMap'
+import { legacyPages, solutionPages } from '@/content/loadPages'
 import type { SolutionPage } from '@/content/types'
 
 export type BrowseFilterId =
@@ -31,123 +32,79 @@ export const browseFilters: BrowseFilter[] = [
   {
     id: 'cryogenic',
     label: 'Cryogenic',
-    slugs: [
-      'cryogenic-labels',
-      'cryostuck',
-      'biobanking-labels',
-      'ivf-labeling-solutions',
-      'cryogenic-clinical-requisition-forms',
-    ],
+    slugs: ['cryogenic', 'cryostuck-labels', 'biobanking', 'ivf', 'clinical-trials'],
   },
   {
     id: 'deep-freeze',
     label: 'Deep-freeze',
-    slugs: ['deep-freeze', 'vaccine-labels', 'cryogenic-labels', 'cryostuck'],
+    slugs: ['deep-freeze-labels', 'vaccines', 'cryogenic', 'cryostuck-labels'],
   },
   {
     id: 'biobanking',
     label: 'Biobanking',
-    slugs: [
-      'biobanking-labels',
-      'ivf-labeling-solutions',
-      'cryogenic-clinical-requisition-forms',
-      'cryogenic-labels',
-      'rfid-labels-tags',
-    ],
+    slugs: ['biobanking', 'ivf', 'clinical-trials', 'cryogenic', 'rfid'],
   },
   {
     id: 'vaccines',
     label: 'Vaccines',
-    slugs: ['vaccine-labels', 'covid-19-laboratory-labels', 'deep-freeze'],
+    slugs: ['vaccines', 'clinical-trials', 'deep-freeze-labels'],
   },
   {
     id: 'clinical',
     label: 'Clinical',
-    slugs: [
-      'clinical-trial-labels',
-      'clinical-data-printing',
-      'cryogenic-clinical-requisition-forms',
-      'covid-19-laboratory-labels',
-    ],
+    slugs: ['clinical-trials', 'histology', 'vaccines'],
   },
   {
     id: 'pcr',
     label: 'PCR',
-    slugs: ['pcr-labels-and-tags', 'laboratory-labels', 'cryogenic-labels'],
+    slugs: ['pcr', 'laboratory', 'cryogenic'],
   },
   {
     id: 'histology',
     label: 'Histology',
-    slugs: [
-      'histology-labels',
-      'xylene-chemical-resistant-labels',
-      'microscope-slide-over-labeling',
-      'resitag',
-    ],
+    slugs: ['histology', 'resin-labels'],
   },
   {
     id: 'autoclave',
     label: 'Autoclave',
-    slugs: ['autoclave-labels', 'laboratory-labels', 'industrial-labels'],
+    slugs: ['autoclave', 'laboratory', 'industrial'],
   },
   {
     id: 'constructs',
     label: 'Specialty',
     slugs: [
-      'snappeel-labels',
-      'resitag',
-      'gatorcut',
-      'cryostuck',
-      'labels-for-hard-to-stick-surfaces',
-      'lab-tapes',
-      'dymo-compatible-laboratory-labels',
+      'snappeel',
+      'resin-labels',
+      'laboratory-tapes',
+      'cryostuck-labels',
+      'hard-to-stick',
+      'dymo-labels',
     ],
   },
   {
     id: 'tracking',
     label: 'RFID',
-    slugs: ['rfid-labels-tags', 'biobanking-labels', 'clinical-trial-labels'],
+    slugs: ['rfid', 'biobanking', 'clinical-trials'],
   },
   {
     id: 'printers',
     label: 'Printers',
-    slugs: [
-      'label-printing-solutions',
-      'dymo-labelwriter-550',
-      'ga-international-cody-3-printer',
-      'dymo-compatible-laboratory-labels',
-    ],
+    slugs: ['label-printing', 'dymo-labels'],
   },
   {
     id: 'automation',
     label: 'Automation',
-    slugs: [
-      'label-software',
-      'automated-labels',
-      'pre-labeled-labware',
-      'label-printing-solutions',
-    ],
+    slugs: ['automated-labware', 'label-printing'],
   },
   {
     id: 'custom',
     label: 'Custom',
-    slugs: [
-      'custom-laboratory-labels',
-      'clinical-data-printing',
-      'pre-labeled-labware',
-      'label-printing-solutions',
-    ],
+    slugs: ['custom-labels', 'clinical-trials', 'automated-labware', 'label-printing'],
   },
   {
     id: 'industries',
     label: 'Industries',
-    slugs: [
-      'animal-healthcare',
-      'industrial-labels',
-      'chemical-container-labeling',
-      'cannabis-labels',
-      'laboratory-labels',
-    ],
+    slugs: ['animal-health', 'industrial', 'chemical-containers', 'cannabis', 'laboratory'],
   },
 ]
 
@@ -165,10 +122,37 @@ export function pagesForBrowseFilter(filterId: BrowseFilterId): SolutionPage[] {
 }
 
 /**
- * Browse / sitemap order: cryogenic / cold-storage first, niche industries last.
+ * Catalog order: cryogenic / cold-storage first, niche industries last.
  * Any slug missing here is appended alphabetically.
  */
 const BROWSE_ALL_ORDER: string[] = [
+  'cryogenic',
+  'deep-freeze-labels',
+  'cryostuck-labels',
+  'biobanking',
+  'ivf',
+  'laboratory-tapes',
+  'hard-to-stick',
+  'laboratory',
+  'pcr',
+  'vaccines',
+  'clinical-trials',
+  'autoclave',
+  'histology',
+  'snappeel',
+  'resin-labels',
+  'rfid',
+  'dymo-labels',
+  'label-printing',
+  'automated-labware',
+  'custom-labels',
+  'animal-health',
+  'industrial',
+  'chemical-containers',
+  'cannabis',
+]
+
+const ARCHIVE_ORDER: string[] = [
   'cryogenic-labels',
   'deep-freeze',
   'cryostuck',
@@ -199,30 +183,43 @@ const BROWSE_ALL_ORDER: string[] = [
   'pre-labeled-labware',
   'custom-laboratory-labels',
   'clinical-data-printing',
-  // Niche / specialty industries last
   'animal-healthcare',
   'industrial-labels',
   'chemical-container-labeling',
   'cannabis-labels',
 ]
 
-/** Ordered pages for carousel, lander index, footer, and pager. */
-export function pagesForBrowseAll(): SolutionPage[] {
-  const bySlug = new Map(solutionPages.map((page) => [page.slug, page]))
+function orderPages(pages: SolutionPage[], order: string[]): SolutionPage[] {
+  const bySlug = new Map(pages.map((page) => [page.slug, page]))
   const ordered: SolutionPage[] = []
   const seen = new Set<string>()
 
-  for (const slug of BROWSE_ALL_ORDER) {
+  for (const slug of order) {
     const page = bySlug.get(slug)
     if (!page) continue
     ordered.push(page)
     seen.add(slug)
   }
 
-  const leftovers = solutionPages
+  const leftovers = pages
     .filter((page) => !seen.has(page.slug))
     .sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }))
   ordered.push(...leftovers)
 
   return ordered
+}
+
+/** Ordered pages for carousel, footer Solutions, and catalog pager. */
+export function pagesForBrowseAll(): SolutionPage[] {
+  return orderPages(solutionPages, BROWSE_ALL_ORDER)
+}
+
+/** Combined catalog articles — unique guides that fold more than one archive page. */
+export function pagesForCombinedCatalog(): SolutionPage[] {
+  return pagesForBrowseAll().filter((page) => isCombinedCatalogSlug(page.slug))
+}
+
+/** Ordered original scrape pages for the homepage Archive section and archive pager. */
+export function pagesForArchive(): SolutionPage[] {
+  return orderPages(legacyPages, ARCHIVE_ORDER)
 }

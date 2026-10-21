@@ -1,43 +1,56 @@
-import { Printer, SealCheck, Stack } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
-import { RotatingAudience } from '@/components/RotatingAudience'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
-import { pagesForBrowseAll } from '@/content/categories'
+import { pagesForArchive, pagesForCombinedCatalog } from '@/content/categories'
 import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
+import type { SolutionPage } from '@/content/types'
 
-const heroQualifiers = [
-  { label: 'Free Samples', Icon: Stack },
-  { label: 'Custom Printing', Icon: Printer },
-  { label: 'Satisfaction Guarantee', Icon: SealCheck },
-] as const
+function NewArticleLink({ page }: { page: SolutionPage }) {
+  const image = page.heroImage
+  const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
+
+  return (
+    <Link to={`/solutions/${page.slug}`} className="lander-new-link">
+      {resolved ? (
+        <img
+          className="lander-new-media"
+          src={resolved.primary}
+          alt=""
+          loading="lazy"
+          onError={(event) => {
+            if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
+              event.currentTarget.src = resolved.fallback
+            }
+          }}
+        />
+      ) : (
+        <span className="lander-new-media lander-new-media-empty" aria-hidden="true" />
+      )}
+      <span className="lander-new-copy">
+        <strong>{page.title}</strong>
+        {page.excerpt ? <span>{page.excerpt}</span> : null}
+      </span>
+    </Link>
+  )
+}
 
 export function HomePage() {
-  const solutions = pagesForBrowseAll()
+  const archive = pagesForArchive()
+  const newArticles = pagesForCombinedCatalog()
 
   return (
     <div className="home lander">
-      <section className="lander-hero">
-        <div className="lander-hero-media">
-          <img
-            src={resolveImageSrc('/media/lander-hero.jpg').primary}
-            alt="Lab workstation with label printer, barcode scanner, sample vials, and a gloved hand at the keyboard"
-            width={2880}
-            height={1196}
-            decoding="async"
-            fetchPriority="high"
-          />
-        </div>
-        <div className="lander-hero-copy">
-          <h1>
-            Labels & Identification Solutions for <RotatingAudience />
-          </h1>
-          <p className="lede">
-            Identify, track, and store every sample with labels built for the temperatures,
-            chemicals, and workflows your research demands.
-          </p>
-          <div className="lander-hero-actions">
+      <header className="page-hero">
+        <div className="page-hero-copy">
+          <h1>Labels & Identification Solutions</h1>
+          <div className="page-hero-description">
+            <p>
+              Identify, track, and store every sample with labels built for the temperatures,
+              chemicals, and workflows your research demands.
+            </p>
+          </div>
+          <div className="page-hero-actions">
             <a className="btn btn-primary" href={LABTAG_CONTACT_URL} target="_blank" rel="noreferrer">
               Chat with an expert
             </a>
@@ -45,28 +58,20 @@ export function HomePage() {
               Get Free Samples
             </a>
           </div>
-          <ul className="lander-hero-qualifiers" aria-label="Why LabTAG">
-            {heroQualifiers.map(({ label, Icon }) => (
-              <li key={label}>
-                <Icon size={18} weight="regular" aria-hidden="true" />
-                <span>{label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
-      </section>
+      </header>
 
-      <section className="lander-index" aria-labelledby="lander-solutions-heading">
+      <section className="lander-index lander-new" aria-labelledby="lander-new-heading" id="new-articles">
         <header className="lander-index-head">
-          <h2 id="lander-solutions-heading">Solutions</h2>
+          <h2 id="lander-new-heading">New articles</h2>
           <p className="lander-section-lede">
-            Browse LabTAG labeling guides by application, environment, and workflow.
+            Unique guides that combine overlapping LabTAG topics into one article.
           </p>
         </header>
-        <ul className="lander-index-list">
-          {solutions.map((page) => (
+        <ul className="lander-new-list">
+          {newArticles.map((page) => (
             <li key={page.slug}>
-              <Link to={`/solutions/${page.slug}`}>{page.title}</Link>
+              <NewArticleLink page={page} />
             </li>
           ))}
         </ul>
@@ -82,6 +87,22 @@ export function HomePage() {
           Drag to your storage temperature — we will point you at the matching guide.
         </p>
         <TemperatureSlider />
+      </section>
+
+      <section className="lander-index" aria-labelledby="lander-archive-heading" id="archive">
+        <header className="lander-index-head">
+          <h2 id="lander-archive-heading">Archive</h2>
+          <p className="lander-section-lede">
+            Original LabTAG solution pages, kept at their historical URLs.
+          </p>
+        </header>
+        <ul className="lander-index-list">
+          {archive.map((page) => (
+            <li key={page.slug}>
+              <Link to={`/solutions/${page.slug}`}>{page.title}</Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <aside className="lander-cta block-cta">

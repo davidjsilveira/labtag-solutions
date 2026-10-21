@@ -28,6 +28,8 @@ type Props = {
   solutionSlug?: string
   /** Solution page title — shown on the right of the sticky jump menu. */
   solutionTitle?: string
+  /** Combined catalog guides omit jump-menu anchors and per-section Shop / Watch video chrome. */
+  variant?: 'catalog' | 'archive'
 }
 
 function renderBlock(block: ContentBlock, index: number) {
@@ -124,7 +126,31 @@ function isGuideFeatureGrid(block: ContentBlock): block is FeatureGridBlock {
   return block.type === 'featureGrid' && Boolean(block.title && /^by\s+/i.test(block.title))
 }
 
-export function BlockRenderer({ blocks, solutionSlug, solutionTitle }: Props) {
+function catalogSection(
+  key: string,
+  absorbed: {
+    section: SectionBlock
+    bullets?: ContentBlock
+  },
+  media: ReactNode,
+) {
+  return (
+    <section key={key} className="block catalog-section">
+      <h2>{absorbed.section.title}</h2>
+      {media}
+      {absorbed.section.paragraphs.map((paragraph) => (
+        <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+      ))}
+      {absorbed.bullets?.type === 'bulletList' ? (
+        <BulletListBlockView block={absorbed.bullets} variant="plain" />
+      ) : null}
+    </section>
+  )
+}
+
+export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: Props) {
+  const catalog = variant === 'catalog'
+  const showSplitActions = !catalog
   const nodes: ReactNode[] = []
   const pendingSplits: ReactNode[] = []
   let splitRunKey = 'split-grid-0'
@@ -138,12 +164,34 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle }: Props) {
   while (i < blocks.length) {
     const block = blocks[i]
 
+    if (catalog && isGuideFeatureGrid(block)) {
+      i += 1
+      while (i < blocks.length && isGuideFeatureGrid(blocks[i])) i += 1
+      continue
+    }
+
     if (block.type === 'section') {
-      const sectionAnchor = slugify(block.title)
+      const sectionAnchor = catalog ? undefined : slugify(block.title)
       const following = blocks[i + 1]
       if (following?.type === 'video') {
         const video = following as VideoBlock
         const absorbed = absorbFollowingCopy(blocks, i + 2, block)
+        if (catalog) {
+          pushNonSplit(
+            catalogSection(
+              `catalog-video-${i}`,
+              absorbed,
+              <VideoBlockView
+                src={video.src}
+                alt={video.alt}
+                fallbackSrc={video.fallbackSrc}
+                className="catalog-figure"
+              />,
+            ),
+          )
+          i = absorbed.next
+          continue
+        }
         if (!pendingSplits.length) splitRunKey = `split-grid-${i}`
         pendingSplits.push(
           <div key={`video-split-${i}`} id={sectionAnchor} className="content-split">
@@ -152,11 +200,13 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle }: Props) {
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
-              <ContentSplitActions
-                sectionSlug={sectionAnchor}
-                sectionTitle={block.title}
-                solutionSlug={solutionSlug}
-              />
+              {showSplitActions ? (
+                <ContentSplitActions
+                  sectionSlug={sectionAnchor}
+                  sectionTitle={block.title}
+                  solutionSlug={solutionSlug}
+                />
+              ) : null}
             </div>
             <VideoBlockView
               src={video.src}
@@ -188,6 +238,18 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle }: Props) {
           continue
         }
 
+        if (catalog) {
+          pushNonSplit(
+            catalogSection(
+              `catalog-section-${i}`,
+              absorbed,
+              <ImageSlider images={images} className="catalog-figure" />,
+            ),
+          )
+          i = absorbed.next
+          continue
+        }
+
         if (!pendingSplits.length) splitRunKey = `split-grid-${i}`
         pendingSplits.push(
           <div key={`split-${i}`} id={sectionAnchor} className="content-split">
@@ -196,11 +258,13 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle }: Props) {
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
-              <ContentSplitActions
-                sectionSlug={sectionAnchor}
-                sectionTitle={block.title}
-                solutionSlug={solutionSlug}
-              />
+              {showSplitActions ? (
+                <ContentSplitActions
+                  sectionSlug={sectionAnchor}
+                  sectionTitle={block.title}
+                  solutionSlug={solutionSlug}
+                />
+              ) : null}
             </div>
             <ImageSlider images={images} className="content-split-media" />
           </div>,
@@ -210,7 +274,7 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle }: Props) {
       }
 
       // Title-only heading with following copy (no media): keep them in one unit
-      // so block-stack gap does not sit between the heading and its intro.
+      // so block-stack gap does not sit between the heading and its body.
       const absorbed = absorbFollowingCopy(blocks, i + 1, block)
       if (absorbed.next > i + 1) {
         pushNonSplit(

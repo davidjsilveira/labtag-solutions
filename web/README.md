@@ -26,4 +26,4 @@ Markdown is parsed into shared block types used across every solution page:
 | `faq` | Accordion Q&A |
 | `cta` | Closing call-to-action |
 
-Source files live in `../pages/*.md`.
+Current catalog files live in `../pages/*.md`. Archived originals live in `../pages/legacy/*.md` and keep their historical `/solutions/{slug}` URLs.

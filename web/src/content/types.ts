@@ -114,4 +114,8 @@ export type SolutionPage = {
   description: string[]
   heroImage?: HeroImage
   blocks: ContentBlock[]
+  /** Original scrape pages kept at historical URLs. */
+  legacy?: boolean
+  /** Catalog slug that replaces this legacy page, when known. */
+  replacedBy?: string
 }

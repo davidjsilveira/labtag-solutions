@@ -19,6 +19,10 @@ export const REQUEST_FORM_PATHS = {
     path: '/request/clinical-trial-labels',
     primaryLabel: 'Request clinical trial labels',
   },
+  'clinical-trials': {
+    path: '/request/clinical-trial-labels',
+    primaryLabel: 'Request clinical trial labels',
+  },
 } as const
 
 export type RequestFormSolutionSlug = keyof typeof REQUEST_FORM_PATHS

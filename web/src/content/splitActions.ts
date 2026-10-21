@@ -470,6 +470,13 @@ const CRYO_SOLUTION_SLUGS = new Set([
   'ivf-labeling-solutions',
   'cryogenic-clinical-requisition-forms',
   'vaccine-labels',
+  'cryogenic',
+  'cryostuck-labels',
+  'deep-freeze-labels',
+  'biobanking',
+  'ivf',
+  'clinical-trials',
+  'vaccines',
 ])
 
 export type SplitCardActions = {
