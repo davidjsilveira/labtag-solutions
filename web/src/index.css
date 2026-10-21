@@ -1624,6 +1624,11 @@ main {
   border: none;
 }
 
+.solution-page.is-catalog .page-hero {
+  z-index: 1;
+  box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
+}
+
 /* Dark quick-menu band flush under the hero (full-bleed bg; content aligns with main).
  * Sticky under the site header; tall menus (3+ jump rows) slide away on scroll-down. */
 .solution-quick-menu {

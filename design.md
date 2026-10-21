@@ -66,7 +66,7 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 ## Per-page allowances
 - Marketing (home): standard title (no lander photography); New articles list; Browse-all carousel; temperature quick-picks; Archive index at end; framed sample CTA
 - Content (solutions): Long Document measure; content-split media allowed; no eyebrows; hero Shop + free-sample buttons; no card-in-card feature grids
-- Combined catalog articles: real breadcrumb title; consistent split (copy left, 4:3 figure right) from hero through body — no alternating sides, no full-bleed banners; no By … jump menu, section hashes, or per-section Shop / Watch chrome; hero “Also in the archive” source links. Archive scrape pages keep the split hero, sticky jump menu, split-card shop/video actions, and a hero link to the current article.
+- Combined catalog articles: real breadcrumb title; consistent split (copy left, 4:3 figure right) from hero through body — no alternating sides, no full-bleed banners; light drop shadow under the hero for separation from the body; no By … jump menu, section hashes, or per-section Shop / Watch chrome; hero “Also in the archive” source links. Archive scrape pages keep the split hero, sticky jump menu, split-card shop/video actions, and a hero link to the current article.
 
 ## What pages MUST share
 - LabTAG wordmark treatment
