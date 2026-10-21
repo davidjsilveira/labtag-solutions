@@ -8,9 +8,9 @@ Sources:
 
 ![Clinical trial labels](https://cdn.labtag.com/wp-content/uploads/2021/12/Clinical-Trial-Labels-Labtag-Use3.jpg "/media/clinical-trial-labels/Clinical-Trial-Labels-Labtag-Use3.jpg")
 
-A trial ID has to survive protocol, depot, clinic, and cold chain without turning site staff into a print shop. LabTAG treats labeling as part of the study spec: constructs, serialized data, kit application, cryogenic requisition forms, and RFID when the LIMS already expects an inlay.
+A trial ID has to survive protocol, depot, clinic, and cold chain without turning site staff into a print shop.
 
-The job is not to hand over a roll. It is to get scannable IDs to first-patient-in, then keep them scannable through amendments.
+LabTAG writes labeling into the study spec: constructs, serialized data, kit application, cryogenic requisition forms, and RFID when the LIMS already expects an inlay. The job is not to hand over a roll. It is to get scannable IDs to first-patient-in, then keep them scannable through amendments.
 
 ## Write the construct into the protocol
 
@@ -44,12 +44,12 @@ RFID inlays encode kit, sample, or inventory data for LIMS and hospital systems.
 
 ## One partnership through amendments
 
-On-demand production with inspection software covers roll, sheet, die cut, fanfold, butt cut, and multi-part. Methods include laser, flexographic, inkjet, LED, and thermal-transfer, with full-color logos on kits, syringes, vials, and patient materials.
+Amendments reprint lots. Inspection software grades barcodes before kits ship. Production covers roll, sheet, die cut, fanfold, and multi-part; methods include laser, flexographic, inkjet, LED, and thermal-transfer, with full-color logos on kits, syringes, vials, and patient materials.
 
 Specialists in molecular biology, pharmacology, biochemistry, and medicine specify constructs against protocol, not generic office stock. Supply chain and confidentiality practices support first-patient-in and unexpected reprints so IDs stay readable wherever the kit lands.
 
 ## Request Clinical Trial Labels
 
-Tell us about your protocol, containers, languages, and data requirements and one of our experts will help specify the right clinical trial labeling solution.
+Tell us the protocol, containers, languages, and data fields. We’ll spec constructs that survive depot, clinic, and cold chain.
 
 [Request clinical trial labels](/request/clinical-trial-labels)

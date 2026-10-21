@@ -6,17 +6,17 @@ Sources:
 
 ![Automated Tube Labelers](https://cdn.labtag.com/wp-content/uploads/2025/01/20241128_084524.jpg "/media/automated-labels/20241128_084524.jpg")
 
-High-volume labs lose time and IDs to hand-applied labels. Two ways out: run a tube or plate labeler in the room, or send labware to LabTAG for print-and-apply before it arrives.
+High-volume labs lose time and IDs to hand-applied labels.
 
-HTI and Scinomix keep capping, filling, and barcoding on the bench. Pre-labeled labware is the same job done off-site—custom barcodes, placement, and grading—when you do not want a labeler on the floor.
+Two ways out: run a tube or plate labeler in the room, or send labware out for print-and-apply before it arrives. HTI and Scinomix keep capping, filling, and barcoding on the bench. Pre-labeled labware is the same job done off-site—custom barcodes, placement, and grading—when you do not want a labeler on the floor.
 
 ## Keep the labeler in the room
 
 ![X-TubeProcessor Flex](https://cdn.labtag.com/wp-content/uploads/HTI-X-TubeProcessor-FLEX.png "/media/automated-labels/HTI-X-TubeProcessor-FLEX.png")
 
-HTI X-TubeProcessor® units are sized for small and medium batch labs. Smart is compact, with HEPA-capable sterile work and optional peristaltic or air-displacement filling. Flex adds a cap/tube feeder and barcode ID for mixed workflows. Sign manages data across up to 12 racks of the same or different tubes. Basic uses an infeed belt with automated screw caps at up to 600 tubes per hour.
+HTI X-TubeProcessor® units are sized for small and medium batches: compact Smart with optional sterile fill, Flex with a cap/tube feeder, Sign across up to 12 mixed racks, and Basic at up to 600 tubes per hour on an infeed belt.
 
-Sci-Print VX2 and VXL share the same labeling logic; deck size is the difference. VX2 holds about 600 tubes on a 6-position deck (0.5–50 mL). VXL holds about 1,200 on 12 positions at up to 375 tubes per hour, with optional uncap/recap for filling. Bulk feeders handle 0.5–15 mL vials at about 400 per hour. The AQ system aliquots, pools, dilutes, and dispenses with labeled, validated tubes. MP2+ applies labels to all sides of a microplate with a barcode reader for validation.
+Sci-Print VX2 and VXL share the same labeling logic; deck size is the difference—about 600 tubes on VX2, about 1,200 on VXL, with optional uncap/recap. Bulk feeders handle 0.5–15 mL vials. AQ aliquots, pools, and dilutes into labeled tubes. MP2+ labels all sides of a microplate and reads the barcode to confirm.
 
 ## Send the tubes out unlabeled
 
@@ -26,4 +26,4 @@ Ship your tubes and vials, or have LabTAG procure them. We print barcodes, varia
 
 ## Need Expert Help?
 
-Tell us a little about your tube, plate, or pre-labeled labware volume and one of our experts will help you choose the right automation or kitting solution.
+Tell us the tube or plate volume. We’ll size a labeler for the room, or a print-and-apply kitting run.

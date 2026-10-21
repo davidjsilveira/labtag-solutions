@@ -215,8 +215,19 @@ export function pagesForBrowseAll(): SolutionPage[] {
 }
 
 /** Combined catalog articles — unique guides that fold more than one archive page. */
+const NEW_ARTICLES_ORDER: string[] = [
+  'clinical-trials',
+  'histology',
+  'laboratory-tapes',
+  'dymo-labels',
+  'label-printing',
+  'automated-labware',
+]
+
 export function pagesForCombinedCatalog(): SolutionPage[] {
-  return pagesForBrowseAll().filter((page) => isCombinedCatalogSlug(page.slug))
+  return orderPages(solutionPages, NEW_ARTICLES_ORDER).filter((page) =>
+    isCombinedCatalogSlug(page.slug),
+  )
 }
 
 /** Ordered original scrape pages for the homepage Archive section and archive pager. */

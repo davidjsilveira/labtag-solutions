@@ -6,9 +6,9 @@ Sources:
 
 ![DYMO LabelWriter compatible CryoSTUCK laboratory labels](https://cdn.labtag.com/wp-content/uploads/2024/12/LWCS-501-use2.jpg "/media/dymo-compatible-laboratory-labels/LWCS-501-use2.jpg")
 
-If a DYMO® LabelWriter™ is already on the bench, the question is which lab stock it should run—not whether to buy another industrial printer. LabTAG makes CryoSTUCK® for frozen vials, cryogenic and freezer labels, heat-resistant and wash-off faces, and everyday color paper for those desktops.
+If a DYMO® LabelWriter™ is already on the bench, the question is which lab stock it should run—not whether to buy another industrial printer.
 
-The LabelWriter™ 550 kit is the shortest path from a spreadsheet to a frozen vial. 4-Series printers keep using solvent-resistant cryo and freezer labels, including SimPEEL™ liners that peel with gloves.
+LabTAG makes CryoSTUCK® for frozen vials, cryogenic and freezer labels, heat-resistant and wash-off faces, and everyday color paper for those desktops. The LabelWriter™ 550 kit is the shortest path from a spreadsheet to a frozen vial. 4-Series printers keep using solvent-resistant cryo and freezer labels, including SimPEEL™ liners that peel with gloves.
 
 ## A desktop cryo printer in one box
 
@@ -36,4 +36,4 @@ Clear EDFT freezer labels stay readable from −80°C through incubators without
 
 ## Need Expert Help?
 
-Tell us a little about your DYMO LabelWriter workflow and one of our experts will help you choose the right labels or LabelWriter 550 kit.
+Tell us which LabelWriter is on the bench and whether vials are already frozen. We’ll spec the stock—or a 550 kit.

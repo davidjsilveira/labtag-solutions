@@ -56,8 +56,8 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 - focus delay 0 ms; visible `:focus-visible` ring instantly
 
 ## CTA voice
-- Primary CTA: framed accent panel (rounded border + highlight orange fill) — “Need Expert Help?” style
-- Secondary CTA: underline link in secondary cyan
+- Primary CTA: compact accent band (copy left, button pair right, drop shadow) — “Need Expert Help?” style
+- Secondary CTA: underline link in secondary cyan; sample/shop as the ghost button on accent bands
 
 ## Nav / Footer
 - Nav: N9 edge-aligned minimal (wordmark left, quiet meta right)

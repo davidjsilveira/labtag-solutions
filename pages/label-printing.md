@@ -7,9 +7,9 @@ Sources:
 
 ![Label Printing Solutions](https://cdn.labtag.com/wp-content/uploads/Label-Printing-Solutions-2.jpg "/media/label-printing-solutions/Label-Printing-Solutions-2.jpg")
 
-A lab print station is printer, media, ribbon, and software that talk to the same LIMS. LabTAG specs kits and benchtop printers—including the Cody-3™—so sample IDs print the same way every day, with scientists on technical support.
+A lab print station is printer, media, ribbon, and software that talk to the same LIMS.
 
-If you would rather not own a printer, LabTAG prints roll, sheet, and fanfold for you.
+LabTAG specs kits and benchtop printers—including the Cody-3™—so sample IDs print the same way every day, with scientists on technical support. If you would rather not own a printer, LabTAG prints roll, sheet, and fanfold for you.
 
 ## Start with a kit, not leftover media
 
@@ -29,9 +29,9 @@ Desktop and industrial printers from other brands are available when throughput 
 
 ![Label design and barcode printing software](https://cdn.labtag.com/wp-content/uploads/2020/02/printing-labels.png "/media/label-software/printing-labels.png")
 
-Design software (including BarTender®) builds templates with text, barcodes, logos, and database merge for roll, sheet, and fanfold. It does not store samples.
+Use design software (including BarTender®) to build templates—text, barcodes, logos, and a database merge—for roll, sheet, and fanfold. That software does not store samples. LIMS, LIS, and ELN systems do.
 
-Informatics—LIMS, LIS, ELN, and related systems—stores, tracks, and reports. Some include a design module; others connect to LabTAG labels. Partners include LabMate, LDMS, Fluics CONNECT, eIVF, Labguru, GenoFAB, SciSure, Genemod, Clustermarket, QRlogix, ATMPS, and CYBRA.
+Some informatics tools include a design module; others connect to LabTAG labels. Partners include LabMate, LDMS, Fluics CONNECT, eIVF, Labguru, GenoFAB, SciSure, Genemod, Clustermarket, QRlogix, ATMPS, and CYBRA.
 
 ## Or skip the printer
 
@@ -41,4 +41,4 @@ LabTAG prints digital (laser and inkjet), flexographic, and thermal jobs, includ
 
 ## Need Expert Help?
 
-Tell us a little about your printing workflow and one of our experts will help you choose the right printers, kits, ribbons, and software.
+Tell us the printer, media, and LIMS you already run—or whether you’d rather skip owning a printer.

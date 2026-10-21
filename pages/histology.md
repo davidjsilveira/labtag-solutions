@@ -7,9 +7,9 @@ Sources:
 
 ![Histology and xylene-resistant labels](https://cdn.labtag.com/wp-content/uploads/2025/07/XAL-117-use4.jpg "/media/histology-labels/XAL-117-use4.jpg")
 
-A histology ID has to come through xylene, stain, and the scanner still scannable. The same chemical-resistant family covers the slide, the paraffin block, the bottle of acid on the bench, and the slide box in the −80°C freezer.
+A histology ID has to come through xylene, stain, and the scanner still scannable.
 
-When a consulting lab receives a slide that already has someone else’s barcode, over-labeling has to add an internal ID without stacking thickness that jams a coverslipper. That is the same article as the xylene-resistant slide label—not a second histology page.
+The same chemical-resistant family covers the slide, the paraffin block, the bottle of acid on the bench, and the slide box in the −80°C freezer. When a consulting lab receives a slide that already has someone else’s barcode, over-labeling adds an internal ID without stacking thickness that jams a coverslipper—same article, not a second histology page.
 
 ## Glass that has to survive the processor
 
@@ -45,4 +45,4 @@ Permanent faces for concentrated sulfuric acid, TCA, and sodium hydroxide keep r
 
 ## Need Expert Help?
 
-Tell us a little about your histology or chemical labeling workflow and one of our experts will help you choose the right xylene-resistant labeling solution.
+Tell us the processor, solvents, and whether slides arrive already labeled. We’ll spec a xylene-resistant ID that still scans.

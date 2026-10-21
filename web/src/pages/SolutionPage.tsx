@@ -137,27 +137,27 @@ export function SolutionPage() {
         variant={page.legacy ? 'archive' : combined ? 'catalog' : undefined}
       />
 
-      <nav
-        className="pager"
-        aria-label={
-          page.legacy ? 'Adjacent archived solutions' : combined ? 'New articles' : 'Adjacent solutions'
-        }
-      >
-        {prev ? (
-          <Link to={`/solutions/${prev.slug}`} className="pager-link prev">
-            <span>Previous</span>
-            <strong>{prev.title}</strong>
-          </Link>
-        ) : (
-          <span />
-        )}
-        {next ? (
-          <Link to={`/solutions/${next.slug}`} className="pager-link next">
-            <span>Next</span>
-            <strong>{next.title}</strong>
-          </Link>
-        ) : null}
-      </nav>
+      {combined ? null : (
+        <nav
+          className="pager"
+          aria-label={page.legacy ? 'Adjacent archived solutions' : 'Adjacent solutions'}
+        >
+          {prev ? (
+            <Link to={`/solutions/${prev.slug}`} className="pager-link prev">
+              <span>Previous</span>
+              <strong>{prev.title}</strong>
+            </Link>
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <Link to={`/solutions/${next.slug}`} className="pager-link next">
+              <span>Next</span>
+              <strong>{next.title}</strong>
+            </Link>
+          ) : null}
+        </nav>
+      )}
 
     </article>
   )

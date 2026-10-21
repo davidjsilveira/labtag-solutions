@@ -100,13 +100,15 @@ export function HomePage() {
       </section>
 
       <aside className="lander-cta block-cta">
-        <h2>Test a label in your own freezer first</h2>
-        <p>
-          Request free label samples for your application, or jump into the shop when you already
-          know the class you need. Shipping samples is free to contiguous US, Canada, and the EU
-          (business addresses).
-        </p>
-        <div className="lander-hero-actions">
+        <div className="block-cta-copy">
+          <h2>Test a label in your own freezer first</h2>
+          <p>
+            Request free samples for your application, or jump into the shop when you already know
+            the class you need. Shipping is free to contiguous US, Canada, and the EU (business
+            addresses).
+          </p>
+        </div>
+        <div className="block-cta-actions">
           <a className="btn btn-on-accent" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
             Request a free sample
           </a>

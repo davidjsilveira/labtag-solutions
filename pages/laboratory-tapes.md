@@ -6,9 +6,9 @@ Sources:
 
 ![Lab Tapes and Cryogenic Tapes](https://cdn.labtag.com/wp-content/uploads/TXS-25-use2.jpg "/media/gatorcut/TXS-25-use2.jpg")
 
-Tape is the ID you use when the vial, rack, or tray does not need a printed barcode. LabTAG cryogenic, freezer, autoclave, and general-use tapes color-code samples and equipment. CryoSTUCK® tape sticks to already-frozen plastic. C-Kur™ seals tear if someone opens the box.
+Tape is the ID you use when the vial, rack, or tray does not need a printed barcode.
 
-GatorCUT™ is not a second catalog. It is the pocket roll that tears to length without scissors or a dispenser, on cryo, deep-freeze, autoclave, and static-cling tapes.
+LabTAG cryogenic, freezer, autoclave, and general-use tapes color-code samples and equipment. CryoSTUCK® tape sticks to already-frozen plastic. C-Kur™ seals tear if someone opens the box. GatorCUT™ is not a second catalog—it is the pocket roll that tears to length without scissors or a dispenser, on cryo, deep-freeze, autoclave, and static-cling tapes.
 
 ## Dewars, metal, and already-frozen plastic
 
@@ -42,4 +42,4 @@ GatorCUT™ is the cutting method: cryogenic NitroTAPE™, frozen-surface CryoST
 
 ## Need Expert Help?
 
-Tell us a little about your labeling workflow and one of our experts will help you choose the right lab tape solution.
+Tell us the surface, temperature, and whether you need a pocket roll or a bench dispenser.
