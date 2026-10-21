@@ -1,10 +1,34 @@
 import { Link, useParams } from 'react-router-dom'
 import { BlockRenderer } from '@/blocks/BlockRenderer'
 import { PageHero } from '@/blocks/PageHero'
-import { pagesForArchive, pagesForBrowseAll } from '@/content/categories'
+import {
+  pagesForArchive,
+  pagesForBrowseAll,
+  pagesForCombinedCatalog,
+} from '@/content/categories'
 import { archiveSlugsForCatalog, isCombinedCatalogSlug } from '@/content/legacyMap'
 import { getPage } from '@/content/loadPages'
+import type { SolutionPage as SolutionPageData } from '@/content/types'
 import { useAnchorHighlight } from '@/hooks/useAnchorHighlight'
+
+function CycleChevron({ dir }: { dir: 'prev' | 'next' }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d={dir === 'prev' ? 'M15 5 8 12l7 7' : 'm9 5 7 7-7 7'}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function wrapNeighbor(pages: SolutionPageData[], index: number, step: number) {
+  return pages[(index + step + pages.length) % pages.length]
+}
 
 export function SolutionPage() {
   const { slug = '' } = useParams()
@@ -28,10 +52,16 @@ export function SolutionPage() {
         .map((archiveSlug) => getPage(archiveSlug))
         .filter((item): item is NonNullable<typeof item> => Boolean(item))
     : []
-  const siblings = page.legacy ? pagesForArchive() : pagesForBrowseAll()
+  const newArticles = combined ? pagesForCombinedCatalog() : []
+  const siblings = page.legacy
+    ? pagesForArchive()
+    : combined
+      ? newArticles
+      : pagesForBrowseAll()
   const index = siblings.findIndex((item) => item.slug === page.slug)
-  const prev = siblings[index - 1]
-  const next = siblings[index + 1]
+  const cycle = combined && index >= 0 && siblings.length > 1
+  const prev = cycle ? wrapNeighbor(siblings, index, -1) : siblings[index - 1]
+  const next = cycle ? wrapNeighbor(siblings, index, 1) : siblings[index + 1]
   const crumbHome = page.legacy ? (
     <Link to="/#archive">Archive</Link>
   ) : (
@@ -53,6 +83,33 @@ export function SolutionPage() {
             <span aria-hidden="true"> / </span>
             <span aria-current="page">{combined ? page.title : '. . .'}</span>
           </p>
+        }
+        cycle={
+          cycle && prev && next ? (
+            <nav className="catalog-cycle" aria-label="New articles">
+              <Link to={`/solutions/${prev.slug}`} className="catalog-cycle-item prev" rel="prev">
+                <span className="catalog-cycle-icon">
+                  <CycleChevron dir="prev" />
+                </span>
+                <span className="catalog-cycle-copy">
+                  <span className="catalog-cycle-label">Previous</span>
+                  <strong>{prev.title}</strong>
+                </span>
+              </Link>
+              <p className="catalog-cycle-status">
+                {index + 1} of {siblings.length}
+              </p>
+              <Link to={`/solutions/${next.slug}`} className="catalog-cycle-item next" rel="next">
+                <span className="catalog-cycle-copy">
+                  <span className="catalog-cycle-label">Next</span>
+                  <strong>{next.title}</strong>
+                </span>
+                <span className="catalog-cycle-icon">
+                  <CycleChevron dir="next" />
+                </span>
+              </Link>
+            </nav>
+          ) : null
         }
         related={
           replacement ? (
@@ -83,7 +140,12 @@ export function SolutionPage() {
         variant={page.legacy ? 'archive' : combined ? 'catalog' : undefined}
       />
 
-      <nav className="pager" aria-label={page.legacy ? 'Adjacent archived solutions' : 'Adjacent solutions'}>
+      <nav
+        className="pager"
+        aria-label={
+          page.legacy ? 'Adjacent archived solutions' : combined ? 'New articles' : 'Adjacent solutions'
+        }
+      >
         {prev ? (
           <Link to={`/solutions/${prev.slug}`} className="pager-link prev">
             <span>Previous</span>

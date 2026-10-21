@@ -13,6 +13,8 @@ type Props = {
   solutionSlug?: string
   /** Related catalog or archive links shown under the hero CTAs. */
   related?: ReactNode
+  /** Compact prev/next for cycling combined catalog articles. */
+  cycle?: ReactNode
   /** Combined catalog articles stack the figure under the title instead of a two-column split. */
   layout?: 'split' | 'stack'
 }
@@ -71,6 +73,7 @@ export function PageHero({
   crumb,
   solutionSlug,
   related,
+  cycle,
   layout = 'split',
 }: Props) {
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
@@ -121,6 +124,7 @@ export function PageHero({
       </div>
 
       {stacked ? null : media}
+      {cycle}
     </header>
   )
 }
