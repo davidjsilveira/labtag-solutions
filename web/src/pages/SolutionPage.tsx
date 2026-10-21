@@ -110,9 +110,11 @@ export function SolutionPage() {
         }
         related={
           replacement ? (
-            <p className="hero-related">
+            <p className="hero-related hero-related-note">
               This guide is archived. See the current article:{' '}
-              <Link to={`/solutions/${replacement.slug}`}>{replacement.title}</Link>
+              <Link to={`/solutions/${replacement.slug}`} className="source-tag">
+                {replacement.title}
+              </Link>
             </p>
           ) : archiveSources.length ? (
             <nav className="hero-related" aria-labelledby="hero-related-heading">
@@ -122,7 +124,9 @@ export function SolutionPage() {
               <ul className="source-list">
                 {archiveSources.map((source) => (
                   <li key={source.slug}>
-                    <Link to={`/solutions/${source.slug}`}>{source.title}</Link>
+                    <Link to={`/solutions/${source.slug}`} className="source-tag">
+                      {source.title}
+                    </Link>
                   </li>
                 ))}
               </ul>
