@@ -142,7 +142,7 @@ function catalogSection(
           <p key={paragraph.slice(0, 48)}>{paragraph}</p>
         ))}
         {absorbed.bullets?.type === 'bulletList' ? (
-          <BulletListBlockView block={absorbed.bullets} variant="plain" />
+          <BulletListBlockView block={absorbed.bullets} variant="spec" />
         ) : null}
       </div>
       {media}

@@ -4,10 +4,35 @@ import type { BulletListBlock } from '@/content/types'
 type Props = {
   block: BulletListBlock
   /** Force plain list styling (e.g. feature points beside section images). */
-  variant?: 'auto' | 'plain' | 'chips'
+  variant?: 'auto' | 'plain' | 'chips' | 'spec'
+}
+
+function splitSpec(item: string): { label: string; detail?: string } {
+  const match = item.match(/^(.+?)\s+[—–]\s+(.+)$/)
+  if (match) return { label: match[1], detail: match[2] }
+  return { label: item }
 }
 
 export function BulletListBlockView({ block, variant = 'auto' }: Props) {
+  if (variant === 'spec') {
+    return (
+      <section className="block block-bullets">
+        {block.title ? <h2>{block.title}</h2> : null}
+        <ul className="bullet-spec-list">
+          {block.items.map((item) => {
+            const { label, detail } = splitSpec(item)
+            return (
+              <li key={item}>
+                <strong>{label}</strong>
+                {detail ? <span>{detail}</span> : null}
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+    )
+  }
+
   const useChips =
     variant === 'chips' || (variant === 'auto' && isShopChipList(block.items))
 
