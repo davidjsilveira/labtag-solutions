@@ -63,8 +63,11 @@ export function HomePage() {
 
       <section className="lander-index lander-new" aria-label="New articles" id="new-articles">
         <ul className="lander-new-list">
-          {newArticles.map((page) => (
-            <li key={page.slug}>
+          {newArticles.map((page, index) => (
+            <li
+              key={page.slug}
+              className={index === 0 ? 'is-featured' : index >= 5 ? 'is-wide' : 'is-tile'}
+            >
               <NewArticleLink page={page} />
             </li>
           ))}

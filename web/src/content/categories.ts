@@ -1,4 +1,3 @@
-import { isCombinedCatalogSlug } from '@/content/legacyMap'
 import { legacyPages, solutionPages } from '@/content/loadPages'
 import type { SolutionPage } from '@/content/types'
 
@@ -214,8 +213,9 @@ export function pagesForBrowseAll(): SolutionPage[] {
   return orderPages(solutionPages, BROWSE_ALL_ORDER)
 }
 
-/** Combined catalog articles — unique guides that fold more than one archive page. */
+/** New articles — unique editorial guides. Cryogenic leads; cryo / deep-freeze / CryoSTUCK stay separate. */
 const NEW_ARTICLES_ORDER: string[] = [
+  'cryogenic',
   'clinical-trials',
   'histology',
   'laboratory-tapes',
@@ -224,10 +224,13 @@ const NEW_ARTICLES_ORDER: string[] = [
   'automated-labware',
 ]
 
+export function isNewArticleSlug(slug: string): boolean {
+  return NEW_ARTICLES_ORDER.includes(slug)
+}
+
 export function pagesForCombinedCatalog(): SolutionPage[] {
-  return orderPages(solutionPages, NEW_ARTICLES_ORDER).filter((page) =>
-    isCombinedCatalogSlug(page.slug),
-  )
+  const wanted = new Set(NEW_ARTICLES_ORDER)
+  return orderPages(solutionPages, NEW_ARTICLES_ORDER).filter((page) => wanted.has(page.slug))
 }
 
 /** Ordered original scrape pages for the homepage Archive section and archive pager. */

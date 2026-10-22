@@ -2,11 +2,12 @@ import { Link, useParams } from 'react-router-dom'
 import { BlockRenderer } from '@/blocks/BlockRenderer'
 import { PageHero } from '@/blocks/PageHero'
 import {
+  isNewArticleSlug,
   pagesForArchive,
   pagesForBrowseAll,
   pagesForCombinedCatalog,
 } from '@/content/categories'
-import { archiveSlugsForCatalog, isCombinedCatalogSlug } from '@/content/legacyMap'
+import { archiveSlugsForCatalog } from '@/content/legacyMap'
 import { getPage } from '@/content/loadPages'
 import type { SolutionPage as SolutionPageData } from '@/content/types'
 import { useAnchorHighlight } from '@/hooks/useAnchorHighlight'
@@ -33,7 +34,7 @@ function wrapNeighbor(pages: SolutionPageData[], index: number, step: number) {
 export function SolutionPage() {
   const { slug = '' } = useParams()
   const page = getPage(slug)
-  const combined = Boolean(page && !page.legacy && isCombinedCatalogSlug(page.slug))
+  const combined = Boolean(page && !page.legacy && isNewArticleSlug(page.slug))
   useAnchorHighlight(combined ? '' : (page?.slug ?? slug))
 
   if (!page) {
