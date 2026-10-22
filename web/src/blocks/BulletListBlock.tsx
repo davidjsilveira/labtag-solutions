@@ -1,4 +1,5 @@
 import { isShopChipList, resolveBulletItem } from '@/content/shopLinks'
+import { resolveSpecItemShopHref } from '@/content/splitActions'
 import type { BulletListBlock } from '@/content/types'
 
 type Props = {
@@ -23,8 +24,16 @@ export function BulletListBlockView({ block, variant = 'auto' }: Props) {
             const { label, detail } = splitSpec(item)
             return (
               <li key={item}>
-                <strong>{label}</strong>
-                {detail ? <span>{detail}</span> : null}
+                <a
+                  className="spec-shop"
+                  href={resolveSpecItemShopHref(label)}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Shop ${label}`}
+                >
+                  <strong>{label}</strong>
+                  {detail ? <span>{detail}</span> : null}
+                </a>
               </li>
             )
           })}

@@ -28,7 +28,7 @@ type Props = {
   solutionSlug?: string
   /** Solution page title — shown on the right of the sticky jump menu. */
   solutionTitle?: string
-  /** Combined catalog guides omit jump-menu anchors and per-section Shop / Watch video chrome. */
+  /** Combined catalog guides omit jump-menu anchors and per-section Watch chrome. */
   variant?: 'catalog' | 'archive'
 }
 

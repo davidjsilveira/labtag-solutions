@@ -5,6 +5,7 @@ import {
   LABTAG_SHOP_URL,
   LABTAG_VIDEOS_URL,
 } from '@/content/labtagLinks'
+import { slugify } from '@/content/slugify'
 
 const VIDEOS = LABTAG_VIDEOS_URL.replace(/\/$/, '')
 const SHOP = LABTAG_SHOP_URL.replace(/\/$/, '')
@@ -460,6 +461,95 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
   resistance: { label: 'Resistant Labels', query: 'chemical resistant custom labels' },
   surfaces: { label: 'Lab Surfaces', query: 'custom vial tube labels' },
   'data-formats': { label: 'Data Formats', query: 'barcode custom labels' },
+  'tubes-vials-boxes-and-caps': { label: 'Tubes & Vials', query: 'cryogenic tubes vials' },
+  'plates-pcr-and-tags': { label: 'Plates & PCR', query: 'cryogenic microplates PCR' },
+  'metal-racks-canes-and-ivf-straws': {
+    label: 'Metal Racks & Straws',
+    query: 'cryogenic metal racks',
+  },
+  'print-on-the-printer-you-already-run': {
+    label: 'Cryogenic Print Stock',
+    query: 'thermal transfer cryogenic',
+  },
+  'dual-ids-wrap-rfid-and-a-tab-you-can-peel-with-gloves': {
+    label: 'SnapPEEL & RFID',
+    query: 'SnapPEEL RFID',
+  },
+  'write-the-construct-into-the-protocol': {
+    label: 'Clinical Constructs',
+    query: 'clinical trial labels',
+  },
+  'print-from-the-database-not-the-clinic-printer': {
+    label: 'Variable Data Printing',
+    query: 'variable data printing labels',
+  },
+  'kits-leave-already-labeled': { label: 'Kit Labels', query: 'diagnostic kit labels' },
+  'paperwork-that-can-go-in-the-dewar': {
+    label: 'Cryo Requisition Forms',
+    query: 'cryogenic requisition forms',
+  },
+  'rfid-when-the-site-already-has-readers': {
+    label: 'RFID Labels',
+    query: 'RFID clinical labels',
+  },
+  'one-partnership-through-amendments': {
+    label: 'Clinical Trial Labels',
+    query: 'clinical trial labels',
+  },
+  'glass-that-has-to-survive-the-processor': {
+    label: 'Slide Labels',
+    query: 'xylene resistant slide labels',
+  },
+  'wax-that-does-not-want-adhesive': { label: 'ParafiTAG', query: 'ParafiTAG' },
+  'incoming-slides-that-already-have-an-id': { label: 'Histo-PinTAG', query: 'Histo-PinTAG' },
+  'bottles-next-to-the-stainer': {
+    label: 'Chemical-Resistant Labels',
+    query: 'solvent resistant bottle labels',
+  },
+  'dewars-metal-and-already-frozen-plastic': {
+    label: 'Cryogenic Tape',
+    query: 'cryogenic tape',
+  },
+  'see-through-freezer-tape-and-a-load-that-already-ran': {
+    label: 'Freezer Tape',
+    query: 'freezer tape autoclave',
+  },
+  'when-the-job-is-not-a-barcode': { label: 'Lab Tape', query: 'lab tape' },
+  'tear-it-in-a-pocket': { label: 'GatorCUT', query: 'GatorCUT' },
+  'a-desktop-cryo-printer-in-one-box': {
+    label: 'DYMO 550 Kit',
+    query: 'DYMO 550 CryoSTUCK',
+  },
+  'stick-it-at-80-c-then-put-it-back': {
+    label: 'CryoSTUCK DYMO',
+    query: 'DYMO CryoSTUCK',
+  },
+  'label-at-the-bench-store-in-the-dewar': {
+    label: 'DYMO Cryo Labels',
+    query: 'DYMO EC1F cryogenic',
+  },
+  'start-with-a-kit-not-leftover-media': {
+    label: 'Printing Kits',
+    query: 'label printing kit',
+  },
+  'the-benchtop-we-put-on-the-spec': { label: 'Cody-3', query: 'Cody-3 printer' },
+  'design-templates-versus-storing-samples': {
+    label: 'Label Software',
+    query: 'BarTender',
+  },
+  'or-skip-the-printer': { label: 'Printing Services', query: 'custom label printing' },
+  'hti-for-small-and-medium-batches': {
+    label: 'HTI Labelers',
+    query: 'HTI X-TubeProcessor',
+  },
+  'scinomix-when-the-deck-has-to-walk-away': {
+    label: 'Scinomix',
+    query: 'Scinomix Sci-Print',
+  },
+  'send-the-tubes-out-unlabeled': {
+    label: 'Pre-Labeled Labware',
+    query: 'pre-labeled labware',
+  },
 }
 
 const CRYO_SOLUTION_SLUGS = new Set([
@@ -538,6 +628,13 @@ export function resolveSolutionShopHref(solutionSlug?: string): string {
   return solutionSlug && CRYO_SOLUTION_SLUGS.has(solutionSlug)
     ? LABTAG_CRYO_SHOP_URL
     : LABTAG_SHOP_URL
+}
+
+/** Shop search for a catalog spec-list construct (label, not the parent section). */
+export function resolveSpecItemShopHref(label: string): string {
+  const mapped = SHOP_BY_SECTION[slugify(label)]
+  if (mapped) return shopSearchUrl(mapped.query)
+  return shopSearchUrl(titleToShopLabel(label))
 }
 
 export function resolveSplitCardActions(
