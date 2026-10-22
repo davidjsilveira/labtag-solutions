@@ -14,25 +14,40 @@ LabTAG makes CryoSTUCK® for frozen vials, cryogenic and freezer labels, heat-re
 
 ![DYMO LabelWriter 550 Cryogenic Label Printing Kit](https://cdn.labtag.com/wp-content/uploads/2026/04/PKT-LWCS-506-Box.png "/media/dymo-labelwriter-550/PKT-LWCS-506-Box.png")
 
-The 550 kit pairs CryoSTUCK® rolls with a LabelWriter™ 550 and DYMO Connect™ on Windows and Mac. Automatic Label Recognition™ loads LWCS templates when the roll is inserted. Print is direct-thermal: no ribbon. Bulk print from Excel or a database; SciSure and LabCollector are compatible. Buy eight CryoSTUCK® rolls and the printer is included.
+The 550 kit pairs CryoSTUCK® rolls with a LabelWriter™ 550 and DYMO Connect™ on Windows and Mac. Print is direct-thermal: no ribbon. Buy eight CryoSTUCK® rolls and the printer is included.
 
-LWCS sizes cover vials and caps: 2″ × 1″, 2″ × 0.25″ wrap, 1″ × 1″, and 1″ × 0.5″. Authentic DYMO-branded CryoSTUCK® is detected by LabelWriter 5-Series printers (550, 550 Turbo, 5XL).
+- LabelWriter™ 550 — printer in the kit
+- CryoSTUCK® rolls — eight rolls include the printer
+- Direct thermal — no ribbon
+- Automatic Label Recognition™ — loads LWCS templates
+- DYMO Connect™ — Windows and Mac; bulk print from Excel or a database
+- Sizes — 2″ × 1″, 2″ × 0.25″ wrap, 1″ × 1″, and 1″ × 0.5″
+- 5-Series detect — 550, 550 Turbo, and 5XL
 
 ## Stick it at −80°C, then put it back
 
 ![CryoSTUCK labels for DYMO LabelWriter 5-Series](https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg "/media/dymo-compatible-laboratory-labels/LWCS-504-DYMOxGA.jpg")
 
-CryoSTUCK® LWCS labels for 5-Series printers stick to −80°C plastic with no thaw, then store in LN₂ (−196°C). Range is −196°C to +70°C. They resist detergents, ethanol, acetone, and xylene.
+CryoSTUCK® LWCS labels for 5-Series printers stick to −80°C plastic with no thaw, then store in LN₂ (−196°C). Frozen-surface stock for 4-Series lives here as DYMO media, not as the CryoSTUCK® article.
 
-4-Series frozen-surface labels (EDCS and SimPEEL™ SPEDCS) do the same job on LabelWriter 450, 450 Turbo, and 4XL. Typical ratings include ethanol immersion up to 15 minutes and xylene up to 30 minutes. SimPEEL™ adds an adhesive-free tab so a gloved peel does not stick to the liner.
+- CryoSTUCK® LWCS — 5-Series; −80°C plastic with no thaw, then LN₂
+- Range — −196°C to +70°C
+- Solvents — detergents, ethanol, acetone, and xylene
+- EDCS 4-Series — LabelWriter 450, 450 Turbo, and 4XL
+- SimPEEL™ SPEDCS — adhesive-free tab for a gloved peel
 
 ## Label at the bench, store in the Dewar
 
 ![DYMO-compatible cryogenic labels on vials and microtubes](https://cdn.labtag.com/wp-content/uploads/EC1F-072-Use.png "/media/dymo-compatible-laboratory-labels/EC1F-072-Use.png")
 
-When the vial is still at ambient temperature, DYMO cryogenic labels (ED1F/EC1F and SimPEEL™ SPED1F) hold through LN₂, −80°C freezers, and dry-ice transport. Print 1D/2D barcodes and serialized text on 450-series and 4XL printers. Range is −196°C to +70°C.
+When the vial is still at ambient temperature, DYMO cryogenic labels hold through LN₂, −80°C freezers, and dry-ice transport. Print 1D/2D barcodes and serialized text on 450-series and 4XL printers.
 
-Clear EDFT freezer labels stay readable from −80°C through incubators without hiding tube contents. Heat-resistant EDAP labels survive ovens and water baths to +95°C without going fully black like ordinary direct-thermal stock. Water-dissolvable EDWA paper washes off reusable containers. Color EDY/ECY paper handles folders, boxes, and shipping.
+- ED1F / EC1F — ambient apply; LN₂, −80°C, and dry ice
+- SimPEEL™ SPED1F — gloved peel on 450-series and 4XL
+- Clear EDFT — freezer labels that keep tube contents visible
+- Heat-resistant EDAP — ovens and water baths to +95°C
+- Water-dissolvable EDWA — washes off reusable containers
+- Color EDY/ECY — folders, boxes, and shipping
 
 ## Need Expert Help?
 
