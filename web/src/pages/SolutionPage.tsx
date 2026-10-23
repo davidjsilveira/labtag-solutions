@@ -63,12 +63,6 @@ export function SolutionPage() {
   const cycle = combined && index >= 0 && siblings.length > 1
   const prev = cycle ? wrapNeighbor(siblings, index, -1) : siblings[index - 1]
   const next = cycle ? wrapNeighbor(siblings, index, 1) : siblings[index + 1]
-  const crumbHome = page.legacy ? (
-    <Link to="/#archive">Archive</Link>
-  ) : (
-    <Link to="/">Solutions</Link>
-  )
-
   return (
     <article className={`solution-page${page.legacy ? ' is-archive' : ''}${combined ? ' is-catalog' : ''}`}>
       <PageHero
@@ -80,9 +74,9 @@ export function SolutionPage() {
         layout="split"
         crumb={
           <p className="crumb">
-            {crumbHome}
+            <Link to="/">Solutions</Link>
             <span aria-hidden="true"> / </span>
-            <span aria-current="page">{combined ? page.title : '. . .'}</span>
+            <span aria-current="page">{page.title}</span>
           </p>
         }
         cycle={

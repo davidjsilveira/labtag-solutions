@@ -16,7 +16,7 @@ editorial
 - Home `/`
 - Current catalog `/solutions/{slug}` (24 unique slugs)
 - Archive originals `/solutions/{slug}` (34 historical slugs)
-- Breadcrumbs: Solutions / {Page title} for catalog; Archive / {Page title} for legacy pages
+- Breadcrumbs: Solutions / {Page title} on every `/solutions/{slug}` page (catalog and historical originals)
 
 ## Theme
 LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
