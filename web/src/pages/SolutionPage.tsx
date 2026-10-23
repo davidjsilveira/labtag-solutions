@@ -118,10 +118,7 @@ export function SolutionPage() {
               </Link>
             </p>
           ) : archiveSources.length ? (
-            <nav className="hero-related" aria-labelledby="hero-related-heading">
-              <p id="hero-related-heading" className="hero-related-label">
-                Also in the archive
-              </p>
+            <nav className="hero-related" aria-label="Archive">
               <ul className="source-list">
                 {archiveSources.map((source) => (
                   <li key={source.slug}>
