@@ -1,5 +1,5 @@
 /* Hallmark · genre: editorial · macrostructure: Split Studio (home) / Long Document (solutions)
- * design-system: design.md · designed-as-app · nav: N9 · footer: Ft2
+ * design-system: design.md · designed-as-app · nav: N9 · footer: none
  * theme: LabTAG Colors · type: Source Sans 3 · enrichment: solution hero photography
  * tone: friendly lab tech · audience: labs · universities · biobanks · clinics
  * pre-emit critique: P4 H4 E4 S4 R4 V4
@@ -137,90 +137,9 @@ main {
   padding: var(--space-lg) 0 var(--space-2xl);
 }
 
-.site-footer {
-  margin-top: auto;
-  padding: var(--space-lg) var(--space-md) var(--space-xl);
-  border-top: 1px solid var(--color-rule);
-  font-size: var(--text-sm);
-  color: var(--color-ink-2);
-}
-
-.site-footer > p {
-  margin: 0 auto var(--space-lg);
-  max-width: var(--shell-width);
-}
-
-.site-sitemap {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--space-md) var(--space-xl);
-  max-width: var(--shell-width);
-  margin: 0 auto;
-  align-items: start;
-}
-
-.site-sitemap-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-xs);
-}
-
-.site-sitemap-heading {
-  display: inline-block;
-  margin: 0 0 var(--space-2xs);
-  color: var(--color-ink);
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.site-sitemap-pages ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.35rem var(--space-md);
-}
-
-.site-sitemap ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 0.35rem;
-}
-
-.site-sitemap a {
-  color: var(--color-ink-2);
-  text-decoration: none;
-  font-size: var(--text-xs);
-  line-height: 1.35;
-}
-
-.site-sitemap a:hover {
-  color: var(--color-link);
-  text-decoration: underline;
-}
-
-@media (max-width: 960px) {
-  .site-sitemap {
-    grid-template-columns: 1fr;
-  }
-
-  .site-sitemap-pages ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 560px) {
   .site-header {
     flex-wrap: wrap;
-  }
-
-  .site-sitemap-pages ul {
-    grid-template-columns: 1fr;
   }
 }
 

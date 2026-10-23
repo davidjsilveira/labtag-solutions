@@ -61,7 +61,7 @@ LabTAG brand palette from `LabTAG-Colors.tokens.json` (Figma).
 
 ## Nav / Footer
 - Nav: N9 edge-aligned minimal (wordmark left, quiet meta right)
-- Footer: Ft2 inline single line (colophon)
+- Footer: none (this mockup has no site footer)
 
 ## Per-page allowances
 - Marketing (home): standard title (no lander photography); light drop shadow under the hero; New articles as a 4-col bento of full-bleed photo tiles (cryogenic 2×2; type on a solid surface band); New articles and Browse-all cards share surface + drop shadow (no strokes); temperature quick-picks; Archive index at end; framed sample CTA

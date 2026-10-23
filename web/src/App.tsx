@@ -1,7 +1,6 @@
 import { Link, Navigate, Route, Routes, useParams } from 'react-router-dom'
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
-import { SiteSitemap } from '@/components/SiteSitemap'
 import { getPage } from '@/content/loadPages'
 import { HomePage } from '@/pages/HomePage'
 import { RequestFormPage } from '@/pages/RequestFormPage'
@@ -51,10 +50,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
-      <footer className="site-footer">
-        <p>LabTAG Solutions · labeling systems for the lab</p>
-        <SiteSitemap />
-      </footer>
     </div>
   )
 }
