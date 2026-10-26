@@ -27,6 +27,49 @@ function CycleChevron({ dir }: { dir: 'prev' | 'next' }) {
   )
 }
 
+function CatalogCycle({
+  prev,
+  next,
+  className = 'catalog-cycle',
+  withRel = false,
+}: {
+  prev: SolutionPageData
+  next: SolutionPageData
+  className?: string
+  withRel?: boolean
+}) {
+  return (
+    <nav className={className} aria-label="New articles">
+      <Link
+        to={`/solutions/${prev.slug}`}
+        className="catalog-cycle-item prev"
+        rel={withRel ? 'prev' : undefined}
+      >
+        <span className="catalog-cycle-icon">
+          <CycleChevron dir="prev" />
+        </span>
+        <span className="catalog-cycle-copy">
+          <span className="catalog-cycle-label">Previous</span>
+          <strong>{prev.title}</strong>
+        </span>
+      </Link>
+      <Link
+        to={`/solutions/${next.slug}`}
+        className="catalog-cycle-item next"
+        rel={withRel ? 'next' : undefined}
+      >
+        <span className="catalog-cycle-copy">
+          <span className="catalog-cycle-label">Next</span>
+          <strong>{next.title}</strong>
+        </span>
+        <span className="catalog-cycle-icon">
+          <CycleChevron dir="next" />
+        </span>
+      </Link>
+    </nav>
+  )
+}
+
 function wrapNeighbor(pages: SolutionPageData[], index: number, step: number) {
   return pages[(index + step + pages.length) % pages.length]
 }
@@ -79,30 +122,7 @@ export function SolutionPage() {
             <span aria-current="page">{page.title}</span>
           </p>
         }
-        cycle={
-          cycle && prev && next ? (
-            <nav className="catalog-cycle" aria-label="New articles">
-              <Link to={`/solutions/${prev.slug}`} className="catalog-cycle-item prev" rel="prev">
-                <span className="catalog-cycle-icon">
-                  <CycleChevron dir="prev" />
-                </span>
-                <span className="catalog-cycle-copy">
-                  <span className="catalog-cycle-label">Previous</span>
-                  <strong>{prev.title}</strong>
-                </span>
-              </Link>
-              <Link to={`/solutions/${next.slug}`} className="catalog-cycle-item next" rel="next">
-                <span className="catalog-cycle-copy">
-                  <span className="catalog-cycle-label">Next</span>
-                  <strong>{next.title}</strong>
-                </span>
-                <span className="catalog-cycle-icon">
-                  <CycleChevron dir="next" />
-                </span>
-              </Link>
-            </nav>
-          ) : null
-        }
+        cycle={cycle && prev && next ? <CatalogCycle prev={prev} next={next} withRel /> : null}
         related={
           replacement ? (
             <p className="hero-related hero-related-note">
@@ -132,6 +152,10 @@ export function SolutionPage() {
         solutionTitle={page.title}
         variant={page.legacy ? 'archive' : combined ? 'catalog' : undefined}
       />
+
+      {cycle && prev && next ? (
+        <CatalogCycle prev={prev} next={next} className="catalog-cycle catalog-cycle-end" />
+      ) : null}
 
       {combined ? null : (
         <nav

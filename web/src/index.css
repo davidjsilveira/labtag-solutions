@@ -1713,6 +1713,12 @@ main {
   color: var(--color-link);
 }
 
+.catalog-cycle-end {
+  grid-column: auto;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-md);
+}
+
 .crumb a {
   text-decoration: none;
   font-weight: 600;
