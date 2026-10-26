@@ -6,7 +6,7 @@ export const QUOTE_PATH = '/quote'
 export const LABTAG_ABOUT_URL = 'https://www.labtag.com/about-labtag'
 export const ABOUT_PATH = '/about'
 export const WHY_CHOOSE_PATH = '/about/why-choose-labtag'
-export const CUSTOM_LABELS_PATH = '/solutions/custom-labels'
+export const CUSTOM_LABELS_PATH = '/custom-labels'
 export const LABTAG_CONTACT_URL = 'https://www.labtag.com/contact-us/'
 export const LABTAG_QUOTE_URL = 'https://www.labtag.com/contact-us/quote/'
 export const LABTAG_VIDEOS_URL = 'https://www.labtag.com/resources/videos/'
@@ -28,6 +28,10 @@ export const REQUEST_FORM_PATHS = {
   'clinical-trials': {
     path: '/request/clinical-trial-labels',
     primaryLabel: 'Request clinical trial labels',
+  },
+  'custom-labels': {
+    path: CUSTOM_LABELS_PATH,
+    primaryLabel: 'Request custom labels',
   },
 } as const
 

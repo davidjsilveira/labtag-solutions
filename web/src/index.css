@@ -3578,6 +3578,27 @@ tr:last-child td {
   grid-template-areas: 'stack form';
 }
 
+.custom-request-page .samples-layout {
+  grid-template-areas:
+    'copy form'
+    'proof form'
+    'note form';
+}
+
+.custom-request-page .samples-hero {
+  grid-area: copy;
+}
+
+.custom-request-page .samples-proof {
+  grid-area: proof;
+}
+
+.custom-request-page .samples-form {
+  position: sticky;
+  top: calc(var(--space-2xl) + var(--space-xs));
+  overflow: hidden;
+}
+
 .quote-stack {
   grid-area: stack;
   display: grid;
@@ -3783,6 +3804,14 @@ tr:last-child td {
 
   .quote-page .hs-form .form-columns-2 {
     grid-template-columns: 1fr;
+  }
+
+  .custom-request-page .samples-layout {
+    grid-template-areas:
+      'copy'
+      'form'
+      'proof'
+      'note';
   }
 }
 
@@ -4697,160 +4726,6 @@ a.why-reason:hover h2 {
   max-width: 40rem;
 }
 
-.custom-page .crumb {
-  margin: 0;
-}
-
-.custom-page .about-hero {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.custom-featured {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  column-gap: 3rem;
-  row-gap: 1rem;
-  align-items: center;
-  padding: 2rem 3rem;
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card-rest);
-}
-
-.custom-featured .about-benefit-icon {
-  background: var(--color-paper);
-}
-
-.custom-featured h2 {
-  margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  line-height: 2rem;
-}
-
-.custom-featured p {
-  margin: 0;
-  max-width: 40rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.custom-capabilities {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
-}
-
-.custom-capabilities article {
-  display: grid;
-  gap: 1rem;
-  align-content: start;
-}
-
-.custom-capabilities figure {
-  margin: 0;
-}
-
-.custom-capabilities img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: var(--radius-image);
-  box-shadow: var(--shadow-card);
-}
-
-.custom-capabilities h2 {
-  margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  line-height: 2rem;
-}
-
-.custom-capabilities p {
-  margin: 0;
-  max-width: 36rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.custom-steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem 3rem;
-}
-
-.custom-steps article {
-  display: grid;
-  gap: 0.75rem;
-  align-content: start;
-}
-
-.custom-step-index {
-  color: var(--color-link);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
-  line-height: 1.25rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.custom-steps h2 {
-  margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  line-height: 2rem;
-}
-
-.custom-steps p {
-  margin: 0;
-  max-width: 36rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.custom-specs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem 3rem;
-}
-
-.custom-specs article {
-  display: grid;
-  gap: 0.75rem;
-  align-content: start;
-}
-
-.custom-specs h2 {
-  margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  line-height: 2rem;
-}
-
-.custom-specs .bullet-chip-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2xs);
-}
-
 @media (max-width: 840px) {
   .why-reasons {
     grid-template-columns: 1fr;
@@ -4858,17 +4733,6 @@ a.why-reason:hover h2 {
 
   .why-reason.is-featured .why-reason-copy {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .custom-featured,
-  .custom-capabilities,
-  .custom-steps,
-  .custom-specs {
-    grid-template-columns: 1fr;
-  }
-
-  .custom-featured {
-    padding: 1.5rem;
   }
 }
 
