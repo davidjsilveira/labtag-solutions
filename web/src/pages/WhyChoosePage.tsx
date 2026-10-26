@@ -98,14 +98,16 @@ function ReasonCard({ reason }: { reason: Reason }) {
       <span className="why-reason-icon">
         <img src={resolved.primary} alt="" width={72} height={72} />
       </span>
-      <h2>{reason.title}</h2>
-      <p>{reason.body}</p>
+      <div className="why-reason-copy">
+        <h2>{reason.title}</h2>
+        <p>{reason.body}</p>
+      </div>
     </>
   )
 
   if (reason.href) {
     return (
-      <Link to={reason.href} className="why-reason is-featured">
+      <Link to={reason.href} className="why-reason">
         {inner}
       </Link>
     )
@@ -117,42 +119,35 @@ function ReasonCard({ reason }: { reason: Reason }) {
 export function WhyChoosePage() {
   return (
     <article className="why-page">
-      <header className="page-hero">
-        <div className="page-hero-copy">
-          <p className="crumb">
-            <Link to="/">Solutions</Link>
-            <span aria-hidden="true"> / </span>
-            <Link to="/about">About</Link>
-            <span aria-hidden="true"> / </span>
-            <span aria-current="page">Why Choose LabTAG</span>
-          </p>
+      <header className="about-hero">
+        <div className="about-hero-top">
           <h1>Why Choose LabTAG</h1>
-          <div className="page-hero-description">
-            <p>
+          <div className="about-hero-intro">
+            <p className="about-hero-lede">
               LabTAG, a global leader in lab identification and ISO-certified, offers high-quality
               labeling solutions to ensure accurate, efficient sample tracking. Try free samples to
               confirm compatibility with your application. Our expert support and R&amp;D
               teams—staffed by M.Sc. and Ph.D. scientists—are ready to help you choose the right
               labels, printers, software, and scanners for your lab.
             </p>
-          </div>
-          <div className="page-hero-actions">
-            <Link className="btn btn-primary" to={SAMPLE_PATH}>
-              Request a free sample
-            </Link>
-            <a
-              className="btn btn-secondary"
-              href={LABTAG_CONTACT_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Chat with an expert
-            </a>
+            <div className="about-hero-actions">
+              <Link className="btn btn-primary" to={SAMPLE_PATH}>
+                Request a free sample
+              </Link>
+              <a
+                className="btn btn-secondary"
+                href={LABTAG_CONTACT_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Chat with an expert
+              </a>
+            </div>
           </div>
         </div>
       </header>
 
-      <section className="why-grid" aria-label="Reasons to choose LabTAG">
+      <section className="why-reasons" aria-label="Reasons to choose LabTAG">
         {REASONS.map((reason) => (
           <ReasonCard key={reason.title} reason={reason} />
         ))}
