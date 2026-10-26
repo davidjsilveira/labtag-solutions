@@ -61,8 +61,16 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
   const kit = (
     <figure className="samples-kit">
       <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
-      <figcaption>LabTAG free sample kit</figcaption>
     </figure>
+  )
+
+  const note = (
+    <p className="samples-note">
+      We can only send free samples of labels and tapes. We do not offer free samples of markers,
+      ribbons, and hardware. Samples will only be sent to verified business addresses. Shipping is
+      free only for the contiguous United States and Canada, and for countries in the European
+      Union. We reserve the right to limit quantities of samples within reason.
+    </p>
   )
 
   return (
@@ -99,7 +107,12 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
               </li>
             ))}
           </ul>
-          {variant === 'vertical' ? kit : null}
+          {variant === 'vertical' ? (
+            <div className="samples-kit-block">
+              {kit}
+              {note}
+            </div>
+          ) : null}
         </header>
 
         <aside id="sample-request" className="samples-form" aria-label="Sample request form">
@@ -132,12 +145,7 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
           </figure>
         </section>
 
-        <p className="samples-note">
-          We can only send free samples of labels and tapes. We do not offer free samples of
-          markers, ribbons, and hardware. Samples will only be sent to verified business addresses.
-          Shipping is free only for the contiguous United States and Canada, and for countries in
-          the European Union. We reserve the right to limit quantities of samples within reason.
-        </p>
+        {variant === 'vertical' ? null : note}
       </div>
     </article>
   )

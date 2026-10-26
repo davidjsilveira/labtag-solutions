@@ -3528,12 +3528,6 @@ tr:last-child td {
   mix-blend-mode: multiply;
 }
 
-.samples-kit figcaption {
-  margin-top: var(--space-xs);
-  color: var(--color-ink-2);
-  font-size: var(--text-sm);
-}
-
 .samples-quote.block-quote {
   padding: 0;
 }
@@ -3558,12 +3552,12 @@ tr:last-child td {
 }
 
 .samples-page.is-vertical .samples-layout {
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    'copy copy'
-    'proof note'
-    'form form';
-  gap: var(--space-2xl) var(--space-xl);
+    'copy'
+    'proof'
+    'form';
+  gap: var(--space-2xl);
 }
 
 .samples-page.is-vertical .samples-hero {
@@ -3598,8 +3592,15 @@ tr:last-child td {
   margin: 0;
 }
 
-.samples-page.is-vertical .samples-kit {
+.samples-page.is-vertical .samples-kit-block {
   grid-area: kit;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-sm);
+}
+
+.samples-page.is-vertical .samples-kit {
+  grid-area: auto;
 }
 
 .samples-page.is-vertical .samples-form {
@@ -3610,11 +3611,18 @@ tr:last-child td {
   scroll-margin-top: var(--anchor-scroll-margin);
 }
 
+.samples-page.is-vertical .samples-quote.block-quote {
+  justify-self: center;
+  max-width: 48rem;
+  text-align: center;
+}
+
 .samples-page.is-vertical .samples-quote.block-quote p {
   max-width: none;
 }
 
 .samples-page.is-vertical .samples-note {
+  grid-area: auto;
   max-width: none;
 }
 
@@ -3641,7 +3649,6 @@ tr:last-child td {
     grid-template-areas:
       'copy'
       'proof'
-      'note'
       'form';
   }
 
