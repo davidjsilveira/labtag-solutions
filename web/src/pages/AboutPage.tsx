@@ -35,21 +35,6 @@ const BENEFITS = [
   },
 ]
 
-const STEPS = [
-  {
-    title: 'Describe the application',
-    body: 'Temperature, container, chemicals, and printer. We map that to a material and adhesive.',
-  },
-  {
-    title: 'Receive free samples',
-    body: 'Most regions ship at no charge to a business lab address. You test on the real surface.',
-  },
-  {
-    title: 'Approve, then we produce',
-    body: 'Stock ships from regional warehouses. Custom work is quoted with a lead time you can plan around.',
-  },
-]
-
 const FAQS = [
   {
     question: 'Do you manufacture the labels or resell them?',
@@ -231,22 +216,23 @@ export function AboutPage() {
         ))}
       </ul>
 
-      <section className="about-tagline" aria-label="LabTAG tagline">
-        <TaglineReveal
-          lines={['Every sample identified.', 'Every freezer, every solvent, every shift.']}
-        />
-      </section>
-
-      <section className="about-story" data-motion-section>
-        <h2 data-motion="up" style={motionIndex(0)}>
-          Labels fail in the protocol, not on the spec sheet
-        </h2>
-        <p data-motion="up" style={motionIndex(1)}>
-          A vial that loses its identity in LN2, xylene, or steam wastes the run. Since its start,
-          GA International has manufactured cryogenic and chemical resistant labels with R&amp;D and
-          production in house, plus technical support that stays with the application until the
-          label holds.
-        </p>
+      <section className="about-pair" aria-label="LabTAG tagline">
+        <div className="about-tagline">
+          <TaglineReveal
+            lines={['Every sample identified.', 'Every freezer, every solvent, every shift.']}
+          />
+        </div>
+        <div className="about-story" data-motion-section>
+          <h2 data-motion="up" style={motionIndex(0)}>
+            Labels fail in the protocol, not on the spec sheet
+          </h2>
+          <p data-motion="up" style={motionIndex(1)}>
+            A vial that loses its identity in LN2, xylene, or steam wastes the run. Since its start,
+            GA International has manufactured cryogenic and chemical resistant labels with R&amp;D and
+            production in house, plus technical support that stays with the application until the
+            label holds.
+          </p>
+        </div>
       </section>
 
       <section className="about-benefits" aria-label="Why labs work with LabTAG" data-motion-section>
@@ -256,21 +242,6 @@ export function AboutPage() {
             <p>{benefit.body}</p>
           </article>
         ))}
-      </section>
-
-      <section className="about-steps" aria-label="How it works" data-motion-section>
-        <h2 data-motion="up" style={motionIndex(0)}>
-          How it works
-        </h2>
-        <ol>
-          {STEPS.map((step, index) => (
-            <li key={step.title} data-motion="up" style={motionIndex(index + 1)}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
       </section>
 
       <section className="about-iso" aria-label="Quality certifications" data-motion-section>
@@ -377,11 +348,15 @@ export function AboutPage() {
 
       <section className="about-faq" aria-label="Frequently asked questions">
         <h2>Questions labs ask before they switch</h2>
-        <div className="about-faq-list">
+        <div className="faq-list">
           {FAQS.map((item) => (
-            <details key={item.question} className="about-faq-item">
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
+            <details key={item.question} className="faq-item">
+              <summary>
+                <span className="faq-item-question">{item.question}</span>
+              </summary>
+              <div className="faq-item-answer">
+                <p>{item.answer}</p>
+              </div>
             </details>
           ))}
         </div>

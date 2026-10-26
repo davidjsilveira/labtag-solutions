@@ -47,9 +47,9 @@ export default function App() {
         </Link>
         <nav className="site-nav" aria-label="Site">
           <NavLink to={ABOUT_PATH} end>
-            About
+            About Us
           </NavLink>
-          <NavLink to={WHY_CHOOSE_PATH}>Why Choose</NavLink>
+          <NavLink to={WHY_CHOOSE_PATH}>Why Choose LabTAG</NavLink>
           <NavLink to={SAMPLE_PATH} end>
             Request Free Sample
           </NavLink>
