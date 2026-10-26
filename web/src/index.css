@@ -3212,6 +3212,7 @@ tr:last-child td {
 
 .solution-page.is-catalog .catalog-split.is-stack .catalog-split-copy .block-bullets .bullet-spec-list {
   margin-top: 0;
+  grid-template-columns: 1fr;
 }
 
 .solution-page.is-catalog .catalog-split.is-stack .catalog-figure img,
