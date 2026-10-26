@@ -3532,10 +3532,6 @@ tr:last-child td {
   box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
 }
 
-.about-hero .crumb {
-  margin: 0 0 var(--space-md);
-}
-
 .about-hero-top {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);

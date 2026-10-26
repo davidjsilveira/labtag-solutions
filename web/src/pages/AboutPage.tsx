@@ -92,11 +92,6 @@ export function AboutPage() {
   return (
     <article className="about-page">
       <header className="about-hero">
-        <p className="crumb">
-          <Link to="/">Solutions</Link>
-          <span aria-hidden="true"> / </span>
-          <span aria-current="page">About</span>
-        </p>
         <div className="about-hero-top">
           <h1>About Us</h1>
           <div className="about-hero-intro">
