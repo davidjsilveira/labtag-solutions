@@ -148,15 +148,19 @@ export function AboutPage() {
       </section>
 
       <section className="about-iso" aria-label="Quality certifications">
-        <p className="about-kicker">Quality</p>
         <div className="about-iso-body">
-          <img
-            className="about-iso-seal"
-            src={ISO_SEAL.primary}
-            alt=""
-            width={160}
-            height={156}
-          />
+          <div className="about-iso-brand">
+            <p className="about-kicker">Quality</p>
+            <span className="about-iso-seal-well">
+              <img
+                className="about-iso-seal"
+                src={ISO_SEAL.primary}
+                alt=""
+                width={160}
+                height={156}
+              />
+            </span>
+          </div>
           <div className="about-iso-certs">
             {CERTS.map((cert) => (
               <article key={cert.number}>
