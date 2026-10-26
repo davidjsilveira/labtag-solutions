@@ -1,6 +1,8 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { LABTAG_CONTACT_URL, SAMPLE_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
+import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 
 type Reason = {
   title: string
@@ -91,7 +93,7 @@ const CERTS = [
   },
 ]
 
-function ReasonCard({ reason }: { reason: Reason }) {
+function ReasonCard({ reason, index }: { reason: Reason; index: number }) {
   const resolved = resolveImageSrc(reason.icon, reason.iconFallback)
   const inner = (
     <>
@@ -107,30 +109,39 @@ function ReasonCard({ reason }: { reason: Reason }) {
 
   if (reason.href) {
     return (
-      <Link to={reason.href} className="why-reason is-featured">
+      <Link to={reason.href} className="why-reason is-featured" style={motionIndex(index)}>
         {inner}
       </Link>
     )
   }
 
-  return <article className="why-reason">{inner}</article>
+  return (
+    <article className="why-reason" style={motionIndex(index)}>
+      {inner}
+    </article>
+  )
 }
 
 export function WhyChoosePage() {
+  const rootRef = useRef<HTMLElement>(null)
+  usePageMotion(rootRef)
+
   return (
-    <article className="why-page">
-      <header className="about-hero">
+    <article className="why-page" ref={rootRef}>
+      <header className="about-hero" data-motion-hero>
         <div className="about-hero-top">
-          <h1>Why Choose LabTAG</h1>
+          <h1 data-motion="hero" style={motionIndex(0)}>
+            Why Choose LabTAG
+          </h1>
           <div className="about-hero-intro">
-            <p className="about-hero-lede">
+            <p className="about-hero-lede" data-motion="hero" style={motionIndex(1)}>
               LabTAG, a global leader in lab identification and ISO-certified, offers high-quality
               labeling solutions to ensure accurate, efficient sample tracking. Try free samples to
               confirm compatibility with your application. Our expert support and R&amp;D
               teams—staffed by M.Sc. and Ph.D. scientists—are ready to help you choose the right
               labels, printers, software, and scanners for your lab.
             </p>
-            <div className="about-hero-actions">
+            <div className="about-hero-actions" data-motion="hero" style={motionIndex(2)}>
               <Link className="btn btn-primary" to={SAMPLE_PATH}>
                 Request a free sample
               </Link>
@@ -147,13 +158,13 @@ export function WhyChoosePage() {
         </div>
       </header>
 
-      <section className="why-reasons" aria-label="Reasons to choose LabTAG">
-        {REASONS.map((reason) => (
-          <ReasonCard key={reason.title} reason={reason} />
+      <section className="why-reasons" aria-label="Reasons to choose LabTAG" data-motion-section>
+        {REASONS.map((reason, index) => (
+          <ReasonCard key={reason.title} reason={reason} index={index} />
         ))}
       </section>
 
-      <section className="about-iso" aria-label="Quality certifications">
+      <section className="about-iso" aria-label="Quality certifications" data-motion-section>
         <div className="about-iso-body">
           <div className="about-iso-brand">
             <img
@@ -162,6 +173,8 @@ export function WhyChoosePage() {
               alt="ISO certified"
               width={247}
               height={53}
+              data-motion="pop"
+              style={motionIndex(0)}
             />
           </div>
           <div className="about-iso-certs">

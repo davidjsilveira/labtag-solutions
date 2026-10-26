@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
 import { LABTAG_QUOTE_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
+import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 
 const PORTAL_ID = '4079112'
 const FORM_ID = '9ec7d4fc-e354-4605-90c5-596e23f5a2f5'
@@ -34,7 +35,9 @@ const PHOTO = resolveImageSrc(
 )
 
 export function QuotePage() {
+  const rootRef = useRef<HTMLElement>(null)
   const mounted = useRef(true)
+  usePageMotion(rootRef)
 
   useEffect(() => {
     mounted.current = true
@@ -63,20 +66,22 @@ export function QuotePage() {
   }, [])
 
   return (
-    <article className="samples-page quote-page">
+    <article className="samples-page quote-page" ref={rootRef}>
       <div className="samples-layout">
         <div className="quote-stack">
-          <header className="samples-hero">
-            <h1>Request a Quote</h1>
-            <p className="samples-lede">
+          <header className="samples-hero" data-motion-hero>
+            <h1 data-motion="hero" style={motionIndex(0)}>
+              Request a Quote
+            </h1>
+            <p className="samples-lede" data-motion="hero" style={motionIndex(1)}>
               Fill this form and we will get back to you shortly with a price quote for custom and
               in-stock products.
             </p>
             <ul className="samples-promises">
-              {PROMISES.map((promise) => {
+              {PROMISES.map((promise, index) => {
                 const icon = resolveImageSrc(promise.icon, promise.iconFallback)
                 return (
-                  <li key={promise.title}>
+                  <li key={promise.title} style={motionIndex(index + 2)}>
                     <span className="samples-promise-icon">
                       <img src={icon.primary} alt="" width={72} height={72} />
                     </span>
@@ -88,8 +93,8 @@ export function QuotePage() {
             </ul>
           </header>
 
-          <section className="samples-proof">
-            <figure className="samples-kit is-photo">
+          <section className="samples-proof" data-motion-section>
+            <figure className="samples-kit is-photo" data-motion="photo" style={motionIndex(0)}>
               <img src={PHOTO.primary} alt="Custom LabTAG label on a laboratory vial" />
             </figure>
           </section>

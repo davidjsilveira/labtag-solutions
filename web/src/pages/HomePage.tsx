@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
 import { pagesForArchive, pagesForCombinedCatalog } from '@/content/categories'
@@ -11,7 +13,7 @@ function NewArticleLink({ page }: { page: SolutionPage }) {
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
 
   return (
-    <Link to={`/solutions/${page.slug}`} className="lander-new-link">
+    <Link to={`/solutions/${page.slug}`} className="lander-new-link motion-sheen-wrap">
       {resolved ? (
         <img
           className="lander-new-media"
@@ -36,21 +38,25 @@ function NewArticleLink({ page }: { page: SolutionPage }) {
 }
 
 export function HomePage() {
+  const rootRef = useRef<HTMLDivElement>(null)
   const archive = pagesForArchive()
   const newArticles = pagesForCombinedCatalog()
+  usePageMotion(rootRef)
 
   return (
-    <div className="home lander">
-      <header className="page-hero">
+    <div className="home lander" ref={rootRef}>
+      <header className="page-hero" data-motion-hero>
         <div className="page-hero-copy">
-          <h1>Labels & Identification Solutions</h1>
-          <div className="page-hero-description">
+          <h1 data-motion="hero" style={motionIndex(0)}>
+            Labels & Identification Solutions
+          </h1>
+          <div className="page-hero-description" data-motion="hero" style={motionIndex(1)}>
             <p>
               Identify, track, and store every sample with labels built for the temperatures,
               chemicals, and workflows your research demands.
             </p>
           </div>
-          <div className="page-hero-actions">
+          <div className="page-hero-actions" data-motion="hero" style={motionIndex(2)}>
             <a className="btn btn-primary" href={LABTAG_CONTACT_URL} target="_blank" rel="noreferrer">
               Chat with an expert
             </a>
@@ -61,12 +67,18 @@ export function HomePage() {
         </div>
       </header>
 
-      <section className="lander-index lander-new" aria-label="New articles" id="new-articles">
+      <section
+        className="lander-index lander-new"
+        aria-label="New articles"
+        id="new-articles"
+        data-motion-section
+      >
         <ul className="lander-new-list">
           {newArticles.map((page, index) => (
             <li
               key={page.slug}
               className={index === 0 ? 'is-featured' : index >= 5 ? 'is-wide' : 'is-tile'}
+              style={motionIndex(index)}
             >
               <NewArticleLink page={page} />
             </li>

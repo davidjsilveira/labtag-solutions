@@ -36,6 +36,9 @@ function SolutionsSlugRoute() {
 export default function App() {
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#content">
+        Skip to content
+      </a>
       <ScrollToTop />
       <ScrollToTopButton />
       <header className="site-header">
@@ -55,7 +58,7 @@ export default function App() {
           </NavLink>
         </nav>
       </header>
-      <main>
+      <main id="content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path={ABOUT_PATH} element={<AboutPage />} />

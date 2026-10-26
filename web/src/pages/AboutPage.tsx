@@ -1,6 +1,9 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
+import { TaglineReveal } from '@/components/TaglineReveal'
+import { LABTAG_CONTACT_URL, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
+import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 
 const TEAM = resolveImageSrc(
   '/media/about/Photo5.png',
@@ -13,18 +16,80 @@ const AWARD = resolveImageSrc(
 const MAP = resolveImageSrc('/media/about/world-dots.svg')
 const ISO_SEAL = resolveImageSrc('/media/about/iso-certified-lockup.svg')
 
-const VALUES = [
+const BENEFITS = [
   {
-    title: 'Vision',
-    body: 'A world where every lab sample is accurately identified, enabling science to advance without compromise.',
+    title: 'Holds in LN2 and steam',
+    body: 'Specify the material for −196°C storage, solvents, and autoclave cycles so the identification is still readable when you retrieve the vial.',
   },
   {
-    title: 'Mission',
-    body: 'To deliver reliable, high-performance labeling solutions that safeguard research integrity in any environment.',
+    title: 'Scientists pick the material',
+    body: 'M.Sc. and Ph.D. support walks the application with you. You leave with a match, not a catalog dump.',
   },
   {
-    title: 'Team',
-    body: 'A dedicated group of scientists, engineers, and support specialists working together to solve labeling challenges worldwide.',
+    title: 'Manufacturing in house',
+    body: 'R&D, coating, and converting run in our own plants, so custom runs and stock labels follow the same quality system.',
+  },
+  {
+    title: 'Test before you purchase',
+    body: 'Free samples go to verified lab addresses. Confirm adhesion and print in your own freezer first.',
+  },
+]
+
+const STEPS = [
+  {
+    title: 'Describe the application',
+    body: 'Temperature, container, chemicals, and printer. We map that to a material and adhesive.',
+  },
+  {
+    title: 'Receive free samples',
+    body: 'Most regions ship at no charge to a business lab address. You test on the real surface.',
+  },
+  {
+    title: 'Approve, then we produce',
+    body: 'Stock ships from regional warehouses. Custom work is quoted with a lead time you can plan around.',
+  },
+]
+
+const FAQS = [
+  {
+    question: 'Do you manufacture the labels or resell them?',
+    answer:
+      'GA International manufactures LabTAG labels. R&D, converting, and quality control sit in our own facilities.',
+  },
+  {
+    question: 'Can I get free samples?',
+    answer:
+      'Yes. We send free samples of labels and tapes to verified business addresses. Markers, ribbons, and hardware are not included. Shipping is free to the contiguous United States, Canada, and EU countries.',
+  },
+  {
+    question: 'What temperatures can the labels survive?',
+    answer:
+      'The cryogenic range starts at −196°C. Other lines cover freezer, fridge, ambient, and autoclave. Tell us the protocol and we will point you to the matching material.',
+  },
+  {
+    question: 'Do you make custom sizes and colors?',
+    answer:
+      'Yes. Stock SKUs cover common vials and plates. Custom shapes, colors, and preprinted data are quoted from the same manufacturing line.',
+  },
+  {
+    question: 'Which ISO systems do you run?',
+    answer:
+      'ISO 9001:2015 for quality management and ISO 22301:2012 for business continuity, so supply is planned through disruption.',
+  },
+  {
+    question: 'Where are you located?',
+    answer:
+      'Offices in Plattsburgh, Laval, Berlicum, and Brighton, with warehouses placed to reach North American and European labs.',
+  },
+  {
+    question: 'How fast do orders ship?',
+    answer:
+      'Day and evening crews run fulfillment so standard stock can leave quickly. Custom work is quoted with a date before you commit.',
+  },
+  {
+    question: 'Why do you need a business address for samples?',
+    answer:
+      'Samples are for labs evaluating a protocol. A verified business address keeps kits going to working benches, not residences.',
   },
 ]
 
@@ -33,20 +98,20 @@ const CERTS = [
     mark: 'ISO',
     number: '9001:2015',
     kind: 'Certified',
-    body: 'We are committed to providing reliable products and services that meet customer and regulatory requirements through our ISO 9001:2015 certified quality management system.',
+    body: 'We run an ISO 9001:2015 quality management system so products and services meet customer and regulatory requirements.',
   },
   {
     mark: 'ISO',
     number: '22301:2012',
     kind: 'Compliant',
-    body: 'Our ISO 22301:2012 business continuity management system allows us to prepare for and reduce the likelihood of unexpected disruptions so we can continue to serve our clients.',
+    body: 'ISO 22301:2012 business continuity planning reduces the chance that a disruption stops us from serving your lab.',
   },
 ]
 
 const STATS = [
-  { value: '25+', label: 'Years of specialty labels' },
-  { value: '−196°C', label: 'Cryogenic from first stick' },
-  { value: 'R&D', label: 'In-house product team' },
+  { value: '25+', label: 'Years of specialty labels', count: 25, prefix: '', suffix: '+' },
+  { value: '−196°C', label: 'Cryogenic from first stick', count: 196, prefix: '−', suffix: '°C' },
+  { value: 'R&D', label: 'In house product team' },
   { value: 'Free', label: 'Samples before you buy' },
 ]
 
@@ -86,63 +151,129 @@ const OFFICES = [
 ]
 
 export function AboutPage() {
+  const rootRef = useRef<HTMLElement>(null)
+  usePageMotion(rootRef)
+
+  useEffect(() => {
+    const previous = document.title
+    document.title = 'About LabTAG | Specialty labels for biomedical labs'
+    let meta = document.querySelector('meta[name="description"]')
+    const created = !meta
+    if (!meta) {
+      meta = document.createElement('meta')
+      meta.setAttribute('name', 'description')
+      document.head.appendChild(meta)
+    }
+    const previousDesc = meta.getAttribute('content')
+    meta.setAttribute(
+      'content',
+      'GA International manufactures LabTAG labels for biomedical labs, biobanks, and hospitals. Request free samples specified for LN2, solvents, and your workflow.',
+    )
+    return () => {
+      document.title = previous
+      if (!meta) return
+      if (created) meta.remove()
+      else if (previousDesc) meta.setAttribute('content', previousDesc)
+    }
+  }, [])
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+
   return (
-    <article className="about-page">
-      <header className="about-hero">
-        <div className="about-hero-top">
-          <h1>About Us</h1>
-          <div className="about-hero-intro">
-            <p className="about-hero-lede">
-              GA International has over 25 years of experience as a leading manufacturer of
-              specialty labels, supplying laboratory identification solutions to biomedical
-              research labs, biobanks, hospitals, and other healthcare institutions.
-            </p>
-            <div className="about-hero-actions">
-              <Link className="btn btn-primary" to={WHY_CHOOSE_PATH}>
-                Why Choose LabTAG
-              </Link>
-              <Link className="btn btn-secondary" to={SAMPLE_PATH}>
-                Request a free sample
-              </Link>
-            </div>
+    <article className="about-page" ref={rootRef}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <header className="about-hero" data-motion-hero>
+        <div className="about-hero-copy">
+          <h1 data-motion="hero" style={motionIndex(0)}>
+            Specialty labels for labs
+            <br />
+            that cannot lose a sample
+          </h1>
+          <p className="about-hero-lede" data-motion="hero" style={motionIndex(1)}>
+            GA International manufactures identification for biomedical research labs, biobanks, and
+            hospitals. Every label is specified for the temperature, solvent, and workflow you
+            actually run.
+          </p>
+          <div className="about-hero-actions" data-motion="hero" style={motionIndex(2)}>
+            <Link className="btn btn-primary" to={SAMPLE_PATH}>
+              Request a free sample
+            </Link>
           </div>
+          <p className="about-hero-proof" data-motion="hero" style={motionIndex(3)}>
+            ISO 9001 certified. Free samples before you buy.
+          </p>
         </div>
-        <figure className="about-hero-figure">
+        <figure className="about-hero-figure" data-motion="photo" style={motionIndex(4)}>
           <img src={TEAM.primary} alt="The LabTAG team at GA International headquarters" />
           <figcaption>The LabTAG team at GA International headquarters</figcaption>
         </figure>
       </header>
-      <ul className="about-stats">
-        {STATS.map((stat) => (
-          <li key={stat.label}>
-            <strong>{stat.value}</strong>
+
+      <ul className="about-stats" data-motion-section>
+        {STATS.map((stat, index) => (
+          <li key={stat.label} data-motion="up" style={motionIndex(index)}>
+            <strong data-count={stat.count} data-prefix={stat.prefix} data-suffix={stat.suffix}>
+              {stat.value}
+            </strong>
             <span>{stat.label}</span>
           </li>
         ))}
       </ul>
 
-      <section className="about-story">
-        <h2>Manufacturer</h2>
-        <p>
-          Since its inception, GA International has become a worldwide leader in cryogenic and
-          chemical-resistant labels, strongly dedicated to R&amp;D, product development, and
-          manufacturing. Outstanding technical support and customer service are the hallmarks of
-          GA International, ensuring that clients receive not only high-performance labeling
-          solutions but also expert guidance every step of the way.
+      <section className="about-tagline" aria-label="LabTAG tagline">
+        <TaglineReveal
+          lines={['Every sample identified.', 'Every freezer, every solvent, every shift.']}
+        />
+      </section>
+
+      <section className="about-story" data-motion-section>
+        <h2 data-motion="up" style={motionIndex(0)}>
+          Labels fail in the protocol, not on the spec sheet
+        </h2>
+        <p data-motion="up" style={motionIndex(1)}>
+          A vial that loses its identity in LN2, xylene, or steam wastes the run. Since its start,
+          GA International has manufactured cryogenic and chemical resistant labels with R&amp;D and
+          production in house, plus technical support that stays with the application until the
+          label holds.
         </p>
       </section>
 
-      <section className="about-manifesto" aria-label="Vision, mission, and team">
-        {VALUES.map((value, index) => (
-          <article key={value.title} className="about-value">
-            <span className="about-value-index">{String(index + 1).padStart(2, '0')}</span>
-            <h2>{value.title}</h2>
-            <p>{value.body}</p>
+      <section className="about-benefits" aria-label="Why labs work with LabTAG" data-motion-section>
+        {BENEFITS.map((benefit, index) => (
+          <article key={benefit.title} data-motion="up" style={motionIndex(index)}>
+            <h2>{benefit.title}</h2>
+            <p>{benefit.body}</p>
           </article>
         ))}
       </section>
 
-      <section className="about-iso" aria-label="Quality certifications">
+      <section className="about-steps" aria-label="How it works" data-motion-section>
+        <h2 data-motion="up" style={motionIndex(0)}>
+          How it works
+        </h2>
+        <ol>
+          {STEPS.map((step, index) => (
+            <li key={step.title} data-motion="up" style={motionIndex(index + 1)}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="about-iso" aria-label="Quality certifications" data-motion-section>
         <div className="about-iso-body">
           <div className="about-iso-brand">
             <img
@@ -151,6 +282,8 @@ export function AboutPage() {
               alt="ISO certified"
               width={247}
               height={53}
+              data-motion="pop"
+              style={motionIndex(0)}
             />
           </div>
           <div className="about-iso-certs">
@@ -168,14 +301,9 @@ export function AboutPage() {
         </div>
       </section>
 
-      <Link to={WHY_CHOOSE_PATH} className="about-why">
-        <h2>Why Choose LabTAG</h2>
-        <p>Find out why working with us is a winning strategy.</p>
-      </Link>
-
-      <section className="about-cinema" aria-label="Recognition and offices">
+      <section className="about-cinema" aria-label="Recognition and offices" data-motion-section>
         <div className="about-award">
-          <figure className="about-award-figure">
+          <figure className="about-award-figure" data-motion="photo" style={motionIndex(0)}>
             <img
               src={AWARD.primary}
               alt="Dr. George Ambartsoumian receiving the EY Entrepreneur Of The Year 2019 Award"
@@ -183,10 +311,10 @@ export function AboutPage() {
           </figure>
           <div className="about-award-copy">
             <p className="about-kicker is-accent">2019</p>
-            <h2>EY Entrepreneur Of The Year®</h2>
+            <h2>EY Entrepreneur Of The Year</h2>
             <p>
-              Congratulations to our founder and CEO, Dr. George Ambartsoumian, for winning the EY
-              Entrepreneur Of The Year® 2019 Award.
+              Our founder and CEO, Dr. George Ambartsoumian, received the EY Entrepreneur Of The
+              Year 2019 Award for building a specialty label manufacturer that labs can stay with.
             </p>
           </div>
         </div>
@@ -196,21 +324,20 @@ export function AboutPage() {
             <p className="about-kicker">Headquarters</p>
             <h2>Our offices around the world</h2>
             <p>
-              To support our growing team and operations, we expanded into a larger,
-              state-of-the-art facility with modern offices, advanced R&amp;D labs, and an upgraded
-              production warehouse.
+              To support a growing team we moved into a larger facility with modern offices,
+              advanced R&amp;D labs, and an upgraded production warehouse.
             </p>
           </header>
           <div className="about-locations-body">
             <figure className="about-map" aria-label="Map of LabTAG and GA International offices">
               <img src={MAP.primary} alt="" />
               <div className="about-pins" aria-hidden="true">
-                {OFFICES.map((office) => (
+                {OFFICES.map((office, index) => (
                   <span
                     key={office.region}
                     className="about-pin"
                     data-office={office.region}
-                    style={{ left: `${office.x}%`, top: `${office.y}%` }}
+                    style={{ left: `${office.x}%`, top: `${office.y}%`, ...motionIndex(index) }}
                   >
                     <svg className="about-pin-mark" viewBox="0 0 24 32">
                       <path
@@ -246,6 +373,39 @@ export function AboutPage() {
             </ul>
           </div>
         </div>
+      </section>
+
+      <section className="about-faq" aria-label="Frequently asked questions">
+        <h2>Questions labs ask before they switch</h2>
+        <div className="about-faq-list">
+          {FAQS.map((item) => (
+            <details key={item.question} className="about-faq-item">
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-close" aria-label="Request a free sample" data-motion-section>
+        <h2 data-motion="up" style={motionIndex(0)}>
+          Request a free sample
+        </h2>
+        <p data-motion="up" style={motionIndex(1)}>
+          Confirm adhesion and print in your own protocol before you buy. Shipping is free to
+          contiguous US, Canada, and EU business addresses.
+        </p>
+        <div className="about-hero-actions" data-motion="up" style={motionIndex(2)}>
+          <Link className="btn btn-primary" to={SAMPLE_PATH}>
+            Request a free sample
+          </Link>
+          <Link className="btn btn-secondary" to={WHY_CHOOSE_PATH}>
+            Why choose LabTAG
+          </Link>
+        </div>
+        <p className="about-close-alt" data-motion="up" style={motionIndex(3)}>
+          Prefer a person? <a href={LABTAG_CONTACT_URL} target="_blank" rel="noreferrer">Chat with an expert</a>.
+        </p>
       </section>
     </article>
   )

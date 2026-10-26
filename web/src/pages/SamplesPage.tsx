@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
 import { LABTAG_SAMPLE_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
+import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 
 const PORTAL_ID = '4079112'
 const FORM_ID = '456aec1a-7937-43bc-b1ff-942a21cf0675'
@@ -34,7 +35,9 @@ const KIT = resolveImageSrc(
 )
 
 export function SamplesPage() {
+  const rootRef = useRef<HTMLElement>(null)
   const mounted = useRef(true)
+  usePageMotion(rootRef)
 
   useEffect(() => {
     mounted.current = true
@@ -63,19 +66,21 @@ export function SamplesPage() {
   }, [])
 
   return (
-    <article className="samples-page">
+    <article className="samples-page" ref={rootRef}>
       <div className="samples-layout">
-        <header className="samples-hero">
-          <h1>Request Free Label Samples</h1>
-          <p className="samples-lede">
+        <header className="samples-hero" data-motion-hero>
+          <h1 data-motion="hero" style={motionIndex(0)}>
+            Request Free Label Samples
+          </h1>
+          <p className="samples-lede" data-motion="hero" style={motionIndex(1)}>
             Let’s make sure you get the right labels and tapes for your application. Your
             satisfaction is guaranteed even before you make a purchase.
           </p>
           <ul className="samples-promises">
-            {PROMISES.map((promise) => {
+            {PROMISES.map((promise, index) => {
               const icon = resolveImageSrc(promise.icon, promise.iconFallback)
               return (
-                <li key={promise.title}>
+                <li key={promise.title} style={motionIndex(index + 2)}>
                   <span className="samples-promise-icon">
                     <img src={icon.primary} alt="" width={72} height={72} />
                   </span>
@@ -98,8 +103,8 @@ export function SamplesPage() {
           </p>
         </aside>
 
-        <section className="samples-proof">
-          <figure className="samples-kit">
+        <section className="samples-proof" data-motion-section>
+          <figure className="samples-kit" data-motion="photo" style={motionIndex(0)}>
             <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
           </figure>
           <figure className="block-quote samples-quote">
