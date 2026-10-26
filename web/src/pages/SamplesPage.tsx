@@ -11,14 +11,20 @@ const PROMISES = [
   {
     title: '24 hours',
     body: 'We will process your request within 24 hours.',
+    icon: '/media/about/why/shipping-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/shipping-icon.svg',
   },
   {
     title: 'Free samples',
     body: 'Samples and shipping are free for most regions worldwide.',
+    icon: '/media/about/why/samples-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/samples-icon.svg',
   },
   {
     title: 'Expert support',
     body: 'Get support from our world-class lab labeling experts.',
+    icon: '/media/about/why/scientist-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/scientist-icon.svg',
   },
 ]
 
@@ -66,12 +72,18 @@ export function SamplesPage() {
             satisfaction is guaranteed even before you make a purchase.
           </p>
           <ul className="samples-promises">
-            {PROMISES.map((promise) => (
-              <li key={promise.title}>
-                <strong>{promise.title}</strong>
-                <p>{promise.body}</p>
-              </li>
-            ))}
+            {PROMISES.map((promise) => {
+              const icon = resolveImageSrc(promise.icon, promise.iconFallback)
+              return (
+                <li key={promise.title}>
+                  <span className="samples-promise-icon">
+                    <img src={icon.primary} alt="" width={48} height={48} />
+                  </span>
+                  <strong>{promise.title}</strong>
+                  <p>{promise.body}</p>
+                </li>
+              )
+            })}
           </ul>
         </header>
 

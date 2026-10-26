@@ -11,14 +11,20 @@ const PROMISES = [
   {
     title: 'Custom & stock',
     body: 'Price quotes for custom and in-stock labels, tapes, and related products.',
+    icon: '/media/about/why/tailor-made-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/tailor-made-icon.svg',
   },
   {
     title: 'Fast reply',
     body: 'Fill the form and we will get back to you shortly with pricing.',
+    icon: '/media/about/why/shipping-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/shipping-icon.svg',
   },
   {
     title: 'Expert support',
     body: 'Get support from our world-class lab labeling experts.',
+    icon: '/media/about/why/scientist-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/scientist-icon.svg',
   },
 ]
 
@@ -67,12 +73,18 @@ export function QuotePage() {
               in-stock products.
             </p>
             <ul className="samples-promises">
-              {PROMISES.map((promise) => (
-                <li key={promise.title}>
-                  <strong>{promise.title}</strong>
-                  <p>{promise.body}</p>
-                </li>
-              ))}
+              {PROMISES.map((promise) => {
+                const icon = resolveImageSrc(promise.icon, promise.iconFallback)
+                return (
+                  <li key={promise.title}>
+                    <span className="samples-promise-icon">
+                      <img src={icon.primary} alt="" width={48} height={48} />
+                    </span>
+                    <strong>{promise.title}</strong>
+                    <p>{promise.body}</p>
+                  </li>
+                )
+              })}
             </ul>
           </header>
 
