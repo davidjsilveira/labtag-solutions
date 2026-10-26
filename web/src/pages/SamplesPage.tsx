@@ -66,15 +66,10 @@ export function SamplesPage() {
             satisfaction is guaranteed even before you make a purchase.
           </p>
           <ul className="samples-promises">
-            {PROMISES.map((promise, index) => (
+            {PROMISES.map((promise) => (
               <li key={promise.title}>
-                <span className="samples-promises-index">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <strong>{promise.title}</strong>
-                  <p>{promise.body}</p>
-                </div>
+                <strong>{promise.title}</strong>
+                <p>{promise.body}</p>
               </li>
             ))}
           </ul>
