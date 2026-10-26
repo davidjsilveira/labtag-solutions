@@ -74,18 +74,20 @@ const REASONS: Reason[] = [
   },
 ]
 
-const CERTS: Reason[] = [
+const ISO_SEAL = resolveImageSrc('/media/about/iso-certified-lockup.svg')
+
+const CERTS = [
   {
-    title: 'ISO 9001:2015 Certified',
+    mark: 'ISO',
+    number: '9001:2015',
+    kind: 'Certified',
     body: 'We are committed to providing reliable products and services that meet customer and regulatory requirements through our ISO 9001:2015 certified quality management system.',
-    icon: '/media/about/why/ISO-Symbol-Design-B.svg',
-    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/ISO-Symbol-Design-B.svg',
   },
   {
-    title: 'ISO 22301:2012 Compliant',
+    mark: 'ISO',
+    number: '22301:2012',
+    kind: 'Compliant',
     body: 'Our ISO 22301:2012 business continuity management system allows us to prepare for and reduce the likelihood of unexpected disruptions so we can continue to serve our clients.',
-    icon: '/media/about/why/ISO-Symbol-Design-B.svg',
-    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/ISO-Symbol-Design-B.svg',
   },
 ]
 
@@ -156,31 +158,31 @@ export function WhyChoosePage() {
         ))}
       </section>
 
-      <section className="why-certs" aria-label="Quality certifications">
-        {CERTS.map((cert) => (
-          <ReasonCard key={cert.title} reason={cert} />
-        ))}
+      <section className="about-iso" aria-label="Quality certifications">
+        <div className="about-iso-body">
+          <div className="about-iso-brand">
+            <img
+              className="about-iso-seal"
+              src={ISO_SEAL.primary}
+              alt="ISO certified"
+              width={247}
+              height={53}
+            />
+          </div>
+          <div className="about-iso-certs">
+            {CERTS.map((cert) => (
+              <article key={cert.number}>
+                <h2>
+                  <span className="about-iso-mark">{cert.mark}</span>
+                  <span className="about-iso-num">{cert.number}</span>
+                </h2>
+                <p className="about-iso-kind">{cert.kind}</p>
+                <p>{cert.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
-
-      <aside className="block-cta">
-        <div className="block-cta-copy">
-          <h2>Test a label in your own freezer first</h2>
-          <p>Request free samples, or talk to an expert about the right label for your lab.</p>
-        </div>
-        <div className="block-cta-actions">
-          <Link className="btn btn-on-accent" to={SAMPLE_PATH}>
-            Request a free sample
-          </Link>
-          <a
-            className="btn btn-on-accent-ghost"
-            href={LABTAG_CONTACT_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Chat with an expert
-          </a>
-        </div>
-      </aside>
     </article>
   )
 }

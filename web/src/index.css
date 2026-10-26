@@ -4239,6 +4239,10 @@ tr:last-child td {
 }
 
 .why-page {
+  --about-gutter: max(
+    var(--space-md),
+    calc((100vw - min(var(--shell-width), 100vw - 2 * var(--space-md))) / 2)
+  );
   display: grid;
   gap: var(--space-2xl);
 }
@@ -4247,18 +4251,10 @@ tr:last-child td {
   margin-bottom: var(--space-md);
 }
 
-.why-grid,
-.why-certs {
-  display: grid;
-  gap: var(--space-md);
-}
-
 .why-grid {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.why-certs {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
 }
 
 .why-reason {
@@ -4327,8 +4323,7 @@ a.why-reason:hover h2 {
 }
 
 @media (max-width: 840px) {
-  .why-grid,
-  .why-certs {
+  .why-grid {
     grid-template-columns: 1fr;
   }
 }
