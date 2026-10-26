@@ -203,9 +203,14 @@
   animation-delay: calc(2.4s + var(--i, 0) * 0.45s);
 }
 
-[data-motion-section].is-visible .about-pin {
+[data-motion-section].is-visible .about-pin-mark {
+  transform-origin: 50% 32%;
   animation: motion-heartbeat 3s var(--motion-e) infinite;
   animation-delay: calc(2.4s + var(--i, 0) * 0.5s);
+}
+
+.about-locations:is(:has(.about-pin:hover), :has(.about-office:hover)) .about-pin-mark {
+  animation-play-state: paused;
 }
 
 .motion-sheen-wrap {
@@ -248,7 +253,7 @@
 
   .why-reason-icon img,
   .samples-promise-icon img,
-  .about-pin,
+  .about-pin-mark,
   .motion-sheen-wrap::after {
     animation: none !important;
   }
