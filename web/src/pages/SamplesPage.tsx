@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
 import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
 import { LABTAG_SAMPLE_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
@@ -8,10 +7,19 @@ const PORTAL_ID = '4079112'
 const FORM_ID = '456aec1a-7937-43bc-b1ff-942a21cf0675'
 const TARGET_ID = 'hs-form-samples'
 
-const POINTS = [
-  'Get support from our world-class lab labeling experts',
-  'We will process your request within 24 hours',
-  'Samples and shipping are free for most regions worldwide',
+const PROMISES = [
+  {
+    title: '24 hours',
+    body: 'We will process your request within 24 hours.',
+  },
+  {
+    title: 'Free samples',
+    body: 'Samples and shipping are free for most regions worldwide.',
+  },
+  {
+    title: 'Expert support',
+    body: 'Get support from our world-class lab labeling experts.',
+  },
 ]
 
 const KIT = resolveImageSrc(
@@ -50,31 +58,44 @@ export function SamplesPage() {
 
   return (
     <article className="samples-page">
-      <p className="crumb">
-        <Link to="/">Solutions</Link>
-        <span aria-hidden="true"> / </span>
-        <span aria-current="page">Request Free Sample</span>
-      </p>
-
-      <div className="samples-split">
-        <div className="samples-copy">
+      <div className="samples-layout">
+        <header className="samples-hero">
           <h1>Request Free Label Samples</h1>
-          <p>
+          <p className="samples-lede">
             Let’s make sure you get the right labels and tapes for your application. Your
             satisfaction is guaranteed even before you make a purchase.
           </p>
-          <ul className="samples-points">
-            {POINTS.map((point) => (
-              <li key={point}>{point}</li>
+          <ul className="samples-promises">
+            {PROMISES.map((promise, index) => (
+              <li key={promise.title}>
+                <span className="samples-promises-index">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <strong>{promise.title}</strong>
+                  <p>{promise.body}</p>
+                </div>
+              </li>
             ))}
           </ul>
-          <p className="samples-note">
-            We can only send free samples of labels and tapes. We do not offer free samples of
-            markers, ribbons, and hardware. Samples will only be sent to verified business
-            addresses. Shipping is free only for the contiguous United States and Canada, and for
-            countries in the European Union. We reserve the right to limit quantities of samples
-            within reason.
+        </header>
+
+        <aside className="samples-form" aria-label="Sample request form">
+          <div id={TARGET_ID} className="request-form-embed" />
+          <p className="request-form-fallback">
+            Form not loading?{' '}
+            <a href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
+              Open the sample request on LabTAG.com
+            </a>
+            .
           </p>
+        </aside>
+
+        <section className="samples-proof">
+          <figure className="samples-kit">
+            <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
+            <figcaption>LabTAG free sample kit</figcaption>
+          </figure>
           <figure className="block-quote samples-quote">
             <blockquote>
               <p>
@@ -90,21 +111,14 @@ export function SamplesPage() {
             </blockquote>
             <figcaption>Verified LabTAG customer</figcaption>
           </figure>
-          <figure className="samples-kit">
-            <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
-          </figure>
-        </div>
+        </section>
 
-        <aside className="samples-form" aria-label="Sample request form">
-          <div id={TARGET_ID} className="request-form-embed" />
-          <p className="request-form-fallback">
-            Form not loading?{' '}
-            <a href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
-              Open the sample request on LabTAG.com
-            </a>
-            .
-          </p>
-        </aside>
+        <p className="samples-note">
+          We can only send free samples of labels and tapes. We do not offer free samples of
+          markers, ribbons, and hardware. Samples will only be sent to verified business addresses.
+          Shipping is free only for the contiguous United States and Canada, and for countries in
+          the European Union. We reserve the right to limit quantities of samples within reason.
+        </p>
       </div>
     </article>
   )
