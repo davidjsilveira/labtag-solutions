@@ -136,10 +136,6 @@ const CERTS = [
 ]
 
 const ISO_SEAL = resolveImageSrc('/media/about/iso-certified-lockup.svg')
-const KIT = resolveImageSrc(
-  '/media/samples/Sample-Kit4.png',
-  'https://cdn.labtag.com/wp-content/uploads/Sample-Kit4.png',
-)
 
 function ReasonCard({ reason, index }: { reason: Reason; index: number }) {
   const resolved = resolveImageSrc(reason.icon, reason.iconFallback)
@@ -234,10 +230,6 @@ export function WhyChoosePage() {
             ISO 9001 certified. Satisfaction guaranteed.
           </p>
         </div>
-        <figure className="about-hero-figure" data-motion="photo" style={motionIndex(4)}>
-          <img src={KIT.primary} alt="A LabTAG free sample kit of laboratory labels" />
-          <figcaption>A LabTAG free sample kit</figcaption>
-        </figure>
       </header>
 
       <section className="about-pair" aria-label="LabTAG tagline">

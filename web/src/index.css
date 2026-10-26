@@ -4565,6 +4565,10 @@ tr:last-child td {
   background: var(--color-accent);
 }
 
+.why-page .about-hero {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .why-reasons {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
