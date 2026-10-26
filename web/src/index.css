@@ -4092,14 +4092,18 @@ tr:last-child td {
 
 .about-manifesto {
   display: grid;
-  gap: var(--space-xl);
+  grid-template-columns: auto max-content minmax(0, 1fr);
+  column-gap: var(--space-md);
+  row-gap: var(--space-xl);
+  align-items: center;
 }
 
 .about-value {
   display: grid;
-  grid-template-columns: 3.5rem minmax(0, 0.34fr) minmax(0, 1fr);
-  gap: var(--space-md) var(--space-lg);
-  align-items: baseline;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: center;
+  column-gap: inherit;
 }
 
 .about-value-index {
@@ -4108,6 +4112,8 @@ tr:last-child td {
   font-weight: 700;
   font-size: var(--text-sm);
   letter-spacing: 0.08em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .about-value h2 {
@@ -4117,7 +4123,7 @@ tr:last-child td {
   font-weight: 700;
   font-size: clamp(2rem, 4.5vw, 3.5rem);
   letter-spacing: -0.035em;
-  line-height: 0.95;
+  line-height: 1;
 }
 
 .about-value p {
@@ -4496,11 +4502,18 @@ tr:last-child td {
   .about-hero,
   .about-pair,
   .about-benefits,
-  .about-value,
   .about-iso-body,
   .about-locations-copy,
   .about-locations-body {
     grid-template-columns: 1fr;
+  }
+
+  .about-manifesto {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .about-value p {
+    grid-column: 1 / -1;
   }
 
   .about-hero h1 br {
