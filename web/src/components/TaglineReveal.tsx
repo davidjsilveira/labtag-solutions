@@ -12,21 +12,28 @@ export function TaglineReveal({ lines }: TaglineRevealProps) {
     if (!root) return
 
     const words = root.querySelectorAll<HTMLElement>('[data-tag-word]')
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const activate = () => {
       words.forEach((word) => word.classList.add('is-on'))
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      activate()
       return
     }
 
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) entry.target.classList.add('is-on')
+          if (!entry.isIntersecting) continue
+          activate()
+          io.disconnect()
+          return
         }
       },
-      { rootMargin: '-42% 0px -42% 0px', threshold: 0 },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' },
     )
 
-    words.forEach((word) => io.observe(word))
+    io.observe(root)
     return () => io.disconnect()
   }, [lines])
 
@@ -40,7 +47,11 @@ export function TaglineReveal({ lines }: TaglineRevealProps) {
             const delay = wordIndex * 60
             wordIndex += 1
             return (
-              <span data-tag-word key={`${line}-${word}-${wordIndex}`} style={{ transitionDelay: `${delay}ms` }}>
+              <span
+                data-tag-word
+                key={`${line}-${word}-${wordIndex}`}
+                style={{ transitionDelay: `${delay}ms` }}
+              >
                 {word}
               </span>
             )

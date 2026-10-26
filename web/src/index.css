@@ -3978,9 +3978,9 @@ tr:last-child td {
   color: var(--color-ink);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-size: clamp(1.875rem, 3vw, 2.25rem);
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.15;
   text-wrap: balance;
 }
 
