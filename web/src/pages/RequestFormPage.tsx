@@ -1,21 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
-
-declare global {
-  interface Window {
-    hbspt?: {
-      forms: {
-        create: (options: {
-          portalId: string
-          formId: string
-          target: string
-          css?: string
-          cssRequired?: string
-        }) => void
-      }
-    }
-  }
-}
+import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
 
 const FORMS: Record<
   string,
@@ -48,30 +33,6 @@ const FORMS: Record<
   },
 }
 
-function loadHubSpotFormsScript(): Promise<void> {
-  if (window.hbspt?.forms?.create) return Promise.resolve()
-
-  const existing = document.querySelector<HTMLScriptElement>('script[data-hsforms-embed]')
-  if (existing) {
-    return new Promise((resolve, reject) => {
-      existing.addEventListener('load', () => resolve(), { once: true })
-      existing.addEventListener('error', () => reject(new Error('HubSpot forms failed to load')), {
-        once: true,
-      })
-    })
-  }
-
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script')
-    script.src = 'https://js.hsforms.net/forms/embed/v2.js'
-    script.async = true
-    script.dataset.hsformsEmbed = 'true'
-    script.onload = () => resolve()
-    script.onerror = () => reject(new Error('HubSpot forms failed to load'))
-    document.body.appendChild(script)
-  })
-}
-
 export function RequestFormPage() {
   const { formSlug = '' } = useParams()
   const config = FORMS[formSlug]
@@ -90,12 +51,10 @@ export function RequestFormPage() {
         if (cancelled || !mounted.current || !window.hbspt?.forms?.create) return
         const target = document.querySelector(targetSelector)
         if (target) target.innerHTML = ''
-        window.hbspt.forms.create({
+        createHubSpotForm({
           portalId: config.portalId,
           formId: config.formId,
           target: targetSelector,
-          css: '',
-          cssRequired: '',
         })
       })
       .catch(() => {

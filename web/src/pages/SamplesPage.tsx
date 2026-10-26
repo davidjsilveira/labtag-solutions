@@ -1,0 +1,111 @@
+import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
+import { LABTAG_SAMPLE_URL } from '@/content/labtagLinks'
+import { resolveImageSrc } from '@/content/resolveImage'
+
+const PORTAL_ID = '4079112'
+const FORM_ID = '456aec1a-7937-43bc-b1ff-942a21cf0675'
+const TARGET_ID = 'hs-form-samples'
+
+const POINTS = [
+  'Get support from our world-class lab labeling experts',
+  'We will process your request within 24 hours',
+  'Samples and shipping are free for most regions worldwide',
+]
+
+const KIT = resolveImageSrc(
+  '/media/samples/Sample-Kit4.png',
+  'https://cdn.labtag.com/wp-content/uploads/Sample-Kit4.png',
+)
+
+export function SamplesPage() {
+  const mounted = useRef(true)
+
+  useEffect(() => {
+    mounted.current = true
+    const targetSelector = `#${TARGET_ID}`
+    let cancelled = false
+
+    loadHubSpotFormsScript()
+      .then(() => {
+        if (cancelled || !mounted.current || !window.hbspt?.forms?.create) return
+        const target = document.querySelector(targetSelector)
+        if (target) target.innerHTML = ''
+        createHubSpotForm({
+          portalId: PORTAL_ID,
+          formId: FORM_ID,
+          target: targetSelector,
+        })
+      })
+      .catch(() => {
+        /* Fallback link remains in the form card. */
+      })
+
+    return () => {
+      cancelled = true
+      mounted.current = false
+    }
+  }, [])
+
+  return (
+    <article className="samples-page">
+      <p className="crumb">
+        <Link to="/">Solutions</Link>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">Request Free Sample</span>
+      </p>
+
+      <div className="samples-split">
+        <div className="samples-copy">
+          <h1>Request Free Label Samples</h1>
+          <p>
+            Let’s make sure you get the right labels and tapes for your application. Your
+            satisfaction is guaranteed even before you make a purchase.
+          </p>
+          <ul className="samples-points">
+            {POINTS.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+          <p className="samples-note">
+            We can only send free samples of labels and tapes. We do not offer free samples of
+            markers, ribbons, and hardware. Samples will only be sent to verified business
+            addresses. Shipping is free only for the contiguous United States and Canada, and for
+            countries in the European Union. We reserve the right to limit quantities of samples
+            within reason.
+          </p>
+          <figure className="block-quote samples-quote">
+            <blockquote>
+              <p>
+                <span className="quote-mark" aria-hidden="true">
+                  “
+                </span>
+                Great labels and great customer service! The sales team was terrific to work with. I
+                did a lot of research, requested some free samples, and took my time deciding which
+                labels were right for me but everyone was very patient and helpful. I really
+                appreciated the free samples so I could test before buying. These labels stay on,
+                even at −80°C. Very happy and will keep ordering more every year.
+              </p>
+            </blockquote>
+            <figcaption>Verified LabTAG customer</figcaption>
+          </figure>
+          <figure className="samples-kit">
+            <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
+          </figure>
+        </div>
+
+        <aside className="samples-form" aria-label="Sample request form">
+          <div id={TARGET_ID} className="request-form-embed" />
+          <p className="request-form-fallback">
+            Form not loading?{' '}
+            <a href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
+              Open the sample request on LabTAG.com
+            </a>
+            .
+          </p>
+        </aside>
+      </div>
+    </article>
+  )
+}

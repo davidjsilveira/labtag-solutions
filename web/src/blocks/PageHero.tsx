@@ -1,6 +1,6 @@
 import { type ReactNode, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { LABTAG_SAMPLE_URL, REQUEST_FORM_PATHS } from '@/content/labtagLinks'
+import { REQUEST_FORM_PATHS, SAMPLE_PATH } from '@/content/labtagLinks'
 import { resolveSolutionShopHref } from '@/content/splitActions'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { HeroImage } from '@/content/types'
@@ -37,7 +37,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
   if (formConfig) {
     return {
       primary: { label: formConfig.primaryLabel, href: formConfig.path },
-      secondary: { label: 'Request a free sample', href: LABTAG_SAMPLE_URL, external: true },
+      secondary: { label: 'Request a free sample', href: SAMPLE_PATH },
     }
   }
 
@@ -47,7 +47,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
       href: resolveSolutionShopHref(solutionSlug),
       external: true,
     },
-    secondary: { label: 'Request a free sample', href: LABTAG_SAMPLE_URL, external: true },
+    secondary: { label: 'Request a free sample', href: SAMPLE_PATH },
   }
 }
 

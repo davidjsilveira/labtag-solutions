@@ -1,9 +1,13 @@
-import { Link, Navigate, Route, Routes, useParams } from 'react-router-dom'
+import { Link, Navigate, NavLink, Route, Routes, useParams } from 'react-router-dom'
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { getPage } from '@/content/loadPages'
+import { ABOUT_PATH, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
+import { AboutPage } from '@/pages/AboutPage'
 import { HomePage } from '@/pages/HomePage'
 import { RequestFormPage } from '@/pages/RequestFormPage'
+import { SamplesPage } from '@/pages/SamplesPage'
+import { WhyChoosePage } from '@/pages/WhyChoosePage'
 import { SolutionPage } from '@/pages/SolutionPage'
 
 const LEGACY_CATEGORY_IDS = new Set(['use-cases', 'features', 'services'])
@@ -37,10 +41,20 @@ export default function App() {
         <Link className="logo" to="/">
           LabTAG <span>Solutions</span>
         </Link>
+        <nav className="site-nav" aria-label="Site">
+          <NavLink to={ABOUT_PATH} end>
+            About
+          </NavLink>
+          <NavLink to={WHY_CHOOSE_PATH}>Why Choose</NavLink>
+          <NavLink to={SAMPLE_PATH}>Request Free Sample</NavLink>
+        </nav>
       </header>
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path={ABOUT_PATH} element={<AboutPage />} />
+          <Route path={WHY_CHOOSE_PATH} element={<WhyChoosePage />} />
+          <Route path={SAMPLE_PATH} element={<SamplesPage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"

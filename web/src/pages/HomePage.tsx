@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
 import { pagesForArchive, pagesForCombinedCatalog } from '@/content/categories'
-import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, LABTAG_SHOP_URL } from '@/content/labtagLinks'
+import { LABTAG_CONTACT_URL, LABTAG_SHOP_URL, SAMPLE_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { SolutionPage } from '@/content/types'
 
@@ -54,9 +54,9 @@ export function HomePage() {
             <a className="btn btn-primary" href={LABTAG_CONTACT_URL} target="_blank" rel="noreferrer">
               Chat with an expert
             </a>
-            <a className="btn btn-secondary" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
+            <Link className="btn btn-secondary" to={SAMPLE_PATH}>
               Get Free Samples
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -112,9 +112,9 @@ export function HomePage() {
           </p>
         </div>
         <div className="block-cta-actions">
-          <a className="btn btn-on-accent" href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
+          <Link className="btn btn-on-accent" to={SAMPLE_PATH}>
             Request a free sample
-          </a>
+          </Link>
           <a className="btn btn-on-accent-ghost" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
             Go to the shop
           </a>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL } from '@/content/labtagLinks'
+import { LABTAG_CONTACT_URL, LABTAG_SAMPLE_URL, SAMPLE_PATH } from '@/content/labtagLinks'
 import type { CtaBlock } from '@/content/types'
 
 function AccentLink({
@@ -30,7 +30,7 @@ export function CtaBlockView({ block }: { block: CtaBlock }) {
   const customLabel = block.actionLabel?.trim()
   const primaryHref = customHref || LABTAG_CONTACT_URL
   const primaryLabel = customHref && customLabel ? customLabel : 'Chat with an expert'
-  const showSample = primaryHref !== LABTAG_SAMPLE_URL
+  const showSample = primaryHref !== LABTAG_SAMPLE_URL && primaryHref !== SAMPLE_PATH
 
   return (
     <aside className="block block-cta">
@@ -42,7 +42,7 @@ export function CtaBlockView({ block }: { block: CtaBlock }) {
         <AccentLink href={primaryHref} label={primaryLabel} className="btn btn-on-accent" />
         {showSample ? (
           <AccentLink
-            href={LABTAG_SAMPLE_URL}
+            href={SAMPLE_PATH}
             label="Request a free sample"
             className="btn btn-on-accent-ghost"
           />

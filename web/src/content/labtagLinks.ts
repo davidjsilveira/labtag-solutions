@@ -1,6 +1,10 @@
 /** Canonical LabTAG shop and sample destinations. */
 export const LABTAG_SHOP_URL = 'https://www.labtag.com/shop/'
 export const LABTAG_SAMPLE_URL = 'https://www.labtag.com/contact-us/samples'
+export const SAMPLE_PATH = '/samples'
+export const LABTAG_ABOUT_URL = 'https://www.labtag.com/about-labtag'
+export const ABOUT_PATH = '/about'
+export const WHY_CHOOSE_PATH = '/about/why-choose-labtag'
 export const LABTAG_CONTACT_URL = 'https://www.labtag.com/contact-us/'
 export const LABTAG_QUOTE_URL = 'https://www.labtag.com/contact-us/quote/'
 export const LABTAG_VIDEOS_URL = 'https://www.labtag.com/resources/videos/'
