@@ -107,7 +107,7 @@ function ReasonCard({ reason }: { reason: Reason }) {
 
   if (reason.href) {
     return (
-      <Link to={reason.href} className="why-reason">
+      <Link to={reason.href} className="why-reason is-featured">
         {inner}
       </Link>
     )
