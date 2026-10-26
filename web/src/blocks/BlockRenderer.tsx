@@ -126,21 +126,44 @@ function isGuideFeatureGrid(block: ContentBlock): block is FeatureGridBlock {
   return block.type === 'featureGrid' && Boolean(block.title && /^by\s+/i.test(block.title))
 }
 
+type CatalogLayout = 'spec' | 'prose' | 'stack' | 'band'
+
+function catalogLayoutFor(
+  absorbed: { section: SectionBlock; bullets?: ContentBlock },
+  hasMedia: boolean,
+): CatalogLayout {
+  const hasBullets = absorbed.bullets?.type === 'bulletList'
+  if (!hasMedia) return hasBullets ? 'band' : 'prose'
+  if (!hasBullets) return 'prose'
+  if (absorbed.section.paragraphs.length >= 2) return 'stack'
+  return 'spec'
+}
+
 function catalogSection(
   key: string,
   absorbed: {
     section: SectionBlock
     bullets?: ContentBlock
   },
-  media: ReactNode,
+  media: ReactNode | null,
+  layout: CatalogLayout,
 ) {
+  const className =
+    layout === 'band'
+      ? 'catalog-band'
+      : layout === 'spec'
+        ? 'catalog-split'
+        : `catalog-split is-${layout}`
+
   return (
-    <section key={key} className="catalog-split">
+    <section key={key} className={className}>
       <div className="block catalog-split-copy">
-        <h2>{absorbed.section.title}</h2>
-        {absorbed.section.paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-        ))}
+        <div className="catalog-split-prose">
+          <h2>{absorbed.section.title}</h2>
+          {absorbed.section.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+          ))}
+        </div>
         {absorbed.bullets?.type === 'bulletList' ? (
           <BulletListBlockView block={absorbed.bullets} variant="spec" />
         ) : null}
@@ -152,6 +175,7 @@ function catalogSection(
 
 export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: Props) {
   const catalog = variant === 'catalog'
+  const varyCatalog = catalog && solutionSlug === 'cryogenic'
   const showSplitActions = !catalog
   const nodes: ReactNode[] = []
   const pendingSplits: ReactNode[] = []
@@ -179,6 +203,7 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
         const video = following as VideoBlock
         const absorbed = absorbFollowingCopy(blocks, i + 2, block)
         if (catalog) {
+          const layout = varyCatalog ? catalogLayoutFor(absorbed, true) : 'spec'
           pushNonSplit(
             catalogSection(
               `catalog-video-${i}`,
@@ -189,6 +214,7 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
                 fallbackSrc={video.fallbackSrc}
                 className="catalog-figure"
               />,
+              layout,
             ),
           )
           i = absorbed.next
@@ -241,11 +267,13 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
         }
 
         if (catalog) {
+          const layout = varyCatalog ? catalogLayoutFor(absorbed, true) : 'spec'
           pushNonSplit(
             catalogSection(
               `catalog-section-${i}`,
               absorbed,
               <ImageSlider images={images} className="catalog-figure" />,
+              layout,
             ),
           )
           i = absorbed.next
@@ -279,6 +307,12 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
       // so block-stack gap does not sit between the heading and its body.
       const absorbed = absorbFollowingCopy(blocks, i + 1, block)
       if (absorbed.next > i + 1) {
+        if (catalog) {
+          const layout = varyCatalog ? catalogLayoutFor(absorbed, false) : 'band'
+          pushNonSplit(catalogSection(`catalog-copy-${i}`, absorbed, null, layout))
+          i = absorbed.next
+          continue
+        }
         pushNonSplit(
           <div key={`section-copy-${i}`} id={sectionAnchor} className="block section-unit">
             <SectionBlockView block={absorbed.section} withAnchor={false} />

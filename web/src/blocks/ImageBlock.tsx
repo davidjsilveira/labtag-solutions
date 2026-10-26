@@ -10,12 +10,14 @@ type Props = {
 
 export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: Props) {
   const resolved = resolveImageSrc(src, fallbackSrc)
-  const [current, setCurrent] = useState(resolved.primary)
-  const [failed, setFailed] = useState(false)
+  const [failedPrimary, setFailedPrimary] = useState<string | null>(null)
+  const primaryFailed = failedPrimary === resolved.primary
+  const current = primaryFailed && resolved.fallback ? resolved.fallback : resolved.primary
+  const failed = primaryFailed && !resolved.fallback
   const isSvg = /\.svg(?:$|\?)/i.test(resolved.primary) || /\.svg(?:$|\?)/i.test(fallbackSrc ?? '')
   const isLogo = variant === 'logo' || isSvg
 
-  if (failed && !resolved.fallback) {
+  if (failed) {
     return null
   }
 
@@ -24,17 +26,12 @@ export function ImageBlockView({ src, alt, fallbackSrc, variant = 'gallery' }: P
       className={`block block-image block-image-${variant}${isLogo ? ' block-image-icon' : ''}`}
     >
       <img
+        key={current}
         src={current}
         alt={alt}
         loading="lazy"
         decoding="async"
-        onError={() => {
-          if (resolved.fallback && current !== resolved.fallback) {
-            setCurrent(resolved.fallback)
-            return
-          }
-          setFailed(true)
-        }}
+        onError={() => setFailedPrimary(resolved.primary)}
       />
       {alt && !isLogo ? <figcaption>{alt}</figcaption> : null}
     </figure>
