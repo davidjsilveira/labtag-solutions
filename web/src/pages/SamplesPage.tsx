@@ -77,7 +77,7 @@ export function SamplesPage() {
               return (
                 <li key={promise.title}>
                   <span className="samples-promise-icon">
-                    <img src={icon.primary} alt="" width={48} height={48} />
+                    <img src={icon.primary} alt="" width={72} height={72} />
                   </span>
                   <strong>{promise.title}</strong>
                   <p>{promise.body}</p>

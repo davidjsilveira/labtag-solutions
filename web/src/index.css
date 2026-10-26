@@ -3475,16 +3475,16 @@ tr:last-child td {
 .samples-promise-icon {
   display: grid;
   place-items: center;
-  width: 3rem;
-  height: 3rem;
+  width: 4.5rem;
+  height: 4.5rem;
   margin-bottom: var(--space-3xs);
   background: var(--color-paper);
   border-radius: var(--radius-image);
 }
 
 .samples-promise-icon img {
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 3.25rem;
+  height: 3.25rem;
   object-fit: contain;
   border-radius: 0;
 }
