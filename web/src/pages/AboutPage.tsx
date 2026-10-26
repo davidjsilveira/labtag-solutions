@@ -255,21 +255,6 @@ export function AboutPage() {
           </div>
         </div>
       </section>
-
-      <aside className="block-cta">
-        <div className="block-cta-copy">
-          <h2>Need a label for your lab?</h2>
-          <p>See why labs choose LabTAG, or request free samples for your application.</p>
-        </div>
-        <div className="block-cta-actions">
-          <Link className="btn btn-on-accent" to={WHY_CHOOSE_PATH}>
-            Why Choose LabTAG
-          </Link>
-          <Link className="btn btn-on-accent-ghost" to={SAMPLE_PATH}>
-            Request a free sample
-          </Link>
-        </div>
-      </aside>
     </article>
   )
 }

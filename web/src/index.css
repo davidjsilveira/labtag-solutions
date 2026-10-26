@@ -3605,9 +3605,9 @@ tr:last-child td {
   color: var(--color-ink);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.5rem, 5vw, 4.25rem);
-  letter-spacing: -0.04em;
-  line-height: 0.9;
+  font-size: var(--text-2xl);
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .about-stats span {
