@@ -3558,21 +3558,62 @@ tr:last-child td {
 }
 
 .samples-page.is-vertical .samples-layout {
-  grid-template-columns: minmax(0, var(--content-width));
-  justify-content: center;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   grid-template-areas:
-    'copy'
-    'proof'
-    'note'
-    'form';
-  gap: var(--space-xl);
+    'copy copy'
+    'proof note'
+    'form form';
+  gap: var(--space-2xl) var(--space-xl);
+}
+
+.samples-page.is-vertical .samples-hero {
+  gap: var(--space-xl) var(--space-2xl);
+  grid-template-columns: minmax(20rem, 0.72fr) minmax(0, 1.28fr);
+  grid-template-areas:
+    'copy kit'
+    'promises promises';
+  align-items: start;
+}
+
+.samples-page.is-vertical .samples-hero-copy {
+  grid-area: copy;
+  display: grid;
+  gap: var(--space-lg);
+  align-content: start;
+  align-self: center;
+}
+
+.samples-page.is-vertical .samples-hero-intro {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: start;
+}
+
+.samples-page.is-vertical .samples-lede {
+  max-width: 32rem;
+}
+
+.samples-page.is-vertical .samples-promises {
+  grid-area: promises;
+  margin: 0;
+}
+
+.samples-page.is-vertical .samples-kit {
+  grid-area: kit;
 }
 
 .samples-page.is-vertical .samples-form {
   position: static;
+  max-width: 52rem;
+  justify-self: center;
+  width: 100%;
+  scroll-margin-top: var(--anchor-scroll-margin);
 }
 
-.samples-page.is-vertical .samples-lede,
+.samples-page.is-vertical .samples-quote.block-quote p {
+  max-width: none;
+}
+
 .samples-page.is-vertical .samples-note {
   max-width: none;
 }
@@ -3593,6 +3634,28 @@ tr:last-child td {
 
   .samples-promises {
     grid-template-columns: 1fr;
+  }
+
+  .samples-page.is-vertical .samples-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'copy'
+      'proof'
+      'note'
+      'form';
+  }
+
+  .samples-page.is-vertical .samples-hero {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'copy'
+      'kit'
+      'promises';
+    align-items: start;
+  }
+
+  .samples-page.is-vertical .samples-form {
+    max-width: none;
   }
 }
 

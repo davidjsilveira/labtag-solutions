@@ -69,11 +69,28 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
     <article className={variant === 'vertical' ? 'samples-page is-vertical' : 'samples-page'}>
       <div className="samples-layout">
         <header className="samples-hero">
-          <h1>Request Free Label Samples</h1>
-          <p className="samples-lede">
-            Let’s make sure you get the right labels and tapes for your application. Your
-            satisfaction is guaranteed even before you make a purchase.
-          </p>
+          {variant === 'vertical' ? (
+            <div className="samples-hero-copy">
+              <h1>Request Free Label Samples</h1>
+              <div className="samples-hero-intro">
+                <p className="samples-lede">
+                  Let’s make sure you get the right labels and tapes for your application. Your
+                  satisfaction is guaranteed even before you make a purchase.
+                </p>
+                <a className="btn btn-primary" href="#sample-request">
+                  Request a free sample
+                </a>
+              </div>
+            </div>
+          ) : (
+            <>
+              <h1>Request Free Label Samples</h1>
+              <p className="samples-lede">
+                Let’s make sure you get the right labels and tapes for your application. Your
+                satisfaction is guaranteed even before you make a purchase.
+              </p>
+            </>
+          )}
           <ul className="samples-promises">
             {PROMISES.map((promise) => (
               <li key={promise.title}>
@@ -85,7 +102,7 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
           {variant === 'vertical' ? kit : null}
         </header>
 
-        <aside className="samples-form" aria-label="Sample request form">
+        <aside id="sample-request" className="samples-form" aria-label="Sample request form">
           <div id={targetId} className="request-form-embed" />
           <p className="request-form-fallback">
             Form not loading?{' '}
