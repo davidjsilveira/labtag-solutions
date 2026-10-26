@@ -193,11 +193,13 @@
 }
 
 .why-reason-icon img,
-.samples-promise-icon img {
+.samples-promise-icon img,
+.about-benefit-icon img {
   transform-origin: center;
 }
 
 [data-motion-section].is-visible .why-reason-icon img,
+[data-motion-section].is-visible .about-benefit-icon img,
 [data-motion-hero].is-in .samples-promise-icon img {
   animation: motion-heartbeat 3s var(--motion-e) infinite;
   animation-delay: calc(2.4s + var(--i, 0) * 0.45s);
@@ -253,6 +255,7 @@
 
   .why-reason-icon img,
   .samples-promise-icon img,
+  .about-benefit-icon img,
   .about-pin-mark,
   .motion-sheen-wrap::after {
     animation: none !important;

@@ -20,18 +20,26 @@ const BENEFITS = [
   {
     title: 'Holds in LN2 and steam',
     body: 'Specify the material for −196°C storage, solvents, and autoclave cycles so the identification is still readable when you retrieve the vial.',
+    icon: '/media/about/why/diamond-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/diamond-icon.svg',
   },
   {
     title: 'Scientists pick the material',
     body: 'M.Sc. and Ph.D. support walks the application with you. You leave with a match, not a catalog dump.',
+    icon: '/media/about/why/scientist-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/scientist-icon.svg',
   },
   {
     title: 'Manufacturing in house',
     body: 'R&D, coating, and converting run in our own plants, so custom runs and stock labels follow the same quality system.',
+    icon: '/media/about/why/tailor-made-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/tailor-made-icon.svg',
   },
   {
     title: 'Test before you purchase',
     body: 'Free samples go to verified lab addresses. Confirm adhesion and print in your own freezer first.',
+    icon: '/media/about/why/samples-icon.svg',
+    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/samples-icon.svg',
   },
 ]
 
@@ -261,12 +269,20 @@ export function AboutPage() {
       </section>
 
       <section className="about-benefits" aria-label="Why labs work with LabTAG" data-motion-section>
-        {BENEFITS.map((benefit, index) => (
-          <article key={benefit.title} data-motion="up" style={motionIndex(index)}>
-            <h2>{benefit.title}</h2>
-            <p>{benefit.body}</p>
-          </article>
-        ))}
+        {BENEFITS.map((benefit, index) => {
+          const icon = resolveImageSrc(benefit.icon, benefit.iconFallback)
+          return (
+            <article key={benefit.title} data-motion="up" style={motionIndex(index)}>
+              <span className="about-benefit-icon">
+                <img src={icon.primary} alt="" width={72} height={72} />
+              </span>
+              <div className="about-benefit-copy">
+                <h2>{benefit.title}</h2>
+                <p>{benefit.body}</p>
+              </div>
+            </article>
+          )
+        })}
       </section>
 
       <section className="about-iso" aria-label="Quality certifications" data-motion-section>

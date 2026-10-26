@@ -2,8 +2,15 @@ import { Link, Navigate, NavLink, Route, Routes, useParams } from 'react-router-
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { getPage } from '@/content/loadPages'
-import { ABOUT_PATH, QUOTE_PATH, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
+import {
+  ABOUT_PATH,
+  CUSTOM_LABELS_PATH,
+  QUOTE_PATH,
+  SAMPLE_PATH,
+  WHY_CHOOSE_PATH,
+} from '@/content/labtagLinks'
 import { AboutPage } from '@/pages/AboutPage'
+import { CustomLabelsPage } from '@/pages/CustomLabelsPage'
 import { HomePage } from '@/pages/HomePage'
 import { QuotePage } from '@/pages/QuotePage'
 import { RequestFormPage } from '@/pages/RequestFormPage'
@@ -50,6 +57,9 @@ export default function App() {
             About Us
           </NavLink>
           <NavLink to={WHY_CHOOSE_PATH}>Why Choose LabTAG</NavLink>
+          <NavLink to={CUSTOM_LABELS_PATH} end>
+            Custom Labels
+          </NavLink>
           <NavLink to={SAMPLE_PATH} end>
             Request Free Sample
           </NavLink>
@@ -66,6 +76,7 @@ export default function App() {
           <Route path={SAMPLE_PATH} element={<SamplesPage />} />
           <Route path="/samples/vertical" element={<Navigate to={SAMPLE_PATH} replace />} />
           <Route path={QUOTE_PATH} element={<QuotePage />} />
+          <Route path={CUSTOM_LABELS_PATH} element={<CustomLabelsPage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"
