@@ -2,7 +2,7 @@ import { Link, Navigate, NavLink, Route, Routes, useParams } from 'react-router-
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { getPage } from '@/content/loadPages'
-import { ABOUT_PATH, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
+import { ABOUT_PATH, SAMPLE_PATH, SAMPLE_VERTICAL_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
 import { AboutPage } from '@/pages/AboutPage'
 import { HomePage } from '@/pages/HomePage'
 import { RequestFormPage } from '@/pages/RequestFormPage'
@@ -46,7 +46,10 @@ export default function App() {
             About
           </NavLink>
           <NavLink to={WHY_CHOOSE_PATH}>Why Choose</NavLink>
-          <NavLink to={SAMPLE_PATH}>Request Free Sample</NavLink>
+          <NavLink to={SAMPLE_PATH} end>
+            Request Free Sample
+          </NavLink>
+          <NavLink to={SAMPLE_VERTICAL_PATH}>Sample Vertical</NavLink>
         </nav>
       </header>
       <main>
@@ -55,6 +58,7 @@ export default function App() {
           <Route path={ABOUT_PATH} element={<AboutPage />} />
           <Route path={WHY_CHOOSE_PATH} element={<WhyChoosePage />} />
           <Route path={SAMPLE_PATH} element={<SamplesPage />} />
+          <Route path={SAMPLE_VERTICAL_PATH} element={<SamplesPage variant="vertical" />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"

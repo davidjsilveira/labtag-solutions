@@ -3557,6 +3557,26 @@ tr:last-child td {
   color: var(--color-ink-2);
 }
 
+.samples-page.is-vertical .samples-layout {
+  grid-template-columns: minmax(0, var(--content-width));
+  justify-content: center;
+  grid-template-areas:
+    'copy'
+    'proof'
+    'note'
+    'form';
+  gap: var(--space-xl);
+}
+
+.samples-page.is-vertical .samples-form {
+  position: static;
+}
+
+.samples-page.is-vertical .samples-lede,
+.samples-page.is-vertical .samples-note {
+  max-width: none;
+}
+
 @media (max-width: 840px) {
   .samples-layout {
     grid-template-columns: 1fr;

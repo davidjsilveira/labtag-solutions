@@ -5,7 +5,8 @@ import { resolveImageSrc } from '@/content/resolveImage'
 
 const PORTAL_ID = '4079112'
 const FORM_ID = '456aec1a-7937-43bc-b1ff-942a21cf0675'
-const TARGET_ID = 'hs-form-samples'
+
+type SamplesVariant = 'studio' | 'vertical'
 
 const PROMISES = [
   {
@@ -27,12 +28,13 @@ const KIT = resolveImageSrc(
   'https://cdn.labtag.com/wp-content/uploads/Sample-Kit4.png',
 )
 
-export function SamplesPage() {
+export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }) {
   const mounted = useRef(true)
+  const targetId = variant === 'vertical' ? 'hs-form-samples-vertical' : 'hs-form-samples'
 
   useEffect(() => {
     mounted.current = true
-    const targetSelector = `#${TARGET_ID}`
+    const targetSelector = `#${targetId}`
     let cancelled = false
 
     loadHubSpotFormsScript()
@@ -54,10 +56,17 @@ export function SamplesPage() {
       cancelled = true
       mounted.current = false
     }
-  }, [])
+  }, [targetId])
+
+  const kit = (
+    <figure className="samples-kit">
+      <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
+      <figcaption>LabTAG free sample kit</figcaption>
+    </figure>
+  )
 
   return (
-    <article className="samples-page">
+    <article className={variant === 'vertical' ? 'samples-page is-vertical' : 'samples-page'}>
       <div className="samples-layout">
         <header className="samples-hero">
           <h1>Request Free Label Samples</h1>
@@ -73,10 +82,11 @@ export function SamplesPage() {
               </li>
             ))}
           </ul>
+          {variant === 'vertical' ? kit : null}
         </header>
 
         <aside className="samples-form" aria-label="Sample request form">
-          <div id={TARGET_ID} className="request-form-embed" />
+          <div id={targetId} className="request-form-embed" />
           <p className="request-form-fallback">
             Form not loading?{' '}
             <a href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
@@ -87,10 +97,7 @@ export function SamplesPage() {
         </aside>
 
         <section className="samples-proof">
-          <figure className="samples-kit">
-            <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
-            <figcaption>LabTAG free sample kit</figcaption>
-          </figure>
+          {variant === 'vertical' ? null : kit}
           <figure className="block-quote samples-quote">
             <blockquote>
               <p>
