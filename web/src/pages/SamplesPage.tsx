@@ -5,8 +5,7 @@ import { resolveImageSrc } from '@/content/resolveImage'
 
 const PORTAL_ID = '4079112'
 const FORM_ID = '456aec1a-7937-43bc-b1ff-942a21cf0675'
-
-type SamplesVariant = 'studio' | 'vertical'
+const FORM_TARGET = 'hs-form-samples'
 
 const PROMISES = [
   {
@@ -28,13 +27,12 @@ const KIT = resolveImageSrc(
   'https://cdn.labtag.com/wp-content/uploads/Sample-Kit4.png',
 )
 
-export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }) {
+export function SamplesPage() {
   const mounted = useRef(true)
-  const targetId = variant === 'vertical' ? 'hs-form-samples-vertical' : 'hs-form-samples'
 
   useEffect(() => {
     mounted.current = true
-    const targetSelector = `#${targetId}`
+    const targetSelector = `#${FORM_TARGET}`
     let cancelled = false
 
     loadHubSpotFormsScript()
@@ -56,49 +54,17 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
       cancelled = true
       mounted.current = false
     }
-  }, [targetId])
-
-  const kit = (
-    <figure className="samples-kit">
-      <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
-    </figure>
-  )
-
-  const note = (
-    <p className="samples-note">
-      We can only send free samples of labels and tapes. We do not offer free samples of markers,
-      ribbons, and hardware. Samples will only be sent to verified business addresses. Shipping is
-      free only for the contiguous United States and Canada, and for countries in the European
-      Union. We reserve the right to limit quantities of samples within reason.
-    </p>
-  )
+  }, [])
 
   return (
-    <article className={variant === 'vertical' ? 'samples-page is-vertical' : 'samples-page'}>
+    <article className="samples-page">
       <div className="samples-layout">
         <header className="samples-hero">
-          {variant === 'vertical' ? (
-            <div className="samples-hero-copy">
-              <h1>Request Free Label Samples</h1>
-              <div className="samples-hero-intro">
-                <p className="samples-lede">
-                  Let’s make sure you get the right labels and tapes for your application. Your
-                  satisfaction is guaranteed even before you make a purchase.
-                </p>
-                <a className="btn btn-primary" href="#sample-request">
-                  Request a free sample
-                </a>
-              </div>
-            </div>
-          ) : (
-            <>
-              <h1>Request Free Label Samples</h1>
-              <p className="samples-lede">
-                Let’s make sure you get the right labels and tapes for your application. Your
-                satisfaction is guaranteed even before you make a purchase.
-              </p>
-            </>
-          )}
+          <h1>Request Free Label Samples</h1>
+          <p className="samples-lede">
+            Let’s make sure you get the right labels and tapes for your application. Your
+            satisfaction is guaranteed even before you make a purchase.
+          </p>
           <ul className="samples-promises">
             {PROMISES.map((promise) => (
               <li key={promise.title}>
@@ -107,16 +73,10 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
               </li>
             ))}
           </ul>
-          {variant === 'vertical' ? (
-            <div className="samples-kit-block">
-              {kit}
-              {note}
-            </div>
-          ) : null}
         </header>
 
         <aside id="sample-request" className="samples-form" aria-label="Sample request form">
-          <div id={targetId} className="request-form-embed" />
+          <div id={FORM_TARGET} className="request-form-embed" />
           <p className="request-form-fallback">
             Form not loading?{' '}
             <a href={LABTAG_SAMPLE_URL} target="_blank" rel="noreferrer">
@@ -127,7 +87,9 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
         </aside>
 
         <section className="samples-proof">
-          {variant === 'vertical' ? null : kit}
+          <figure className="samples-kit">
+            <img src={KIT.primary} alt="LabTAG free sample kit of laboratory labels" />
+          </figure>
           <figure className="block-quote samples-quote">
             <blockquote>
               <p>
@@ -145,7 +107,12 @@ export function SamplesPage({ variant = 'studio' }: { variant?: SamplesVariant }
           </figure>
         </section>
 
-        {variant === 'vertical' ? null : note}
+        <p className="samples-note">
+          We can only send free samples of labels and tapes. We do not offer free samples of
+          markers, ribbons, and hardware. Samples will only be sent to verified business addresses.
+          Shipping is free only for the contiguous United States and Canada, and for countries in
+          the European Union. We reserve the right to limit quantities of samples within reason.
+        </p>
       </div>
     </article>
   )

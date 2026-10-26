@@ -2,7 +2,7 @@
 export const LABTAG_SHOP_URL = 'https://www.labtag.com/shop/'
 export const LABTAG_SAMPLE_URL = 'https://www.labtag.com/contact-us/samples'
 export const SAMPLE_PATH = '/samples'
-export const SAMPLE_VERTICAL_PATH = '/samples/vertical'
+export const QUOTE_PATH = '/quote'
 export const LABTAG_ABOUT_URL = 'https://www.labtag.com/about-labtag'
 export const ABOUT_PATH = '/about'
 export const WHY_CHOOSE_PATH = '/about/why-choose-labtag'

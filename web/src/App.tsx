@@ -2,9 +2,10 @@ import { Link, Navigate, NavLink, Route, Routes, useParams } from 'react-router-
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { getPage } from '@/content/loadPages'
-import { ABOUT_PATH, SAMPLE_PATH, SAMPLE_VERTICAL_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
+import { ABOUT_PATH, QUOTE_PATH, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
 import { AboutPage } from '@/pages/AboutPage'
 import { HomePage } from '@/pages/HomePage'
+import { QuotePage } from '@/pages/QuotePage'
 import { RequestFormPage } from '@/pages/RequestFormPage'
 import { SamplesPage } from '@/pages/SamplesPage'
 import { WhyChoosePage } from '@/pages/WhyChoosePage'
@@ -49,7 +50,9 @@ export default function App() {
           <NavLink to={SAMPLE_PATH} end>
             Request Free Sample
           </NavLink>
-          <NavLink to={SAMPLE_VERTICAL_PATH}>Sample Vertical</NavLink>
+          <NavLink to={QUOTE_PATH} end>
+            Request a Quote
+          </NavLink>
         </nav>
       </header>
       <main>
@@ -58,7 +61,8 @@ export default function App() {
           <Route path={ABOUT_PATH} element={<AboutPage />} />
           <Route path={WHY_CHOOSE_PATH} element={<WhyChoosePage />} />
           <Route path={SAMPLE_PATH} element={<SamplesPage />} />
-          <Route path={SAMPLE_VERTICAL_PATH} element={<SamplesPage variant="vertical" />} />
+          <Route path="/samples/vertical" element={<Navigate to={SAMPLE_PATH} replace />} />
+          <Route path={QUOTE_PATH} element={<QuotePage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"
