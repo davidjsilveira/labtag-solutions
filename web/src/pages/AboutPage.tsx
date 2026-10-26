@@ -11,10 +11,7 @@ const AWARD = resolveImageSrc(
   'https://cdn.labtag.com/wp-content/uploads/EY_EntrepreneuroftheYear_2019_132-1536x1024.jpg',
 )
 const MAP = resolveImageSrc('/media/about/world-dots.svg')
-const ISO_SEAL = resolveImageSrc(
-  '/media/about/why/ISO-Symbol-Design-B.svg',
-  'https://cdn.labtag.com/wp-content/uploads/ISO-Symbol-Design-B.svg',
-)
+const ISO_SEAL = resolveImageSrc('/media/about/iso-certified-lockup.svg')
 
 const VALUES = [
   {
@@ -48,9 +45,9 @@ const CERTS = [
 
 const STATS = [
   { value: '25+', label: 'Years of specialty labels' },
-  { value: '9001', label: 'ISO quality certified' },
-  { value: '22301', label: 'ISO continuity compliant' },
-  { value: '4', label: 'Offices worldwide' },
+  { value: '−196°C', label: 'Cryogenic from first stick' },
+  { value: 'R&D', label: 'In-house product team' },
+  { value: 'Free', label: 'Samples before you buy' },
 ]
 
 /** Equirectangular project onto the dotted-map viewBox, with a tiny nudge so nearby offices stay distinct. */
@@ -114,27 +111,25 @@ export function AboutPage() {
           <img src={TEAM.primary} alt="The LabTAG team at GA International headquarters" />
           <figcaption>The LabTAG team at GA International headquarters</figcaption>
         </figure>
-        <ul className="about-stats">
-          {STATS.map((stat) => (
-            <li key={stat.label}>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </li>
-          ))}
-        </ul>
       </header>
+      <ul className="about-stats">
+        {STATS.map((stat) => (
+          <li key={stat.label}>
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </li>
+        ))}
+      </ul>
 
       <section className="about-story">
-        <p className="about-kicker">Manufacturer</p>
-        <div className="about-story-copy">
-          <p>
-            Since its inception, GA International has become a worldwide leader in cryogenic and
-            chemical-resistant labels, strongly dedicated to R&amp;D, product development, and
-            manufacturing. Outstanding technical support and customer service are the hallmarks of
-            GA International, ensuring that clients receive not only high-performance labeling
-            solutions but also expert guidance every step of the way.
-          </p>
-        </div>
+        <h2>Manufacturer</h2>
+        <p>
+          Since its inception, GA International has become a worldwide leader in cryogenic and
+          chemical-resistant labels, strongly dedicated to R&amp;D, product development, and
+          manufacturing. Outstanding technical support and customer service are the hallmarks of
+          GA International, ensuring that clients receive not only high-performance labeling
+          solutions but also expert guidance every step of the way.
+        </p>
       </section>
 
       <section className="about-manifesto" aria-label="Vision, mission, and team">
@@ -150,16 +145,13 @@ export function AboutPage() {
       <section className="about-iso" aria-label="Quality certifications">
         <div className="about-iso-body">
           <div className="about-iso-brand">
-            <p className="about-kicker">Quality</p>
-            <span className="about-iso-seal-well">
-              <img
-                className="about-iso-seal"
-                src={ISO_SEAL.primary}
-                alt=""
-                width={160}
-                height={156}
-              />
-            </span>
+            <img
+              className="about-iso-seal"
+              src={ISO_SEAL.primary}
+              alt="ISO certified"
+              width={247}
+              height={53}
+            />
           </div>
           <div className="about-iso-certs">
             {CERTS.map((cert) => (
