@@ -294,15 +294,14 @@ function AboutMilestones() {
         Key milestones
       </h2>
       <p id="about-milestones-hint">Select a year to walk the timeline.</p>
-      <ol
-        className="about-timeline"
-        role="radiogroup"
-        aria-labelledby="about-milestones-heading"
-        aria-describedby="about-milestones-hint"
-      >
-        {MILESTONES.map((item) => {
-          const Icon = item.icon
-          return (
+      <div className="about-timeline-split">
+        <ol
+          className="about-timeline"
+          role="radiogroup"
+          aria-labelledby="about-milestones-heading"
+          aria-describedby="about-milestones-hint"
+        >
+          {MILESTONES.map((item) => (
             <li key={item.year}>
               <label className="about-timeline-chip">
                 <input
@@ -315,7 +314,19 @@ function AboutMilestones() {
                 <span className="about-timeline-mark" aria-hidden="true" />
                 <time dateTime={item.year}>{item.year}</time>
               </label>
-              <div className="about-timeline-card" aria-hidden="true">
+            </li>
+          ))}
+        </ol>
+        <div className="about-timeline-stage">
+          {MILESTONES.map((item) => {
+            const Icon = item.icon
+            return (
+              <div
+                key={item.year}
+                className="about-timeline-card"
+                data-year={item.year}
+                aria-hidden="true"
+              >
                 <span className="about-timeline-card-icon">
                   <Icon size={28} weight="fill" />
                 </span>
@@ -328,10 +339,10 @@ function AboutMilestones() {
                   </ul>
                 </div>
               </div>
-            </li>
-          )
-        })}
-      </ol>
+            )
+          })}
+        </div>
+      </div>
     </section>
   )
 }

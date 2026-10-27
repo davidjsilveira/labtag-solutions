@@ -4721,6 +4721,13 @@ tr:last-child td {
   line-height: 1.5rem;
 }
 
+.about-timeline-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.85fr);
+  gap: var(--space-lg);
+  align-items: center;
+}
+
 .about-timeline {
   --milestone-progress: 1;
   list-style: none;
@@ -4729,14 +4736,14 @@ tr:last-child td {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   column-gap: var(--space-2xs);
-  row-gap: var(--space-md);
   margin: 0;
   padding: 0;
   transition: --milestone-progress 500ms var(--about-ease);
 }
 
 .about-timeline > li {
-  display: contents;
+  min-width: 0;
+  margin: 0;
 }
 
 .about-timeline::before,
@@ -4765,10 +4772,9 @@ tr:last-child td {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-row: 1;
   justify-items: center;
   gap: var(--space-2xs);
-  padding: 0 0 var(--space-xs);
+  padding: 0;
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -4777,20 +4783,6 @@ tr:last-child td {
 
 .about-timeline-chip:active {
   transform: scale(0.98);
-}
-
-.about-timeline-chip::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 0.75rem;
-  height: 0.75rem;
-  background: var(--color-paper);
-  transform: translate(-50%, 70%) rotate(45deg) scale(0);
-  transform-origin: center;
-  pointer-events: none;
-  transition: transform 500ms var(--about-ease);
 }
 
 .about-timeline input {
@@ -4866,17 +4858,12 @@ tr:last-child td {
     0 0 0 5px var(--labtag-secondary-main);
 }
 
-.about-timeline-chip:has(:checked)::after {
-  transform: translate(-50%, 70%) rotate(45deg) scale(1);
-}
-
 .about-timeline-card {
   display: none;
-  grid-column: 1 / -1;
-  grid-row: 2;
   grid-template-columns: 2.5rem minmax(0, 1fr);
   column-gap: var(--space-md);
   align-items: start;
+  min-height: 8rem;
   padding: var(--space-md);
   background: var(--color-paper);
   border: 1px solid var(--color-rule);
@@ -4884,7 +4871,15 @@ tr:last-child td {
   box-shadow: var(--shadow-card-rest);
 }
 
-.about-timeline li:has(:checked) .about-timeline-card {
+.about-timeline-split:has(input[value='1999']:checked) .about-timeline-card[data-year='1999'],
+.about-timeline-split:has(input[value='2001']:checked) .about-timeline-card[data-year='2001'],
+.about-timeline-split:has(input[value='2008']:checked) .about-timeline-card[data-year='2008'],
+.about-timeline-split:has(input[value='2013']:checked) .about-timeline-card[data-year='2013'],
+.about-timeline-split:has(input[value='2017']:checked) .about-timeline-card[data-year='2017'],
+.about-timeline-split:has(input[value='2020']:checked) .about-timeline-card[data-year='2020'],
+.about-timeline-split:has(input[value='2021']:checked) .about-timeline-card[data-year='2021'],
+.about-timeline-split:has(input[value='2022']:checked) .about-timeline-card[data-year='2022'],
+.about-timeline-split:has(input[value='2026']:checked) .about-timeline-card[data-year='2026'] {
   display: grid;
 }
 
@@ -5002,8 +4997,7 @@ tr:last-child td {
   .about-timeline,
   .about-timeline time,
   .about-timeline-mark,
-  .about-timeline-chip,
-  .about-timeline-chip::after {
+  .about-timeline-chip {
     transition: none;
   }
 
@@ -5629,6 +5623,10 @@ tr:last-child td {
 }
 
 @media (max-width: 840px) {
+  .about-timeline-split {
+    grid-template-columns: 1fr;
+  }
+
   .about-timeline {
     grid-template-columns: repeat(9, minmax(3.25rem, 1fr));
     overflow-x: auto;
