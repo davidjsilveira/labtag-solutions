@@ -4450,7 +4450,7 @@ tr:last-child td {
   color: var(--color-ink-2);
 }
 
-.samples-page .samples-layout {
+.samples-page:not(.quote-page) .samples-layout {
   grid-template-areas:
     'copy form'
     'proof form';
@@ -4500,7 +4500,7 @@ tr:last-child td {
     position: static;
   }
 
-  .samples-page .samples-layout {
+  .samples-page:not(.quote-page) .samples-layout {
     grid-template-areas:
       'copy'
       'form'
