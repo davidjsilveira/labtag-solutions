@@ -131,9 +131,9 @@ const CERTS = [
 
 const STATS = [
   { value: '25+', label: 'Years of specialty labels', count: 25, prefix: '', suffix: '+' },
-  { value: '−196°C', label: 'Cryogenic from first stick', count: 196, prefix: '−', suffix: '°C' },
+  { value: '4', label: 'Offices near your labs', count: 4, prefix: '', suffix: '' },
   { value: 'R&D', label: 'In house product team' },
-  { value: 'Free', label: 'Samples before you buy' },
+  { value: 'ISO', label: 'Certified quality' }
 ]
 
 /** Equirectangular project onto the dotted-map viewBox, with a tiny nudge so nearby offices stay distinct. */
