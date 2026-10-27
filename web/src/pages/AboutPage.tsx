@@ -252,6 +252,16 @@ export function AboutPage() {
         ))}
       </ul>
 
+      <section className="about-manifesto" aria-label="Vision, mission, and team" data-motion-section>
+        {VALUES.map((value, index) => (
+          <article key={value.title} className="about-value" data-motion="up" style={motionIndex(index)}>
+            <span className="about-value-index">{String(index + 1).padStart(2, '0')}</span>
+            <h2>{value.title}</h2>
+            <p>{value.body}</p>
+          </article>
+        ))}
+      </section>
+
       <div className="about-photo-row" data-motion-section>
         {BREAK_PHOTOS.map((photo, index) => {
           const src = resolveImageSrc(photo.src)
@@ -288,16 +298,6 @@ export function AboutPage() {
             label holds.
           </p>
         </div>
-      </section>
-
-      <section className="about-manifesto" aria-label="Vision, mission, and team" data-motion-section>
-        {VALUES.map((value, index) => (
-          <article key={value.title} className="about-value" data-motion="up" style={motionIndex(index)}>
-            <span className="about-value-index">{String(index + 1).padStart(2, '0')}</span>
-            <h2>{value.title}</h2>
-            <p>{value.body}</p>
-          </article>
-        ))}
       </section>
 
       <section className="about-benefits" aria-label="Why labs work with LabTAG" data-motion-section>
