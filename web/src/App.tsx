@@ -5,15 +5,19 @@ import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { getPage } from '@/content/loadPages'
 import {
   ABOUT_PATH,
+  CONTACT_PATH,
   CUSTOM_LABELS_PATH,
   QUOTE_PATH,
+  RESELLER_PATH,
   SAMPLE_PATH,
   WHY_CHOOSE_PATH,
 } from '@/content/labtagLinks'
 import { AboutPage } from '@/pages/AboutPage'
+import { ContactPage } from '@/pages/ContactPage'
 import { CustomLabelsPage } from '@/pages/CustomLabelsPage'
 import { HomePage } from '@/pages/HomePage'
 import { QuotePage } from '@/pages/QuotePage'
+import { ResellerPage } from '@/pages/ResellerPage'
 import { RequestFormPage } from '@/pages/RequestFormPage'
 import { SamplesPage } from '@/pages/SamplesPage'
 import { WhyChoosePage } from '@/pages/WhyChoosePage'
@@ -67,6 +71,12 @@ export default function App() {
           <NavLink to={QUOTE_PATH} end>
             Request a Quote
           </NavLink>
+          <NavLink to={RESELLER_PATH} end>
+            Become a Reseller
+          </NavLink>
+          <NavLink to={CONTACT_PATH} end>
+            Contact Us
+          </NavLink>
         </nav>
       </header>
       <main id="content" tabIndex={-1}>
@@ -78,6 +88,8 @@ export default function App() {
           <Route path="/samples/vertical" element={<Navigate to={SAMPLE_PATH} replace />} />
           <Route path={QUOTE_PATH} element={<QuotePage />} />
           <Route path={CUSTOM_LABELS_PATH} element={<CustomLabelsPage />} />
+          <Route path={RESELLER_PATH} element={<ResellerPage />} />
+          <Route path={CONTACT_PATH} element={<ContactPage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { TaglineReveal } from '@/components/TaglineReveal'
-import { LABTAG_CONTACT_URL, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
+import { CONTACT_PATH, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 
@@ -452,7 +452,7 @@ export function AboutPage() {
           </Link>
         </div>
         <p className="about-close-alt" data-motion="up" style={motionIndex(3)}>
-          Prefer a person? <a href={LABTAG_CONTACT_URL} target="_blank" rel="noreferrer">Chat with an expert</a>.
+          Prefer a person? <Link to={CONTACT_PATH}>Chat with an expert</Link>.
         </p>
       </section>
     </article>

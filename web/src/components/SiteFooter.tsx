@@ -1,9 +1,9 @@
 import { Link, NavLink } from 'react-router-dom'
 import {
   ABOUT_PATH,
+  CONTACT_PATH,
   CUSTOM_LABELS_PATH,
   LABTAG_BLOG_URL,
-  LABTAG_CONTACT_URL,
   LABTAG_COOKIE_URL,
   LABTAG_FAQ_URL,
   LABTAG_FACEBOOK_URL,
@@ -18,6 +18,7 @@ import {
   LABTAG_X_URL,
   LABTAG_YOUTUBE_URL,
   QUOTE_PATH,
+  RESELLER_PATH,
   SAMPLE_PATH,
   WHY_CHOOSE_PATH,
 } from '@/content/labtagLinks'
@@ -127,7 +128,8 @@ const STACKED_GROUPS: FooterGroup[] = [
           { label: 'Custom labels', to: CUSTOM_LABELS_PATH },
           { label: 'Free samples', to: SAMPLE_PATH },
           { label: 'Request a quote', to: QUOTE_PATH },
-          { label: 'Chat with an expert', href: LABTAG_CONTACT_URL },
+          { label: 'Become a reseller', to: RESELLER_PATH },
+          { label: 'Chat with an expert', to: CONTACT_PATH },
         ],
       },
     ],
@@ -154,7 +156,7 @@ const STACKED_GROUPS: FooterGroup[] = [
         links: [
           { label: 'About Us', to: ABOUT_PATH },
           { label: 'Why Choose LabTAG', to: WHY_CHOOSE_PATH },
-          { label: 'Contact Us', href: LABTAG_CONTACT_URL },
+          { label: 'Contact Us', to: CONTACT_PATH },
           { label: 'GA International', href: LABTAG_GA_URL },
         ],
       },

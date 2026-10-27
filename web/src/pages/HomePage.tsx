@@ -4,7 +4,7 @@ import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
 import { pagesForArchive, pagesForCombinedCatalog } from '@/content/categories'
-import { LABTAG_CONTACT_URL, LABTAG_SHOP_URL, SAMPLE_PATH } from '@/content/labtagLinks'
+import { CONTACT_PATH, LABTAG_SHOP_URL, SAMPLE_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { SolutionPage } from '@/content/types'
 
@@ -57,9 +57,9 @@ export function HomePage() {
             </p>
           </div>
           <div className="page-hero-actions" data-motion="hero" style={motionIndex(2)}>
-            <a className="btn btn-primary" href={LABTAG_CONTACT_URL} target="_blank" rel="noreferrer">
+            <Link className="btn btn-primary" to={CONTACT_PATH}>
               Chat with an expert
-            </a>
+            </Link>
             <Link className="btn btn-secondary" to={SAMPLE_PATH}>
               Get Free Samples
             </Link>
