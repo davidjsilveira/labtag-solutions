@@ -3802,12 +3802,52 @@ tr:last-child td {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .support-hero p {
   margin: var(--space-2xs) auto 0;
   max-width: 42.5rem;
   color: var(--color-ink-2);
+  text-wrap: pretty;
+}
+
+.support-hero p.support-hero-proof {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.support-topics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2xs);
+  max-width: 46rem;
+  margin: var(--space-md) auto 0;
+}
+
+.support-topics a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-xs);
+  background: var(--labtag-pure-white);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.support-topics a:hover {
+  color: var(--color-link-hover);
+  box-shadow: var(--shadow-card-rest);
+}
+
+.support-topics a.is-current {
+  color: var(--color-link);
 }
 
 .support-body {
@@ -3838,6 +3878,10 @@ tr:last-child td {
   font-size: var(--text-xl);
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+.support-cat {
+  scroll-margin-top: var(--anchor-scroll-margin);
 }
 
 .support-cat-list {
@@ -3936,6 +3980,15 @@ tr:last-child td {
 .support-cat .faq-item-answer p {
   font-size: var(--text-sm);
   line-height: 1.5;
+}
+
+.support-cat .faq-item-cta {
+  margin-top: var(--space-3xs);
+}
+
+.support-cat .faq-item-cta a {
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .support-cat .faq-item summary:focus,
@@ -4062,6 +4115,7 @@ tr:last-child td {
 .support-write > p {
   margin: 0 0 var(--space-md);
   max-width: 40rem;
+  text-wrap: pretty;
 }
 
 .support-write .samples-form {
@@ -4144,9 +4198,7 @@ tr:last-child td {
   margin-top: var(--space-2xs);
   color: var(--color-link);
   font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .support-resource:hover span {

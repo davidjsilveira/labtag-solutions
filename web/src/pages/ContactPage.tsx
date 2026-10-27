@@ -7,6 +7,7 @@ import {
   EnvelopeSimple,
   Handshake,
   Package,
+  Phone,
   Printer,
   Scissors,
   SealCheck,
@@ -35,13 +36,24 @@ const ORDERS_EMAIL = 'orders@ga-international.com'
 const PHONE_TOLL_FREE = { label: '1 800 518 0364', href: 'tel:+18005180364' }
 const PHONE_INTL = { label: '+1 450 973 9420', href: 'tel:+14509739420' }
 
-type FaqItem = { question: string; answer: string }
+type FaqCta = { label: string; to?: string; href?: string }
+
+type FaqItem = { question: string; answer: string; cta?: FaqCta }
 
 type FaqCategory = {
   id: string
   title: string
   Icon: typeof Package
   items: FaqItem[]
+}
+
+function FaqCtaLink({ cta }: { cta: FaqCta }) {
+  if (cta.to) return <Link to={cta.to}>{cta.label}</Link>
+  return (
+    <a href={cta.href} {...(cta.href?.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}>
+      {cta.label}
+    </a>
+  )
 }
 
 const FAQ_CATEGORIES: FaqCategory[] = [
@@ -53,17 +65,19 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: 'Can I get free samples?',
         answer:
-          'Yes. We send free samples of labels and tapes to verified business addresses. Markers, ribbons, and hardware are not included. Shipping is free to the contiguous United States, Canada, and EU countries.',
+          'Yes. We send free samples of labels and tapes to verified business addresses. Markers, ribbons, and hardware are not included. Shipping is free to the contiguous United States, Canada, and EU countries. Kits are processed within 24 hours.',
+        cta: { label: 'Request a free sample', to: SAMPLE_PATH },
       },
       {
-        question: 'Why do you need a business address for samples?',
+        question: 'Why do you need a business address?',
         answer:
-          'Samples are for labs evaluating a protocol. A verified business address keeps kits going to working benches, not residences.',
+          'Sample kits are for labs testing a protocol. A verified business address keeps them going to working benches, not residences.',
       },
       {
         question: 'How do I request a kit?',
         answer:
-          'Use Request a free sample. Tell us the temperature, container, and printer so we send the matching material, not a generic pack.',
+          'Include temperature, container, chemicals, and printer so we send the matching material, not a generic pack.',
+        cta: { label: 'Request a free sample', to: SAMPLE_PATH },
       },
     ],
   },
@@ -75,17 +89,18 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: 'What temperatures can the labels survive?',
         answer:
-          'The cryogenic range starts at −196°C. Other lines cover freezer, fridge, ambient, and autoclave. Tell us the protocol and we will point you to the matching material.',
+          'Cryogenic constructions hold from −196°C. Other lines cover freezer, fridge, ambient, and autoclave. Tell us the protocol and we will point you to the matching material.',
       },
       {
-        question: 'Why not buy cheaper generic cryo labels?',
+        question: 'How do I choose a cryogenic label?',
         answer:
-          'A generic SKU is built for a datasheet, not your solvent list or freeze thaw cycle. We specify the material for the protocol you run, then send samples so you can prove it on the bench.',
+          'Share the lowest temperature, the container, the chemicals, and the printer. A specialist specifies the adhesive and topcoat for that protocol, then you can confirm it with a sample.',
       },
       {
-        question: 'Who specifies the material?',
+        question: 'Can someone help me choose a material?',
         answer:
-          'M.Sc. and Ph.D. support walks temperature, container, chemicals, and printer with you. You leave with a match, not a catalog dump.',
+          'Yes. M.Sc. and Ph.D. support walks temperature, container, chemicals, and printer with you.',
+        cta: { label: 'Send a message', href: '#contact-request' },
       },
     ],
   },
@@ -98,16 +113,19 @@ const FAQ_CATEGORIES: FaqCategory[] = [
         question: 'Do you make custom sizes and colors?',
         answer:
           'Yes. Stock SKUs cover common vials and plates. Custom shapes, colors, and preprinted data are quoted from the same manufacturing line.',
+        cta: { label: 'Request custom labels', to: CUSTOM_LABELS_PATH },
       },
       {
         question: 'Can you print from our file?',
         answer:
-          'Yes. Serialized data, logos, and 1D and 2D barcodes can be printed so the lab does not run the printer. Request custom labels and attach the file.',
+          'Yes. Serialized data, logos, and 1D and 2D barcodes can be printed so the lab does not run the printer. Attach the file with your request.',
+        cta: { label: 'Request custom labels', to: CUSTOM_LABELS_PATH },
       },
       {
-        question: 'Do I get a price before I commit?',
+        question: 'How does custom quoting work?',
         answer:
-          'Custom work is quoted with a quantity, date, and price from the same plant that runs stock SKUs.',
+          'You send the size, quantity, and file. We reply with a quantity, ship date, and price from the same plant that runs stock SKUs.',
+        cta: { label: 'Request custom labels', to: CUSTOM_LABELS_PATH },
       },
     ],
   },
@@ -123,13 +141,14 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         question: 'Do you offer label templates?',
-        answer:
-          'Yes. Download templates from the LabTAG resources library, then confirm the die with a sample before a production run.',
+        answer: 'Yes. Download a template, then confirm the die with a sample before a production run.',
+        cta: { label: 'Open label templates', href: LABTAG_TEMPLATES_URL },
       },
       {
-        question: 'Where are the how to videos?',
+        question: 'Where are the application videos?',
         answer:
-          'Application and printer videos sit in the LabTAG video library. Use them with a sample kit so the first print is on the material you will stock.',
+          'Watch application and printer videos with a sample kit so the first print is on the material you will stock.',
+        cta: { label: 'Open application videos', href: LABTAG_VIDEOS_URL },
       },
     ],
   },
@@ -141,7 +160,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: 'How fast do orders ship?',
         answer:
-          'Day and evening crews run fulfillment so standard stock can leave quickly. Custom work is quoted with a date before you commit.',
+          'Day and evening crews run fulfillment from warehouses in North America and Europe so standard stock can leave quickly. Custom work is quoted with a ship date before you commit.',
       },
       {
         question: 'Where do I send a purchase order?',
@@ -149,8 +168,8 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         question: 'Can I get a quote first?',
-        answer:
-          'Yes. Request a quote for stock or custom work. We reply with pricing before you send the purchase order.',
+        answer: 'Yes. We reply with pricing for stock or custom work before you send the purchase order.',
+        cta: { label: 'Request a quote', to: QUOTE_PATH },
       },
     ],
   },
@@ -171,25 +190,25 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         question: 'What does the satisfaction guarantee cover?',
-        answer:
-          'If the labels are not a match we take them back and help you specify the next material. The goal is a protocol that holds, not a one time shipment.',
+        answer: 'If the labels are not a match we take them back and help you specify the next material.',
+        cta: { label: 'Request a free sample', to: SAMPLE_PATH },
       },
     ],
   },
   {
     id: 'reseller',
-    title: 'Becoming a reseller',
+    title: 'Resellers',
     Icon: Handshake,
     items: [
       {
         question: 'Can I distribute LabTAG in my region?',
-        answer:
-          'Yes. Apply on Become a reseller. The distributor success team covers pricing, training, and marketing material.',
+        answer: 'Yes. A dedicated team covers pricing, training, and marketing material.',
+        cta: { label: 'Become a reseller', to: RESELLER_PATH },
       },
       {
         question: 'What support do distributors get?',
         answer:
-          'Competitive pricing, in depth training, marketing material, and on time delivery from a dedicated team.',
+          'Pricing, product training, marketing material, and delivery from a dedicated distributor team.',
       },
     ],
   },
@@ -205,22 +224,18 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         question: 'How do I reach a person?',
-        answer:
-          'Call 1 800 518 0364 in North America, or +1 450 973 9420 internationally. You can also send a message with the form on this page.',
+        answer: 'Call 1 800 518 0364 in North America, or +1 450 973 9420 internationally.',
+        cta: { label: 'Send a message', href: '#contact-request' },
       },
     ],
   },
 ]
 
 const HELPFUL_LINKS = [
-  { label: 'Request a free sample', to: SAMPLE_PATH },
-  { label: 'Request a quote', to: QUOTE_PATH },
-  { label: 'Custom labels', to: CUSTOM_LABELS_PATH },
-  { label: 'Become a reseller', to: RESELLER_PATH },
   { label: 'Label templates', href: LABTAG_TEMPLATES_URL },
-  { label: 'Videos', href: LABTAG_VIDEOS_URL },
+  { label: 'Application videos', href: LABTAG_VIDEOS_URL },
   { label: 'Shop', href: LABTAG_SHOP_URL },
-  { label: 'FAQ', href: LABTAG_FAQ_URL },
+  { label: 'LabTAG FAQ', href: LABTAG_FAQ_URL },
 ]
 
 const OFFICES = [
@@ -228,21 +243,25 @@ const OFFICES = [
     region: 'USA',
     name: 'LabTAG Inc.',
     address: '42 Gateway Drive, Suite 400, Plattsburgh, NY 12901',
+    phone: PHONE_TOLL_FREE,
   },
   {
     region: 'Canada',
     name: 'GA International Inc.',
     address: '4455 Rue Louis-B.-Mayer, Laval, QC H7P 6B5',
+    phone: PHONE_TOLL_FREE,
   },
   {
     region: 'Europe',
     name: 'GA International Inc.',
     address: 'Runweg 28, 5258 BN Berlicum, Netherlands',
+    phone: { label: '+31 73 737 0185', href: 'tel:+31737370185' },
   },
   {
     region: 'UK',
     name: 'TAG Scientific Ltd.',
     address: 'Preston Park House, South Road, Brighton BN1 6SB',
+    phone: { label: '+44 20 3769 5683', href: 'tel:+442037695683' },
   },
 ]
 
@@ -250,8 +269,8 @@ const RESOURCE_CARDS = [
   {
     to: SAMPLE_PATH,
     title: 'Free samples',
-    body: 'Confirm adhesion and print in your own freezer before you buy a case.',
-    cta: 'Request samples',
+    body: 'Test adhesion and print in your own freezer before you buy a case.',
+    cta: 'Request a sample kit',
     image: resolveImageSrc(
       '/media/samples/Sample-Kit4.png',
       'https://cdn.labtag.com/wp-content/uploads/Sample-Kit4.png',
@@ -261,7 +280,7 @@ const RESOURCE_CARDS = [
     to: QUOTE_PATH,
     title: 'Request a quote',
     body: 'Get a quantity, date, and price for stock or custom work before you send a purchase order.',
-    cta: 'Request a quote',
+    cta: 'Get a quote',
     image: resolveImageSrc(
       '/media/cryogenic-clinical-requisition-forms/clinical-custom-labels.jpg',
       'https://cdn.labtag.com/wp-content/uploads/clinical-custom-labels.jpg',
@@ -271,7 +290,7 @@ const RESOURCE_CARDS = [
     to: CUSTOM_LABELS_PATH,
     title: 'Custom labels',
     body: 'Die cut to spec, printed from your file, and quoted before you commit.',
-    cta: 'Request custom labels',
+    cta: 'Start a custom request',
     image: resolveImageSrc(
       '/media/custom-laboratory-labels/Die-Cut-Labels.jpg',
       'https://cdn.labtag.com/wp-content/uploads/2019/12/Die-Cut-Labels.jpg',
@@ -280,8 +299,8 @@ const RESOURCE_CARDS = [
   {
     to: RESELLER_PATH,
     title: 'Become a reseller',
-    body: 'Join the distributor network. Pricing, training, and on time delivery from a dedicated team.',
-    cta: 'Become a reseller',
+    body: 'Join the distributor network for pricing, training, and marketing support.',
+    cta: 'Apply to resell',
     image: resolveImageSrc(
       '/media/reseller/BecomeResellerImg.svg',
       'https://cdn.labtag.com/wp-content/uploads/BecomeResellerImg.svg',
@@ -298,7 +317,7 @@ export function ContactPage() {
 
   useEffect(() => {
     const previous = document.title
-    document.title = 'Contact Us | How can we help you?'
+    document.title = 'Contact Us | Talk with a labeling specialist'
     return () => {
       document.title = previous
     }
@@ -356,11 +375,34 @@ export function ContactPage() {
     <article className="support-page" ref={rootRef}>
       <header className="support-hero" data-motion-hero>
         <h1 data-motion="hero" style={motionIndex(0)}>
-          How can we help you?
+          Talk with a labeling specialist
         </h1>
         <p data-motion="hero" style={motionIndex(1)}>
-          Browse FAQs or send a message below.
+          Scientists on our team help you match a material, request a sample kit, or check an order.
         </p>
+        <p className="support-hero-proof" data-motion="hero" style={motionIndex(2)}>
+          Sample kits process within 24 hours.
+        </p>
+        <nav className="support-topics" aria-label="Popular topics" data-motion="hero" style={motionIndex(3)}>
+          {FAQ_CATEGORIES.map((category) => (
+            <a
+              key={category.id}
+              href={`#faq-${category.id}`}
+              className={openId === category.id ? 'is-current' : undefined}
+              onClick={(event) => {
+                event.preventDefault()
+                setOpenId(category.id)
+                document.getElementById(`faq-${category.id}`)?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                })
+              }}
+            >
+              <category.Icon size={18} weight="duotone" aria-hidden="true" />
+              {category.title}
+            </a>
+          ))}
+        </nav>
       </header>
 
       <div className="support-body">
@@ -371,7 +413,10 @@ export function ContactPage() {
           data-motion-section
         >
           <h2 id="support-write-heading">Send a message</h2>
-          <p>Tell us the protocol, container, and what you need. An expert will follow up.</p>
+          <p>
+            Share the temperature, container, chemicals, and printer. A specialist will reply with a
+            match or a next step.
+          </p>
           <aside className="samples-form" aria-label="Contact form">
             <div id={FORM_TARGET} className="request-form-embed" />
             <p className="request-form-fallback">
@@ -385,11 +430,12 @@ export function ContactPage() {
         </section>
 
         <section className="support-faqs" aria-labelledby="support-faq-heading" data-motion-section>
-          <h2 id="support-faq-heading">FAQs</h2>
+          <h2 id="support-faq-heading">Common questions</h2>
           <ul className="support-cat-list">
             {FAQ_CATEGORIES.map((category) => (
               <li key={category.id}>
                 <details
+                  id={`faq-${category.id}`}
                   className="support-cat"
                   open={openId === category.id}
                   onToggle={(event) => {
@@ -415,6 +461,11 @@ export function ContactPage() {
                         </summary>
                         <div className="faq-item-answer">
                           <p>{item.answer}</p>
+                          {item.cta ? (
+                            <p className="faq-item-cta">
+                              <FaqCtaLink cta={item.cta} />
+                            </p>
+                          ) : null}
                         </div>
                       </details>
                     ))}
@@ -427,16 +478,18 @@ export function ContactPage() {
 
         <aside className="support-aside" data-motion-section>
           <div className="support-card">
-            <p className="support-call">
-              Call support:{' '}
-              <a href={PHONE_TOLL_FREE.href}>{PHONE_TOLL_FREE.label}</a>
-            </p>
+            <p className="support-call">Talk with a specialist</p>
+            <a className="support-action" href={PHONE_TOLL_FREE.href}>
+              <Phone size={18} weight="duotone" aria-hidden="true" />
+              {PHONE_TOLL_FREE.label}
+            </a>
             <p className="support-call-sub">
-              International: <a href={PHONE_INTL.href}>{PHONE_INTL.label}</a>
+              Outside North America{' '}
+              <a href={PHONE_INTL.href}>{PHONE_INTL.label}</a>
             </p>
             <a className="support-action" href="#contact-request">
               <EnvelopeSimple size={18} weight="duotone" aria-hidden="true" />
-              Email us
+              Send a message
             </a>
             <p className="support-po">
               Purchase orders:{' '}
@@ -452,13 +505,14 @@ export function ContactPage() {
                   <strong>{office.region}</strong>
                   <span>{office.name}</span>
                   <span>{office.address}</span>
+                  <a href={office.phone.href}>{office.phone.label}</a>
                 </li>
               ))}
             </ul>
           </div>
 
-          <nav className="support-links" aria-label="Helpful links">
-            <h2>Helpful links</h2>
+          <nav className="support-links" aria-label="Quick links">
+            <h2>Quick links</h2>
             <ul>
               {HELPFUL_LINKS.map((link) => (
                 <li key={link.label}>
@@ -477,7 +531,7 @@ export function ContactPage() {
       </div>
 
       <section className="support-resources" aria-labelledby="support-resources-heading" data-motion-section>
-        <h2 id="support-resources-heading">Other resources</h2>
+        <h2 id="support-resources-heading">More ways to get started</h2>
         <ul>
           {RESOURCE_CARDS.map((card, index) => (
             <li key={card.to} data-motion="card" style={motionIndex(index)}>
