@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Info } from '@phosphor-icons/react'
 import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
 import { LABTAG_SAMPLE_URL } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
@@ -76,11 +77,20 @@ export function SamplesPage() {
             Let’s make sure you get the right labels and tapes for your application. Your
             satisfaction is guaranteed even before you make a purchase.
           </p>
+          <p className="samples-note" data-motion="hero" style={motionIndex(2)}>
+            <span className="samples-note-icon" aria-hidden="true">
+              <Info size={18} weight="regular" />
+            </span>
+            We can only send free samples of labels and tapes. We do not offer free samples of
+            markers, ribbons, and hardware. Samples will only be sent to verified business addresses.
+            Shipping is free only for the contiguous United States and Canada, and for countries in
+            the European Union. We reserve the right to limit quantities of samples within reason.
+          </p>
           <ul className="samples-promises">
             {PROMISES.map((promise, index) => {
               const icon = resolveImageSrc(promise.icon, promise.iconFallback)
               return (
-                <li key={promise.title} style={motionIndex(index + 2)}>
+                <li key={promise.title} style={motionIndex(index + 3)}>
                   <span className="samples-promise-icon">
                     <img src={icon.primary} alt="" width={72} height={72} />
                   </span>
@@ -123,13 +133,6 @@ export function SamplesPage() {
             <figcaption>Verified LabTAG customer</figcaption>
           </figure>
         </section>
-
-        <p className="samples-note">
-          We can only send free samples of labels and tapes. We do not offer free samples of
-          markers, ribbons, and hardware. Samples will only be sent to verified business addresses.
-          Shipping is free only for the contiguous United States and Canada, and for countries in
-          the European Union. We reserve the right to limit quantities of samples within reason.
-        </p>
       </div>
     </article>
   )
