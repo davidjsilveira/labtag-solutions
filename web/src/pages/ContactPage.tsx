@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   ArrowRight,
   Buildings,
@@ -28,6 +29,7 @@ import {
 } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
+import { scrollToAnchor } from '@/scrollToAnchor'
 
 const PORTAL_ID = '4079112'
 const FORM_ID = 'e6c2ba17-d4d2-4840-b8ce-49fdae54cad6'
@@ -309,11 +311,28 @@ const RESOURCE_CARDS = [
   },
 ]
 
+function topicIdFromHash(hash: string) {
+  const id = decodeURIComponent(hash.replace(/^#/, ''))
+  if (!id.startsWith('faq-')) return null
+  const topic = id.slice(4)
+  return FAQ_CATEGORIES.some((category) => category.id === topic) ? topic : null
+}
+
 export function ContactPage() {
   const rootRef = useRef<HTMLElement>(null)
   const mounted = useRef(true)
-  const [openId, setOpenId] = useState<string | null>(FAQ_CATEGORIES[0]?.id ?? null)
+  const { hash } = useLocation()
+  const [openId, setOpenId] = useState<string | null>(
+    () => topicIdFromHash(window.location.hash) ?? FAQ_CATEGORIES[0]?.id ?? null,
+  )
   usePageMotion(rootRef)
+
+  const openTopic = (topic: string, behavior: ScrollBehavior = 'smooth') => {
+    flushSync(() => {
+      setOpenId(topic)
+    })
+    scrollToAnchor(`faq-${topic}`, behavior)
+  }
 
   useEffect(() => {
     const previous = document.title
@@ -322,6 +341,12 @@ export function ContactPage() {
       document.title = previous
     }
   }, [])
+
+  useLayoutEffect(() => {
+    const topic = topicIdFromHash(hash)
+    if (!topic) return
+    openTopic(topic, 'auto')
+  }, [hash])
 
   useEffect(() => {
     const schema = {
@@ -391,11 +416,8 @@ export function ContactPage() {
               className={openId === category.id ? 'is-current' : undefined}
               onClick={(event) => {
                 event.preventDefault()
-                setOpenId(category.id)
-                document.getElementById(`faq-${category.id}`)?.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start',
-                })
+                openTopic(category.id)
+                window.history.replaceState(null, '', `#faq-${category.id}`)
               }}
             >
               <category.Icon size={18} weight="duotone" aria-hidden="true" />
