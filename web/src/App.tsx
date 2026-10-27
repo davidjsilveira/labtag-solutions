@@ -1,4 +1,5 @@
 import { Link, Navigate, NavLink, Route, Routes, useParams } from 'react-router-dom'
+import { SiteFooter } from '@/components/SiteFooter'
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { getPage } from '@/content/loadPages'
@@ -86,6 +87,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <SiteFooter />
     </div>
   )
 }

@@ -16,6 +16,19 @@ const AWARD = resolveImageSrc(
 const MAP = resolveImageSrc('/media/about/world-dots.svg')
 const ISO_SEAL = resolveImageSrc('/media/about/iso-certified-lockup.svg')
 
+const BREAK_PHOTOS = [
+  {
+    src: '/media/cryogenic-labels/Cryogenic-Labels-5.jpg',
+    alt: 'A CryoSTUCK label on a frozen vial over dry ice',
+    caption: 'Identification that holds on a frozen vial',
+  },
+  {
+    src: '/media/pcr-labels-and-tags/PCRJTT-269-use2.jpg',
+    alt: 'Labeled PCR tubes in a rack during a lab workflow',
+    caption: 'Readable IDs through a lab workflow',
+  },
+]
+
 const BENEFITS = [
   {
     title: 'Holds in LN2 and steam',
@@ -238,6 +251,25 @@ export function AboutPage() {
           </li>
         ))}
       </ul>
+
+      <div className="about-photo-row" data-motion-section>
+        {BREAK_PHOTOS.map((photo, index) => {
+          const src = resolveImageSrc(photo.src)
+          return (
+            <figure key={photo.src}>
+              <img
+                src={src.primary}
+                alt={photo.alt}
+                data-motion="photo"
+                style={motionIndex(index)}
+              />
+              <figcaption data-motion="up" style={motionIndex(index + 2)}>
+                {photo.caption}
+              </figcaption>
+            </figure>
+          )
+        })}
+      </div>
 
       <section className="about-pair" aria-label="LabTAG tagline">
         <div className="about-tagline">
