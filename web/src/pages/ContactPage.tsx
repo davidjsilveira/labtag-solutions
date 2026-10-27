@@ -516,13 +516,9 @@ export function ContactPage() {
             <ul>
               {HELPFUL_LINKS.map((link) => (
                 <li key={link.label}>
-                  {link.to ? (
-                    <Link to={link.to}>{link.label}</Link>
-                  ) : (
-                    <a href={link.href} target="_blank" rel="noreferrer">
-                      {link.label}
-                    </a>
-                  )}
+                  <a href={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
