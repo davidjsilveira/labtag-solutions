@@ -4684,6 +4684,334 @@ tr:last-child td {
   line-height: 1.35;
 }
 
+@property --milestone-progress {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+.about-milestones {
+  --milestone-band: var(--labtag-pure-white);
+  display: grid;
+  gap: var(--space-md);
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 5rem var(--about-gutter);
+  background: var(--milestone-band);
+  scroll-margin-top: var(--anchor-scroll-margin);
+}
+
+.about-milestones h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.about-milestones #about-milestones-hint {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+  line-height: 1.5rem;
+}
+
+.about-timeline {
+  --milestone-progress: 1;
+  list-style: none;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  column-gap: var(--space-2xs);
+  row-gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  transition: --milestone-progress 500ms var(--about-ease);
+}
+
+.about-timeline > li {
+  display: contents;
+}
+
+.about-timeline::before,
+.about-timeline::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: calc(100% / 18);
+  right: calc(100% / 18);
+  top: 0.75rem;
+  height: 2px;
+  pointer-events: none;
+}
+
+.about-timeline::before {
+  background: var(--color-rule);
+}
+
+.about-timeline::after {
+  background: var(--labtag-secondary-main);
+  transform: scaleX(var(--milestone-progress));
+  transform-origin: left center;
+}
+
+.about-timeline-chip {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-row: 1;
+  justify-items: center;
+  gap: var(--space-2xs);
+  padding: 0 0 var(--space-xs);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color 300ms var(--about-ease);
+}
+
+.about-timeline-chip:active {
+  transform: scale(0.98);
+}
+
+.about-timeline-chip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--color-paper);
+  transform: translate(-50%, 70%) rotate(45deg) scale(0);
+  transform-origin: center;
+  pointer-events: none;
+  transition: transform 500ms var(--about-ease);
+}
+
+.about-timeline input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+}
+
+.about-timeline time {
+  color: var(--color-ink-2);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1.5rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  transition:
+    color 300ms var(--about-ease),
+    background-color 300ms var(--about-ease),
+    box-shadow 300ms var(--about-ease);
+}
+
+.about-timeline-chip:hover time {
+  color: var(--color-ink);
+}
+
+.about-timeline-chip:has(:checked) time {
+  color: var(--labtag-pure-white);
+  background: var(--labtag-secondary-main);
+}
+
+.about-timeline-chip:has(:checked):hover time {
+  background: var(--labtag-secondary-dark);
+}
+
+.about-timeline-chip:has(:checked):focus-within time {
+  box-shadow:
+    0 0 0 2px var(--milestone-band),
+    0 0 0 4px var(--color-focus);
+}
+
+.about-timeline-mark {
+  position: relative;
+  z-index: 1;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--labtag-secondary-main);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--milestone-band);
+  transition:
+    background-color 300ms var(--about-ease),
+    transform 500ms var(--about-ease);
+}
+
+.about-timeline li:has(:checked) ~ li .about-timeline-mark {
+  background: var(--color-rule);
+}
+
+.about-timeline-chip:has(:checked) .about-timeline-mark {
+  background: var(--labtag-secondary-main);
+  transform: scale(1.5);
+  box-shadow:
+    0 0 0 3px var(--milestone-band),
+    0 0 0 5px var(--labtag-secondary-main);
+}
+
+.about-timeline-chip:has(:checked)::after {
+  transform: translate(-50%, 70%) rotate(45deg) scale(1);
+}
+
+.about-timeline-card {
+  display: none;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: var(--space-md);
+  align-items: start;
+  padding: var(--space-md);
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-rest);
+}
+
+.about-timeline li:has(:checked) .about-timeline-card {
+  display: grid;
+}
+
+.about-timeline-card-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--labtag-pure-white);
+  background: var(--labtag-secondary-main);
+  border-radius: 50%;
+}
+
+.about-timeline-card-copy {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.about-timeline-card-year {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.about-timeline-events {
+  list-style: none;
+  display: grid;
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  max-width: 36rem;
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+  line-height: 1.5rem;
+}
+
+.about-milestones:has(input[value='1999']:checked) .about-timeline {
+  --milestone-progress: 0;
+}
+
+.about-milestones:has(input[value='2001']:checked) .about-timeline {
+  --milestone-progress: 0.125;
+}
+
+.about-milestones:has(input[value='2008']:checked) .about-timeline {
+  --milestone-progress: 0.25;
+}
+
+.about-milestones:has(input[value='2013']:checked) .about-timeline {
+  --milestone-progress: 0.375;
+}
+
+.about-milestones:has(input[value='2017']:checked) .about-timeline {
+  --milestone-progress: 0.5;
+}
+
+.about-milestones:has(input[value='2020']:checked) .about-timeline {
+  --milestone-progress: 0.625;
+}
+
+.about-milestones:has(input[value='2021']:checked) .about-timeline {
+  --milestone-progress: 0.75;
+}
+
+.about-milestones:has(input[value='2022']:checked) .about-timeline {
+  --milestone-progress: 0.875;
+}
+
+.about-milestones:has(input[value='2026']:checked) .about-timeline {
+  --milestone-progress: 1;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(1):hover) .about-timeline {
+  --milestone-progress: 0;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(2):hover) .about-timeline {
+  --milestone-progress: 0.125;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(3):hover) .about-timeline {
+  --milestone-progress: 0.25;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(4):hover) .about-timeline {
+  --milestone-progress: 0.375;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(5):hover) .about-timeline {
+  --milestone-progress: 0.5;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(6):hover) .about-timeline {
+  --milestone-progress: 0.625;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(7):hover) .about-timeline {
+  --milestone-progress: 0.75;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(8):hover) .about-timeline {
+  --milestone-progress: 0.875;
+}
+
+.about-milestones:has(.about-timeline > li:nth-child(9):hover) .about-timeline {
+  --milestone-progress: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-timeline,
+  .about-timeline time,
+  .about-timeline-mark,
+  .about-timeline-chip,
+  .about-timeline-chip::after {
+    transition: none;
+  }
+
+  .about-timeline-chip:active {
+    transform: none;
+  }
+}
+
 .about-kicker {
   margin: 0;
   color: var(--color-ink-2);
@@ -5301,6 +5629,16 @@ tr:last-child td {
 }
 
 @media (max-width: 840px) {
+  .about-timeline {
+    grid-template-columns: repeat(9, minmax(3.25rem, 1fr));
+    overflow-x: auto;
+  }
+
+  .about-timeline time {
+    font-size: var(--text-sm);
+    line-height: 1.25rem;
+  }
+
   .about-stats,
   .about-iso-certs {
     grid-template-columns: repeat(2, minmax(0, 1fr));

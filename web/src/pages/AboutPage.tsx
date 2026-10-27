@@ -1,4 +1,15 @@
 import { useEffect, useRef } from 'react'
+import {
+  Broadcast,
+  BuildingOffice,
+  Buildings,
+  Cube,
+  GearSix,
+  Globe,
+  Printer,
+  SealCheck,
+  Warehouse,
+} from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 import { TaglineReveal } from '@/components/TaglineReveal'
 import { CONTACT_PATH, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
@@ -133,8 +144,197 @@ const STATS = [
   { value: '25+', label: 'Years of specialty labels', count: 25, prefix: '', suffix: '+' },
   { value: '4', label: 'Offices near your labs', count: 4, prefix: '', suffix: '' },
   { value: 'R&D', label: 'In house product team' },
-  { value: 'ISO', label: 'Certified quality' }
+  { value: 'ISO', label: 'Certified quality' },
 ]
+
+const MILESTONES = [
+  { year: '1999', icon: Buildings, events: ['Founded GA International'] },
+  { year: '2001', icon: Globe, events: ['First GA International website'] },
+  { year: '2008', icon: Printer, events: ['Purchased the first press'] },
+  {
+    year: '2013',
+    icon: Warehouse,
+    events: ['Launched LabTAG.com', 'Opened a warehouse in the Netherlands'],
+  },
+  {
+    year: '2017',
+    icon: SealCheck,
+    events: ['Obtained ISO 9001:2015 certification', 'Purchased a digital press'],
+  },
+  { year: '2020', icon: Cube, events: ['GMerix was created'] },
+  {
+    year: '2021',
+    icon: Broadcast,
+    events: [
+      'Purchased an RFID inserter',
+      'Opened a warehouse in the US',
+      'Construction of a new building',
+    ],
+  },
+  {
+    year: '2022',
+    icon: GearSix,
+    events: [
+      'Implemented Epicor ERP',
+      'Purchased three flexographic presses',
+      'Purchased two coating lines',
+    ],
+  },
+  { year: '2026', icon: BuildingOffice, events: ['New building expansion'] },
+]
+
+function AboutMilestones() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const lastYear = MILESTONES[MILESTONES.length - 1]?.year
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const ol = section.querySelector<HTMLElement>('.about-timeline')
+    const inputs = [
+      ...section.querySelectorAll<HTMLInputElement>('input[name="about-milestone"]'),
+    ]
+    if (!ol || inputs.length < 2) return
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const syncProgress = () => {
+      const marks = [...ol.querySelectorAll<HTMLElement>('.about-timeline-mark')]
+      const checkedLi = ol.querySelector<HTMLElement>(':scope > li:has(input:checked)')
+      const mark = checkedLi?.querySelector<HTMLElement>('.about-timeline-mark')
+      const first = marks[0]?.getBoundingClientRect()
+      const last = marks[marks.length - 1]?.getBoundingClientRect()
+      const current = mark?.getBoundingClientRect()
+      if (!first || !last || !current) return
+      const horizontal = Math.abs(last.left - first.left) >= Math.abs(last.top - first.top)
+      const span = horizontal ? last.left - first.left : last.top - first.top
+      const delta = horizontal ? current.left - first.left : current.top - first.top
+      const progress = span <= 0 ? 1 : Math.max(0, Math.min(1, delta / span))
+      ol.style.setProperty('--milestone-progress', progress.toFixed(4))
+    }
+
+    let index = 0
+    let timer = 0
+    let pinned = false
+    let started = false
+    let hovering = false
+
+    const clear = () => window.clearTimeout(timer)
+
+    const pin = () => {
+      pinned = true
+      clear()
+    }
+
+    const step = () => {
+      if (pinned) return
+      const input = inputs[index]
+      if (input) input.checked = true
+      syncProgress()
+      if (index >= inputs.length - 1) return
+      index += 1
+      if (!hovering) timer = window.setTimeout(step, 750)
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (started || pinned || reduce) return
+        if (!entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.3)) return
+        started = true
+        index = 0
+        step()
+      },
+      { threshold: [0, 0.3] },
+    )
+    io.observe(section)
+
+    const onEnter = () => {
+      hovering = true
+      clear()
+      syncProgress()
+    }
+    const onLeave = () => {
+      hovering = false
+      syncProgress()
+      if (pinned || !started || reduce || index >= inputs.length) return
+      timer = window.setTimeout(step, 750)
+    }
+
+    section.addEventListener('pointerdown', pin)
+    section.addEventListener('focusin', pin)
+    section.addEventListener('pointerenter', onEnter)
+    section.addEventListener('pointerleave', onLeave)
+    section.addEventListener('change', syncProgress)
+    ol.addEventListener('pointerover', syncProgress)
+    window.addEventListener('resize', syncProgress)
+    syncProgress()
+
+    return () => {
+      io.disconnect()
+      clear()
+      section.removeEventListener('pointerdown', pin)
+      section.removeEventListener('focusin', pin)
+      section.removeEventListener('pointerenter', onEnter)
+      section.removeEventListener('pointerleave', onLeave)
+      section.removeEventListener('change', syncProgress)
+      ol.removeEventListener('pointerover', syncProgress)
+      window.removeEventListener('resize', syncProgress)
+    }
+  }, [])
+
+  return (
+    <section
+      ref={sectionRef}
+      className="about-milestones"
+      aria-labelledby="about-milestones-heading"
+      data-motion-section
+    >
+      <h2 id="about-milestones-heading" data-motion="up" style={motionIndex(0)}>
+        Key milestones
+      </h2>
+      <p id="about-milestones-hint">Select a year to walk the timeline.</p>
+      <ol
+        className="about-timeline"
+        role="radiogroup"
+        aria-labelledby="about-milestones-heading"
+        aria-describedby="about-milestones-hint"
+      >
+        {MILESTONES.map((item) => {
+          const Icon = item.icon
+          return (
+            <li key={item.year}>
+              <label className="about-timeline-chip">
+                <input
+                  type="radio"
+                  name="about-milestone"
+                  value={item.year}
+                  defaultChecked={item.year === lastYear}
+                  aria-label={`${item.year}. ${item.events.join('. ')}`}
+                />
+                <span className="about-timeline-mark" aria-hidden="true" />
+                <time dateTime={item.year}>{item.year}</time>
+              </label>
+              <div className="about-timeline-card" aria-hidden="true">
+                <span className="about-timeline-card-icon">
+                  <Icon size={28} weight="fill" />
+                </span>
+                <div className="about-timeline-card-copy">
+                  <p className="about-timeline-card-year">{item.year}</p>
+                  <ul className="about-timeline-events">
+                    {item.events.map((event) => (
+                      <li key={event}>{event}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </li>
+          )
+        })}
+      </ol>
+    </section>
+  )
+}
 
 /** Equirectangular project onto the dotted-map viewBox, with a tiny nudge so nearby offices stay distinct. */
 function officePin(lat: number, lng: number, nudgeX = 0, nudgeY = 0) {
@@ -261,6 +461,8 @@ export function AboutPage() {
           </article>
         ))}
       </section>
+
+      <AboutMilestones />
 
       <div className="about-photo-row" data-motion-section>
         {BREAK_PHOTOS.map((photo, index) => {
