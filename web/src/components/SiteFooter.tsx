@@ -259,7 +259,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer-inner">
         <Link className="logo" to="/">
-          LabTAG <span>Solutions</span>
+          LabTAG
         </Link>
 
         <div className="site-footer-mega">

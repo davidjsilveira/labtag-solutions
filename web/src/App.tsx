@@ -1,5 +1,6 @@
-import { Link, Navigate, NavLink, Route, Routes, useParams } from 'react-router-dom'
+import { Navigate, Route, Routes, useParams } from 'react-router-dom'
 import { SiteFooter } from '@/components/SiteFooter'
+import { SiteNav } from '@/components/SiteNav'
 import { ScrollToTop } from '@/ScrollToTop'
 import { ScrollToTopButton } from '@/ScrollToTopButton'
 import { getPage } from '@/content/loadPages'
@@ -54,30 +55,7 @@ export default function App() {
       <ScrollToTop />
       <ScrollToTopButton />
       <header className="site-header">
-        <Link className="logo" to="/">
-          LabTAG <span>Solutions</span>
-        </Link>
-        <nav className="site-nav" aria-label="Site">
-          <NavLink to={ABOUT_PATH} end>
-            About Us
-          </NavLink>
-          <NavLink to={WHY_CHOOSE_PATH}>Why Choose LabTAG</NavLink>
-          <NavLink to={CUSTOM_LABELS_PATH} end>
-            Custom Labels
-          </NavLink>
-          <NavLink to={SAMPLE_PATH} end>
-            Request Free Sample
-          </NavLink>
-          <NavLink to={QUOTE_PATH} end>
-            Request a Quote
-          </NavLink>
-          <NavLink to={RESELLER_PATH} end>
-            Become a Reseller
-          </NavLink>
-          <NavLink to={CONTACT_PATH} end>
-            Contact Us
-          </NavLink>
-        </nav>
+        <SiteNav />
       </header>
       <main id="content" tabIndex={-1}>
         <Routes>

@@ -325,11 +325,15 @@ export function ContactPage() {
   const [openId, setOpenId] = useState<string | null>(
     () => topicIdFromHash(window.location.hash) ?? FAQ_CATEGORIES[0]?.id ?? null,
   )
+  const [pickedId, setPickedId] = useState<string | null>(() =>
+    topicIdFromHash(window.location.hash),
+  )
   usePageMotion(rootRef)
 
   const openTopic = (topic: string, behavior: ScrollBehavior = 'smooth') => {
     flushSync(() => {
       setOpenId(topic)
+      setPickedId(topic)
     })
     scrollToAnchor(`faq-${topic}`, behavior)
   }
@@ -417,7 +421,7 @@ export function ContactPage() {
             <a
               key={category.id}
               href={`#faq-${category.id}`}
-              className={openId === category.id ? 'is-current' : undefined}
+              className={pickedId === category.id ? 'is-current' : undefined}
               onClick={(event) => {
                 event.preventDefault()
                 openTopic(category.id)
@@ -523,8 +527,7 @@ export function ContactPage() {
             </p>
           </div>
 
-          <div className="support-links">
-            <h2>Offices</h2>
+          <div className="support-links" role="region" aria-label="Offices">
             <ul className="support-offices">
               {OFFICES.map((office) => (
                 <li key={office.region}>
@@ -538,7 +541,6 @@ export function ContactPage() {
           </div>
 
           <nav className="support-links" aria-label="Quick links">
-            <h2>Quick links</h2>
             <ul>
               {HELPFUL_LINKS.map((link) => (
                 <li key={link.label}>
