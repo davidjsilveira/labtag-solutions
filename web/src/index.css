@@ -2188,8 +2188,13 @@ main {
   box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
 }
 
-/* Dark quick-menu band flush under the hero (full-bleed bg; content aligns with main).
- * Sticky under the site header; tall menus (3+ jump rows) slide away on scroll-down. */
+/* Jump menu continues the hero band (same surface). Sticky under the site header;
+ * tall menus (3+ jump rows) slide away on scroll-down. */
+.solution-page:has(.solution-quick-menu) .page-hero {
+  padding-bottom: var(--space-md);
+  box-shadow: none;
+}
+
 .solution-quick-menu {
   --quick-menu-top: 3.5rem;
   position: sticky;
@@ -2203,11 +2208,11 @@ main {
   gap: 0.15rem var(--space-md);
   width: auto;
   margin: 0;
-  padding: var(--space-sm) 0;
+  padding: var(--space-sm) 0 var(--space-md);
   text-align: left;
-  background: var(--labtag-ga-black);
-  color: var(--labtag-pure-white);
-  box-shadow: 0 14px 28px -8px color-mix(in srgb, var(--labtag-ga-black) 28%, transparent);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
   transition: transform var(--dur-short) var(--ease-out);
   will-change: transform;
 }
@@ -2224,13 +2229,13 @@ main {
   justify-self: start;
   align-self: center;
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--text-xs);
   font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   line-height: 1.25;
   text-align: left;
-  color: color-mix(in srgb, var(--labtag-pure-white) 42%, transparent);
+  color: var(--color-ink-2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2876,10 +2881,10 @@ a.bullet-chip:hover {
 
 .solution-quick-menu .feature-jump-label,
 .solution-quick-menu .block .feature-jump-label {
-  font-size: 0.625rem;
+  font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: color-mix(in srgb, var(--labtag-pure-white) 72%, transparent);
+  color: var(--color-ink-2);
 }
 
 .feature-jump {
@@ -2905,10 +2910,10 @@ a.bullet-chip:hover {
 }
 
 .solution-quick-menu .feature-jump-link {
-  color: var(--labtag-pure-white);
+  color: var(--color-ink);
   transition:
-    color var(--dur-short) var(--ease-out),
-    opacity var(--dur-short) var(--ease-out);
+    color 300ms var(--ease-out),
+    opacity 300ms var(--ease-out);
 }
 
 /* Dim non-selected jump links while one section is active.
@@ -2921,7 +2926,7 @@ html[data-active-jump] .solution-quick-menu .feature-jump-sep {
 
 html[data-active-jump] .solution-quick-menu .feature-jump-link.is-jump-active,
 .solution-quick-menu .feature-jump-link.is-jump-active {
-  color: var(--labtag-pure-white);
+  color: var(--color-ink);
   opacity: 1;
   font-weight: 700;
   text-decoration: underline;
@@ -2936,7 +2941,7 @@ html[data-active-jump] .solution-quick-menu .feature-jump-link.is-jump-active,
 }
 
 .solution-quick-menu .feature-jump-link:hover {
-  color: var(--labtag-secondary-light);
+  color: var(--color-link);
   opacity: 1;
 }
 
@@ -2949,7 +2954,7 @@ html[data-active-jump] .solution-quick-menu .feature-jump-link.is-jump-active,
 
 .solution-quick-menu .feature-jump-text,
 .solution-quick-menu .feature-jump-text:hover {
-  color: color-mix(in srgb, var(--labtag-pure-white) 82%, transparent);
+  color: var(--color-ink);
 }
 
 .feature-jump-item {
@@ -2966,7 +2971,7 @@ html[data-active-jump] .solution-quick-menu .feature-jump-link.is-jump-active,
 }
 
 .solution-quick-menu .feature-jump-sep {
-  color: color-mix(in srgb, var(--labtag-pure-white) 35%, transparent);
+  color: var(--color-ink-2);
 }
 
 @media (max-width: 720px) {
@@ -5539,6 +5544,10 @@ tr:last-child td {
   align-items: center;
 }
 
+.about-iso-body:not(:has(.about-iso-brand)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .about-iso-brand {
   display: grid;
   justify-items: start;
@@ -5727,20 +5736,14 @@ tr:last-child td {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: contain;
   border-radius: 0;
-}
-
-.about-map.is-photo img {
-  mix-blend-mode: lighten;
 }
 
 .about-map.is-photo .about-pin {
   width: 2.25rem;
   height: 2.9rem;
-}
-
-.about-map.is-photo .about-pin-mark {
-  opacity: 0;
 }
 
 .about-pins {

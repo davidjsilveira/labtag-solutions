@@ -11,21 +11,17 @@ import {
   Warehouse,
 } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
-import { TaglineReveal } from '@/components/TaglineReveal'
+import { WhyReasons } from '@/blocks/WhyReasons'
 import { CONTACT_PATH, SAMPLE_PATH, WHY_CHOOSE_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 
-const TEAM = resolveImageSrc(
-  '/media/about/Photo5.png',
-  'https://cdn.labtag.com/wp-content/uploads/Photo5.png',
-)
+const BUILDING = resolveImageSrc('/media/about/ga-international-building.jpg')
 const AWARD = resolveImageSrc(
   '/media/about/EY-2019.jpg',
   'https://cdn.labtag.com/wp-content/uploads/EY_EntrepreneuroftheYear_2019_132-1536x1024.jpg',
 )
-const MAP = resolveImageSrc('/media/about/World-Map-GA-v3.png')
-const ISO_SEAL = resolveImageSrc('/media/about/iso-certified-lockup.svg')
+const MAP = resolveImageSrc('/media/about/world-land.svg')
 
 const BREAK_PHOTOS = [
   {
@@ -37,33 +33,6 @@ const BREAK_PHOTOS = [
     src: '/media/pcr-labels-and-tags/PCRJTT-269-use2.jpg',
     alt: 'Labeled PCR tubes in a rack during a lab workflow',
     caption: 'Readable IDs through a lab workflow',
-  },
-]
-
-const BENEFITS = [
-  {
-    title: 'Holds in LN2 and steam',
-    body: 'Specify the material for −196°C storage, solvents, and autoclave cycles so the identification is still readable when you retrieve the vial.',
-    icon: '/media/about/why/diamond-icon.svg',
-    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/diamond-icon.svg',
-  },
-  {
-    title: 'Scientists pick the material',
-    body: 'M.Sc. and Ph.D. support walks the application with you. You leave with a match, not a catalog dump.',
-    icon: '/media/about/why/scientist-icon.svg',
-    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/scientist-icon.svg',
-  },
-  {
-    title: 'Manufacturing in house',
-    body: 'R&D, coating, and converting run in our own plants, so custom runs and stock labels follow the same quality system.',
-    icon: '/media/about/why/tailor-made-icon.svg',
-    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/tailor-made-icon.svg',
-  },
-  {
-    title: 'Test before you purchase',
-    body: 'Free samples go to verified lab addresses. Confirm adhesion and print in your own freezer first.',
-    icon: '/media/about/why/samples-icon.svg',
-    iconFallback: 'https://cdn.labtag.com/wp-content/uploads/samples-icon.svg',
   },
 ]
 
@@ -84,9 +53,19 @@ const VALUES = [
 
 const FAQS = [
   {
+    question: 'Why not buy cheaper generic cryo labels?',
+    answer:
+      'A generic SKU is built for a datasheet, not your solvent list or freeze thaw cycle. We specify the material for the protocol you run, then send samples so you can prove it on the bench.',
+  },
+  {
+    question: 'Who specifies the material?',
+    answer:
+      'M.Sc. and Ph.D. support walks temperature, container, chemicals, and printer with you. You leave with a match, not a catalog dump.',
+  },
+  {
     question: 'Do you manufacture the labels or resell them?',
     answer:
-      'GA International manufactures LabTAG labels. R&D, converting, and quality control sit in our own facilities.',
+      'GA International manufactures LabTAG labels. R&D, coating, converting, and quality control sit in our own facilities.',
   },
   {
     question: 'Can I get free samples?',
@@ -94,9 +73,14 @@ const FAQS = [
       'Yes. We send free samples of labels and tapes to verified business addresses. Markers, ribbons, and hardware are not included. Shipping is free to the contiguous United States, Canada, and EU countries.',
   },
   {
-    question: 'What temperatures can the labels survive?',
+    question: 'What does the satisfaction guarantee cover?',
     answer:
-      'The cryogenic range starts at −196°C. Other lines cover freezer, fridge, ambient, and autoclave. Tell us the protocol and we will point you to the matching material.',
+      'If the labels are not a match we take them back and help you specify the next material. The goal is a protocol that holds, not a one time shipment.',
+  },
+  {
+    question: 'How fast do orders ship?',
+    answer:
+      'Day and evening crews run fulfillment so standard stock can leave quickly. Custom work is quoted with a date before you commit.',
   },
   {
     question: 'Do you make custom sizes and colors?',
@@ -104,19 +88,19 @@ const FAQS = [
       'Yes. Stock SKUs cover common vials and plates. Custom shapes, colors, and preprinted data are quoted from the same manufacturing line.',
   },
   {
-    question: 'Which ISO systems do you run?',
+    question: 'What does ISO 22301 mean for my supply?',
     answer:
-      'ISO 9001:2015 for quality management and ISO 22301:2012 for business continuity, so supply is planned through disruption.',
+      'ISO 22301:2012 business continuity planning reduces the chance that a disruption stops us from serving your lab. ISO 9001:2015 covers the quality system those products run through.',
+  },
+  {
+    question: 'What temperatures can the labels survive?',
+    answer:
+      'The cryogenic range starts at −196°C. Other lines cover freezer, fridge, ambient, and autoclave. Tell us the protocol and we will point you to the matching material.',
   },
   {
     question: 'Where are you located?',
     answer:
       'Offices in Plattsburgh, Laval, Berlicum, and Brighton, with warehouses placed to reach North American and European labs.',
-  },
-  {
-    question: 'How fast do orders ship?',
-    answer:
-      'Day and evening crews run fulfillment so standard stock can leave quickly. Custom work is quoted with a date before you commit.',
   },
   {
     question: 'Why do you need a business address for samples?',
@@ -142,7 +126,7 @@ const CERTS = [
 
 const STATS = [
   { value: '25+', label: 'Years of specialty labels', count: 25, prefix: '', suffix: '+' },
-  { value: '4', label: 'Offices near your labs', count: 4, prefix: '', suffix: '' },
+  { value: 'In-house', label: 'Manufacturing' },
   { value: 'R&D', label: 'In house product team' },
   { value: 'ISO', label: 'Certified quality' },
 ]
@@ -291,35 +275,44 @@ const OFFICES = [
     region: 'USA',
     name: 'LabTAG Inc.',
     address: '42 Gateway Drive, Suite 400, Plattsburgh, NY 12901, USA',
-    x: 24.4,
-    y: 32.8,
+    x: 32.0,
+    y: 29.15,
   },
   {
     region: 'Canada',
     name: 'GA International Inc.',
     address: '4455 Rue Louis-B.-Mayer, Laval, QC H7P 6B5, Canada',
-    x: 26.6,
-    y: 27.4,
+    x: 31.4,
+    y: 27.85,
   },
   {
     region: 'Netherlands',
     name: 'GA International Inc.',
     address: 'Runweg 28, 5258 BN Berlicum, Netherlands',
-    x: 50.6,
-    y: 28.6,
+    x: 51.29,
+    y: 24.36,
   },
   {
     region: 'UK',
     name: 'TAG Scientific Ltd.',
     address: 'Preston Park House, South Road, Brighton BN1 6SB, UK',
-    x: 47.8,
-    y: 26.8,
+    x: 49.97,
+    y: 24.89,
   },
 ]
 
 export function AboutPage() {
   const rootRef = useRef<HTMLElement>(null)
   usePageMotion(rootRef)
+
+  useEffect(() => {
+    const preload = document.createElement('link')
+    preload.rel = 'preload'
+    preload.as = 'image'
+    preload.href = AWARD.primary
+    document.head.appendChild(preload)
+    return () => preload.remove()
+  }, [])
 
   useEffect(() => {
     const previous = document.title
@@ -382,8 +375,8 @@ export function AboutPage() {
           </p>
         </div>
         <figure className="about-hero-figure" data-motion="photo" style={motionIndex(4)}>
-          <img src={TEAM.primary} alt="The LabTAG team at GA International headquarters" />
-          <figcaption>The LabTAG team at GA International headquarters</figcaption>
+          <img src={BUILDING.primary} alt="GA International building in Laval, Quebec" />
+          <figcaption>GA International in Laval</figcaption>
         </figure>
       </header>
 
@@ -429,55 +422,10 @@ export function AboutPage() {
         })}
       </div>
 
-      <section className="about-pair" aria-label="LabTAG tagline">
-        <div className="about-tagline">
-          <TaglineReveal
-            lines={['Every sample identified.', 'Every freezer, every solvent, every shift.']}
-          />
-        </div>
-        <div className="about-story" data-motion-section>
-          <h2 data-motion="up" style={motionIndex(0)}>
-            Labels fail in the protocol, not on the spec sheet
-          </h2>
-          <p data-motion="up" style={motionIndex(1)}>
-            A vial that loses its identity in LN2, xylene, or steam wastes the run. Since its start,
-            GA International has manufactured cryogenic and chemical resistant labels with R&amp;D and
-            production in house, plus technical support that stays with the application until the
-            label holds.
-          </p>
-        </div>
-      </section>
-
-      <section className="about-benefits" aria-label="Why labs work with LabTAG" data-motion-section>
-        {BENEFITS.map((benefit, index) => {
-          const icon = resolveImageSrc(benefit.icon, benefit.iconFallback)
-          return (
-            <article key={benefit.title} data-motion="up" style={motionIndex(index)}>
-              <span className="about-benefit-icon">
-                <img src={icon.primary} alt="" width={72} height={72} />
-              </span>
-              <div className="about-benefit-copy">
-                <h2>{benefit.title}</h2>
-                <p>{benefit.body}</p>
-              </div>
-            </article>
-          )
-        })}
-      </section>
+      <WhyReasons />
 
       <section className="about-iso" aria-label="Quality certifications" data-motion-section>
         <div className="about-iso-body">
-          <div className="about-iso-brand">
-            <img
-              className="about-iso-seal"
-              src={ISO_SEAL.primary}
-              alt="ISO certified"
-              width={247}
-              height={53}
-              data-motion="pop"
-              style={motionIndex(0)}
-            />
-          </div>
           <div className="about-iso-certs">
             {CERTS.map((cert) => (
               <article key={cert.number}>
@@ -493,12 +441,16 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="about-cinema" aria-label="Recognition and offices" data-motion-section>
+      <section className="about-cinema" aria-label="Recognition and offices">
         <div className="about-award">
-          <figure className="about-award-figure" data-motion="photo" style={motionIndex(0)}>
+          <figure className="about-award-figure">
             <img
               src={AWARD.primary}
               alt="Dr. George Ambartsoumian receiving the EY Entrepreneur Of The Year 2019 Award"
+              width={1536}
+              height={1024}
+              loading="eager"
+              decoding="async"
             />
           </figure>
           <div className="about-award-copy">
@@ -511,7 +463,7 @@ export function AboutPage() {
           </div>
         </div>
 
-        <div className="about-locations">
+        <div className="about-locations" data-motion-section>
           <header className="about-locations-copy">
             <h2>Our offices around the world</h2>
             <p>

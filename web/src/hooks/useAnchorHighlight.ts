@@ -88,7 +88,7 @@ export function useAnchorHighlight(pageKey: string) {
       const escaped = CSS.escape(id)
       style.textContent = `
         html[data-active-jump="${escaped}"] .solution-quick-menu a.feature-jump-link[href="#${escaped}"] {
-          color: var(--labtag-pure-white);
+          color: var(--color-ink);
           opacity: 1;
           font-weight: 700;
           text-decoration: underline;
