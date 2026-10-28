@@ -5467,14 +5467,7 @@ tr:last-child td {
 
 .about-locations-copy {
   display: grid;
-  grid-template-columns: minmax(0, 0.32fr) minmax(0, 0.68fr);
-  gap: var(--space-sm) var(--space-lg);
-  align-items: start;
-}
-
-.about-locations-copy .about-kicker {
-  grid-row: 1 / span 2;
-  color: color-mix(in srgb, var(--labtag-pure-white) 55%, transparent);
+  gap: var(--space-sm);
 }
 
 .about-locations-copy h2 {
@@ -5504,6 +5497,19 @@ tr:last-child td {
   width: 100%;
   height: auto;
   border-radius: 0;
+}
+
+.about-map.is-photo img {
+  mix-blend-mode: lighten;
+}
+
+.about-map.is-photo .about-pin {
+  width: 2.25rem;
+  height: 2.9rem;
+}
+
+.about-map.is-photo .about-pin-mark {
+  opacity: 0;
 }
 
 .about-pins {
@@ -5693,10 +5699,6 @@ tr:last-child td {
 
   .about-hero h1 br {
     display: none;
-  }
-
-  .about-locations-copy .about-kicker {
-    grid-row: auto;
   }
 
   .about-award-copy {

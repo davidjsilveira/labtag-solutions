@@ -24,7 +24,7 @@ const AWARD = resolveImageSrc(
   '/media/about/EY-2019.jpg',
   'https://cdn.labtag.com/wp-content/uploads/EY_EntrepreneuroftheYear_2019_132-1536x1024.jpg',
 )
-const MAP = resolveImageSrc('/media/about/world-dots.svg')
+const MAP = resolveImageSrc('/media/about/World-Map-GA-v3.png')
 const ISO_SEAL = resolveImageSrc('/media/about/iso-certified-lockup.svg')
 
 const BREAK_PHOTOS = [
@@ -286,38 +286,34 @@ function AboutMilestones() {
   )
 }
 
-/** Equirectangular project onto the dotted-map viewBox, with a tiny nudge so nearby offices stay distinct. */
-function officePin(lat: number, lng: number, nudgeX = 0, nudgeY = 0) {
-  return {
-    x: Number((((lng + 180) / 360) * 100 + nudgeX).toFixed(2)),
-    y: Number((((90 - lat) / 180) * 100 + nudgeY).toFixed(2)),
-  }
-}
-
 const OFFICES = [
   {
     region: 'USA',
     name: 'LabTAG Inc.',
     address: '42 Gateway Drive, Suite 400, Plattsburgh, NY 12901, USA',
-    ...officePin(44.699, -73.453, -1.3, 1.0),
+    x: 24.4,
+    y: 32.8,
   },
   {
     region: 'Canada',
     name: 'GA International Inc.',
     address: '4455 Rue Louis-B.-Mayer, Laval, QC H7P 6B5, Canada',
-    ...officePin(45.57, -73.754, 1.3, -1.0),
+    x: 26.6,
+    y: 27.4,
   },
   {
     region: 'Netherlands',
     name: 'GA International Inc.',
     address: 'Runweg 28, 5258 BN Berlicum, Netherlands',
-    ...officePin(51.68, 5.4, 1.0, -0.5),
+    x: 50.6,
+    y: 28.6,
   },
   {
     region: 'UK',
     name: 'TAG Scientific Ltd.',
     address: 'Preston Park House, South Road, Brighton BN1 6SB, UK',
-    ...officePin(50.843, -0.138, -0.5, 0.7),
+    x: 47.8,
+    y: 26.8,
   },
 ]
 
@@ -517,7 +513,6 @@ export function AboutPage() {
 
         <div className="about-locations">
           <header className="about-locations-copy">
-            <p className="about-kicker">Headquarters</p>
             <h2>Our offices around the world</h2>
             <p>
               To support a growing team we moved into a larger facility with modern offices,
@@ -525,7 +520,7 @@ export function AboutPage() {
             </p>
           </header>
           <div className="about-locations-body">
-            <figure className="about-map" aria-label="Map of LabTAG and GA International offices">
+            <figure className="about-map is-photo" aria-label="Map of LabTAG and GA International offices">
               <img src={MAP.primary} alt="" />
               <div className="about-pins" aria-hidden="true">
                 {OFFICES.map((office, index) => (
