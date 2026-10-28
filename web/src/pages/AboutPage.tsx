@@ -197,8 +197,6 @@ function AboutMilestones() {
     ]
     if (!ol || inputs.length < 2) return
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
     const syncProgress = () => {
       const marks = [...ol.querySelectorAll<HTMLElement>('.about-timeline-mark')]
       const checkedLi = ol.querySelector<HTMLElement>(':scope > li:has(input:checked)')
@@ -214,71 +212,12 @@ function AboutMilestones() {
       ol.style.setProperty('--milestone-progress', progress.toFixed(4))
     }
 
-    let index = 0
-    let timer = 0
-    let pinned = false
-    let started = false
-    let hovering = false
-
-    const clear = () => window.clearTimeout(timer)
-
-    const pin = () => {
-      pinned = true
-      clear()
-    }
-
-    const step = () => {
-      if (pinned) return
-      const input = inputs[index]
-      if (input) input.checked = true
-      syncProgress()
-      if (index >= inputs.length - 1) return
-      index += 1
-      if (!hovering) timer = window.setTimeout(step, 750)
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (started || pinned || reduce) return
-        if (!entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.3)) return
-        started = true
-        index = 0
-        step()
-      },
-      { threshold: [0, 0.3] },
-    )
-    io.observe(section)
-
-    const onEnter = () => {
-      hovering = true
-      clear()
-      syncProgress()
-    }
-    const onLeave = () => {
-      hovering = false
-      syncProgress()
-      if (pinned || !started || reduce || index >= inputs.length) return
-      timer = window.setTimeout(step, 750)
-    }
-
-    section.addEventListener('pointerdown', pin)
-    section.addEventListener('focusin', pin)
-    section.addEventListener('pointerenter', onEnter)
-    section.addEventListener('pointerleave', onLeave)
     section.addEventListener('change', syncProgress)
-    ol.addEventListener('pointerover', syncProgress)
     window.addEventListener('resize', syncProgress)
     syncProgress()
 
     return () => {
-      io.disconnect()
-      clear()
-      section.removeEventListener('pointerdown', pin)
-      section.removeEventListener('focusin', pin)
-      section.removeEventListener('pointerenter', onEnter)
-      section.removeEventListener('pointerleave', onLeave)
       section.removeEventListener('change', syncProgress)
-      ol.removeEventListener('pointerover', syncProgress)
       window.removeEventListener('resize', syncProgress)
     }
   }, [])
@@ -290,33 +229,13 @@ function AboutMilestones() {
       aria-labelledby="about-milestones-heading"
       data-motion-section
     >
-      <h2 id="about-milestones-heading" data-motion="up" style={motionIndex(0)}>
-        Key milestones
-      </h2>
-      <p id="about-milestones-hint">Select a year to walk the timeline.</p>
       <div className="about-timeline-split">
-        <ol
-          className="about-timeline"
-          role="radiogroup"
-          aria-labelledby="about-milestones-heading"
-          aria-describedby="about-milestones-hint"
-        >
-          {MILESTONES.map((item) => (
-            <li key={item.year}>
-              <label className="about-timeline-chip">
-                <input
-                  type="radio"
-                  name="about-milestone"
-                  value={item.year}
-                  defaultChecked={item.year === lastYear}
-                  aria-label={`${item.year}. ${item.events.join('. ')}`}
-                />
-                <span className="about-timeline-mark" aria-hidden="true" />
-                <time dateTime={item.year}>{item.year}</time>
-              </label>
-            </li>
-          ))}
-        </ol>
+        <div className="about-timeline-intro">
+          <h2 id="about-milestones-heading" data-motion="up" style={motionIndex(0)}>
+            Key milestones
+          </h2>
+          <p id="about-milestones-hint">Select a year to walk the timeline.</p>
+        </div>
         <div className="about-timeline-stage">
           {MILESTONES.map((item) => {
             const Icon = item.icon
@@ -330,19 +249,39 @@ function AboutMilestones() {
                 <span className="about-timeline-card-icon">
                   <Icon size={28} weight="fill" />
                 </span>
-                <div className="about-timeline-card-copy">
-                  <p className="about-timeline-card-year">{item.year}</p>
-                  <ul className="about-timeline-events">
-                    {item.events.map((event) => (
-                      <li key={event}>{event}</li>
-                    ))}
-                  </ul>
-                </div>
+                <p className="about-timeline-card-year">{item.year}</p>
+                <ul className="about-timeline-events">
+                  {item.events.map((event) => (
+                    <li key={event}>{event}</li>
+                  ))}
+                </ul>
               </div>
             )
           })}
         </div>
       </div>
+      <ol
+        className="about-timeline"
+        role="radiogroup"
+        aria-labelledby="about-milestones-heading"
+        aria-describedby="about-milestones-hint"
+      >
+        {MILESTONES.map((item) => (
+          <li key={item.year}>
+            <label className="about-timeline-chip">
+              <input
+                type="radio"
+                name="about-milestone"
+                value={item.year}
+                defaultChecked={item.year === lastYear}
+                aria-label={`${item.year}. ${item.events.join('. ')}`}
+              />
+              <span className="about-timeline-mark" aria-hidden="true" />
+              <time dateTime={item.year}>{item.year}</time>
+            </label>
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }

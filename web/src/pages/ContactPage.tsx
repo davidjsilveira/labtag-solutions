@@ -399,15 +399,19 @@ export function ContactPage() {
   return (
     <article className="support-page" ref={rootRef}>
       <header className="support-hero" data-motion-hero>
-        <h1 data-motion="hero" style={motionIndex(0)}>
-          Talk with a labeling specialist
-        </h1>
-        <p data-motion="hero" style={motionIndex(1)}>
-          Scientists on our team help you match a material, request a sample kit, or check an order.
-        </p>
-        <p className="support-hero-proof" data-motion="hero" style={motionIndex(2)}>
-          Sample kits process within 24 hours.
-        </p>
+        <div className="support-hero-copy">
+          <h1 data-motion="hero" style={motionIndex(0)}>
+            Talk with a
+            <br />
+            labeling specialist
+          </h1>
+          <p data-motion="hero" style={motionIndex(1)}>
+            Scientists on our team help you match a material, request a sample kit, or check an order.
+          </p>
+          <p className="support-hero-proof" data-motion="hero" style={motionIndex(2)}>
+            Sample kits process within 24 hours.
+          </p>
+        </div>
         <nav className="support-topics" aria-label="Popular topics" data-motion="hero" style={motionIndex(3)}>
           {FAQ_CATEGORIES.map((category) => (
             <a
