@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Broadcast,
   BuildingOffice,
@@ -275,35 +275,48 @@ const OFFICES = [
     region: 'USA',
     name: 'LabTAG Inc.',
     address: '42 Gateway Drive, Suite 400, Plattsburgh, NY 12901, USA',
-    x: 32.0,
-    y: 29.15,
+    x: 31.45,
+    y: 29.85,
   },
   {
     region: 'Canada',
     name: 'GA International Inc.',
     address: '4455 Rue Louis-B.-Mayer, Laval, QC H7P 6B5, Canada',
-    x: 31.4,
-    y: 27.85,
+    x: 32.35,
+    y: 26.95,
   },
   {
     region: 'Netherlands',
     name: 'GA International Inc.',
     address: 'Runweg 28, 5258 BN Berlicum, Netherlands',
-    x: 51.29,
-    y: 24.36,
+    x: 51.45,
+    y: 24.15,
   },
   {
     region: 'UK',
     name: 'TAG Scientific Ltd.',
     address: 'Preston Park House, South Road, Brighton BN1 6SB, UK',
-    x: 49.97,
-    y: 24.89,
+    x: 49.2,
+    y: 24.7,
   },
 ]
 
+function isOfficePair(node: EventTarget | null) {
+  return (
+    node instanceof Element && Boolean(node.closest('.about-pin, .about-office'))
+  )
+}
+
 export function AboutPage() {
   const rootRef = useRef<HTMLElement>(null)
+  const [hoveredOffice, setHoveredOffice] = useState<string | null>(null)
   usePageMotion(rootRef)
+
+  const hoverOffice = (region: string) => setHoveredOffice(region)
+  const leaveOffice = (event: { relatedTarget: EventTarget | null }) => {
+    if (isOfficePair(event.relatedTarget)) return
+    setHoveredOffice(null)
+  }
 
   useEffect(() => {
     const preload = document.createElement('link')
@@ -463,7 +476,10 @@ export function AboutPage() {
           </div>
         </div>
 
-        <div className="about-locations" data-motion-section>
+        <div
+          className={`about-locations${hoveredOffice ? ' has-hover' : ''}`}
+          data-motion-section
+        >
           <header className="about-locations-copy">
             <h2>Our offices around the world</h2>
             <p>
@@ -474,39 +490,45 @@ export function AboutPage() {
           <div className="about-locations-body">
             <figure className="about-map is-photo" aria-label="Map of LabTAG and GA International offices">
               <img src={MAP.primary} alt="" />
-              <div className="about-pins" aria-hidden="true">
-                {OFFICES.map((office, index) => (
-                  <span
+              <svg
+                className="about-pins"
+                viewBox="0 0 1440 720"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                {OFFICES.map((office) => (
+                  <g
                     key={office.region}
-                    className="about-pin"
+                    className={`about-pin${hoveredOffice === office.region ? ' is-active' : ''}`}
                     data-office={office.region}
-                    style={{ left: `${office.x}%`, top: `${office.y}%`, ...motionIndex(index) }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${office.region}: ${office.name}`}
+                    transform={`translate(${(office.x / 100) * 1440} ${(office.y / 100) * 720})`}
+                    onMouseEnter={() => hoverOffice(office.region)}
+                    onMouseLeave={leaveOffice}
+                    onFocus={() => hoverOffice(office.region)}
+                    onBlur={leaveOffice}
                   >
-                    <svg className="about-pin-mark" viewBox="0 0 24 32">
-                      <path
-                        fill="currentColor"
-                        d="M12 31s-9-11.4-9-19a9 9 0 1 1 18 0c0 7.6-9 19-9 19z"
-                      />
-                      <text
-                        x="12"
-                        y="13.2"
-                        textAnchor="middle"
-                        fill="#fff"
-                        fontSize="7"
-                        fontWeight="700"
-                        fontFamily="var(--font-display), sans-serif"
-                      >
-                        GA
-                      </text>
-                    </svg>
-                  </span>
+                    <path
+                      fill="currentColor"
+                      d="M0 0c0 0-20-16-20-28a20 20 0 1 1 40 0C20-16 0 0 0 0z"
+                    />
+                    <text x="0" y="-23" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="700">
+                      GA
+                    </text>
+                  </g>
                 ))}
-              </div>
+              </svg>
             </figure>
             <ul className="about-office-list">
               {OFFICES.map((office) => (
                 <li key={office.region}>
-                  <div className="about-office" data-office={office.region}>
+                  <div
+                    className={`about-office${hoveredOffice === office.region ? ' is-active' : ''}`}
+                    data-office={office.region}
+                    onMouseEnter={() => hoverOffice(office.region)}
+                    onMouseLeave={leaveOffice}
+                  >
                     <strong>{office.region}</strong>
                     <span>{office.name}</span>
                     <span>{office.address}</span>
