@@ -85,5 +85,5 @@
   --shell-width: 1440px;
   /* Fallback: sticky header + clearance. Live pages with a jump menu override
    * this from measured header + menu heights via syncAnchorScrollMargin(). */
-  --anchor-scroll-margin: calc(3.5rem + 20px);
+  --anchor-scroll-margin: calc(9.5rem + 20px);
 }

@@ -126,7 +126,7 @@ const CERTS = [
 
 const STATS = [
   { value: '25+', label: 'Years of specialty labels', count: 25, prefix: '', suffix: '+' },
-  { value: 'In-house', label: 'Manufacturing' },
+  { value: 'Manufacturing', label: 'In-house' },
   { value: 'R&D', label: 'In house product team' },
   { value: 'ISO', label: 'Certified quality' },
 ]
