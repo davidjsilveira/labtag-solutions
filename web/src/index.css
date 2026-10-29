@@ -124,7 +124,7 @@ main:focus {
   background: var(--color-surface);
   border-bottom: none;
   box-shadow: 0 8px 22px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
-  clip-path: inset(0);
+  clip-path: inset(0 -50vmax -50vmax -50vmax);
   transition:
     transform 500ms var(--nav-ease),
     clip-path 500ms var(--nav-ease);
@@ -138,6 +138,10 @@ main:focus {
 .site-header.is-away {
   transform: translateY(-100%);
   pointer-events: none;
+}
+
+.site-header:has(.site-nav-contact:is(:hover, :focus-within, .is-open)) {
+  clip-path: inset(0 -50vmax -50vmax -50vmax);
 }
 
 .site-header-inner {
