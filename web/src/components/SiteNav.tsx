@@ -4,7 +4,6 @@ import {
   CaretDown,
   ClipboardText,
   EnvelopeSimple,
-  Handshake,
   Package,
   Scissors,
 } from '@phosphor-icons/react'
@@ -13,7 +12,6 @@ import {
   CONTACT_PATH,
   CUSTOM_LABELS_PATH,
   QUOTE_PATH,
-  RESELLER_PATH,
   SAMPLE_PATH,
 } from '@/content/labtagLinks'
 
@@ -31,11 +29,6 @@ const CONTACT_GROUPS = [
       { to: SAMPLE_PATH, title: 'Request a free sample', Icon: Package },
       { to: QUOTE_PATH, title: 'Request a quote', Icon: ClipboardText },
     ],
-  },
-  {
-    id: 'work',
-    label: 'Work with us',
-    items: [{ to: RESELLER_PATH, title: 'Become a reseller', Icon: Handshake }],
   },
 ]
 
