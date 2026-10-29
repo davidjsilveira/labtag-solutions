@@ -8,7 +8,7 @@ import { CONTACT_PATH, LABTAG_SHOP_URL, SAMPLE_PATH } from '@/content/labtagLink
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { SolutionPage } from '@/content/types'
 
-function NewArticleLink({ page }: { page: SolutionPage }) {
+function NewArticleLink({ page, priority }: { page: SolutionPage; priority?: boolean }) {
   const image = page.heroImage
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
 
@@ -19,7 +19,9 @@ function NewArticleLink({ page }: { page: SolutionPage }) {
           className="lander-new-media"
           src={resolved.primary}
           alt=""
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding="async"
           onError={(event) => {
             if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
               event.currentTarget.src = resolved.fallback
@@ -80,7 +82,7 @@ export function HomePage() {
               className={index === 0 ? 'is-featured' : index >= 5 ? 'is-wide' : 'is-tile'}
               style={motionIndex(index)}
             >
-              <NewArticleLink page={page} />
+              <NewArticleLink page={page} priority={index < 5} />
             </li>
           ))}
         </ul>
