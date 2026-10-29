@@ -54,6 +54,7 @@ export default function App() {
       </a>
       <ScrollToTop />
       <ScrollToTopButton />
+      <span className="site-header-pin" aria-hidden="true" />
       <header className="site-header">
         <SiteNav />
       </header>

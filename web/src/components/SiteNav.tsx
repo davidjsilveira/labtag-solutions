@@ -19,6 +19,7 @@ import {
   User,
 } from '@phosphor-icons/react'
 import { resolveImageSrc } from '@/content/resolveImage'
+import { syncAnchorScrollMargin } from '@/hooks/syncAnchorScrollMargin'
 import { solutionPages } from '@/content/loadPages'
 import {
   CONTACT_PATH,
@@ -78,18 +79,29 @@ const UNIT_OPTIONS = [
   { id: 'imperial', label: 'Inches' },
 ] as const
 
-const DEPARTMENT_LINKS = [
-  {
-    label: 'Shop all',
-    to: SOLUTIONS_PATH,
-    icon: true,
-    current: (path: string) => path === SOLUTIONS_PATH,
-  },
+const SHOP_LINKS = [
+  { label: 'Shop all', href: LABTAG_SHOP_URL, icon: true },
   { label: 'Labels', href: LABTAG_LABELS_URL },
   { label: 'Tapes', href: LABTAG_TAPES_URL },
   { label: 'Tags', href: LABTAG_TAGS_URL },
   { label: 'Print & scan', href: LABTAG_PRINT_URL },
   { label: 'Accessories', href: LABTAG_ACCESSORIES_URL },
+] as const
+
+const SOLUTION_LINKS = [
+  {
+    label: 'Solutions',
+    to: SOLUTIONS_PATH,
+    lead: true,
+    current: (path: string) => path === SOLUTIONS_PATH,
+  },
+  { label: 'Cryogenic', to: '/solutions/cryogenic' },
+  { label: 'Clinical trials', to: '/solutions/clinical-trials' },
+  { label: 'Histology', to: '/solutions/histology' },
+  { label: 'Lab tapes', to: '/solutions/laboratory-tapes' },
+  { label: 'DYMO', to: '/solutions/dymo-labels' },
+  { label: 'Printing', to: '/solutions/label-printing' },
+  { label: 'Automation', to: '/solutions/automated-labware' },
 ] as const
 
 const UTILITY_LINKS = [
@@ -187,6 +199,57 @@ export function SiteNav() {
   }, [pathname])
 
   useEffect(() => () => window.clearTimeout(promoCloseTimer.current), [])
+
+  useEffect(() => {
+    const header = document.querySelector('.site-header')
+    const pin = document.querySelector('.site-header-pin')
+    if (!header || !pin) return
+
+    const promo = header.querySelector('.site-promo')
+    const setPromoH = () => {
+      if (!(promo instanceof HTMLElement)) return
+      const height = promo.getBoundingClientRect().height
+      if (height > 0) header.style.setProperty('--promo-h', `${Math.round(height)}px`)
+    }
+    setPromoH()
+
+    const observer = new IntersectionObserver(([entry]) => {
+      const compact = !entry.isIntersecting
+      header.classList.toggle('is-compact', compact)
+      if (compact) setPromoOpen(null)
+      window.requestAnimationFrame(() => syncAnchorScrollMargin())
+    })
+    observer.observe(pin)
+
+    let lastY = window.scrollY
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(() => {
+        const y = Math.max(0, window.scrollY)
+        if (y <= 8) {
+          header.classList.remove('is-away')
+        } else if (y > lastY + 2) {
+          header.classList.add('is-away')
+          setOpen(false)
+          setPromoOpen(null)
+        } else if (y < lastY - 2) {
+          header.classList.remove('is-away')
+        }
+        lastY = y
+        ticking = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', setPromoH)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', setPromoH)
+    }
+  }, [])
 
   useEffect(() => {
     if (!askOpen) return
@@ -653,43 +716,39 @@ export function SiteNav() {
 
         <div className="site-nav-departments">
           <div className="site-header-inner">
-            <div className="site-nav-departments-list">
-              {DEPARTMENT_LINKS.map((item) => {
-                const className = [
-                  'site-nav-department',
-                  'icon' in item && item.icon ? 'is-shop-all' : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')
-                const icon =
-                  'icon' in item && item.icon ? <List size={18} weight="bold" aria-hidden /> : null
-
-                if ('href' in item) {
-                  return (
-                    <a
-                      key={item.label}
-                      className={className}
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {item.label}
-                    </a>
-                  )
-                }
-
-                return (
-                  <Link
-                    key={item.label}
-                    className={className}
-                    to={item.to}
-                    aria-current={item.current(pathname) ? 'page' : undefined}
-                  >
-                    {icon}
-                    {item.label}
-                  </Link>
-                )
-              })}
+            <div className="site-nav-departments-list" aria-label="Shop">
+              {SHOP_LINKS.map((item) => (
+                <a
+                  key={item.label}
+                  className={['site-nav-department', 'icon' in item && item.icon ? 'is-shop-all' : '']
+                    .filter(Boolean)
+                    .join(' ')}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {'icon' in item && item.icon ? <List size={18} weight="bold" aria-hidden /> : null}
+                  {item.label}
+                </a>
+              ))}
+            </div>
+            <div className="site-nav-departments-list is-end" aria-label="Solutions">
+              {SOLUTION_LINKS.map((item) => (
+                <Link
+                  key={item.label}
+                  className={['site-nav-department', 'lead' in item && item.lead ? 'is-solutions-all' : '']
+                    .filter(Boolean)
+                    .join(' ')}
+                  to={item.to}
+                  aria-current={
+                    ('current' in item ? item.current(pathname) : pathname === item.to)
+                      ? 'page'
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

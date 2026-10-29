@@ -101,8 +101,18 @@ main:focus {
   outline: none;
 }
 
+.site-header-pin {
+  display: block;
+  height: 1px;
+  margin: 0 0 -1px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
 .site-header {
   --nav-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --promo-h: 2.25rem;
   position: sticky;
   top: 0;
   z-index: 30;
@@ -114,6 +124,20 @@ main:focus {
   background: var(--color-surface);
   border-bottom: none;
   box-shadow: 0 8px 22px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
+  clip-path: inset(0);
+  transition:
+    transform 500ms var(--nav-ease),
+    clip-path 500ms var(--nav-ease);
+}
+
+.site-header.is-compact:not(.is-away) {
+  transform: translateY(calc(-1 * var(--promo-h)));
+  clip-path: inset(var(--promo-h) 0 0 0);
+}
+
+.site-header.is-away {
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 
 .site-header-inner {
@@ -130,8 +154,13 @@ main:focus {
 .site-promo {
   position: relative;
   z-index: 4;
+  overflow: hidden;
   background: var(--labtag-ga-black);
   color: var(--labtag-pure-white);
+}
+
+.site-header.is-compact .site-promo {
+  pointer-events: none;
 }
 
 .site-promo .site-header-inner {
@@ -739,21 +768,26 @@ main:focus {
 }
 
 .site-nav-departments .site-header-inner {
+  gap: var(--space-lg);
   min-height: 2.75rem;
-}
-
-.site-nav-departments-list {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  gap: var(--space-md);
-  min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
 }
 
-.site-nav-departments-list::-webkit-scrollbar {
+.site-nav-departments .site-header-inner::-webkit-scrollbar {
   display: none;
+}
+
+.site-nav-departments-list {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.site-nav-departments-list.is-end {
+  margin-left: auto;
 }
 
 .site-nav-department {
@@ -774,7 +808,8 @@ main:focus {
   color: var(--color-ink);
 }
 
-.site-nav-department.is-shop-all {
+.site-nav-department.is-shop-all,
+.site-nav-department.is-solutions-all {
   color: var(--color-ink);
   font-weight: 700;
 }
@@ -1026,6 +1061,10 @@ main:focus {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
+
   .site-nav-contact-panel,
   .site-nav-contact-item,
   .site-nav-ask-panel,
