@@ -203,7 +203,7 @@ export function SiteNav() {
   useEffect(() => {
     const header = document.querySelector('.site-header')
     const pin = document.querySelector('.site-header-pin')
-    if (!header || !pin) return
+    if (!(header instanceof HTMLElement) || !pin) return
 
     const promo = header.querySelector('.site-promo')
     const setPromoH = () => {
