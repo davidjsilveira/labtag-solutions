@@ -3,8 +3,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import {
   CaretDown,
   ClipboardText,
-  EnvelopeSimple,
   Package,
+  Phone,
   Scissors,
 } from '@phosphor-icons/react'
 import {
@@ -15,31 +15,36 @@ import {
   SAMPLE_PATH,
 } from '@/content/labtagLinks'
 
-const CONTACT_GROUPS = [
+const PHONE_TOLL_FREE = { label: '1 800 518 0364', href: 'tel:+18005180364' }
+
+const CONTACT_ITEMS = [
   {
-    id: 'talk',
-    label: 'Talk with us',
-    items: [{ to: CONTACT_PATH, title: 'Send a message', Icon: EnvelopeSimple }],
+    to: CUSTOM_LABELS_PATH,
+    title: 'Custom labels',
+    lede: 'Die cut to spec from your file.',
+    Icon: Scissors,
   },
   {
-    id: 'request',
-    label: 'Request',
-    items: [
-      { to: CUSTOM_LABELS_PATH, title: 'Custom labels', Icon: Scissors },
-      { to: SAMPLE_PATH, title: 'Request a free sample', Icon: Package },
-      { to: QUOTE_PATH, title: 'Request a quote', Icon: ClipboardText },
-    ],
+    to: SAMPLE_PATH,
+    title: 'Request a free sample',
+    lede: 'Test adhesion in your own freezer.',
+    Icon: Package,
+  },
+  {
+    to: QUOTE_PATH,
+    title: 'Request a quote',
+    lede: 'Quantity, date, and price before you order.',
+    Icon: ClipboardText,
   },
 ]
 
-const CONTACT_ITEMS = CONTACT_GROUPS.flatMap((group) => group.items)
-const CONTACT_PATHS = new Set(CONTACT_ITEMS.map((item) => item.to))
+const CONTACT_PATHS = new Set([CONTACT_PATH, ...CONTACT_ITEMS.map((item) => item.to)])
 
 const PRIMARY_LINKS = [
   { label: 'Products' },
   { label: 'Solutions' },
   { label: 'Resources' },
-  { label: 'About', to: ABOUT_PATH },
+  { label: 'About us', to: ABOUT_PATH },
 ] as const
 
 export function SiteNav() {
@@ -132,34 +137,40 @@ export function SiteNav() {
             role="menu"
             aria-label="Contact options"
           >
-            {CONTACT_GROUPS.map((group) => (
-              <div
-                key={group.id}
-                className={`site-nav-contact-group site-nav-contact-group--${group.id}`}
-                role="group"
-                aria-label={group.label}
+            {CONTACT_ITEMS.map((item, index) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end
+                role="menuitem"
+                className="site-nav-contact-item"
+                style={{ '--i': String(index) } as CSSProperties}
               >
-                <p className="site-nav-contact-heading">{group.label}</p>
-                {group.items.map((item) => {
-                  const index = CONTACT_ITEMS.indexOf(item)
-                  return (
-                    <NavLink
-                      key={item.to}
-                      to={item.to}
-                      end
-                      role="menuitem"
-                      className="site-nav-contact-item"
-                      style={{ '--i': String(index) } as CSSProperties}
-                    >
-                      <span className="site-nav-contact-icon" aria-hidden>
-                        <item.Icon size={20} weight="duotone" />
-                      </span>
-                      <span className="site-nav-contact-copy">{item.title}</span>
-                    </NavLink>
-                  )
-                })}
-              </div>
+                <span className="site-nav-contact-icon" aria-hidden>
+                  <item.Icon size={22} weight="duotone" />
+                </span>
+                <span className="site-nav-contact-copy">
+                  <span className="site-nav-contact-title">{item.title}</span>
+                  <span className="site-nav-contact-lede">{item.lede}</span>
+                </span>
+              </NavLink>
             ))}
+            <div className="site-nav-contact-call">
+              <a
+                href={PHONE_TOLL_FREE.href}
+                role="menuitem"
+                className="site-nav-contact-item"
+                style={{ '--i': String(CONTACT_ITEMS.length) } as CSSProperties}
+              >
+                <span className="site-nav-contact-icon" aria-hidden>
+                  <Phone size={22} weight="duotone" />
+                </span>
+                <span className="site-nav-contact-copy">
+                  <span className="site-nav-contact-title">{PHONE_TOLL_FREE.label}</span>
+                  <span className="site-nav-contact-lede">North America, toll free</span>
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
