@@ -358,34 +358,18 @@ export function SiteNav() {
                 </div>
               </div>
 
-              {UTILITY_LINKS.map((item) => {
-                const body = (
-                  <>
-                    <item.Icon size={20} weight="regular" aria-hidden />
-                    <span>{item.label}</span>
-                  </>
-                )
-
-                if ('href' in item) {
-                  return (
-                    <a
-                      key={item.label}
-                      className="site-nav-tool"
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {body}
-                    </a>
-                  )
-                }
-
-                return (
-                  <NavLink key={item.label} className="site-nav-tool" to={item.to}>
-                    {body}
-                  </NavLink>
-                )
-              })}
+              {UTILITY_LINKS.map((item) => (
+                <a
+                  key={item.label}
+                  className="site-nav-tool"
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <item.Icon size={20} weight="regular" aria-hidden />
+                  <span>{item.label}</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
