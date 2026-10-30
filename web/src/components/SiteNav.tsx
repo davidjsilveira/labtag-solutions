@@ -92,16 +92,10 @@ const SOLUTION_LINKS = [
   {
     label: 'Solutions',
     to: SOLUTIONS_PATH,
-    lead: true,
     current: (path: string) => path === SOLUTIONS_PATH,
   },
   { label: 'Cryogenic', to: '/solutions/cryogenic' },
-  { label: 'Clinical trials', to: '/solutions/clinical-trials' },
   { label: 'Histology', to: '/solutions/histology' },
-  { label: 'Lab tapes', to: '/solutions/laboratory-tapes' },
-  { label: 'DYMO', to: '/solutions/dymo-labels' },
-  { label: 'Printing', to: '/solutions/label-printing' },
-  { label: 'Automation', to: '/solutions/automated-labware' },
 ] as const
 
 const UTILITY_LINKS = [
@@ -488,7 +482,7 @@ export function SiteNav() {
                   onClick={() => setAskOpen((value) => !value)}
                 >
                   <Sparkle size={16} weight="fill" aria-hidden />
-                  Ask AI
+                  Ask Tagai
                 </button>
                 {typeof document !== 'undefined' &&
                   createPortal(
@@ -512,7 +506,7 @@ export function SiteNav() {
                       >
                         <div className="site-nav-ask-top">
                           <h2 id={askTitleId} className="site-nav-ask-heading">
-                            Ask LabTAG
+                            Ask Tagai
                           </h2>
                           <button
                             type="button"
@@ -524,7 +518,7 @@ export function SiteNav() {
                           <button
                             type="button"
                             className="site-nav-ask-close"
-                            aria-label="Close Ask LabTAG"
+                            aria-label="Close Ask Tagai"
                             onClick={() => {
                               setAskOpen(false)
                               askBtnRef.current?.focus()
@@ -534,7 +528,7 @@ export function SiteNav() {
                           </button>
                         </div>
                         <p className="site-nav-ask-legal">
-                          By using Ask LabTAG, you agree to the{' '}
+                          By using Ask Tagai, you agree to the{' '}
                           <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
                             privacy policy
                           </a>{' '}
@@ -606,7 +600,7 @@ export function SiteNav() {
                             value={askQuery}
                             onChange={(event) => setAskQuery(event.target.value)}
                             placeholder="I am looking for"
-                            aria-label="Ask LabTAG"
+                            aria-label="Ask Tagai"
                             autoComplete="off"
                           />
                           <button type="submit" aria-label="Send">
@@ -614,7 +608,7 @@ export function SiteNav() {
                           </button>
                         </form>
                         <p className="site-nav-ask-note">
-                          Ask LabTAG can miss a match. Check the product page before you order.
+                          Ask Tagai can miss a match. Check the product page before you order.
                         </p>
                       </aside>
                     </div>,
@@ -716,7 +710,7 @@ export function SiteNav() {
 
         <div className="site-nav-departments">
           <div className="site-header-inner">
-            <div className="site-nav-departments-list" aria-label="Shop">
+            <div className="site-nav-departments-list is-shop" aria-label="Shop">
               {SHOP_LINKS.map((item) => (
                 <a
                   key={item.label}
@@ -732,13 +726,11 @@ export function SiteNav() {
                 </a>
               ))}
             </div>
-            <div className="site-nav-departments-list is-end" aria-label="Solutions">
+            <div className="site-nav-departments-list is-end is-solutions" aria-label="Solutions">
               {SOLUTION_LINKS.map((item) => (
                 <Link
                   key={item.label}
-                  className={['site-nav-department', 'lead' in item && item.lead ? 'is-solutions-all' : '']
-                    .filter(Boolean)
-                    .join(' ')}
+                  className="site-nav-department"
                   to={item.to}
                   aria-current={
                     ('current' in item ? item.current(pathname) : pathname === item.to)

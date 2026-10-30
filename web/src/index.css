@@ -812,10 +812,26 @@ main:focus {
   color: var(--color-ink);
 }
 
-.site-nav-department.is-shop-all,
-.site-nav-department.is-solutions-all {
+.site-nav-department.is-shop-all {
   color: var(--color-ink);
   font-weight: 700;
+}
+
+.site-nav-departments-list.is-solutions {
+  gap: var(--space-xs);
+}
+
+.site-nav-departments-list.is-solutions .site-nav-department {
+  color: var(--labtag-text-primary-disabled);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  line-height: 1rem;
+  transition: color 300ms var(--nav-ease);
+}
+
+.site-nav-departments-list.is-solutions .site-nav-department:hover,
+.site-nav-departments-list.is-solutions .site-nav-department[aria-current='page'] {
+  color: var(--color-ink-2);
 }
 
 .site-nav-contact {
