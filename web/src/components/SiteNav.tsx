@@ -482,7 +482,7 @@ export function SiteNav() {
                   onClick={() => setAskOpen((value) => !value)}
                 >
                   <Sparkle size={16} weight="fill" aria-hidden />
-                  Ask Tagai
+                  Ask Tagi
                 </button>
                 {typeof document !== 'undefined' &&
                   createPortal(
@@ -506,7 +506,7 @@ export function SiteNav() {
                       >
                         <div className="site-nav-ask-top">
                           <h2 id={askTitleId} className="site-nav-ask-heading">
-                            Ask Tagai
+                            Ask Tagi
                           </h2>
                           <button
                             type="button"
@@ -518,7 +518,7 @@ export function SiteNav() {
                           <button
                             type="button"
                             className="site-nav-ask-close"
-                            aria-label="Close Ask Tagai"
+                            aria-label="Close Ask Tagi"
                             onClick={() => {
                               setAskOpen(false)
                               askBtnRef.current?.focus()
@@ -528,7 +528,7 @@ export function SiteNav() {
                           </button>
                         </div>
                         <p className="site-nav-ask-legal">
-                          By using Ask Tagai, you agree to the{' '}
+                          By using Ask Tagi, you agree to the{' '}
                           <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
                             privacy policy
                           </a>{' '}
@@ -600,7 +600,7 @@ export function SiteNav() {
                             value={askQuery}
                             onChange={(event) => setAskQuery(event.target.value)}
                             placeholder="I am looking for"
-                            aria-label="Ask Tagai"
+                            aria-label="Ask Tagi"
                             autoComplete="off"
                           />
                           <button type="submit" aria-label="Send">
@@ -608,7 +608,7 @@ export function SiteNav() {
                           </button>
                         </form>
                         <p className="site-nav-ask-note">
-                          Ask Tagai can miss a match. Check the product page before you order.
+                          Ask Tagi can miss a match. Check the product page before you order.
                         </p>
                       </aside>
                     </div>,

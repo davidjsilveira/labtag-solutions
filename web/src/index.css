@@ -132,7 +132,7 @@ main:focus {
 
 .site-header.is-compact:not(.is-away) {
   transform: translateY(calc(-1 * var(--promo-h)));
-  clip-path: inset(var(--promo-h) 0 0 0);
+  clip-path: inset(var(--promo-h) -50vmax -50vmax -50vmax);
 }
 
 .site-header.is-away {
@@ -142,6 +142,10 @@ main:focus {
 
 .site-header:has(.site-nav-contact:is(:hover, :focus-within, .is-open)) {
   clip-path: inset(0 -50vmax -50vmax -50vmax);
+}
+
+.site-header.is-compact:has(.site-nav-contact:is(:hover, :focus-within, .is-open)) {
+  clip-path: inset(var(--promo-h) -50vmax -50vmax -50vmax);
 }
 
 .site-header-inner {
