@@ -22,14 +22,20 @@ import { resolveImageSrc } from '@/content/resolveImage'
 import { syncAnchorScrollMargin } from '@/hooks/syncAnchorScrollMargin'
 import { solutionPages } from '@/content/loadPages'
 import {
+  LANGUAGE_OPTIONS,
+  UNIT_EVENT,
+  UNIT_OPTIONS,
+  readUnit,
+  writeUnit,
+  type UnitId,
+} from '@/content/preferences'
+import {
   CONTACT_PATH,
   CUSTOM_LABELS_PATH,
   LABTAG_ACCESSORIES_URL,
   LABTAG_ACCOUNT_URL,
   LABTAG_CART_URL,
-  LABTAG_EN_URL,
   LABTAG_FINDER_URL,
-  LABTAG_FR_URL,
   LABTAG_LABELS_URL,
   LABTAG_PRINT_URL,
   LABTAG_PRIVACY_URL,
@@ -42,6 +48,7 @@ import {
   QUOTE_PATH,
   SAMPLE_PATH,
   SOLUTIONS_PATH,
+  WHY_CHOOSE_PATH,
 } from '@/content/labtagLinks'
 
 const PHONE_TOLL_FREE = { label: '1 800 518 0364', href: 'tel:+18005180364' }
@@ -69,16 +76,6 @@ const CONTACT_ITEMS = [
 
 const CONTACT_PATHS = new Set([CONTACT_PATH, ...CONTACT_ITEMS.map((item) => item.to)])
 
-const LANGUAGE_OPTIONS = [
-  { label: 'English', href: LABTAG_EN_URL },
-  { label: 'Français', href: LABTAG_FR_URL },
-] as const
-
-const UNIT_OPTIONS = [
-  { id: 'metric', label: 'Millimeters' },
-  { id: 'imperial', label: 'Inches' },
-] as const
-
 const SHOP_LINKS = [
   { label: 'Shop all', href: LABTAG_SHOP_URL, icon: true },
   { label: 'Labels', href: LABTAG_LABELS_URL },
@@ -101,7 +98,6 @@ const SOLUTION_LINKS = [
 const UTILITY_LINKS = [
   { label: 'Templates', href: LABTAG_TEMPLATES_HUB_URL, Icon: SquaresFour },
   { label: 'Label Finder', href: LABTAG_FINDER_URL, Icon: MagnifyingGlassPlus },
-  { label: 'Account', href: LABTAG_ACCOUNT_URL, Icon: User },
   { label: 'Cart', href: LABTAG_CART_URL, Icon: ShoppingCart },
 ] as const
 
@@ -160,39 +156,32 @@ export function SiteNav() {
   const navigate = useNavigate()
   const sectionActive = CONTACT_PATHS.has(pathname)
   const [open, setOpen] = useState(false)
+  const [accountOpen, setAccountOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [askOpen, setAskOpen] = useState(false)
   const [askQuery, setAskQuery] = useState('')
   const [askMessages, setAskMessages] = useState<AskMessage[]>([])
-  const [promoOpen, setPromoOpen] = useState<'lang' | 'units' | null>(null)
-  const [language, setLanguage] = useState<(typeof LANGUAGE_OPTIONS)[number]['label']>('Français')
-  const [unit, setUnit] = useState<(typeof UNIT_OPTIONS)[number]['id']>('metric')
+  const [unit, setUnit] = useState<UnitId>('metric')
   const rootRef = useRef<HTMLDivElement>(null)
-  const promoRef = useRef<HTMLDivElement>(null)
-  const promoCloseTimer = useRef<number>(0)
+  const accountRef = useRef<HTMLDivElement>(null)
   const askBtnRef = useRef<HTMLButtonElement>(null)
   const askInputRef = useRef<HTMLInputElement>(null)
   const askTitleId = useId()
 
-  const openPromo = (id: 'lang' | 'units') => {
-    window.clearTimeout(promoCloseTimer.current)
-    setPromoOpen(id)
-  }
-
-  const closePromo = (id: 'lang' | 'units') => {
-    window.clearTimeout(promoCloseTimer.current)
-    promoCloseTimer.current = window.setTimeout(() => {
-      setPromoOpen((value) => (value === id ? null : value))
-    }, 140)
-  }
+  useEffect(() => {
+    setUnit(readUnit())
+    const onUnit = (event: Event) => {
+      const next = (event as CustomEvent<UnitId>).detail
+      if (UNIT_OPTIONS.some((item) => item.id === next)) setUnit(next)
+    }
+    window.addEventListener(UNIT_EVENT, onUnit)
+    return () => window.removeEventListener(UNIT_EVENT, onUnit)
+  }, [])
 
   useEffect(() => {
     setOpen(false)
-    setPromoOpen(null)
-    window.clearTimeout(promoCloseTimer.current)
+    setAccountOpen(false)
   }, [pathname])
-
-  useEffect(() => () => window.clearTimeout(promoCloseTimer.current), [])
 
   useEffect(() => {
     const header = document.querySelector('.site-header')
@@ -210,7 +199,7 @@ export function SiteNav() {
     const observer = new IntersectionObserver(([entry]) => {
       const compact = !entry.isIntersecting
       header.classList.toggle('is-compact', compact)
-      if (compact) setPromoOpen(null)
+      if (compact) setAccountOpen(false)
       window.requestAnimationFrame(() => syncAnchorScrollMargin())
     })
     observer.observe(pin)
@@ -227,7 +216,7 @@ export function SiteNav() {
         } else if (y > lastY + 2) {
           header.classList.add('is-away')
           setOpen(false)
-          setPromoOpen(null)
+          setAccountOpen(false)
         } else if (y < lastY - 2) {
           header.classList.remove('is-away')
         }
@@ -256,18 +245,18 @@ export function SiteNav() {
   }, [askOpen])
 
   useEffect(() => {
-    if (!open && !promoOpen && !askOpen) return
+    if (!open && !accountOpen && !askOpen) return
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
       setOpen(false)
+      setAccountOpen(false)
       setAskOpen(false)
-      setPromoOpen(null)
     }
     const onPointer = (event: PointerEvent) => {
       const target = event.target as Node
       if (!rootRef.current?.contains(target)) setOpen(false)
-      if (!promoRef.current?.contains(target)) setPromoOpen(null)
+      if (!accountRef.current?.contains(target)) setAccountOpen(false)
     }
 
     document.addEventListener('keydown', onKey)
@@ -276,7 +265,7 @@ export function SiteNav() {
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('pointerdown', onPointer)
     }
-  }, [open, promoOpen, askOpen])
+  }, [open, accountOpen, askOpen])
 
   const goToQuery = (next: string) => {
     const q = next.trim()
@@ -348,106 +337,17 @@ export function SiteNav() {
     <>
       <div className="site-promo">
         <div className="site-header-inner">
-          <a className="site-promo-phone" href={PHONE_TOLL_FREE.href}>
-            Talk to a scientist: {PHONE_TOLL_FREE.label}
-          </a>
           <p className="site-promo-message">
             Free DYMO printer with 8+ rolls of select LWS2 labels{' '}
             <a href={LABTAG_PROMOS_URL} target="_blank" rel="noreferrer">
               See details
             </a>
           </p>
-          <div className="site-promo-links" ref={promoRef}>
-            <div
-              className={['site-promo-menu', 'site-promo-menu-lang', promoOpen === 'lang' ? 'is-open' : '']
-                .filter(Boolean)
-                .join(' ')}
-              onMouseEnter={() => openPromo('lang')}
-              onMouseLeave={() => closePromo('lang')}
-              onBlur={(event) => {
-                if (!event.currentTarget.contains(event.relatedTarget as Node)) closePromo('lang')
-              }}
-            >
-              <button
-                type="button"
-                className="site-promo-menu-trigger"
-                aria-expanded={promoOpen === 'lang'}
-                aria-haspopup="true"
-                aria-controls="site-promo-lang-menu"
-                onClick={() => openPromo('lang')}
-              >
-                {language}
-                <CaretDown size={10} weight="bold" aria-hidden />
-              </button>
-              <div
-                id="site-promo-lang-menu"
-                className="site-promo-menu-card"
-                role="menu"
-                aria-label="Language"
-              >
-                {LANGUAGE_OPTIONS.map((item, index) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    role="menuitem"
-                    className="site-promo-menu-item"
-                    style={{ '--i': String(index) } as CSSProperties}
-                    aria-current={language === item.label ? 'true' : undefined}
-                    onClick={() => setLanguage(item.label)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div
-              className={['site-promo-menu', 'site-promo-menu-units', promoOpen === 'units' ? 'is-open' : '']
-                .filter(Boolean)
-                .join(' ')}
-              onMouseEnter={() => openPromo('units')}
-              onMouseLeave={() => closePromo('units')}
-              onBlur={(event) => {
-                if (!event.currentTarget.contains(event.relatedTarget as Node)) closePromo('units')
-              }}
-            >
-              <button
-                type="button"
-                className="site-promo-menu-trigger"
-                aria-expanded={promoOpen === 'units'}
-                aria-haspopup="true"
-                aria-controls="site-promo-units-menu"
-                onClick={() => openPromo('units')}
-              >
-                {UNIT_OPTIONS.find((item) => item.id === unit)?.label}
-                <CaretDown size={10} weight="bold" aria-hidden />
-              </button>
-              <div
-                id="site-promo-units-menu"
-                className="site-promo-menu-card"
-                role="menu"
-                aria-label="Units of measurement"
-              >
-                {UNIT_OPTIONS.map((item, index) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="menuitem"
-                    className="site-promo-menu-item"
-                    style={{ '--i': String(index) } as CSSProperties}
-                    aria-current={unit === item.id ? 'true' : undefined}
-                    onClick={() => {
-                      setUnit(item.id)
-                      setPromoOpen(null)
-                    }}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+          <p className="site-promo-iso">
+            <Link to={WHY_CHOOSE_PATH}>ISO 9001:2015 certified</Link>
+            <span aria-hidden="true">·</span>
+            <Link to={WHY_CHOOSE_PATH}>ISO 22301 compliant</Link>
+          </p>
         </div>
       </div>
 
@@ -692,7 +592,95 @@ export function SiteNav() {
                 </div>
               </div>
 
-              {UTILITY_LINKS.map((item) => (
+              {UTILITY_LINKS.slice(0, 2).map((item) => (
+                <a
+                  key={item.label}
+                  className="site-nav-tool"
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <item.Icon size={20} weight="regular" aria-hidden />
+                  <span>{item.label}</span>
+                </a>
+              ))}
+
+              <div
+                ref={accountRef}
+                className={['site-nav-account', accountOpen ? 'is-open' : ''].filter(Boolean).join(' ')}
+                onMouseEnter={() => setAccountOpen(true)}
+                onMouseLeave={() => setAccountOpen(false)}
+              >
+                <button
+                  type="button"
+                  className="site-nav-tool site-nav-account-trigger"
+                  aria-expanded={accountOpen}
+                  aria-haspopup="true"
+                  aria-controls="site-nav-account-menu"
+                  onClick={() => setAccountOpen(true)}
+                >
+                  <User size={20} weight="regular" aria-hidden />
+                  <span>Account</span>
+                </button>
+                <div className="site-nav-account-panel">
+                  <div
+                    id="site-nav-account-menu"
+                    className="site-nav-account-card"
+                    role="menu"
+                    aria-label="Account"
+                  >
+                    <a
+                      href={LABTAG_ACCOUNT_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      role="menuitem"
+                      className="site-nav-account-link"
+                    >
+                      My account
+                    </a>
+                    <div className="site-nav-account-group">
+                      <p className="site-nav-account-heading">Language</p>
+                      <div className="site-nav-account-choices" role="group" aria-label="Language">
+                        {LANGUAGE_OPTIONS.map((item) => (
+                          <a
+                            key={item.label}
+                            href={item.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            role="menuitem"
+                            className="site-nav-account-choice"
+                          >
+                            {item.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="site-nav-account-group">
+                      <p className="site-nav-account-heading">Units of measurement</p>
+                      <div
+                        className="site-nav-account-choices"
+                        role="group"
+                        aria-label="Units of measurement"
+                      >
+                        {UNIT_OPTIONS.map((item) => (
+                          <button
+                            key={item.id}
+                            type="button"
+                            role="menuitemradio"
+                            className="site-nav-account-choice"
+                            aria-checked={unit === item.id}
+                            onClick={() => writeUnit(item.id)}
+                          >
+                            {item.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {UTILITY_LINKS.slice(2).map((item) => (
                 <a
                   key={item.label}
                   className="site-nav-tool"

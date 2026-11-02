@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import {
   ABOUT_PATH,
@@ -22,6 +23,14 @@ import {
   SAMPLE_PATH,
   WHY_CHOOSE_PATH,
 } from '@/content/labtagLinks'
+import {
+  LANGUAGE_OPTIONS,
+  UNIT_EVENT,
+  UNIT_OPTIONS,
+  readUnit,
+  writeUnit,
+  type UnitId,
+} from '@/content/preferences'
 
 type FooterLink = {
   label: string
@@ -254,6 +263,17 @@ function SocialIcon({ name }: { name: (typeof SOCIAL)[number]['icon'] }) {
 
 export function SiteFooter() {
   const year = new Date().getFullYear()
+  const [unit, setUnit] = useState<UnitId>('metric')
+
+  useEffect(() => {
+    setUnit(readUnit())
+    const onUnit = (event: Event) => {
+      const next = (event as CustomEvent<UnitId>).detail
+      if (UNIT_OPTIONS.some((item) => item.id === next)) setUnit(next)
+    }
+    window.addEventListener(UNIT_EVENT, onUnit)
+    return () => window.removeEventListener(UNIT_EVENT, onUnit)
+  }, [])
 
   return (
     <footer className="site-footer">
@@ -279,6 +299,38 @@ export function SiteFooter() {
               </a>
             ))}
           </nav>
+        </div>
+
+        <div className="site-footer-prefs">
+          <div className="site-footer-pref">
+            <h2>Language</h2>
+            <ul>
+              {LANGUAGE_OPTIONS.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="site-footer-pref">
+            <h2>Units of measurement</h2>
+            <ul>
+              {UNIT_OPTIONS.map((item) => (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    className="site-footer-unit"
+                    aria-pressed={unit === item.id}
+                    onClick={() => writeUnit(item.id)}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="site-footer-legal">
