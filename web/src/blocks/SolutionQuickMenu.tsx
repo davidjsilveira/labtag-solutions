@@ -7,7 +7,7 @@ type Props = {
   title?: string
 }
 
-/** On-page jump TOC in the hero band — sticky under the header; hides on scroll-down only when 3+ link rows. */
+/** On-page jump TOC in the hero band — always sticky under the visible header. */
 export function SolutionQuickMenu({ children, title }: Props) {
   const ref = useStickyScrollMenu<HTMLElement>()
 

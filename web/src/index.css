@@ -3126,8 +3126,7 @@ main {
   box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
 }
 
-/* Jump menu continues the hero band (same surface). Sticky under the site header;
- * tall menus (3+ jump rows) slide away on scroll-down. */
+/* Jump menu continues the hero band (same surface). Always sticky under the visible header. */
 .solution-page:has(.solution-quick-menu) .page-hero {
   padding-bottom: var(--space-md);
   box-shadow: none;
@@ -3151,8 +3150,6 @@ main {
   background: var(--color-surface);
   color: var(--color-ink);
   box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--labtag-ga-black) 12%, transparent);
-  transition: transform var(--dur-short) var(--ease-out);
-  will-change: transform;
 }
 
 .solution-quick-menu-jumps {
@@ -3177,17 +3174,6 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.solution-quick-menu.is-scroll-hidden {
-  transform: translateY(calc(-100% - var(--quick-menu-top)));
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .solution-quick-menu {
-    transition: none;
-  }
 }
 
 .solution-quick-menu::before {
