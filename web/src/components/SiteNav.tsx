@@ -5,6 +5,7 @@ import {
   ArrowRight,
   CaretDown,
   ChatCircle,
+  Check,
   ClipboardText,
   List,
   MagnifyingGlass,
@@ -33,14 +34,15 @@ import {
   CONTACT_PATH,
   CUSTOM_LABELS_PATH,
   LABTAG_ACCESSORIES_URL,
-  LABTAG_ACCOUNT_URL,
   LABTAG_CART_URL,
+  LABTAG_CREATE_ACCOUNT_URL,
   LABTAG_FINDER_URL,
   LABTAG_LABELS_URL,
   LABTAG_PRINT_URL,
   LABTAG_PRIVACY_URL,
   LABTAG_PROMOS_URL,
   LABTAG_SHOP_URL,
+  LABTAG_SIGN_IN_URL,
   LABTAG_TAPES_URL,
   LABTAG_TAGS_URL,
   LABTAG_TEMPLATES_HUB_URL,
@@ -99,6 +101,13 @@ const UTILITY_LINKS = [
   { label: 'Templates', href: LABTAG_TEMPLATES_HUB_URL, Icon: SquaresFour },
   { label: 'Label Finder', href: LABTAG_FINDER_URL, Icon: MagnifyingGlassPlus },
   { label: 'Cart', href: LABTAG_CART_URL, Icon: ShoppingCart },
+] as const
+
+const ACCOUNT_BENEFITS = [
+  'Manage orders',
+  'Get free samples',
+  'Create custom labels',
+  'Accelerate your workflow',
 ] as const
 
 const ASK_PROMPTS = [
@@ -629,15 +638,37 @@ export function SiteNav() {
                     role="menu"
                     aria-label="Account"
                   >
-                    <a
-                      href={LABTAG_ACCOUNT_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      role="menuitem"
-                      className="site-nav-account-link"
-                    >
-                      My account
-                    </a>
+                    <div className="site-nav-account-intro">
+                      <p className="site-nav-account-title">Create your account</p>
+                      <ul className="site-nav-account-benefits">
+                        {ACCOUNT_BENEFITS.map((item) => (
+                          <li key={item}>
+                            <Check size={14} weight="bold" aria-hidden />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="site-nav-account-actions">
+                      <a
+                        href={LABTAG_SIGN_IN_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        role="menuitem"
+                        className="site-nav-account-btn is-primary"
+                      >
+                        Sign In
+                      </a>
+                      <a
+                        href={LABTAG_CREATE_ACCOUNT_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        role="menuitem"
+                        className="site-nav-account-btn is-secondary"
+                      >
+                        Create Account
+                      </a>
+                    </div>
                     <div className="site-nav-account-group">
                       <p className="site-nav-account-heading">Language</p>
                       <div className="site-nav-account-choices" role="group" aria-label="Language">

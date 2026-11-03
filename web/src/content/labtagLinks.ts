@@ -6,6 +6,8 @@ export const LABTAG_TAGS_URL = 'https://www.labtag.com/shop/category/tags/'
 export const LABTAG_PRINT_URL = 'https://www.labtag.com/shop/category/print-solutions/'
 export const LABTAG_ACCESSORIES_URL = 'https://www.labtag.com/shop/category/accessories/'
 export const LABTAG_ACCOUNT_URL = 'https://www.labtag.com/my-account/'
+export const LABTAG_SIGN_IN_URL = LABTAG_ACCOUNT_URL
+export const LABTAG_CREATE_ACCOUNT_URL = 'https://www.labtag.com/my-account/?action=register'
 export const LABTAG_CART_URL = 'https://www.labtag.com/cart/'
 export const LABTAG_SAMPLE_URL = 'https://www.labtag.com/contact-us/samples'
 export const SAMPLE_PATH = '/samples'
