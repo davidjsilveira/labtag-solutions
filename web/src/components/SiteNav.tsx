@@ -7,7 +7,6 @@ import {
   ChatCircle,
   Check,
   ClipboardText,
-  List,
   MagnifyingGlass,
   MagnifyingGlassPlus,
   Minus,
@@ -34,19 +33,23 @@ import {
   CONTACT_PATH,
   CUSTOM_LABELS_PATH,
   LABTAG_ACCESSORIES_URL,
+  LABTAG_BLOG_URL,
   LABTAG_CART_URL,
   LABTAG_CREATE_ACCOUNT_URL,
+  LABTAG_FAQ_URL,
   LABTAG_FINDER_URL,
   LABTAG_LABELS_URL,
   LABTAG_PRINT_URL,
   LABTAG_PRIVACY_URL,
   LABTAG_PROMOS_URL,
+  LABTAG_RESOURCES_URL,
   LABTAG_SHOP_URL,
   LABTAG_SIGN_IN_URL,
   LABTAG_TAPES_URL,
   LABTAG_TAGS_URL,
   LABTAG_TEMPLATES_HUB_URL,
   LABTAG_TERMS_URL,
+  LABTAG_VIDEOS_URL,
   QUOTE_PATH,
   SAMPLE_PATH,
   SOLUTIONS_PATH,
@@ -78,8 +81,8 @@ const CONTACT_ITEMS = [
 
 const CONTACT_PATHS = new Set([CONTACT_PATH, ...CONTACT_ITEMS.map((item) => item.to)])
 
-const SHOP_LINKS = [
-  { label: 'Shop all', href: LABTAG_SHOP_URL, icon: true },
+const PRODUCT_LINKS = [
+  { label: 'Shop all', href: LABTAG_SHOP_URL },
   { label: 'Labels', href: LABTAG_LABELS_URL },
   { label: 'Tapes', href: LABTAG_TAPES_URL },
   { label: 'Tags', href: LABTAG_TAGS_URL },
@@ -89,12 +92,26 @@ const SHOP_LINKS = [
 
 const SOLUTION_LINKS = [
   {
-    label: 'Solutions',
+    label: 'All solutions',
     to: SOLUTIONS_PATH,
     current: (path: string) => path === SOLUTIONS_PATH,
   },
   { label: 'Cryogenic', to: '/solutions/cryogenic' },
+  { label: 'Clinical trials', to: '/solutions/clinical-trials' },
   { label: 'Histology', to: '/solutions/histology' },
+  { label: 'Lab tapes', to: '/solutions/laboratory-tapes' },
+  { label: 'DYMO', to: '/solutions/dymo-labels' },
+  { label: 'Printing', to: '/solutions/label-printing' },
+  { label: 'Automation', to: '/solutions/automated-labware' },
+] as const
+
+const RESOURCE_LINKS = [
+  { label: 'All resources', href: LABTAG_RESOURCES_URL },
+  { label: 'Label Finder', href: LABTAG_FINDER_URL },
+  { label: 'Templates', href: LABTAG_TEMPLATES_HUB_URL },
+  { label: 'Videos', href: LABTAG_VIDEOS_URL },
+  { label: 'FAQ', href: LABTAG_FAQ_URL },
+  { label: 'Blog', href: LABTAG_BLOG_URL },
 ] as const
 
 const UTILITY_LINKS = [
@@ -166,6 +183,9 @@ export function SiteNav() {
   const sectionActive = CONTACT_PATHS.has(pathname)
   const [open, setOpen] = useState(false)
   const [accountOpen, setAccountOpen] = useState(false)
+  const [primaryOpen, setPrimaryOpen] = useState<'products' | 'solutions' | 'resources' | null>(
+    null,
+  )
   const [query, setQuery] = useState('')
   const [askOpen, setAskOpen] = useState(false)
   const [askQuery, setAskQuery] = useState('')
@@ -173,9 +193,13 @@ export function SiteNav() {
   const [unit, setUnit] = useState<UnitId>('metric')
   const rootRef = useRef<HTMLDivElement>(null)
   const accountRef = useRef<HTMLDivElement>(null)
+  const primaryRef = useRef<HTMLElement>(null)
   const askBtnRef = useRef<HTMLButtonElement>(null)
   const askInputRef = useRef<HTMLInputElement>(null)
   const askTitleId = useId()
+  const solutionsCurrent = SOLUTION_LINKS.some((item) =>
+    'current' in item ? item.current(pathname) : pathname === item.to,
+  )
 
   useEffect(() => {
     setUnit(readUnit())
@@ -190,6 +214,7 @@ export function SiteNav() {
   useEffect(() => {
     setOpen(false)
     setAccountOpen(false)
+    setPrimaryOpen(null)
   }, [pathname])
 
   useEffect(() => {
@@ -208,7 +233,10 @@ export function SiteNav() {
     const observer = new IntersectionObserver(([entry]) => {
       const compact = !entry.isIntersecting
       header.classList.toggle('is-compact', compact)
-      if (compact) setAccountOpen(false)
+      if (compact) {
+        setAccountOpen(false)
+        setPrimaryOpen(null)
+      }
       window.requestAnimationFrame(() => syncAnchorScrollMargin())
     })
     observer.observe(pin)
@@ -226,6 +254,7 @@ export function SiteNav() {
           header.classList.add('is-away')
           setOpen(false)
           setAccountOpen(false)
+          setPrimaryOpen(null)
         } else if (y < lastY - 2) {
           header.classList.remove('is-away')
         }
@@ -254,18 +283,20 @@ export function SiteNav() {
   }, [askOpen])
 
   useEffect(() => {
-    if (!open && !accountOpen && !askOpen) return
+    if (!open && !accountOpen && !primaryOpen && !askOpen) return
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
       setOpen(false)
       setAccountOpen(false)
+      setPrimaryOpen(null)
       setAskOpen(false)
     }
     const onPointer = (event: PointerEvent) => {
       const target = event.target as Node
       if (!rootRef.current?.contains(target)) setOpen(false)
       if (!accountRef.current?.contains(target)) setAccountOpen(false)
+      if (!primaryRef.current?.contains(target)) setPrimaryOpen(null)
     }
 
     document.addEventListener('keydown', onKey)
@@ -274,7 +305,7 @@ export function SiteNav() {
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('pointerdown', onPointer)
     }
-  }, [open, accountOpen, askOpen])
+  }, [open, accountOpen, primaryOpen, askOpen])
 
   const goToQuery = (next: string) => {
     const q = next.trim()
@@ -526,6 +557,142 @@ export function SiteNav() {
               </div>
             </div>
 
+            <nav className="site-nav-primary" aria-label="Primary" ref={primaryRef}>
+              <div
+                className={['site-nav-primary-item', primaryOpen === 'products' ? 'is-open' : '']
+                  .filter(Boolean)
+                  .join(' ')}
+                onMouseEnter={() => setPrimaryOpen('products')}
+                onMouseLeave={() => setPrimaryOpen(null)}
+              >
+                <button
+                  type="button"
+                  className="site-nav-primary-trigger"
+                  aria-expanded={primaryOpen === 'products'}
+                  aria-haspopup="true"
+                  aria-controls="site-nav-products-menu"
+                  onClick={() => setPrimaryOpen('products')}
+                >
+                  Products
+                  <CaretDown size={12} weight="bold" aria-hidden />
+                </button>
+                <div className="site-nav-primary-panel">
+                  <div
+                    id="site-nav-products-menu"
+                    className="site-nav-primary-card"
+                    role="menu"
+                    aria-label="Products"
+                  >
+                    {PRODUCT_LINKS.map((item, index) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        role="menuitem"
+                        className="site-nav-primary-link"
+                        style={{ '--i': String(index) } as CSSProperties}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className={[
+                  'site-nav-primary-item',
+                  primaryOpen === 'solutions' ? 'is-open' : '',
+                  solutionsCurrent ? 'is-current' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                onMouseEnter={() => setPrimaryOpen('solutions')}
+                onMouseLeave={() => setPrimaryOpen(null)}
+              >
+                <button
+                  type="button"
+                  className="site-nav-primary-trigger"
+                  aria-expanded={primaryOpen === 'solutions'}
+                  aria-haspopup="true"
+                  aria-controls="site-nav-solutions-menu"
+                  onClick={() => setPrimaryOpen('solutions')}
+                >
+                  Solutions
+                  <CaretDown size={12} weight="bold" aria-hidden />
+                </button>
+                <div className="site-nav-primary-panel">
+                  <div
+                    id="site-nav-solutions-menu"
+                    className="site-nav-primary-card"
+                    role="menu"
+                    aria-label="Solutions"
+                  >
+                    {SOLUTION_LINKS.map((item, index) => (
+                      <Link
+                        key={item.label}
+                        to={item.to}
+                        role="menuitem"
+                        className="site-nav-primary-link"
+                        style={{ '--i': String(index) } as CSSProperties}
+                        aria-current={
+                          ('current' in item ? item.current(pathname) : pathname === item.to)
+                            ? 'page'
+                            : undefined
+                        }
+                        onClick={() => setPrimaryOpen(null)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className={['site-nav-primary-item', primaryOpen === 'resources' ? 'is-open' : '']
+                  .filter(Boolean)
+                  .join(' ')}
+                onMouseEnter={() => setPrimaryOpen('resources')}
+                onMouseLeave={() => setPrimaryOpen(null)}
+              >
+                <button
+                  type="button"
+                  className="site-nav-primary-trigger"
+                  aria-expanded={primaryOpen === 'resources'}
+                  aria-haspopup="true"
+                  aria-controls="site-nav-resources-menu"
+                  onClick={() => setPrimaryOpen('resources')}
+                >
+                  Resources
+                  <CaretDown size={12} weight="bold" aria-hidden />
+                </button>
+                <div className="site-nav-primary-panel">
+                  <div
+                    id="site-nav-resources-menu"
+                    className="site-nav-primary-card"
+                    role="menu"
+                    aria-label="Resources"
+                  >
+                    {RESOURCE_LINKS.map((item, index) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        role="menuitem"
+                        className="site-nav-primary-link"
+                        style={{ '--i': String(index) } as CSSProperties}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </nav>
+
             <div className="site-nav-tools">
               <div
                 ref={rootRef}
@@ -722,43 +889,6 @@ export function SiteNav() {
                   <item.Icon size={20} weight="regular" aria-hidden />
                   <span>{item.label}</span>
                 </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="site-nav-departments">
-          <div className="site-header-inner">
-            <div className="site-nav-departments-list is-shop" aria-label="Shop">
-              {SHOP_LINKS.map((item) => (
-                <a
-                  key={item.label}
-                  className={['site-nav-department', 'icon' in item && item.icon ? 'is-shop-all' : '']
-                    .filter(Boolean)
-                    .join(' ')}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {'icon' in item && item.icon ? <List size={18} weight="bold" aria-hidden /> : null}
-                  {item.label}
-                </a>
-              ))}
-            </div>
-            <div className="site-nav-departments-list is-end is-solutions" aria-label="Solutions">
-              {SOLUTION_LINKS.map((item) => (
-                <Link
-                  key={item.label}
-                  className="site-nav-department"
-                  to={item.to}
-                  aria-current={
-                    ('current' in item ? item.current(pathname) : pathname === item.to)
-                      ? 'page'
-                      : undefined
-                  }
-                >
-                  {item.label}
-                </Link>
               ))}
             </div>
           </div>

@@ -141,12 +141,14 @@ main:focus {
 }
 
 .site-header:has(.site-nav-contact:is(:hover, :focus-within, .is-open)),
-.site-header:has(.site-nav-account:is(:hover, :focus-within, .is-open)) {
+.site-header:has(.site-nav-account:is(:hover, :focus-within, .is-open)),
+.site-header:has(.site-nav-primary-item:is(:hover, :focus-within, .is-open)) {
   clip-path: inset(0 -50vmax -50vmax -50vmax);
 }
 
 .site-header.is-compact:has(.site-nav-contact:is(:hover, :focus-within, .is-open)),
-.site-header.is-compact:has(.site-nav-account:is(:hover, :focus-within, .is-open)) {
+.site-header.is-compact:has(.site-nav-account:is(:hover, :focus-within, .is-open)),
+.site-header.is-compact:has(.site-nav-primary-item:is(:hover, :focus-within, .is-open)) {
   clip-path: inset(var(--promo-h) -50vmax -50vmax -50vmax);
 }
 
@@ -245,6 +247,121 @@ main:focus {
   width: 32rem;
   min-width: 0;
   max-width: 100%;
+}
+
+.site-nav-primary {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.site-nav-primary-item {
+  position: relative;
+  z-index: 1;
+}
+
+.site-nav-primary-item:is(:hover, :focus-within, .is-open) {
+  z-index: 40;
+}
+
+.site-nav-primary-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  min-height: 2.25rem;
+  padding: 0 var(--space-xs);
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-2);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 300ms var(--nav-ease);
+}
+
+.site-nav-primary-item:is(:hover, :focus-within, .is-open) .site-nav-primary-trigger,
+.site-nav-primary-item.is-current .site-nav-primary-trigger {
+  color: var(--color-ink);
+}
+
+.site-nav-primary-trigger svg {
+  transition: transform 500ms var(--nav-ease);
+}
+
+.site-nav-primary-item:is(:hover, :focus-within, .is-open) .site-nav-primary-trigger svg {
+  transform: rotate(180deg);
+}
+
+.site-nav-primary-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  min-width: 12rem;
+  padding-top: var(--space-2xs);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(var(--space-3xs));
+  pointer-events: none;
+  transition:
+    opacity 300ms var(--nav-ease),
+    transform 500ms var(--nav-ease);
+}
+
+.site-nav-primary-item:is(:hover, :focus-within, .is-open) .site-nav-primary-panel {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.site-nav-primary-card {
+  display: grid;
+  gap: var(--space-3xs);
+  padding: var(--space-2xs);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.site-nav-primary-link {
+  display: flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 var(--space-xs);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.25rem;
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(var(--space-3xs));
+  transition:
+    color 300ms var(--nav-ease),
+    background-color 300ms var(--nav-ease),
+    box-shadow 300ms var(--nav-ease),
+    opacity 500ms var(--nav-ease),
+    transform 500ms var(--nav-ease);
+  transition-delay: 0ms;
+}
+
+.site-nav-primary-item:is(:hover, :focus-within, .is-open) .site-nav-primary-link {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(min(var(--i, 0), 6) * 60ms);
+}
+
+.site-nav-primary-link:hover,
+.site-nav-primary-link[aria-current='page'] {
+  color: var(--color-ink);
+  background: var(--color-paper);
 }
 
 .site-nav-search {
@@ -821,75 +938,6 @@ button.site-nav-tool.site-nav-account-trigger {
   border-color: var(--color-ink);
 }
 
-.site-nav-departments {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--color-rule);
-}
-
-.site-nav-departments .site-header-inner {
-  gap: var(--space-lg);
-  min-height: 2.75rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.site-nav-departments .site-header-inner::-webkit-scrollbar {
-  display: none;
-}
-
-.site-nav-departments-list {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: var(--space-sm);
-  min-width: 0;
-}
-
-.site-nav-departments-list.is-end {
-  margin-left: auto;
-}
-
-.site-nav-department {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  padding-block: var(--space-2xs);
-  color: var(--color-ink-2);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  line-height: 1.25rem;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.site-nav-department:hover,
-.site-nav-department[aria-current='page'] {
-  color: var(--color-ink);
-}
-
-.site-nav-department.is-shop-all {
-  color: var(--color-ink);
-  font-weight: 700;
-}
-
-.site-nav-departments-list.is-solutions {
-  gap: var(--space-xs);
-}
-
-.site-nav-departments-list.is-solutions .site-nav-department {
-  color: var(--labtag-text-primary-disabled);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  line-height: 1rem;
-  transition: color 300ms var(--nav-ease);
-}
-
-.site-nav-departments-list.is-solutions .site-nav-department:hover,
-.site-nav-departments-list.is-solutions .site-nav-department[aria-current='page'] {
-  color: var(--color-ink-2);
-}
-
 .site-nav-contact {
   --nav-contact-trigger-h: calc(2.25rem + 2px);
   display: inline-flex;
@@ -1144,16 +1192,20 @@ button.site-nav-tool.site-nav-account-trigger {
   .site-nav-contact-panel,
   .site-nav-contact-item,
   .site-nav-account-panel,
+  .site-nav-primary-panel,
+  .site-nav-primary-link,
   .site-nav-ask-panel,
   .site-nav-ask-overlay {
     transform: none;
   }
 
-  .site-nav-contact-item {
+  .site-nav-contact-item,
+  .site-nav-primary-link {
     opacity: 1;
   }
 
-  .site-nav-contact:is(:hover, :focus-within, .is-open) .site-nav-contact-item {
+  .site-nav-contact:is(:hover, :focus-within, .is-open) .site-nav-contact-item,
+  .site-nav-primary-item:is(:hover, :focus-within, .is-open) .site-nav-primary-link {
     transition-delay: 0ms;
   }
 }
@@ -1437,6 +1489,12 @@ main {
     flex: 0 1 32rem;
     width: 32rem;
     max-width: 100%;
+  }
+
+  .site-nav-primary {
+    order: 4;
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .site-nav-tool span,
