@@ -410,151 +410,151 @@ export function SiteNav() {
                   aria-label="Search labels and protocols"
                   autoComplete="off"
                 />
-              </form>
-              <div className={['site-nav-ask', askOpen ? 'is-open' : ''].filter(Boolean).join(' ')}>
-                <button
-                  ref={askBtnRef}
-                  type="button"
-                  className="site-nav-ask-btn"
-                  aria-expanded={askOpen}
-                  aria-haspopup="dialog"
-                  aria-controls="site-nav-ask-panel"
-                  onClick={() => setAskOpen((value) => !value)}
-                >
-                  <Sparkle size={16} weight="fill" aria-hidden />
-                  Ask Tagi
-                </button>
-                {typeof document !== 'undefined' &&
-                  createPortal(
-                    <div
-                      className={['site-nav-ask-layer', askOpen ? 'is-open' : '']
-                        .filter(Boolean)
-                        .join(' ')}
-                      inert={!askOpen ? true : undefined}
-                    >
+                <div className={['site-nav-ask', askOpen ? 'is-open' : ''].filter(Boolean).join(' ')}>
+                  <button
+                    ref={askBtnRef}
+                    type="button"
+                    className="site-nav-ask-btn"
+                    aria-expanded={askOpen}
+                    aria-haspopup="dialog"
+                    aria-controls="site-nav-ask-panel"
+                    onClick={() => setAskOpen((value) => !value)}
+                  >
+                    <Sparkle size={16} weight="fill" aria-hidden />
+                    Ask Tagi
+                  </button>
+                  {typeof document !== 'undefined' &&
+                    createPortal(
                       <div
-                        className="site-nav-ask-overlay"
-                        onClick={() => setAskOpen(false)}
-                      />
-                      <aside
-                        id="site-nav-ask-panel"
-                        className="site-nav-ask-panel"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby={askTitleId}
-                        aria-hidden={!askOpen}
+                        className={['site-nav-ask-layer', askOpen ? 'is-open' : '']
+                          .filter(Boolean)
+                          .join(' ')}
+                        inert={!askOpen ? true : undefined}
                       >
-                        <div className="site-nav-ask-top">
-                          <h2 id={askTitleId} className="site-nav-ask-heading">
-                            Ask Tagi
-                          </h2>
-                          <button
-                            type="button"
-                            className="site-nav-ask-clear"
-                            onClick={clearAsk}
-                          >
-                            Clear chat
-                          </button>
-                          <button
-                            type="button"
-                            className="site-nav-ask-close"
-                            aria-label="Close Ask Tagi"
-                            onClick={() => {
-                              setAskOpen(false)
-                              askBtnRef.current?.focus()
-                            }}
-                          >
-                            <Minus size={18} weight="bold" aria-hidden />
-                          </button>
-                        </div>
-                        <p className="site-nav-ask-legal">
-                          By using Ask Tagi, you agree to the{' '}
-                          <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
-                            privacy policy
-                          </a>{' '}
-                          and{' '}
-                          <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
-                            terms of use
-                          </a>
-                          .
-                        </p>
-                        <div className="site-nav-ask-body">
-                          {askMessages.length === 0 ? (
-                            <>
-                              <figure className="site-nav-ask-banner">
-                                <img
-                                  src={ASK_BANNER.primary}
-                                  alt="A gloved hand applying a cryogenic label to a vial"
-                                />
-                                <figcaption>Describe the sample. We will find a label.</figcaption>
-                              </figure>
-                              <p className="site-nav-ask-lede">
-                                Hi. I can help you pick a LabTAG label. Tell me the temperature,
-                                container, or printer, or keep it short and I will point you to a
-                                match.
-                              </p>
-                              <p className="site-nav-ask-lede">You can ask me things like:</p>
-                              <div className="site-nav-ask-chips">
-                                {ASK_PROMPTS.map((prompt) => (
-                                  <button
-                                    key={prompt}
-                                    type="button"
-                                    className="site-nav-ask-chip"
-                                    onClick={() => askWith(prompt)}
+                        <div
+                          className="site-nav-ask-overlay"
+                          onClick={() => setAskOpen(false)}
+                        />
+                        <aside
+                          id="site-nav-ask-panel"
+                          className="site-nav-ask-panel"
+                          role="dialog"
+                          aria-modal="true"
+                          aria-labelledby={askTitleId}
+                          aria-hidden={!askOpen}
+                        >
+                          <div className="site-nav-ask-top">
+                            <h2 id={askTitleId} className="site-nav-ask-heading">
+                              Ask Tagi
+                            </h2>
+                            <button
+                              type="button"
+                              className="site-nav-ask-clear"
+                              onClick={clearAsk}
+                            >
+                              Clear chat
+                            </button>
+                            <button
+                              type="button"
+                              className="site-nav-ask-close"
+                              aria-label="Close Ask Tagi"
+                              onClick={() => {
+                                setAskOpen(false)
+                                askBtnRef.current?.focus()
+                              }}
+                            >
+                              <Minus size={18} weight="bold" aria-hidden />
+                            </button>
+                          </div>
+                          <p className="site-nav-ask-legal">
+                            By using Ask Tagi, you agree to the{' '}
+                            <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
+                              privacy policy
+                            </a>{' '}
+                            and{' '}
+                            <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
+                              terms of use
+                            </a>
+                            .
+                          </p>
+                          <div className="site-nav-ask-body">
+                            {askMessages.length === 0 ? (
+                              <>
+                                <figure className="site-nav-ask-banner">
+                                  <img
+                                    src={ASK_BANNER.primary}
+                                    alt="A gloved hand applying a cryogenic label to a vial"
+                                  />
+                                  <figcaption>Describe the sample. We will find a label.</figcaption>
+                                </figure>
+                                <p className="site-nav-ask-lede">
+                                  Hi. I can help you pick a LabTAG label. Tell me the temperature,
+                                  container, or printer, or keep it short and I will point you to a
+                                  match.
+                                </p>
+                                <p className="site-nav-ask-lede">You can ask me things like:</p>
+                                <div className="site-nav-ask-chips">
+                                  {ASK_PROMPTS.map((prompt) => (
+                                    <button
+                                      key={prompt}
+                                      type="button"
+                                      className="site-nav-ask-chip"
+                                      onClick={() => askWith(prompt)}
+                                    >
+                                      <Sparkle size={14} weight="fill" aria-hidden />
+                                      {prompt}
+                                    </button>
+                                  ))}
+                                </div>
+                              </>
+                            ) : (
+                              <ol className="site-nav-ask-thread">
+                                {askMessages.map((item) => (
+                                  <li
+                                    key={item.id}
+                                    className={`site-nav-ask-msg is-${item.role}`}
                                   >
-                                    <Sparkle size={14} weight="fill" aria-hidden />
-                                    {prompt}
-                                  </button>
+                                    <p>{item.text}</p>
+                                    {item.to ? (
+                                      <Link to={item.to} onClick={() => setAskOpen(false)}>
+                                        {item.linkLabel}
+                                      </Link>
+                                    ) : null}
+                                    {item.href ? (
+                                      <a href={item.href} target="_blank" rel="noreferrer">
+                                        {item.linkLabel}
+                                      </a>
+                                    ) : null}
+                                  </li>
                                 ))}
-                              </div>
-                            </>
-                          ) : (
-                            <ol className="site-nav-ask-thread">
-                              {askMessages.map((item) => (
-                                <li
-                                  key={item.id}
-                                  className={`site-nav-ask-msg is-${item.role}`}
-                                >
-                                  <p>{item.text}</p>
-                                  {item.to ? (
-                                    <Link to={item.to} onClick={() => setAskOpen(false)}>
-                                      {item.linkLabel}
-                                    </Link>
-                                  ) : null}
-                                  {item.href ? (
-                                    <a href={item.href} target="_blank" rel="noreferrer">
-                                      {item.linkLabel}
-                                    </a>
-                                  ) : null}
-                                </li>
-                              ))}
-                            </ol>
-                          )}
-                        </div>
-                        <form className="site-nav-ask-form" onSubmit={onAsk}>
-                          <Sparkle size={16} weight="fill" aria-hidden />
-                          <input
-                            ref={askInputRef}
-                            type="text"
-                            name="ask"
-                            value={askQuery}
-                            onChange={(event) => setAskQuery(event.target.value)}
-                            placeholder="I am looking for"
-                            aria-label="Ask Tagi"
-                            autoComplete="off"
-                          />
-                          <button type="submit" aria-label="Send">
-                            <ArrowRight size={16} weight="bold" aria-hidden />
-                          </button>
-                        </form>
-                        <p className="site-nav-ask-note">
-                          Ask Tagi can miss a match. Check the product page before you order.
-                        </p>
-                      </aside>
-                    </div>,
-                    document.body,
-                  )}
-              </div>
+                              </ol>
+                            )}
+                          </div>
+                          <form className="site-nav-ask-form" onSubmit={onAsk}>
+                            <Sparkle size={16} weight="fill" aria-hidden />
+                            <input
+                              ref={askInputRef}
+                              type="text"
+                              name="ask"
+                              value={askQuery}
+                              onChange={(event) => setAskQuery(event.target.value)}
+                              placeholder="I am looking for"
+                              aria-label="Ask Tagi"
+                              autoComplete="off"
+                            />
+                            <button type="submit" aria-label="Send">
+                              <ArrowRight size={16} weight="bold" aria-hidden />
+                            </button>
+                          </form>
+                          <p className="site-nav-ask-note">
+                            Ask Tagi can miss a match. Check the product page before you order.
+                          </p>
+                        </aside>
+                      </div>,
+                      document.body,
+                    )}
+                </div>
+              </form>
             </div>
 
             <nav className="site-nav-primary" aria-label="Primary" ref={primaryRef}>
