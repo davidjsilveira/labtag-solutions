@@ -132,7 +132,8 @@ export function SolutionPage() {
               </Link>
             </p>
           ) : archiveSources.length ? (
-            <nav className="hero-related" aria-label="Archive">
+            <details className="hero-related hero-related-archive">
+              <summary>Also covered</summary>
               <ul className="source-list">
                 {archiveSources.map((source) => (
                   <li key={source.slug}>
@@ -142,7 +143,7 @@ export function SolutionPage() {
                   </li>
                 ))}
               </ul>
-            </nav>
+            </details>
           ) : null
         }
       />

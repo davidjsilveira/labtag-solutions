@@ -92,8 +92,6 @@ A robust supply chain and global presence support delivery where labels are need
 
 ## Clinical Data Printing
 
-## Why Use a Data Printing Service?
-
 ### Speed
 
 ![Variable data printing for clinical labels](https://cdn.labtag.com/wp-content/uploads/Variable-Data-Printing-Services.jpg "/media/clinical-data-printing/Variable-Data-Printing-Services.jpg")
@@ -124,17 +122,13 @@ Superior raw materials and printing are backed by quality control testing so lab
 
 Materials can be supplied with full-color, high-resolution company logos and branding, as well as other images or graphics, so clinical printed materials stay consistent with your trial identity.
 
-## Diagnostic Kit Labeling
-
-### Diagnostic Kits
+## Diagnostic Kits
 
 ![Cryogenic labels for diagnostic kit workflows](https://cdn.labtag.com/wp-content/uploads/cryogenic-1.jpg "/media/covid-19-laboratory-labels/cryogenic-1.jpg")
 
 Labels for sample collection and diagnostic kits support accurate identification from the point of collection through testing. Custom printing of serialized and/or barcoded labels is available, including in-house printing and label application in industrial quantities with on-time delivery of packaged and labeled testing kits.
 
 ## Cryogenic Clinical Requisition Forms
-
-## Forms and Labels by Need
 
 ### Trusted Supplier
 
@@ -171,5 +165,3 @@ Durable identification solutions help ensure the data integrity of valuable samp
 Tell us about your protocol, containers, and data requirements and one of our experts will help specify the right clinical trial labeling solution.
 
 [Request clinical trial labels](/request/clinical-trial-labels)
-
-[Request custom forms](/request/cryogenic-clinical-requisition-forms)

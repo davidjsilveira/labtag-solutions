@@ -90,8 +90,6 @@ DYMO-compatible paper labels (EDY/ECY-class) printable with the 450-series of DY
 
 ## DYMO LabelWriter™ 550 Printing Kit
 
-## Printing Kit by Component
-
 ### CryoSTUCK® Labels
 
 ![CryoSTUCK labels with DYMO and GA branding](https://cdn.labtag.com/wp-content/uploads/LWCS-504-DYMOxGA.jpg "/media/dymo-labelwriter-550/LWCS-504-DYMOxGA.jpg")

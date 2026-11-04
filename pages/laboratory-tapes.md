@@ -156,9 +156,7 @@ Ultra-removable laboratory tape is ideal for glass, metal, cardboard, plastic, a
 
 Our tape dispensers are perfectly suited for use with our range of tapes provided with a support liner. Made of durable metal and plastic materials, and with a solid base, they are suitable for various lab environments and can be easily relocated. Our dispensers are designed to efficiently separate the adhesive tape from its liner and to quickly cut the exact length needed.
 
-## GatorCUT™ Pocket Rolls
-
-## Freezer Tapes
+## GatorCUT™ Freezer Tapes
 
 ### FreezerTAPE™ TG
 
@@ -172,7 +170,7 @@ Pre-printed warning tape designed for labeling chemical drums, totes, and other 
 
 This freezer-grade tape is perfect for identifying vials, tubes, and other containers in lab freezers as low as −80°C. It also tolerates high-temperature exposure up to +100°C in dry heat, as well as thawing in heated water baths.
 
-## Frozen & Cryogenic Tapes
+## GatorCUT™ Frozen & Cryogenic Tapes
 
 ### FrozenSTUCK™
 
@@ -204,7 +202,7 @@ This liner-less tape for already frozen surfaces (as low as −80°C) is perfect
 
 This clear liner-less cryogenic tape for already frozen surfaces (as low as −80°C) is ideal for identifying frozen samples and containers without concealing their contents. It can be applied to frozen surfaces without thawing them first, and withstands elevated temperatures.
 
-## Static Cling Tapes
+## GatorCUT™ Static Cling Tapes
 
 ### UbiCling™
 
@@ -218,7 +216,7 @@ Adhesive-free tape with GatorCUT™ technology. This hand-cuttable tape adheres 
 
 This clear adhesive-free tape adheres to various surfaces using static cling-like properties. Writable with permanent markers and pens, this static cling tape can be re-positioned or removed without leaving behind any residue.
 
-## Autoclave Tapes
+## GatorCUT™ Autoclave Tapes
 
 ### SteriTAPE™
 

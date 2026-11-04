@@ -327,7 +327,9 @@ function extractCtaAction(rawBody: string): {
 } {
   const match = rawBody.match(CTA_LINK)
   if (!match) return { body: rawBody.trim() }
-  const body = rawBody.replace(match[0], '').replace(/\s{2,}/g, ' ').trim()
+  // Keep the first link as the CTA action; strip every markdown link so extras
+  // never leak into the body as raw "[Label](/path)" text.
+  const body = rawBody.replace(new RegExp(CTA_LINK.source, 'g'), '').replace(/\s{2,}/g, ' ').trim()
   return { body, actionLabel: match[1].trim(), actionHref: match[2].trim() }
 }
 

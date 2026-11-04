@@ -31,7 +31,7 @@ const REASONS: Reason[] = [
     iconFallback: 'https://cdn.labtag.com/wp-content/uploads/scientist-icon.svg',
   },
   {
-    title: 'Twenty years of specialty labels',
+    title: '25+ years of specialty labels',
     body: 'R&D and converting have stayed in house since the start, so catalog and custom work share one quality system.',
     icon: '/media/about/why/20years-icon.svg',
     iconFallback: 'https://cdn.labtag.com/wp-content/uploads/20years-icon.svg',

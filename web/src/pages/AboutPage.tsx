@@ -70,17 +70,7 @@ const FAQS = [
   {
     question: 'Can I get free samples?',
     answer:
-      'Yes. We send free samples of labels and tapes to verified business addresses. Markers, ribbons, and hardware are not included. Shipping is free to the contiguous United States, Canada, and EU countries.',
-  },
-  {
-    question: 'What does the satisfaction guarantee cover?',
-    answer:
-      'If the labels are not a match we take them back and help you specify the next material. The goal is a protocol that holds, not a one time shipment.',
-  },
-  {
-    question: 'How fast do orders ship?',
-    answer:
-      'Day and evening crews run fulfillment so standard stock can leave quickly. Custom work is quoted with a date before you commit.',
+      'Yes. We send free samples of labels and tapes to verified business addresses, so kits go to working benches, not residences. Markers, ribbons, and hardware are not included. Shipping is free to the contiguous United States, Canada, and EU countries.',
   },
   {
     question: 'Do you make custom sizes and colors?',
@@ -88,24 +78,9 @@ const FAQS = [
       'Yes. Stock SKUs cover common vials and plates. Custom shapes, colors, and preprinted data are quoted from the same manufacturing line.',
   },
   {
-    question: 'What does ISO 22301 mean for my supply?',
-    answer:
-      'ISO 22301:2012 business continuity planning reduces the chance that a disruption stops us from serving your lab. ISO 9001:2015 covers the quality system those products run through.',
-  },
-  {
     question: 'What temperatures can the labels survive?',
     answer:
       'The cryogenic range starts at −196°C. Other lines cover freezer, fridge, ambient, and autoclave. Tell us the protocol and we will point you to the matching material.',
-  },
-  {
-    question: 'Where are you located?',
-    answer:
-      'Offices in Plattsburgh, Laval, Berlicum, and Brighton, with warehouses placed to reach North American and European labs.',
-  },
-  {
-    question: 'Why do you need a business address for samples?',
-    answer:
-      'Samples are for labs evaluating a protocol. A verified business address keeps kits going to working benches, not residences.',
   },
 ]
 
@@ -127,7 +102,7 @@ const CERTS = [
 const STATS = [
   { value: '25+', label: 'Years of specialty labels', count: 25, prefix: '', suffix: '+' },
   { value: 'Manufacturing', label: 'In-house' },
-  { value: 'R&D', label: 'In house product team' },
+  { value: 'R&D', label: 'In-house product team' },
   { value: 'ISO', label: 'Certified quality' },
 ]
 
@@ -435,7 +410,10 @@ export function AboutPage() {
         })}
       </div>
 
-      <WhyReasons />
+      <section className="about-reasons" aria-labelledby="about-reasons-heading">
+        <h2 id="about-reasons-heading">Why labs choose LabTAG</h2>
+        <WhyReasons />
+      </section>
 
       <section className="about-iso" aria-label="Quality certifications" data-motion-section>
         <div className="about-iso-body">

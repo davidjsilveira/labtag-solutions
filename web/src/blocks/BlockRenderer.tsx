@@ -165,7 +165,7 @@ function catalogSection(
           ))}
         </div>
         {absorbed.bullets?.type === 'bulletList' ? (
-          <BulletListBlockView block={absorbed.bullets} variant="spec" />
+          <BulletListBlockView block={absorbed.bullets} variant="plain" />
         ) : null}
       </div>
       {media}
@@ -322,6 +322,41 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
           </div>,
         )
         i = absorbed.next
+        continue
+      }
+
+      // Group headings (##): empty, or a short lead followed by ### product rows.
+      if (catalog) {
+        const childSection = following?.type === 'section' ? (following as SectionBlock) : null
+        const isGroupHeading = (block.level ?? 2) < 3
+        const leadsIntoProducts = Boolean(
+          isGroupHeading && childSection && (childSection.level ?? 2) >= 3,
+        )
+        if (isGroupHeading && (block.paragraphs.length === 0 || leadsIntoProducts)) {
+          pushNonSplit(
+            <header key={`catalog-heading-${i}`} className="catalog-heading">
+              <h2>{block.title}</h2>
+              {block.paragraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 48)} className="catalog-heading-lead">
+                  {paragraph}
+                </p>
+              ))}
+            </header>,
+          )
+          i += 1
+          continue
+        }
+
+        // Standalone copy section with no media (e.g. accessories blurb).
+        pushNonSplit(
+          catalogSection(
+            `catalog-copy-solo-${i}`,
+            { section: block },
+            null,
+            'band',
+          ),
+        )
+        i += 1
         continue
       }
     }

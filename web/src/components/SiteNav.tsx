@@ -586,7 +586,7 @@ export function SiteNav() {
                   aria-controls="site-nav-products-menu"
                   onClick={() => setPrimaryOpen('products')}
                 >
-                  Products
+                  Shop
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
                 <div className="site-nav-primary-panel">
@@ -594,7 +594,7 @@ export function SiteNav() {
                     id="site-nav-products-menu"
                     className="site-nav-primary-card"
                     role="menu"
-                    aria-label="Products"
+                    aria-label="Shop"
                   >
                     {PRODUCT_LINKS.map((item, index) => (
                       <a

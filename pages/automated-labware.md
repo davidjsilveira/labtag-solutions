@@ -85,9 +85,7 @@ Designed to aliquot reagents or samples with labeling, validation, and sample tr
 
 Labels can be applied to all sides of the plate. Removable racks support easy loading and unloading, and a barcode reader is included for validation.
 
-## Pre-Labeled Labware
-
-## How the Service Works
+## How Pre-Labeled Labware Works
 
 ### Send Your Labware
 
