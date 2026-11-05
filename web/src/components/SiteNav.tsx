@@ -18,6 +18,7 @@ import {
   SquaresFour,
   User,
 } from '@phosphor-icons/react'
+import { ShopMegaMenu } from '@/components/ShopMegaMenu'
 import { resolveImageSrc } from '@/content/resolveImage'
 import { syncAnchorScrollMargin } from '@/hooks/syncAnchorScrollMargin'
 import { solutionPages } from '@/content/loadPages'
@@ -32,21 +33,16 @@ import {
 import {
   CONTACT_PATH,
   CUSTOM_LABELS_PATH,
-  LABTAG_ACCESSORIES_URL,
   LABTAG_BLOG_URL,
   LABTAG_CART_URL,
   LABTAG_CREATE_ACCOUNT_URL,
   LABTAG_FAQ_URL,
   LABTAG_FINDER_URL,
-  LABTAG_LABELS_URL,
-  LABTAG_PRINT_URL,
   LABTAG_PRIVACY_URL,
   LABTAG_PROMOS_URL,
   LABTAG_RESOURCES_URL,
   LABTAG_SHOP_URL,
   LABTAG_SIGN_IN_URL,
-  LABTAG_TAPES_URL,
-  LABTAG_TAGS_URL,
   LABTAG_TEMPLATES_HUB_URL,
   LABTAG_TERMS_URL,
   LABTAG_VIDEOS_URL,
@@ -80,15 +76,6 @@ const CONTACT_ITEMS = [
 ]
 
 const CONTACT_PATHS = new Set([CONTACT_PATH, ...CONTACT_ITEMS.map((item) => item.to)])
-
-const PRODUCT_LINKS = [
-  { label: 'Shop all', href: LABTAG_SHOP_URL },
-  { label: 'Labels', href: LABTAG_LABELS_URL },
-  { label: 'Tapes', href: LABTAG_TAPES_URL },
-  { label: 'Tags', href: LABTAG_TAGS_URL },
-  { label: 'Print & scan', href: LABTAG_PRINT_URL },
-  { label: 'Accessories', href: LABTAG_ACCESSORIES_URL },
-] as const
 
 const SOLUTION_LINKS = [
   {
@@ -186,6 +173,7 @@ export function SiteNav() {
   const [primaryOpen, setPrimaryOpen] = useState<'products' | 'solutions' | 'resources' | null>(
     null,
   )
+  const [primaryLocked, setPrimaryLocked] = useState(false)
   const [query, setQuery] = useState('')
   const [askOpen, setAskOpen] = useState(false)
   const [askQuery, setAskQuery] = useState('')
@@ -196,7 +184,51 @@ export function SiteNav() {
   const primaryRef = useRef<HTMLElement>(null)
   const askBtnRef = useRef<HTMLButtonElement>(null)
   const askInputRef = useRef<HTMLInputElement>(null)
+  const shopCloseTimerRef = useRef<number | null>(null)
   const askTitleId = useId()
+
+  const clearShopCloseTimer = () => {
+    if (shopCloseTimerRef.current == null) return
+    window.clearTimeout(shopCloseTimerRef.current)
+    shopCloseTimerRef.current = null
+  }
+
+  const openPrimary = (next: 'products' | 'solutions' | 'resources') => {
+    clearShopCloseTimer()
+    setPrimaryLocked(false)
+    setPrimaryOpen(next)
+  }
+
+  const closePrimary = (lock = false) => {
+    clearShopCloseTimer()
+    setPrimaryOpen(null)
+    setPrimaryLocked(lock)
+  }
+
+  const togglePrimary = (next: 'products' | 'solutions' | 'resources') => {
+    clearShopCloseTimer()
+    setPrimaryOpen((current) => {
+      if (current === next) {
+        setPrimaryLocked(true)
+        return null
+      }
+      setPrimaryLocked(false)
+      return next
+    })
+  }
+
+  const openShopMenu = () => openPrimary('products')
+
+  const scheduleShopClose = () => {
+    clearShopCloseTimer()
+    shopCloseTimerRef.current = window.setTimeout(() => {
+      shopCloseTimerRef.current = null
+      setPrimaryOpen((current) => (current === 'products' ? null : current))
+      setPrimaryLocked(false)
+    }, 320)
+  }
+
+  const closeShopMenu = () => closePrimary(true)
   const solutionsCurrent = SOLUTION_LINKS.some((item) =>
     'current' in item ? item.current(pathname) : pathname === item.to,
   )
@@ -215,7 +247,11 @@ export function SiteNav() {
     setOpen(false)
     setAccountOpen(false)
     setPrimaryOpen(null)
+    setPrimaryLocked(false)
+    clearShopCloseTimer()
   }, [pathname])
+
+  useEffect(() => () => clearShopCloseTimer(), [])
 
   useEffect(() => {
     const header = document.querySelector('.site-header')
@@ -291,12 +327,16 @@ export function SiteNav() {
       setAccountOpen(false)
       setPrimaryOpen(null)
       setAskOpen(false)
+      clearShopCloseTimer()
     }
     const onPointer = (event: PointerEvent) => {
       const target = event.target as Node
       if (!rootRef.current?.contains(target)) setOpen(false)
       if (!accountRef.current?.contains(target)) setAccountOpen(false)
-      if (!primaryRef.current?.contains(target)) setPrimaryOpen(null)
+      if (!primaryRef.current?.contains(target)) {
+        clearShopCloseTimer()
+        setPrimaryOpen(null)
+      }
     }
 
     document.addEventListener('keydown', onKey)
@@ -572,44 +612,42 @@ export function SiteNav() {
 
             <nav className="site-nav-primary" aria-label="Primary" ref={primaryRef}>
               <div
-                className={['site-nav-primary-item', primaryOpen === 'products' ? 'is-open' : '']
+                className={[
+                  'site-nav-primary-item',
+                  'is-shop',
+                  primaryOpen === 'products' ? 'is-open' : '',
+                ]
                   .filter(Boolean)
                   .join(' ')}
-                onMouseEnter={() => setPrimaryOpen('products')}
-                onMouseLeave={() => setPrimaryOpen(null)}
+                onMouseEnter={() => {
+                  if (primaryLocked) return
+                  openShopMenu()
+                }}
+                onMouseLeave={() => {
+                  if (primaryLocked) {
+                    setPrimaryLocked(false)
+                    clearShopCloseTimer()
+                    return
+                  }
+                  scheduleShopClose()
+                }}
               >
                 <button
                   type="button"
                   className="site-nav-primary-trigger"
                   aria-expanded={primaryOpen === 'products'}
-                  aria-haspopup="true"
+                  aria-haspopup="dialog"
                   aria-controls="site-nav-products-menu"
-                  onClick={() => setPrimaryOpen('products')}
+                  onClick={() => togglePrimary('products')}
+                  onFocus={() => {
+                    if (!primaryLocked) openShopMenu()
+                  }}
                 >
                   Shop
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
-                <div className="site-nav-primary-panel">
-                  <div
-                    id="site-nav-products-menu"
-                    className="site-nav-primary-card"
-                    role="menu"
-                    aria-label="Shop"
-                  >
-                    {PRODUCT_LINKS.map((item, index) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        role="menuitem"
-                        className="site-nav-primary-link"
-                        style={{ '--i': String(index) } as CSSProperties}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
+                <div className="site-nav-primary-panel site-nav-shop-panel">
+                  <ShopMegaMenu open={primaryOpen === 'products'} onClose={closeShopMenu} />
                 </div>
               </div>
 
@@ -621,8 +659,11 @@ export function SiteNav() {
                 ]
                   .filter(Boolean)
                   .join(' ')}
-                onMouseEnter={() => setPrimaryOpen('solutions')}
-                onMouseLeave={() => setPrimaryOpen(null)}
+                onMouseEnter={() => {
+                  if (primaryLocked) return
+                  openPrimary('solutions')
+                }}
+                onMouseLeave={() => closePrimary(false)}
               >
                 <button
                   type="button"
@@ -630,7 +671,7 @@ export function SiteNav() {
                   aria-expanded={primaryOpen === 'solutions'}
                   aria-haspopup="true"
                   aria-controls="site-nav-solutions-menu"
-                  onClick={() => setPrimaryOpen('solutions')}
+                  onClick={() => togglePrimary('solutions')}
                 >
                   Solutions
                   <CaretDown size={12} weight="bold" aria-hidden />
@@ -667,8 +708,11 @@ export function SiteNav() {
                 className={['site-nav-primary-item', primaryOpen === 'resources' ? 'is-open' : '']
                   .filter(Boolean)
                   .join(' ')}
-                onMouseEnter={() => setPrimaryOpen('resources')}
-                onMouseLeave={() => setPrimaryOpen(null)}
+                onMouseEnter={() => {
+                  if (primaryLocked) return
+                  openPrimary('resources')
+                }}
+                onMouseLeave={() => closePrimary(false)}
               >
                 <button
                   type="button"
@@ -676,7 +720,7 @@ export function SiteNav() {
                   aria-expanded={primaryOpen === 'resources'}
                   aria-haspopup="true"
                   aria-controls="site-nav-resources-menu"
-                  onClick={() => setPrimaryOpen('resources')}
+                  onClick={() => togglePrimary('resources')}
                 >
                   Resources
                   <CaretDown size={12} weight="bold" aria-hidden />
@@ -907,6 +951,21 @@ export function SiteNav() {
           </div>
         </div>
       </div>
+
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <button
+            type="button"
+            className={['shop-mega-backdrop', primaryOpen === 'products' ? 'is-open' : '']
+              .filter(Boolean)
+              .join(' ')}
+            aria-label="Close shop menu"
+            aria-hidden={primaryOpen !== 'products'}
+            tabIndex={primaryOpen === 'products' ? 0 : -1}
+            onClick={closeShopMenu}
+          />,
+          document.body,
+        )}
     </>
   )
 }
