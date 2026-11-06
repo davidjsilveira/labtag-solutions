@@ -15,19 +15,37 @@ const PROMPTS = [
   'What autoclave labels are available?',
 ]
 
-function relatedQuestions(question: string) {
-  const asked = question.trim().toLowerCase()
-  const sized = /\d/.test(question) && /ml|tube|vial/i.test(question)
+function relatedQuestions(question: string, prior: string[]) {
+  const asked = new Set(prior.map((item) => item.trim().toLowerCase()))
+  asked.add(question.trim().toLowerCase())
+  const pcr = /pcr/i.test(question)
+  const vial = /vial|cryo/i.test(question)
+  const tube = /tube/i.test(question) && !pcr
   const cold = /nitrogen|−80|-80|freezer/i.test(question)
   const heat = /autoclave/i.test(question)
-  return [
-    sized ? '' : 'What label fits a 1.5 ml tube?',
-    cold ? '' : 'Which labels work in liquid nitrogen?',
-    heat ? '' : 'What autoclave labels are available?',
-    sized && !/2 ml/i.test(question) ? 'What label fits a 2 ml cryogenic vial?' : '',
-  ]
-    .filter((prompt) => prompt && prompt.toLowerCase() !== asked)
+  const chemical = /xylene|chemical/i.test(question)
+  const preferred = pcr
+    ? ['What label fits a 1.5 ml tube?', 'What autoclave labels are available?']
+    : heat
+      ? ['Which labels resist xylene?', 'What label fits a 1.5 ml tube?']
+      : chemical
+        ? ['What autoclave labels are available?', 'What label fits a 1.5 ml tube?']
+        : cold && !tube && !vial
+          ? ['What label fits a 2 ml cryogenic vial?', 'What label fits a 1.5 ml tube?']
+          : vial
+            ? ['Which labels work in liquid nitrogen?', 'What label fits a 1.5 ml tube?']
+            : tube
+              ? ['What labels work at −80°C?', 'What label fits a 2 ml cryogenic vial?']
+              : ['What label fits a 1.5 ml tube?', 'Which labels work in liquid nitrogen?']
+  return [...new Set([...preferred, ...PROMPTS, 'Which labels resist xylene?'])]
+    .filter((prompt) => !asked.has(prompt.toLowerCase()))
     .slice(0, 2)
+}
+
+function answerRecap(text: string) {
+  const codes = [...new Set(withoutShopLine(text).match(/\b(?:L2FX|L2FS|AHA|TRCL)-\d+\b/g) ?? [])]
+  if (codes.length > 0) return `Show ${codes.slice(0, 3).join(', ')}`
+  return 'Show answer'
 }
 
 type ChatMessage = {
@@ -136,7 +154,10 @@ function StoreActions({ text, store }: { text: string; store?: StoreLabel }) {
   if (!store) return null
   return (
     <a className="tagi-shop" href={store.href} target="_blank" rel="noreferrer">
-      Shop {store.title}
+      <span>
+        <span className="tagi-shop-kicker">Shop</span>
+        <span className="tagi-shop-title">{store.title}</span>
+      </span>
       <ArrowRight size={16} weight="bold" aria-hidden />
     </a>
   )
@@ -272,9 +293,11 @@ export function TagiPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [draft, setDraft] = useState('')
   const [pending, setPending] = useState(false)
+  const [opened, setOpened] = useState<{ id: string; during: string } | null>(null)
   const threadRef = useRef<HTMLDivElement>(null)
   const pageRef = useRef<HTMLElement>(null)
   const latestRef = useRef<HTMLLIElement>(null)
+  const earlierRef = useRef<HTMLLIElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const busy = useRef(false)
   const historyRef = useRef(messages)
@@ -375,6 +398,25 @@ export function TagiPage() {
   }
 
   const chatting = messages.length > 0
+  const latestId = exchanges.at(-1)?.question.id
+  const openEarlier = opened && opened.during === latestId ? opened.id : null
+
+  useEffect(() => {
+    const node = earlierRef.current
+    const stage = threadRef.current
+    if (!openEarlier || !node || !stage) return
+    const top = node.getBoundingClientRect().top - stage.getBoundingClientRect().top + stage.scrollTop
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    stage.scrollTo({ top: Math.max(0, top - 8), behavior: reduce ? 'auto' : 'smooth' })
+  }, [openEarlier])
+  const latestAnswered = [...exchanges].reverse().find((exchange) => exchange.answer)
+  const suggestions =
+    latestAnswered && !pending && !draft.trim()
+      ? relatedQuestions(
+          latestAnswered.question.text,
+          exchanges.map((exchange) => exchange.question.text),
+        )
+      : []
 
   return (
     <article className={chatting ? 'tagi-page is-chatting' : 'tagi-page'} ref={pageRef}>
@@ -400,52 +442,74 @@ export function TagiPage() {
       <div className="tagi-stage" ref={threadRef}>
       {chatting ? (
         <ol className="tagi-thread" aria-live="polite">
-          {exchanges.map(({ question, answer }, index) => (
+          {exchanges.map(({ question, answer }, index) => {
+            const latest = index === exchanges.length - 1
+            const open = latest || openEarlier === question.id
+            return (
             <li
               key={question.id}
-              className="tagi-exchange"
-              ref={index === exchanges.length - 1 ? latestRef : undefined}
+              className={open ? 'tagi-exchange' : 'tagi-exchange is-collapsed'}
+              ref={latest ? latestRef : openEarlier === question.id ? earlierRef : undefined}
             >
-              <h2 className="tagi-asked">{question.text}</h2>
-              {answer ? (
-                <div className="tagi-reply">
-                  <Answer text={answer.text} />
-                  <StoreActions text={answer.text} store={answer.store} />
-                  {index === exchanges.length - 1 ? (
-                    <div className="tagi-follow">
-                      <p>Ask next</p>
-                      {relatedQuestions(question.text).map((prompt) => (
-                        <button key={prompt} type="button" disabled={pending} onClick={() => void submit(prompt)}>
-                          {prompt}
-                        </button>
-                      ))}
-                    </div>
-                  ) : null}
-                  {answer.sources && answer.sources.length > 0 ? (
-                    <ul className="tagi-sources">
-                      {answer.sources.map((source) => (
-                        <li key={source.id}>
-                          <Link to={source.href}>
-                            <span>{source.category}</span>
-                            {source.question}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : answer.store ? null : (
-                    <Link className="tagi-solution" to={CONTACT_PATH}>
-                      Contact support
-                    </Link>
-                  )}
-                </div>
+              {answer && !open ? (
+                <button
+                  type="button"
+                  className="tagi-asked is-earlier"
+                  onClick={() => latestId && setOpened({ id: question.id, during: latestId })}
+                >
+                  <span>{question.text}</span>
+                  <span className="tagi-earlier-meta">{answerRecap(answer.text)}</span>
+                </button>
               ) : (
-                <p className="tagi-pending" role="status">
-                  <span className="tagi-loader" aria-hidden />
-                  Searching the knowledge base
-                </p>
+                <>
+                  <h2 className="tagi-asked">{question.text}</h2>
+                  {answer ? (
+                    <div className="tagi-reply">
+                      <p className="tagi-who">
+                        <Sparkle size={14} weight="fill" aria-hidden />
+                        Tagi
+                        {latest ? null : (
+                          <button type="button" onClick={() => setOpened(null)}>
+                            Hide
+                          </button>
+                        )}
+                      </p>
+                      <Answer text={answer.text} />
+                      <StoreActions text={answer.text} store={answer.store} />
+                      {answer.sources && answer.sources.length > 0 ? (
+                        <ul className="tagi-sources">
+                          {answer.sources.map((source) => (
+                            <li key={source.id}>
+                              <Link to={source.href}>
+                                <span>{source.category}</span>
+                                {source.question}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : answer.store ? null : (
+                        <Link className="tagi-solution" to={CONTACT_PATH}>
+                          Contact support
+                        </Link>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="tagi-reply">
+                      <p className="tagi-who">
+                        <Sparkle size={14} weight="fill" aria-hidden />
+                        Tagi
+                      </p>
+                      <p className="tagi-pending" role="status">
+                        <span className="tagi-loader" aria-hidden />
+                        Searching the knowledge base
+                      </p>
+                    </div>
+                  )}
+                </>
               )}
             </li>
-          ))}
+            )
+          })}
         </ol>
       ) : (
         <div className="tagi-welcome">
@@ -465,6 +529,15 @@ export function TagiPage() {
       </div>
 
       <div className="tagi-dock">
+        {suggestions.length > 0 ? (
+          <div className="tagi-suggest" aria-label="Related questions">
+            {suggestions.map((prompt) => (
+              <button key={prompt} type="button" onClick={() => void submit(prompt)}>
+                {prompt}
+              </button>
+            ))}
+          </div>
+        ) : null}
         <form
           className="tagi-composer"
           onSubmit={(event) => {
@@ -494,16 +567,31 @@ export function TagiPage() {
           </button>
         </form>
         <p className="tagi-note">
-          Answers come from the knowledge base. Check the product page before you order. By using Ask Tagi, you agree to
-          the{' '}
-          <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
-            privacy policy
-          </a>{' '}
-          and{' '}
-          <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
-            terms of use
-          </a>
-          .
+          {chatting ? (
+            <>
+              Check the product page before you order.{' '}
+              <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
+                Privacy policy
+              </a>
+              {' · '}
+              <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
+                Terms of use
+              </a>
+            </>
+          ) : (
+            <>
+              Answers come from the knowledge base. Check the product page before you order. By using Ask Tagi, you agree
+              to the{' '}
+              <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
+                privacy policy
+              </a>{' '}
+              and{' '}
+              <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
+                terms of use
+              </a>
+              .
+            </>
+          )}
         </p>
       </div>
     </article>
