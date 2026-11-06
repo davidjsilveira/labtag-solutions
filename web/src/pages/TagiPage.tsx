@@ -132,10 +132,10 @@ function StoreActions({ text, store }: { text: string; store?: StoreLabel }) {
     return (
       <div className="tagi-product-set">
         {family ? <p className="tagi-product-family">{family}</p> : null}
-        <ul className="tagi-products" aria-label="Recommended labels">
+        <ul className="tagi-products is-rows" aria-label="Recommended labels">
           {products.map((product) => (
             <li key={product.href}>
-              <ProductTile product={product} showName={!family} />
+              <ProductPreview product={product} showName={!family} />
             </li>
           ))}
         </ul>
@@ -163,29 +163,28 @@ function StoreActions({ text, store }: { text: string; store?: StoreLabel }) {
   )
 }
 
-function ProductTile({ product, showName }: { product: StoreLabel; showName: boolean }) {
-  return (
-    <a className="tagi-tile" href={product.href} target="_blank" rel="noreferrer">
-      {product.image ? <img src={product.image} alt="" /> : <span className="tagi-tile-fallback" />}
-      <span className="tagi-tile-code">{product.title}</span>
-      {product.detail ? <span className="tagi-tile-size">{product.detail}</span> : null}
-      {showName && product.name ? <span className="tagi-tile-name">{product.name}</span> : null}
-    </a>
-  )
-}
-
-function ProductPreview({ product }: { product: StoreLabel }) {
+function ProductPreview({ product, showName = true }: { product: StoreLabel; showName?: boolean }) {
   return (
     <a className="tagi-product" href={product.href} target="_blank" rel="noreferrer">
       {product.image ? <img src={product.image} alt="" /> : null}
       <span className="tagi-product-copy">
         <span className="tagi-product-code">{product.title}</span>
         {product.detail ? <span className="tagi-product-detail">{product.detail}</span> : null}
-        {product.name ? <span className="tagi-product-name">{product.name}</span> : null}
+        {showName && product.name ? <span className="tagi-product-name">{product.name}</span> : null}
       </span>
       <ArrowRight size={16} weight="bold" aria-hidden />
     </a>
   )
+}
+
+function sizeRow(line: string) {
+  const body = line.replace(/^•\s*/, '')
+  const split = body.indexOf(':')
+  if (split <= 0) return null
+  const name = body.slice(0, split).trim()
+  const size = body.slice(split + 1).trim()
+  if (!name || !size || size.length > 48 || !/\d/.test(size)) return null
+  return { name, size }
 }
 
 function Answer({ text }: { text: string }) {
@@ -206,6 +205,10 @@ function Answer({ text }: { text: string }) {
             </p>
           )
         }
+        const specs = bullets.flatMap((line) => {
+          const row = sizeRow(line)
+          return row ? [row] : []
+        })
         return (
           <Fragment key={block}>
             {lines.slice(0, bulletStart).map((line) => (
@@ -213,13 +216,26 @@ function Answer({ text }: { text: string }) {
                 <LinkedText text={line} />
               </p>
             ))}
-            <ul>
-              {bullets.map((line, index) => (
-                <li key={`${line}-${index}`}>
-                  <LinkedText text={line.slice(2)} />
-                </li>
-              ))}
-            </ul>
+            {specs.length === bullets.length ? (
+              <ul className="tagi-specs">
+                {specs.map((row) => (
+                  <li key={`${row.name}-${row.size}`}>
+                    <span>{row.name}</span>
+                    <span>
+                      <LinkedText text={row.size} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul>
+                {bullets.map((line, index) => (
+                  <li key={`${line}-${index}`}>
+                    <LinkedText text={line.slice(2)} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </Fragment>
         )
       })}
@@ -235,6 +251,15 @@ type BrowserModel = {
   }>
 }
 
+function leakedModelText(text: string, question: string) {
+  return (
+    /echoing back the input|on-device model is not available|you are tagi, the labtag support assistant|do not mention that you were given excerpts/i.test(
+      text,
+    ) ||
+    (/^knowledge base:/i.test(text) && text.includes(`Question: ${question}`))
+  )
+}
+
 async function browserAnswer(question: string, sources: TagiSource[]) {
   const model = (globalThis as { LanguageModel?: BrowserModel }).LanguageModel
   if (!model || sources.length === 0) return ''
@@ -244,8 +269,8 @@ async function browserAnswer(question: string, sources: TagiSource[]) {
     initialPrompts: [{ role: 'system', content: TAGI_SYSTEM_PROMPT }],
   })
   try {
-    const text = await session.prompt(`Knowledge base:\n${tagiContext(sources)}\n\nQuestion: ${question}`)
-    return text.trim()
+    const text = (await session.prompt(`Knowledge base:\n${tagiContext(sources)}\n\nQuestion: ${question}`)).trim()
+    return leakedModelText(text, question) ? '' : text
   } finally {
     session.destroy?.()
   }
@@ -337,9 +362,12 @@ export function TagiPage() {
 
   useEffect(() => {
     const field = inputRef.current
+    const stage = threadRef.current
     if (!field) return
-    field.style.height = 'auto'
-    field.style.height = `${Math.min(field.scrollHeight, 112)}px`
+    const nearBottom = stage ? stage.scrollHeight - stage.scrollTop - stage.clientHeight < 80 : false
+    field.style.height = '0px'
+    field.style.height = `${Math.min(Math.max(field.scrollHeight, 40), 112)}px`
+    if (nearBottom && stage) stage.scrollTop = stage.scrollHeight
   }, [draft])
 
   async function submit(raw: string) {
@@ -379,6 +407,11 @@ export function TagiPage() {
   }
 
   const seed = params.get('q')?.trim() ?? ''
+
+  useEffect(() => {
+    if (seed) return
+    inputRef.current?.focus({ preventScroll: true })
+  }, [seed])
 
   useEffect(() => {
     if (!seed || tagiSeed === seed) return
@@ -439,25 +472,27 @@ export function TagiPage() {
                   className="tagi-asked is-earlier"
                   onClick={() => latestId && setOpened({ id: question.id, during: latestId })}
                 >
-                  <span>{question.text}</span>
+                  <span>{question.text.replace(/\s*\n+\s*/g, ' ')}</span>
                   <span className="tagi-earlier-meta">{answerRecap(answer.text)}</span>
                 </button>
               ) : (
                 <>
                   <h2 className="tagi-asked">{question.text}</h2>
                   {answer ? (
-                    <div className="tagi-reply">
-                      <p className="tagi-who">
-                        <Sparkle size={14} weight="fill" aria-hidden />
-                        Tagi
-                        {latest ? null : (
-                          <button type="button" onClick={() => setOpened(null)}>
-                            Hide
-                          </button>
-                        )}
-                      </p>
-                      <Answer text={answer.text} />
-                      <StoreActions text={answer.text} store={answer.store} />
+                    <div className="tagi-turn">
+                      <div className="tagi-reply">
+                        <p className="tagi-who">
+                          <Sparkle size={14} weight="fill" aria-hidden />
+                          Tagi
+                          {latest ? null : (
+                            <button type="button" onClick={() => setOpened(null)}>
+                              Hide
+                            </button>
+                          )}
+                        </p>
+                        <Answer text={answer.text} />
+                        <StoreActions text={answer.text} store={answer.store} />
+                      </div>
                       {answer.sources && answer.sources.length > 0 ? (
                         <ul className="tagi-sources">
                           {answer.sources.map((source) => (
@@ -515,6 +550,7 @@ export function TagiPage() {
           <div className="tagi-suggest" aria-label="Related questions">
             {suggestions.map((prompt) => (
               <button key={prompt} type="button" onClick={() => void submit(prompt)}>
+                <Sparkle size={14} weight="fill" aria-hidden />
                 {prompt}
               </button>
             ))}
@@ -535,13 +571,13 @@ export function TagiPage() {
             ref={inputRef}
             rows={1}
             value={draft}
-            placeholder="Container, size, temperature, or feature"
+            enterKeyHint="send"
+            placeholder={chatting ? 'Ask a follow-up' : 'What label fits a 1.5 ml tube?'}
             onChange={(event) => setDraft(event.target.value)}
             onKeyDown={(event) => {
-              if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault()
-                void submit(draft)
-              }
+              if (event.key !== 'Enter' || event.shiftKey || event.nativeEvent.isComposing) return
+              event.preventDefault()
+              void submit(draft)
             }}
           />
           <button type="submit" aria-label="Ask" disabled={pending || !draft.trim()}>
@@ -551,6 +587,16 @@ export function TagiPage() {
         <p className="tagi-note">
           {chatting ? (
             <>
+              <span>
+                Check the product page before you order.{' '}
+                <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
+                  Privacy policy
+                </a>
+                {' · '}
+                <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
+                  Terms of use
+                </a>
+              </span>
               <button
                 type="button"
                 className="tagi-clear"
@@ -563,15 +609,6 @@ export function TagiPage() {
               >
                 Clear chat
               </button>
-              {' · '}
-              Check the product page before you order.{' '}
-              <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
-                Privacy policy
-              </a>
-              {' · '}
-              <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
-                Terms of use
-              </a>
             </>
           ) : (
             <>

@@ -120,6 +120,13 @@ export function retrieveTagi(question: string, limit = 4): TagiSource[] {
     .slice(0, limit)
 }
 
+function continues(paragraphs: string[], chosen: string[]) {
+  if (chosen.length !== 1) return chosen
+  const next = paragraphs[paragraphs.indexOf(chosen[0]) + 1]
+  if (!next || next.startsWith('•') || next.includes('• ') || /contact support/i.test(next)) return chosen
+  return [...chosen, next]
+}
+
 function relevantParagraphs(answer: string, queryTokens: string[], question: string) {
   const paragraphs = answer.split(/\n\n+/).map((part) => part.trim()).filter(Boolean)
   const questionTokens = tokens(question)
@@ -130,8 +137,8 @@ function relevantParagraphs(answer: string, queryTokens: string[], question: str
     )
     if (focused.length > 0) {
       const intro = paragraphs[0]
-      if (intro && !focused.includes(intro) && intro.length < 180) return [intro, ...focused]
-      return focused
+      if (intro && !focused.includes(intro) && intro.length < 180) return continues(paragraphs, [intro, ...focused])
+      return continues(paragraphs, focused)
     }
   }
   const overlap = questionTokens.filter((token) => queryTokens.includes(token)).length
@@ -144,9 +151,9 @@ function relevantParagraphs(answer: string, queryTokens: string[], question: str
   if (matched.length === 0) return paragraphs
   const intro = paragraphs[0]
   if (intro && !matched.includes(intro) && intro.length < 180 && !intro.startsWith('•')) {
-    return [intro, ...matched]
+    return continues(paragraphs, [intro, ...matched])
   }
-  return matched
+  return continues(paragraphs, matched)
 }
 
 function withStore(question: string, answer: TagiAnswer, basis = answer.answer): TagiAnswer {
