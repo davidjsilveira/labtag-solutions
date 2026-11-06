@@ -3,6 +3,8 @@ import { Link, NavLink } from 'react-router-dom'
 import {
   ABOUT_PATH,
   CONTACT_PATH,
+  HELP_PATH,
+  TAGI_PATH,
   CUSTOM_LABELS_PATH,
   LABTAG_BLOG_URL,
   LABTAG_COOKIE_URL,
@@ -152,6 +154,8 @@ const STACKED_GROUPS: FooterGroup[] = [
           { label: 'Shop', href: LABTAG_SHOP_URL },
           { label: 'Videos', href: LABTAG_VIDEOS_URL },
           { label: 'Label templates', href: LABTAG_TEMPLATES_URL },
+          { label: 'Help', to: HELP_PATH },
+          { label: 'Ask Tagi', to: TAGI_PATH },
           { label: 'FAQ', href: LABTAG_FAQ_URL },
           { label: 'Blog', href: LABTAG_BLOG_URL },
         ],

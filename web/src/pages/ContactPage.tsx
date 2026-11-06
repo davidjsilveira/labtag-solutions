@@ -13,6 +13,7 @@ import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm
 import {
   CUSTOM_LABELS_PATH,
   LABTAG_CONTACT_URL,
+  HELP_PATH,
   LABTAG_FAQ_URL,
   LABTAG_SHOP_URL,
   LABTAG_TEMPLATES_URL,
@@ -42,6 +43,7 @@ const HELPFUL_LINKS = [
   { label: 'Label templates', href: LABTAG_TEMPLATES_URL },
   { label: 'Application videos', href: LABTAG_VIDEOS_URL },
   { label: 'Shop', href: LABTAG_SHOP_URL },
+  { label: 'Help center', to: HELP_PATH },
   { label: 'LabTAG FAQ', href: LABTAG_FAQ_URL },
 ]
 
@@ -256,9 +258,13 @@ export function ContactPage() {
             <ul>
               {HELPFUL_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} target="_blank" rel="noreferrer">
-                    {link.label}
-                  </a>
+                  {'to' in link && link.to ? (
+                    <Link to={link.to}>{link.label}</Link>
+                  ) : 'href' in link && link.href ? (
+                    <a href={link.href} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </a>
+                  ) : null}
                 </li>
               ))}
             </ul>

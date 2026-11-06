@@ -1,15 +1,13 @@
-import { useEffect, useId, useRef, useState, type CSSProperties, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import {
-  ArrowRight,
   CaretDown,
   ChatCircle,
   Check,
   ClipboardText,
   MagnifyingGlass,
   MagnifyingGlassPlus,
-  Minus,
   Package,
   Phone,
   Scissors,
@@ -19,9 +17,8 @@ import {
   User,
 } from '@phosphor-icons/react'
 import { ShopMegaMenu } from '@/components/ShopMegaMenu'
-import { resolveImageSrc } from '@/content/resolveImage'
+import { findCatalogMatch } from '@/content/catalogMatch'
 import { syncAnchorScrollMargin } from '@/hooks/syncAnchorScrollMargin'
-import { solutionPages } from '@/content/loadPages'
 import {
   LANGUAGE_OPTIONS,
   UNIT_EVENT,
@@ -32,19 +29,20 @@ import {
 } from '@/content/preferences'
 import {
   CONTACT_PATH,
+  HELP_PATH,
+  TAGI_PATH,
   CUSTOM_LABELS_PATH,
   LABTAG_BLOG_URL,
   LABTAG_CART_URL,
   LABTAG_CREATE_ACCOUNT_URL,
   LABTAG_FAQ_URL,
   LABTAG_FINDER_URL,
-  LABTAG_PRIVACY_URL,
+  LABTAG_ORDERS_URL,
   LABTAG_PROMOS_URL,
   LABTAG_RESOURCES_URL,
   LABTAG_SHOP_URL,
   LABTAG_SIGN_IN_URL,
   LABTAG_TEMPLATES_HUB_URL,
-  LABTAG_TERMS_URL,
   LABTAG_VIDEOS_URL,
   QUOTE_PATH,
   SAMPLE_PATH,
@@ -94,6 +92,8 @@ const SOLUTION_LINKS = [
 
 const RESOURCE_LINKS = [
   { label: 'All resources', href: LABTAG_RESOURCES_URL },
+  { label: 'Help', to: HELP_PATH },
+  { label: 'Ask Tagi', to: TAGI_PATH },
   { label: 'Label Finder', href: LABTAG_FINDER_URL },
   { label: 'Templates', href: LABTAG_TEMPLATES_HUB_URL },
   { label: 'Videos', href: LABTAG_VIDEOS_URL },
@@ -114,56 +114,6 @@ const ACCOUNT_BENEFITS = [
   'Accelerate your workflow',
 ] as const
 
-const ASK_PROMPTS = [
-  'Labels for liquid nitrogen',
-  'Labels that stick to frozen vials',
-  'DYMO labels for the bench',
-] as const
-
-const ASK_BANNER = resolveImageSrc('/media/cryogenic-labels/DTU-7-use4-wp.jpg')
-
-type AskMessage = {
-  id: string
-  role: 'user' | 'assistant'
-  text: string
-  to?: string
-  href?: string
-  linkLabel?: string
-}
-
-const ASK_STOP = new Set(['for', 'the', 'and', 'that', 'with', 'from', 'are', 'you'])
-
-function pageText(page: (typeof solutionPages)[number]) {
-  return `${page.title} ${page.slug.replace(/-/g, ' ')} ${page.excerpt} ${page.description.join(' ')}`.toLowerCase()
-}
-
-function findCatalogMatch(query: string) {
-  const q = query.toLowerCase()
-  const slugQuery = q.replace(/\s+/g, '-')
-  const tokens = q
-    .split(/[^a-z0-9]+/)
-    .filter((token) => token.length > 2 && !ASK_STOP.has(token))
-
-  const ranked = solutionPages
-    .map((page) => {
-      const hay = pageText(page)
-      const hits = tokens.filter((token) => hay.includes(token)).length
-      return { page, hits }
-    })
-    .sort((a, b) => b.hits - a.hits)
-
-  return (
-    solutionPages.find((page) => page.title.toLowerCase() === q || page.slug === slugQuery) ??
-    solutionPages.find(
-      (page) => page.title.toLowerCase().startsWith(q) || page.slug.startsWith(slugQuery),
-    ) ??
-    solutionPages.find(
-      (page) => page.title.toLowerCase().includes(q) || page.slug.includes(slugQuery),
-    ) ??
-    (ranked[0] && ranked[0].hits >= Math.min(2, tokens.length) ? ranked[0].page : undefined)
-  )
-}
-
 export function SiteNav() {
   const { pathname } = useLocation()
   const navigate = useNavigate()
@@ -175,17 +125,11 @@ export function SiteNav() {
   )
   const [primaryLocked, setPrimaryLocked] = useState(false)
   const [query, setQuery] = useState('')
-  const [askOpen, setAskOpen] = useState(false)
-  const [askQuery, setAskQuery] = useState('')
-  const [askMessages, setAskMessages] = useState<AskMessage[]>([])
   const [unit, setUnit] = useState<UnitId>('metric')
   const rootRef = useRef<HTMLDivElement>(null)
   const accountRef = useRef<HTMLDivElement>(null)
   const primaryRef = useRef<HTMLElement>(null)
-  const askBtnRef = useRef<HTMLButtonElement>(null)
-  const askInputRef = useRef<HTMLInputElement>(null)
   const shopCloseTimerRef = useRef<number | null>(null)
-  const askTitleId = useId()
 
   const clearShopCloseTimer = () => {
     if (shopCloseTimerRef.current == null) return
@@ -254,6 +198,36 @@ export function SiteNav() {
   useEffect(() => () => clearShopCloseTimer(), [])
 
   useEffect(() => {
+    if (primaryOpen !== 'products') {
+      document.documentElement.style.removeProperty('--shop-mega-backdrop-top')
+      return
+    }
+
+    const syncBackdropTop = () => {
+      const mega = document.querySelector('.shop-mega')
+      if (!(mega instanceof HTMLElement)) return
+      const bottom = Math.ceil(mega.getBoundingClientRect().bottom)
+      document.documentElement.style.setProperty('--shop-mega-backdrop-top', `${bottom}px`)
+    }
+
+    const frame = window.requestAnimationFrame(syncBackdropTop)
+    const mega = document.querySelector('.shop-mega')
+    const observer =
+      mega instanceof HTMLElement ? new ResizeObserver(syncBackdropTop) : null
+    if (mega instanceof HTMLElement) observer?.observe(mega)
+    window.addEventListener('resize', syncBackdropTop)
+    window.addEventListener('scroll', syncBackdropTop, { passive: true })
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      observer?.disconnect()
+      window.removeEventListener('resize', syncBackdropTop)
+      window.removeEventListener('scroll', syncBackdropTop)
+      document.documentElement.style.removeProperty('--shop-mega-backdrop-top')
+    }
+  }, [primaryOpen])
+
+  useEffect(() => {
     const header = document.querySelector('.site-header')
     const pin = document.querySelector('.site-header-pin')
     if (!(header instanceof HTMLElement) || !pin) return
@@ -309,24 +283,13 @@ export function SiteNav() {
   }, [])
 
   useEffect(() => {
-    if (!askOpen) return
-    askInputRef.current?.focus()
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = prev
-    }
-  }, [askOpen])
-
-  useEffect(() => {
-    if (!open && !accountOpen && !primaryOpen && !askOpen) return
+    if (!open && !accountOpen && !primaryOpen) return
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
       setOpen(false)
       setAccountOpen(false)
       setPrimaryOpen(null)
-      setAskOpen(false)
       clearShopCloseTimer()
     }
     const onPointer = (event: PointerEvent) => {
@@ -345,7 +308,7 @@ export function SiteNav() {
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('pointerdown', onPointer)
     }
-  }, [open, accountOpen, primaryOpen, askOpen])
+  }, [open, accountOpen, primaryOpen])
 
   const goToQuery = (next: string) => {
     const q = next.trim()
@@ -363,50 +326,6 @@ export function SiteNav() {
     return true
   }
 
-  const askWith = (raw: string) => {
-    const q = raw.trim()
-    if (!q) return
-
-    const match = findCatalogMatch(q)
-    const shop = new URL(LABTAG_SHOP_URL)
-    shop.searchParams.set('s', q)
-    const reply: AskMessage = match
-      ? {
-          id: `a-${q}-${askMessages.length}`,
-          role: 'assistant',
-          text: `I would start with ${match.title}. Open the solution page to check temperature, container, and print method.`,
-          to: `/solutions/${match.slug}`,
-          linkLabel: match.title,
-        }
-      : {
-          id: `a-${q}-${askMessages.length}`,
-          role: 'assistant',
-          text: 'I do not have a local match for that. Search the shop, or talk with a specialist.',
-          href: shop.toString(),
-          linkLabel: 'Search the shop',
-        }
-
-    setAskMessages((current) => [
-      ...current,
-      { id: `u-${q}-${current.length}`, role: 'user', text: q },
-      reply,
-    ])
-    setAskQuery('')
-  }
-
-  const openAsk = (seed = '') => {
-    const next = seed.trim()
-    if (!next && askOpen) {
-      setAskOpen(false)
-      return
-    }
-    setAskOpen(true)
-    if (next) {
-      askWith(next)
-      setQuery('')
-    }
-  }
-
   const onSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const next = String(new FormData(event.currentTarget).get('q') ?? query).trim()
@@ -414,17 +333,7 @@ export function SiteNav() {
     setQuery('')
   }
 
-  const onAsk = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const next = String(new FormData(event.currentTarget).get('ask') ?? askQuery)
-    askWith(next)
-  }
-
-  const clearAsk = () => {
-    setAskMessages([])
-    setAskQuery('')
-    askInputRef.current?.focus()
-  }
+  const askTo = query.trim() ? `${TAGI_PATH}?q=${encodeURIComponent(query.trim())}` : TAGI_PATH
 
   return (
     <>
@@ -463,150 +372,17 @@ export function SiteNav() {
                   aria-label="Search labels and protocols"
                   autoComplete="off"
                 />
-                <div className={['site-nav-ask', askOpen ? 'is-open' : ''].filter(Boolean).join(' ')}>
-                  <button
-                    ref={askBtnRef}
-                    type="button"
-                    className="site-nav-ask-btn"
-                    aria-expanded={askOpen}
-                    aria-haspopup="dialog"
-                    aria-controls="site-nav-ask-panel"
-                    onClick={() => openAsk(query)}
-                  >
-                    <Sparkle size={16} weight="fill" aria-hidden />
-                    Ask Tagi
-                  </button>
-                {typeof document !== 'undefined' &&
-                  createPortal(
-                    <div
-                      className={['site-nav-ask-layer', askOpen ? 'is-open' : '']
-                        .filter(Boolean)
-                        .join(' ')}
-                      inert={!askOpen ? true : undefined}
-                    >
-                      <div
-                        className="site-nav-ask-overlay"
-                        onClick={() => setAskOpen(false)}
-                      />
-                      <aside
-                        id="site-nav-ask-panel"
-                        className="site-nav-ask-panel"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby={askTitleId}
-                        aria-hidden={!askOpen}
-                      >
-                        <div className="site-nav-ask-top">
-                          <h2 id={askTitleId} className="site-nav-ask-heading">
-                            Ask Tagi
-                          </h2>
-                          <button
-                            type="button"
-                            className="site-nav-ask-clear"
-                            onClick={clearAsk}
-                          >
-                            Clear chat
-                          </button>
-                          <button
-                            type="button"
-                            className="site-nav-ask-close"
-                            aria-label="Close Ask Tagi"
-                            onClick={() => {
-                              setAskOpen(false)
-                              askBtnRef.current?.focus()
-                            }}
-                          >
-                            <Minus size={18} weight="bold" aria-hidden />
-                          </button>
-                        </div>
-                        <p className="site-nav-ask-legal">
-                          By using Ask Tagi, you agree to the{' '}
-                          <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
-                            privacy policy
-                          </a>{' '}
-                          and{' '}
-                          <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
-                            terms of use
-                          </a>
-                          .
-                        </p>
-                        <div className="site-nav-ask-body">
-                          {askMessages.length === 0 ? (
-                            <>
-                              <figure className="site-nav-ask-banner">
-                                <img
-                                  src={ASK_BANNER.primary}
-                                  alt="A gloved hand applying a cryogenic label to a vial"
-                                />
-                                <figcaption>Describe the sample. We will find a label.</figcaption>
-                              </figure>
-                              <p className="site-nav-ask-lede">
-                                Hi. I can help you pick a LabTAG label. Tell me the temperature,
-                                container, or printer, or keep it short and I will point you to a
-                                match.
-                              </p>
-                              <p className="site-nav-ask-lede">You can ask me things like:</p>
-                              <div className="site-nav-ask-chips">
-                                {ASK_PROMPTS.map((prompt) => (
-                                  <button
-                                    key={prompt}
-                                    type="button"
-                                    className="site-nav-ask-chip"
-                                    onClick={() => askWith(prompt)}
-                                  >
-                                    <Sparkle size={14} weight="fill" aria-hidden />
-                                    {prompt}
-                                  </button>
-                                ))}
-                              </div>
-                            </>
-                          ) : (
-                            <ol className="site-nav-ask-thread">
-                              {askMessages.map((item) => (
-                                <li
-                                  key={item.id}
-                                  className={`site-nav-ask-msg is-${item.role}`}
-                                >
-                                  <p>{item.text}</p>
-                                  {item.to ? (
-                                    <Link to={item.to} onClick={() => setAskOpen(false)}>
-                                      {item.linkLabel}
-                                    </Link>
-                                  ) : null}
-                                  {item.href ? (
-                                    <a href={item.href} target="_blank" rel="noreferrer">
-                                      {item.linkLabel}
-                                    </a>
-                                  ) : null}
-                                </li>
-                              ))}
-                            </ol>
-                          )}
-                        </div>
-                        <form className="site-nav-ask-form" onSubmit={onAsk}>
-                          <Sparkle size={16} weight="fill" aria-hidden />
-                          <input
-                            ref={askInputRef}
-                            type="text"
-                            name="ask"
-                            value={askQuery}
-                            onChange={(event) => setAskQuery(event.target.value)}
-                            placeholder="I am looking for"
-                            aria-label="Ask Tagi"
-                            autoComplete="off"
-                          />
-                          <button type="submit" aria-label="Send">
-                            <ArrowRight size={16} weight="bold" aria-hidden />
-                          </button>
-                        </form>
-                        <p className="site-nav-ask-note">
-                          Ask Tagi can miss a match. Check the product page before you order.
-                        </p>
-                      </aside>
-                    </div>,
-                    document.body,
-                  )}
-                </div>
+                <Link
+                  className={['site-nav-ask-btn', pathname === TAGI_PATH ? 'is-current' : '']
+                    .filter(Boolean)
+                    .join(' ')}
+                  to={askTo}
+                  aria-current={pathname === TAGI_PATH ? 'page' : undefined}
+                  onClick={() => setQuery('')}
+                >
+                  <Sparkle size={16} weight="fill" aria-hidden />
+                  Ask Tagi
+                </Link>
               </form>
             </div>
 
@@ -732,19 +508,32 @@ export function SiteNav() {
                     role="menu"
                     aria-label="Resources"
                   >
-                    {RESOURCE_LINKS.map((item, index) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        role="menuitem"
-                        className="site-nav-primary-link"
-                        style={{ '--i': String(index) } as CSSProperties}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
+                    {RESOURCE_LINKS.map((item, index) =>
+                      'to' in item ? (
+                        <Link
+                          key={item.label}
+                          to={item.to}
+                          role="menuitem"
+                          className="site-nav-primary-link"
+                          style={{ '--i': String(index) } as CSSProperties}
+                          onClick={() => setPrimaryOpen(null)}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          role="menuitem"
+                          className="site-nav-primary-link"
+                          style={{ '--i': String(index) } as CSSProperties}
+                        >
+                          {item.label}
+                        </a>
+                      ),
+                    )}
                   </div>
                 </div>
               </div>
@@ -853,7 +642,10 @@ export function SiteNav() {
                   onClick={() => setAccountOpen(true)}
                 >
                   <User size={20} weight="regular" aria-hidden />
-                  <span>Account</span>
+                  <span className="site-nav-account-name">
+                    Account
+                    <CaretDown className="site-nav-account-caret" size={10} weight="bold" aria-hidden />
+                  </span>
                 </button>
                 <div className="site-nav-account-panel">
                   <div
@@ -891,6 +683,15 @@ export function SiteNav() {
                         className="site-nav-account-btn is-secondary"
                       >
                         Create Account
+                      </a>
+                      <a
+                        href={LABTAG_ORDERS_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        role="menuitem"
+                        className="site-nav-account-btn is-secondary"
+                      >
+                        My orders
                       </a>
                     </div>
                     <div className="site-nav-account-group">

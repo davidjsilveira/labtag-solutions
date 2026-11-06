@@ -154,9 +154,9 @@ export function ShopMegaMenu({ open, onClose }: ShopMegaMenuProps) {
           href={SHOP_MEGA_PROMO.href}
           target="_blank"
           rel="noreferrer"
-          style={{ backgroundImage: `url(${active.image})` }}
-          aria-label={`${SHOP_MEGA_PROMO.cta}: ${active.imageAlt}`}
         >
+          <img className="shop-mega-promo-image" src={active.image} alt="" />
+          <span className="sr-only">{active.imageAlt}. </span>
           <span className="shop-mega-promo-copy">
             <span className="shop-mega-promo-kicker">{SHOP_MEGA_PROMO.kicker}</span>
             <span className="shop-mega-promo-title">{SHOP_MEGA_PROMO.title}</span>

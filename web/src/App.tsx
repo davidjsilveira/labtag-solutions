@@ -8,6 +8,8 @@ import {
   ABOUT_PATH,
   CONTACT_PATH,
   CUSTOM_LABELS_PATH,
+  HELP_PATH,
+  TAGI_PATH,
   QUOTE_PATH,
   RESELLER_PATH,
   SAMPLE_PATH,
@@ -15,6 +17,8 @@ import {
 } from '@/content/labtagLinks'
 import { AboutPage } from '@/pages/AboutPage'
 import { ContactPage } from '@/pages/ContactPage'
+import { HelpPage } from '@/pages/HelpPage'
+import { TagiPage } from '@/pages/TagiPage'
 import { CustomLabelsPage } from '@/pages/CustomLabelsPage'
 import { HomePage } from '@/pages/HomePage'
 import { QuotePage } from '@/pages/QuotePage'
@@ -69,6 +73,8 @@ export default function App() {
           <Route path={CUSTOM_LABELS_PATH} element={<CustomLabelsPage />} />
           <Route path={RESELLER_PATH} element={<ResellerPage />} />
           <Route path={CONTACT_PATH} element={<ContactPage />} />
+          <Route path={HELP_PATH} element={<HelpPage />} />
+          <Route path={TAGI_PATH} element={<TagiPage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"
