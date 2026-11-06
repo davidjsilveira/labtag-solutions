@@ -57,7 +57,7 @@ export const HELP_CATEGORIES: HelpCategory[] = [
         id: 'cryostuck-sizing',
         question: 'How do I find the right CryoSTUCK label for my tubes?',
         answer:
-          'Two rules decide the fit. The wrapped label needs at least 0.25 in of overlap, and the printable area must not overlap itself on the tube.\n\nExamples from the sizing guide:\n• 1.0 ml Matrix or Biotubes: 1.0 in × 0.75 in, printable 0.5 in × 0.75 in, L2FS-6\n• 1.5 ml conical tubes: 1.75 in × 0.5 in, printable 1.0 in × 0.5 in, L2FS-1\n• 2.0 ml cryogenic vials: several sizes, including L2FS-12, AHA-268, L2FS-345, L2FS-327, L2FS-4, AHA-224, and L2FS-2\n• 5.0 ml round bottom tubes: L2FS-5\n• 15 ml conical tubes: L2FS-312, L2FS-308, or FIX-329\n• 50 ml conical tubes: L2FS-3\n\nBlackout CryoSTUCK labels cover information that is already on the vial.',
+          'Two rules decide the fit. The wrapped label needs at least 0.25 in of overlap, and the printable area must not overlap itself on the tube.\n\nThese CryoSTUCK labels match common tubes:\n• 1.0 ml Matrix or Biotubes: 1.0 in × 0.75 in, L2FX-406\n• 1.5 ml conical tubes: 1.75 in × 0.5 in, L2FX-401\n• 2.0 ml cryogenic vials: L2FX-345, AHA-268, or AHA-224\n• 15 ml conical tubes: L2FX-312 or L2FX-308\n\nOther sizes, including 5 ml and 50 ml tubes, are in the CryoSTUCK thermal-transfer range. Blackout CryoSTUCK labels cover information that is already on the vial.',
       },
       {
         id: 'label-size-table',

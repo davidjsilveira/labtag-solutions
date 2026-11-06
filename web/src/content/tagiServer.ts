@@ -1,3 +1,4 @@
+import { findStoreLabel, shopLine } from './storeLabel.js'
 import { composeTagiAnswer, TAGI_SYSTEM_PROMPT, tagiContext, type TagiAnswer, type TagiTurn } from './tagi.js'
 
 export type { TagiTurn }
@@ -57,7 +58,10 @@ export async function answerTagi(question: string, history: TagiTurn[]): Promise
   try {
     const answer = await complete(messages)
     if (!answer) return composed
-    return { ...composed, answer, engine: 'llm' }
+    const store = composed.store ?? findStoreLabel(question, composed.answer)
+    const line = store ? shopLine(store) : ''
+    const text = store && !answer.includes(store.href) ? `${answer}\n\n${line}` : answer
+    return { ...composed, answer: text, store, engine: 'llm' }
   } catch {
     return composed
   }

@@ -1,17 +1,17 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Sparkle } from '@phosphor-icons/react'
-import { findCatalogMatch } from '@/content/catalogMatch'
 import { composeTagiAnswer, TAGI_SYSTEM_PROMPT, tagiContext, type TagiAnswer, type TagiSource } from '@/content/tagi'
 import { CONTACT_PATH, LABTAG_PRIVACY_URL, LABTAG_TERMS_URL } from '@/content/labtagLinks'
+import { storeProduct, withoutShopLine, type StoreLabel } from '@/content/storeLabel'
 
 const PROMPTS = [
-  'How do I calibrate a Zebra printer?',
-  'How do I apply CryoSTUCK labels?',
-  'Can I return an order?',
-  'What is the difference between direct thermal and thermal transfer?',
-  'What core size fits a desktop printer?',
-  'How do I track an order?',
+  'What CryoSTUCK label fits a 1.5 ml tube?',
+  'What CryoSTUCK label fits a 1.0 ml Matrix tube?',
+  'What CryoSTUCK labels fit 15 ml tubes?',
+  'What are cryogenic labels?',
+  'Which DYMO labels are cryogenic?',
+  'What autoclave labels are available?',
 ]
 
 type ChatMessage = {
@@ -19,11 +19,24 @@ type ChatMessage = {
   role: 'user' | 'assistant'
   text: string
   sources?: TagiSource[]
-  solution?: { title: string; to: string }
+  store?: StoreLabel
+}
+
+function LinkedText({ text }: { text: string }) {
+  const parts = text.split(/(\b(?:L2FX|L2FS|AHA|TRCL)-\d+\b)/g)
+  return parts.map((part, index) => {
+    const product = storeProduct(part)
+    if (!product) return part
+    return (
+      <a key={`${part}-${index}`} href={product.href} target="_blank" rel="noreferrer">
+        {part}
+      </a>
+    )
+  })
 }
 
 function Answer({ text }: { text: string }) {
-  const blocks = text.trim().split(/\n\n+/)
+  const blocks = withoutShopLine(text).trim().split(/\n\n+/)
   return (
     <div className="tagi-answer">
       {blocks.map((block) => {
@@ -33,15 +46,25 @@ function Answer({ text }: { text: string }) {
           bulletStart >= 0 && lines.slice(bulletStart).every((line) => line.startsWith('• '))
             ? lines.slice(bulletStart)
             : null
-        if (!bullets) return <p key={block}>{block}</p>
+        if (!bullets) {
+          return (
+            <p key={block}>
+              <LinkedText text={block} />
+            </p>
+          )
+        }
         return (
           <Fragment key={block}>
             {lines.slice(0, bulletStart).map((line) => (
-              <p key={line}>{line}</p>
+              <p key={line}>
+                <LinkedText text={line} />
+              </p>
             ))}
             <ul>
               {bullets.map((line, index) => (
-                <li key={`${line}-${index}`}>{line.slice(2)}</li>
+                <li key={`${line}-${index}`}>
+                  <LinkedText text={line.slice(2)} />
+                </li>
               ))}
             </ul>
           </Fragment>
@@ -91,6 +114,7 @@ async function askTagi(question: string, history: { role: 'user' | 'assistant'; 
           answer: data.answer,
           sources: data.sources?.length ? data.sources : local.sources,
           engine: data.engine === 'llm' ? 'llm' : 'knowledge-base',
+          store: data.store ?? local.store,
         }
       }
     }
@@ -116,7 +140,8 @@ export function TagiPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [draft, setDraft] = useState('')
   const [pending, setPending] = useState(false)
-  const threadRef = useRef<HTMLOListElement>(null)
+  const threadRef = useRef<HTMLDivElement>(null)
+  const latestRef = useRef<HTMLLIElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const busy = useRef(false)
   const historyRef = useRef(messages)
@@ -131,9 +156,13 @@ export function TagiPage() {
   }, [])
 
   useEffect(() => {
-    const node = threadRef.current
-    if (!node) return
-    node.scrollTop = node.scrollHeight
+    const thread = threadRef.current
+    const latest = latestRef.current
+    if (!thread || !latest) return
+    const top = latest.getBoundingClientRect().top - thread.getBoundingClientRect().top + thread.scrollTop
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: 0, behavior: 'auto' })
+    thread.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' })
   }, [messages, pending])
 
   async function submit(raw: string) {
@@ -146,7 +175,6 @@ export function TagiPage() {
     setPending(true)
     try {
       const result = await askTagi(question, prior)
-      const match = findCatalogMatch(question)
       setMessages((current) => [
         ...current,
         {
@@ -154,7 +182,7 @@ export function TagiPage() {
           role: 'assistant',
           text: result.answer,
           sources: result.sources,
-          solution: match ? { title: match.title, to: `/solutions/${match.slug}` } : undefined,
+          store: result.store,
         },
       ])
     } catch {
@@ -169,7 +197,7 @@ export function TagiPage() {
     } finally {
       busy.current = false
       setPending(false)
-      inputRef.current?.focus()
+      inputRef.current?.focus({ preventScroll: true })
     }
   }
 
@@ -192,15 +220,17 @@ export function TagiPage() {
     if (answer) index += 1
   }
 
+  const chatting = messages.length > 0
+
   return (
-    <article className="tagi-page">
+    <article className={chatting ? 'tagi-page is-chatting' : 'tagi-page'}>
       <header className="tagi-hero">
         <div className="tagi-hero-row">
           <div>
             <p className="tagi-kicker">Ask Tagi</p>
             <h1>How can we help you?</h1>
           </div>
-          {messages.length > 0 ? (
+          {chatting ? (
             <button
               type="button"
               className="tagi-clear"
@@ -214,55 +244,21 @@ export function TagiPage() {
             </button>
           ) : null}
         </div>
-        {messages.length === 0 ? (
+        {chatting ? null : (
           <p>Ask about a label, printer, template, or order. Tagi answers from the LabTAG knowledge base.</p>
-        ) : null}
+        )}
       </header>
 
-      <form
-        className="tagi-composer"
-        onSubmit={(event) => {
-          event.preventDefault()
-          void submit(draft)
-        }}
-      >
-        <label className="sr-only" htmlFor="tagi-question">
-          Ask Tagi
-        </label>
-        <textarea
-          id="tagi-question"
-          ref={inputRef}
-          rows={2}
-          value={draft}
-          placeholder="Temperature, container, printer, or order"
-          onChange={(event) => setDraft(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' && !event.shiftKey) {
-              event.preventDefault()
-              void submit(draft)
-            }
-          }}
-        />
-        <button type="submit" disabled={pending || !draft.trim()}>
-          Ask
-          <ArrowRight size={16} weight="bold" aria-hidden />
-        </button>
-      </form>
-
-      {messages.length === 0 ? (
-        <section className="tagi-prompts" aria-label="Example questions">
-          {PROMPTS.map((prompt) => (
-            <button key={prompt} type="button" onClick={() => void submit(prompt)}>
-              <Sparkle size={16} weight="fill" aria-hidden />
-              {prompt}
-            </button>
-          ))}
-        </section>
-      ) : (
-        <ol className="tagi-thread" ref={threadRef} aria-live="polite">
-          {exchanges.map(({ question, answer }) => (
-            <li key={question.id} className="tagi-exchange">
-              <h2>{question.text}</h2>
+      <div className="tagi-stage" ref={threadRef}>
+      {chatting ? (
+        <ol className="tagi-thread" aria-live="polite">
+          {exchanges.map(({ question, answer }, index) => (
+            <li
+              key={question.id}
+              className="tagi-exchange"
+              ref={index === exchanges.length - 1 ? latestRef : undefined}
+            >
+              <h2 className="tagi-asked">{question.text}</h2>
               {answer ? (
                 <>
                   <Answer text={answer.text} />
@@ -282,10 +278,10 @@ export function TagiPage() {
                       Contact support
                     </Link>
                   )}
-                  {answer.solution ? (
-                    <Link className="tagi-solution" to={answer.solution.to}>
-                      {answer.solution.title}
-                    </Link>
+                  {answer.store ? (
+                    <a className="tagi-solution" href={answer.store.href} target="_blank" rel="noreferrer">
+                      Shop {answer.store.title}
+                    </a>
                   ) : null}
                 </>
               ) : (
@@ -294,20 +290,61 @@ export function TagiPage() {
             </li>
           ))}
         </ol>
+      ) : (
+        <section className="tagi-prompts" aria-label="Example questions">
+          {PROMPTS.map((prompt) => (
+            <button key={prompt} type="button" onClick={() => void submit(prompt)}>
+              <Sparkle size={16} weight="fill" aria-hidden />
+              {prompt}
+            </button>
+          ))}
+        </section>
       )}
+      </div>
 
-      <p className="tagi-note">
-        Answers come from the knowledge base. Check the product page before you order. By using Ask Tagi, you agree to
-        the{' '}
-        <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
-          privacy policy
-        </a>{' '}
-        and{' '}
-        <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
-          terms of use
-        </a>
-        .
-      </p>
+      <div className="tagi-dock">
+        <p className="tagi-note">
+          Answers come from the knowledge base. Check the product page before you order. By using Ask Tagi, you agree to
+          the{' '}
+          <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
+            privacy policy
+          </a>{' '}
+          and{' '}
+          <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
+            terms of use
+          </a>
+          .
+        </p>
+        <form
+          className="tagi-composer"
+          onSubmit={(event) => {
+            event.preventDefault()
+            void submit(draft)
+          }}
+        >
+          <label className="sr-only" htmlFor="tagi-question">
+            Ask Tagi
+          </label>
+          <textarea
+            id="tagi-question"
+            ref={inputRef}
+            rows={1}
+            value={draft}
+            placeholder="Temperature, container, printer, or order"
+            onChange={(event) => setDraft(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault()
+                void submit(draft)
+              }
+            }}
+          />
+          <button type="submit" disabled={pending || !draft.trim()}>
+            Ask
+            <ArrowRight size={16} weight="bold" aria-hidden />
+          </button>
+        </form>
+      </div>
     </article>
   )
 }

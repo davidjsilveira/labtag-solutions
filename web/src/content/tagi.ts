@@ -1,5 +1,6 @@
 import { HELP_ARTICLES } from './helpArticles.js'
 import { HELP_PATH } from './labtagLinks.js'
+import { asksForContainer, findStoreLabel, focusContainer, shopLine, type StoreLabel } from './storeLabel.js'
 
 const STOP = new Set([
   'the',
@@ -42,6 +43,7 @@ export type TagiAnswer = {
   answer: string
   sources: TagiSource[]
   engine: 'llm' | 'knowledge-base'
+  store?: StoreLabel
 }
 
 function tokens(text: string) {
@@ -51,6 +53,15 @@ function tokens(text: string) {
     .filter((token) => token.length > 2 && !STOP.has(token))
 }
 
+function sameToken(queryToken: string, articleToken: string) {
+  if (articleToken === queryToken) return true
+  return (
+    queryToken.length >= 4 &&
+    articleToken.startsWith(queryToken) &&
+    articleToken.length >= queryToken.length + 2
+  )
+}
+
 export function retrieveTagi(question: string, limit = 4): TagiSource[] {
   const queryTokens = [...new Set(tokens(question))]
   if (queryTokens.length === 0) return []
@@ -58,11 +69,11 @@ export function retrieveTagi(question: string, limit = 4): TagiSource[] {
 
   return HELP_ARTICLES.map((article) => {
     const questionTokens = tokens(article.question)
-    const answerTokens = new Set(tokens(article.answer))
+    const answerTokens = tokens(article.answer)
     let score = 0
     for (const token of queryTokens) {
-      if (questionTokens.includes(token)) score += 4
-      if (answerTokens.has(token)) score += 1
+      if (questionTokens.some((articleToken) => sameToken(token, articleToken))) score += 4
+      if (answerTokens.some((articleToken) => sameToken(token, articleToken))) score += 1
     }
     if (phrase.length > 8 && article.question.toLowerCase().includes(phrase)) score += 8
     return {
@@ -75,7 +86,11 @@ export function retrieveTagi(question: string, limit = 4): TagiSource[] {
     }
   })
     .filter((article) => article.score >= 3)
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score
+      const overview = (item: TagiSource) => (item.question.toLowerCase().startsWith('what ') ? 1 : 0)
+      return overview(b) - overview(a)
+    })
     .slice(0, limit)
 }
 
@@ -108,9 +123,26 @@ function relevantParagraphs(answer: string, queryTokens: string[], question: str
   return matched
 }
 
+function withStore(question: string, answer: TagiAnswer, basis = answer.answer): TagiAnswer {
+  const store = answer.store ?? findStoreLabel(question, basis)
+  if (!store) return answer
+  const line = shopLine(store)
+  const text = answer.answer.includes(store.href) ? answer.answer : `${answer.answer}\n\n${line}`
+  return { ...answer, answer: text, store }
+}
+
 export function composeTagiAnswer(question: string): TagiAnswer {
   const sources = retrieveTagi(question)
   if (sources.length === 0) {
+    const store = findStoreLabel(question)
+    if (store) {
+      return withStore(question, {
+        answer: `${store.title} is in the LabTAG store.`,
+        sources: [],
+        engine: 'knowledge-base',
+        store,
+      })
+    }
     return {
       answer:
         'I could not find that in the LabTAG knowledge base. Contact support with the printer model, container, or order number.',
@@ -120,20 +152,24 @@ export function composeTagiAnswer(question: string): TagiAnswer {
   }
 
   const queryTokens = [...new Set(tokens(question))]
-  const top = sources[0]
+  const sized = asksForContainer(question)
+    ? sources.find((source) => source.id === 'cryostuck-sizing')
+    : undefined
+  const ranked = sized ? [sized] : sources
+  const top = ranked[0]
   const parts = relevantParagraphs(top.answer, queryTokens, top.question)
-  const second = sources[1]
+  const second = ranked[1]
   const includeSecond = second && second.score >= top.score * 0.75 && second.score >= 4
   const body = [parts.join('\n\n')]
   if (includeSecond) {
     body.push(`${second.question}\n\n${relevantParagraphs(second.answer, queryTokens, second.question).join('\n\n')}`)
   }
 
-  return {
-    answer: body.join('\n\n'),
-    sources: includeSecond ? sources.slice(0, 2) : sources.slice(0, 1),
+  return withStore(question, {
+    answer: focusContainer(body.join('\n\n'), question),
+    sources: includeSecond ? ranked.slice(0, 2) : ranked.slice(0, 1),
     engine: 'knowledge-base',
-  }
+  })
 }
 
 export function tagiContext(sources: TagiSource[]) {
@@ -142,4 +178,4 @@ export function tagiContext(sources: TagiSource[]) {
     .join('\n\n')
 }
 
-export const TAGI_SYSTEM_PROMPT = `You are Tagi, the LabTAG support assistant. Answer only from the knowledge base excerpts in the user message. Use sentence case. Be direct and concise. If the excerpts do not contain the answer, say you do not have it in the knowledge base and tell the person to contact support. Do not invent temperatures, SKUs, policies, prices, or steps. Do not mention that you were given excerpts.`
+export const TAGI_SYSTEM_PROMPT = `You are Tagi, the LabTAG support assistant. Answer only from the knowledge base excerpts in the user message. Use sentence case. Be direct and concise. If the excerpts do not contain the answer, say you do not have it in the knowledge base and tell the person to contact support. Keep product codes that the excerpts name, such as L2FX-401. Do not invent temperatures, SKUs, policies, prices, or steps. Do not mention that you were given excerpts.`
