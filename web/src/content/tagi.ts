@@ -1,6 +1,13 @@
 import { HELP_ARTICLES } from './helpArticles.js'
 import { HELP_PATH } from './labtagLinks.js'
-import { asksForContainer, findStoreLabel, focusContainer, shopLine, type StoreLabel } from './storeLabel.js'
+import {
+  asksForContainer,
+  directFitAnswer,
+  findStoreLabel,
+  focusContainer,
+  shopLine,
+  type StoreLabel,
+} from './storeLabel.js'
 
 const STOP = new Set([
   'the',
@@ -165,11 +172,16 @@ export function composeTagiAnswer(question: string): TagiAnswer {
     body.push(`${second.question}\n\n${relevantParagraphs(second.answer, queryTokens, second.question).join('\n\n')}`)
   }
 
-  return withStore(question, {
-    answer: focusContainer(body.join('\n\n'), question),
-    sources: includeSecond ? ranked.slice(0, 2) : ranked.slice(0, 1),
-    engine: 'knowledge-base',
-  })
+  const focused = focusContainer(body.join('\n\n'), question)
+  return withStore(
+    question,
+    {
+      answer: directFitAnswer(question, focused) ?? focused,
+      sources: includeSecond ? ranked.slice(0, 2) : ranked.slice(0, 1),
+      engine: 'knowledge-base',
+    },
+    focused,
+  )
 }
 
 export function tagiContext(sources: TagiSource[]) {

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Sparkle } from '@phosphor-icons/react'
 import { composeTagiAnswer, TAGI_SYSTEM_PROMPT, tagiContext, type TagiAnswer, type TagiSource } from '@/content/tagi'
 import { CONTACT_PATH, LABTAG_PRIVACY_URL, LABTAG_TERMS_URL } from '@/content/labtagLinks'
-import { storeProduct, withoutShopLine, type StoreLabel } from '@/content/storeLabel'
+import { recommendedProducts, storeProduct, withoutShopLine, type StoreLabel } from '@/content/storeLabel'
 
 const PROMPTS = [
   'What CryoSTUCK label fits a 1.5 ml tube?',
@@ -33,6 +33,42 @@ function LinkedText({ text }: { text: string }) {
       </a>
     )
   })
+}
+
+function StoreActions({ text, store }: { text: string; store?: StoreLabel }) {
+  const products = recommendedProducts(text, store)
+  if (products.length > 0) {
+    return (
+      <ul className="tagi-products" aria-label="Recommended labels">
+        {products.map((product) => (
+          <li key={product.href}>
+            <ProductPreview product={product} />
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  if (!store) return null
+  return (
+    <a className="tagi-shop" href={store.href} target="_blank" rel="noreferrer">
+      Shop {store.title}
+      <ArrowRight size={16} weight="bold" aria-hidden />
+    </a>
+  )
+}
+
+function ProductPreview({ product }: { product: StoreLabel }) {
+  return (
+    <a className="tagi-product" href={product.href} target="_blank" rel="noreferrer">
+      {product.image ? <img src={product.image} alt="" /> : null}
+      <span className="tagi-product-copy">
+        <span className="tagi-product-code">{product.title}</span>
+        {product.name ? <span className="tagi-product-name">{product.name}</span> : null}
+        {product.detail ? <span className="tagi-product-detail">{product.detail}</span> : null}
+      </span>
+      <ArrowRight size={16} weight="bold" aria-hidden />
+    </a>
+  )
 }
 
 function Answer({ text }: { text: string }) {
@@ -262,6 +298,7 @@ export function TagiPage() {
               {answer ? (
                 <>
                   <Answer text={answer.text} />
+                  <StoreActions text={answer.text} store={answer.store} />
                   {answer.sources && answer.sources.length > 0 ? (
                     <ul className="tagi-sources">
                       {answer.sources.map((source) => (
@@ -273,16 +310,11 @@ export function TagiPage() {
                         </li>
                       ))}
                     </ul>
-                  ) : (
+                  ) : answer.store ? null : (
                     <Link className="tagi-solution" to={CONTACT_PATH}>
                       Contact support
                     </Link>
                   )}
-                  {answer.store ? (
-                    <a className="tagi-solution" href={answer.store.href} target="_blank" rel="noreferrer">
-                      Shop {answer.store.title}
-                    </a>
-                  ) : null}
                 </>
               ) : (
                 <p className="tagi-pending">Reading the knowledge base…</p>
