@@ -420,25 +420,7 @@ export function TagiPage() {
 
   return (
     <article className={chatting ? 'tagi-page is-chatting' : 'tagi-page'} ref={pageRef}>
-      {chatting ? (
-        <header className="tagi-hero">
-          <div className="tagi-hero-row">
-            <h1>Ask Tagi</h1>
-            <button
-              type="button"
-              className="tagi-clear"
-              onClick={() => {
-                setMessages([])
-                setDraft('')
-                inputRef.current?.focus({ preventScroll: true })
-              }}
-            >
-              Clear chat
-            </button>
-          </div>
-        </header>
-      ) : null}
-
+      {chatting ? <h1 className="sr-only">Ask Tagi</h1> : null}
       <div className="tagi-stage" ref={threadRef}>
       {chatting ? (
         <ol className="tagi-thread" aria-live="polite">
@@ -569,6 +551,19 @@ export function TagiPage() {
         <p className="tagi-note">
           {chatting ? (
             <>
+              <button
+                type="button"
+                className="tagi-clear"
+                onClick={() => {
+                  setMessages([])
+                  setDraft('')
+                  setOpened(null)
+                  inputRef.current?.focus({ preventScroll: true })
+                }}
+              >
+                Clear chat
+              </button>
+              {' · '}
               Check the product page before you order.{' '}
               <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
                 Privacy policy

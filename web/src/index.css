@@ -4919,17 +4919,6 @@ tr:last-child td {
   padding: 0;
 }
 
-.tagi-page.is-chatting .tagi-kicker {
-  display: none;
-}
-
-.tagi-page.is-chatting .tagi-hero h1 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.2;
-}
-
 .tagi-page.is-chatting .tagi-note {
   font-size: 0.75rem;
 }
@@ -5137,12 +5126,21 @@ tr:last-child td {
 }
 
 button.tagi-asked {
-  display: grid;
-  gap: 0.15rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.55rem;
   border: 0;
   font: inherit;
   text-align: right;
   cursor: pointer;
+}
+
+button.tagi-asked > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 button.tagi-asked.is-earlier {
@@ -5156,6 +5154,7 @@ button.tagi-asked.is-earlier:hover {
 }
 
 .tagi-earlier-meta {
+  flex-shrink: 0;
   color: var(--color-link);
   font-size: 0.75rem;
   font-weight: 600;
@@ -5179,6 +5178,22 @@ button.tagi-asked.is-earlier:hover {
   gap: 0.15rem;
   width: min(40rem, 100%);
   min-width: 0;
+  padding: 0.85rem 1rem 1rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 0.3rem 1.05rem 1.05rem 1.05rem;
+  background: #fff;
+}
+
+.tagi-reply .tagi-product,
+.tagi-reply .tagi-tile,
+.tagi-reply .tagi-shop {
+  background: var(--color-paper);
+}
+
+.tagi-reply .tagi-product img,
+.tagi-reply .tagi-tile img,
+.tagi-reply .tagi-tile-fallback {
+  background: var(--color-paper);
 }
 
 .tagi-pending {
@@ -5549,9 +5564,15 @@ button.tagi-asked.is-earlier:hover {
   text-wrap: pretty;
 }
 
-.tagi-note a {
+.tagi-note a,
+.tagi-note .tagi-clear {
   color: var(--color-link);
   white-space: nowrap;
+}
+
+.tagi-note .tagi-clear {
+  margin: 0;
+  font-size: inherit;
 }
 
 @media (max-width: 720px) {
