@@ -54,6 +54,12 @@ export const HELP_CATEGORIES: HelpCategory[] = [
           'No. Direct thermal labels are not for harsh chemicals, intense heat, or prolonged light. The coating darkens when a heated printhead, light, or pH changes the dye.\n\nThey are not suitable for steam autoclaves or dry heat ovens. Acids, xylene, and alcohols react with the coating, and UV light can darken the label completely.',
       },
       {
+        id: 'pick-label',
+        question: 'How do I pick the correct labels?',
+        answer:
+          'Pick the label by container, conditions, and printer.\n\nStart with the container. The label needs at least 0.25 in of overlap, and the printable area must not overlap itself. CryoSTUCK sizes cover common tubes, and a size table covers PCR tubes, vials, and conical tubes.\n\nThen match the conditions and the printer. Cryogenic labels are for liquid nitrogen and laboratory freezers. Autoclave labels are for sterilization heat and pressure. Direct thermal labels are not for harsh chemicals, intense heat, or prolonged light. Product pages note the print method. If the catalog size or color is not a match, LabTAG can customize it.',
+      },
+      {
         id: 'cryostuck-sizing',
         question: 'How do I find the right CryoSTUCK label for my tubes?',
         answer:

@@ -62,11 +62,29 @@ function tokens(text: string) {
 
 function sameToken(queryToken: string, articleToken: string) {
   if (articleToken === queryToken) return true
+  if (queryToken.length >= 4 && (articleToken === `${queryToken}s` || queryToken === `${articleToken}s`)) {
+    return true
+  }
   return (
     queryToken.length >= 4 &&
     articleToken.startsWith(queryToken) &&
-    articleToken.length >= queryToken.length + 2
+    articleToken.length >= queryToken.length + 3
   )
+}
+
+function shoppingAdjust(question: string, id: string, score: number) {
+  const q = question.toLowerCase()
+  const cold = /(?:−|-)\s*80\b|(?:−|-)\s*196\b|liquid nitrogen|dry ice|\bfreezer\b/.test(q)
+  const steril = /autoclave|steril/.test(q)
+  if (cold && !steril) {
+    if (id === 'cryogenic-labels') score += 4
+    if (id === 'autoclave-labels' || id === 'apply-cryostuck' || id === 'core-size') score -= 4
+  }
+  if (/xylene|chemical/.test(q) && !steril) {
+    if (id === 'direct-thermal-chemicals') score += 4
+    if (id === 'autoclave-labels') score -= 4
+  }
+  return score
 }
 
 export function retrieveTagi(question: string, limit = 4): TagiSource[] {
@@ -83,6 +101,7 @@ export function retrieveTagi(question: string, limit = 4): TagiSource[] {
       if (answerTokens.some((articleToken) => sameToken(token, articleToken))) score += 1
     }
     if (phrase.length > 8 && article.question.toLowerCase().includes(phrase)) score += 8
+    score = shoppingAdjust(question, article.id, score)
     return {
       id: article.id,
       question: article.question,
@@ -159,8 +178,12 @@ export function composeTagiAnswer(question: string): TagiAnswer {
   }
 
   const queryTokens = [...new Set(tokens(question))]
+  const cryo = sources.find((source) => source.id === 'cryostuck-sizing')
+  const table = sources.find((source) => source.id === 'label-size-table')
   const sized = asksForContainer(question)
-    ? sources.find((source) => source.id === 'cryostuck-sizing')
+    ? cryo && directFitAnswer(question, cryo.answer)
+      ? cryo
+      : table
     : undefined
   const ranked = sized ? [sized] : sources
   const top = ranked[0]

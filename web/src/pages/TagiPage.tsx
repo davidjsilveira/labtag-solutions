@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Sparkle } from '@phosphor-icons/react'
 import { composeTagiAnswer, TAGI_SYSTEM_PROMPT, tagiContext, type TagiAnswer, type TagiSource } from '@/content/tagi'
@@ -6,13 +7,28 @@ import { CONTACT_PATH, LABTAG_PRIVACY_URL, LABTAG_TERMS_URL } from '@/content/la
 import { recommendedProducts, storeProduct, withoutShopLine, type StoreLabel } from '@/content/storeLabel'
 
 const PROMPTS = [
-  'What CryoSTUCK label fits a 1.5 ml tube?',
-  'What CryoSTUCK label fits a 1.0 ml Matrix tube?',
-  'What CryoSTUCK labels fit 15 ml tubes?',
-  'What are cryogenic labels?',
-  'Which DYMO labels are cryogenic?',
+  'What label fits a 1.5 ml tube?',
+  'What label fits a 2 ml cryogenic vial?',
+  'What size label fits a 0.2 ml PCR tube?',
+  'Which labels work in liquid nitrogen?',
+  'What labels work at −80°C?',
   'What autoclave labels are available?',
 ]
+
+function relatedQuestions(question: string) {
+  const asked = question.trim().toLowerCase()
+  const sized = /\d/.test(question) && /ml|tube|vial/i.test(question)
+  const cold = /nitrogen|−80|-80|freezer/i.test(question)
+  const heat = /autoclave/i.test(question)
+  return [
+    sized ? '' : 'What label fits a 1.5 ml tube?',
+    cold ? '' : 'Which labels work in liquid nitrogen?',
+    heat ? '' : 'What autoclave labels are available?',
+    sized && !/2 ml/i.test(question) ? 'What label fits a 2 ml cryogenic vial?' : '',
+  ]
+    .filter((prompt) => prompt && prompt.toLowerCase() !== asked)
+    .slice(0, 2)
+}
 
 type ChatMessage = {
   id: string
@@ -26,25 +42,94 @@ function LinkedText({ text }: { text: string }) {
   const parts = text.split(/(\b(?:L2FX|L2FS|AHA|TRCL)-\d+\b)/g)
   return parts.map((part, index) => {
     const product = storeProduct(part)
-    if (!product) return part
-    return (
-      <a key={`${part}-${index}`} href={product.href} target="_blank" rel="noreferrer">
-        {part}
-      </a>
-    )
+    if (!product) return <Fragment key={index}>{part}</Fragment>
+    return <SkuLink key={`${part}-${index}`} code={part} product={product} />
   })
+}
+
+function SkuLink({ code, product }: { code: string; product: StoreLabel }) {
+  const linkRef = useRef<HTMLAnchorElement>(null)
+  const [box, setBox] = useState<{ top: number; left: number; above: boolean } | null>(null)
+
+  function place() {
+    const rect = linkRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const width = 288
+    const left = Math.min(Math.max(8, rect.left), window.innerWidth - width - 8)
+    const above = rect.top > 160
+    setBox({ top: above ? rect.top - 8 : rect.bottom + 8, left, above })
+  }
+
+  useEffect(() => {
+    if (!box) return
+    const close = () => setBox(null)
+    window.addEventListener('scroll', close, true)
+    window.addEventListener('resize', close)
+    return () => {
+      window.removeEventListener('scroll', close, true)
+      window.removeEventListener('resize', close)
+    }
+  }, [box])
+
+  return (
+    <>
+      <a
+        ref={linkRef}
+        href={product.href}
+        target="_blank"
+        rel="noreferrer"
+        onMouseEnter={place}
+        onMouseLeave={() => setBox(null)}
+        onFocus={place}
+        onBlur={() => setBox(null)}
+      >
+        {code}
+      </a>
+      {box
+        ? createPortal(
+            <span
+              className={box.above ? 'tagi-sku-preview is-above' : 'tagi-sku-preview'}
+              style={{ top: box.top, left: box.left }}
+            >
+              {product.image ? <img src={product.image} alt="" /> : null}
+              <span>
+                <span className="tagi-sku-code">{product.title}</span>
+                {product.detail ? <span className="tagi-sku-size">{product.detail}</span> : null}
+                {product.name ? <span className="tagi-sku-name">{product.name}</span> : null}
+              </span>
+            </span>,
+            document.body,
+          )
+        : null}
+    </>
+  )
 }
 
 function StoreActions({ text, store }: { text: string; store?: StoreLabel }) {
   const products = recommendedProducts(text, store)
-  if (products.length > 0) {
+  if (products.length > 1) {
+    const family = products.every((product) => product.name && product.name === products[0].name)
+      ? products[0].name
+      : undefined
     return (
-      <ul className="tagi-products" aria-label="Recommended labels">
-        {products.map((product) => (
-          <li key={product.href}>
-            <ProductPreview product={product} />
-          </li>
-        ))}
+      <div className="tagi-product-set">
+        {family ? <p className="tagi-product-family">{family}</p> : null}
+        <ul className="tagi-products" aria-label="Recommended labels">
+          {products.map((product) => (
+            <li key={product.href}>
+              <ProductTile product={product} showName={!family} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+  if (products.length === 1) {
+    return (
+      <ul className="tagi-products is-single" aria-label="Recommended labels">
+        <li>
+          <ProductPreview product={products[0]} />
+        </li>
       </ul>
     )
   }
@@ -57,14 +142,25 @@ function StoreActions({ text, store }: { text: string; store?: StoreLabel }) {
   )
 }
 
+function ProductTile({ product, showName }: { product: StoreLabel; showName: boolean }) {
+  return (
+    <a className="tagi-tile" href={product.href} target="_blank" rel="noreferrer">
+      {product.image ? <img src={product.image} alt="" /> : <span className="tagi-tile-fallback" />}
+      <span className="tagi-tile-code">{product.title}</span>
+      {product.detail ? <span className="tagi-tile-size">{product.detail}</span> : null}
+      {showName && product.name ? <span className="tagi-tile-name">{product.name}</span> : null}
+    </a>
+  )
+}
+
 function ProductPreview({ product }: { product: StoreLabel }) {
   return (
     <a className="tagi-product" href={product.href} target="_blank" rel="noreferrer">
       {product.image ? <img src={product.image} alt="" /> : null}
       <span className="tagi-product-copy">
         <span className="tagi-product-code">{product.title}</span>
-        {product.name ? <span className="tagi-product-name">{product.name}</span> : null}
         {product.detail ? <span className="tagi-product-detail">{product.detail}</span> : null}
+        {product.name ? <span className="tagi-product-name">{product.name}</span> : null}
       </span>
       <ArrowRight size={16} weight="bold" aria-hidden />
     </a>
@@ -177,6 +273,7 @@ export function TagiPage() {
   const [draft, setDraft] = useState('')
   const [pending, setPending] = useState(false)
   const threadRef = useRef<HTMLDivElement>(null)
+  const pageRef = useRef<HTMLElement>(null)
   const latestRef = useRef<HTMLLIElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const busy = useRef(false)
@@ -195,11 +292,32 @@ export function TagiPage() {
     const thread = threadRef.current
     const latest = latestRef.current
     if (!thread || !latest) return
-    const top = latest.getBoundingClientRect().top - thread.getBoundingClientRect().top + thread.scrollTop
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({ top: 0, behavior: 'auto' })
-    thread.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' })
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const behavior = reduce ? 'auto' : 'smooth'
+    const latestTop = latest.getBoundingClientRect().top - thread.getBoundingClientRect().top + thread.scrollTop
+    const fits = latest.offsetHeight <= thread.clientHeight - 16
+    thread.scrollTo({ top: fits ? thread.scrollHeight : latestTop, behavior })
   }, [messages, pending])
+
+  useEffect(() => {
+    const page = pageRef.current
+    if (!page) return
+    const fit = () => {
+      const top = page.getBoundingClientRect().top + window.scrollY
+      if (top > 0) page.style.setProperty('--tagi-top', `${Math.round(top)}px`)
+    }
+    fit()
+    window.addEventListener('resize', fit)
+    return () => window.removeEventListener('resize', fit)
+  }, [])
+
+  useEffect(() => {
+    const field = inputRef.current
+    if (!field) return
+    field.style.height = 'auto'
+    field.style.height = `${Math.min(field.scrollHeight, 112)}px`
+  }, [draft])
 
   async function submit(raw: string) {
     const question = raw.trim()
@@ -259,31 +377,25 @@ export function TagiPage() {
   const chatting = messages.length > 0
 
   return (
-    <article className={chatting ? 'tagi-page is-chatting' : 'tagi-page'}>
-      <header className="tagi-hero">
-        <div className="tagi-hero-row">
-          <div>
-            <p className="tagi-kicker">Ask Tagi</p>
-            <h1>How can we help you?</h1>
-          </div>
-          {chatting ? (
+    <article className={chatting ? 'tagi-page is-chatting' : 'tagi-page'} ref={pageRef}>
+      {chatting ? (
+        <header className="tagi-hero">
+          <div className="tagi-hero-row">
+            <h1>Ask Tagi</h1>
             <button
               type="button"
               className="tagi-clear"
               onClick={() => {
                 setMessages([])
                 setDraft('')
-                inputRef.current?.focus()
+                inputRef.current?.focus({ preventScroll: true })
               }}
             >
               Clear chat
             </button>
-          ) : null}
-        </div>
-        {chatting ? null : (
-          <p>Ask about a label, printer, template, or order. Tagi answers from the LabTAG knowledge base.</p>
-        )}
-      </header>
+          </div>
+        </header>
+      ) : null}
 
       <div className="tagi-stage" ref={threadRef}>
       {chatting ? (
@@ -296,9 +408,19 @@ export function TagiPage() {
             >
               <h2 className="tagi-asked">{question.text}</h2>
               {answer ? (
-                <>
+                <div className="tagi-reply">
                   <Answer text={answer.text} />
                   <StoreActions text={answer.text} store={answer.store} />
+                  {index === exchanges.length - 1 ? (
+                    <div className="tagi-follow">
+                      <p>Ask next</p>
+                      {relatedQuestions(question.text).map((prompt) => (
+                        <button key={prompt} type="button" disabled={pending} onClick={() => void submit(prompt)}>
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
                   {answer.sources && answer.sources.length > 0 ? (
                     <ul className="tagi-sources">
                       {answer.sources.map((source) => (
@@ -315,38 +437,34 @@ export function TagiPage() {
                       Contact support
                     </Link>
                   )}
-                </>
+                </div>
               ) : (
-                <p className="tagi-pending">Reading the knowledge base…</p>
+                <p className="tagi-pending" role="status">
+                  <span className="tagi-loader" aria-hidden />
+                  Searching the knowledge base
+                </p>
               )}
             </li>
           ))}
         </ol>
       ) : (
-        <section className="tagi-prompts" aria-label="Example questions">
-          {PROMPTS.map((prompt) => (
-            <button key={prompt} type="button" onClick={() => void submit(prompt)}>
-              <Sparkle size={16} weight="fill" aria-hidden />
-              {prompt}
-            </button>
-          ))}
-        </section>
+        <div className="tagi-welcome">
+          <p className="tagi-kicker">Ask Tagi</p>
+          <h1>How can we help you?</h1>
+          <p>Ask about a container, size, temperature, or feature. Tagi recommends a label from the LabTAG catalog.</p>
+          <section className="tagi-prompts" aria-label="Example questions">
+            {PROMPTS.map((prompt) => (
+              <button key={prompt} type="button" onClick={() => void submit(prompt)}>
+                <Sparkle size={16} weight="fill" aria-hidden />
+                {prompt}
+              </button>
+            ))}
+          </section>
+        </div>
       )}
       </div>
 
       <div className="tagi-dock">
-        <p className="tagi-note">
-          Answers come from the knowledge base. Check the product page before you order. By using Ask Tagi, you agree to
-          the{' '}
-          <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
-            privacy policy
-          </a>{' '}
-          and{' '}
-          <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
-            terms of use
-          </a>
-          .
-        </p>
         <form
           className="tagi-composer"
           onSubmit={(event) => {
@@ -362,7 +480,7 @@ export function TagiPage() {
             ref={inputRef}
             rows={1}
             value={draft}
-            placeholder="Temperature, container, printer, or order"
+            placeholder="Container, size, temperature, or feature"
             onChange={(event) => setDraft(event.target.value)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' && !event.shiftKey) {
@@ -371,11 +489,22 @@ export function TagiPage() {
               }
             }}
           />
-          <button type="submit" disabled={pending || !draft.trim()}>
-            Ask
-            <ArrowRight size={16} weight="bold" aria-hidden />
+          <button type="submit" aria-label="Ask" disabled={pending || !draft.trim()}>
+            <ArrowRight size={18} weight="bold" aria-hidden />
           </button>
         </form>
+        <p className="tagi-note">
+          Answers come from the knowledge base. Check the product page before you order. By using Ask Tagi, you agree to
+          the{' '}
+          <a href={LABTAG_PRIVACY_URL} target="_blank" rel="noreferrer">
+            privacy policy
+          </a>{' '}
+          and{' '}
+          <a href={LABTAG_TERMS_URL} target="_blank" rel="noreferrer">
+            terms of use
+          </a>
+          .
+        </p>
       </div>
     </article>
   )

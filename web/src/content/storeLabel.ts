@@ -93,12 +93,14 @@ const CODE = /\b((?:L2FX|L2FS|AHA|TRCL)-\d+)\b/gi
 
 const CONTAINERS: { ask: RegExp; bullet: RegExp }[] = [
   { ask: /matrix|biotube/i, bullet: /matrix|biotube/i },
-  { ask: /15\s*ml/i, bullet: /15 ml/i },
-  { ask: /50\s*ml/i, bullet: /50 ml/i },
-  { ask: /1\.5\s*ml/i, bullet: /1\.5 ml/i },
-  { ask: /5(?:\.0)?\s*ml/i, bullet: /5(?:\.0)? ml/i },
-  { ask: /2(?:\.0)?\s*ml/i, bullet: /2(?:\.0)? ml/i },
-  { ask: /1(?:\.0)?\s*ml/i, bullet: /1(?:\.0)? ml/i },
+  { ask: /(?<![\d.])0\.2\s*ml/i, bullet: /0\.2 ml/i },
+  { ask: /(?<![\d.])0\.5\s*ml/i, bullet: /0\.5 ml/i },
+  { ask: /(?<![\d.])15\s*ml/i, bullet: /15 ml/i },
+  { ask: /(?<![\d.])50\s*ml/i, bullet: /50 ml/i },
+  { ask: /(?<![\d.])1\.5\s*ml/i, bullet: /1\.5 ml/i },
+  { ask: /(?<![\d.])5(?:\.0)?\s*ml/i, bullet: /5(?:\.0)? ml/i },
+  { ask: /(?<![\d.])2(?:\.0)?\s*ml/i, bullet: /2(?:\.0)? ml/i },
+  { ask: /(?<![\d.])1(?:\.0)?\s*ml/i, bullet: /1(?:\.0)? ml/i },
 ]
 
 export function storeProduct(code: string): StoreLabel | undefined {
