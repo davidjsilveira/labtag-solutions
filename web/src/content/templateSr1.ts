@@ -41,14 +41,6 @@ export const TEMPLATE_SR1 = {
     { label: 'Labels per row', value: '1' },
     { label: 'Printer type', value: 'Thermal-transfer' },
   ],
-  propositions: [
-    {
-      id: 'try-first',
-      title: 'Try first',
-      body: 'Request free samples',
-      href: SAMPLE_PATH,
-    },
-  ],
   compatibleLabels: [
     {
       sku: 'FJT-1',

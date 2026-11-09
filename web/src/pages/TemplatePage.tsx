@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, CaretDown, DownloadSimple, Flask, FileArrowDown } from '@phosphor-icons/react'
+import { CaretDown, DownloadSimple, FileArrowDown } from '@phosphor-icons/react'
 import { TEMPLATE_SR1 } from '@/content/templateSr1'
 import { UNIT_EVENT, readUnit, type UnitId } from '@/content/preferences'
 import { resolveImageSrc } from '@/content/resolveImage'
-
-const PROPOSITION_ICONS = {
-  'try-first': Flask,
-} as const
 
 export function TemplatePage() {
   const template = TEMPLATE_SR1
@@ -81,7 +77,6 @@ export function TemplatePage() {
 
         <aside className="template-buy-card" aria-label="Template download">
           <header className="template-download-head">
-            <p className="template-download-eyebrow">Free file</p>
             <p className="template-download-title">Download #{template.id}</p>
             <p>
               {template.shape} · {size} · {template.format}
@@ -123,28 +118,6 @@ export function TemplatePage() {
               )
             })}
           </dl>
-
-          <div className="template-buy-footer">
-            <a className="template-compatible-btn" href="#compatible-labels">
-              Compatible labels
-              <ArrowRight size={16} weight="bold" aria-hidden />
-            </a>
-            {template.propositions.map((item) => {
-              const Icon = PROPOSITION_ICONS[item.id]
-              if (!('href' in item) || !item.href) return null
-              return (
-                <Link key={item.id} className="template-prop" to={item.href}>
-                  <span className="template-prop-icon" aria-hidden>
-                    <Icon size={20} weight="duotone" />
-                  </span>
-                  <span className="template-prop-copy">
-                    <strong>{item.title}</strong>
-                    <span>{item.body}</span>
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
         </aside>
 
         <div className="template-thumbs" role="listbox" aria-label="Template views">

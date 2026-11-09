@@ -8990,16 +8990,6 @@ a.why-reason:hover h2 {
   gap: 0.2rem;
 }
 
-.template-download-eyebrow {
-  margin: 0;
-  color: var(--color-accent-deep);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
 .template-download-title {
   margin: 0;
   color: var(--color-ink);
@@ -9119,79 +9109,6 @@ a.why-reason:hover h2 {
   line-height: 1.3;
   text-align: left;
   overflow-wrap: anywhere;
-}
-
-.template-buy-footer {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-  margin-top: auto;
-}
-
-.template-compatible-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  min-height: 3.1rem;
-  padding: 0.65rem 0.8rem;
-  border: 1.5px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
-  border-radius: 0.85rem;
-  background: transparent;
-  color: var(--color-ink);
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    border-color 180ms var(--ease-out),
-    background-color 180ms var(--ease-out);
-}
-
-.template-compatible-btn:hover {
-  border-color: var(--color-ink);
-  background: color-mix(in srgb, var(--color-ink) 4%, transparent);
-}
-
-.template-prop {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 0.55rem;
-  min-height: 3.1rem;
-  padding: 0.65rem 0.8rem;
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--color-paper) 78%, var(--labtag-pure-white));
-  color: inherit;
-  text-align: left;
-  text-decoration: none;
-}
-
-a.template-prop:hover {
-  background: color-mix(in srgb, var(--color-paper) 55%, var(--labtag-pure-white));
-}
-
-.template-prop-icon {
-  display: inline-flex;
-  color: var(--color-ink);
-}
-
-.template-prop-copy {
-  display: grid;
-  gap: 0.1rem;
-}
-
-.template-prop-copy strong {
-  color: var(--color-ink);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.template-prop-copy span {
-  color: var(--color-ink-2);
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.25;
 }
 
 .template-section {
