@@ -260,17 +260,38 @@ function leakedModelText(text: string, question: string) {
   )
 }
 
+function within<T>(promise: Promise<T>, ms: number) {
+  return new Promise<T | undefined>((resolve) => {
+    const timer = window.setTimeout(() => resolve(undefined), ms)
+    promise.then(
+      (value) => {
+        window.clearTimeout(timer)
+        resolve(value)
+      },
+      () => {
+        window.clearTimeout(timer)
+        resolve(undefined)
+      },
+    )
+  })
+}
+
 async function browserAnswer(question: string, sources: TagiSource[]) {
   const model = (globalThis as { LanguageModel?: BrowserModel }).LanguageModel
   if (!model || sources.length === 0) return ''
-  const available = await model.availability()
-  if (available === 'unavailable') return ''
-  const session = await model.create({
-    initialPrompts: [{ role: 'system', content: TAGI_SYSTEM_PROMPT }],
-  })
+  const available = await within(model.availability(), 800)
+  if (available !== 'available') return ''
+  const session = await within(
+    model.create({
+      initialPrompts: [{ role: 'system', content: TAGI_SYSTEM_PROMPT }],
+    }),
+    1500,
+  )
+  if (!session) return ''
   try {
-    const text = (await session.prompt(`Knowledge base:\n${tagiContext(sources)}\n\nQuestion: ${question}`)).trim()
-    return leakedModelText(text, question) ? '' : text
+    const text = (await within(session.prompt(`Knowledge base:\n${tagiContext(sources)}\n\nQuestion: ${question}`), 4000))?.trim()
+    if (!text || leakedModelText(text, question)) return ''
+    return text
   } finally {
     session.destroy?.()
   }

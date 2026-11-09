@@ -16,7 +16,9 @@ import {
   SquaresFour,
   User,
 } from '@phosphor-icons/react'
+import { ResourcesMegaMenu } from '@/components/ResourcesMegaMenu'
 import { ShopMegaMenu } from '@/components/ShopMegaMenu'
+import { SolutionsMegaMenu } from '@/components/SolutionsMegaMenu'
 import { findCatalogMatch } from '@/content/catalogMatch'
 import { syncAnchorScrollMargin } from '@/hooks/syncAnchorScrollMargin'
 import {
@@ -32,18 +34,14 @@ import {
   HELP_PATH,
   TAGI_PATH,
   CUSTOM_LABELS_PATH,
-  LABTAG_BLOG_URL,
   LABTAG_CART_URL,
   LABTAG_CREATE_ACCOUNT_URL,
-  LABTAG_FAQ_URL,
   LABTAG_FINDER_URL,
   LABTAG_ORDERS_URL,
   LABTAG_PROMOS_URL,
-  LABTAG_RESOURCES_URL,
   LABTAG_SHOP_URL,
   LABTAG_SIGN_IN_URL,
   LABTAG_TEMPLATES_HUB_URL,
-  LABTAG_VIDEOS_URL,
   QUOTE_PATH,
   SAMPLE_PATH,
   SOLUTIONS_PATH,
@@ -75,32 +73,6 @@ const CONTACT_ITEMS = [
 
 const CONTACT_PATHS = new Set([CONTACT_PATH, ...CONTACT_ITEMS.map((item) => item.to)])
 
-const SOLUTION_LINKS = [
-  {
-    label: 'All solutions',
-    to: SOLUTIONS_PATH,
-    current: (path: string) => path === SOLUTIONS_PATH,
-  },
-  { label: 'Cryogenic', to: '/solutions/cryogenic' },
-  { label: 'Clinical trials', to: '/solutions/clinical-trials' },
-  { label: 'Histology', to: '/solutions/histology' },
-  { label: 'Lab tapes', to: '/solutions/laboratory-tapes' },
-  { label: 'DYMO', to: '/solutions/dymo-labels' },
-  { label: 'Printing', to: '/solutions/label-printing' },
-  { label: 'Automation', to: '/solutions/automated-labware' },
-] as const
-
-const RESOURCE_LINKS = [
-  { label: 'All resources', href: LABTAG_RESOURCES_URL },
-  { label: 'Help', to: HELP_PATH },
-  { label: 'Ask Tagi', to: TAGI_PATH },
-  { label: 'Label Finder', href: LABTAG_FINDER_URL },
-  { label: 'Templates', href: LABTAG_TEMPLATES_HUB_URL },
-  { label: 'Videos', href: LABTAG_VIDEOS_URL },
-  { label: 'FAQ', href: LABTAG_FAQ_URL },
-  { label: 'Blog', href: LABTAG_BLOG_URL },
-] as const
-
 const UTILITY_LINKS = [
   { label: 'Templates', href: LABTAG_TEMPLATES_HUB_URL, Icon: SquaresFour },
   { label: 'Label Finder', href: LABTAG_FINDER_URL, Icon: MagnifyingGlassPlus },
@@ -129,28 +101,30 @@ export function SiteNav() {
   const rootRef = useRef<HTMLDivElement>(null)
   const accountRef = useRef<HTMLDivElement>(null)
   const primaryRef = useRef<HTMLElement>(null)
-  const shopCloseTimerRef = useRef<number | null>(null)
+  const megaCloseTimerRef = useRef<number | null>(null)
+  const megaOpen =
+    primaryOpen === 'products' || primaryOpen === 'solutions' || primaryOpen === 'resources'
 
-  const clearShopCloseTimer = () => {
-    if (shopCloseTimerRef.current == null) return
-    window.clearTimeout(shopCloseTimerRef.current)
-    shopCloseTimerRef.current = null
+  const clearMegaCloseTimer = () => {
+    if (megaCloseTimerRef.current == null) return
+    window.clearTimeout(megaCloseTimerRef.current)
+    megaCloseTimerRef.current = null
   }
 
   const openPrimary = (next: 'products' | 'solutions' | 'resources') => {
-    clearShopCloseTimer()
+    clearMegaCloseTimer()
     setPrimaryLocked(false)
     setPrimaryOpen(next)
   }
 
   const closePrimary = (lock = false) => {
-    clearShopCloseTimer()
+    clearMegaCloseTimer()
     setPrimaryOpen(null)
     setPrimaryLocked(lock)
   }
 
   const togglePrimary = (next: 'products' | 'solutions' | 'resources') => {
-    clearShopCloseTimer()
+    clearMegaCloseTimer()
     setPrimaryOpen((current) => {
       if (current === next) {
         setPrimaryLocked(true)
@@ -161,21 +135,20 @@ export function SiteNav() {
     })
   }
 
-  const openShopMenu = () => openPrimary('products')
+  const openMegaMenu = (next: 'products' | 'solutions' | 'resources') => openPrimary(next)
 
-  const scheduleShopClose = () => {
-    clearShopCloseTimer()
-    shopCloseTimerRef.current = window.setTimeout(() => {
-      shopCloseTimerRef.current = null
-      setPrimaryOpen((current) => (current === 'products' ? null : current))
+  const scheduleMegaClose = (kind: 'products' | 'solutions' | 'resources') => {
+    clearMegaCloseTimer()
+    megaCloseTimerRef.current = window.setTimeout(() => {
+      megaCloseTimerRef.current = null
+      setPrimaryOpen((current) => (current === kind ? null : current))
       setPrimaryLocked(false)
     }, 320)
   }
 
-  const closeShopMenu = () => closePrimary(true)
-  const solutionsCurrent = SOLUTION_LINKS.some((item) =>
-    'current' in item ? item.current(pathname) : pathname === item.to,
-  )
+  const closeMegaMenu = () => closePrimary(true)
+  const solutionsCurrent = pathname === SOLUTIONS_PATH || pathname.startsWith('/solutions/')
+  const resourcesCurrent = pathname === HELP_PATH || pathname === TAGI_PATH
 
   useEffect(() => {
     setUnit(readUnit())
@@ -192,26 +165,26 @@ export function SiteNav() {
     setAccountOpen(false)
     setPrimaryOpen(null)
     setPrimaryLocked(false)
-    clearShopCloseTimer()
+    clearMegaCloseTimer()
   }, [pathname])
 
-  useEffect(() => () => clearShopCloseTimer(), [])
+  useEffect(() => () => clearMegaCloseTimer(), [])
 
   useEffect(() => {
-    if (primaryOpen !== 'products') {
+    if (!megaOpen) {
       document.documentElement.style.removeProperty('--shop-mega-backdrop-top')
       return
     }
 
     const syncBackdropTop = () => {
-      const mega = document.querySelector('.shop-mega')
+      const mega = document.querySelector('.shop-mega.is-open')
       if (!(mega instanceof HTMLElement)) return
       const bottom = Math.ceil(mega.getBoundingClientRect().bottom)
       document.documentElement.style.setProperty('--shop-mega-backdrop-top', `${bottom}px`)
     }
 
     const frame = window.requestAnimationFrame(syncBackdropTop)
-    const mega = document.querySelector('.shop-mega')
+    const mega = document.querySelector('.shop-mega.is-open')
     const observer =
       mega instanceof HTMLElement ? new ResizeObserver(syncBackdropTop) : null
     if (mega instanceof HTMLElement) observer?.observe(mega)
@@ -225,7 +198,7 @@ export function SiteNav() {
       window.removeEventListener('scroll', syncBackdropTop)
       document.documentElement.style.removeProperty('--shop-mega-backdrop-top')
     }
-  }, [primaryOpen])
+  }, [megaOpen, primaryOpen])
 
   useEffect(() => {
     const header = document.querySelector('.site-header')
@@ -290,14 +263,14 @@ export function SiteNav() {
       setOpen(false)
       setAccountOpen(false)
       setPrimaryOpen(null)
-      clearShopCloseTimer()
+      clearMegaCloseTimer()
     }
     const onPointer = (event: PointerEvent) => {
       const target = event.target as Node
       if (!rootRef.current?.contains(target)) setOpen(false)
       if (!accountRef.current?.contains(target)) setAccountOpen(false)
       if (!primaryRef.current?.contains(target)) {
-        clearShopCloseTimer()
+        clearMegaCloseTimer()
         setPrimaryOpen(null)
       }
     }
@@ -397,15 +370,15 @@ export function SiteNav() {
                   .join(' ')}
                 onMouseEnter={() => {
                   if (primaryLocked) return
-                  openShopMenu()
+                  openMegaMenu('products')
                 }}
                 onMouseLeave={() => {
                   if (primaryLocked) {
                     setPrimaryLocked(false)
-                    clearShopCloseTimer()
+                    clearMegaCloseTimer()
                     return
                   }
-                  scheduleShopClose()
+                  scheduleMegaClose('products')
                 }}
               >
                 <button
@@ -416,20 +389,21 @@ export function SiteNav() {
                   aria-controls="site-nav-products-menu"
                   onClick={() => togglePrimary('products')}
                   onFocus={() => {
-                    if (!primaryLocked) openShopMenu()
+                    if (!primaryLocked) openMegaMenu('products')
                   }}
                 >
                   Shop
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
                 <div className="site-nav-primary-panel site-nav-shop-panel">
-                  <ShopMegaMenu open={primaryOpen === 'products'} onClose={closeShopMenu} />
+                  <ShopMegaMenu open={primaryOpen === 'products'} onClose={closeMegaMenu} />
                 </div>
               </div>
 
               <div
                 className={[
                   'site-nav-primary-item',
+                  'is-shop',
                   primaryOpen === 'solutions' ? 'is-open' : '',
                   solutionsCurrent ? 'is-current' : '',
                 ]
@@ -437,104 +411,74 @@ export function SiteNav() {
                   .join(' ')}
                 onMouseEnter={() => {
                   if (primaryLocked) return
-                  openPrimary('solutions')
+                  openMegaMenu('solutions')
                 }}
-                onMouseLeave={() => closePrimary(false)}
+                onMouseLeave={() => {
+                  if (primaryLocked) {
+                    setPrimaryLocked(false)
+                    clearMegaCloseTimer()
+                    return
+                  }
+                  scheduleMegaClose('solutions')
+                }}
               >
                 <button
                   type="button"
                   className="site-nav-primary-trigger"
                   aria-expanded={primaryOpen === 'solutions'}
-                  aria-haspopup="true"
+                  aria-haspopup="dialog"
                   aria-controls="site-nav-solutions-menu"
                   onClick={() => togglePrimary('solutions')}
+                  onFocus={() => {
+                    if (!primaryLocked) openMegaMenu('solutions')
+                  }}
                 >
                   Solutions
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
-                <div className="site-nav-primary-panel">
-                  <div
-                    id="site-nav-solutions-menu"
-                    className="site-nav-primary-card"
-                    role="menu"
-                    aria-label="Solutions"
-                  >
-                    {SOLUTION_LINKS.map((item, index) => (
-                      <Link
-                        key={item.label}
-                        to={item.to}
-                        role="menuitem"
-                        className="site-nav-primary-link"
-                        style={{ '--i': String(index) } as CSSProperties}
-                        aria-current={
-                          ('current' in item ? item.current(pathname) : pathname === item.to)
-                            ? 'page'
-                            : undefined
-                        }
-                        onClick={() => setPrimaryOpen(null)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
+                <div className="site-nav-primary-panel site-nav-shop-panel">
+                  <SolutionsMegaMenu open={primaryOpen === 'solutions'} onClose={closeMegaMenu} />
                 </div>
               </div>
 
               <div
-                className={['site-nav-primary-item', primaryOpen === 'resources' ? 'is-open' : '']
+                className={[
+                  'site-nav-primary-item',
+                  'is-shop',
+                  primaryOpen === 'resources' ? 'is-open' : '',
+                  resourcesCurrent ? 'is-current' : '',
+                ]
                   .filter(Boolean)
                   .join(' ')}
                 onMouseEnter={() => {
                   if (primaryLocked) return
-                  openPrimary('resources')
+                  openMegaMenu('resources')
                 }}
-                onMouseLeave={() => closePrimary(false)}
+                onMouseLeave={() => {
+                  if (primaryLocked) {
+                    setPrimaryLocked(false)
+                    clearMegaCloseTimer()
+                    return
+                  }
+                  scheduleMegaClose('resources')
+                }}
               >
                 <button
                   type="button"
                   className="site-nav-primary-trigger"
                   aria-expanded={primaryOpen === 'resources'}
-                  aria-haspopup="true"
+                  aria-haspopup="dialog"
                   aria-controls="site-nav-resources-menu"
                   onClick={() => togglePrimary('resources')}
+                  onFocus={() => {
+                    if (!primaryLocked) openMegaMenu('resources')
+                  }}
                 >
                   Resources
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
-                <div className="site-nav-primary-panel">
-                  <div
-                    id="site-nav-resources-menu"
-                    className="site-nav-primary-card"
-                    role="menu"
-                    aria-label="Resources"
-                  >
-                    {RESOURCE_LINKS.map((item, index) =>
-                      'to' in item ? (
-                        <Link
-                          key={item.label}
-                          to={item.to}
-                          role="menuitem"
-                          className="site-nav-primary-link"
-                          style={{ '--i': String(index) } as CSSProperties}
-                          onClick={() => setPrimaryOpen(null)}
-                        >
-                          {item.label}
-                        </Link>
-                      ) : (
-                        <a
-                          key={item.label}
-                          href={item.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          role="menuitem"
-                          className="site-nav-primary-link"
-                          style={{ '--i': String(index) } as CSSProperties}
-                        >
-                          {item.label}
-                        </a>
-                      ),
-                    )}
-                  </div>
+                <div className="site-nav-primary-panel site-nav-shop-panel">
+                  <ResourcesMegaMenu open={primaryOpen === 'resources'} onClose={closeMegaMenu} />
                 </div>
               </div>
             </nav>
@@ -757,13 +701,17 @@ export function SiteNav() {
         createPortal(
           <button
             type="button"
-            className={['shop-mega-backdrop', primaryOpen === 'products' ? 'is-open' : '']
-              .filter(Boolean)
-              .join(' ')}
-            aria-label="Close shop menu"
-            aria-hidden={primaryOpen !== 'products'}
-            tabIndex={primaryOpen === 'products' ? 0 : -1}
-            onClick={closeShopMenu}
+            className={['shop-mega-backdrop', megaOpen ? 'is-open' : ''].filter(Boolean).join(' ')}
+            aria-label={
+              primaryOpen === 'resources'
+                ? 'Close resources menu'
+                : primaryOpen === 'solutions'
+                  ? 'Close solutions menu'
+                  : 'Close shop menu'
+            }
+            aria-hidden={!megaOpen}
+            tabIndex={megaOpen ? 0 : -1}
+            onClick={closeMegaMenu}
           />,
           document.body,
         )}
