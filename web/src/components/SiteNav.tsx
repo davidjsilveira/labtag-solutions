@@ -7,13 +7,11 @@ import {
   Check,
   ClipboardText,
   MagnifyingGlass,
-  MagnifyingGlassPlus,
   Package,
   Phone,
   Scissors,
   ShoppingCart,
   Sparkle,
-  SquaresFour,
   User,
 } from '@phosphor-icons/react'
 import { ResourcesMegaMenu } from '@/components/ResourcesMegaMenu'
@@ -36,12 +34,10 @@ import {
   CUSTOM_LABELS_PATH,
   LABTAG_CART_URL,
   LABTAG_CREATE_ACCOUNT_URL,
-  LABTAG_FINDER_URL,
   LABTAG_ORDERS_URL,
   LABTAG_PROMOS_URL,
   LABTAG_SHOP_URL,
   LABTAG_SIGN_IN_URL,
-  LABTAG_TEMPLATES_HUB_URL,
   QUOTE_PATH,
   SAMPLE_PATH,
   SOLUTIONS_PATH,
@@ -73,11 +69,7 @@ const CONTACT_ITEMS = [
 
 const CONTACT_PATHS = new Set([CONTACT_PATH, ...CONTACT_ITEMS.map((item) => item.to)])
 
-const UTILITY_LINKS = [
-  { label: 'Templates', href: LABTAG_TEMPLATES_HUB_URL, Icon: SquaresFour },
-  { label: 'Label Finder', href: LABTAG_FINDER_URL, Icon: MagnifyingGlassPlus },
-  { label: 'Cart', href: LABTAG_CART_URL, Icon: ShoppingCart },
-] as const
+const CART_LINK = { label: 'Cart', href: LABTAG_CART_URL, Icon: ShoppingCart } as const
 
 const ACCOUNT_BENEFITS = [
   'Manage orders',
@@ -125,14 +117,17 @@ export function SiteNav() {
 
   const togglePrimary = (next: 'products' | 'solutions' | 'resources') => {
     clearMegaCloseTimer()
-    setPrimaryOpen((current) => {
-      if (current === next) {
-        setPrimaryLocked(true)
-        return null
+    // Hover can open a menu before click; the first click pins it open, the next closes.
+    if (primaryOpen === next) {
+      if (primaryLocked) {
+        closePrimary(true)
+        return
       }
-      setPrimaryLocked(false)
-      return next
-    })
+      setPrimaryLocked(true)
+      return
+    }
+    setPrimaryOpen(next)
+    setPrimaryLocked(true)
   }
 
   const openMegaMenu = (next: 'products' | 'solutions' | 'resources') => openPrimary(next)
@@ -177,14 +172,14 @@ export function SiteNav() {
     }
 
     const syncBackdropTop = () => {
-      const mega = document.querySelector('.shop-mega.is-open')
+      const mega = document.querySelector('.shop-mega.is-open, .nav-mega.is-open')
       if (!(mega instanceof HTMLElement)) return
       const bottom = Math.ceil(mega.getBoundingClientRect().bottom)
       document.documentElement.style.setProperty('--shop-mega-backdrop-top', `${bottom}px`)
     }
 
     const frame = window.requestAnimationFrame(syncBackdropTop)
-    const mega = document.querySelector('.shop-mega.is-open')
+    const mega = document.querySelector('.shop-mega.is-open, .nav-mega.is-open')
     const observer =
       mega instanceof HTMLElement ? new ResizeObserver(syncBackdropTop) : null
     if (mega instanceof HTMLElement) observer?.observe(mega)
@@ -328,7 +323,7 @@ export function SiteNav() {
 
       <div className="site-nav">
         <div className="site-nav-utility">
-          <div className="site-header-inner">
+          <div className={['site-header-inner', 'site-nav-bar', megaOpen ? 'is-mega-open' : ''].filter(Boolean).join(' ')}>
             <Link className="logo" to="/">
               LabTAG
             </Link>
@@ -395,15 +390,12 @@ export function SiteNav() {
                   Shop
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
-                <div className="site-nav-primary-panel site-nav-shop-panel">
-                  <ShopMegaMenu open={primaryOpen === 'products'} onClose={closeMegaMenu} />
-                </div>
               </div>
 
               <div
                 className={[
                   'site-nav-primary-item',
-                  'is-shop',
+                  'is-mega',
                   primaryOpen === 'solutions' ? 'is-open' : '',
                   solutionsCurrent ? 'is-current' : '',
                 ]
@@ -436,15 +428,12 @@ export function SiteNav() {
                   Solutions
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
-                <div className="site-nav-primary-panel site-nav-shop-panel">
-                  <SolutionsMegaMenu open={primaryOpen === 'solutions'} onClose={closeMegaMenu} />
-                </div>
               </div>
 
               <div
                 className={[
                   'site-nav-primary-item',
-                  'is-shop',
+                  'is-mega',
                   primaryOpen === 'resources' ? 'is-open' : '',
                   resourcesCurrent ? 'is-current' : '',
                 ]
@@ -477,9 +466,6 @@ export function SiteNav() {
                   Resources
                   <CaretDown size={12} weight="bold" aria-hidden />
                 </button>
-                <div className="site-nav-primary-panel site-nav-shop-panel">
-                  <ResourcesMegaMenu open={primaryOpen === 'resources'} onClose={closeMegaMenu} />
-                </div>
               </div>
             </nav>
 
@@ -557,19 +543,6 @@ export function SiteNav() {
                   </div>
                 </div>
               </div>
-
-              {UTILITY_LINKS.slice(0, 2).map((item) => (
-                <a
-                  key={item.label}
-                  className="site-nav-tool"
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <item.Icon size={20} weight="regular" aria-hidden />
-                  <span>{item.label}</span>
-                </a>
-              ))}
 
               <div
                 ref={accountRef}
@@ -680,18 +653,56 @@ export function SiteNav() {
                 </div>
               </div>
 
-              {UTILITY_LINKS.slice(2).map((item) => (
-                <a
-                  key={item.label}
-                  className="site-nav-tool"
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <item.Icon size={20} weight="regular" aria-hidden />
-                  <span>{item.label}</span>
-                </a>
-              ))}
+              <a className="site-nav-tool" href={CART_LINK.href} target="_blank" rel="noreferrer">
+                <CART_LINK.Icon size={20} weight="regular" aria-hidden />
+                <span>{CART_LINK.label}</span>
+              </a>
+            </div>
+          </div>
+
+          <div
+            className={['site-nav-mega-slot', megaOpen ? 'is-open' : ''].filter(Boolean).join(' ')}
+            onMouseEnter={() => {
+              if (!primaryOpen || primaryLocked) return
+              clearMegaCloseTimer()
+            }}
+            onMouseLeave={() => {
+              if (!primaryOpen || primaryLocked) return
+              scheduleMegaClose(primaryOpen)
+            }}
+          >
+            <div
+              className={[
+                'site-nav-mega-layer',
+                'is-shop-layer',
+                primaryOpen === 'products' ? 'is-open' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              <ShopMegaMenu open={primaryOpen === 'products'} onClose={closeMegaMenu} />
+            </div>
+            <div
+              className={[
+                'site-nav-mega-layer',
+                'is-nav-layer',
+                primaryOpen === 'solutions' ? 'is-open' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              <SolutionsMegaMenu open={primaryOpen === 'solutions'} onClose={closeMegaMenu} />
+            </div>
+            <div
+              className={[
+                'site-nav-mega-layer',
+                'is-nav-layer',
+                primaryOpen === 'resources' ? 'is-open' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              <ResourcesMegaMenu open={primaryOpen === 'resources'} onClose={closeMegaMenu} />
             </div>
           </div>
         </div>

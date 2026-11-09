@@ -27,6 +27,8 @@ import { RequestFormPage } from '@/pages/RequestFormPage'
 import { SamplesPage } from '@/pages/SamplesPage'
 import { WhyChoosePage } from '@/pages/WhyChoosePage'
 import { SolutionPage } from '@/pages/SolutionPage'
+import { TemplatePage } from '@/pages/TemplatePage'
+import { TEMPLATE_SR1_PATH } from '@/content/templateSr1'
 
 const LEGACY_CATEGORY_IDS = new Set(['use-cases', 'features', 'services'])
 
@@ -75,6 +77,7 @@ export default function App() {
           <Route path={CONTACT_PATH} element={<ContactPage />} />
           <Route path={HELP_PATH} element={<HelpPage />} />
           <Route path={TAGI_PATH} element={<TagiPage />} />
+          <Route path={TEMPLATE_SR1_PATH} element={<TemplatePage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"
