@@ -56,6 +56,35 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     }
   }
 
+  if (solutionSlug === 'vaccine-labels') {
+    return {
+      primary: {
+        label: 'Get Free Samples',
+        href: 'https://www.labtag.com/samples/',
+        external: true,
+      },
+      secondary: {
+        label: 'Get in Touch',
+        href: '#contact-us',
+      },
+    }
+  }
+
+  if (solutionSlug === 'xylene-chemical-resistant-labels') {
+    return {
+      primary: {
+        label: 'Shop Products',
+        href: 'https://www.labtag.com/shop/category/chemical-resistant-labels/',
+        external: true,
+      },
+      secondary: {
+        label: 'Order Free Sample Kit',
+        href: 'https://www.labtag.com/xylene-and-chemical-resistant-sample-kit/',
+        external: true,
+      },
+    }
+  }
+
   if (solutionSlug === 'microscope-slide-over-labeling') {
     return {
       primary: {
@@ -332,6 +361,7 @@ export function PageHero({
   const labVideo = solutionSlug === 'laboratory-labels'
   const tapesVideo = solutionSlug === 'lab-tapes'
   const rfidVideo = solutionSlug === 'rfid-labels-tags'
+  const xyleneVideo = solutionSlug === 'xylene-chemical-resistant-labels'
   const playable =
     covidVideo ||
     cryoVideo ||
@@ -342,7 +372,8 @@ export function PageHero({
     resitagVideo ||
     labVideo ||
     tapesVideo ||
-    rfidVideo
+    rfidVideo ||
+    xyleneVideo
   const [videoOpen, setVideoOpen] = useState(false)
   const closeVideo = useCallback(() => setVideoOpen(false), [])
   const showMedia = Boolean((showImage && image) || playable)
@@ -360,6 +391,8 @@ export function PageHero({
               ? 'https://i.ytimg.com/vi/8AQVHE0RQuo/hqdefault.jpg'
               : rfidVideo
                 ? 'https://i.ytimg.com/vi/MFsJ-5hwx8Q/hqdefault.jpg'
+                : xyleneVideo
+                  ? 'https://i.ytimg.com/vi/-1VW3RzLNqk/hqdefault.jpg'
         : ivfVideo
           ? 'https://i.ytimg.com/vi/IlwTVR25hBw/hqdefault.jpg'
           : cryoVideo
@@ -379,6 +412,8 @@ export function PageHero({
               ? 'Play lab tapes video'
               : rfidVideo
                 ? 'Play RFID labels video'
+                : xyleneVideo
+                  ? 'Play xylene labels video'
         : ivfVideo
           ? 'Play IVF labeling video'
           : cryoVideo
@@ -450,6 +485,9 @@ export function PageHero({
       ) : null}
       {rfidVideo && videoOpen ? (
         <YoutubeLightbox videoId="MFsJ-5hwx8Q" title="RFID Labels & RFID Tags" onClose={closeVideo} />
+      ) : null}
+      {xyleneVideo && videoOpen ? (
+        <YoutubeLightbox videoId="-1VW3RzLNqk" title="Xylene & Chemical Resistant Labels" onClose={closeVideo} />
       ) : null}
       {solutionSlug === 'microscope-slide-over-labeling' && videoOpen ? (
         <YoutubeLightbox videoId="iItbdYojU3E" title="Histo-PinTAG" onClose={closeVideo} />

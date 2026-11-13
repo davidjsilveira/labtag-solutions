@@ -41,6 +41,8 @@ import { LabTapesLayout } from './LabTapesLayout'
 import { PcrLayout } from './PcrLayout'
 import { PreLabeledLayout } from './PreLabeledLayout'
 import { RfidLayout } from './RfidLayout'
+import { VaccineLayout } from './VaccineLayout'
+import { XyleneLayout } from './XyleneLayout'
 import { SlideOverLayout } from './SlideOverLayout'
 import { SnappeelLayout } from './SnappeelLayout'
 import { AutoclaveCaseStudy, AutoclaveContact, AutoclaveGuide } from './AutoclaveSections'
@@ -322,6 +324,20 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
     return (
       <div className="block-stack">
         <RfidLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'vaccine-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <VaccineLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'xylene-chemical-resistant-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <XyleneLayout blocks={blocks} />
       </div>
     )
   }

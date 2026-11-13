@@ -1,4 +1,11 @@
-import { CONTACT_PATH, SAMPLE_PATH, SOLUTIONS_PATH } from '@/content/labtagLinks'
+import {
+  CONTACT_PATH,
+  CUSTOM_LABELS_PATH,
+  QUOTE_PATH,
+  RESELLER_PATH,
+  SAMPLE_PATH,
+  SOLUTIONS_PATH,
+} from '@/content/labtagLinks'
 import { solutionPages } from '@/content/loadPages'
 import { previewImage } from '@/content/previewImage'
 import type { HeroImage } from '@/content/types'
@@ -56,6 +63,9 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
   {
     heading: 'By product',
     featuredSlug: 'cryogenic-labels',
+    labels: {
+      'custom-laboratory-labels': 'Custom',
+    },
     slugs: [
       'cryogenic-labels',
       'deep-freeze',
@@ -78,19 +88,37 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
       'lab-tapes',
       'resitag-2',
       'dymo-compatible-laboratory-labels',
+    ],
+  },
+  {
+    heading: 'By surface',
+    featuredSlug: 'xylene-chemical-resistant-labels',
+    labels: {
+      'cryogenic-labels': 'Tubes and vials',
+      'pcr-labels-and-tags': 'PCR tubes',
+      'histology-labels': 'Slides and blocks',
+    },
+    slugs: [
+      'cryostuck',
+      'cryogenic-labels',
+      'pcr-labels-and-tags',
+      'histology-labels',
       'xylene-chemical-resistant-labels',
-      'microscope-slide-over-labeling',
+      'chemical-container-labeling',
     ],
   },
   {
     heading: 'Print and apply',
     featuredSlug: 'label-printing-solutions',
+    labels: {
+      'dymo-compatible-laboratory-labels': 'DYMO labels',
+    },
     slugs: [
       'label-printing-solutions',
-      'label-software',
       'dymo-compatible-laboratory-labels',
       'automated-labels',
       'pre-labeled-labware',
+      'label-software',
     ],
   },
   {
@@ -101,11 +129,9 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
       'ivf-labeling-solutions',
       'clinical-trial-labels',
       'covid-19-laboratory-labels',
-      'cryogenic-clinical-requisition-forms',
       'histology-labels',
       'animal-healthcare',
       'industrial-labels',
-      'chemical-container-labeling',
       'cannabis-labels',
     ],
   },
@@ -118,11 +144,11 @@ export const SOLUTIONS_MEGA_VIEW_ALL = {
 
 const pagesBySlug = new Map(solutionPages.map((page) => [page.slug, page]))
 
-function linkForSlug(slug: string): SolutionsMegaLink | null {
+function linkForSlug(slug: string, label?: string): SolutionsMegaLink | null {
   const page = pagesBySlug.get(slug)
   if (!page) return null
   return {
-    label: SOLUTIONS_MEGA_LABELS[slug] ?? page.title,
+    label: label ?? SOLUTIONS_MEGA_LABELS[slug] ?? page.title,
     href: `/solutions/${page.slug}`,
   }
 }
@@ -130,11 +156,11 @@ function linkForSlug(slug: string): SolutionsMegaLink | null {
 export const SOLUTIONS_MEGA_SECTIONS: SolutionsMegaSection[] = SOLUTIONS_MEGA_SECTION_DEFS.flatMap(
   (section) => {
     const featuredPage = pagesBySlug.get(section.featuredSlug)
-    const featured = linkForSlug(section.featuredSlug)
+    const labels = 'labels' in section ? (section.labels as Record<string, string>) : undefined
+    const featured = linkForSlug(section.featuredSlug, labels?.[section.featuredSlug])
     if (!featured || !featuredPage) return []
-
     const links = section.slugs
-      .map((slug) => linkForSlug(slug))
+      .map((slug) => linkForSlug(slug, labels?.[slug]))
       .filter((link): link is SolutionsMegaLink => Boolean(link))
 
     return [
@@ -174,6 +200,9 @@ export const SOLUTIONS_MEGA_LINKS: SolutionsMegaLink[] = (() => {
 })()
 
 export const SOLUTIONS_MEGA_FOOTER: SolutionsMegaLink[] = [
+  { label: 'Custom labels', href: CUSTOM_LABELS_PATH },
   { label: 'Free samples', href: SAMPLE_PATH },
+  { label: 'Request a quote', href: QUOTE_PATH },
+  { label: 'Become a reseller', href: RESELLER_PATH },
   { label: 'Chat with an expert', href: CONTACT_PATH },
 ]

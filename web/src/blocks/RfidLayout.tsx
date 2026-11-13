@@ -1,13 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { CONTACT_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
-import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
 import type { ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { RichText } from './RichText'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
-const PORTAL_ID = '4079112'
-const FORM_ID = 'eb04b943-1021-4c51-9c48-81dbda92823a'
-const FORM_TARGET = 'rfid-contact-form'
 
 function linkFrom(paragraphs: string[]) {
   const paragraph = paragraphs.find((item) => LINK_ONLY.test(item.trim()))
@@ -44,33 +41,9 @@ function ShopLink({ href, label, button = false }: { href: string; label: string
 }
 
 function Contact({ title, body }: { title: string; body: string }) {
-  const mounted = useRef(true)
-
-  useEffect(() => {
-    mounted.current = true
-    const target = `#${FORM_TARGET}`
-    let cancelled = false
-
-    loadHubSpotFormsScript()
-      .then(() => {
-        if (cancelled || !mounted.current || !window.hbspt?.forms?.create) return
-        const node = document.querySelector(target)
-        if (node) node.innerHTML = ''
-        createHubSpotForm({ portalId: PORTAL_ID, formId: FORM_ID, target })
-      })
-      .catch(() => {
-        /* The heading and sentence stay if the form script cannot load. */
-      })
-
-    return () => {
-      cancelled = true
-      mounted.current = false
-    }
-  }, [])
-
   return (
-    <section className="rfid-contact request-form-page">
-      <div className="rfid-contact-copy">
+    <section className="rfid-contact">
+      <div>
         <h2>{title}</h2>
         {body ? (
           <p>
@@ -78,7 +51,9 @@ function Contact({ title, body }: { title: string; body: string }) {
           </p>
         ) : null}
       </div>
-      <div id={FORM_TARGET} />
+      <Link className="btn btn-primary" to={`${CONTACT_PATH}#contact-request`}>
+        Contact us
+      </Link>
     </section>
   )
 }
