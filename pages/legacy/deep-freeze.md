@@ -86,16 +86,6 @@ Our permanent deep-freeze blackout labels are designed to obscure any pre-existi
 
 ![Rectangles + Circles](https://cdn.labtag.com/wp-content/uploads/Rectangle-Circle-Icon-1.jpg)
 
-## Deep-Freeze Labels by Adhesive
-
-### Permanent
-
-[Permanent](https://www.labtag.com/shop/category/deep-freeze-labels/?adhesive=permanent)
-
-### Removable
-
-[Removable](https://www.labtag.com/shop/category/deep-freeze-labels/?adhesive=removable)
-
 ## Get in Touch
 
 Tell us a little bit about yourself and one of our experts will be in touch with you shortly.

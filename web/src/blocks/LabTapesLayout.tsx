@@ -13,7 +13,7 @@ const FORM_ID = '37b7606e-4f35-4ea3-a18d-4d450a5b7a34'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
 
-/** In-page ids from the live article, including the nav targets. */
+/** In-page ids from the live article. */
 const ANCHORS: Record<string, string> = {
   Cryogenic: 'cryogenic-tapes',
   'Permanent Cryogenic Tape': 'perm',
@@ -40,56 +40,6 @@ const ANCHORS: Record<string, string> = {
   'Get in Touch': 'contact-us',
 }
 
-const NAV = [
-  {
-    title: 'Cryogenic Tapes',
-    href: '#cryogenic-tapes',
-    links: [
-      ['Permanent Cryogenic Tape', '#perm'],
-      ['Cryo Tape for Metal Racks', '#metal'],
-      ['Cryogenic Laminate Tape', '#lam'],
-      ['Frozen Container Tapes', '#frozen'],
-      ['Tamper-Evident Cryo Tape', '#tamper'],
-    ],
-  },
-  {
-    title: 'Freezer Tapes',
-    href: '#freezer-tapes',
-    links: [
-      ['Transluscent Freezer Tape', '#transluscent'],
-      ['Removable Freezer Tape', '#removable'],
-    ],
-  },
-  {
-    title: 'Autoclave Tapes',
-    href: '#autoclave-tapes',
-    links: [
-      ['Printable Autoclave Tape', '#printable'],
-      ['Sterilization Indicator Tape', '#sterilization'],
-      ['Removable SteriTAPE™', '#SteriTAPE'],
-    ],
-  },
-  {
-    title: 'General Purpose',
-    href: '#paper-tapes',
-    links: [
-      ['Color Lab Tapes', '#color'],
-      ['Glow-In-The-Dark Tape', '#glow'],
-      ['Ultra Removable Tape', '#ultra'],
-    ],
-  },
-  {
-    title: 'Specialty Tapes',
-    href: '#more',
-    links: [
-      ['PluroTAPE™ (Patent Pending)', '#plurotape'],
-      ['CryoHUG™ (Patented)', '#cryohug'],
-      ['Tape Dispensers', '#dispenser'],
-      ['UbiCling™', '#UbiCling'],
-    ],
-  },
-] as const
-
 function asSection(block: ContentBlock | undefined): SectionBlock | null {
   return block?.type === 'section' ? block : null
 }
@@ -102,27 +52,6 @@ function linkFrom(paragraphs: string[]) {
 
 function prose(paragraphs: string[]) {
   return paragraphs.filter((item) => !LINK_ONLY.test(item.trim()))
-}
-
-function TapeNav() {
-  return (
-    <nav className="tape-nav" aria-label="Lab tapes">
-      {NAV.map((column) => (
-        <div key={column.title}>
-          <p className="tape-nav-title">
-            <a href={column.href}>{column.title}</a>
-          </p>
-          <ul>
-            {column.links.map(([label, href]) => (
-              <li key={href}>
-                <a href={href}>{label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </nav>
-  )
 }
 
 function TapeBanner({ image }: { image: ImageBlock }) {
@@ -282,7 +211,6 @@ export function LabTapesLayout({ blocks }: { blocks: ContentBlock[] }) {
 
   return (
     <div className="tape-layout">
-      <TapeNav />
       {banner ? <TapeBanner image={banner} /> : null}
       {nodes}
     </div>

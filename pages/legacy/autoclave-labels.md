@@ -85,12 +85,6 @@ Certified by Underwriters Laboratories (UL) and Conformité Européene (CE), the
 
 Autoclave-resistant RFID labels have a strong permanent adhesive and can withstand multiple autoclave sterilization cycles, perfect for identifying reusable sterilization containers and tracking sterilized consumables, devices, and packages. Combining printed visual information with encoded RFID data, these thermal-transfer labels are the ideal identification solution for improving the traceability of sterilized material, including for GMP and GLP operations. Designed to integrate with RFID sterilization management systems to control and monitor the sterilization process.
 
-## Autoclave Labels by Adhesive
-
-[Permanent](https://www.labtag.com/shop/category/autoclave-resistant-labels/?adhesive=permanent)
-
-[Removable](https://www.labtag.com/shop/category/autoclave-resistant-labels/?adhesive=removable)
-
 ## Get in Touch
 
 Tell us a little bit about yourself and one of our experts will be in touch with you shortly.

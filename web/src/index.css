@@ -7298,10 +7298,10 @@ button.tagi-asked.is-earlier:hover {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--labtag-ui-stroke-light);
-  border-radius: var(--radius-image);
-  background: var(--labtag-pure-white);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .automated-card-media {
@@ -7633,8 +7633,8 @@ button.tagi-asked.is-earlier:hover {
   padding-top: var(--space-xl);
 }
 
-.animal-row.is-flip .animal-row-media {
-  order: 2;
+.animal-row .animal-row-media {
+  order: 0;
 }
 
 .animal-row-media .block-image,
@@ -8957,14 +8957,14 @@ button.tagi-asked.is-earlier:hover {
 }
 
 .deep-card img {
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 1;
   aspect-ratio: 549 / 296;
   object-fit: cover;
 }
 
 .deep-card-copy {
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 1;
 }
 
@@ -13199,42 +13199,6 @@ a.why-reason:hover h2 {
   margin-top: 2.25rem;
 }
 
-.tape-nav {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1.25rem 1.5rem;
-}
-
-.tape-nav-title {
-  margin: 0 0 0.55rem;
-  padding-bottom: 0.45rem;
-  border-bottom: 1px solid var(--color-rule);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-ink);
-}
-
-.tape-nav-title a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.tape-nav ul {
-  display: grid;
-  gap: 0.4rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tape-nav li a {
-  color: var(--color-link);
-  font-size: 0.875rem;
-  line-height: 1.4;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
 .tape-banner img {
   display: block;
   width: 100%;
@@ -13340,22 +13304,12 @@ a.why-reason:hover h2 {
 }
 
 @media (max-width: 980px) {
-  .tape-nav {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .tape-row {
     grid-template-columns: 1fr;
   }
 
   .tape-shot {
     max-width: 28rem;
-  }
-}
-
-@media (max-width: 560px) {
-  .tape-nav {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -14868,6 +14822,135 @@ a.why-reason:hover h2 {
   .xylene-contact {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+/* Solution articles: stack each content block with the image or slideshow on the left. */
+.solution-page .content-split,
+.solution-page .content-split-grid .content-split {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 1.5rem 2.75rem;
+}
+
+.solution-page .content-split-grid {
+  grid-template-columns: 1fr;
+  gap: 2.75rem;
+}
+
+.solution-page .content-split-media,
+.solution-page .content-split-grid .content-split-media {
+  order: -1;
+}
+
+.solution-page .content-split-grid .content-split-copy .block p,
+.solution-page .content-split-grid .content-split-copy .block-intro {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+.solution-page .pcr-products,
+.solution-page .cryo-grid:has(.cryo-card-copy),
+.solution-page .chemical-grid,
+.solution-page.is-chemical .chemical-grid.is-trio,
+.solution-page.is-chemical .chemical-grid.is-compact,
+.solution-page .automated-grid,
+.solution-page .custom-cards {
+  grid-template-columns: 1fr;
+  gap: 2.75rem;
+}
+
+.solution-page .pcr-product,
+.solution-page .cryo-card:has(.cryo-card-copy),
+.solution-page .chemical-card:not(.is-copy),
+.solution-page .automated-card,
+.solution-page .custom-cards article,
+.solution-page .tape-row,
+.solution-page .histo-row,
+.solution-page .stick-row,
+.solution-page .ivf-row,
+.solution-page .print-row,
+.solution-page .print-row.is-guide,
+.solution-page .xylene-xyli,
+.solution-page .resi-story,
+.solution-page .resi-features,
+.solution-page .snap-story-lead,
+.solution-page .lab-print,
+.solution-page .automated-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  justify-content: stretch;
+  align-items: center;
+  gap: 1.5rem 2.75rem;
+  width: 100%;
+}
+
+.solution-page .tape-gallery,
+.solution-page .histo-media,
+.solution-page .histo-media.is-gif,
+.solution-page .stick-media,
+.solution-page .ivf-media,
+.solution-page .print-media,
+.solution-page .print-row.is-guide .print-media,
+.solution-page .xylene-xyli > img,
+.solution-page .resi-features .resi-media,
+.solution-page .snap-tech-media,
+.solution-page .lab-print-media,
+.solution-page .automated-feature-media {
+  order: -1;
+  width: 100%;
+  max-width: none;
+  justify-self: stretch;
+}
+
+.solution-page .pcr-product-media,
+.solution-page .chemical-card:not(.is-copy) img,
+.solution-page .cryo-card:has(.cryo-card-copy) img,
+.solution-page .custom-cards img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@media (max-width: 820px) {
+  .solution-page .content-split,
+  .solution-page .content-split-grid .content-split,
+  .solution-page .pcr-product,
+  .solution-page .cryo-card:has(.cryo-card-copy),
+  .solution-page .chemical-card:not(.is-copy),
+  .solution-page .automated-card,
+  .solution-page .custom-cards article,
+  .solution-page .tape-row,
+  .solution-page .histo-row,
+  .solution-page .stick-row,
+  .solution-page .ivf-row,
+  .solution-page .print-row,
+  .solution-page .print-row.is-guide,
+  .solution-page .xylene-xyli,
+  .solution-page .xylene-row,
+  .solution-page .vaccine-row,
+  .solution-page .deep-card,
+  .solution-page .resi-story,
+  .solution-page .resi-features,
+  .solution-page .snap-story-lead,
+  .solution-page .lab-print,
+  .solution-page .automated-feature,
+  .solution-page .animal-row,
+  .solution-page .covid-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .solution-page .deep-card img,
+  .solution-page .deep-card.is-flip img,
+  .solution-page .deep-card .deep-card-copy,
+  .solution-page .deep-card.is-flip .deep-card-copy {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .solution-page .deep-card img {
+    order: -1;
   }
 }
 

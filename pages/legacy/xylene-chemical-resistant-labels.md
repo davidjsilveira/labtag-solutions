@@ -128,12 +128,6 @@ Solvent-resistant blackout labels designed for flat surfaces, such as glass micr
 
 ![Blackout labels](https://cdn.labtag.com/wp-content/uploads/SBOR-152-use2.png "/media/xylene-chemical-resistant-labels/SBOR-152-use2.png")
 
-## Xylene & Chemical Resistant Labels by Adhesive
-
-[Permanent](https://www.labtag.com/shop/category/labels/chemical-resistant-labels/xylene-chemical-resistant-permanent-labels/)
-
-[Removable](https://www.labtag.com/shop/category/labels/chemical-resistant-labels/xylene-chemical-resistant-removable-labels/)
-
 ## Get in Touch
 
 Tell us a little bit about yourself and one of our experts will be in touch with you shortly.
