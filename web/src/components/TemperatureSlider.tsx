@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getPage } from '@/content/loadPages'
+import { previewImage } from '@/content/previewImage'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { FeatureGridItem } from '@/content/types'
 
@@ -54,11 +55,11 @@ const TEMP_SPAN = TEMP_SCALE_MAX - TEMP_SCALE_MIN
 
 /** Usability-focused feature pages highlighted at room temperature. */
 const AMBIENT_USABILITY_CHIPS: GuideChip[] = [
-  { title: 'SnapPEEL™', slug: 'snappeel' },
-  { title: 'Hard-to-stick surfaces', slug: 'hard-to-stick' },
-  { title: 'Lab tapes', slug: 'laboratory-tapes' },
-  { title: 'ResiTAG®', slug: 'resin-labels' },
-  { title: 'DYMO-compatible', slug: 'dymo-labels' },
+  { title: 'GatorCUT™', slug: 'gatorcut' },
+  { title: 'Hard-to-stick surfaces', slug: 'labels-for-hard-to-stick-surfaces' },
+  { title: 'Lab tapes', slug: 'lab-tapes' },
+  { title: 'Resin embedding', slug: 'resitag-2' },
+  { title: 'DYMO-compatible', slug: 'dymo-compatible-laboratory-labels' },
 ]
 
 type GuideMatch = {
@@ -75,7 +76,7 @@ type GuideMatch = {
 const GUIDE_BANDS: GuideMatch[] = [
   {
     maxExclusive: -150,
-    slug: 'cryogenic',
+    slug: 'cryogenic-labels',
     title: 'Cryogenic Labels',
     headline: 'Liquid nitrogen territory',
     body: 'Vials, boxes, metal canes, and straws living in LN₂ or vapor phase need adhesives that stay put through immersion and freeze–thaw cycles — and the same constructs still hold at the bench.',
@@ -83,7 +84,7 @@ const GUIDE_BANDS: GuideMatch[] = [
   },
   {
     maxExclusive: -60,
-    slug: 'deep-freeze-labels',
+    slug: 'deep-freeze',
     title: 'Deep-Freeze Labels',
     headline: 'Ultra-low freezer storage',
     body: '−80°C freezers and dry-ice transport call for freezer-grade labels on microtubes, plates, blood bags, and cardboard or polypropylene boxes — rated through warmer lab handling too.',
@@ -91,7 +92,7 @@ const GUIDE_BANDS: GuideMatch[] = [
   },
   {
     maxExclusive: 5,
-    slug: 'cryostuck-labels',
+    slug: 'cryostuck',
     title: 'CryoSTUCK® for frozen surfaces',
     headline: 'Already frozen — no thaw',
     body: 'When the vial cannot warm up, CryoSTUCK® applies straight onto −80°C surfaces so you can re-ID without interrupting the cold chain.',
@@ -99,16 +100,16 @@ const GUIDE_BANDS: GuideMatch[] = [
   },
   {
     maxExclusive: 32,
-    slug: 'snappeel',
-    title: 'Usability Features',
+    slug: 'lab-tapes',
+    title: 'Lab tapes and handling',
     headline: 'Room-temp labeling that works faster',
-    body: 'At ambient conditions the bottleneck is handling — SnapPEEL™, glove-friendly peels, hard-to-stick surfaces, and tearable tapes that keep techs moving. These are built for a narrow room-temp window, not LN₂.',
+    body: 'At ambient conditions the bottleneck is handling — GatorCUT™ tapes, hard-to-stick surfaces, and labels you can tear and apply with gloves. These are built for a narrow room-temp window, not LN₂.',
     tags: ['ambient'],
     chips: AMBIENT_USABILITY_CHIPS,
   },
   {
     maxExclusive: 100,
-    slug: 'laboratory',
+    slug: 'laboratory-labels',
     title: 'Laboratory Labels',
     headline: 'Warm benches and incubators',
     body: 'Elevated lab temps still need durable ID — from cultureware and kits to containers that move between rooms, fridges, and warm workstations.',
@@ -116,7 +117,7 @@ const GUIDE_BANDS: GuideMatch[] = [
   },
   {
     maxExclusive: Number.POSITIVE_INFINITY,
-    slug: 'autoclave',
+    slug: 'autoclave-labels',
     title: 'Autoclave Labels',
     headline: 'Sterilization heat',
     body: 'Steam, dry heat, gamma, and EtO cycles need constructs that survive autoclaving without smearing, peeling, or losing barcode scannability.',
@@ -207,7 +208,7 @@ function resolveChips(guide: GuideMatch): { title: string; to: string }[] {
 
 function FeatureMedia({ slug, title }: { slug: string; title: string }) {
   const page = getPage(slug)
-  const image = page?.heroImage
+  const image = page ? previewImage(page) : undefined
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
 
   if (!resolved) {

@@ -114,7 +114,7 @@ export function CustomLabelsPage() {
           Custom work is quoted from the same line as stock. Prefer to test a material first?{' '}
           <Link to={SAMPLE_PATH}>Request a free sample</Link>
           . See formats, printing, and surfaces on the{' '}
-          <Link to="/solutions/custom-labels">Custom Laboratory Labels</Link> guide.
+          <Link to="/solutions/custom-laboratory-labels">Custom Laboratory Labels</Link> guide.
         </p>
       </div>
     </article>

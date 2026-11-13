@@ -1,6 +1,7 @@
 import { isShopChipList, resolveBulletItem } from '@/content/shopLinks'
 import { resolveSpecItemShopHref } from '@/content/splitActions'
 import type { BulletListBlock } from '@/content/types'
+import { RichText } from './RichText'
 
 type Props = {
   block: BulletListBlock
@@ -51,7 +52,9 @@ export function BulletListBlockView({ block, variant = 'auto' }: Props) {
         {block.title ? <h2>{block.title}</h2> : null}
         <ul className="bullet-plain-list">
           {block.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+            <RichText text={item} />
+          </li>
           ))}
         </ul>
       </section>

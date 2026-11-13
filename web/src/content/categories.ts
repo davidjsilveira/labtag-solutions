@@ -1,4 +1,4 @@
-import { legacyPages, solutionPages } from '@/content/loadPages'
+import { solutionPages } from '@/content/loadPages'
 import type { SolutionPage } from '@/content/types'
 
 export type BrowseFilterId =
@@ -31,79 +31,120 @@ export const browseFilters: BrowseFilter[] = [
   {
     id: 'cryogenic',
     label: 'Cryogenic',
-    slugs: ['cryogenic', 'cryostuck-labels', 'biobanking', 'ivf', 'clinical-trials'],
+    slugs: [
+      'cryogenic-labels',
+      'cryostuck',
+      'biobanking-labels',
+      'ivf-labeling-solutions',
+      'cryogenic-clinical-requisition-forms',
+    ],
   },
   {
     id: 'deep-freeze',
     label: 'Deep-freeze',
-    slugs: ['deep-freeze-labels', 'vaccines', 'cryogenic', 'cryostuck-labels'],
+    slugs: ['deep-freeze', 'vaccine-labels', 'cryogenic-labels', 'cryostuck'],
   },
   {
     id: 'biobanking',
     label: 'Biobanking',
-    slugs: ['biobanking', 'ivf', 'clinical-trials', 'cryogenic', 'rfid'],
+    slugs: [
+      'biobanking-labels',
+      'ivf-labeling-solutions',
+      'clinical-trial-labels',
+      'cryogenic-labels',
+      'rfid-labels-tags',
+    ],
   },
   {
     id: 'vaccines',
     label: 'Vaccines',
-    slugs: ['vaccines', 'clinical-trials', 'deep-freeze-labels'],
+    slugs: ['vaccine-labels', 'clinical-trial-labels', 'deep-freeze'],
   },
   {
     id: 'clinical',
     label: 'Clinical',
-    slugs: ['clinical-trials', 'histology', 'vaccines'],
+    slugs: [
+      'clinical-trial-labels',
+      'covid-19-laboratory-labels',
+      'cryogenic-clinical-requisition-forms',
+      'histology-labels',
+      'vaccine-labels',
+    ],
   },
   {
     id: 'pcr',
     label: 'PCR',
-    slugs: ['pcr', 'laboratory', 'cryogenic'],
+    slugs: ['pcr-labels-and-tags', 'laboratory-labels', 'cryogenic-labels'],
   },
   {
     id: 'histology',
     label: 'Histology',
-    slugs: ['histology', 'resin-labels'],
+    slugs: [
+      'histology-labels',
+      'xylene-chemical-resistant-labels',
+      'microscope-slide-over-labeling',
+      'resitag-2',
+    ],
   },
   {
     id: 'autoclave',
     label: 'Autoclave',
-    slugs: ['autoclave', 'laboratory', 'industrial'],
+    slugs: ['autoclave-labels', 'laboratory-labels', 'industrial-labels'],
   },
   {
     id: 'constructs',
     label: 'Specialty',
     slugs: [
-      'snappeel',
-      'resin-labels',
-      'laboratory-tapes',
-      'cryostuck-labels',
-      'hard-to-stick',
-      'dymo-labels',
+      'gatorcut',
+      'snappeel-2',
+      'resitag-2',
+      'lab-tapes',
+      'cryostuck',
+      'labels-for-hard-to-stick-surfaces',
+      'dymo-compatible-laboratory-labels',
+      'xylene-chemical-resistant-labels',
+      'microscope-slide-over-labeling',
     ],
   },
   {
     id: 'tracking',
     label: 'RFID',
-    slugs: ['rfid', 'biobanking', 'clinical-trials'],
+    slugs: ['rfid-labels-tags', 'biobanking-labels', 'clinical-trial-labels'],
   },
   {
     id: 'printers',
     label: 'Printers',
-    slugs: ['label-printing', 'dymo-labels'],
+    slugs: [
+      'label-printing-solutions',
+      'label-software',
+      'dymo-compatible-laboratory-labels',
+    ],
   },
   {
     id: 'automation',
     label: 'Automation',
-    slugs: ['automated-labware', 'label-printing'],
+    slugs: ['automated-labels', 'pre-labeled-labware', 'label-printing-solutions'],
   },
   {
     id: 'custom',
     label: 'Custom',
-    slugs: ['custom-labels', 'clinical-trials', 'automated-labware', 'label-printing'],
+    slugs: [
+      'custom-laboratory-labels',
+      'clinical-trial-labels',
+      'pre-labeled-labware',
+      'label-printing-solutions',
+    ],
   },
   {
     id: 'industries',
     label: 'Industries',
-    slugs: ['animal-health', 'industrial', 'chemical-containers', 'cannabis', 'laboratory'],
+    slugs: [
+      'animal-healthcare',
+      'industrial-labels',
+      'chemical-container-labeling',
+      'cannabis-labels',
+      'laboratory-labels',
+    ],
   },
 ]
 
@@ -113,79 +154,45 @@ export function pagesForBrowseFilter(filterId: BrowseFilterId): SolutionPage[] {
   const filter = browseFilters.find((item) => item.id === filterId)
   if (!filter?.slugs) return pagesForBrowseAll()
 
-  // Keep each theme’s slug list order so the primary solution sits leftmost.
   const bySlug = new Map(solutionPages.map((page) => [page.slug, page]))
   return filter.slugs
     .map((slug) => bySlug.get(slug))
     .filter((page): page is SolutionPage => Boolean(page))
 }
 
-/**
- * Catalog order: cryogenic / cold-storage first, niche industries last.
- * Any slug missing here is appended alphabetically.
- */
+/** Live index order. Any slug missing here is appended alphabetically. */
 const BROWSE_ALL_ORDER: string[] = [
-  'cryogenic',
-  'deep-freeze-labels',
-  'cryostuck-labels',
-  'biobanking',
-  'ivf',
-  'laboratory-tapes',
-  'hard-to-stick',
-  'laboratory',
-  'pcr',
-  'vaccines',
-  'clinical-trials',
-  'autoclave',
-  'histology',
-  'snappeel',
-  'resin-labels',
-  'rfid',
-  'dymo-labels',
-  'label-printing',
-  'automated-labware',
-  'custom-labels',
-  'animal-health',
-  'industrial',
-  'chemical-containers',
-  'cannabis',
-]
-
-const ARCHIVE_ORDER: string[] = [
-  'cryogenic-labels',
-  'deep-freeze',
-  'cryostuck',
+  'animal-healthcare',
+  'autoclave-labels',
+  'automated-labels',
   'biobanking-labels',
-  'ivf-labeling-solutions',
-  'cryogenic-clinical-requisition-forms',
-  'lab-tapes',
-  'labels-for-hard-to-stick-surfaces',
-  'laboratory-labels',
-  'pcr-labels-and-tags',
-  'vaccine-labels',
+  'cannabis-labels',
+  'chemical-container-labeling',
   'clinical-trial-labels',
   'covid-19-laboratory-labels',
-  'autoclave-labels',
-  'histology-labels',
-  'xylene-chemical-resistant-labels',
-  'microscope-slide-over-labeling',
-  'snappeel-labels',
-  'resitag',
-  'rfid-labels-tags',
+  'cryogenic-clinical-requisition-forms',
+  'cryogenic-labels',
+  'custom-laboratory-labels',
+  'deep-freeze',
   'dymo-compatible-laboratory-labels',
   'gatorcut',
-  'label-printing-solutions',
-  'dymo-labelwriter-550',
-  'ga-international-cody-3-printer',
-  'label-software',
-  'automated-labels',
-  'pre-labeled-labware',
-  'custom-laboratory-labels',
-  'clinical-data-printing',
-  'animal-healthcare',
+  'histology-labels',
   'industrial-labels',
-  'chemical-container-labeling',
-  'cannabis-labels',
+  'ivf-labeling-solutions',
+  'label-printing-solutions',
+  'label-software',
+  'cryostuck',
+  'labels-for-hard-to-stick-surfaces',
+  'resitag-2',
+  'laboratory-labels',
+  'lab-tapes',
+  'microscope-slide-over-labeling',
+  'pcr-labels-and-tags',
+  'pre-labeled-labware',
+  'rfid-labels-tags',
+  'snappeel-2',
+  'vaccine-labels',
+  'xylene-chemical-resistant-labels',
 ]
 
 function orderPages(pages: SolutionPage[], order: string[]): SolutionPage[] {
@@ -208,32 +215,29 @@ function orderPages(pages: SolutionPage[], order: string[]): SolutionPage[] {
   return ordered
 }
 
+/** Ordered pages for the homepage featured slider. */
+const FEATURED_ORDER: string[] = [
+  'cryogenic-labels',
+  'deep-freeze',
+  'cryostuck',
+  'clinical-trial-labels',
+  'histology-labels',
+  'lab-tapes',
+  'dymo-compatible-laboratory-labels',
+  'label-printing-solutions',
+  'automated-labels',
+  'biobanking-labels',
+  'pcr-labels-and-tags',
+  'vaccine-labels',
+]
+
+export function pagesForFeatured(): SolutionPage[] {
+  return orderPages(solutionPages, FEATURED_ORDER).filter((page) =>
+    FEATURED_ORDER.includes(page.slug),
+  )
+}
+
 /** Ordered pages for carousel, footer Solutions, and catalog pager. */
 export function pagesForBrowseAll(): SolutionPage[] {
   return orderPages(solutionPages, BROWSE_ALL_ORDER)
-}
-
-/** New articles — unique editorial guides. Cryogenic leads; cryo / deep-freeze / CryoSTUCK stay separate. */
-const NEW_ARTICLES_ORDER: string[] = [
-  'cryogenic',
-  'clinical-trials',
-  'histology',
-  'laboratory-tapes',
-  'dymo-labels',
-  'label-printing',
-  'automated-labware',
-]
-
-export function isNewArticleSlug(slug: string): boolean {
-  return NEW_ARTICLES_ORDER.includes(slug)
-}
-
-export function pagesForCombinedCatalog(): SolutionPage[] {
-  const wanted = new Set(NEW_ARTICLES_ORDER)
-  return orderPages(solutionPages, NEW_ARTICLES_ORDER).filter((page) => wanted.has(page.slug))
-}
-
-/** Ordered original scrape pages for the homepage Archive section and archive pager. */
-export function pagesForArchive(): SolutionPage[] {
-  return orderPages(legacyPages, ARCHIVE_ORDER)
 }

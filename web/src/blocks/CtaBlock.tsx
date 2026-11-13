@@ -30,7 +30,12 @@ export function CtaBlockView({ block }: { block: CtaBlock }) {
   const customLabel = block.actionLabel?.trim()
   const primaryHref = customHref || CONTACT_PATH
   const primaryLabel = customHref && customLabel ? customLabel : 'Chat with an expert'
-  const showSample = primaryHref !== LABTAG_SAMPLE_URL && primaryHref !== SAMPLE_PATH
+  const showSample =
+    primaryHref !== LABTAG_SAMPLE_URL &&
+    primaryHref !== SAMPLE_PATH &&
+    !/^make your project/i.test(block.title) &&
+    !/^get in touch/i.test(block.title) &&
+    !/^experience the benefits/i.test(block.title)
 
   return (
     <aside className="block block-cta">

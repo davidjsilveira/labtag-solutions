@@ -2,139 +2,120 @@
 
 Source: [https://www.labtag.com/solutions/laboratory-labels/](https://www.labtag.com/solutions/laboratory-labels/)
 
-![Laboratory Labels](https://cdn.labtag.com/wp-content/uploads/2021/04/cryogenic-1.jpg "/media/laboratory-labels/cryogenic-1.jpg")
+LabTAG® specializes in laboratory identification solutions, supplying high-quality labels, printers, accessories, and software to biomedical research labs, hospitals, and other healthcare facilities.
 
-LabTAG® specializes in laboratory identification solutions—labels, printers, accessories, and software—for biomedical research labs, hospitals, and healthcare facilities. As a leading manufacturer of cryogenic and xylene-resistant labels, we focus on R&D and customer service to address the evolving challenges faced across science disciplines.
+We are the worldwide leading manufacturer of cryogenic and xylene-resistant labels, with a strong dedication to R&D and customer service. We’re always working to create technologically advanced identification solutions to address the ever-changing challenges faced by our customers.
 
-Explore cryogenic, chemical-resistant, and specialty laboratory labels plus printers and software built for durable biomedical identification workflows across research labs, hospitals, and clinical care networks.
+## Cryogenic Labels
 
-### By Application
+![](https://cdn.labtag.com/wp-content/uploads/cryogenic-1.jpg)
 
-- **Cryogenic** — Liquid nitrogen and ultra-low temperature storage across research, clinical, fertility, and biobank workflows
-- **PCR** — Labels and tags for PCR tubes, strips, and plates through thermal cycling and cold storage
-- **IVF** — Identification solutions for Assisted Reproductive Technology clinics and labs
-- **Clinical Trials** — Custom clinical labeling to meet sponsor, patient, and regulatory demands
-- **Kits & Storage** — Labels for diagnostic kits, clinical sample workflows, and long-term storage
-- **Cannabis** — Labels for growing, packaging, testing, and seed-to-sale traceability
+[Cryogenic Labels](https://www.labtag.com/cryogenic-labels/)
 
-### By Resistance
+## Xylene-Resistant Labels
 
-- **Xylene & Chemical** — Laminate-free chemical-resistant labels for histology, pathology, and chemistry labs
-- **Autoclave** — High-temperature sterilization labels for steam, dry heat, gamma, and EtO workflows
-- **Deep-Freeze** — Freezer-grade labels for −80°C/−20°C storage and dry-ice transport
+![](https://cdn.labtag.com/wp-content/uploads/xylene-label.jpg)
 
-### By Innovation
+[Xylene-Resistant Labels](https://www.labtag.com/xylene-chemical-resistant-labels/)
 
-- **SnapPEEL™ Technology** — 2-in-1 rectangle + circle cryo labels that peel in one motion
-- **Cryo-LazrTAG™** — Laser-printable cryogenic labels for office and lab printers
-- **PikaTAG®** — Applicator kits for precise placement of small dots and tags
-- **PCR-TagTrax®** — Non-adhesive printable tags for PCR tubes, strips, and plates
-- **RFID Cryo-WrapTAG™** — Cryogenic wrap-around labels with encoded RFID data
-- **GatorCUT™ Technology** — Hand-tearable cryogenic and specialty lab tapes
-- **Print Solutions** — Printers, ribbons, and software for lab identification workflows
+## Autoclave Labels
 
-## Laboratory Labels by Application
+![](https://cdn.labtag.com/wp-content/uploads/autoclave-1.jpg)
 
-### Cryogenic
+[Autoclave Labels](https://www.labtag.com/autoclave-labels/)
 
-![Cryogenic laboratory labels on vials](https://cdn.labtag.com/wp-content/uploads/JTTA-103-Use-vials.png "/media/laboratory-labels/JTTA-103-Use-vials.png")
+## PCR Labels and Tags
 
-Cryogenic labels withstand extended storage in liquid or vapor-phase liquid nitrogen (−196°C) and ultra-low temperature freezers. Available in a range of sizes and configurations, compatible with thermal and digital printers, with permanent or removable adhesive and features such as blackout, tamper-evident, and wrap-around options.
+![](https://cdn.labtag.com/wp-content/uploads/PCR-1.jpg)
 
-### PCR
+[PCR Labels and Tags](https://www.labtag.com/pcr-labels/)
 
-![PCR labels and tags](https://cdn.labtag.com/wp-content/uploads/PCR-1.jpg "/media/laboratory-labels/PCR-1.jpg")
+## IVF Labels
 
-Labels, tags, and label dots for 0.2 mL PCR tubes, high-profile 8-well PCR strips, and skirted, semi-skirted, and non-skirted PCR plates keep samples identified through setup, thermal cycling, and cold storage.
+![](https://cdn.labtag.com/wp-content/uploads/ivf-1.jpg)
 
-### IVF
+[IVF Labels](https://www.labtag.com/ivf-labeling-solutions/)
 
-![IVF cryo-straw self-laminating barcode label](https://cdn.labtag.com/wp-content/uploads/ivf-1.jpg "/media/laboratory-labels/ivf-1.jpg")
+## Deep-Freeze Labels
 
-Innovative IVF labeling solutions for Assisted Reproductive Technology (ART) clinics and labs, including identification for cryo straws, vials, culture plates, and related labware through cryopreservation and processing workflows.
+![](https://cdn.labtag.com/wp-content/uploads/deep-freeze-1.jpg)
 
-### Clinical Trials
+[Deep-Freeze Labels](https://www.labtag.com/deep-freeze/)
 
-![Clinical trial laboratory labels](https://cdn.labtag.com/wp-content/uploads/clinical.jpg "/media/laboratory-labels/clinical.jpg")
+## COVID-19 Labels
 
-Clinical trial labeling with a wide range of customization options—constructs, serialization, full-color graphics, and RFID—to meet sponsor, patient, and regulatory requirements on time and with precision.
+![](https://cdn.labtag.com/wp-content/uploads/covid.jpg)
 
-### Kits & Storage
+[COVID-19 Labels](https://www.labtag.com/covid-19-laboratory-labels/)
 
-![Laboratory labels for kits and storage](https://cdn.labtag.com/wp-content/uploads/covid.jpg "/media/laboratory-labels/covid.jpg")
+## Clinical Trial Labels
 
-Laboratory labeling for diagnostic and PCR testing kits, clinical sample workflows, cryogenic and deep-freeze storage, histological tissue processing, and sterilization of lab equipment—supporting high-volume collection, testing, and long-term sample tracking.
+![](https://cdn.labtag.com/wp-content/uploads/clinical.jpg)
 
-### Cannabis
+[Clinical Trial Labels](https://www.labtag.com/clinical-trial-labels/)
 
-![Cannabis laboratory labels](https://cdn.labtag.com/wp-content/uploads/cannabis-1.jpg "/media/laboratory-labels/cannabis-1.jpg")
+## Cannabis Labels
 
-Cannabis labeling solutions for growing, packaging, and testing—from plant identification and RFID tracking to chemical-resistant labels for tubes, vials, and other containers used by testing and quality control facilities.
+![](https://cdn.labtag.com/wp-content/uploads/cannabis-1.jpg)
 
-## Laboratory Labels by Resistance
+[Cannabis Labels](https://www.labtag.com/cannabis-labels/)
 
-### Xylene & Chemical
+## Print Solutions for Laboratory Labels
 
-![Xylene-resistant laboratory labels](https://cdn.labtag.com/wp-content/uploads/xylene-label.jpg "/media/laboratory-labels/xylene-label.jpg")
+![](https://cdn.labtag.com/wp-content/uploads/printer-v2.png)
 
-Xylene-resistant labels, ribbons, and tags for clinical and medical research labs—including histology, pathology, and chemistry. These laminate-free chemical-resistant labels withstand direct exposure to and immersion in xylene, toluene, alcohols, formalin, and other harsh solvents.
+LabTAG offers comprehensive label printing solutions designed to keep your operations running smoothly, and that can be easily integrated into your existing workflow. Setup your lab with a complete printing solution that will help you keep your inventory in check, manage your samples, integrate with your existing LIMS, and much more.
 
-### Autoclave
+[Learn More](https://www.labtag.com/label-printing-solutions/)
 
-![Autoclave-resistant labels on glass bottles in sterilizer](https://cdn.labtag.com/wp-content/uploads/autoclave-1.jpg "/media/laboratory-labels/autoclave-1.jpg")
+## Our Most Popular and Innovative Products
 
-High-temperature autoclave-resistant labels for materials that require sterilization. Tested for use in gamma irradiators, steam autoclaves, dry heat ovens, and ethylene oxide gas chambers, with options for thermal-transfer, laser, and inkjet printers.
+## SnapPEEL™ Technology
 
-### Deep-Freeze
+![](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-NitrotagSnappeel.jpg)
 
-![Deep-freeze laboratory labels](https://cdn.labtag.com/wp-content/uploads/deep-freeze-1.jpg "/media/laboratory-labels/deep-freeze-1.jpg")
+[SnapPEEL™ Technology](https://www.labtag.com/shop/brand-name/snappeel/)
 
-Deep-freeze labels withstand short and long-term storage in ultra-low temperature laboratory freezers (−80°C/−112°F, −20°C/−4°F) and transportation on dry ice. Suited for microtubes, vials, freezer boxes, blood bags, microplates, and PCR tubes and strips.
+## Cryo-LazrTAG™
 
-## Laboratory Labels by Innovation
+![](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-CryoLazrTag.jpg)
 
-### SnapPEEL™ Technology
+[Cryo-LazrTAG™](https://www.labtag.com/brands/cryo-lazrtag/)
 
-![SnapPEEL nitroTAG cryogenic labels](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-NitrotagSnappeel.jpg "/media/laboratory-labels/AboutLabtag-NitrotagSnappeel.jpg")
+## PikaTAG®
 
-Patent-pending SnapPEEL™ technology makes identifying cryo vials and microtubes quick and easy with its unique 2-in-1 rectangle + circle design. Both labels peel from the liner in a single motion for more precise application to the vial cap and side.
+![](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-Pikatag.jpg)
 
-### Cryo-LazrTAG™
+[PikaTAG®](https://www.labtag.com/shop/product/cryogenic-vial-cap-labeling-kit-patent-pending-pikkit-2/)
 
-![Cryo-LazrTAG laser-printable cryogenic labels](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-CryoLazrTag.jpg "/media/laboratory-labels/AboutLabtag-CryoLazrTag.jpg")
+## PCR-TagTrax®
 
-Cryogenic laser-printable labels among LabTAG’s most popular laboratory identification products—print durable cryo labels on standard laser printers without specialty thermal hardware.
+![](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-PCRTagTrax.jpg)
 
-### PikaTAG®
+[PCR-TagTrax®](https://www.labtag.com/pcr-tagtrax-2/)
 
-![PikaTAG label applicator kit](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-Pikatag.jpg "/media/laboratory-labels/AboutLabtag-Pikatag.jpg")
+## RFID Cryo-WrapTAG™
 
-PikaTAG® label applicator kits help place small-diameter dots and tags on tubes and strips, supporting consistent application when labeling laboratory vessels by hand.
+![](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-RFID-Cryo-WrapTAG.jpg)
 
-### PCR-TagTrax®
+[RFID Cryo-WrapTAG™](https://www.labtag.com/label_class/rf3-hbtt/)
 
-![PCR-TagTrax printable PCR tags](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-PCRTagTrax.jpg "/media/laboratory-labels/AboutLabtag-PCRTagTrax.jpg")
+## GatorCUT™ Technology
 
-Non-adhesive printable PCR tags that allow a range of labeling configurations for PCR tubes, strips, and plates—ideal when adhesive labels are not preferred for thermal cycling workflows.
+![](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-GatorCUT.jpg)
 
-### RFID Cryo-WrapTAG™
+[GatorCUT™ Technology](https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/)
 
-![RFID Cryo-WrapTAG cryogenic wrap-around labels](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-RFID-Cryo-WrapTAG.jpg "/media/laboratory-labels/AboutLabtag-RFID-Cryo-WrapTAG.jpg")
+## Laboratory Labels
 
-RFID Cryo-WrapTAG™ combines cryogenic wrap-around labeling with encoded RFID data for laboratory sample tracking alongside printed barcodes when visual confirmation is required.
+Would you like to test our laboratory labels?
 
-### GatorCUT™ Technology
+[Order Free Samples Now](https://www.labtag.com/samples/)
 
-![GatorCUT hand-tearable lab tape](https://cdn.labtag.com/wp-content/uploads/AboutLabtag-GatorCUT.jpg "/media/laboratory-labels/AboutLabtag-GatorCUT.jpg")
+## ISO 9001:2015 Certified
 
-Patented GatorCUT™ technology lets you hand-tear cryogenic and specialty lab tapes to length without scissors or dispensers—convenient for portable, on-demand labeling at the bench or freezer.
+We are committed to providing reliable products and services that meet customer and regulatory requirements, through our ISO 9001:2015 certified quality management system.
 
-### Print Solutions
+## ISO 22301:2012 Compliant
 
-![Laboratory label printing solutions](https://cdn.labtag.com/wp-content/uploads/printer-v2.png "/media/laboratory-labels/printer-v2.png")
-
-Complete label printing solutions designed to integrate into existing lab workflows—thermal-transfer, direct-thermal, laser, inkjet, and DYMO® LabelWriter™ printers; matched ribbons and supplies for durable barcodes; and software for design, bulk print, and LIMS-friendly sample identification.
-
-## Need Expert Help?
-
-Tell us a little about your laboratory workflow and one of our experts will help you choose the right labeling solution.
+Our ISO 22301:2012 business continuity management system allows us to prepare for and reduce the likelihood of unexpected disruptions so that we may continue to serve our clients.

@@ -11,7 +11,6 @@ import {
   Phone,
   Scissors,
   ShoppingCart,
-  Sparkle,
   User,
 } from '@phosphor-icons/react'
 import { ResourcesMegaMenu } from '@/components/ResourcesMegaMenu'
@@ -93,6 +92,7 @@ export function SiteNav() {
   const rootRef = useRef<HTMLDivElement>(null)
   const accountRef = useRef<HTMLDivElement>(null)
   const primaryRef = useRef<HTMLElement>(null)
+  const megaSlotRef = useRef<HTMLDivElement>(null)
   const megaCloseTimerRef = useRef<number | null>(null)
   const megaOpen =
     primaryOpen === 'products' || primaryOpen === 'solutions' || primaryOpen === 'resources'
@@ -171,18 +171,22 @@ export function SiteNav() {
       return
     }
 
+    // Anchor under the nav bar (not the mega bottom). The opaque mega sits above
+    // the backdrop in the header stacking context, so opening translateY cannot
+    // leave a white page strip between panel and dimmer.
     const syncBackdropTop = () => {
-      const mega = document.querySelector('.shop-mega.is-open, .nav-mega.is-open')
-      if (!(mega instanceof HTMLElement)) return
-      const bottom = Math.ceil(mega.getBoundingClientRect().bottom)
+      const bar = document.querySelector('.site-nav-bar')
+      if (!(bar instanceof HTMLElement)) return
+      const bottom = Math.round(bar.getBoundingClientRect().bottom)
       document.documentElement.style.setProperty('--shop-mega-backdrop-top', `${bottom}px`)
     }
 
+    const bar = document.querySelector('.site-nav-bar')
+    const observer = bar instanceof HTMLElement ? new ResizeObserver(syncBackdropTop) : null
+    if (bar instanceof HTMLElement) observer?.observe(bar)
+
+    syncBackdropTop()
     const frame = window.requestAnimationFrame(syncBackdropTop)
-    const mega = document.querySelector('.shop-mega.is-open, .nav-mega.is-open')
-    const observer =
-      mega instanceof HTMLElement ? new ResizeObserver(syncBackdropTop) : null
-    if (mega instanceof HTMLElement) observer?.observe(mega)
     window.addEventListener('resize', syncBackdropTop)
     window.addEventListener('scroll', syncBackdropTop, { passive: true })
 
@@ -264,7 +268,12 @@ export function SiteNav() {
       const target = event.target as Node
       if (!rootRef.current?.contains(target)) setOpen(false)
       if (!accountRef.current?.contains(target)) setAccountOpen(false)
-      if (!primaryRef.current?.contains(target)) {
+      // Mega panels render in `.site-nav-mega-slot`, outside the primary trigger nav.
+      // Treat that slot as inside the open mega so pointerdown on a link doesn't
+      // close the panel before the click navigates.
+      const inPrimary = primaryRef.current?.contains(target)
+      const inMegaSlot = megaSlotRef.current?.contains(target)
+      if (!inPrimary && !inMegaSlot) {
         clearMegaCloseTimer()
         setPrimaryOpen(null)
       }
@@ -300,8 +309,6 @@ export function SiteNav() {
     if (!goToQuery(next)) return
     setQuery('')
   }
-
-  const askTo = query.trim() ? `${TAGI_PATH}?q=${encodeURIComponent(query.trim())}` : TAGI_PATH
 
   return (
     <>
@@ -340,17 +347,6 @@ export function SiteNav() {
                   aria-label="Search labels and protocols"
                   autoComplete="off"
                 />
-                <Link
-                  className={['site-nav-ask-btn', pathname === TAGI_PATH ? 'is-current' : '']
-                    .filter(Boolean)
-                    .join(' ')}
-                  to={askTo}
-                  aria-current={pathname === TAGI_PATH ? 'page' : undefined}
-                  onClick={() => setQuery('')}
-                >
-                  <Sparkle size={16} weight="fill" aria-hidden />
-                  Ask Tagi
-                </Link>
               </form>
             </div>
 
@@ -661,6 +657,7 @@ export function SiteNav() {
           </div>
 
           <div
+            ref={megaSlotRef}
             className={['site-nav-mega-slot', megaOpen ? 'is-open' : ''].filter(Boolean).join(' ')}
             onMouseEnter={() => {
               if (!primaryOpen || primaryLocked) return

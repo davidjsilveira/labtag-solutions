@@ -40,7 +40,7 @@ function mediaBlockFromMatch(
   }
 }
 const CTA_TITLES =
-  /^(need expert|get in touch|make your project|experience the benefits|try the labels|request custom forms|request clinical trial labels)/i
+  /^(need expert|get in touch|make your project|experience the benefits|try the labels|request custom forms|request clinical trial labels|laboratory labels)/i
 
 const CTA_LINK = /\[([^\]]+)\]\(([^)]+)\)/
 
@@ -177,7 +177,8 @@ function collectParagraphs(lines: string[], start: number): { paragraphs: string
       line.startsWith('|') ||
       line.startsWith('- ') ||
       line.startsWith('> ') ||
-      STEP_LINE.test(line)
+      STEP_LINE.test(line) ||
+      IMAGE_LINE.test(line)
     ) {
       break
     }
@@ -346,6 +347,10 @@ function promoteCta(blocks: ContentBlock[]): ContentBlock[] {
           : ''
       if (rawBody) {
         const { body, actionHref, actionLabel } = extractCtaAction(rawBody)
+        if (!actionHref && /^get in touch/i.test(block.title)) {
+          out.push(block)
+          continue
+        }
         out.push({ type: 'cta', title: block.title, body, actionHref, actionLabel })
         if (!block.paragraphs.length && following?.type === 'text') {
           i += 1
@@ -361,7 +366,12 @@ function promoteCta(blocks: ContentBlock[]): ContentBlock[] {
 /** Drop the stock “X Label Guide” intro banner above browse grids. */
 function stripGuideBanners(blocks: ContentBlock[]): ContentBlock[] {
   return blocks.filter(
-    (block) => !(block.type === 'section' && /\bguide$/i.test(block.title.trim())),
+    (block) =>
+      !(
+        block.type === 'section' &&
+        block.paragraphs.length === 0 &&
+        /\bguide$/i.test(block.title.trim())
+      ),
   )
 }
 

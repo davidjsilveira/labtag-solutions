@@ -6,7 +6,7 @@ import {
   CONTACT_PATH,
   LABTAG_FINDER_URL,
   LABTAG_ORDERS_URL,
-  LABTAG_TEMPLATES_HUB_URL,
+  TEMPLATES_PATH,
   SAMPLE_PATH,
 } from '@/content/labtagLinks'
 
@@ -352,9 +352,7 @@ export function HelpPage() {
             <a href={LABTAG_FINDER_URL} target="_blank" rel="noreferrer">
               Label finder
             </a>
-            <a href={LABTAG_TEMPLATES_HUB_URL} target="_blank" rel="noreferrer">
-              Label templates
-            </a>
+            <Link to={TEMPLATES_PATH}>Label templates</Link>
             <a href={LABTAG_ORDERS_URL} target="_blank" rel="noreferrer">
               My orders
             </a>

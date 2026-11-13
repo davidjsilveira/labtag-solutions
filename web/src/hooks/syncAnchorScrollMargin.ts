@@ -8,24 +8,15 @@ function visibleHeaderInset(header: HTMLElement | null): number {
 }
 
 /**
- * Set `--anchor-scroll-margin` from the live visible site header + on-page
- * jump menu heights. Menus vary (one vs two jump rows), so a fixed token is not enough.
+ * Set `--anchor-scroll-margin` from the live visible site header so in-page
+ * anchors clear the sticky header.
  */
-export function syncAnchorScrollMargin(menu?: HTMLElement | null) {
+export function syncAnchorScrollMargin() {
   const header = document.querySelector<HTMLElement>('.site-header')
   const headerH = visibleHeaderInset(header)
 
-  const target =
-    menu ??
-    document.querySelector<HTMLElement>('.solution-quick-menu')
-
-  let menuH = 0
-  if (target) {
-    menuH = target.getBoundingClientRect().height
-  }
-
   document.documentElement.style.setProperty(
     '--anchor-scroll-margin',
-    `${Math.round(headerH + menuH + CLEARANCE_PX)}px`,
+    `${Math.round(headerH + CLEARANCE_PX)}px`,
   )
 }

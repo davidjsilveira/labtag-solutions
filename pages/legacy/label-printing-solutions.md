@@ -1,51 +1,69 @@
 # Label Printing Solutions
 
-Source: [https://www.labtag.com/solutions/label-printing-solutions/](https://www.labtag.com/solutions/label-printing-solutions/)
+![](https://cdn.labtag.com/wp-content/uploads/Main-Image1.png)
 
-![Label Printing Solutions](https://cdn.labtag.com/wp-content/uploads/Label-Printing-Solutions-2.jpg "/media/label-printing-solutions/Label-Printing-Solutions-2.jpg")
-
-LabTAG® offers comprehensive label printing solutions designed to keep laboratory operations running smoothly and that can be easily integrated into your existing workflow. Set up a complete printing solution that helps you manage inventory and samples, connect with your LIMS, and keep identification processes reliable and efficient day after day.
-
-Our expert team of scientists provides free technical support to help you select printers, media, and accessories matched to your laboratory printing setup and workflow needs.
-
-### By Component
-
-- **Printing Kits** — All-in-one kits with printer, labels, ribbon, and software
-- **Label Printers** — Desktop and industrial thermal-transfer and direct-thermal printers from top brands
-- **Ribbons** — Thermal-transfer ribbons in a range of formats and chemical resistance
-- **Scanners** — Handheld laser barcode scanners for 1D barcodes and 2D barcode imagers (RS-232 and USB)
-- **Software** — BarTender® label and barcode printing software for roll, sheet, and fanfold formats
-- **Accessories** — Printer cables, ribbon cores and holders, applicators, and dispensers
-- **Printing Services** — LabTAG prints for you when you prefer not to print in-house
+LabTAG® offers comprehensive label printing solutions designed to keep your operations running smoothly, and that can be easily integrated into your existing workflow. Setup your lab with a complete printing solution that will help you keep your inventory in check, manage your samples, integrate with your existing LIMS, and much more. Our expert team of scientists are also available to provide free technical support when needed.
 
 ## Printing Kits
 
-![Zebra printing kit](https://cdn.labtag.com/wp-content/uploads/Zebra-Printing-Kit.png "/media/label-printing-solutions/Zebra-Printing-Kit.png")
+![](https://cdn.labtag.com/wp-content/uploads/Zebra-Printing-Kit.png)
 
-All-in-one conveniently packaged printing kits come with a printer, labels, ribbon, and software—ready to integrate into your existing workflow.
+All-in-one conveniently packaged printing kits come with a printer, labels, ribbon, and software.
 
-## Label Printers
+[Printing Kits](https://www.labtag.com/shop/category/print-solutions/all-printing-kits/)
 
-![Label printer buying guide](https://cdn.labtag.com/wp-content/uploads/Guide-The-Ultimate-Label-Printer-Guide-EN092022-September-14-2022.jpg "/media/label-printing-solutions/Guide-The-Ultimate-Label-Printer-Guide-EN092022-September-14-2022.jpg")
+## Printers
 
-Label printers from top brands include desktop and industrial thermal-transfer and direct-thermal printers. Use the buying guide above for everything you need to know before choosing the right printer for you.
+![A zebra thermal-transfer 300 dpi printer, with digital display, as well as USB, Bluetooth and Ethernet interfaces, for printing barcode labels.](https://cdn.labtag.com/wp-content/uploads/ivf-printers.jpg)
+
+Label printers from top brands including desktop and industrial thermal-transfer and direct-thermal printers
+
+[Printers](https://www.labtag.com/shop/category/print-solutions/printers/)
 
 ## Ribbons
 
-![Thermal-transfer ribbons](https://cdn.labtag.com/wp-content/uploads/Ribbons-1.png "/media/label-printing-solutions/Ribbons-1.png")
+![](https://cdn.labtag.com/wp-content/uploads/Ribbons-1.png)
 
-Ribbons for thermal-transfer printers are available in a range of formats and varying chemical resistance to match your label material and application.
+Ribbons for thermal-transfer printers in a range of formats and varying chemical resistance
 
-## Scanners, Software & Accessories
+[Ribbons](https://www.labtag.com/shop/category/ribbons/)
 
-Handheld laser barcode scanners for 1D barcodes and 2D barcode imagers are RS-232 and USB compatible. BarTender® label and barcode printing software supports roll, sheet, and fanfold formats. Accessories include printer cables, ribbon cores and holders, applicators, and dispensers.
+## Scanners
+
+![A black Honeywell voyager 1452G omni-directional scanner, for scanning 1D and 2D barcodes. Scanner is standing upright, while sitting in its base.](https://cdn.labtag.com/wp-content/uploads/ivf-scanner.jpg)
+
+Handheld laser barcode scanners for 1D barcodes, and 2D barcode imagers. RS-232 and USB compatible.
+
+[Scanners](https://www.labtag.com/shop/category/print-solutions/scanners/)
+
+## Software
+
+![](https://cdn.labtag.com/wp-content/uploads/BarTender.png)
+
+BarTender® label and barcode printing software for roll, sheet, and fanfold formats
+
+[Software](https://www.labtag.com/shop/category/print-solutions/software/)
+
+## Accessories
+
+![](https://cdn.labtag.com/wp-content/uploads/Accessories.jpg)
+
+Label printing accessories, including printer cables, ribbon cores and holders, applicators, and dispensers.
+
+[Accessories](https://www.labtag.com/shop/category/accessories/)
+
+## Label Printer Buying Guide
+
+![](https://cdn.labtag.com/wp-content/uploads/Guide-The-Ultimate-Label-Printer-Guide-EN092022-September-14-2022-768x994.jpg)
+
+Everything you need to know before choosing the right printer for you.
+
+[Get the Guide](https://info.labtag.com/en-us/label-printer-buying-guide)
 
 ## Printing Services
 
-![LabTAG printing services](https://cdn.labtag.com/wp-content/uploads/Print-Service1.png "/media/label-printing-solutions/Print-Service1.png")
+![](https://cdn.labtag.com/wp-content/uploads/Print-Service1.png)
 
-Don’t want to deal with printing? LabTAG will print for you. We print roll, sheet, or fanfold label formats using digital (laser and inkjet), flexographic, and thermal (direct and thermal-transfer) printing methods. From specialized printing—such as double-sided printing or printing on adhesives—to unique label constructs, including piggyback and holographic foil labels, our product selection and ability to custom manufacture are unmatched in the industry.
+Don’t want to deal with printing? Labtag will print for you!
 
-## Need Expert Help?
-
-Tell us a little about your printing workflow and one of our experts will help you choose the right printers, kits, ribbons, and software.
+We print roll, sheet, or fanfold label formats using digital (laser and inkjet), flexographic, and thermal (direct and thermal-transfer) printing methods. From specialized printing, such as double-sided printing or printing on adhesives, to unique label constructs, including piggyback, and holographic foil labels, our product selection and ability to custom manufacture are unmatched in the industry.

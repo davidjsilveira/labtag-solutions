@@ -1,84 +1,14 @@
 import { Link, useParams } from 'react-router-dom'
 import { BlockRenderer } from '@/blocks/BlockRenderer'
 import { PageHero } from '@/blocks/PageHero'
-import {
-  isNewArticleSlug,
-  pagesForArchive,
-  pagesForBrowseAll,
-  pagesForCombinedCatalog,
-} from '@/content/categories'
-import { archiveSlugsForCatalog } from '@/content/legacyMap'
+import { RichText } from '@/blocks/RichText'
+import { pagesForBrowseAll } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
-import type { SolutionPage as SolutionPageData } from '@/content/types'
-import { useAnchorHighlight } from '@/hooks/useAnchorHighlight'
-
-function CycleChevron({ dir }: { dir: 'prev' | 'next' }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d={dir === 'prev' ? 'M15 5 8 12l7 7' : 'm9 5 7 7-7 7'}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function CatalogCycle({
-  prev,
-  next,
-  className = 'catalog-cycle',
-  withRel = false,
-}: {
-  prev: SolutionPageData
-  next: SolutionPageData
-  className?: string
-  withRel?: boolean
-}) {
-  return (
-    <nav className={className} aria-label="New articles">
-      <Link
-        to={`/solutions/${prev.slug}`}
-        className="catalog-cycle-item prev"
-        rel={withRel ? 'prev' : undefined}
-      >
-        <span className="catalog-cycle-icon">
-          <CycleChevron dir="prev" />
-        </span>
-        <span className="catalog-cycle-copy">
-          <span className="catalog-cycle-label">Previous</span>
-          <strong>{prev.title}</strong>
-        </span>
-      </Link>
-      <Link
-        to={`/solutions/${next.slug}`}
-        className="catalog-cycle-item next"
-        rel={withRel ? 'next' : undefined}
-      >
-        <span className="catalog-cycle-copy">
-          <span className="catalog-cycle-label">Next</span>
-          <strong>{next.title}</strong>
-        </span>
-        <span className="catalog-cycle-icon">
-          <CycleChevron dir="next" />
-        </span>
-      </Link>
-    </nav>
-  )
-}
-
-function wrapNeighbor(pages: SolutionPageData[], index: number, step: number) {
-  return pages[(index + step + pages.length) % pages.length]
-}
+import type { HeroImage } from '@/content/types'
 
 export function SolutionPage() {
   const { slug = '' } = useParams()
   const page = getPage(slug)
-  const combined = Boolean(page && !page.legacy && isNewArticleSlug(page.slug))
-  useAnchorHighlight(combined ? '' : (page?.slug ?? slug))
 
   if (!page) {
     return (
@@ -90,79 +20,84 @@ export function SolutionPage() {
     )
   }
 
-  const replacement = page.replacedBy ? getPage(page.replacedBy) : undefined
-  const archiveSources = combined
-    ? archiveSlugsForCatalog(page.slug)
-        .map((archiveSlug) => getPage(archiveSlug))
-        .filter((item): item is NonNullable<typeof item> => Boolean(item))
-    : []
-  const newArticles = combined ? pagesForCombinedCatalog() : []
-  const siblings = page.legacy
-    ? pagesForArchive()
-    : combined
-      ? newArticles
-      : pagesForBrowseAll()
+  const siblings = pagesForBrowseAll()
   const index = siblings.findIndex((item) => item.slug === page.slug)
-  const cycle = combined && index >= 0 && siblings.length > 1
-  const prev = cycle ? wrapNeighbor(siblings, index, -1) : siblings[index - 1]
-  const next = cycle ? wrapNeighbor(siblings, index, 1) : siblings[index + 1]
+  const prev = siblings[index - 1]
+  const next = siblings[index + 1]
+  const animalHealthcare = page.slug === 'animal-healthcare'
+  const autoclave = page.slug === 'autoclave-labels'
+  const automated = page.slug === 'automated-labels'
+  const biobanking = page.slug === 'biobanking-labels'
+  const cannabis = page.slug === 'cannabis-labels'
+  const chemical = page.slug === 'chemical-container-labeling'
+  const clinical = page.slug === 'clinical-trial-labels'
+  const covid = page.slug === 'covid-19-laboratory-labels'
+  const cryogenic = page.slug === 'cryogenic-labels'
+  const custom = page.slug === 'custom-laboratory-labels'
+  const deepFreeze = page.slug === 'deep-freeze'
+  const gatorcut = page.slug === 'gatorcut'
+  const snappeel = page.slug === 'snappeel-2'
+  const cryostuck = page.slug === 'cryostuck'
+  const hardstick = page.slug === 'labels-for-hard-to-stick-surfaces'
+  const covidPoints =
+    covid && page.blocks[0]?.type === 'bulletList' ? page.blocks[0].items : undefined
+  const covidNote =
+    covidPoints && page.blocks[1]?.type === 'text' ? page.blocks[1].paragraphs[0] : undefined
+  const covidBlocks =
+    covidPoints && covidNote ? page.blocks.slice(2) : covidPoints ? page.blocks.slice(1) : page.blocks
+  const cryostuckPoints =
+    cryostuck && page.blocks[0]?.type === 'bulletList' ? page.blocks[0].items : undefined
+  let cryostuckBlocks = cryostuckPoints ? page.blocks.slice(1) : page.blocks
+  const cryostuckGallery: HeroImage[] = []
+  if (cryostuck) {
+    while (cryostuckBlocks[0]?.type === 'image') {
+      const image = cryostuckBlocks[0]
+      cryostuckGallery.push({
+        src: image.src,
+        alt: image.alt,
+        fallbackSrc: image.fallbackSrc,
+      })
+      cryostuckBlocks = cryostuckBlocks.slice(1)
+    }
+  }
+  const hardstickPoints =
+    hardstick && page.blocks[0]?.type === 'bulletList' ? page.blocks[0].items : undefined
+  const hardstickBlocks = hardstickPoints ? page.blocks.slice(1) : page.blocks
+  const pcr = page.slug === 'pcr-labels-and-tags'
+  const pcrPoints = pcr && page.blocks[0]?.type === 'bulletList' ? page.blocks[0].items : undefined
+  const pcrNote = pcrPoints && page.blocks[1]?.type === 'text' ? page.blocks[1].paragraphs[0] : undefined
+  const pcrBlocks = pcrPoints && pcrNote ? page.blocks.slice(2) : pcrPoints ? page.blocks.slice(1) : page.blocks
+  const heroPoints = covidPoints ?? cryostuckPoints ?? hardstickPoints ?? pcrPoints
+  const bodyBlocks = pcr ? pcrBlocks : cryostuck ? cryostuckBlocks : hardstick ? hardstickBlocks : covidBlocks
+  const heroDescription = cannabis ? page.description.slice(0, 1) : page.description
+  const cannabisLead = cannabis ? page.description.slice(1) : []
   return (
-    <article className={`solution-page${page.legacy ? ' is-archive' : ''}${combined ? ' is-catalog' : ''}`}>
+    <article
+      className={`solution-page${animalHealthcare ? ' is-animal-healthcare' : ''}${autoclave ? ' is-autoclave' : ''}${automated ? ' is-automated' : ''}${biobanking ? ' is-biobanking' : ''}${cannabis ? ' is-cannabis' : ''}${chemical ? ' is-chemical' : ''}${clinical ? ' is-clinical' : ''}${covid ? ' is-covid' : ''}${cryogenic ? ' is-cryogenic' : ''}${cryostuck ? ' is-cryostuck' : ''}${custom ? ' is-custom' : ''}${deepFreeze ? ' is-deep-freeze' : ''}${gatorcut ? ' is-gatorcut' : ''}${snappeel ? ' is-snappeel' : ''}`}
+    >
       <PageHero
         key={page.slug}
         title={page.title}
-        description={page.description}
+        description={heroDescription}
         image={page.heroImage}
         solutionSlug={page.slug}
         layout="split"
-        crumb={
-          <p className="crumb">
-            <Link to="/">Solutions</Link>
-            <span aria-hidden="true"> / </span>
-            <span aria-current="page">{page.title}</span>
-          </p>
-        }
-        cycle={cycle && prev && next ? <CatalogCycle prev={prev} next={next} withRel /> : null}
-        related={
-          replacement ? (
-            <p className="hero-related hero-related-note">
-              This guide is archived. See the current article:{' '}
-              <Link to={`/solutions/${replacement.slug}`} className="source-tag">
-                {replacement.title}
-              </Link>
+        points={heroPoints}
+        note={covidNote ?? pcrNote}
+        gallery={cryostuckGallery}
+      />
+      {cannabisLead.length ? (
+        <div className="cannabis-lead">
+          {cannabisLead.map((paragraph) => (
+            <p key={paragraph.slice(0, 48)}>
+              <RichText text={paragraph} />
             </p>
-          ) : archiveSources.length ? (
-            <details className="hero-related hero-related-archive">
-              <summary>Also covered</summary>
-              <ul className="source-list">
-                {archiveSources.map((source) => (
-                  <li key={source.slug}>
-                    <Link to={`/solutions/${source.slug}`} className="source-tag">
-                      {source.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </details>
-          ) : null
-        }
-      />
-      <BlockRenderer
-        blocks={page.blocks}
-        solutionSlug={page.slug}
-        solutionTitle={page.title}
-        variant={page.legacy ? 'archive' : combined ? 'catalog' : undefined}
-      />
-
-      {cycle && prev && next ? (
-        <CatalogCycle prev={prev} next={next} className="catalog-cycle catalog-cycle-end" />
+          ))}
+        </div>
       ) : null}
+      <BlockRenderer blocks={bodyBlocks} solutionSlug={page.slug} />
 
-      {combined ? null : (
-        <nav
-          className="pager"
-          aria-label={page.legacy ? 'Adjacent archived solutions' : 'Adjacent solutions'}
-        >
+      <nav className="pager" aria-label="Adjacent solutions">
           {prev ? (
             <Link to={`/solutions/${prev.slug}`} className="pager-link prev">
               <span>Previous</span>
@@ -177,9 +112,7 @@ export function SolutionPage() {
               <strong>{next.title}</strong>
             </Link>
           ) : null}
-        </nav>
-      )}
-
+      </nav>
     </article>
   )
 }

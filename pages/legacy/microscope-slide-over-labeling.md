@@ -2,44 +2,55 @@
 
 Source: [https://www.labtag.com/solutions/microscope-slide-over-labeling/](https://www.labtag.com/solutions/microscope-slide-over-labeling/)
 
-![Histo-PinTAG microscope slide over-labeling](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step3-1-scaled-1-1.jpg "/media/microscope-slide-over-labeling/AZA-559-Step3-1-scaled-1-1.jpg")
+![Histo-PinTAG](https://cdn.labtag.com/wp-content/uploads/Histo-PinTAG-postProd-2026-2.gif "/media/microscope-slide-over-labeling/Histo-PinTAG-postProd-2026-2.gif")
 
-Histology consulting facilities often re-process large numbers of tissue slides from many locations. Incoming microscope slides must be re-labeled with a new unique identifier for compatibility with the facility’s internal digital scanners and databases. LabTAG offers an innovative solution designed to improve efficiency without compromising original label integrity.
+Histology consulting facilities are tasked with re-processing a large number of tissue slides originating from a variety of locations. This requires the incoming [microscope slides](https://www.labtag.com/shop/category/chemical-resistant-labels/microscope-slide-labels/) to be re-labeled with a new unique identifier to ensure compatibility with the facility’s internal digital scanners and databases. LabTAG offers an innovative solution to this labeling challenge, designed to improve efficiency without compromising the information and integrity of the original label.
 
-Histo-PinTAG™ and related over-labeling options obscure existing barcodes, add new identifiers, or protect original print—without the focus and coverslipper issues that come from conventional double labeling on microscope slides.
+### The Challenge of Re-Labeling Slides
 
-### By Approach
+![icon-challenge](https://cdn.labtag.com/wp-content/uploads/icon-challenge-2.svg "/media/microscope-slide-over-labeling/icon-challenge-2.svg")
 
-- **Histo-PinTAG™** — Dot + rectangle design to cover an existing 2D barcode and add a new ID below
-- **Blackout Removable** — Cover the entire existing label when full replacement is required
-- **Clear Laminating** — Transparent chemical-resistant labels that protect without obscuring data
+Slides received from external clients or departments will need to be re-identified with internal case information without compromising the information and integrity of the original label. Ideally, the existing barcode should be obscured and replaced with a new unique identifier, without obscuring the rest of the information.
 
-## Over-Labeling by Approach
+The new label should be placed at the top and on the front of the slide for best results. However, double labeling may cause coverslippers to malfunction due to the extra thickness of a double labeled slide, while placing the label on the back can result in the slide being slightly raised, altering the required focus used by the microscope.
 
-### Histo-PinTAG™
+### The Solution to Tissue Slide Over-Labeling
 
-![Applying Histo-PinTAG to a microscope slide](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step3-1-scaled-1-1.jpg "/media/microscope-slide-over-labeling/AZA-559-Step3-1-scaled-1-1.jpg")
+![icon-solution](https://cdn.labtag.com/wp-content/uploads/icon-solution-2.svg "/media/microscope-slide-over-labeling/icon-solution-2.svg")
 
-Slides from external clients or departments need re-identification with internal case information without compromising the original label. Ideally the existing barcode is obscured and replaced with a new unique ID, without hiding the rest of the printed information. A new label should sit at the top and on the front of the slide—double labeling can cause coverslippers to malfunction from extra thickness, while a label on the back can raise the slide and alter microscope focus.
+[Histo-PinTAG™](https://www.labtag.com/shop/brand-name/histo-pintag/) was specifically designed to address this challenge. Its patent-pending design incorporates a small dot label connected to a printable rectangle. The dot label can be used to obscure the existing 2D barcode, while the rest of the label, containing a new barcode, can be detached and placed beneath the original label.
 
-Histo-PinTAG™ was designed for this challenge. Its patent-pending design joins a small dot to a printable rectangle: the dot covers the existing 2D barcode, and the rectangle—printed with a new barcode—detaches and places beneath the original label. Glove-friendly removable adhesive applies and peels cleanly without damaging the original label or leaving residue. Sharp yellow color visually flags that slides have been re-identified.
+Moreover, Histo-PinTAG labels have a glove-friendly adhesive, made for easy application and ensuring they can be cleanly removed without damaging the original label or leaving behind any residue. The removable labels are provided in a sharp yellow color that visually indicates that the microscope slides have been re-identified.
 
-Print on any standard thermal-transfer printer, affix the circle over the existing barcode, then snap off the rectangular portion at the perforations and apply it just below the original label. The re-labeled slide is ready for processing with full digital slide scanner compatibility.
+## Applying Histo-PinTAG Labels
 
-### Blackout Removable
+After Histo-PinTAG has been printed using any standard thermal-transfer printer, the circle portion of the Histo-PinTAG label is affixed over the existing barcode, and the rectangular portion of the label, containing a new barcode, is then snapped-off and affixed just below the original label. The perforations between the two parts of the label make separating them quick and easy, requiring a simple twist to detach the rectangular portion of the label from the dot. The resulting re-labeled slide is now ready for processing, with new information and without interference from the original barcode, ensuring full compatibility with digital slide scanners.
 
-![Blackout cover-up labels for microscope slides](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step4-1-scaled-1-1.jpg "/media/microscope-slide-over-labeling/AZA-559-Step4-1-scaled-1-1.jpg")
+![Print](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step1-1-scaled-1-1-1024x682.jpg "/media/microscope-slide-over-labeling/AZA-559-Step1-1-scaled-1-1-1024x682.jpg")
+![Cover-Up](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step2-1-scaled-1-1-1024x683.jpg "/media/microscope-slide-over-labeling/AZA-559-Step2-1-scaled-1-1-1024x683.jpg")
+![Snap](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step3-1-scaled-1-1-1024x683.jpg "/media/microscope-slide-over-labeling/AZA-559-Step3-1-scaled-1-1-1024x683.jpg")
+![Apply](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step4-1-scaled-1-1-1024x683.jpg "/media/microscope-slide-over-labeling/AZA-559-Step4-1-scaled-1-1-1024x683.jpg")
 
-Removable blackout labels obscure and replace the entire existing label when full cover-up is required. Thermal-transfer printable for microscope slides, they resist incidental chemical exposure. Removable adhesive lifts cleanly without damaging information underneath or leaving residue. Print barcodes, alphanumeric text, and variable data for complete re-identification.
+### Covering Up Existing Information
 
-### Clear Laminating
+![icon-covering](https://cdn.labtag.com/wp-content/uploads/icon-covering-2.svg "/media/microscope-slide-over-labeling/icon-covering-2.svg")
 
-![Clear laminating labels for microscope slides](https://cdn.labtag.com/wp-content/uploads/AZA-559-Step1-1-scaled-1-1.jpg "/media/microscope-slide-over-labeling/AZA-559-Step1-1-scaled-1-1.jpg")
+We also offer [removable blackout](https://www.labtag.com/label_class/aza/) labels in case the entire existing label needs to be obscured and replaced with new information. These thermal-transfer printable labels are designed for use with microscope slides, providing resistance to incidental chemical exposure. Their removable adhesive ensures the labels can be easily removed without damaging information underneath or leaving adhesive residue. Can be printed with barcodes, alphanumeric text, as well as variable data.
 
-Transparent slide labels identify microscope slides through common histological preparation and withstand immersion in histology chemicals, including xylene and xylene substitutes. Because they do not obscure pre-existing information, they can over-label already identified slides for added chemical protection—or be printed with text and barcodes to add information without concealing original data.
+### Laminating Existing Labels
 
-These microscope slide labels are suited to hospital histology labs, consulting facilities, and other testing laboratories that receive labeled tissue slides for analysis.
+![icon-laminating](https://cdn.labtag.com/wp-content/uploads/icon-laminating-2.svg "/media/microscope-slide-over-labeling/icon-laminating-2.svg")
 
-## Need Expert Help?
+Our [transparent slide](https://www.labtag.com/shop/brand-name/xylitrans/) labels are designed to identify microscope slides subjected to common histological preparation procedures and will withstand immersion in various histology chemicals, including xylene and xylene substitutes. As they will not obscure any pre-existing information, they can be used to over-label already identified microscope slides, offering added protection against harsh chemicals. They can also be printed with text and barcodes to add additional information without concealing the original data.
 
-Tell us a little about your slide re-labeling workflow and one of our experts will help you choose the right over-labeling solution.
+### Industries Served
+
+![icon-industries](https://cdn.labtag.com/wp-content/uploads/icon-industries-2.svg "/media/microscope-slide-over-labeling/icon-industries-2.svg")
+
+The unique labels for microscope slides are a perfect solution for hospital histology labs, consulting facilities, and other testing laboratories that receive labeled tissue slides for analysis.
+
+### Histology Labels
+
+Test our Histology & slide labels before purchase
+
+[Order Free Samples Now](https://www.labtag.com/histology-sample-kit/)

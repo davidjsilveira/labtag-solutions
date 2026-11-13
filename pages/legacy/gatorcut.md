@@ -1,94 +1,87 @@
-# GatorCUT™
+# GatorCUT™ Technology
 
 Source: [https://www.labtag.com/solutions/gatorcut/](https://www.labtag.com/solutions/gatorcut/)
 
-![GatorCUT™ hand-cuttable cryogenic tape](https://cdn.labtag.com/wp-content/uploads/TXS-25-use2.jpg "/media/gatorcut/TXS-25-use2.jpg")
+Hand-Cuttable Lab Tapes
 
-Our specialty tapes featuring exclusive GatorCUT™ technology are hand-cuttable, eliminating the need for scissors, tape dispensers, or other cumbersome cutting instruments. Every lab coat pocket can hold a roll for use on the go. GatorCUT™ is currently available for cryogenic, deep-freeze, autoclave-resistant, and adhesive-free static cling applications throughout the lab.
+Our specialty tapes featuring our exclusive GatorCUT technology are hand-cuttable, eliminating the need for scissors, tape dispensers, or other cumbersome cutting instruments. Every lab coat pocket should hold a roll of GatorCUT tape! Use it on the go, wherever and whenever. Currently available for cryogenic, deep-freeze, autoclave-resistant, and adhesive-free, static cling applications.
 
-Hand writable and tearable GatorCUT™ tape peels and applies quickly anywhere in the lab—patented convenience with no scissors or tape dispensers needed during busy lab shifts.
+## No Scissors or Tape Dispensers Needed!
 
-### By Product
+![GatorCUT patented mark](https://cdn.labtag.com/wp-content/uploads/Illustrations_symbol_GatorCUT-1-2.svg)
 
-- **FreezerTAPE™ TG** — Pre-printed warning tape for hazardous containers (TG-Class)
-- **FreezerTAPE™ TDF** — Freezer-grade tape for vials and tubes to −80°C (TDF-Class)
-- **FrozenSTUCK™** — Clear double-sided tape for ultra-low frozen surfaces (FST-Class)
-- **NitroTAPE™** — Room-temperature apply cryo tape through liquid nitrogen (TJTG-Class)
-- **CryoSTUCK® TFNG** — Cryogenic tape for already frozen containers (TFNG-Class)
-- **CryoSTUCK® TXS** — Liner-less tape for frozen specimens and sealing (TXS-Class)
-- **CryoSTUCK® TXC** — Clear liner-less cryo tape that keeps contents visible (TXC-Class)
-- **UbiCling™** — Adhesive-free static cling tape for metal, plastic, glass, and wood (TGS-Class)
-- **Clear UbiCling™** — Clear repositionable static cling tape (TGC-Class)
-- **SteriTAPE™** — Removable autoclave-resistant tape for sterilization containers (TARG-Class)
+![Tear the tape](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use-1.jpg)
 
-## Freezer Tapes
+![Peel the tape](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use-step1-3.jpg)
 
-### FreezerTAPE™ TG
+![Apply the tape](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use-step3-1.jpg)
 
-![FreezerTAPE TG-Class warning tape on chemical container](https://cdn.labtag.com/wp-content/uploads/TG-01-Use4-1-2.jpg "/media/gatorcut/TG-01-Use4-1-2.jpg")
+![Label the container](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use-step5-1.jpg)
 
-Pre-printed warning tape designed for labeling chemical drums, totes, and other bottles containing hazardous or flammable materials. This warning tape resists rubbing and abrasion, as well as low-temperature storage in freezers and high-temperature treatments up to +100°C.
+Patented
 
-### FreezerTAPE™ TDF
+This conveniently portable tape can be used anywhere in the lab. Hand writable and tearable, its optimal design also makes for quick and easy peeling and application.
 
-![FreezerTAPE TDF-Class on vial and cryobox](https://cdn.labtag.com/wp-content/uploads/TDF-25-use3-1-2.jpg "/media/gatorcut/TDF-25-use3-1-2.jpg")
+## Shop Tapes with GatorCUT™ Technology
 
-This freezer-grade tape is perfect for identifying vials, tubes, and other containers in lab freezers as low as −80°C. It also tolerates high-temperature exposure up to +100°C in dry heat, as well as thawing in heated water baths.
+### FreezerTAPE™ (TG-Class)
 
-## Frozen & Cryogenic Tapes
+![FreezerTAPE TG-Class](https://cdn.labtag.com/wp-content/uploads/TG-01-Use4-1-2.jpg)
 
-### FrozenSTUCK™
+Pre-printed warning tape, designed for labeling chemical drums, totes, and other bottles containing hazardous or flammable materials. This warning tape will resist rubbing, abrasion, as well as low temperature storage in freezers and high temperature treatments, up to +100°C.
 
-![FrozenSTUCK double-sided tape for frozen surfaces](https://cdn.labtag.com/wp-content/uploads/FST-50-use-1-1-1.jpg "/media/gatorcut/FST-50-use-1-1-1.jpg")
+### FreezerTAPE™ (TDF-Class)
 
-Clear double-sided tape designed for use in ultra-low temperature environments. Peel off one side of the tape liner and apply the exposed adhesive onto the frozen surface, then peel off the other side to expose the second adhesive layer, which can be affixed to any adjoining surface.
+![FreezerTAPE TDF-Class](https://cdn.labtag.com/wp-content/uploads/TDF-25-use3-1-2.jpg)
 
-### NitroTAPE™
+This freezer-grade tape is perfect for identifying vials, tubes, and other containers in lab freezers as low as -80°C. It will also tolerate high temperature exposure, up to +100°C in dry heat, as well as thawing in heated water baths.
 
-![NitroTAPE color-coded tubes and cryobox](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use9-2.jpg "/media/gatorcut/TJTG-19-use9-2.jpg")
+### FrozenSTUCK™ (FST-Class)
 
-This cryo tape is designed to be applied at room temperature on cryogenic containers and remains attached through cryogenic freezing down to −196°C. NitroTAPE can be applied to completely wet surfaces and withstands multiple freeze-thaw cycles.
+![FrozenSTUCK FST-Class](https://cdn.labtag.com/wp-content/uploads/FST-50-use-1-1-1.jpg)
 
-### CryoSTUCK® TFNG
+Clear double-sided tape designed for use in ultra-low temperature environments. Simply peel off one side of the tape liner and apply the exposed adhesive onto the frozen surface, then peel off the other side to expose the second adhesive layer, which can be affixed to any adjoining surface.
 
-![CryoSTUCK TFNG-Class on frosted freezer box](https://cdn.labtag.com/wp-content/uploads/TFNG-25-use1-2.jpg "/media/gatorcut/TFNG-25-use1-2.jpg")
+### NitroTAPE™ (TJTG-Class)
 
-This cryogenic tape is designed for identifying frozen containers and surfaces (as low as −80°C) without thawing them first. Once applied, the tape remains affixed down to −196°C in liquid nitrogen and resists multiple freeze-thaw cycles, including thawing in water baths.
+![NitroTAPE TJTG-Class](https://cdn.labtag.com/wp-content/uploads/TJTG-19-use9-2.jpg)
 
-### CryoSTUCK® TXS
+This cryo tape is designed to be applied at room temperature on cryogenic containers and will remain attached through cryogenic freezing down to -196°C. NitroTAPE can be applied to completely wet surfaces and will withstand multiple freeze-thaw cycles.
 
-![CryoSTUCK TXS-Class liner-less tape on frozen tube](https://cdn.labtag.com/wp-content/uploads/TXS-25-use2.jpg "/media/gatorcut/TXS-25-use2.jpg")
+### CryoSTUCK© Tape (TFNG-Class)
 
-This liner-less tape for already frozen surfaces (as low as −80°C) is perfect for identifying frozen specimens or sealing. It can be applied to frozen surfaces without thawing them first, and withstands elevated temperatures, including steam autoclave procedures.
+![CryoSTUCK TFNG-Class](https://cdn.labtag.com/wp-content/uploads/TFNG-25-use1-2.jpg)
 
-### CryoSTUCK® TXC
+This cryogenic tape is designed for identifying frozen containers and surfaces (as low as -80°C), without the need to thaw them first. Once applied, this tape will remain affixed down to -196°C in liquid nitrogen and resist multiple freeze-thaw cycles, including thawing in water baths.
 
-![Clear CryoSTUCK TXC-Class on frozen tube over dry ice](https://cdn.labtag.com/wp-content/uploads/TXC-25-use3.jpg "/media/gatorcut/TXC-25-use3.jpg")
+### CryoSTUCK© Tape (TXS-Class)
 
-This clear liner-less cryogenic tape for already frozen surfaces (as low as −80°C) is ideal for identifying frozen samples and containers without concealing their contents. It can be applied to frozen surfaces without thawing them first, and withstands elevated temperatures.
+![CryoSTUCK TXS-Class](https://cdn.labtag.com/wp-content/uploads/TXS-25-use2.jpg)
 
-## Static Cling Tapes
+This liner-less tape for already frozen surfaces (as low as -80°C), is perfect for identifying frozen specimens or sealing. It can be applied to frozen surfaces without needing to thaw them first, and withstands elevated temperatures, including steam autoclave procedures.
 
-### UbiCling™
+### CryoSTUCK© Tape (TXC-Class)
 
-![UbiCling static cling tape on amber bottle](https://cdn.labtag.com/wp-content/uploads/TGS-25-use7-2.jpg "/media/gatorcut/TGS-25-use7-2.jpg")
+![CryoSTUCK TXC-Class](https://cdn.labtag.com/wp-content/uploads/TXC-25-use3.jpg)
 
-Adhesive-free tape with GatorCUT™ technology. This hand-cuttable tape adheres to metal, plastic, glass, and wooden surfaces using static cling. UbiCling tape can be easily re-positioned on flat and curved surfaces without leaving any residue behind upon removal.
+This clear liner-less cryogenic tape for already frozen surfaces (as low as -80°C), is ideal for identifying frozen samples and containers without concealing their contents, ensuring they remain visible. Can be applied to frozen surfaces without needing to thaw them first, and withstands elevated temperatures.
 
-### Clear UbiCling™
+### UbiCling™ (TGS-Class)
 
-![Clear UbiCling static cling tape](https://cdn.labtag.com/wp-content/uploads/TGC-25-Use2-1-2.jpg "/media/gatorcut/TGC-25-Use2-1-2.jpg")
+![UbiCling TGS-Class](https://cdn.labtag.com/wp-content/uploads/TGS-25-use7-2.jpg)
 
-This clear adhesive-free tape adheres to various surfaces using static cling-like properties. Writable with permanent markers and pens, this static cling tape can be re-positioned or removed without leaving behind any residue.
+Adhesive-free tape with GatorCUT technology. This hand-cuttable tape will adhere to metal, plastic, glass, and wooden surfaces using static cling. UbiCling tape can be easily re-positioned on flat and curved surfaces without leaving any residue behind upon removal.
 
-## Autoclave Tapes
+### Clear UbiCling™ (TGC-Class)
 
-### SteriTAPE™
+![Clear UbiCling TGC-Class](https://cdn.labtag.com/wp-content/uploads/TGC-25-Use2-1-2.jpg)
 
-![SteriTAPE autoclave-resistant tape on sterilization container](https://cdn.labtag.com/wp-content/uploads/TARG-25-Use10-2.jpg "/media/gatorcut/TARG-25-Use10-2.jpg")
+This clear adhesive-free tape will adhere to various surfaces using static cling-like properties. Writable with permanent markers and pens, this static cling tape can be re-positioned or removed without leaving behind any residue.
+
+### SteriTAPE™ (TARG-Class)
+
+![SteriTAPE TARG-Class](https://cdn.labtag.com/wp-content/uploads/TARG-25-Use10-2.jpg)
 
 Removable, autoclave-resistant tape is ideal for identifying reusable sterilization containers intended for use in steam autoclaves, such as Genesis® containers, as well as single-use sterilization bags and pouches. Its removable adhesive ensures it will not leave any adhesive residue upon removal.
 
-## Need Expert Help?
-
-Tell us a little about your labeling workflow and one of our experts will help you choose the right GatorCUT™ tape.
+## Shop our Cryo Markers

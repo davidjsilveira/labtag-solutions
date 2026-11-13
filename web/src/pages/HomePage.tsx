@@ -3,14 +3,35 @@ import { Link } from 'react-router-dom'
 import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
 import { SolutionCarousel } from '@/components/SolutionCarousel'
 import { TemperatureSlider } from '@/components/TemperatureSlider'
-import { pagesForArchive, pagesForCombinedCatalog } from '@/content/categories'
+import { pagesForBrowseAll } from '@/content/categories'
 import { CONTACT_PATH, LABTAG_SHOP_URL, SAMPLE_PATH } from '@/content/labtagLinks'
+import { getPage } from '@/content/loadPages'
+import { previewImage } from '@/content/previewImage'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { SolutionPage } from '@/content/types'
 
-function NewArticleLink({ page, priority }: { page: SolutionPage; priority?: boolean }) {
-  const image = page.heroImage
+const FEATURED_BENTO = [
+  { slug: 'cryogenic-labels', layout: 'feature' },
+  { slug: 'clinical-trial-labels', layout: 'caption' },
+  { slug: 'histology-labels', layout: 'caption' },
+  { slug: 'lab-tapes', layout: 'caption' },
+  { slug: 'dymo-compatible-laboratory-labels', layout: 'caption' },
+  { slug: 'label-printing-solutions', layout: 'caption' },
+  { slug: 'automated-labels', layout: 'caption' },
+] as const
+
+function FeaturedCard({
+  page,
+  layout,
+  priority,
+}: {
+  page: SolutionPage
+  layout: (typeof FEATURED_BENTO)[number]['layout']
+  priority?: boolean
+}) {
+  const image = previewImage(page)
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
+  const showExcerpt = layout === 'feature' || layout === 'caption'
 
   return (
     <Link to={`/solutions/${page.slug}`} className="lander-new-link motion-sheen-wrap">
@@ -33,7 +54,7 @@ function NewArticleLink({ page, priority }: { page: SolutionPage; priority?: boo
       )}
       <span className="lander-new-copy">
         <strong>{page.title}</strong>
-        {page.excerpt ? <span>{page.excerpt}</span> : null}
+        {showExcerpt && page.excerpt ? <span>{page.excerpt}</span> : null}
       </span>
     </Link>
   )
@@ -41,8 +62,7 @@ function NewArticleLink({ page, priority }: { page: SolutionPage; priority?: boo
 
 export function HomePage() {
   const rootRef = useRef<HTMLDivElement>(null)
-  const archive = pagesForArchive()
-  const newArticles = pagesForCombinedCatalog()
+  const articles = pagesForBrowseAll()
   usePageMotion(rootRef)
 
   return (
@@ -71,25 +91,39 @@ export function HomePage() {
 
       <section
         className="lander-index lander-new"
-        aria-label="New articles"
+        aria-label="Featured solutions"
         id="new-articles"
         data-motion-section
       >
         <ul className="lander-new-list">
-          {newArticles.map((page, index) => (
-            <li
-              key={page.slug}
-              className={index === 0 ? 'is-featured' : index >= 5 ? 'is-wide' : 'is-tile'}
-              style={motionIndex(index)}
-            >
-              <NewArticleLink page={page} priority={index < 5} />
-            </li>
-          ))}
+          {FEATURED_BENTO.map((item, index) => {
+            const page = getPage(item.slug)
+            if (!page) return null
+            return (
+              <li key={page.slug} className={`is-${item.layout}`} style={motionIndex(index)}>
+                <FeaturedCard page={page} layout={item.layout} priority={index < 3} />
+              </li>
+            )
+          })}
         </ul>
       </section>
 
-      <section className="lander-all" aria-label="All solution pages">
-        <SolutionCarousel heading="Browse all solutions" />
+      <section className="lander-all" aria-label="Featured solutions">
+        <SolutionCarousel heading="Featured solutions" />
+      </section>
+
+      <section className="lander-index" aria-labelledby="all-articles-heading" id="all-articles">
+        <header className="lander-index-head">
+          <h2 id="all-articles-heading">All articles</h2>
+          <p className="lander-section-lede">Every solution guide, in one list.</p>
+        </header>
+        <ul className="lander-index-list">
+          {articles.map((page) => (
+            <li key={page.slug}>
+              <Link to={`/solutions/${page.slug}`}>{page.title}</Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="lander-temps" aria-label="Pick by storage temperature">
@@ -98,22 +132,6 @@ export function HomePage() {
           Drag to your storage temperature — we will point you at the matching guide.
         </p>
         <TemperatureSlider />
-      </section>
-
-      <section className="lander-index" aria-labelledby="lander-archive-heading" id="archive">
-        <header className="lander-index-head">
-          <h2 id="lander-archive-heading">Archive</h2>
-          <p className="lander-section-lede">
-            Original LabTAG solution pages, kept at their historical URLs.
-          </p>
-        </header>
-        <ul className="lander-index-list">
-          {archive.map((page) => (
-            <li key={page.slug}>
-              <Link to={`/solutions/${page.slug}`}>{page.title}</Link>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <aside className="lander-cta block-cta">

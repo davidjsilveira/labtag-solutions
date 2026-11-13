@@ -1,66 +1,36 @@
-# ResiTAG®
+# Identify Resin-Embedding Capsules for Electron Microscopy
 
 Source: [https://www.labtag.com/solutions/resitag-2/](https://www.labtag.com/solutions/resitag-2/)
 
-![ResiTAG label embedded in resin block](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-track.jpg")
+While imaging technologies have advanced substantially, methods for sample identification have remained unsophisticated. Technicians write numbers on a piece of paper that they then embed in resin blocks, or they identify the container in which they store their samples. This is not a good practice as it can lead to sample mix-ups and the loss of information. ResiTAG® allows for a more secure and permanent identification solution for resin blocks.
 
-ResiTAG® is an identification solution for samples used in electron microscopy. While imaging technologies have advanced, sample identification often remains handwritten on paper embedded in resin blocks or limited to the storage container. That practice can lead to mix-ups, so ResiTAG® provides secure, permanent identification for resin blocks.
+## What is ResiTAG®
 
-These resin- and baking-resistant labels are available alone or in a kit with a thermal-transfer printer, barcode printing software, and matching ribbon for resin-embedded samples.
+![A gloved hand holding a solid resin block with a ResiTAG chemical resistant barcode printed label embedded inside along with the sample.](https://cdn.labtag.com/wp-content/uploads/XST-251-use2-1024x1024.jpg)
 
-### By Capability
+ResiTAG® is an identification solution to keep track of samples used in electron microscopy. These labels are resistant to resin and baking. You can buy them alone or in a kit along with a thermal-transfer printer, barcode printing software, and printing ribbon. You can use the kit to print ResiTAG® labels with text and barcodes.
 
-- **Chemical Resistance** — Withstands embedding in resin used in microscopy
-- **Heat Resistance** — Withstands resin-baking temperatures up to +150°C
-- **Printable IDs** — Print many lines of text and barcodes on a tiny label
-- **Capsule & Mold Fit** — Identify samples in BEEM® capsules, gelatin capsules, and molds
-- **Thermal-Transfer** — Compatible with all major brands of thermal-transfer printers
+## Why use ResiTAG®
 
-## How ResiTAG® Works
+With ResiTAG® you can print many lines of text on a tiny label – way more than if you were to hand-write. You can save time by printing hundreds of labels at once. You will have a clear, legible identifier for your samples. The chemical-resistant printout will not smear in liquid or baked resin. You can even scan barcodes into Excel, removing the possibility of human error.
 
-Print, insert, bake, track:
+## How to use ResiTAG®
 
-1. **Print** — Print text and barcodes on a thermal-transfer printer, then fold
-![ResiTAG print and fold label](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-print.jpg")
-2. **Insert** — Place the label in the capsule or mold with your sample and liquid resin
-![ResiTAG insert label into resin capsule](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-insert.jpg")
-3. **Bake** — Cure the block in a histological oven until the resin solidifies
-![ResiTAG label solidifying in resin capsule](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-bake.jpg")
-4. **Track** — Section the block and scan barcodes into a spreadsheet or database
-![ResiTAG embedded label in finished resin block](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-track.jpg")
+ResiTAG® labels are easy to use. Simply print the labels on a thermal-transfer printer, with text and barcodes and insert the label into the capsule or mold containing your sample and liquid resin. Bake your samples in the histological oven. You now have a unique identifier for each sample that you can track in an excel sheet or database.
 
-## ResiTAG by Capability
+## Features
 
-### Chemical Resistance
+- Chemical-resistant labels withstand embedding in resin used in microscopy
+- Identify resin-embedded samples in BEEM® capsules, gelatin capsules, and molds
+- Withstand resin-baking temperatures up to +150°C
+- Compatible with all major brands of thermal-transfer printers
 
-![ResiTAG chemical-resistant label in resin block](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-track.jpg")
+![A thermal-transfer printer printing chemical resistant labels for resin-embedding, next to a blank roll of ResiTAG labels, on a lab table.](https://cdn.labtag.com/wp-content/uploads/XST-251-use.png)
 
-ResiTAG® withstands embedding in the resins used for electron microscopy. The chemical-resistant printout will not smear in liquid or baked resin—so identifiers stay legible inside the finished block instead of relying on handwritten paper or container-only IDs that can lead to mix-ups.
+## Experience the benefits of ResiTAG®
 
-### Heat Resistance
+Take advantage of our free label samples and try ResiTAG® for yourself today.
 
-![ResiTAG heat-resistant resin embedding labels](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-bake.jpg")
+[Get in Touch](https://www.labtag.com/contact-us/)
 
-Labels withstand resin-baking temperatures up to +150°C in histological ovens. After curing, each sample keeps a permanent, scannable identifier embedded with the tissue—suited to electron microscopy workflows that demand durable IDs through heat processing.
-
-### Printable IDs
-
-![ResiTAG thermal-transfer labels and printer](https://cdn.labtag.com/wp-content/uploads/XST-251-use.png "/media/resitag/XST-251-use.png")
-
-Print many lines of text on a tiny label—far more than handwriting allows. Batch-print hundreds of clear, legible identifiers at once, including barcodes you can scan into Excel or a LIMS to reduce human error when tracking resin-embedded samples.
-
-### Capsule & Mold Fit
-
-![ResiTAG labels for BEEM capsules and molds](https://cdn.labtag.com/wp-content/uploads/2018/08/XST-251-use2.jpg "/media/resitag/step-insert.jpg")
-
-Identify resin-embedded samples in BEEM® capsules, gelatin capsules, and molds. Insert the printed label with the sample and liquid resin so the ID travels with the block from embedding through storage and analysis.
-
-### Thermal-Transfer
-
-![ResiTAG thermal-transfer printing kit](https://cdn.labtag.com/wp-content/uploads/XST-251-with-printer.png "/media/resitag/XST-251-with-printer.png")
-
-Compatible with all major brands of thermal-transfer printers. Buy labels alone or as a kit with a thermal-transfer printer, barcode printing software, and matching ribbon—so electron microscopy labs can print ResiTAG® text and barcodes on demand at the bench.
-
-## Need Expert Help?
-
-Tell us a little about your electron microscopy embedding workflow and one of our experts will help you choose the right ResiTAG® solution.
+[View Product](https://www.labtag.com/shop/product/chemical-resistant-labels-for-resin-embedding-1-x-0-25-xst-251-patent-pending/)

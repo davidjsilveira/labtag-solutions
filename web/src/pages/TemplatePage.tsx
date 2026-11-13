@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { CaretDown, DownloadSimple, FileArrowDown } from '@phosphor-icons/react'
-import { TEMPLATE_SR1 } from '@/content/templateSr1'
+import { Link, Navigate, useParams } from 'react-router-dom'
+import { ArrowRight, CaretDown, ChatCircle, DownloadSimple } from '@phosphor-icons/react'
+import { TEMPLATE_PAGES, type TemplateSlug } from '@/content/templates'
 import { UNIT_EVENT, readUnit, type UnitId } from '@/content/preferences'
 import { resolveImageSrc } from '@/content/resolveImage'
 
+function isTemplateSlug(slug: string): slug is TemplateSlug {
+  return slug in TEMPLATE_PAGES
+}
+
 export function TemplatePage() {
-  const template = TEMPLATE_SR1
+  const { templateSlug = '' } = useParams()
+  if (!isTemplateSlug(templateSlug)) return <Navigate to="/" replace />
+  return <TemplateArticle slug={templateSlug} />
+}
+
+function TemplateArticle({ slug }: { slug: TemplateSlug }) {
+  const template = TEMPLATE_PAGES[slug]
   const [unit, setUnit] = useState<UnitId>(() => readUnit())
-  const [activeGallery, setActiveGallery] = useState<(typeof template.gallery)[number]['id']>(
-    template.gallery[0]?.id ?? 'diagram',
-  )
   const [openFaq, setOpenFaq] = useState<string | null>(template.faqs[0]?.id ?? null)
   const image = resolveImageSrc(template.image.primary, template.image.fallback)
   const size = unit === 'imperial' ? template.sizeImperial : template.sizeMetric
-  const activeTone =
-    template.gallery.find((item) => item.id === activeGallery)?.tone ?? 'diagram'
+  const formatLabel = template.category === 'A4' ? `${template.category} Sheet` : template.category
 
   useEffect(() => {
     const onUnit = (event: Event) => {
@@ -26,42 +32,23 @@ export function TemplatePage() {
     return () => window.removeEventListener(UNIT_EVENT, onUnit)
   }, [])
 
+  useEffect(() => {
+    setOpenFaq(template.faqs[0]?.id ?? null)
+  }, [template])
+
   return (
     <article className="template-page">
-      <nav className="template-breadcrumb" aria-label="Breadcrumb">
-        <ol>
-          {template.breadcrumbs.map((crumb, index) => {
-            const last = index === template.breadcrumbs.length - 1
-            const to = 'to' in crumb ? crumb.to : undefined
-            const href = 'href' in crumb ? crumb.href : undefined
-            return (
-              <li key={crumb.label}>
-                {last ? (
-                  <span aria-current="page">{crumb.label}</span>
-                ) : to ? (
-                  <Link to={to}>{crumb.label}</Link>
-                ) : href ? (
-                  <a href={href} target="_blank" rel="noreferrer">
-                    {crumb.label}
-                  </a>
-                ) : (
-                  <span>{crumb.label}</span>
-                )}
-              </li>
-            )
-          })}
-        </ol>
-      </nav>
-
       <header className="template-hero">
-        <h1>#{template.id}</h1>
-        <p className="template-hero-name">{template.name}</p>
-        <p className="template-hero-size">{size}</p>
+        <h1>
+          <span className="template-hero-title">
+            {formatLabel} Template - {size} {template.shape}{' '}
+            <span className="template-hero-id">#{template.id}</span>
+          </span>
+        </h1>
       </header>
 
       <section className="template-showcase" aria-label="Template preview">
-        <div className={['template-media-card', `is-${activeTone}`].filter(Boolean).join(' ')}>
-          {template.badge ? <span className="template-badge">{template.badge}</span> : null}
+        <div className="template-media-card is-diagram">
           <figure className="template-media-figure">
             <img
               src={image.primary}
@@ -75,30 +62,54 @@ export function TemplatePage() {
           </figure>
         </div>
 
-        <aside className="template-buy-card" aria-label="Template download">
-          <header className="template-download-head">
-            <p className="template-download-title">Download #{template.id}</p>
-            <p>
-              {template.shape} · {size} · {template.format}
-            </p>
-          </header>
-
+        <aside className="template-buy-card" aria-label="Template file">
           <div className="template-download-panel">
-            <span className="template-download-mark" aria-hidden>
-              <FileArrowDown size={36} weight="duotone" />
-            </span>
             <div className="template-download-copy">
-              <p className="template-download-kicker">Download the template</p>
-              <p>Use it in BarTender, cablabel S3, ZebraDesigner, or similar label software.</p>
+              <h2 className="template-download-title">#{template.id}</h2>
+              <p>{template.file.note}</p>
             </div>
-            <a
-              className="btn template-download"
-              href={template.downloadHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <DownloadSimple size={20} weight="bold" aria-hidden />
-              Download template
+            {template.file.kind === 'download' ? (
+              <a
+                className={
+                  'logos' in template.file
+                    ? 'btn template-download template-download-file'
+                    : 'btn template-download'
+                }
+                href={template.file.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {'logos' in template.file ? (
+                  <>
+                    <span className="template-download-logos">
+                      {template.file.logos.map((logo) => (
+                        <span key={logo.src} className="template-download-brand">
+                          <img src={logo.src} alt="" width={40} height={40} />
+                          <span>{logo.alt}</span>
+                        </span>
+                      ))}
+                    </span>
+                    <span className="template-download-action">
+                      <DownloadSimple size={20} weight="bold" aria-hidden />
+                      {template.file.label}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <DownloadSimple size={20} weight="bold" aria-hidden />
+                    {template.file.label}
+                  </>
+                )}
+              </a>
+            ) : (
+              <Link className="btn template-download" to={template.file.href}>
+                <ChatCircle size={20} weight="bold" aria-hidden />
+                {template.file.label}
+              </Link>
+            )}
+            <a className="template-compatible-btn" href="#compatible-labels">
+              Compatible labels
+              <ArrowRight size={16} weight="bold" aria-hidden />
             </a>
           </div>
 
@@ -119,37 +130,6 @@ export function TemplatePage() {
             })}
           </dl>
         </aside>
-
-        <div className="template-thumbs" role="listbox" aria-label="Template views">
-          {template.gallery.map((item) => {
-            const selected = item.id === activeGallery
-            return (
-              <button
-                key={item.id}
-                type="button"
-                role="option"
-                aria-selected={selected}
-                className={[
-                  'template-thumb',
-                  `is-${item.tone}`,
-                  selected ? 'is-active' : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
-                onClick={() => setActiveGallery(item.id)}
-              >
-                <span className="sr-only">{item.label}</span>
-                {item.tone === 'diagram' ? (
-                  <img src={image.primary} alt="" />
-                ) : item.tone === 'more' ? (
-                  <span className="template-thumb-more">+{item.moreCount ?? 0}</span>
-                ) : (
-                  <span className="template-thumb-swatch" aria-hidden />
-                )}
-              </button>
-            )
-          })}
-        </div>
       </section>
 
       <section className="template-section" id="compatible-labels">
@@ -211,8 +191,6 @@ export function TemplatePage() {
                 className="faq-item"
                 open={open}
                 onToggle={(event) => {
-                  // Ignore close events fired when React clears `open` on the
-                  // previously expanded row after switching to another item.
                   if (event.currentTarget.open) {
                     setOpenFaq(item.id)
                   } else if (openFaq === item.id) {
@@ -222,12 +200,7 @@ export function TemplatePage() {
               >
                 <summary>
                   <span className="faq-item-question">{item.question}</span>
-                  <CaretDown
-                    className="template-faq-caret"
-                    size={16}
-                    weight="bold"
-                    aria-hidden
-                  />
+                  <CaretDown className="template-faq-caret" size={16} weight="bold" aria-hidden />
                 </summary>
                 <div className="faq-item-answer">
                   <p>{item.answer}</p>

@@ -1,79 +1,140 @@
-# Histology Labels | Xylene Resistant
+# Labels for Histology
 
-Source: [https://www.labtag.com/solutions/histology-labels/](https://www.labtag.com/solutions/histology-labels/)
+![XAL-117-use4](https://cdn.labtag.com/wp-content/uploads/XAL-117-use4.jpg "/media/histology-labels/XAL-117-use4.jpg")
 
-![Histology Labels | Xylene Resistant](https://cdn.labtag.com/wp-content/uploads/2025/07/XAL-117-use4.jpg "/media/histology-labels/XAL-117-use4.jpg")
+LabTAG® provides labels and ribbons for every step of the histological process, from tissue extraction and preparation to staining and imaging. Our xylene-resistant labels for histology are designed for microscope slides, paraffin wax blocks, plastic containers, slide boxes stored in deep-freeze conditions, and resin embedding.
 
-LabTAG® provides labels and ribbons for every step of the histological process, from tissue extraction and preparation to staining and imaging. Our xylene-resistant labels for histology are designed for microscope slides, paraffin wax blocks, plastic containers, slide boxes stored in deep-freeze conditions, and resin embedding in clinical and research labs.
+Our chemical-resistant labels withstand direct exposure to and immersion in xylene, toluene, alcohols, formalin, hexane, acetone, dimethyl sulfoxide (DMSO), acetonitrile (ACN), as well as other harsh chemicals and organic solvents
 
-Chemical-resistant labels withstand immersion in xylene, toluene, alcohols, formalin, hexane, acetone, DMSO, acetonitrile, and other harsh chemicals and solvents used in slide and cassette labeling.
+## Find Your Product
 
-### By Surface
+### Labels for Microscope Slides
 
-- **Microscope Slides** — Xylene- and stain-resistant labels for routine and special staining
-- **Paraffin Wax Blocks** — Labels that adhere to paraffin and FFPE cassettes
-- **Slide Storage Boxes** — Freezer-grade alcohol-resistant labels for boxes
-- **Metal-Detectable Blocks** — ParafiGARD™ labels tracked with a metal detector
+![A gloved hand holding a glass microscope slide, labeled with a xylene-resistant barcode printed thermal-transfer label, in front of a microscope.](https://cdn.labtag.com/wp-content/uploads/Solvent-resistant-labels-for-histology-procedures-2-e1564071355243.png "/media/histology-labels/Solvent-resistant-labels-for-histology-procedures-2-e1564071355243.png")
 
-### By Feature
+### Labels for Paraffin Wax Blocks
 
-- **Self-Laminating** — Over-laminating flap for long-term IHC and xylene immersion
-- **Re-Identification** — Removable Histo-PinTAG™ cover-up for re-labeling slides
-- **RFID** — Encoded paraffin-block labels for specimen management systems
-- **Thermal-Transfer Printable** — Barcode printers, scanners, software, and kits
+![An orange histology tissue cassette encased in a paraffin wax block, labeled with a barcode printed label, in front of 3 other color cassettes.](https://cdn.labtag.com/wp-content/uploads/Xylene-resistant-labels-for-paraffin-blocks-1-e1564071986838.png "/media/histology-labels/Xylene-resistant-labels-for-paraffin-blocks-1-e1564071986838.png")
 
-## Histology Labels by Surface
+### Freezer Labels for Slide Storage
 
-### Microscope Slides
+![A roll of thermal-transfer printed labels, next to a slide storage box, labeled with a freezer-grade barcode label printed with 1D and 2D barcodes.](https://cdn.labtag.com/wp-content/uploads/Chemical-resistant-slide-lables-for-freezer-storage-1-1-e1564074310542.png "/media/histology-labels/Chemical-resistant-slide-lables-for-freezer-storage-1-1-e1564074310542.png")
 
-![Xylene-resistant microscope slide labels](https://cdn.labtag.com/wp-content/uploads/XAL-67SB-use1.jpg "/media/histology-labels/XAL-67SB-use1.jpg")
+### Printers, Scanners, Software
 
-Excellent stain resistance makes these labels ideal for glass microscope slides used in histology. Recommended for routine as well as special staining protocols, they resist xylene, toluene, hexanes, alcohols, acetone, eosin Y, hematoxylin, and safer non-toxic xylene alternatives. Suitable for use with automated slide processors and compatible with all common thermal-transfer barcode printers.
+![](https://cdn.labtag.com/wp-content/uploads/PKT-CODY3-31-1.jpg "/media/histology-labels/PKT-CODY3-31-1.jpg")
 
-### Paraffin Wax Blocks
+## Microscope Slide Label Size Guide
 
-![ParafiTAG paraffin block labels](https://cdn.labtag.com/wp-content/uploads/ParafiTAG-labels-for-tissue-embedding-in-paraffin-blocks-3-e1564072755821.png "/media/histology-labels/ParafiTAG-paraffin-blocks.png")
+![](https://cdn.labtag.com/wp-content/uploads/Guide-Microscope-Slide-Label-Sizing-Guide-Cover-791x1024.jpg "/media/histology-labels/Guide-Microscope-Slide-Label-Sizing-Guide-Cover-791x1024.jpg")
 
-ParafiTAG™ adheres to hard-to-stick surfaces, including paraffin wax used for histology. Withstands −55°C/−67°F to +70°C/+158°F and is suitable for recently cooled wax blocks. Resistant to xylene, toluene, hexanes, alcohols, acetone, and methyl ethyl ketone (MEK). Compatible with all common thermal-transfer barcode printers and tissue microarray workflows.
+[Download](https://cdn.labtag.com/wp-content/uploads/Guide-Microscope-Slide-Label-Sizing-Guide-EN082022-August-29-2022-WEB.pdf)
 
-### Slide Storage Boxes
+## Try Before You Buy
 
-![Freezer labels for slide storage](https://cdn.labtag.com/wp-content/uploads/PRF-67-Use1-1.jpg "/media/histology-labels/PRF-67-Use1-1.jpg")
+![](https://cdn.labtag.com/wp-content/uploads/Sample-kit-img-1.png "/media/histology-labels/Sample-kit-img-1.png")
 
-Freezer-grade alcohol-resistant labels for slide storage boxes and containers. Withstand extended storage as low as −80°C/−112°F—ideal for immunohistochemistry slide storage and tissue fixation. Resistant to spraying and swabbing with ethanol and exposure to formalin. Compatible with all common thermal-transfer barcode printers.
+[Order Free Samples](https://cdn.labtag.com/wp-content/uploads/Guide-Microscope-Slide-Label-Sizing-Guide-EN082022-August-29-2022-WEB.pdf)
 
-### Metal-Detectable Blocks
+## Xylene & Chemical-Resistant Labels for Microscope Slides
 
-![ParafiGARD metal-detectable paraffin block labels](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif "/media/labels-for-hard-to-stick-surfaces/ParafiGARD-Application400x400px-1-2.gif")
+![](https://cdn.labtag.com/wp-content/uploads/XAL-67-use5.jpg "/media/histology-labels/XAL-67-use5.jpg")
 
-ParafiGARD™ metal-detectable labels for paraffin wax blocks include a metallic layer so labeled blocks can be tracked with a metal detector—improving sample tracking and helping prevent accidental loss of paraffin blocks and histology samples. Adheres to hard-to-stick paraffin and resists xylene, alcohols, and related solvents.
+- Excellent stain resistance, ideal for glass microscope slides used in histology
+- Recommended for routine, as well as special staining protocols
+- Resistant to xylene, toluene, hexanes, alcohols, acetone, eosin Y, hematoxylin, and the new generation of safer, non-toxic, xylene alternatives/substitutes
+- Suitable for use with automated slide processors
+- Compatible with all common thermal-transfer barcode printers
 
-## Histology Labels by Feature
+## Histo-PinTAG™
 
-### Self-Laminating
+![](https://cdn.labtag.com/wp-content/uploads/Histo-PinTAG-postProd-2026-2.gif)
 
-![Self-laminating histology slide labels](https://cdn.labtag.com/wp-content/uploads/Solvent-resistant-labels-for-histology-procedures-2-e1564071355243.png "/media/histology-labels/solvent-resistant-histology.png")
+(Patented)
 
-HistoLAM™ self-laminating labels for microscope slides use an over-laminating flap that protects print from long-term immersion in xylene. Ideal through slide processing and staining—including antigen retrieval in immunohistochemistry—and compatible with existing label printers and tissue microarray systems such as the Galileo TMA CK4600.
+Labels for Microscope Slide Re-Identification
 
-### Re-Identification
+- Unique design, ideal for quick and easy microscope slide re-labeling and covering up existing 2D barcodes
+- Removable adhesive ensures the label can be removed without damaging the label underneath, or leaving any adhesive residue behind
+- Vibrant yellow color indicates that the microscope slides have been re-identified
+- Printable with most commercially available thermal-transfer printers
 
-![Histo-PinTAG slide re-identification labels](https://cdn.labtag.com/wp-content/uploads/Guide-Microscope-Slide-Label-Sizing-Guide-Cover.jpg "/media/histology-labels/Guide-Microscope-Slide-Label-Sizing-Guide-Cover.jpg")
+## HistoLAM™
 
-Histo-PinTAG™ is designed for quick microscope slide re-labeling and covering existing 2D barcodes. Removable adhesive lifts without damaging the label underneath or leaving residue. Vibrant yellow indicates slides have been re-identified. Printable with most commercially available thermal-transfer printers.
+![](https://cdn.labtag.com/wp-content/uploads/AFT-1.gif)
 
-### RFID
+Self-Laminating Labels for Microscope Slides
 
-![RFID paraffin block histology labels](https://cdn.labtag.com/wp-content/uploads/RFID-labels-5974-1-scaled-e1610553836560.jpg "/media/histology-labels/RFID-paraffin.jpg")
+- Over-laminating flap protects these labels from long-term immersion in xylene
+- Perfect for identifying slides throughout slide processing and for various staining procedures
+- Can be used during the antigen retrieval process in immunohistochemistry protocols
+- Compatible with existing label printing systems and ideal for use with tissue microarray systems, such as the Galileo TMA CK4600 system
 
-Chemical-resistant RFID labels for paraffin wax blocks incorporate an encodable inlay for cassette management and enhanced tracking. Designed to integrate with specimen management systems, they can also carry printed 1D/2D barcodes for LIMS or hospital workflows.
+## ParafiTAG™
 
-### Thermal-Transfer Printable
+![An orange histology tissue cassette encased in a paraffin wax block, labeled with a barcode printed label, in front of 3 other color cassettes.](https://cdn.labtag.com/wp-content/uploads/Xylene-resistant-labels-for-paraffin-blocks-1-e1564071986838.png "/media/histology-labels/Xylene-resistant-labels-for-paraffin-blocks-1-e1564071986838.png")
 
-![Thermal-transfer printable histology labels](https://cdn.labtag.com/wp-content/uploads/XAL-67-use5.jpg "/media/histology-labels/XAL-67-use5.jpg")
+![PRF-67](https://cdn.labtag.com/wp-content/uploads/PRF-67-1.jpg "/media/histology-labels/PRF-67-1.jpg")
 
-Equip your lab with a complete histology labeling solution—thermal-transfer barcode printers, xylene-resistant ribbons, scanners, and software. Ready-made printing kits are available, or build your own histology printing solution with help from our scientific experts.
+![Tissue cassettes encased in paraffin wax, labeled with 1D barcode printed labels, sitting next to unused color cassettes, for histology.](https://cdn.labtag.com/wp-content/uploads/ParafiTAG-labels-for-tissue-embedding-in-paraffin-blocks-3-e1564072755821.png "/media/histology-labels/ParafiTAG-labels-for-tissue-embedding-in-paraffin-blocks-3-e1564072755821.png")
 
-## Need Expert Help?
+![A gloved hand holding a paraffin wax block suspended from a thermal-transfer label with a strong permanent adhesive printed with text and a barcode.](https://cdn.labtag.com/wp-content/uploads/Chemical-resistant-labels-for-paraffin-embedding-4-e1564072882448.png "/media/histology-labels/Chemical-resistant-labels-for-paraffin-embedding-4-e1564072882448.png")
 
-Tell us a little about your histology workflow and one of our experts will help you choose the right xylene-resistant labeling solution.
+Xylene-Resistant Labels for Paraffin Wax Blocks
+
+- Adheres to hard-to-stick surfaces, including paraffin wax used for histology applications
+- Withstands a range of temperatures (-55°C/-67°F to +70°C/+158°F). Suitable for use on recently cooled wax blocks
+- Resistant to harsh chemicals and solvents, including xylene, toluene, hexanes, alcohols, acetone, and methyl ethyl ketone (MEK)
+- Compatible with all common thermal-transfer barcode printers
+
+## ParafiGARD™
+
+![](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application800x600px-1.gif)
+
+(Patent Pending)
+
+Metal-Detectable Labels for Paraffin Wax Blocks
+
+- Metallic layer allows labeled paraffin wax blocks to be tracked using a metal detector
+- Improves sample tracking and helps prevent accidental loss of paraffin blocks and histology samples
+- Adheres to hard-to-stick surfaces, including paraffin wax blocks used for histology applications
+- Resistant to a wide range of harsh chemicals and solvents, including xylene and alcohols
+
+## Freezer-Grade Alcohol-Resistant Labels
+
+![A roll of thermal-transfer printed labels, next to a slide storage box, labeled with a freezer-grade barcode label printed with 1D and 2D barcodes.](https://cdn.labtag.com/wp-content/uploads/Chemical-resistant-slide-lables-for-freezer-storage-1-1-e1564074310542.png "/media/histology-labels/Chemical-resistant-slide-lables-for-freezer-storage-1-1-e1564074310542.png")
+
+![Thermal transfer chemical and solvent-resistant barcode labels-2](https://cdn.labtag.com/wp-content/uploads/Thermal-transfer-chemical-and-solvent-resistant-barcode-labels-2-e1563898066656.png "/media/histology-labels/Thermal-transfer-chemical-and-solvent-resistant-barcode-labels-2-e1563898066656.png")
+
+For Slide Storage Boxes and Containers
+
+- Withstands extended storage in temperatures as low as -80°C/-112°F
+- Ideal for the identification of containers and slide storage boxes, particularly for those used to store immunohistochemistry slides and for tissue fixation
+- Resistant to spraying and swabbing with ethanol solutions and exposure to formalin solutions
+- Compatible with all common thermal-transfer barcode printers
+
+## Printers, Scanners, & Software
+
+Equip your lab with a complete labeling solution. LabTAG offers printers, barcoding software, scanners, and labels for histology. Everything you’ll need to securely and accurately identify your slides, paraffin blocks, samples, and containers. Ready-made printing kits are available, or you can build your own Histology printing solution with the help of our scientific experts.
+
+### Printers
+
+![A zebra thermal-transfer 300 dpi printer, with digital display, as well as USB, Bluetooth and Ethernet interfaces, for printing barcode labels.](https://cdn.labtag.com/wp-content/uploads/ivf-printers.jpg "/media/histology-labels/ivf-printers.jpg")
+
+[Printers](https://www.labtag.com/shop/category/printing-solution/printers/)
+
+### Scanners
+
+![A black Honeywell voyager 1452G omni-directional scanner, for scanning 1D and 2D barcodes. Scanner is standing upright, while sitting in its base.](https://cdn.labtag.com/wp-content/uploads/ivf-scanner.jpg "/media/histology-labels/ivf-scanner.jpg")
+
+[Scanners](https://www.labtag.com/shop/category/printing-solution/scanners/)
+
+### Printing Kits
+
+![PKCT-MA-without-software_600x427px-v3](https://cdn.labtag.com/wp-content/uploads/PKCT-MA-without-software_600x427px-v3.png "/media/histology-labels/PKCT-MA-without-software_600x427px-v3.png")
+
+[Printing Kits](https://www.labtag.com/shop/category/label-printing-system-for-histology/)
+
+## Get in Touch
+
+Tell us a little bit about yourself and one of our experts will be in touch with you shortly.

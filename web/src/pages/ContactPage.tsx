@@ -16,7 +16,7 @@ import {
   HELP_PATH,
   LABTAG_FAQ_URL,
   LABTAG_SHOP_URL,
-  LABTAG_TEMPLATES_URL,
+  TEMPLATES_PATH,
   LABTAG_VIDEOS_URL,
   QUOTE_PATH,
   RESELLER_PATH,
@@ -40,7 +40,7 @@ const FORM_LINKS = [
 ]
 
 const HELPFUL_LINKS = [
-  { label: 'Label templates', href: LABTAG_TEMPLATES_URL },
+  { label: 'Label templates', to: TEMPLATES_PATH },
   { label: 'Application videos', href: LABTAG_VIDEOS_URL },
   { label: 'Shop', href: LABTAG_SHOP_URL },
   { label: 'Help center', to: HELP_PATH },

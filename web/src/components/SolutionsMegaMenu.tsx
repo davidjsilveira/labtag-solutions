@@ -2,9 +2,11 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, X } from '@phosphor-icons/react'
 import {
-  SOLUTIONS_MEGA_COLUMNS,
+  SOLUTIONS_MEGA_FOOTER,
+  SOLUTIONS_MEGA_SECTIONS,
   SOLUTIONS_MEGA_VIEW_ALL,
 } from '@/content/solutionsMegaMenu'
+import { resolveImageSrc } from '@/content/resolveImage'
 
 type SolutionsMegaMenuProps = {
   open: boolean
@@ -28,7 +30,7 @@ export function SolutionsMegaMenu({ open, onClose }: SolutionsMegaMenuProps) {
   return (
     <div
       id="site-nav-solutions-menu"
-      className={['nav-mega', open ? 'is-open' : ''].filter(Boolean).join(' ')}
+      className={['nav-mega', 'is-solutions', open ? 'is-open' : ''].filter(Boolean).join(' ')}
       role="dialog"
       aria-label="Solutions"
       aria-hidden={!open}
@@ -48,27 +50,77 @@ export function SolutionsMegaMenu({ open, onClose }: SolutionsMegaMenuProps) {
       </div>
 
       <div className="nav-mega-body">
-        {SOLUTIONS_MEGA_COLUMNS.map((column) => (
-          <div key={column.heading} className="nav-mega-column">
-            <h3>{column.heading}</h3>
-            <ul>
-              {column.links.map((link) => (
-                <li key={link.label}>
-                  {isInternalPath(link.href) ? (
-                    <Link to={link.href} onClick={onClose}>
-                      {link.label}
-                    </Link>
+        <div className="nav-mega-sections">
+          {SOLUTIONS_MEGA_SECTIONS.map((section) => {
+            const image = section.featured.image
+            const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
+
+            return (
+              <section key={section.heading} className="nav-mega-section">
+                <Link
+                  className="nav-mega-section-media"
+                  to={section.featured.href}
+                  onClick={onClose}
+                >
+                  {resolved ? (
+                    <img
+                      src={resolved.primary}
+                      alt=""
+                      loading="lazy"
+                      onError={(event) => {
+                        if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
+                          event.currentTarget.src = resolved.fallback
+                        }
+                      }}
+                    />
                   ) : (
-                    <a href={link.href} target="_blank" rel="noreferrer">
-                      {link.label}
-                    </a>
+                    <span className="nav-mega-section-media-empty" aria-hidden="true" />
                   )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+                  <span className="nav-mega-section-caption">
+                    {section.featured.label}
+                    <ArrowRight size={14} weight="bold" aria-hidden />
+                  </span>
+                </Link>
+
+                <h3>{section.heading}</h3>
+                <ul>
+                  {section.links
+                    .filter((link) => link.href !== section.featured.href)
+                    .map((link) => (
+                      <li key={link.href}>
+                        <Link to={link.href} onClick={onClose}>
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </section>
+            )
+          })}
+        </div>
       </div>
+
+      {SOLUTIONS_MEGA_FOOTER.length > 0 ? (
+        <div className="nav-mega-footer">
+          {SOLUTIONS_MEGA_FOOTER.map((link) =>
+            isInternalPath(link.href) ? (
+              <Link key={link.href} className="nav-mega-footer-link" to={link.href} onClick={onClose}>
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                className="nav-mega-footer-link"
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+              </a>
+            ),
+          )}
+        </div>
+      ) : null}
     </div>
   )
 }

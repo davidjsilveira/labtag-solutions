@@ -1,0 +1,156 @@
+import {
+  CONTACT_PATH,
+  LABTAG_TEMPLATES_HUB_URL,
+  SAMPLE_PATH,
+  TEMPLATES_PATH,
+} from '@/content/labtagLinks'
+
+export const TEMPLATE_A48_PATH = '/templates/a4-8'
+
+export const TEMPLATE_A48 = {
+  id: 'A4-8',
+  slug: 'a4-8',
+  name: 'A4 Rectangle Template',
+  category: 'A4',
+  sizeMetric: '45 × 20 mm',
+  sizeImperial: '1.77 × 0.787 in',
+  shape: 'Rectangle',
+  format: 'A4',
+  image: {
+    primary: '/media/templates/A4-8.jpg',
+    fallback: 'https://cdn.labtag.com/wp-content/uploads/A4-8-2.jpg',
+    alt: 'A4-8 rectangle labels on an A4 sheet',
+  },
+  file: {
+    kind: 'download',
+    label: 'Download template',
+    href: 'https://cdn.labtag.com/wp-content/uploads/A4-8_AP0820.doc',
+    note: 'Word file for A4 laser and inkjet stock. Turn on table gridlines if the sheet looks blank.',
+  },
+  compareHref: LABTAG_TEMPLATES_HUB_URL,
+  breadcrumbs: [
+    { label: 'Home', to: '/' },
+    { label: 'Templates', to: TEMPLATES_PATH },
+    { label: 'A4-8' },
+  ],
+  specs: [
+    { label: 'Label shape', value: 'Rectangle' },
+    { label: 'Label size', valueMetric: '45 mm × 20 mm', valueImperial: '1.77 in × 0.787 in' },
+    { label: 'Sheet size', valueMetric: '210 × 297 mm', valueImperial: '8.27 × 11.69 in' },
+    { label: 'Labels per sheet', value: '56' },
+    { label: 'Rows', value: '20' },
+    { label: 'Columns', value: '5' },
+  ],
+  compatibleLabels: [
+    {
+      sku: 'A4CIJSA-8WH',
+      href: 'https://www.labtag.com/shop/product/cryogenic-labels-for-inkjet-printers-1-77-x-0-787-a4cijsa-8wh/',
+      product: 'Cryogenic labels for inkjet printers',
+      material: 'Inkjet',
+      colors: 'White',
+      printingMethod: 'Inkjet',
+      minTemp: '−196°C',
+      maxTemp: '+121°C',
+      features: '—',
+      resistances: 'Cryo, deep-freeze, xylene and chemicals, heat',
+    },
+    {
+      sku: 'A4CL-8T1-WH',
+      href: 'https://www.labtag.com/shop/product/cryo-laser-labels-1-77-x-0-787-45mm-x-20mm-a4cl-8/',
+      product: 'Cryo laser labels',
+      material: 'Laser',
+      colors: 'White',
+      printingMethod: 'Laser',
+      minTemp: '−196°C',
+      maxTemp: '+120°C',
+      features: '—',
+      resistances: 'Cryo, heat',
+    },
+    {
+      sku: 'A4CLA-8WH',
+      href: 'https://www.labtag.com/shop/product/permanent-cryo-laser-labels-a4-1-77-x-0-787-a4cla-8wh/',
+      product: 'Permanent cryo laser labels',
+      material: 'Laser',
+      colors: 'White',
+      printingMethod: 'Laser',
+      minTemp: '−196°C',
+      maxTemp: '+120°C',
+      features: '—',
+      resistances: 'Cryo, deep-freeze',
+    },
+    {
+      sku: 'A4FIJSA-8WH',
+      href: 'https://www.labtag.com/shop/product/deep-freeze-labels-for-inkjet-printers-a4-size-1-77-x-0-787a4fijsa-8wh/',
+      product: 'Deep-freeze labels for inkjet printers',
+      material: 'Inkjet',
+      colors: '—',
+      printingMethod: 'Inkjet',
+      minTemp: '−80°C',
+      maxTemp: '+100°C',
+      features: '—',
+      resistances: 'Deep-freeze, heat',
+    },
+    {
+      sku: 'A4LCS-8WH',
+      href: 'https://www.labtag.com/shop/product/cryogenic-laser-labels-for-frozen-vials-and-containers-a4-size-1-77-x-0-787-a4lcs-8/',
+      product: 'Cryogenic laser labels for frozen vials',
+      material: 'Laser',
+      colors: 'White',
+      printingMethod: 'Laser',
+      minTemp: '−196°C',
+      maxTemp: '+100°C',
+      features: 'Sticks to frozen',
+      resistances: 'Cryo, heat',
+    },
+    {
+      sku: 'A4RCL-8T1-WH',
+      href: 'https://www.labtag.com/shop/product/cryogenic-labels-for-laser-printers-1-77-x-0-787-a4rcl-8/',
+      product: 'Removable cryogenic labels for laser printers',
+      material: 'Laser',
+      colors: 'White',
+      printingMethod: 'Laser',
+      minTemp: '−196°C',
+      maxTemp: '+120°C',
+      features: 'Removable',
+      resistances: 'Cryo, deep-freeze, heat',
+    },
+  ],
+  faqs: [
+    {
+      id: 'gridlines',
+      question: 'The template opens as a blank page. How do I view the gridlines?',
+      answer:
+        'In Microsoft Word, open Table Tools and select the Layout tab. Turn on View Gridlines.',
+    },
+    {
+      id: 'barcodes',
+      question: 'How do I print barcodes using the Microsoft Word template?',
+      answer:
+        'Word needs an external plugin to print barcodes. Contact us if you want help setting that up.',
+    },
+    {
+      id: 'margins',
+      question: 'The printout is too close to the label edge or runs past it. How do I adjust the margins?',
+      answer:
+        'Open the template in Word, go to Layout, then Margins, then Custom Margins. Set the top and side margins from the laser-label formatting appendix. If Word warns that a margin is outside the printable area, choose Ignore.',
+    },
+    {
+      id: 'ink-smudge',
+      question: 'The ink smudges off the labels. How do I improve print quality?',
+      answer:
+        'The toner is not fusing with enough heat. In the print properties, change the media type from plain paper to Labels. If that option is missing, choose a thicker paper setting.',
+    },
+    {
+      id: 'reprint',
+      question: 'Can I print a few labels and save the rest of the sheet?',
+      answer:
+        'Yes. These laser sheets are made to go through the printer more than once without the labels peeling or jamming.',
+    },
+  ],
+  cta: {
+    title: 'Not sure this template fits your workflow?',
+    body: 'Our labeling specialists can match a size, material, and printer to your application.',
+    primary: { label: 'Ask an expert', href: CONTACT_PATH },
+    secondary: { label: 'Get a free sample', href: SAMPLE_PATH },
+  },
+} as const

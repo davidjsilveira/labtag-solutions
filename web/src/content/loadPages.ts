@@ -1,4 +1,4 @@
-import { LEGACY_REPLACED_BY } from './legacyMap'
+import { LIVE_FILE_SLUG, LIVE_SOLUTION_SLUGS } from './liveCatalog'
 import { parseMarkdown } from './parseMarkdown'
 import type { SolutionPage } from './types'
 
@@ -19,39 +19,29 @@ function slugFromPath(path: string): string {
   return file.replace(/\.md$/, '')
 }
 
-function parseEntries(
-  modules: Record<string, string>,
-  legacy: boolean,
-): SolutionPage[] {
-  return Object.entries(modules)
-    .map(([path, markdown]) => {
-      const page = parseMarkdown(slugFromPath(path), markdown)
-      return {
-        ...page,
-        legacy,
-        replacedBy: legacy ? LEGACY_REPLACED_BY[page.slug] : undefined,
-      }
-    })
-    .sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }))
-}
-
-export const solutionPages: SolutionPage[] = parseEntries(catalogModules, false)
-export const legacyPages: SolutionPage[] = parseEntries(legacyModules, true)
-
-const catalogBySlug = Object.fromEntries(solutionPages.map((page) => [page.slug, page]))
-const legacyBySlug = Object.fromEntries(legacyPages.map((page) => [page.slug, page]))
-
-for (const slug of Object.keys(catalogBySlug)) {
-  if (legacyBySlug[slug]) {
-    throw new Error(`Catalog slug collides with a legacy archive URL: ${slug}`)
+function parseAll(modules: Record<string, string>): Record<string, SolutionPage> {
+  const bySlug: Record<string, SolutionPage> = {}
+  for (const [path, markdown] of Object.entries(modules)) {
+    const page = parseMarkdown(slugFromPath(path), markdown)
+    bySlug[page.slug] = page
   }
+  return bySlug
 }
 
-export const pagesBySlug = {
-  ...legacyBySlug,
-  ...catalogBySlug,
-} as Record<string, SolutionPage>
+const pagesByFileSlug = {
+  ...parseAll(catalogModules),
+  ...parseAll(legacyModules),
+}
+
+export const solutionPages: SolutionPage[] = LIVE_SOLUTION_SLUGS.map((slug) => {
+  const fileSlug = LIVE_FILE_SLUG[slug] ?? slug
+  const page = pagesByFileSlug[fileSlug]
+  if (!page) throw new Error(`Missing live solution article: ${slug}`)
+  return { ...page, slug }
+})
+
+const bySlug = Object.fromEntries(solutionPages.map((page) => [page.slug, page]))
 
 export function getPage(slug: string): SolutionPage | undefined {
-  return catalogBySlug[slug] ?? legacyBySlug[slug]
+  return bySlug[slug]
 }

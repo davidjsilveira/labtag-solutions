@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { createHubSpotForm, loadHubSpotFormsScript } from '@/content/hubspotForm'
+import { CONTACT_PATH } from '@/content/labtagLinks'
 
 const FORMS: Record<
   string,
@@ -27,7 +28,7 @@ const FORMS: Record<
     intro:
       'Tell us about your protocol, containers, languages, and data requirements and one of our experts will help specify custom clinical trial labels for your study.',
     solutionSlug: 'clinical-trial-labels',
-    solutionTitle: 'Clinical Trial Labels',
+    solutionTitle: 'Clinical trial labels',
     portalId: '4079112',
     formId: 'b1d5f69e-0ce4-46ff-bdd7-6e2d0a04ccaf',
   },
@@ -38,6 +39,7 @@ export function RequestFormPage() {
   const config = FORMS[formSlug]
   const targetId = `hs-form-${formSlug}`
   const mounted = useRef(true)
+  const [formState, setFormState] = useState<'loading' | 'ready' | 'error'>('loading')
 
   useEffect(() => {
     mounted.current = true
@@ -45,10 +47,14 @@ export function RequestFormPage() {
 
     const targetSelector = `#${targetId}`
     let cancelled = false
+    setFormState('loading')
 
     loadHubSpotFormsScript()
       .then(() => {
-        if (cancelled || !mounted.current || !window.hbspt?.forms?.create) return
+        if (cancelled || !mounted.current || !window.hbspt?.forms?.create) {
+          if (!cancelled) setFormState('error')
+          return
+        }
         const target = document.querySelector(targetSelector)
         if (target) target.innerHTML = ''
         createHubSpotForm({
@@ -56,9 +62,10 @@ export function RequestFormPage() {
           formId: config.formId,
           target: targetSelector,
         })
+        if (!cancelled) setFormState('ready')
       })
       .catch(() => {
-        /* Form container still shows fallback link below. */
+        if (!cancelled) setFormState('error')
       })
 
     return () => {
@@ -80,30 +87,18 @@ export function RequestFormPage() {
   return (
     <article className="request-form-page">
       <header className="request-form-header">
-        <p className="crumb">
-          <Link to="/">Solutions</Link>
-          <span aria-hidden="true"> / </span>
-          <Link to={`/solutions/${config.solutionSlug}`}>{config.solutionTitle}</Link>
-          <span aria-hidden="true"> / </span>
-          <span aria-current="page">. . .</span>
-        </p>
         <h1>{config.title}</h1>
         <p>{config.intro}</p>
       </header>
 
       <div className="request-form-card">
         <div id={targetId} className="request-form-embed" />
-        <p className="request-form-fallback">
-          Form not loading?{' '}
-          <a
-            href={`https://www.labtag.com/solutions/${config.solutionSlug}/`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open the request form on LabTAG.com
-          </a>
-          .
-        </p>
+        {formState === 'error' ? (
+          <p className="request-form-fallback">
+            The form did not load.{' '}
+            <Link to={CONTACT_PATH}>Contact us</Link> and we will help with this request.
+          </p>
+        ) : null}
       </div>
     </article>
   )

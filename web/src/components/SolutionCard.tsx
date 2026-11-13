@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { previewImage } from '@/content/previewImage'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { SolutionPage } from '@/content/types'
 
@@ -7,7 +8,7 @@ type Props = {
 }
 
 export function SolutionCard({ page }: Props) {
-  const image = page.heroImage
+  const image = previewImage(page)
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
 
   return (

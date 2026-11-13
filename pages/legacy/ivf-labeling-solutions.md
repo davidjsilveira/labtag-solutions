@@ -1,100 +1,146 @@
-# IVF Labeling Solutions
+# IVF labeling solutions
 
-Source: [https://www.labtag.com/solutions/ivf-labeling-solutions/](https://www.labtag.com/solutions/ivf-labeling-solutions/)
+LabTAG® is an industry-trusted manufacturer and provider of innovative IVF labeling solutions. We understand the strict specifications and quality of care needed in Assisted Reproductive Technology (ART) clinics and labs.
 
-![IVF Labeling Solutions](https://cdn.labtag.com/wp-content/uploads/2019/05/ivf-strawtags.jpg "/media/ivf-labeling-solutions/ivf-strawtags.jpg")
+LabTAG® has the experience and specific labeling solutions to meet all your IVF identification needs. Our low-VOC labels integrate with Electronic Witnessing Systems (EWS) for secure cryo-preservation and processing of sperm, oocytes and embryos.
 
-LabTAG® is an industry-trusted manufacturer and provider of innovative IVF labeling solutions for Assisted Reproductive Technology (ART) clinics and labs. We understand the strict specifications and quality of care needed when securely identifying sperm, oocytes, and embryos through cryopreservation and processing workflows across fertility clinics and ART laboratory programs.
+## Find Your Products
 
-Our low-VOC labels integrate with Electronic Witnessing Systems (EWS) and support secure cryopreservation identification for IVF and ART cryopreservation and sample tracking workflow needs.
+### Cryo Straw Labels
 
-### By Container
+![A scientist wearing blue gloves is applying a green Cryo-StrawTAG cryogenic label to an IVF straw. The label is printed with text and a 1D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-strawtags.jpg)
 
-- **Cryo-StrawTAG™** — Cryogenic labels for straws, Cryotop®, and CryoLock® vitrification devices
-- **Tubes & Vials** — Standard cryo labels in sizes and colors for IVF tubes and vials
-- **Self-Laminating Wrap-Around** — Wrap-around cryo labels that laminate and protect printed IDs
-- **CryoSTUCK® Frozen Surfaces** — Labels that adhere to already frozen vials without thawing
-- **Side Labels for Culture Plates** — Narrow side labels scannable in the incubator
-- **Bottom Labels for Culture Plates** — Clear underside labels with mirror-image print
-- **MetaliTAG™** — Labels for metal racks, aluminum cryo canes, and steel canisters
-- **Patient Record Labels** — Paper thermal-transfer labels for forms and requisitions
+[Cryo Straw Labels](#cryo-labels)
 
-### By Printing
+### Tube and Vial Labels
 
-- **Thermal-Transfer** — Barcode printers for crisp, scannable 1D/2D IVF labels
-- **Color Coding** — Multiple colors for visual patient and sample tracking
-- **Print & Scan Kits** — Printers, scanners, and ready-made IVF printing kits
+![Three standing cryo vials, along with two lying down. Vials are labeled with color barcode printed cryogenic thermal-transfer labels and dots.](https://cdn.labtag.com/wp-content/uploads/ivf-jtta-52v2.jpg)
 
-## IVF Labels by Container
+[Tube and Vial Labels](#tubes-vials)
 
-### Cryo-StrawTAG™
+### Plate and Dish Labels
 
-![Cryo-StrawTAG IVF straw labels](https://cdn.labtag.com/wp-content/uploads/ivf-strawtagsv2.jpg "/media/ivf-labeling-solutions/ivf-strawtagsv2.jpg")
+![IVF cell culture dish, with its side labeled with an incubator safe FreezerTAG thermal-transfer plate label, printed with text and a 2D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-fjt-169v2.jpg)
 
-Cryo-StrawTAG™ labels are compatible with all standard and high-security straws, as well as vitrification devices like Cryotop® and CryoLock®. These cryo straw labels are designed to withstand long-term cryopreservation inside liquid nitrogen (−196°C/−321°F) and transport on dry ice. They withstand freezing and the vitrification of sperm, oocytes, and embryos for long-term storage, and are available in different colors and configurations to fit 0.25- and 0.5-ml straws.
+[Plate and Dish Labels](#plates-dishes)
 
-### Tubes & Vials
+### Metal Container Labels
 
-![Cryogenic IVF tube and vial labels](https://cdn.labtag.com/wp-content/uploads/ivf-jtta-52.jpg "/media/ivf-labeling-solutions/ivf-jtta-52.jpg")
+![A metal canister inside a liquid nitrogen cryogenic tank, containing several cryo straws, inside cryo canes labeled with MetaliTAG cryo labels.](https://cdn.labtag.com/wp-content/uploads/ivf-awa-236v2.jpg)
 
-LabTAG provides multiple sizes, colors, and configurations compatible with all major thermal-transfer printer brands for cryogenic vial labeling. A number of cryo label families are available—standard, self-laminating, and for frozen surfaces—each with unique properties matched to IVF tube and vial workflows across fertility clinics and ART labs.
-
-### Self-Laminating Wrap-Around
-
-![Self-laminating wrap-around IVF cryo label](https://cdn.labtag.com/wp-content/uploads/ivf-wraparound.jpg "/media/ivf-labeling-solutions/ivf-wraparound.jpg")
-
-Self-laminating wrap-around cryo labels protect printed text and barcodes with a clear laminate layer after application. Ideal for microtubes and cryo vials used in IVF processing, they resist abrasion, alcohols, and cryogenic storage so patient and sample IDs stay legible through handling and long-term preservation.
-
-### CryoSTUCK® Frozen Surfaces
-
-![CryoSTUCK frozen-surface IVF vial labels](https://cdn.labtag.com/wp-content/uploads/ivf-cryostuck.jpg "/media/ivf-labeling-solutions/ivf-cryostuck.jpg")
-
-CryoSTUCK® labels adhere to already frozen plastic vials and containers as cold as −80°C—no thawing or cure time required—then store successfully in liquid nitrogen (−196°C). Blackout options help ART labs over-label legacy vials when existing IDs must be updated without removing the original label.
-
-### Side Labels for Culture Plates
-
-![IVF culture plate side labels](https://cdn.labtag.com/wp-content/uploads/ivf-fjt-169.jpg "/media/ivf-labeling-solutions/ivf-fjt-169.jpg")
-
-Narrow labels made of thermoplastic film are perfect for labeling the sides of plates. These labels resist various laboratory environments, including incubators (110°C/230°F). Plates with barcodes can be easily scanned while in the incubator without extra manipulation. Labeling both the bottom and side of plates is recommended so the label stays affiliated with the correct sample at all times.
-
-### Bottom Labels for Culture Plates
-
-![IVF culture plate bottom labels](https://cdn.labtag.com/wp-content/uploads/ivf-hbcl-7.jpg "/media/ivf-labeling-solutions/ivf-hbcl-7.jpg")
-
-Transparent labels with mirror-image printed (horizontally flipped) text and barcode are easily read and scanned through the plate when applied to the underside. Quickly read and scan while your culture plate is still on the work area. Clear cryo labels are suited to various laboratory conditions including incubators (−196°C to +100°C).
-
-### MetaliTAG™
-
-![MetaliTAG metal rack IVF labels](https://cdn.labtag.com/wp-content/uploads/ivf-awa-236.jpg "/media/ivf-labeling-solutions/ivf-awa-236.jpg")
-
-Designed specifically to stick to metal surfaces like metal racks, aluminum cryo canes, and steel canisters stored in cryogenic conditions such as liquid nitrogen (−196°C/−321°F). Creates a snapshot of the contents of your containers, eliminating the need to take containers out of storage. Compatible with all common thermal-transfer printer brands.
+[Metal Container Labels](#metal-container)
 
 ### Patient Record Labels
 
-![Patient record and datasheet IVF labels](https://cdn.labtag.com/wp-content/uploads/ivf-gpa-28-e1705606211927.jpg "/media/ivf-labeling-solutions/ivf-gpa-28-e1705606211927.jpg")
+![A gloved hand applying a general use thermal-transfer paper label to a patient record form. Label is printed with patient info and a 1D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-gpa-28v2.jpg)
 
-We provide a wide range of paper labels for barcode thermal-transfer printers. These labels can be printed with a crisp, clear printout to ensure the scannability of your barcodes. General-use labels are also available in colors for office use, patient records, and requisition forms across ART clinic workflows.
+[Patient Record Labels](#patient-record)
 
-## IVF Labels by Printing
+### Print and Scan
 
-### Thermal-Transfer
+![IVF printing kit, made of a zebra thermal-transfer printer, resin ribbon, barcode software and scanner, as well as Cryo-StrawTAG cryo straw labels.](https://cdn.labtag.com/wp-content/uploads/ivf-printscan.jpg)
 
-![IVF thermal-transfer barcode scanning](https://cdn.labtag.com/wp-content/uploads/ivf-scanner.jpg "/media/ivf-labeling-solutions/ivf-scanner.jpg")
+[Print and Scan](#printer-scanner)
 
-Thermal-transfer printing delivers crisp, durable 1D and 2D barcodes suited to Electronic Witnessing Systems and IVF sample tracking. LabTAG cryogenic and paper labels are compatible with common barcode printer brands so clinics can print patient and sample IDs on demand at the bench.
+## Cryogenic Labels for Vitrification Devices
 
-### Color Coding
+![Gloved hands applying a color wrap-around Cryo-StrawTAG cryogenic label to an IVF cryo straw. The label is printed with text and a 1D barcode. IVF labeling solutions.](https://cdn.labtag.com/wp-content/uploads/ivf-strawtagsv2.jpg)
 
-![Color-coded IVF cryogenic labels](https://cdn.labtag.com/wp-content/uploads/PID-1-multicolor-use-V3.jpg "/media/ivf-labeling-solutions/PID-1-multicolor-use-V3.jpg")
+[View products](https://www.labtag.com/shop/category/cryogenic-labels/thermal-transfer-ivf-straws-cryo-labels/)
 
-Color-coded cryogenic labels support visual patient and sample tracking throughout ART processing and cryostorage. Multiple colors and configurations help clinics distinguish donors, cycles, and container types at a glance while barcodes carry the full digital record.
+- StrawTAG™ labels are compatible with all standard and high-security straws, as well as vitrification devices like Cryotop®, and CryoLock®
+- These cryo straw labels are designed to withstand long-term cryo preservation inside liquid nitrogen (-196°C/-321°F), and transport on dry ice
+- The cryo IVF straw labels withstand freezing and the vitrification of sperm, oocytes and embryos for long-term storage
+- Available in different colors and configurations, to fit 0.25- and 0.5-ml straws
 
-### Print & Scan Kits
+## Labeling of Tubes and Vials
 
-![IVF print and scan kit](https://cdn.labtag.com/wp-content/uploads/ivf-softwarepkt.jpg "/media/ivf-labeling-solutions/ivf-softwarepkt.jpg")
+We’ve perfected the art of cryogenic vial labeling for over 20 years. With the largest catalog of cryogenic labels in the world, we are capable of matching your systems’ specifications for labeling. We provide multiple sizes, colors and configurations that are compatible with all major thermal-transfer printer brands. A number of cryo label families are available, each with their unique properties.
 
-Equip your lab with a complete IVF printing solution. LabTAG offers printers, scanners, and ready-made printing kits for the IVF field, or you can build your own IVF printing solution with the help of our scientific experts—including software and cryogenic label media matched to your containers.
+### Standard
 
-## Need Expert Help?
+![Five cryo vials, three standing, and two on their sides, labeled with color cryogenic thermal-transfer labels and 2D barcode printed dot labels.](https://cdn.labtag.com/wp-content/uploads/ivf-jtta-52.jpg)
 
-Tell us a little about your ART containers and witnessing workflow and one of our experts will help you choose the right IVF labeling solution.
+[View Products](https://www.labtag.com/shop/category/tubes-vials-and-containers-cryo-labels/)
+
+### Self-Laminating
+
+![A microtube, filled with a red liquid, being labeled with a wrap-around cryogenic label, thermal-transfer printed with text and a 2D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-wraparound.jpg)
+
+[View Products](https://www.labtag.com/shop/category/cryogenic-labels/cryogenic-wrap-around-labels/)
+
+### For Frozen Surfaces
+
+![An already frozen cryo vial, covered in frost, being labeled with a blackout thermal-transfer cryogenic label, printed with text and barcodes.](https://cdn.labtag.com/wp-content/uploads/ivf-cryostuck.jpg)
+
+[View Products](https://www.labtag.com/shop/category/cryogenic-labels/cryogenic-labels-for-frozen-surfaces/)
+
+## Get in touch with an expert today and claim your FREE samples
+
+[Get Free Samples](#contact-us)
+
+## Labeling IVF Culture Plates & Dishes
+
+Labeling both the bottom and side of plates is recommended for best results, as you can rest assured that the label will be affixed to the correct sample at all times.
+
+### Labels for the Sides of Plates
+
+![The side of a clear IVF cell culture plate labeled with a narrow FreezerTAG thermal-transfer dish label, printed with text and a 2D barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-fjt-169.jpg)
+
+[View products](https://www.labtag.com/shop/category/labels-for-the-side-of-plates/)
+
+- Narrow labels made of thermoplastic film are perfect for labeling the sides of plates
+- These labels are made to resist various laboratory environments, including incubators (110°C/230°F)
+- Plates with barcode can be easily scanned while in the incubator without extra manipulation
+
+### Labels for the Bottoms of Plates
+
+![An IVF culture plate with the bottom labeled with a reverse-printed clear label, next to a strand of barcode printed cryo plate labels.](https://cdn.labtag.com/wp-content/uploads/ivf-hbcl-7.jpg)
+
+[View products](https://www.labtag.com/shop/category/labels-for-bottom-of-plates/)
+
+- Transparent labels, with mirror-image printed (horizontally flipped) text and barcode, are easily read and scanned through the plate when applied to the underside
+- Quickly read and scan while your culture plate is still on the work area
+- Clear cryo labels are perfect for various laboratory conditions including incubators (-196°C to +100°C)
+
+## Labels for Cryo Canes, Metal Racks and Canisters
+
+![A steel canister inside a liquid nitrogen cryogenic Dewar, containing several metal cryo canes labeled with MetaliTAG barcode cryogenic labels.](https://cdn.labtag.com/wp-content/uploads/ivf-awa-236.jpg)
+
+[View products](https://www.labtag.com/shop/category/cryogenic-labels/cryo-labels-for-metal-racks/)
+
+- Designed specifically to stick to metal surfaces like metal racks, aluminum cryo canes, and steel canisters, to be stored in cryogenic conditions, such as liquid nitrogen (-196°C/-321°F)
+- Creates a snapshot of the contents of your containers, eliminating the need to take containers out of storage
+- Compatible with all common thermal-transfer printer brands
+
+## Get in touch with an expert today and claim your FREE samples
+
+[Get Free Samples](#contact-us)
+
+## Patient Record and Datasheet Labels
+
+![A gloved hand applying a thermal-transfer paper datasheet label on a patient record form. The white label is printed with patient info and a barcode.](https://cdn.labtag.com/wp-content/uploads/ivf-gpa-28-e1705606211927.jpg)
+
+We provide a wide range of paper labels, for barcode thermal-transfer printers. These labels can be printed with a crisp, clear printout, to ensure the scannability of your barcodes. The general use labels are also available in colors, for office use, patient records and requisition forms.
+
+[View products](https://www.labtag.com/shop/category/general-use-labels/?printing_method=thermal-transfer%2Cdirect-thermal%2Claser%2Claser-inkjet&shapes=rectangle)
+
+## Additional Solutions
+
+Equip your lab with a complete IVF printing solution and ensure your PCR reactions are clearly identified. LabTAG offers printers, scanners, and ready-made printing kits for the IVF field, or you can build your own IVF printing solution with the help of our scientific experts. We also offer a variety of PCR labels and tags for identifying PCR tubes, strips, and plates.
+
+### Printing Solutions
+
+![A zebra thermal-transfer 300 dpi printer, with digital display, as well as USB, Bluetooth and Ethernet interfaces, for printing barcode labels.](https://cdn.labtag.com/wp-content/uploads/ivf-printers.jpg)
+
+[View Products](https://www.labtag.com/label-printing-solutions/)
+
+### PCR Solutions
+
+![](https://cdn.labtag.com/wp-content/uploads/PID-1-multicolor-use-V3.jpg)
+
+[View Products](https://www.labtag.com/pcr-labels/)
+
+## Get Free Samples
+
+Tell us a little bit about yourself and one of our experts will be in touch with you shortly.

@@ -30,6 +30,7 @@ export const LABTAG_FINDER_URL = 'https://www.labtag.com/resources/label-finder/
 export const LABTAG_VIDEOS_URL = 'https://www.labtag.com/resources/videos/'
 export const LABTAG_TEMPLATES_URL = 'https://www.labtag.com/resources/label-templates/'
 export const LABTAG_TEMPLATES_HUB_URL = 'https://www.labtag.com/resources/templates/'
+export const TEMPLATES_PATH = '/templates'
 export const LABTAG_PROMOS_URL = 'https://www.labtag.com/promotions/'
 export const LABTAG_EN_URL = 'https://www.labtag.com/'
 export const LABTAG_FR_URL = 'https://www.labtag.com/fr/'
@@ -64,6 +65,10 @@ export const REQUEST_FORM_PATHS = {
     primaryLabel: 'Request clinical trial labels',
   },
   'custom-labels': {
+    path: CUSTOM_LABELS_PATH,
+    primaryLabel: 'Request custom labels',
+  },
+  'custom-laboratory-labels': {
     path: CUSTOM_LABELS_PATH,
     primaryLabel: 'Request custom labels',
   },

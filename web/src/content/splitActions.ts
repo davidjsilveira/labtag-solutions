@@ -136,7 +136,7 @@ const VIDEO_FEATURE_BY_SECTION: Record<string, string> = {
  * Section slug → short shop CTA label + search query.
  * Label appears as “Shop {label}”.
  */
-const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
+const SHOP_BY_SECTION: Record<string, { label: string; query: string; href?: string }> = {
   'tubes-vials-and-boxes': { label: 'Tubes & Vials', query: 'cryogenic tubes vials' },
   'tubes-and-vials': { label: 'Tubes & Vials', query: 'cryogenic tubes vials' },
   microplates: { label: 'Microplates', query: 'cryogenic microplates' },
@@ -550,6 +550,36 @@ const SHOP_BY_SECTION: Record<string, { label: string; query: string }> = {
     label: 'Pre-Labeled Labware',
     query: 'pre-labeled labware',
   },
+  'labels-for-cryogenic-storage': {
+    label: 'Cryo-StrawTAG',
+    query: 'Cryo-StrawTAG',
+    href: 'https://www.labtag.com/shop/brand-name/cryo-strawtag/',
+  },
+  'chemical-resistant-labels': {
+    label: 'Chemical-Resistant Labels',
+    query: 'chemical resistant labels',
+    href: 'https://www.labtag.com/shop/category/chemical-resistant-labels/',
+  },
+  'autoclave-resistant-labels': {
+    label: 'Autoclave-Resistant Labels',
+    query: 'autoclave resistant labels',
+    href: 'https://www.labtag.com/shop/category/autoclave-resistant-labels/',
+  },
+  'medication-labels': {
+    label: 'Medication Labels',
+    query: 'syringe identification labels',
+    href: 'https://www.labtag.com/shop/category/labels/medical-labels/syringe-identification-labels/',
+  },
+  'animal-cage-and-chart-labels': {
+    label: 'Cage Labels',
+    query: 'static cling labels',
+    href: 'https://www.labtag.com/shop/category/general-use-labels/static-cling-labels/',
+  },
+  'printers-scanners-and-software': {
+    label: 'Printing Solutions',
+    query: 'label printing solutions',
+    href: 'https://www.labtag.com/label-printing-solutions/',
+  },
 }
 
 const CRYO_SOLUTION_SLUGS = new Set([
@@ -575,6 +605,10 @@ export type SplitCardActions = {
   sampleHref: string
   /** Only set when the section maps to a specific LabTAG video filter. */
   videoHref?: string
+  videoLabel?: string
+  /** Full button label. When omitted, the button reads “Shop {shopLabel}”. */
+  actionLabel?: string
+  quote?: { href: string; label: string }
 }
 
 function videoContainerUrl(container: string): string {
@@ -637,19 +671,487 @@ export function resolveSpecItemShopHref(label: string): string {
   return shopSearchUrl(titleToShopLabel(label))
 }
 
+const AUTOCLAVE_SECTIONS: Record<string, { href: string; video?: string }> = {
+  'thermal-transfer': {
+    href: 'https://www.labtag.com/shop/category/thermal-transfer-autoclave-resistant-labels/',
+    video: 'https://www.youtube.com/watch?v=4EE-RcNjlfs',
+  },
+  laser: {
+    href: 'https://www.labtag.com/shop/category/autoclave-resistant-labels/laser-autoclave-resistant-labels/',
+    video: 'https://www.youtube.com/watch?v=PuAf8da4oBs',
+  },
+  inkjet: {
+    href: 'https://www.labtag.com/shop/category/autoclave-resistant-labels/inkjet-autoclave-resistant-labels/',
+    video: 'https://www.youtube.com/watch?v=VXNxDVKuD5Q',
+  },
+  'wrap-around': {
+    href: 'https://www.labtag.com/shop/category/autoclave-resistant-labels/autoclave-resistant-wrap-around-labels/',
+    video: 'https://www.youtube.com/watch?v=C4jQrS9JA6E',
+  },
+  piggyback: {
+    href: 'https://www.labtag.com/shop/category/autoclave-resistant-labels/autoclave-resistant-piggyback-labels/',
+    video: 'https://www.youtube.com/watch?v=B_Pg5_PMYac',
+  },
+  blackout: {
+    href: 'https://www.labtag.com/shop/category/autoclave-resistant-labels/autoclave-resistant-blackout-labels/',
+    video: 'https://www.youtube.com/watch?v=PJmQPTWCMP4',
+  },
+  rfid: {
+    href: 'https://www.labtag.com/shop/category/rfid-labels/autoclave-rfid-labels/',
+  },
+}
+
+export function autoclaveHasProductSection(sectionSlug: string): boolean {
+  return sectionSlug in AUTOCLAVE_SECTIONS
+}
+
+const BIOBANK_SECTIONS: Record<string, { href: string; video?: string }> = {
+  nitrotag: {
+    href: 'https://www.labtag.com/shop/brand-name/nitrotag/',
+    video: 'https://www.youtube.com/watch?v=3J3nCACDlKA',
+  },
+  'cryo-lazrtag': {
+    href: 'https://www.labtag.com/shop/brand-name/cryo-lazrtag/',
+    video: 'https://www.youtube.com/watch?v=NiJTXVL-qy0',
+  },
+  cryostuck: {
+    href: 'https://www.labtag.com/shop/brand-name/cryostuck/',
+    video: 'https://www.youtube.com/watch?v=TI24CmhaUYM',
+  },
+  'cryo-strawtag': {
+    href: 'https://www.labtag.com/shop/brand-name/cryo-strawtag/',
+    video: 'https://www.youtube.com/watch?v=0rnosMiwl3E',
+  },
+  metalitag: {
+    href: 'https://www.labtag.com/shop/brand-name/metalitag/',
+    video: 'https://www.youtube.com/watch?v=jc7zNFbAAJ8',
+  },
+  pintag: {
+    href: 'https://www.labtag.com/shop/brand-name/pintag/',
+    video: 'https://www.youtube.com/watch?v=urvI35bry3M',
+  },
+  'direct-thermal-cryostuck': {
+    href: 'https://www.labtag.com/shop/product/direct-thermal-cryo-labels-for-frozen-vials-and-surfaces-with-simpeel-technology-1-x-1-patent-pending-spdtu-29/',
+    video: 'https://www.youtube.com/watch?v=JQ_Fs78NooA',
+  },
+  'cryo-c-kurtag': {
+    href: 'https://www.labtag.com/shop/brand-name/cryo-c-kurtag/',
+    video: 'https://www.youtube.com/watch?v=oCvKOFCTKrc',
+  },
+  'cryo-tapes': {
+    href: 'https://www.labtag.com/shop/category/tapes/',
+    video: 'https://www.youtube.com/watch?v=_vh32S3Ih7Y',
+  },
+}
+
+const BIOBANK_TILES: Record<string, string> = {
+  'automation-solutions': '/solutions/automated-labels',
+  'rfid-solutions': '/solutions/rfid-labels-tags',
+  'printing-solutions': '/solutions/label-printing-solutions',
+  'lims-integration': '/solutions/label-software',
+  'customs-labels': '/solutions/custom-laboratory-labels',
+}
+
+const BIOBANK_RESOURCES: Record<string, { href: string; label: string }> = {
+  'everything-you-need-to-know-about-cryogenic-labels': {
+    href: 'https://info.labtag.com/cryo-label-guide',
+    label: 'Read the Guide',
+  },
+  'try-before-you-buy': {
+    href: 'https://www.labtag.com/cryogenic-sample-kit',
+    label: 'Order Free Samples',
+  },
+  'breakthrough-labeling-technologies-for-biobank': {
+    href: 'https://info.labtag.com/biobank-webinar',
+    label: 'Watch Webinar',
+  },
+  'labeling-best-practices-for-biobanks': {
+    href: 'https://info.labtag.com/biobank-white-paper',
+    label: 'Read the White Paper',
+  },
+}
+
+export function biobankHasProductSection(sectionSlug: string): boolean {
+  return sectionSlug in BIOBANK_SECTIONS
+}
+
+export function biobankTileHref(sectionSlug: string): string | undefined {
+  return BIOBANK_TILES[sectionSlug]
+}
+
+export function biobankResourceAction(
+  sectionSlug: string,
+): { href: string; label: string } | undefined {
+  return BIOBANK_RESOURCES[sectionSlug]
+}
+
+const CANNABIS_SECTIONS: Record<string, { href: string; label: string; quote?: { href: string; label: string } }> = {
+  'packaging-labels-for-cannabis-brands-distributors-and-retailers': {
+    href: 'https://www.labtag.com/shop/category/general-use-labels/?printing_method=laser-inkjet%2Claser%2Cthermal-transfer%2Cdirect-thermal',
+    label: 'View products',
+    quote: { href: '/contact-us', label: 'Get a Quote' },
+  },
+  'plant-identification-labels-for-cannabis-growers': {
+    href: 'https://www.labtag.com/shop/category/more-industries/plant-labels/',
+    label: 'View products',
+  },
+  'tube-vial-and-dish-labels-for-cannabis-testing-labs': {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/thermal-transfer-deep-freeze-labels/?surface=bottles%2Ccryoboxes%2Cmicrocentrifuge-tubes%2Cvials%2Cpcr-tubes',
+    label: 'View products',
+  },
+  printers: {
+    href: 'https://www.labtag.com/shop/category/printing-solution/printers/',
+    label: 'View Products',
+  },
+  scanners: {
+    href: 'https://www.labtag.com/shop/category/printing-solution/scanners/',
+    label: 'View Products',
+  },
+  'printing-kits': {
+    href: 'https://www.labtag.com/shop/category/cannabis-label-printing-kits/',
+    label: 'View Products',
+  },
+}
+
+export function cannabisHasProductSection(sectionSlug: string): boolean {
+  return sectionSlug in CANNABIS_SECTIONS
+}
+
+const CHEMICAL_SECTIONS: Record<string, string> = {
+  'thermal-transfer':
+    'https://www.labtag.com/shop/category/chemical-resistant-labels/thermal-transfer-chemical-resistant-labels/',
+  'direct-thermal':
+    'https://www.labtag.com/shop/category/cryogenic-labels/cryo-chemical-resistant-direct-thermal-labels-for-frozen-surfaces/',
+  'dymo-compatible':
+    'https://www.labtag.com/shop/category/chemical-resistant-labels/dymo-compatible-chemical-resistant-labels/',
+  inkjet:
+    'https://www.labtag.com/shop/category/chemical-resistant-labels/inkjet-xylene-chemical-resistant-labels/',
+  'drums-and-ibc-totes':
+    'https://www.labtag.com/shop/product/ghs-former-2015-whmis-simdut-warning-labels-4-x-3-5-l-010-0-5r/',
+  bottles: 'https://www.labtag.com/shop/category/labels/labels-for-bottles/',
+  'reagents-vials-and-tubes':
+    'https://www.labtag.com/shop/category/labels/labels-for-tubes-vials/',
+  'ghs-container-labels':
+    'https://www.labtag.com/shop/product/ghs-former-2015-whmis-simdut-warning-labels-4-x-3-5-l-010-0-5r/',
+  'hmis-warning-labels':
+    'https://www.labtag.com/shop/product/hmis-warning-label-0-875-x-0-875-wl-015/',
+  'nfpa-warning-labels':
+    'https://www.labtag.com/shop/product/nfpa-warning-labels-1-125-x-1-125-wl-004-blank/',
+  'calibration-and-maintenance-labels': 'https://www.labtag.com/shop/brand-name/caltag/',
+}
+
+const CRYOGENIC_PAGE_SECTIONS: Record<string, string> = {
+  'tubes-vials-and-boxes':
+    'https://www.labtag.com/shop/category/tubes-vials-and-containers-cryo-labels/',
+  microplates: 'https://www.labtag.com/shop/category/cryogenic-labels-for-microplates/',
+  pcr: 'https://www.labtag.com/shop/category/cryogenic-labels/labels-for-pcr-tubes/',
+  'metal-racks-and-canes':
+    'https://www.labtag.com/shop/category/cryogenic-labels/cryo-labels-for-metal-racks/',
+  'cryo-straws':
+    'https://www.labtag.com/shop/category/cryogenic-labels/thermal-transfer-ivf-straws-cryo-labels/',
+  'thermal-transfer':
+    'https://www.labtag.com/shop/category/cryogenic-labels/thermal-transfer-cryogenic-labels/',
+  'direct-thermal':
+    'https://www.labtag.com/shop/category/cryogenic-labels/direct-thermal-cryogenic-labels/',
+  laser: 'https://www.labtag.com/shop/category/cryogenic-labels/laser-cryogenic-labels/',
+  inkjet: 'https://www.labtag.com/shop/category/cryogenic-labels/inkjet-cryogenic-labels/',
+  'dymo-labelwriter-450-series':
+    'https://www.labtag.com/shop/category/cryogenic-labels/dymo-compatible-cryogenic-labels/',
+  'dymo-labelwriter-550-series':
+    'https://www.labtag.com/shop/category/labels/cryogenic-labels/dymo-labelwriter-5-series-cryogenic-labels-for-frozen-vials-surfaces/',
+  writable: 'https://www.labtag.com/shop/category/cryogenic-labels/writable-cryogenic-labels/',
+  automation:
+    'https://www.labtag.com/shop/category/cryogenic-labels/cryogenic-labels-for-automated-labeling-systems/',
+  'frozen-surface':
+    'https://www.labtag.com/shop/category/cryogenic-labels/cryogenic-labels-for-frozen-surfaces/',
+  blackout: 'https://www.labtag.com/shop/category/cryogenic-labels/cryogenic-blackout-labels/',
+  'tamper-evident':
+    'https://www.labtag.com/shop/category/cryogenic-labels/tamper-evident-cryogenic-labels/',
+  'snappeel-technology':
+    'https://www.labtag.com/shop/category/labels/cryogenic-labels/cryo-labels-with-snappeel-technology/',
+  piggyback:
+    'https://www.labtag.com/shop/category/cryogenic-labels/thermal-transfer-piggyback-cryo-labels/',
+  'wrap-around':
+    'https://www.labtag.com/shop/category/cryogenic-labels/cryogenic-wrap-around-labels/',
+  transparent: 'https://www.labtag.com/shop/category/transparent-cryogenic-labels/',
+  'simpeel-technology':
+    'https://www.labtag.com/shop/category/cryogenic-labels/cryo-labels-with-simpeel-technology/',
+  rfid: 'https://www.labtag.com/shop/category/rfid-labels/cryogenic-rfid-labels/',
+}
+
+const DEEP_FREEZE_PAGE_SECTIONS: Record<string, { href: string; label: string; video?: string; videoLabel?: string }> = {
+  'cryo-tubes-vials-and-boxes': {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/?surface=bottles%2Ccryo-vials%2Cvials%2Cslide-storage-boxes%2Ccryoboxes%2Cmicrocentrifuge-tubes',
+    label: 'Shop Products',
+  },
+  microplates: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/?surface=culture-plates-dishes',
+    label: 'Shop Products',
+  },
+  'blood-bag': {
+    href: 'https://www.labtag.com/shop/category/healthcare-labels/blood-bag-labels/',
+    label: 'Shop Products',
+  },
+  pcr: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/?surface=pcr-tubes',
+    label: 'Shop Products',
+    video: 'https://www.youtube.com/watch?v=tgJMfNO4wHs',
+    videoLabel: 'Watch Video',
+  },
+  'thermal-transfer': {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/thermal-transfer-deep-freeze-labels/',
+    label: 'Shop Products',
+  },
+  laser: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/laser-deep-freeze-labels/',
+    label: 'Shop Products',
+  },
+  writable: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/writable-deep-freeze-labels/',
+    label: 'Shop Products',
+  },
+  'dymo-compatible': {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/dymo-compatible-deep-freeze-labels/',
+    label: 'Shop Products',
+  },
+  rfid: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/thermal-transfer-rfid-labels/',
+    label: 'Shop Products',
+  },
+  blackout: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/?product_tag=blackout',
+    label: 'Shop Products',
+  },
+  rectangles: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/?shapes=rectangle',
+    label: 'Rectangles',
+  },
+  circles: {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/?shapes=circle',
+    label: 'Circles',
+  },
+  'rectangles-circles': {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/?shapes=rectangle_circle',
+    label: 'Rectangles + Circles',
+  },
+}
+
+const HISTOLOGY_PAGE_SECTIONS: Record<
+  string,
+  {
+    href: string
+    label: string
+    video?: string
+    videoLabel?: string
+    quote?: { href: string; label: string }
+  }
+> = {
+  'xylene-and-chemical-resistant-labels-for-microscope-slides': {
+    href: 'https://www.labtag.com/shop/category/labels/chemical-resistant-labels/microscope-slide-labels/',
+    label: 'View Products',
+    video: 'https://www.youtube.com/watch?v=8IyAzL3eOBo',
+    videoLabel: 'Watch Video',
+  },
+  'histo-pintag': {
+    href: 'https://www.labtag.com/shop/brand-name/histo-pintag/',
+    label: 'View Products',
+  },
+  histolam: {
+    href: 'https://www.labtag.com/shop/brand-name/histolam/',
+    label: 'View Products',
+    quote: { href: 'https://www.isenet.it', label: 'View Galileo' },
+  },
+  parafitag: {
+    href: 'https://www.labtag.com/shop/category/chemical-resistant-labels/labels-for-paraffin-blocks/',
+    label: 'View Products',
+    video: 'https://www.youtube.com/watch?v=8IyAzL3eOBo',
+    videoLabel: 'Watch Video',
+  },
+  parafigard: {
+    href: 'https://www.labtag.com/shop/brand-name/parafigard/',
+    label: 'View Products',
+  },
+  'freezer-grade-alcohol-resistant-labels': {
+    href: 'https://www.labtag.com/shop/category/deep-freeze-labels/thermal-transfer-deep-freeze-labels/',
+    label: 'View Products',
+  },
+}
+
+export function histologyHasProductSection(slug: string) {
+  return Object.prototype.hasOwnProperty.call(HISTOLOGY_PAGE_SECTIONS, slug)
+}
+
+const GATORCUT_PAGE_SECTIONS: Record<string, string> = {
+  'freezertape-tg-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTU2NiIsInRheF9uYW1lIjoiVEcgKDEpIiwidGV4dCI6IlRHICgxKSJ9XQ==',
+  'freezertape-tdf-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTUyMyIsInRheF9uYW1lIjoiVERGICgyKSIsInRleHQiOiJUREYgKDIpIn1d',
+  'frozenstuck-fst-class': 'https://www.labtag.com/label_class/fst/',
+  'nitrotape-tjtg-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTQ2NSIsInRheF9uYW1lIjoiVEpURyAoMikiLCJ0ZXh0IjoiVEpURyAoMikifV0=',
+  'cryostuck-tape-tfng-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTQ2OSIsInRheF9uYW1lIjoiVEZORyAoMykiLCJ0ZXh0IjoiVEZORyAoMykifV0=',
+  'cryostuck-tape-txs-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTYxMiIsInRheF9uYW1lIjoiVFhTICgyKSIsInRleHQiOiJUWFMgKDIpIn1d',
+  'cryostuck-tape-txc-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTYxNyIsInRheF9uYW1lIjoiVFhDICgyKSIsInRleHQiOiJUWEMgKDIpIn1d',
+  'ubicling-tgs-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTQ2NyIsInRheF9uYW1lIjoiVEdTICgxKSIsInRleHQiOiJUR1MgKDEpIn1d',
+  'clear-ubicling-tgc-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTQ2OCIsInRheF9uYW1lIjoiVEdDICgxKSIsInRleHQiOiJUR0MgKDEpIn1d',
+  'steritape-targ-class':
+    'https://www.labtag.com/shop/category/tapes/laboratory-tapes-with-gatorcut-technology/?sf=W3siZmlsdGVyX2lkIjoibGFiZWxfY2xhc3NfMSIsImZpbHRlcl90eXBlIjoibXVsdGktc2VsZWN0IiwiZmlsdGVyX25hbWUiOiJDbGFzc2VzIiwidGF4X2lkIjoiNTM5OSIsInRheF9uYW1lIjoiVEFSRyAoMSkiLCJ0ZXh0IjoiVEFSRyAoMSkifV0=',
+  'shop-our-cryo-markers': 'https://www.labtag.com/shop/category/markers/',
+}
+
+const DYMO_PAGE_SECTIONS: Record<string, string> = {
+  'cryogenic-labels-for-frozen-vials': 'https://www.labtag.com/label_class/lwcs/',
+  'cryogenic-labels-for-frozen-vials-patented':
+    'https://www.labtag.com/shop/category/labels/cryogenic-labels/dymo-5-series-cryogenic-labels/',
+  'cryogenic-labels-for-frozen-surfaces-with-simpeel-technology-patented':
+    'https://www.labtag.com/label_class/spedcs',
+  'cryogenic-labels': 'https://www.labtag.com/shop/brand-name/cryo-dtermo/',
+  'cryogenic-labels-with-simpeel-technology-patent-pending':
+    'https://www.labtag.com/label_class/sped1f-class',
+  'transparent-deep-freeze-labels-patent-pending': 'https://www.labtag.com/label_class/edft',
+  'heat-resistant-labels-patent-pending': 'https://www.labtag.com/label_class/edap',
+  'water-dissolvable-paper-labels': 'https://www.labtag.com/label_class/edwa',
+  'general-use-labels': 'https://www.labtag.com/shop/brand-name/dtermo/',
+}
+
+export function chemicalHasProductSection(sectionSlug: string): boolean {
+  return sectionSlug in CHEMICAL_SECTIONS
+}
+
 export function resolveSplitCardActions(
   sectionSlug: string,
   solutionSlug?: string,
   sectionTitle?: string,
 ): SplitCardActions {
+  if (solutionSlug === 'autoclave-labels') {
+    const section = AUTOCLAVE_SECTIONS[sectionSlug]
+    if (section) {
+      return {
+        shopHref: section.href,
+        shopLabel: 'Products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        videoHref: section.video,
+      }
+    }
+  }
+
+  if (solutionSlug === 'biobanking-labels') {
+    const section = BIOBANK_SECTIONS[sectionSlug]
+    if (section) {
+      return {
+        shopHref: section.href,
+        shopLabel: 'Products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        videoHref: section.video,
+      }
+    }
+  }
+
+  if (solutionSlug === 'cannabis-labels') {
+    const section = CANNABIS_SECTIONS[sectionSlug]
+    if (section) {
+      return {
+        shopHref: section.href,
+        shopLabel: 'products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        actionLabel: section.label,
+        quote: section.quote,
+      }
+    }
+  }
+
+  if (solutionSlug === 'chemical-container-labeling') {
+    const href = CHEMICAL_SECTIONS[sectionSlug]
+    if (href) {
+      return {
+        shopHref: href,
+        shopLabel: 'products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        actionLabel: 'View Products',
+      }
+    }
+  }
+
+  if (solutionSlug === 'gatorcut') {
+    const href = GATORCUT_PAGE_SECTIONS[sectionSlug]
+    if (href) {
+      return {
+        shopHref: href,
+        shopLabel: 'Products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        actionLabel: 'Shop Products',
+      }
+    }
+  }
+
+  if (solutionSlug === 'dymo-compatible-laboratory-labels') {
+    const href = DYMO_PAGE_SECTIONS[sectionSlug]
+    if (href) {
+      return {
+        shopHref: href,
+        shopLabel: 'Products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        actionLabel: 'View Products',
+      }
+    }
+  }
+
+  if (solutionSlug === 'deep-freeze') {
+    const section = DEEP_FREEZE_PAGE_SECTIONS[sectionSlug]
+    if (section) {
+      return {
+        shopHref: section.href,
+        shopLabel: 'Products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        actionLabel: section.label,
+        videoHref: section.video,
+        videoLabel: section.videoLabel,
+      }
+    }
+  }
+
+  if (solutionSlug === 'histology-labels') {
+    const section = HISTOLOGY_PAGE_SECTIONS[sectionSlug]
+    if (section) {
+      return {
+        shopHref: section.href,
+        shopLabel: 'Products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        actionLabel: section.label,
+        videoHref: section.video,
+        videoLabel: section.videoLabel,
+        quote: section.quote,
+      }
+    }
+  }
+
+  if (solutionSlug === 'cryogenic-labels') {
+    const href = CRYOGENIC_PAGE_SECTIONS[sectionSlug]
+    if (href) {
+      return {
+        shopHref: href,
+        shopLabel: 'Products',
+        sampleHref: LABTAG_SAMPLE_URL,
+        actionLabel: 'Shop Products',
+      }
+    }
+  }
+
   const cryo = Boolean(solutionSlug && CRYO_SOLUTION_SLUGS.has(solutionSlug))
   const mapped = SHOP_BY_SECTION[sectionSlug]
   const shopLabel = mapped?.label ?? titleToShopLabel(sectionTitle)
-  const shopHref = mapped
-    ? shopSearchUrl(mapped.query)
-    : cryo
-      ? LABTAG_CRYO_SHOP_URL
-      : shopSearchUrl(shopLabel)
+  const shopHref = mapped?.href
+    ? mapped.href
+    : mapped
+      ? shopSearchUrl(mapped.query)
+      : cryo
+        ? LABTAG_CRYO_SHOP_URL
+        : shopSearchUrl(shopLabel)
 
   return {
     shopHref,

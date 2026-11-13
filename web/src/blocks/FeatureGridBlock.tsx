@@ -10,41 +10,8 @@ function trimBody(text: string, max = 88): string {
   return `${(at > 48 ? cut.slice(0, at) : cut).trimEnd()}…`
 }
 
-function isGuideJump(block: FeatureGridBlock): boolean {
-  // Only “By …” TOC rows — linked content feature cards stay as cards.
-  return Boolean(block.title && /^by\s+/i.test(block.title))
-}
-
 export function FeatureGridBlockView({ block }: { block: FeatureGridBlock }) {
   const Heading = block.level === 3 ? 'h3' : 'h2'
-
-  if (isGuideJump(block)) {
-    return (
-      <section className="block block-features block-features-jump">
-        {block.title ? <Heading className="feature-jump-label">{block.title}</Heading> : null}
-        <nav className="feature-jump" aria-label={block.title ?? 'Section links'}>
-          {block.items.map((item, index) => (
-            <span key={item.title} className="feature-jump-item">
-              {item.href ? (
-                <a href={item.href} title={item.body} className="feature-jump-link">
-                  {item.title}
-                </a>
-              ) : (
-                <span title={item.body} className="feature-jump-link feature-jump-text">
-                  {item.title}
-                </span>
-              )}
-              {index < block.items.length - 1 ? (
-                <span className="feature-jump-sep" aria-hidden="true">
-                  ·
-                </span>
-              ) : null}
-            </span>
-          ))}
-        </nav>
-      </section>
-    )
-  }
 
   return (
     <section className="block block-features">

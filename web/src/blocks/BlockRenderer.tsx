@@ -1,23 +1,60 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import {
+  autoclaveHasProductSection,
+  biobankHasProductSection,
+  biobankResourceAction,
+  biobankTileHref,
+  cannabisHasProductSection,
+  chemicalHasProductSection,
+  histologyHasProductSection,
+} from '@/content/splitActions'
 import { slugify } from '@/content/slugify'
 import type {
   ContentBlock,
+  CtaBlock,
   FeatureGridBlock,
   ImageBlock,
   SectionBlock,
   VideoBlock,
 } from '@/content/types'
 import { BulletListBlockView } from './BulletListBlock'
+import { AutomatedLayout } from './AutomatedLayout'
+import { ChemicalLayout } from './ChemicalLayout'
+import { ClinicalLayout } from './ClinicalLayout'
+import { CovidLayout } from './CovidLayout'
+import { CryogenicLayout } from './CryogenicLayout'
+import { CryostuckLayout } from './CryostuckLayout'
+import { ResitagLayout } from './ResitagLayout'
+import { CustomLayout } from './CustomLayout'
+import { DeepFreezeLayout } from './DeepFreezeLayout'
+import { DymoLayout } from './DymoLayout'
+import { GatorcutLayout } from './GatorcutLayout'
+import { HardStickLayout } from './HardStickLayout'
+import { HistologyLayout } from './HistologyLayout'
+import { IndustrialLayout } from './IndustrialLayout'
+import { IvfLayout } from './IvfLayout'
+import { LabelPrintingLayout } from './LabelPrintingLayout'
+import { LabelSoftwareLayout } from './LabelSoftwareLayout'
+import { LaboratoryLayout } from './LaboratoryLayout'
+import { LabTapesLayout } from './LabTapesLayout'
+import { PcrLayout } from './PcrLayout'
+import { PreLabeledLayout } from './PreLabeledLayout'
+import { RfidLayout } from './RfidLayout'
+import { SlideOverLayout } from './SlideOverLayout'
+import { SnappeelLayout } from './SnappeelLayout'
+import { AutoclaveCaseStudy, AutoclaveContact, AutoclaveGuide } from './AutoclaveSections'
 import { ContentSplitActions } from './ContentSplitActions'
 import { CtaBlockView } from './CtaBlock'
 import { FaqBlockView } from './FaqBlock'
 import { FeatureGridBlockView } from './FeatureGridBlock'
 import { ImageBlockView } from './ImageBlock'
+import { IsoBanner } from './IsoBanner'
+import { SampleBanner } from './SampleBanner'
 import { ImageSlider } from './ImageSlider'
 import { NumberedStepsBlockView } from './NumberedStepsBlock'
 import { QuoteBlockView } from './QuoteBlock'
 import { SectionBlockView } from './SectionBlock'
-import { SolutionQuickMenu } from './SolutionQuickMenu'
 import { TableBlockView } from './TableBlock'
 import { TextBlockView } from './TextBlock'
 import { VideoBlockView } from './VideoBlock'
@@ -26,9 +63,6 @@ type Props = {
   blocks: ContentBlock[]
   /** Current solution page slug — used for shop/video destinations on split cards. */
   solutionSlug?: string
-  /** Solution page title — shown on the right of the sticky jump menu. */
-  solutionTitle?: string
-  /** Combined catalog guides omit jump-menu anchors and per-section Watch chrome. */
   variant?: 'catalog' | 'archive'
 }
 
@@ -173,13 +207,194 @@ function catalogSection(
   )
 }
 
-export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: Props) {
+function AnimalSample({ cta }: { cta: CtaBlock }) {
+  return (
+    <SampleBanner
+      title={cta.title}
+      body={cta.body}
+      href={cta.actionHref?.trim() || '/samples'}
+      label={cta.actionLabel?.trim() || 'Order Free Samples Now'}
+    />
+  )
+}
+
+export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
   const catalog = variant === 'catalog'
+  if (solutionSlug === 'automated-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <AutomatedLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'chemical-container-labeling' && !catalog) {
+    return (
+      <div className="block-stack">
+        <ChemicalLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'clinical-trial-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <ClinicalLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'covid-19-laboratory-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <CovidLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'histology-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <HistologyLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'labels-for-hard-to-stick-surfaces' && !catalog) {
+    return (
+      <div className="block-stack">
+        <HardStickLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'industrial-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <IndustrialLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'ivf-labeling-solutions' && !catalog) {
+    return (
+      <div className="block-stack">
+        <IvfLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'label-printing-solutions' && !catalog) {
+    return (
+      <div className="block-stack">
+        <LabelPrintingLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'label-software' && !catalog) {
+    return (
+      <div className="block-stack">
+        <LabelSoftwareLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'laboratory-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <LaboratoryLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'lab-tapes' && !catalog) {
+    return (
+      <div className="block-stack">
+        <LabTapesLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'pcr-labels-and-tags' && !catalog) {
+    return (
+      <div className="block-stack">
+        <PcrLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'pre-labeled-labware' && !catalog) {
+    return (
+      <div className="block-stack">
+        <PreLabeledLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'rfid-labels-tags' && !catalog) {
+    return (
+      <div className="block-stack">
+        <RfidLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'microscope-slide-over-labeling' && !catalog) {
+    return (
+      <div className="block-stack">
+        <SlideOverLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'snappeel-2' && !catalog) {
+    return (
+      <div className="block-stack">
+        <SnappeelLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'gatorcut' && !catalog) {
+    return (
+      <div className="block-stack">
+        <GatorcutLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'dymo-compatible-laboratory-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <DymoLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'deep-freeze' && !catalog) {
+    return (
+      <div className="block-stack">
+        <DeepFreezeLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'custom-laboratory-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <CustomLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'cryogenic-labels' && !catalog) {
+    return (
+      <div className="block-stack">
+        <CryogenicLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'cryostuck' && !catalog) {
+    return (
+      <div className="block-stack">
+        <CryostuckLayout blocks={blocks} />
+      </div>
+    )
+  }
+  if (solutionSlug === 'resitag-2' && !catalog) {
+    return (
+      <div className="block-stack">
+        <ResitagLayout blocks={blocks} />
+      </div>
+    )
+  }
   const varyCatalog = catalog && solutionSlug === 'cryogenic'
   const showSplitActions = !catalog
   const nodes: ReactNode[] = []
   const pendingSplits: ReactNode[] = []
   let splitRunKey = 'split-grid-0'
+  let animalRow = 0
+  let cannabisRow = 0
   let i = 0
 
   const pushNonSplit = (node: ReactNode) => {
@@ -197,6 +412,40 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
     }
 
     if (block.type === 'section') {
+      if (solutionSlug === 'biobanking-labels' && slugify(block.title) === 'try-before-you-buy') {
+        const { next: afterImages } = takeImages(blocks, i + 1)
+        const action = biobankResourceAction('try-before-you-buy')
+        pushNonSplit(
+          <SampleBanner
+            key={`biobank-sample-${i}`}
+            title={block.title}
+            href={action?.href ?? 'https://www.labtag.com/cryogenic-sample-kit'}
+            label={action?.label ?? 'Order Free Samples'}
+          />,
+        )
+        i = afterImages
+        continue
+      }
+
+      if (solutionSlug === 'biobanking-labels' && slugify(block.title) === 'view-all-cryogenic-labels') {
+        pushNonSplit(
+          <p key={`biobank-all-${i}`} className="biobank-more">
+            <Link className="btn btn-primary" to="/solutions/cryogenic-labels">
+              View All Cryogenic Labels
+            </Link>
+          </p>,
+        )
+        i += 1
+        continue
+      }
+
+      if (solutionSlug === 'autoclave-labels' && /^get in touch$/i.test(block.title)) {
+        pushNonSplit(
+          <AutoclaveContact key={`autoclave-contact-${i}`} body={block.paragraphs[0] ?? ''} />,
+        )
+        i += 1
+        continue
+      }
       const sectionAnchor = catalog ? undefined : slugify(block.title)
       const following = blocks[i + 1]
       if (following?.type === 'video') {
@@ -249,7 +498,8 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
       }
 
       const { images, next: afterImages } = takeImages(blocks, i + 1)
-      if (images.length) {
+      const separateGallery = solutionSlug === 'clinical-trial-labels' && images.length > 1
+      if (images.length && !separateGallery) {
         const absorbed = absorbFollowingCopy(blocks, afterImages, block)
         const allLogos = images.every((image) => image.variant === 'logo')
         if (allLogos) {
@@ -280,25 +530,134 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
           continue
         }
 
-        if (!pendingSplits.length) splitRunKey = `split-grid-${i}`
-        pendingSplits.push(
-          <div key={`split-${i}`} id={sectionAnchor} className="content-split">
+        if (solutionSlug === 'animal-healthcare') {
+          const flip = animalRow % 2 === 1
+          animalRow += 1
+          pushNonSplit(
+            <section
+              key={`animal-row-${i}`}
+              id={sectionAnchor}
+              className={`animal-row${flip ? ' is-flip' : ''}`}
+            >
+              <div className="animal-row-media">
+                <ImageSlider images={images} />
+              </div>
+              <div className="animal-row-copy">
+                <SectionBlockView block={absorbed.section} withAnchor={false} />
+                {absorbed.bullets?.type === 'bulletList' ? (
+                  <BulletListBlockView block={absorbed.bullets} variant="plain" />
+                ) : null}
+                {sectionAnchor ? (
+                  <ContentSplitActions
+                    sectionSlug={sectionAnchor}
+                    sectionTitle={block.title}
+                    solutionSlug={solutionSlug}
+                  />
+                ) : null}
+              </div>
+            </section>,
+          )
+          i = absorbed.next
+          continue
+        }
+
+        if (solutionSlug === 'autoclave-labels' && sectionAnchor === 'autoclave-resistant-label-guide') {
+          pushNonSplit(
+            <AutoclaveGuide key={`autoclave-guide-${i}`} section={absorbed.section} images={images} />,
+          )
+          i = absorbed.next
+          continue
+        }
+
+        if (solutionSlug === 'autoclave-labels' && /printparts/i.test(block.title)) {
+          pushNonSplit(
+            <AutoclaveCaseStudy key={`autoclave-case-${i}`} section={absorbed.section} images={images} />,
+          )
+          i = absorbed.next
+          continue
+        }
+
+        const showActions =
+          showSplitActions &&
+          Boolean(sectionAnchor) &&
+          solutionSlug !== 'automated-labels' &&
+          (solutionSlug !== 'autoclave-labels' ||
+            autoclaveHasProductSection(sectionAnchor ?? '')) &&
+          (solutionSlug !== 'biobanking-labels' ||
+            biobankHasProductSection(sectionAnchor ?? '')) &&
+          (solutionSlug !== 'cannabis-labels' ||
+            cannabisHasProductSection(sectionAnchor ?? '')) &&
+          (solutionSlug !== 'chemical-container-labeling' ||
+            chemicalHasProductSection(sectionAnchor ?? '')) &&
+          solutionSlug !== 'covid-19-laboratory-labels' &&
+          solutionSlug !== 'custom-laboratory-labels' &&
+          (solutionSlug !== 'histology-labels' ||
+            histologyHasProductSection(sectionAnchor ?? ''))
+        const biobankResource =
+          solutionSlug === 'biobanking-labels' && sectionAnchor
+            ? biobankResourceAction(sectionAnchor)
+            : undefined
+        const biobankTile =
+          solutionSlug === 'biobanking-labels' && sectionAnchor
+            ? biobankTileHref(sectionAnchor)
+            : undefined
+        const media = <ImageSlider images={images} className="content-split-media" />
+        const mediaFirst =
+          solutionSlug === 'cannabis-labels' &&
+          absorbed.bullets?.type === 'bulletList' &&
+          cannabisRow++ % 2 === 0
+        const split = (
+          <div
+            key={`split-${i}`}
+            id={sectionAnchor}
+            className={`content-split${mediaFirst ? ' is-media-first' : ''}`}
+          >
             <div className="content-split-copy">
               <SectionBlockView block={absorbed.section} withAnchor={false} />
               {absorbed.bullets?.type === 'bulletList' ? (
                 <BulletListBlockView block={absorbed.bullets} variant="plain" />
               ) : null}
-              {showSplitActions && sectionAnchor ? (
+              {showActions && sectionAnchor ? (
                 <ContentSplitActions
                   sectionSlug={sectionAnchor}
                   sectionTitle={block.title}
                   solutionSlug={solutionSlug}
                 />
               ) : null}
+              {biobankResource ? (
+                <div className="content-split-actions">
+                  <a
+                    className="btn btn-primary"
+                    href={biobankResource.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {biobankResource.label}
+                  </a>
+                </div>
+              ) : null}
             </div>
-            <ImageSlider images={images} className="content-split-media" />
-          </div>,
+            {biobankTile ? (
+              <Link className="biobank-tile-link" to={biobankTile}>
+                {media}
+              </Link>
+            ) : (
+              media
+            )}
+          </div>
         )
+        const cannabisBulletRow =
+          solutionSlug === 'cannabis-labels' && absorbed.bullets?.type === 'bulletList'
+        if (
+          solutionSlug === 'autoclave-labels' ||
+          solutionSlug === 'automated-labels' ||
+          cannabisBulletRow
+        ) {
+          pushNonSplit(split)
+        } else {
+          if (!pendingSplits.length) splitRunKey = `split-grid-${i}`
+          pendingSplits.push(split)
+        }
         i = absorbed.next
         continue
       }
@@ -361,6 +720,21 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
       }
     }
 
+    if (block.type === 'image') {
+      const next = blocks[i + 1]
+      const after = blocks[i + 2]
+      if (solutionSlug === 'animal-healthcare' && next?.type === 'cta') {
+        pushNonSplit(<AnimalSample key={`animal-sample-${i}`} cta={next} />)
+        i += 2
+        continue
+      }
+      if (next?.type === 'section' && after?.type === 'section' && /^iso\b/i.test(next.title)) {
+        pushNonSplit(<IsoBanner key={`iso-banner-${i}`} />)
+        i += 3
+        continue
+      }
+    }
+
     if (block.type === 'image' && block.variant === 'gallery') {
       const { images, next } = takeImages(blocks, i)
       pushNonSplit(<ImageSlider key={`gallery-${i}`} images={images} className="image-gallery" />)
@@ -369,17 +743,7 @@ export function BlockRenderer({ blocks, solutionSlug, solutionTitle, variant }: 
     }
 
     if (isGuideFeatureGrid(block)) {
-      const jumpNodes: ReactNode[] = []
-      const start = i
-      while (i < blocks.length && isGuideFeatureGrid(blocks[i])) {
-        jumpNodes.push(renderBlock(blocks[i], i))
-        i += 1
-      }
-      pushNonSplit(
-        <SolutionQuickMenu key={`quick-menu-${start}`} title={solutionTitle}>
-          {jumpNodes}
-        </SolutionQuickMenu>,
-      )
+      while (i < blocks.length && isGuideFeatureGrid(blocks[i])) i += 1
       continue
     }
 

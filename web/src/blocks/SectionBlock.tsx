@@ -1,5 +1,6 @@
 import { slugify } from '@/content/slugify'
 import type { SectionBlock } from '@/content/types'
+import { RichText } from './RichText'
 
 type Props = {
   block: SectionBlock
@@ -15,7 +16,9 @@ export function SectionBlockView({ block, withAnchor = true }: Props) {
     <section className="block block-section" id={id}>
       <Heading>{block.title}</Heading>
       {block.paragraphs.map((paragraph) => (
-        <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+        <p key={paragraph.slice(0, 48)}>
+          <RichText text={paragraph} />
+        </p>
       ))}
     </section>
   )

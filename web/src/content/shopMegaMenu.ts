@@ -6,7 +6,7 @@ import {
   LABTAG_SHOP_URL,
   LABTAG_TAPES_URL,
   LABTAG_TAGS_URL,
-  LABTAG_TEMPLATES_HUB_URL,
+  TEMPLATES_PATH,
   LABTAG_VIDEOS_URL,
   SAMPLE_PATH,
 } from '@/content/labtagLinks'
@@ -43,7 +43,7 @@ export type ShopMegaCategory = {
 export const SHOP_MEGA_FOOTER = [
   { label: 'Shop by label class', href: LABTAG_LABELS_URL, icon: 'tag' as const },
   { label: 'Find a label', href: LABTAG_FINDER_URL, icon: 'finder' as const },
-  { label: 'Browse by template', href: LABTAG_TEMPLATES_HUB_URL, icon: 'template' as const },
+  { label: 'Browse by template', href: TEMPLATES_PATH, icon: 'template' as const },
 ] as const
 
 export const SHOP_MEGA_PROMO = {
@@ -225,7 +225,7 @@ export const SHOP_MEGA_CATEGORIES: ShopMegaCategory[] = [
         heading: 'Consumables & setup',
         links: [
           { label: 'Ribbons', href: shopSearch('thermal transfer ribbons') },
-          { label: 'Label templates', href: LABTAG_TEMPLATES_HUB_URL },
+          { label: 'Label templates', href: TEMPLATES_PATH },
           { label: 'Setup videos', href: LABTAG_VIDEOS_URL },
         ],
       },
