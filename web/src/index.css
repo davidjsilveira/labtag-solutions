@@ -2846,7 +2846,8 @@ main {
 
 .lander-temps,
 .lander-index,
-.lander-all {
+.lander-all,
+.solution-grid-section {
   padding: var(--space-xl) 0;
   border-bottom: 1px solid var(--color-rule);
 }
@@ -3128,6 +3129,38 @@ main {
   -webkit-box-orient: vertical;
   overflow: hidden;
   transition: color var(--dur-short) var(--ease-out);
+}
+
+.solution-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.solution-grid > li {
+  display: flex;
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .solution-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .solution-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .solution-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .solution-card p {
@@ -3689,241 +3722,6 @@ main {
 .lander-index-list a:hover {
   color: var(--color-link);
   text-decoration: underline;
-}
-
-.lander-new-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: 13rem 13rem 18.5rem;
-  grid-template-areas:
-    "feat feat clinical histo"
-    "feat feat tapes dymo"
-    "print print labware labware";
-  gap: var(--space-sm);
-}
-
-.lander-new-list > li {
-  display: flex;
-  min-width: 0;
-  min-height: 0;
-}
-
-.lander-new-list > li:first-child {
-  grid-area: feat;
-}
-
-.lander-new-list > li:nth-child(2) {
-  grid-area: clinical;
-}
-
-.lander-new-list > li:nth-child(3) {
-  grid-area: histo;
-}
-
-.lander-new-list > li:nth-child(4) {
-  grid-area: tapes;
-}
-
-.lander-new-list > li:nth-child(5) {
-  grid-area: dymo;
-}
-
-.lander-new-list > li:nth-child(6) {
-  grid-area: print;
-}
-
-.lander-new-list > li:nth-child(7) {
-  grid-area: labware;
-}
-
-.lander-new-link {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  padding: 0;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  background: var(--color-surface);
-  border: 0;
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card-rest);
-  transition: box-shadow var(--dur-short) var(--ease-out);
-}
-
-.lander-new-link:hover {
-  color: inherit;
-  text-decoration: none;
-  box-shadow: var(--shadow-card);
-}
-
-.lander-new-link:hover .lander-new-copy strong {
-  color: var(--color-link);
-}
-
-.lander-new-link:hover .lander-new-copy span {
-  color: var(--color-ink-2);
-}
-
-.lander-new-list > li.is-feature .lander-new-link:hover .lander-new-copy strong,
-.lander-new-list > li.is-feature .lander-new-link:hover .lander-new-copy span,
-.lander-new-list > li.is-caption .lander-new-link:hover .lander-new-copy strong,
-.lander-new-list > li.is-caption .lander-new-link:hover .lander-new-copy span {
-  color: #fff;
-}
-
-.lander-new-link:hover .lander-new-copy strong::after {
-  opacity: 1;
-}
-
-.lander-new-media,
-.lander-new-media-empty {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border: 0;
-  border-radius: 0;
-  background: var(--color-paper-2);
-}
-
-.lander-new-list > li.is-feature .lander-new-media,
-.lander-new-list > li.is-feature .lander-new-media-empty {
-  object-position: 68% 28%;
-}
-
-.lander-new-copy {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  gap: var(--space-3xs);
-  align-content: end;
-  min-width: 0;
-  padding: var(--space-sm);
-  background: var(--color-surface);
-}
-
-.lander-new-list > li.is-feature .lander-new-copy {
-  padding: 5.5rem var(--space-md) var(--space-md);
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--labtag-ga-black) 78%, transparent) 0%,
-    color-mix(in srgb, var(--labtag-ga-black) 34%, transparent) 58%,
-    transparent 100%
-  );
-}
-
-.lander-new-list > li.is-feature .lander-new-copy strong {
-  color: #fff;
-}
-
-.lander-new-list > li.is-feature .lander-new-copy span {
-  color: color-mix(in srgb, #fff 84%, transparent);
-}
-
-.lander-new-list > li.is-feature .lander-new-copy strong::after {
-  color: #fff;
-}
-
-.lander-new-list > li.is-caption .lander-new-copy {
-  padding: 2.75rem 0.85rem 0.75rem;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--labtag-ga-black) 78%, transparent) 0%,
-    color-mix(in srgb, var(--labtag-ga-black) 34%, transparent) 58%,
-    transparent 100%
-  );
-}
-
-.lander-new-list > li.is-caption .lander-new-copy strong,
-.lander-new-list > li.is-caption .lander-new-copy strong::after {
-  color: #fff;
-}
-
-.lander-new-list > li.is-caption .lander-new-copy span {
-  color: color-mix(in srgb, #fff 84%, transparent);
-}
-
-.lander-new-copy strong {
-  position: relative;
-  padding-right: 1.15em;
-  font-size: var(--text-md);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  transition: color var(--dur-short) var(--ease-out);
-}
-
-.lander-new-list > li.is-feature .lander-new-copy strong {
-  font-size: var(--text-lg);
-}
-
-.lander-new-copy strong::after {
-  content: "→";
-  position: absolute;
-  right: 0;
-  bottom: 0.12em;
-  color: var(--color-link);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--dur-short) var(--ease-out);
-}
-
-.lander-new-copy span {
-  font-size: var(--text-sm);
-  line-height: 1.45;
-  color: var(--color-ink-2);
-  font-weight: 400;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-@media (max-width: 1100px) {
-  .lander-new-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 20rem 13rem 13rem 16.5rem 16.5rem;
-    grid-template-areas:
-      "feat feat"
-      "clinical histo"
-      "tapes dymo"
-      "print print"
-      "labware labware";
-  }
-}
-
-@media (max-width: 720px) {
-  .lander-new-list {
-    grid-template-columns: 1fr;
-    grid-template-rows: 20rem repeat(4, 14rem) 16.5rem 16.5rem;
-    grid-template-areas:
-      "feat"
-      "clinical"
-      "histo"
-      "tapes"
-      "dymo"
-      "print"
-      "labware";
-  }
-
-  .lander-new-list > li.is-feature .lander-new-copy strong {
-    font-size: var(--text-md);
-  }
 }
 
 @media (max-width: 960px) {

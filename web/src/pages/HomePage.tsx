@@ -1,64 +1,9 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motionIndex, usePageMotion } from '@/hooks/usePageMotion'
-import { SolutionCarousel } from '@/components/SolutionCarousel'
-import { TemperatureSlider } from '@/components/TemperatureSlider'
+import { SolutionCard } from '@/components/SolutionCard'
 import { pagesForBrowseAll } from '@/content/categories'
 import { CONTACT_PATH, LABTAG_SHOP_URL, SAMPLE_PATH } from '@/content/labtagLinks'
-import { getPage } from '@/content/loadPages'
-import { previewImage } from '@/content/previewImage'
-import { resolveImageSrc } from '@/content/resolveImage'
-import type { SolutionPage } from '@/content/types'
-
-const FEATURED_BENTO = [
-  { slug: 'cryogenic-labels', layout: 'feature' },
-  { slug: 'clinical-trial-labels', layout: 'caption' },
-  { slug: 'histology-labels', layout: 'caption' },
-  { slug: 'lab-tapes', layout: 'caption' },
-  { slug: 'dymo-compatible-laboratory-labels', layout: 'caption' },
-  { slug: 'label-printing-solutions', layout: 'caption' },
-  { slug: 'automated-labels', layout: 'caption' },
-] as const
-
-function FeaturedCard({
-  page,
-  layout,
-  priority,
-}: {
-  page: SolutionPage
-  layout: (typeof FEATURED_BENTO)[number]['layout']
-  priority?: boolean
-}) {
-  const image = previewImage(page)
-  const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
-  const showExcerpt = layout === 'feature' || layout === 'caption'
-
-  return (
-    <Link to={`/solutions/${page.slug}`} className="lander-new-link motion-sheen-wrap">
-      {resolved ? (
-        <img
-          className="lander-new-media"
-          src={resolved.primary}
-          alt=""
-          loading={priority ? 'eager' : 'lazy'}
-          fetchPriority={priority ? 'high' : 'auto'}
-          decoding="async"
-          onError={(event) => {
-            if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
-              event.currentTarget.src = resolved.fallback
-            }
-          }}
-        />
-      ) : (
-        <span className="lander-new-media lander-new-media-empty" aria-hidden="true" />
-      )}
-      <span className="lander-new-copy">
-        <strong>{page.title}</strong>
-        {showExcerpt && page.excerpt ? <span>{page.excerpt}</span> : null}
-      </span>
-    </Link>
-  )
-}
 
 export function HomePage() {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -89,49 +34,14 @@ export function HomePage() {
         </div>
       </header>
 
-      <section
-        className="lander-index lander-new"
-        aria-label="Featured solutions"
-        id="new-articles"
-        data-motion-section
-      >
-        <ul className="lander-new-list">
-          {FEATURED_BENTO.map((item, index) => {
-            const page = getPage(item.slug)
-            if (!page) return null
-            return (
-              <li key={page.slug} className={`is-${item.layout}`} style={motionIndex(index)}>
-                <FeaturedCard page={page} layout={item.layout} priority={index < 3} />
-              </li>
-            )
-          })}
-        </ul>
-      </section>
-
-      <section className="lander-all" aria-label="Featured solutions">
-        <SolutionCarousel heading="Featured solutions" />
-      </section>
-
-      <section className="lander-index" aria-labelledby="all-articles-heading" id="all-articles">
-        <header className="lander-index-head">
-          <h2 id="all-articles-heading">All articles</h2>
-          <p className="lander-section-lede">Every solution guide, in one list.</p>
-        </header>
-        <ul className="lander-index-list">
+      <section className="solution-grid-section" aria-label="All solutions">
+        <ul className="solution-grid">
           {articles.map((page) => (
             <li key={page.slug}>
-              <Link to={`/solutions/${page.slug}`}>{page.title}</Link>
+              <SolutionCard page={page} />
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className="lander-temps" aria-label="Pick by storage temperature">
-        <h2>Not sure where to start? Pick a temperature.</h2>
-        <p className="lander-section-lede">
-          Drag to your storage temperature — we will point you at the matching guide.
-        </p>
-        <TemperatureSlider />
       </section>
 
       <aside className="lander-cta block-cta">
