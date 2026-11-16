@@ -6,6 +6,7 @@ import type {
   SectionBlock,
   TextBlock,
 } from '@/content/types'
+import { AutoclaveCaseStudy } from './AutoclaveSections'
 import { IsoBanner } from './IsoBanner'
 import { RichText } from './RichText'
 
@@ -42,28 +43,12 @@ export function CovidLayout({ blocks }: { blocks: ContentBlock[] }) {
     if (section.title === 'Case Study' && asSection(blocks[i + 1])) {
       const story = blocks[i + 1] as SectionBlock
       const image = asImage(blocks[i + 2])
-      const body = story.paragraphs.filter((paragraph) => !linkOnly(paragraph))
-      const action = story.paragraphs.map(linkOnly).find(Boolean)
       nodes.push(
-        <section key={story.title} className="covid-case" id="case-study">
-          <p className="covid-kicker">Case Study</p>
-          <div className="covid-case-grid">
-            {image ? <img src={image.src} alt="" /> : null}
-            <div>
-              <h2>{story.title}</h2>
-              {body.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>
-                  <RichText text={paragraph} />
-                </p>
-              ))}
-              {action ? (
-                <a className="btn btn-primary" href={action.href} target="_blank" rel="noreferrer">
-                  {action.label}
-                </a>
-              ) : null}
-            </div>
-          </div>
-        </section>,
+        <AutoclaveCaseStudy
+          key={story.title}
+          section={story}
+          images={image ? [image] : []}
+        />,
       )
       i += image ? 3 : 2
       continue

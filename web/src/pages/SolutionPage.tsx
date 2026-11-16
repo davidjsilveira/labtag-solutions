@@ -6,6 +6,33 @@ import { pagesForBrowseAll } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 import type { HeroImage } from '@/content/types'
 
+function AdjacentPager({
+  prev,
+  next,
+}: {
+  prev?: { slug: string; title: string }
+  next?: { slug: string; title: string }
+}) {
+  return (
+    <nav className="pager" aria-label="Adjacent solutions">
+      {prev ? (
+        <Link to={`/solutions/${prev.slug}`} className="pager-link prev">
+          <span>Previous</span>
+          <strong>{prev.title}</strong>
+        </Link>
+      ) : (
+        <span />
+      )}
+      {next ? (
+        <Link to={`/solutions/${next.slug}`} className="pager-link next">
+          <span>Next</span>
+          <strong>{next.title}</strong>
+        </Link>
+      ) : null}
+    </nav>
+  )
+}
+
 export function SolutionPage() {
   const { slug = '' } = useParams()
   const page = getPage(slug)
@@ -85,6 +112,7 @@ export function SolutionPage() {
         points={heroPoints}
         note={covidNote ?? pcrNote}
         gallery={cryostuckGallery}
+        cycle={<AdjacentPager prev={prev} next={next} />}
       />
       {cannabisLead.length ? (
         <div className="cannabis-lead">
@@ -97,22 +125,7 @@ export function SolutionPage() {
       ) : null}
       <BlockRenderer blocks={bodyBlocks} solutionSlug={page.slug} />
 
-      <nav className="pager" aria-label="Adjacent solutions">
-          {prev ? (
-            <Link to={`/solutions/${prev.slug}`} className="pager-link prev">
-              <span>Previous</span>
-              <strong>{prev.title}</strong>
-            </Link>
-          ) : (
-            <span />
-          )}
-          {next ? (
-            <Link to={`/solutions/${next.slug}`} className="pager-link next">
-              <span>Next</span>
-              <strong>{next.title}</strong>
-            </Link>
-          ) : null}
-      </nav>
+      <AdjacentPager prev={prev} next={next} />
     </article>
   )
 }

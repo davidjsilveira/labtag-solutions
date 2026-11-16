@@ -25,7 +25,7 @@ function ChemicalCard({
 }: {
   card: Card
   id: string
-  layout: 'gallery' | 'labels' | 'print' | 'copy'
+  layout: 'gallery' | 'labels' | 'print'
 }) {
   const parsed = cardCopy(card.section.paragraphs)
   const mapped = resolveSplitCardActions(slugify(card.section.title), 'chemical-container-labeling', card.section.title)
@@ -45,12 +45,7 @@ function ChemicalCard({
           </p>
         ))}
         {label && href ? (
-          <a
-            className={layout === 'copy' ? 'chemical-link' : 'btn btn-primary'}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a className="btn btn-primary" href={href} target="_blank" rel="noreferrer">
             {label}
           </a>
         ) : null}
@@ -112,48 +107,38 @@ export function ChemicalLayout({ blocks }: { blocks: ContentBlock[] }) {
     }
 
     const printing = /printing method/i.test(block.title)
-    const prepared = cards.map((card) =>
-      card.image || !printing ? card : { ...card, image: images.get(card.section.title) },
-    )
+    // Keep cards that ship with media. Printing-method rows may borrow the shop
+    // tile photo; other text-only teasers are dropped (covered later with media).
+    const prepared = cards.flatMap((card) => {
+      if (card.image) return [card]
+      const borrowed = printing ? images.get(card.section.title) : undefined
+      return borrowed ? [{ ...card, image: borrowed }] : []
+    })
 
-    const runs: Card[][] = []
-    for (const card of prepared) {
-      const kind = card.image ? 'media' : 'text'
-      const last = runs[runs.length - 1]
-      const lastKind = last?.[0]?.image ? 'media' : 'text'
-      if (!last || lastKind !== kind) runs.push([card])
-      else last.push(card)
+    if (!prepared.length) {
+      i = j
+      continue
     }
+
+    const layout = printing
+      ? 'print'
+      : prepared.every((card) => card.section.paragraphs.join(' ').length < 140)
+        ? 'gallery'
+        : 'labels'
 
     nodes.push(
       <section key={`chemical-${i}`} className="chemical-group">
         <h2>{block.title}</h2>
-        {runs.map((run, runIndex) => {
-          const feature = printing && run.every((card) => card.image)
-          const compact = run.every(
-            (card) => card.image && card.section.paragraphs.join(' ').length < 140,
-          )
-          const layout = feature ? 'print' : compact ? 'gallery' : run[0]?.image ? 'labels' : 'copy'
-          return (
-            <div
-              key={`${block.title}-${runIndex}`}
-              className={
-                feature
-                  ? 'chemical-features'
-                  : `chemical-grid${layout === 'copy' ? ' is-index' : ''}${run.length === 3 ? ' is-trio' : ''}${compact ? ' is-compact' : ''}`
-              }
-            >
-              {run.map((card) => (
-                <ChemicalCard
-                  key={card.section.title + (card.image?.src ?? '')}
-                  card={card}
-                  id={nextId(card.section.title)}
-                  layout={layout}
-                />
-              ))}
-            </div>
-          )
-        })}
+        <div className={printing ? 'chemical-features' : 'chemical-grid'}>
+          {prepared.map((card) => (
+            <ChemicalCard
+              key={card.section.title + (card.image?.src ?? '')}
+              card={card}
+              id={nextId(card.section.title)}
+              layout={layout}
+            />
+          ))}
+        </div>
       </section>,
     )
     i = j

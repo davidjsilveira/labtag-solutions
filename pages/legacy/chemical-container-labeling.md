@@ -60,17 +60,23 @@ Our removable and permanent self-laminating calibration labels are designed to r
 
 ### Drums & IBC Totes
 
+![](https://cdn.labtag.com/wp-content/uploads/L-010-0.5R-2.jpg)
+
 These larger containers are used to ship large quantities of hazardous chemicals and are typically labeled by the manufacturer. They can be made of plastic or metal and require a label with a strong adhesive that will not fall off during transport. The label must also comply with certain regulations, such as OSHA, and will most likely require a GHS label to properly indicate any danger and prevent potential accidents.
 
 [View Products](https://www.labtag.com/shop/product/ghs-former-2015-whmis-simdut-warning-labels-4-x-3-5-l-010-0-5r/)
 
 ### Bottles
 
+![](https://cdn.labtag.com/wp-content/uploads/Inkjet.png)
+
 Our solvent-resistant color labels for bottles and containers allow secondary chemical containers to be easily identified and color coded. These thermal-transfer printable labels can be printed with serialized text as well as 1D/2D barcodes for enhanced tracking. Withstand exposure to harsh chemicals, including xylene, toluene, methyl ethyl ketone (MEK), acetone, thinners, and commercial cleaners.
 
 [View Products](https://www.labtag.com/shop/category/labels/labels-for-bottles/)
 
 ### Reagents Vials & Tubes
+
+![](https://cdn.labtag.com/wp-content/uploads/Cryogenic-Labels-1.png)
 
 We offer chemical-resistant labels for tubes and vials, printable with either inkjet or thermal printers, perfectly suited for various lab applications. These vial labels are designed to withstand spraying and swabbing with alcohol solutions, as well as sanitizing alcohol wipes. In addition, they resist long-term storage in low temperature conditions, perfect for prolonged storage in lab freezers.
 

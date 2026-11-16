@@ -444,13 +444,7 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
       }
 
       if (solutionSlug === 'biobanking-labels' && slugify(block.title) === 'view-all-cryogenic-labels') {
-        pushNonSplit(
-          <p key={`biobank-all-${i}`} className="biobank-more">
-            <Link className="btn btn-primary" to="/solutions/cryogenic-labels">
-              View All Cryogenic Labels
-            </Link>
-          </p>,
-        )
+        // Rendered on the preceding product row when present; skip the orphan heading.
         i += 1
         continue
       }
@@ -617,6 +611,11 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
           solutionSlug === 'biobanking-labels' && sectionAnchor
             ? biobankTileHref(sectionAnchor)
             : undefined
+        const followingBlock = blocks[absorbed.next]
+        const biobankViewAll =
+          solutionSlug === 'biobanking-labels' &&
+          followingBlock?.type === 'section' &&
+          slugify(followingBlock.title) === 'view-all-cryogenic-labels'
         const media = <ImageSlider images={images} className="content-split-media" />
         const mediaFirst =
           solutionSlug === 'cannabis-labels' &&
@@ -651,6 +650,13 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
                     {biobankResource.label}
                   </a>
                 </div>
+              ) : null}
+              {biobankViewAll ? (
+                <p className="biobank-more">
+                  <Link className="btn btn-primary" to="/solutions/cryogenic-labels">
+                    View All Cryogenic Labels
+                  </Link>
+                </p>
               ) : null}
             </div>
             {biobankTile ? (
