@@ -13,9 +13,7 @@ import {
   SAMPLE_PATH,
   TAGI_PATH,
 } from '@/content/labtagLinks'
-import { TEMPLATE_A48, TEMPLATE_A48_PATH } from '@/content/templateA48'
-import { TEMPLATE_DY4084, TEMPLATE_DY4084_PATH } from '@/content/templateDy4084'
-import { TEMPLATE_SR28, TEMPLATE_SR28_PATH } from '@/content/templateSr28'
+import { TEMPLATE_A48 } from '@/content/templateA48'
 
 export type ResourcesMegaLink = {
   label: string
@@ -52,12 +50,37 @@ export const RESOURCES_MEGA_VIEW_ALL = {
   href: RESOURCES_PATH,
 } as const
 
-/** Wide featured panel — the local template library. */
+/** Wide featured panel — the label finder. */
 export const RESOURCES_MEGA_SPOTLIGHT: ResourcesMegaSpotlight = {
-  eyebrow: 'Templates',
-  label: 'Label templates',
+  eyebrow: 'Start here',
+  label: 'Label Finder',
   description:
-    'A4 sheets to download, standard rolls to request, and a DYMO zip for Connect and Label Software.',
+    'Find the right material class, compare them side by side, and pick the size that fits.',
+  cta: 'Open the finder',
+  href: FINDER_PATH,
+  image: {
+    src: '/media/nav/labels.webp',
+    alt: 'Laboratory labels arranged for comparison',
+    fit: 'cover',
+  },
+}
+
+/** The chatbot, second only to the finder. */
+export const RESOURCES_MEGA_TAGI: ResourcesMegaRailCard = {
+  label: 'Ask Tagi',
+  description: 'Ask about a container, temperature, or printer and get a class recommendation.',
+  href: TAGI_PATH,
+  image: {
+    src: '/media/nav/print-scan.webp',
+    alt: 'Label printer and scanner on a lab workstation',
+  },
+}
+
+/** One templates entry. Categories stay on the templates page. */
+export const RESOURCES_MEGA_TEMPLATES_CARD: ResourcesMegaSpotlight = {
+  eyebrow: 'Files',
+  label: 'Label templates',
+  description: 'A4 sheets, standard rolls, and DYMO files in one library.',
   cta: 'Browse templates',
   href: TEMPLATES_PATH,
   image: {
@@ -68,83 +91,15 @@ export const RESOURCES_MEGA_SPOTLIGHT: ResourcesMegaSpotlight = {
   },
 }
 
-export type ResourcesMegaTemplate = {
-  id: string
-  label: string
-  detail: string
-  href: string
-  image: ResourcesMegaImage
-}
-
-/** Direct file shortcuts under the library card. */
-export const RESOURCES_MEGA_TEMPLATES: ResourcesMegaTemplate[] = [
-  {
-    id: TEMPLATE_A48.id,
-    label: 'A4 sheet',
-    detail: 'Download',
-    href: TEMPLATE_A48_PATH,
-    image: {
-      src: TEMPLATE_A48.image.primary,
-      alt: TEMPLATE_A48.image.alt,
-      fallbackSrc: TEMPLATE_A48.image.fallback,
-      fit: 'contain',
-    },
-  },
-  {
-    id: TEMPLATE_SR28.id,
-    label: 'Standard roll',
-    detail: 'Request file',
-    href: TEMPLATE_SR28_PATH,
-    image: {
-      src: TEMPLATE_SR28.image.primary,
-      alt: TEMPLATE_SR28.image.alt,
-      fallbackSrc: TEMPLATE_SR28.image.fallback,
-      fit: 'contain',
-    },
-  },
-  {
-    id: TEMPLATE_DY4084.id,
-    label: 'DYMO',
-    detail: 'Download ZIP',
-    href: TEMPLATE_DY4084_PATH,
-    image: {
-      src: TEMPLATE_DY4084.image.primary,
-      alt: TEMPLATE_DY4084.image.alt,
-      fallbackSrc: TEMPLATE_DY4084.image.fallback,
-      fit: 'contain',
-    },
-  },
-]
-export const RESOURCES_MEGA_RAIL: ResourcesMegaRailCard[] = [
-  {
-    label: 'Ask Tagi',
-    description: 'Get labeling guidance in chat.',
-    href: TAGI_PATH,
-    image: {
-      src: '/media/nav/print-scan.webp',
-      alt: 'Label printer and scanner on a lab workstation',
-    },
-  },
-  {
-    label: 'Request a sample',
-    description: 'Try LabTAG labels in your workflow.',
-    href: SAMPLE_PATH,
-    image: {
-      src: '/media/samples/Sample-Kit4.png',
-      alt: 'LabTAG sample kit for laboratory labels',
-    },
-  },
-]
-
 /** Text-only directories under the feature row. */
 export const RESOURCES_MEGA_COLUMNS: ResourcesMegaColumn[] = [
   {
     heading: 'Tools',
     links: [
       {
-        label: 'Label Finder',
-        href: FINDER_PATH,
-        note: 'Match a stock to the container and printer.',
+        label: 'Request a sample',
+        href: SAMPLE_PATH,
+        note: 'Try LabTAG labels in your workflow.',
       },
       {
         label: 'My orders',

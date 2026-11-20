@@ -11,8 +11,6 @@ import {
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { classPath } from '@/content/labtagLinks'
 import {
-  CONTAINER_BLURBS,
-  CONTAINER_KINDS,
   CONTAINER_LABELS,
   EMPTY_TEMP_RANGE,
   FINDER_FILTER_LABELS,
@@ -409,174 +407,6 @@ function RowChevronIcon() {
 
 const CLASS_PLACEHOLDER = '/media/label-finder/class-placeholder.webp'
 
-function ContainersFilter({
-  value,
-  onChange,
-  collapsed = false,
-}: {
-  value: string[]
-  onChange: (next: string[]) => void
-  collapsed?: boolean
-}) {
-  const [open, setOpen] = useState(false)
-  const rootRef = useRef<HTMLDivElement>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
-  const [panelStyle, setPanelStyle] = useState<CSSProperties>({})
-  const clickMenu = useClickMenu(setOpen)
-
-  const containerOptions = useMemo(
-    () => CONTAINER_KINDS.filter((kind) => FINDER_FILTERS.containers.includes(CONTAINER_LABELS[kind])),
-    [],
-  )
-
-  const counts = useMemo(
-    () =>
-      Object.fromEntries(
-        containerOptions.map((kind) => [
-          CONTAINER_LABELS[kind],
-          filterOptionCount('containers', CONTAINER_LABELS[kind]),
-        ]),
-      ) as Record<string, number>,
-    [containerOptions],
-  )
-
-  const visibleOptions = useMemo(
-    () =>
-      [...containerOptions].sort(
-        (a, b) =>
-          (counts[CONTAINER_LABELS[b]] ?? 0) - (counts[CONTAINER_LABELS[a]] ?? 0) ||
-          CONTAINER_LABELS[a].localeCompare(CONTAINER_LABELS[b]),
-      ),
-    [containerOptions, counts],
-  )
-
-  const placePanel = () => {
-    const button = buttonRef.current
-    if (!button) return
-    const rect = button.getBoundingClientRect()
-    const panelWidth = Math.min(46 * 16, window.innerWidth - 24)
-    const estimatedHeight = Math.min(window.innerHeight * 0.72, 34 * 16)
-    const spaceBelow = window.innerHeight - rect.bottom - 12
-    const spaceAbove = rect.top - 12
-    const openUp = spaceBelow < estimatedHeight && spaceAbove > spaceBelow
-    const left = Math.min(Math.max(12, rect.left), window.innerWidth - panelWidth - 12)
-    setPanelStyle({
-      position: 'fixed',
-      top: openUp ? undefined : rect.bottom + 6,
-      bottom: openUp ? window.innerHeight - rect.top + 6 : undefined,
-      left,
-      width: panelWidth,
-      maxHeight: Math.min(estimatedHeight, openUp ? spaceAbove : spaceBelow),
-      zIndex: 80,
-    })
-  }
-
-  useLayoutEffect(() => {
-    if (open) placePanel()
-  }, [open, value])
-
-  useEffect(() => {
-    if (!open) return
-    const onPointerDown = (event: MouseEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
-    }
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false)
-    }
-    const onReposition = () => placePanel()
-    document.addEventListener('mousedown', onPointerDown)
-    document.addEventListener('keydown', onKeyDown)
-    window.addEventListener('resize', onReposition)
-    window.addEventListener('scroll', onReposition, true)
-    return () => {
-      document.removeEventListener('mousedown', onPointerDown)
-      document.removeEventListener('keydown', onKeyDown)
-      window.removeEventListener('resize', onReposition)
-      window.removeEventListener('scroll', onReposition, true)
-    }
-  }, [open])
-
-  const toggle = (label: string) => {
-    onChange(value.includes(label) ? value.filter((item) => item !== label) : [...value, label])
-  }
-
-  useEffect(() => {
-    if (collapsed) setOpen(false)
-  }, [collapsed])
-
-  return (
-    <div
-      className={`finder-containers-menu${open || value.length ? ' is-active' : ''}${collapsed ? ' is-collapsed' : ''}`}
-      ref={rootRef}
-      data-finder-chip="containers"
-      hidden={collapsed}
-    >
-      <button
-        ref={buttonRef}
-        type="button"
-        className={`finder-chip finder-chip-action${value.length ? ' is-active' : ''}${open ? ' is-open' : ''}`}
-        aria-haspopup="dialog"
-        aria-expanded={open}
-        tabIndex={collapsed ? -1 : 0}
-        onClick={clickMenu.toggleByClick}
-      >
-        <span>Containers</span>
-        {value.length ? <span className="finder-chip-count">{value.length}</span> : null}
-        <ChevronIcon />
-      </button>
-
-      {open && !collapsed ? (
-        <div className="finder-containers-panel" style={panelStyle} role="dialog" aria-label="Compatible containers">
-          <div className="finder-containers-panel-top">
-            <div className="finder-containers-panel-head">
-              <div className="finder-containers-panel-copy">
-                <strong>Compatible containers</strong>
-                <p>Pick the vessels or surfaces these labels need to stick to.</p>
-                <p className="finder-logic-note">
-                  <FilterLogic mode="and" detail={filterLogicNote('containers')} />
-                  <span>{filterLogicNote('containers')}</span>
-                </p>
-              </div>
-              {value.length ? (
-                <button type="button" className="finder-containers-clear" onClick={() => onChange([])}>
-                  Clear ({value.length})
-                </button>
-              ) : null}
-            </div>
-          </div>
-          <div className="finder-containers-panel-body">
-            <ul className="finder-containers-options">
-              {visibleOptions.map((kind) => {
-                const label = CONTAINER_LABELS[kind]
-                const checked = value.includes(label)
-                const count = counts[label] ?? 0
-                return (
-                  <li key={kind}>
-                    <label
-                      className={`finder-containers-option${checked ? ' is-selected' : ''}${count === 0 ? ' is-empty' : ''}`}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={() => toggle(label)}
-                      />
-                      <span className="finder-containers-option-copy">
-                        <span className="finder-containers-option-label">{label}</span>
-                        <span className="finder-containers-option-blurb">{CONTAINER_BLURBS[kind]}</span>
-                      </span>
-                      <span className="finder-containers-option-count">{count}</span>
-                    </label>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-      ) : null}
-    </div>
-  )
-}
-
 function TemperaturesFilter({
   value,
   onChange,
@@ -700,6 +530,7 @@ function MenuFilter({
   onChange,
   collapsed = false,
   searchable = true,
+  columns = 1,
 }: {
   filterKey: Exclude<FinderFilterKey, 'temperatures'>
   label: string
@@ -708,6 +539,7 @@ function MenuFilter({
   onChange: (next: string[]) => void
   collapsed?: boolean
   searchable?: boolean
+  columns?: 1 | 3
 }) {
   const [open, setOpen] = useState(false)
   const [filterQuery, setFilterQuery] = useState('')
@@ -732,7 +564,7 @@ function MenuFilter({
     const button = buttonRef.current
     if (!button) return
     const rect = button.getBoundingClientRect()
-    const panelWidth = Math.min(18.5 * 16, window.innerWidth - 24)
+    const panelWidth = Math.min((columns === 3 ? 44 : 18.5) * 16, window.innerWidth - 24)
     const left = Math.min(Math.max(12, rect.left), window.innerWidth - panelWidth - 12)
     setPanelStyle({
       position: 'fixed',
@@ -806,7 +638,7 @@ function MenuFilter({
 
       {open && !collapsed ? (
         <div
-          className="finder-menu-panel"
+          className={`finder-menu-panel${columns === 3 ? ' is-cols-3' : ''}`}
           style={panelStyle}
           role="listbox"
           aria-label={label}
@@ -832,7 +664,7 @@ function MenuFilter({
             <FilterLogic mode={filterLogic(filterKey)} detail={filterLogicNote(filterKey)} />
             <span>{filterLogicNote(filterKey)}</span>
           </p>
-          <ul className="finder-menu-list">
+          <ul className={`finder-menu-list${columns === 3 ? ' is-cols-3' : ''}`}>
             {filteredOptions.map((option) => {
               const checked = value.includes(option)
               return (
@@ -1156,12 +988,16 @@ export function LabelFinderPage() {
             {FINDER_FILTER_ORDER.map((key) => {
               if (key === 'containers') {
                 return (
-                  <ContainersFilter
-                    key={key}
-                    value={filters.containers ?? []}
-                    onChange={(next) => setFilter('containers', next)}
-                    collapsed={overflowKeys.has('containers')}
-                  />
+                <MenuFilter
+                  key={key}
+                  filterKey={key}
+                  label={FINDER_FILTER_LABELS[key]}
+                  options={FINDER_FILTERS[key]}
+                  value={filters[key] ?? []}
+                  onChange={(next) => setFilter(key, next)}
+                  collapsed={overflowKeys.has(key)}
+                  columns={3}
+                />
                 )
               }
               if (key === 'temperatures') {

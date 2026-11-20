@@ -1,12 +1,12 @@
 import { useEffect, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowSquareOut, X } from '@phosphor-icons/react'
+import { ArrowRight, ArrowSquareOut, ChatCircle, X } from '@phosphor-icons/react'
 import {
   RESOURCES_MEGA_COLUMNS,
   RESOURCES_MEGA_FOOTER,
-  RESOURCES_MEGA_RAIL,
   RESOURCES_MEGA_SPOTLIGHT,
-  RESOURCES_MEGA_TEMPLATES,
+  RESOURCES_MEGA_TAGI,
+  RESOURCES_MEGA_TEMPLATES_CARD,
   RESOURCES_MEGA_VIEW_ALL,
   type ResourcesMegaImage,
 } from '@/content/resourcesMegaMenu'
@@ -75,8 +75,6 @@ export function ResourcesMegaMenu({ open, onClose }: ResourcesMegaMenuProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  const spotlightFit = RESOURCES_MEGA_SPOTLIGHT.image.fit ?? 'cover'
-
   return (
     <div
       id="site-nav-resources-menu"
@@ -102,12 +100,7 @@ export function ResourcesMegaMenu({ open, onClose }: ResourcesMegaMenuProps) {
       <div className="nav-mega-body resources-mega-body">
         <div className="resources-mega-feature-row">
           <MegaLink
-            className={[
-              'resources-mega-spotlight',
-              spotlightFit === 'contain' ? 'is-contain' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
+            className="resources-mega-spotlight is-finder"
             href={RESOURCES_MEGA_SPOTLIGHT.href}
             onClose={onClose}
           >
@@ -125,49 +118,35 @@ export function ResourcesMegaMenu({ open, onClose }: ResourcesMegaMenuProps) {
             </span>
           </MegaLink>
 
-          <div className="resources-mega-rail">
-            {RESOURCES_MEGA_RAIL.map((card) => (
-              <MegaLink key={card.href} className="resources-mega-rail-card" href={card.href} onClose={onClose}>
-                <span className="resources-mega-rail-media">
-                  <MegaImage image={card.image} />
-                </span>
-                <span className="resources-mega-rail-copy">
-                  <span className="resources-mega-rail-title">
-                    {card.label}
-                    <ArrowRight size={13} weight="bold" aria-hidden />
-                  </span>
-                  <span className="resources-mega-rail-desc">{card.description}</span>
-                </span>
-              </MegaLink>
-            ))}
-          </div>
-        </div>
+          <MegaLink className="resources-mega-tagi" href={RESOURCES_MEGA_TAGI.href} onClose={onClose}>
+            <span className="resources-mega-tagi-icon" aria-hidden="true">
+              <ChatCircle size={28} weight="duotone" />
+            </span>
+            <span className="resources-mega-tagi-copy">
+              <span className="resources-mega-eyebrow">Assistant</span>
+              <span className="resources-mega-tagi-title">
+                {RESOURCES_MEGA_TAGI.label}
+                <ArrowRight size={14} weight="bold" aria-hidden />
+              </span>
+              <span className="resources-mega-tagi-desc">{RESOURCES_MEGA_TAGI.description}</span>
+            </span>
+          </MegaLink>
 
-        <div className="resources-mega-templates">
-          {RESOURCES_MEGA_TEMPLATES.map((template) => (
-            <MegaLink
-              key={template.id}
-              className="resources-mega-template"
-              href={template.href}
-              onClose={onClose}
-            >
-              <span
-                className={[
-                  'resources-mega-template-media',
-                  template.image.fit === 'contain' ? 'is-contain' : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
-              >
-                <MegaImage image={template.image} />
-              </span>
-              <span className="resources-mega-template-copy">
-                <span className="resources-mega-template-id">#{template.id}</span>
-                <span className="resources-mega-template-label">{template.label}</span>
-              </span>
-              <span className="resources-mega-template-detail">{template.detail}</span>
-            </MegaLink>
-          ))}
+          <MegaLink
+            className="resources-mega-template is-single"
+            href={RESOURCES_MEGA_TEMPLATES_CARD.href}
+            onClose={onClose}
+          >
+            <span className="resources-mega-template-media is-contain">
+              <MegaImage image={RESOURCES_MEGA_TEMPLATES_CARD.image} />
+            </span>
+            <span className="resources-mega-template-copy">
+              <span className="resources-mega-eyebrow">{RESOURCES_MEGA_TEMPLATES_CARD.eyebrow}</span>
+              <span className="resources-mega-template-label">{RESOURCES_MEGA_TEMPLATES_CARD.label}</span>
+              <span className="resources-mega-template-detail">{RESOURCES_MEGA_TEMPLATES_CARD.description}</span>
+            </span>
+            <ArrowRight size={14} weight="bold" aria-hidden />
+          </MegaLink>
         </div>
 
         <div className="resources-mega-columns">
