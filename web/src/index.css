@@ -16657,10 +16657,16 @@ a.why-reason:hover h2 {
 }
 
 .finder-chip-action:hover,
-.finder-chip-select:hover,
-.finder-chip.is-active {
+.finder-chip-select:hover {
   border-color: #c9c1d6;
-  background: #fff;
+  background: #faf9fb;
+}
+
+.finder-chip.is-active,
+.finder-chip.is-open {
+  border-color: #c8c0d0;
+  background: #f1eff4;
+  color: #2d2348;
 }
 
 .finder-chip-count {
@@ -16671,8 +16677,8 @@ a.why-reason:hover h2 {
   height: 1.1rem;
   padding: 0 0.28rem;
   border-radius: 999px;
-  background: var(--color-accent);
-  color: var(--color-accent-ink);
+  background: #5c5470;
+  color: #fff;
   font-size: 0.68rem;
   font-weight: 700;
 }
@@ -16744,12 +16750,6 @@ a.why-reason:hover h2 {
   text-overflow: ellipsis;
 }
 
-.finder-chip.is-open {
-  border-color: color-mix(in srgb, var(--labtag-highlight-main) 55%, #ddd8e4);
-  background: #fff8f3;
-  color: #3d2f63;
-}
-
 .finder-temp-menu {
   position: relative;
   flex: 0 0 auto;
@@ -16803,8 +16803,8 @@ a.why-reason:hover h2 {
 
 .finder-temp-range-input input:focus {
   outline: none;
-  border-color: color-mix(in srgb, var(--labtag-highlight-main, #e8792f) 55%, #d9dbe1);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--labtag-highlight-main, #e8792f) 16%, transparent);
+  border-color: #b7b1c2;
+  box-shadow: 0 0 0 3px rgb(74 68 92 / 12%);
 }
 
 .finder-temp-range-input input::-webkit-outer-spin-button,
@@ -16897,8 +16897,8 @@ a.why-reason:hover h2 {
 }
 
 .finder-menu-search:focus-within {
-  border-color: var(--labtag-highlight-main);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--labtag-highlight-main) 18%, transparent);
+  border-color: #b7b1c2;
+  box-shadow: 0 0 0 3px rgb(74 68 92 / 12%);
 }
 
 .finder-menu-search .finder-search-icon {
@@ -16955,7 +16955,14 @@ a.why-reason:hover h2 {
 }
 
 .finder-menu-option.is-selected {
-  background: #fff7f1;
+  background: #eeecf1;
+}
+
+.finder-menu-option.is-view-all,
+.finder-drawer-option.is-view-all {
+  margin-bottom: 0.2rem;
+  border-bottom: 1px solid #eceef2;
+  border-radius: 0.45rem 0.45rem 0 0;
 }
 
 .finder-menu-check {
@@ -16971,8 +16978,25 @@ a.why-reason:hover h2 {
 }
 
 .finder-menu-check.is-checked {
-  border-color: var(--labtag-highlight-main);
-  background: var(--labtag-highlight-main);
+  border-color: #4a445c;
+  background: #4a445c;
+}
+
+.finder-menu-check.is-radio {
+  border-radius: 999px;
+}
+
+.finder-menu-check.is-radio.is-checked {
+  border-color: #4a445c;
+  background: #fff;
+}
+
+.finder-menu-check.is-radio.is-checked::after {
+  content: '';
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: #4a445c;
 }
 
 .finder-menu-check svg {
@@ -17117,9 +17141,9 @@ a.why-reason:hover h2 {
 }
 
 .finder-containers-option.is-selected {
-  border-color: color-mix(in srgb, var(--labtag-highlight-main) 50%, #e6e2ed);
-  background: #fff7f1;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--labtag-highlight-main) 16%, transparent);
+  border-color: #d4cedd;
+  background: #f0eef3;
+  box-shadow: none;
 }
 
 .finder-containers-option.is-empty {
@@ -17141,9 +17165,9 @@ a.why-reason:hover h2 {
 }
 
 .finder-containers-option.is-selected .finder-containers-option-icon {
-  border-color: color-mix(in srgb, var(--labtag-highlight-main) 35%, #e4e0ea);
-  color: #8a4b1f;
-  background: #fffaf6;
+  border-color: #d4cedd;
+  color: #3d3556;
+  background: #f7f5f9;
 }
 
 .finder-containers-option-icon svg {
@@ -17427,9 +17451,12 @@ a.why-reason:hover h2 {
   cursor: pointer;
 }
 
-.finder-drawer-option:hover,
-.finder-drawer-option.is-selected {
+.finder-drawer-option:hover {
   background: #f7f6f9;
+}
+
+.finder-drawer-option.is-selected {
+  background: #eeecf1;
 }
 
 .finder-drawer-option-label {
@@ -17545,6 +17572,70 @@ a.why-reason:hover h2 {
   text-underline-offset: 0.15em;
 }
 
+.finder-no-results {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.45rem;
+  min-height: 22rem;
+  padding: 3.25rem 1.5rem 3.5rem;
+  border: 1px dashed #d7d3de;
+  border-radius: 0.85rem;
+  background: #fff;
+  text-align: center;
+}
+
+.finder-no-results .finder-chip-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin-bottom: 0.7rem;
+  color: #8ea0b4;
+}
+
+.finder-no-results h2 {
+  margin: 0;
+  color: #1b2433;
+  font-size: 1.35rem;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.finder-no-results p {
+  margin: 0 0 0.95rem;
+  max-width: 38rem;
+  color: #7b8b9c;
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.finder-empty-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.85rem;
+  padding: 0.65rem 1.35rem;
+  border: 0;
+  border-radius: 0.7rem;
+  background: var(--labtag-highlight-main, #fc7a22);
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgb(252 122 34 / 28%);
+}
+
+.finder-empty-clear svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.finder-empty-clear:hover {
+  filter: brightness(0.96);
+}
+
 .finder-table-wrap {
   overflow-x: auto;
   border: 1px solid #e4e0ea;
@@ -17556,15 +17647,16 @@ a.why-reason:hover h2 {
 .finder-table {
   --finder-pad-y: 0.7rem;
   --finder-pad-x: 0.65rem;
-  /* Content-weighted: containers + temp carry most chips; print/sizes stay tight. */
-  --finder-col-class: 22%;
-  --finder-col-temp: 20%;
-  --finder-col-features: 11%;
-  --finder-col-containers: 26%;
+  /* Content-weighted: containers carry most chips; range and temp tags are split. */
+  --finder-col-class: 18%;
+  --finder-col-temp: 14%;
+  --finder-col-temp-tags: 14%;
+  --finder-col-features: 12%;
+  --finder-col-containers: 22%;
   --finder-col-print: 9%;
-  --finder-col-sizes: 12%;
+  --finder-col-sizes: 11%;
   width: 100%;
-  min-width: 64rem;
+  min-width: 72rem;
   table-layout: fixed;
   border-collapse: collapse;
 }
@@ -17595,6 +17687,10 @@ a.why-reason:hover h2 {
 
 .finder-th-sortable {
   padding: 0.35rem 0.45rem;
+}
+
+.finder-table thead th {
+  vertical-align: top;
 }
 
 .finder-th-button {
@@ -17766,8 +17862,11 @@ a.why-reason:hover h2 {
 .finder-table td.finder-class {
   width: var(--finder-col-class);
   min-width: 12.5rem;
-  vertical-align: middle;
   padding-left: 0.85rem;
+}
+
+.finder-table td.finder-class {
+  vertical-align: middle;
 }
 
 .finder-class-link {
@@ -17845,7 +17944,13 @@ a.why-reason:hover h2 {
 .finder-table th.finder-temp,
 .finder-table td.finder-temp {
   width: var(--finder-col-temp);
-  min-width: 11rem;
+  min-width: 9.5rem;
+}
+
+.finder-table th.finder-temp-tags,
+.finder-table td.finder-temp-tags {
+  width: var(--finder-col-temp-tags);
+  min-width: 8.5rem;
 }
 
 .finder-temp-label {
@@ -17889,10 +17994,6 @@ a.why-reason:hover h2 {
   list-style: none;
 }
 
-.finder-temp .finder-meta-chips {
-  margin-top: 0.4rem;
-}
-
 .finder-meta-chip {
   display: inline-flex;
   align-items: center;
@@ -17930,15 +18031,14 @@ button.finder-meta-chip.is-filter:hover {
 }
 
 button.finder-meta-chip.is-filter:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--labtag-highlight-main, #e8792f) 70%, transparent);
+  outline: 2px solid color-mix(in srgb, currentColor 40%, #c9c1d6);
   outline-offset: 2px;
 }
 
 button.finder-meta-chip.is-filter.is-active {
-  border-color: color-mix(in srgb, var(--labtag-highlight-main, #e8792f) 45%, #e6e2ed);
-  background: #fff7f1;
-  color: #8a4b1f;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--labtag-highlight-main, #e8792f) 14%, transparent);
+  border-color: color-mix(in srgb, currentColor 28%, #e4e0ea);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 16%, transparent);
+  filter: brightness(0.96);
 }
 
 .finder-meta-chip.is-container {
@@ -18017,7 +18117,8 @@ button.finder-meta-chip.is-filter.is-active {
 .finder-features,
 .finder-print,
 .finder-sizes,
-.finder-containers {
+.finder-containers,
+.finder-temp-tags {
   vertical-align: top;
 }
 
@@ -18053,9 +18154,12 @@ button.finder-meta-chip.is-filter.is-active {
   padding-left: 0.4rem;
   padding-right: 0.7rem;
   white-space: nowrap;
-  vertical-align: middle;
   text-align: right;
   box-sizing: border-box;
+}
+
+.finder-table td.finder-sizes {
+  vertical-align: middle;
 }
 
 .finder-table th.finder-sizes .finder-th-button {

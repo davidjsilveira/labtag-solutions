@@ -51,6 +51,9 @@ function hasTempResistances(row: LabelClass) {
   return row.tempMin != null && row.tempMax != null
 }
 
+const VIEW_ALL = 'View all'
+const FINDER_CATALOG_COUNT = LABEL_CLASSES.filter(hasTempResistances).length
+
 function rowMatches(row: LabelClass, filters: Filters, query: string, tempRange: TempRangeFilter = EMPTY_TEMP_RANGE) {
   if (!hasTempResistances(row)) return false
   if (!matchesTempRangeFilter(row, tempRange)) return false
@@ -839,6 +842,25 @@ function TemperaturesFilter({
   )
 }
 
+function SelectionMark({ checked, radio = false }: { checked: boolean; radio?: boolean }) {
+  return (
+    <span className={`finder-menu-check${radio ? ' is-radio' : ''}${checked ? ' is-checked' : ''}`} aria-hidden="true">
+      {checked && !radio ? (
+        <svg viewBox="0 0 12 12">
+          <path
+            d="M2.5 6.2 4.8 8.5 9.5 3.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ) : null}
+    </span>
+  )
+}
+
 function MenuFilter({
   filterKey,
   label,
@@ -846,6 +868,7 @@ function MenuFilter({
   value,
   onChange,
   collapsed = false,
+  exclusive = false,
 }: {
   filterKey: Exclude<FinderFilterKey, 'temperatures'>
   label: string
@@ -853,6 +876,7 @@ function MenuFilter({
   value: string[]
   onChange: (next: string[]) => void
   collapsed?: boolean
+  exclusive?: boolean
 }) {
   const [open, setOpen] = useState(false)
   const [filterQuery, setFilterQuery] = useState('')
@@ -917,7 +941,11 @@ function MenuFilter({
     if (!open) setFilterQuery('')
   }, [open])
 
-  const toggle = (option: string) => {
+  const choose = (option: string) => {
+    if (exclusive) {
+      onChange(option === VIEW_ALL ? [] : [option])
+      return
+    }
     onChange(value.includes(option) ? value.filter((item) => item !== option) : [...value, option])
   }
 
@@ -947,7 +975,13 @@ function MenuFilter({
       </button>
 
       {open && !collapsed ? (
-        <div className="finder-menu-panel" style={panelStyle} role="listbox" aria-label={label} aria-multiselectable="true">
+        <div
+          className="finder-menu-panel"
+          style={panelStyle}
+          role={exclusive ? 'radiogroup' : 'listbox'}
+          aria-label={label}
+          aria-multiselectable={exclusive ? undefined : true}
+        >
           <label className="finder-menu-search">
             <span className="sr-only">Filter {label}</span>
             <SearchIcon />
@@ -961,38 +995,43 @@ function MenuFilter({
           </label>
           <div className="finder-menu-divider" aria-hidden="true" />
           <ul className="finder-menu-list">
+            {exclusive && (!filterQuery.trim() || VIEW_ALL.toLowerCase().includes(filterQuery.trim().toLowerCase())) ? (
+              <li>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={value.length === 0}
+                  className={`finder-menu-option is-view-all${value.length === 0 ? ' is-selected' : ''}`}
+                  onClick={() => choose(VIEW_ALL)}
+                >
+                  <SelectionMark checked={value.length === 0} radio />
+                  <span className="finder-menu-option-label">{VIEW_ALL}</span>
+                  <span className="finder-menu-option-count">{FINDER_CATALOG_COUNT}</span>
+                </button>
+              </li>
+            ) : null}
             {filteredOptions.map((option) => {
               const checked = value.includes(option)
               return (
                 <li key={option}>
                   <button
                     type="button"
-                    role="option"
-                    aria-selected={checked}
+                    role={exclusive ? 'radio' : 'option'}
+                    aria-checked={exclusive ? checked : undefined}
+                    aria-selected={exclusive ? undefined : checked}
                     className={`finder-menu-option${checked ? ' is-selected' : ''}`}
-                    onClick={() => toggle(option)}
+                    onClick={() => choose(option)}
                   >
-                    <span className={`finder-menu-check${checked ? ' is-checked' : ''}`} aria-hidden="true">
-                      {checked ? (
-                        <svg viewBox="0 0 12 12">
-                          <path
-                            d="M2.5 6.2 4.8 8.5 9.5 3.5"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.6"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      ) : null}
-                    </span>
+                    <SelectionMark checked={checked} radio={exclusive} />
                     <span className="finder-menu-option-label">{option}</span>
                     <span className="finder-menu-option-count">{counts[option] ?? 0}</span>
                   </button>
                 </li>
               )
             })}
-            {!filteredOptions.length ? <li className="finder-menu-empty">No matches</li> : null}
+            {!filteredOptions.length && !(exclusive && (!filterQuery.trim() || VIEW_ALL.toLowerCase().includes(filterQuery.trim().toLowerCase()))) ? (
+              <li className="finder-menu-empty">No matches</li>
+            ) : null}
           </ul>
         </div>
       ) : null}
@@ -1186,10 +1225,11 @@ export function LabelFinderPage() {
 
   const toggleDrawerOption = (key: Exclude<FinderFilterKey, 'temperatures'>, option: string) => {
     const current = filters[key] ?? []
-    setFilter(
-      key,
-      current.includes(option) ? current.filter((item) => item !== option) : [...current, option],
-    )
+    if (key === 'brands' || key === 'classes') {
+      setFilter(key, option === VIEW_ALL ? [] : [option])
+      return
+    }
+    setFilter(key, current.includes(option) ? current.filter((item) => item !== option) : [...current, option])
   }
 
   return (
@@ -1268,6 +1308,7 @@ export function LabelFinderPage() {
                   value={filters[key] ?? []}
                   onChange={(next) => setFilter(key, next)}
                   collapsed={overflowKeys.has(key)}
+                  exclusive={key === 'brands' || key === 'classes'}
                 />
               )
             })}
@@ -1341,38 +1382,30 @@ export function LabelFinderPage() {
                           ) : null}
                         </div>
                       ) : (
-                        <ul className="finder-drawer-options">
-                          {FINDER_FILTERS[key].map((option) => {
-                            const checked = (filters[key] ?? []).includes(option)
+                        <ul className="finder-drawer-options" role={key === 'brands' || key === 'classes' ? 'radiogroup' : undefined}>
+                          {(key === 'brands' || key === 'classes' ? [VIEW_ALL, ...FINDER_FILTERS[key]] : FINDER_FILTERS[key]).map(
+                            (option) => {
+                            const radio = key === 'brands' || key === 'classes'
+                            const checked = option === VIEW_ALL ? !(filters[key]?.length) : (filters[key] ?? []).includes(option)
                             return (
                               <li key={option}>
                                 <button
                                   type="button"
-                                  className={`finder-drawer-option${checked ? ' is-selected' : ''}`}
+                                  role={radio ? 'radio' : 'checkbox'}
+                                  aria-checked={checked}
+                                  className={`finder-drawer-option${option === VIEW_ALL ? ' is-view-all' : ''}${checked ? ' is-selected' : ''}`}
                                   onClick={() => toggleDrawerOption(key, option)}
                                 >
-                                  <span className={`finder-menu-check${checked ? ' is-checked' : ''}`} aria-hidden="true">
-                                    {checked ? (
-                                      <svg viewBox="0 0 12 12">
-                                        <path
-                                          d="M2.5 6.2 4.8 8.5 9.5 3.5"
-                                          fill="none"
-                                          stroke="currentColor"
-                                          strokeWidth="1.6"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                        />
-                                      </svg>
-                                    ) : null}
-                                  </span>
+                                  <SelectionMark checked={checked} radio={radio} />
                                   <span className="finder-drawer-option-label">{option}</span>
                                   <span className="finder-drawer-option-count">
-                                    {filterOptionCount(key, option)}
+                                    {option === VIEW_ALL ? FINDER_CATALOG_COUNT : filterOptionCount(key, option)}
                                   </span>
                                 </button>
                               </li>
                             )
-                          })}
+                          },
+                          )}
                         </ul>
                       )
                     ) : null}
@@ -1406,6 +1439,17 @@ export function LabelFinderPage() {
         ) : null}
       </div>
 
+      {rows.length === 0 && activeCount ? (
+        <div className="finder-no-results" role="status">
+          <FiltersIcon />
+          <h2>No materials and classes match your criteria</h2>
+          <p>Try a different combination or clear your filters to explore all options.</p>
+          <button type="button" className="finder-empty-clear" onClick={clearFilters}>
+            <ClearIcon />
+            Clear Filters
+          </button>
+        </div>
+      ) : (
       <div className="finder-table-wrap">
         <table className="finder-table">
           <thead>
@@ -1451,6 +1495,8 @@ export function LabelFinderPage() {
                         <span className="finder-temp-fill" style={bar} />
                       </span>
                     ) : null}
+                  </td>
+                  <td className="finder-temp-tags">
                     {row.tempTags.length ? (
                       <ul className="finder-meta-chips">
                         {row.tempTags.map((tag: TempTag) => (
@@ -1463,7 +1509,9 @@ export function LabelFinderPage() {
                           />
                         ))}
                       </ul>
-                    ) : null}
+                    ) : (
+                      <span className="finder-empty">—</span>
+                    )}
                   </td>
                   <td className="finder-features">
                     {row.features.length ? (
@@ -1537,6 +1585,7 @@ export function LabelFinderPage() {
           </tbody>
         </table>
       </div>
+      )}
     </article>
   )
 }

@@ -277,6 +277,7 @@ export const FINDER_COLUMN_SORT_KEYS = [
   'code',
   'title',
   'temperature',
+  'tempTags',
   'features',
   'containers',
   'print',
@@ -305,9 +306,15 @@ export const FINDER_TABLE_COLUMNS: FinderTableColumn[] = [
   { id: 'class', label: 'Class', className: 'finder-class', sortKey: 'code' },
   {
     id: 'temperature',
-    label: 'Temp & Resistances',
+    label: 'Temp Range',
     className: 'finder-temp',
     sortKey: 'temperature',
+  },
+  {
+    id: 'tempTags',
+    label: 'Temperature',
+    className: 'finder-temp-tags',
+    sortKey: 'tempTags',
   },
   { id: 'features', label: 'Features', className: 'finder-features', sortKey: 'features' },
   {
@@ -353,6 +360,9 @@ export function sortLabelClassesByColumn(rows: LabelClass[], sort: FinderColumnS
         result =
           minOr(a.tempMin, Number.POSITIVE_INFINITY) - minOr(b.tempMin, Number.POSITIVE_INFINITY) ||
           maxOr(a.tempMax, Number.POSITIVE_INFINITY) - maxOr(b.tempMax, Number.POSITIVE_INFINITY)
+        break
+      case 'tempTags':
+        result = compareText(joinList(a.tempTags), joinList(b.tempTags)) || compareText(a.code, b.code)
         break
       case 'features':
         result = compareText(joinList(a.features), joinList(b.features)) || compareText(a.code, b.code)
