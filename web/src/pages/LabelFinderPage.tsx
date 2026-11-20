@@ -1110,10 +1110,11 @@ export function LabelFinderPage() {
   return (
     <article className="finder-page">
       <header className="finder-head">
-        <h1>Browse Laboratory Labels &amp; Materials</h1>
+        <h1>Label Finder</h1>
+        <p className="finder-lead">Find the right material class (label, tag, or tape)</p>
         <p>
-          Explore our complete catalog of GA International material classes grouped by class code
-          (e.g. JTTA, XAL), brand, and technical grade.
+          Compare material classes side by side, narrow them down with filters, then pick the size that
+          fits your application.
         </p>
       </header>
 
