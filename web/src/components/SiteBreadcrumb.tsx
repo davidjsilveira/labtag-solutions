@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { CrumbChevron } from '@/components/CrumbChevron'
 import { FINDER_PATH, RESOURCES_PATH, TEMPLATES_PATH } from '@/content/labtagLinks'
+import { findLabelClass } from '@/content/labelFinder'
 import { getPage } from '@/content/loadPages'
 import { TEMPLATE_PAGES } from '@/content/templates'
 
@@ -48,6 +49,16 @@ function crumbsForPath(pathname: string): Crumb[] {
     return [
       { label: 'Home', to: '/' },
       { label: 'Label Finder' },
+    ]
+  }
+
+  const labelClass = pathname.match(/^\/classes\/([^/]+)$/)
+  if (labelClass) {
+    const row = findLabelClass(decodeURIComponent(labelClass[1]))
+    return [
+      { label: 'Home', to: '/' },
+      { label: 'Label Finder', to: FINDER_PATH },
+      { label: row ? `${row.code} - ${row.headline}` : 'Class' },
     ]
   }
 

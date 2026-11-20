@@ -234,9 +234,19 @@ export function SiteNav() {
 
     const promo = header.querySelector('.site-promo')
     const setPromoH = () => {
-      if (!(promo instanceof HTMLElement)) return
-      const height = promo.getBoundingClientRect().height
-      if (height > 0) header.style.setProperty('--promo-h', `${Math.round(height)}px`)
+      if (promo instanceof HTMLElement) {
+        const height = promo.getBoundingClientRect().height
+        if (height > 0) {
+          const promoH = `${Math.round(height)}px`
+          header.style.setProperty('--promo-h', promoH)
+          document.documentElement.style.setProperty('--promo-h', promoH)
+        }
+      }
+      const bar = header.querySelector('.site-nav-bar')
+      if (bar instanceof HTMLElement) {
+        const height = Math.round(bar.getBoundingClientRect().height)
+        if (height > 0) document.documentElement.style.setProperty('--site-nav-h', `${height}px`)
+      }
     }
     setPromoH()
 
@@ -252,34 +262,10 @@ export function SiteNav() {
     })
     observer.observe(pin)
 
-    let lastY = window.scrollY
-    let ticking = false
-    const onScroll = () => {
-      if (ticking) return
-      ticking = true
-      window.requestAnimationFrame(() => {
-        const y = Math.max(0, window.scrollY)
-        if (y <= 8) {
-          header.classList.remove('is-away')
-        } else if (y > lastY + 2) {
-          header.classList.add('is-away')
-          setOpen(false)
-          setAccountOpen(false)
-          setPromoOpen(null)
-          setPrimaryOpen(null)
-        } else if (y < lastY - 2) {
-          header.classList.remove('is-away')
-        }
-        lastY = y
-        ticking = false
-      })
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', setPromoH)
 
     return () => {
       observer.disconnect()
-      window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', setPromoH)
     }
   }, [])

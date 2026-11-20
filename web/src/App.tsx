@@ -35,6 +35,7 @@ import { WhyChoosePage } from '@/pages/WhyChoosePage'
 import { SolutionPage } from '@/pages/SolutionPage'
 import { TemplatePage } from '@/pages/TemplatePage'
 import { LabelFinderPage } from '@/pages/LabelFinderPage'
+import { ClassPage } from '@/pages/ClassPage'
 import { TemplatesIndexPage } from '@/pages/TemplatesIndexPage'
 import { TEMPLATE_SR28_PATH } from '@/content/templateSr28'
 
@@ -76,8 +77,8 @@ export default function App() {
       <span className="site-header-pin" aria-hidden="true" />
       <header className="site-header">
         <SiteNav />
-        <SiteBreadcrumb />
       </header>
+      <SiteBreadcrumb />
       <main id="content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -96,6 +97,7 @@ export default function App() {
           <Route path="/templates/sr-1" element={<Navigate to={TEMPLATE_SR28_PATH} replace />} />
           <Route path="/templates/:templateSlug" element={<TemplatePage />} />
           <Route path={FINDER_PATH} element={<LabelFinderPage />} />
+          <Route path="/classes/:code" element={<ClassPage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"

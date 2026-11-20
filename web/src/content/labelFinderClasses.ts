@@ -1670,7 +1670,7 @@ export const LABEL_CLASSES: LabelClass[] = [
     containers: ["syringes", "tubes-vials"],
     printers: ["Writable"],
     formats: "Roll",
-    brand: "NitroTAG",
+    brand: "NitroTAG®",
     href: "/solutions/cryogenic-labels",
   },
   {
@@ -1688,7 +1688,7 @@ export const LABEL_CLASSES: LabelClass[] = [
     containers: ["cryo-boxes", "syringes", "tubes-vials"],
     printers: ["Thermal Transfer"],
     formats: "Roll",
-    brand: "NitroTAG",
+    brand: "NitroTAG®",
     href: "/solutions/cryogenic-labels",
   },
   {
@@ -1946,7 +1946,7 @@ export const LABEL_CLASSES: LabelClass[] = [
     containers: [],
     printers: ["Writable"],
     formats: "Roll",
-    brand: "NitroTAG",
+    brand: "NitroTAG®",
     href: "/solutions/cryogenic-labels",
   },
   {
@@ -2018,7 +2018,7 @@ export const LABEL_CLASSES: LabelClass[] = [
     containers: ["tubes-vials"],
     printers: ["Automation Thermal Transfer"],
     formats: "Roll",
-    brand: "NitroTAG",
+    brand: "NitroTAG®",
     href: "/solutions/cryogenic-labels",
   },
   {
@@ -2234,7 +2234,7 @@ export const LABEL_CLASSES: LabelClass[] = [
     containers: ["cryo-boxes", "syringes", "tubes-vials"],
     printers: ["Thermal Transfer"],
     formats: "Roll",
-    brand: "NitroTAG",
+    brand: "NitroTAG®",
     href: "/solutions/cryogenic-labels",
   },
   {
@@ -2342,7 +2342,7 @@ export const LABEL_CLASSES: LabelClass[] = [
     containers: ["cryo-boxes", "tubes-vials", "microcentrifuge-tubes"],
     printers: ["Thermal Transfer"],
     formats: "Roll",
-    brand: "RFID NitroTAG",
+    brand: "RFID NitroTAG®",
     href: "/solutions/rfid-labels-tags",
   },
   {
@@ -2703,7 +2703,7 @@ export const LABEL_CLASSES: LabelClass[] = [
     containers: ["cryo-boxes", "syringes", "tubes-vials"],
     printers: ["Thermal Transfer"],
     formats: "Roll",
-    brand: "NitroTAG",
+    brand: "NitroTAG®",
     href: "/solutions/cryogenic-labels",
   },
   {

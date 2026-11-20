@@ -8,7 +8,8 @@ import {
   type Dispatch,
   type SetStateAction,
 } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import { classPath } from '@/content/labtagLinks'
 import {
   CONTAINER_BLURBS,
   CONTAINER_KINDS,
@@ -23,7 +24,7 @@ import {
   TEMP_TAG_RANGE,
   columnSortFromToolbar,
   defaultColumnSortDirection,
-  formatSizeCount,
+  classSizeCount,
   formatTemp,
   isTempRangeEmpty,
   matchesTempRangeFilter,
@@ -31,7 +32,8 @@ import {
   sortLabelClassesByColumn,
   tempBarStyle,
   tempRangeActiveCount,
-  tempTagClass,
+  resistanceClass,
+  resistanceLabel,
   toolbarSortFromColumn,
   type ContainerKind,
   type FinderColumnSort,
@@ -45,6 +47,32 @@ import {
 } from '@/content/labelFinder'
 
 type Filters = Partial<Record<Exclude<FinderFilterKey, 'temperatures'>, string[]>>
+
+const FILTER_PARAM_KEYS = [
+  'containers',
+  'resistances',
+  'feature',
+  'printingMethods',
+  'brands',
+  'classes',
+  'productType',
+] as const
+
+function stateFromFinderParams(params: URLSearchParams) {
+  const filters: Filters = {}
+  for (const key of FILTER_PARAM_KEYS) {
+    const value = params.get(key)
+    if (value) filters[key] = [value]
+  }
+  const tempRange = { ...EMPTY_TEMP_RANGE }
+  const temp = params.get('temp')
+  if (temp && temp in TEMP_TAG_RANGE) {
+    const patch = TEMP_TAG_RANGE[temp as TempTag]
+    if (patch.min) tempRange.min = patch.min
+    if (patch.max) tempRange.max = patch.max
+  }
+  return { filters, tempRange }
+}
 
 function hasTempResistances(row: LabelClass) {
   // Temporary: hide classes with no temp range until that data is filled in.
@@ -295,7 +323,9 @@ function FinderTableHeader({
   if (!column.sortKey) {
     return (
       <th scope="col" className={column.className}>
-        <span className={column.srOnly ? 'sr-only' : undefined}>{column.label}</span>
+        <span className={`finder-th-button is-static${column.align === 'right' ? ' is-end' : ''}`}>
+          <span>{column.label}</span>
+        </span>
       </th>
     )
   }
@@ -339,188 +369,6 @@ function RowChevronIcon() {
 
 const CLASS_PLACEHOLDER = '/media/label-finder/class-placeholder.webp'
 
-function ContainerIcon({ kind, className }: { kind: ContainerKind; className?: string }) {
-  const common = {
-    className,
-    viewBox: '0 0 24 24',
-    fill: 'none',
-    'aria-hidden': true as const,
-  }
-  const stroke = {
-    stroke: 'currentColor',
-    strokeWidth: 1.6,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-  }
-
-  switch (kind) {
-    case 'cryo-boxes':
-      return (
-        <svg {...common}>
-          <path d="M4.5 8.2 12 4.5l7.5 3.7v8.6L12 20.5 4.5 16.8V8.2Z" {...stroke} />
-          <path d="M4.5 8.2 12 12l7.5-3.8M12 12v8.5" {...stroke} />
-          <path d="M12 9.4v5.2M9.8 10.7 12 12.2l2.2-1.5M9.8 13.7 12 12.2l2.2 1.5" {...stroke} />
-        </svg>
-      )
-    case 'storage-boxes':
-      return (
-        <svg {...common}>
-          <path d="M5 9.2h14v9.3H5V9.2Z" {...stroke} />
-          <path d="M5 9.2 12 5.4 19 9.2" {...stroke} />
-          <path d="M9.2 13.2h5.6M9.2 16h5.6" {...stroke} />
-        </svg>
-      )
-    case 'ivf-cryostraws':
-      return (
-        <svg {...common}>
-          <path d="M8.2 3.5v14.2a1.8 1.8 0 0 0 3.6 0V3.5" {...stroke} />
-          <path d="M14.8 3.5v14.2a1.8 1.8 0 0 0 3.6 0V3.5" {...stroke} />
-          <path d="M8.2 7.2h3.6M14.8 7.2h3.6M8.2 11h3.6M14.8 11h3.6" {...stroke} />
-          <path d="M7.2 3.5h5.6M13.8 3.5h5.6" {...stroke} />
-        </svg>
-      )
-    case 'metal-racks':
-      return (
-        <svg {...common}>
-          <path d="M5 4.5v15M19 4.5v15" {...stroke} />
-          <path d="M5 7.2h14M5 11h14M5 14.8h14M5 18.5h14" {...stroke} />
-          <circle cx="8.5" cy="7.2" r="1.15" fill="currentColor" />
-          <circle cx="12" cy="11" r="1.15" fill="currentColor" />
-          <circle cx="15.5" cy="14.8" r="1.15" fill="currentColor" />
-          <circle cx="8.5" cy="18.5" r="1.15" fill="currentColor" />
-        </svg>
-      )
-    case 'blood-bags':
-      return (
-        <svg {...common}>
-          <path
-            d="M9.2 3.4h5.6v2.1l1.7 1.4v10.2a2 2 0 0 1-2 2H9.5a2 2 0 0 1-2-2V6.9l1.7-1.4V3.4Z"
-            {...stroke}
-          />
-          <path d="M10.1 3.4V2.4h3.8v1" {...stroke} />
-          <path
-            d="M12 9.1c-1.5 0-2.2 1.1-2.2 2.2S12 16.2 12 16.2s2.2-3.2 2.2-4.9S13.5 9.1 12 9.1Z"
-            {...stroke}
-          />
-        </svg>
-      )
-    case 'syringes':
-      return (
-        <svg {...common}>
-          <path d="M13.2 3.6 20 10.4" {...stroke} />
-          <path d="M15.2 4.4l4 4" {...stroke} />
-          <path d="M12.1 5.4 5.4 12.1l2.4 2.4 6.7-6.7" {...stroke} />
-          <path d="M4.2 14.3 2.6 20.2l5.9-1.6" {...stroke} />
-          <path d="M7.2 11.4l3.2 3.2M9.2 9.4l3.2 3.2" {...stroke} />
-        </svg>
-      )
-    case 'plates':
-      return (
-        <svg {...common}>
-          <rect x="3.5" y="5" width="17" height="14" rx="2" {...stroke} />
-          <circle cx="7.5" cy="9.2" r="1.2" {...stroke} />
-          <circle cx="12" cy="9.2" r="1.2" {...stroke} />
-          <circle cx="16.5" cy="9.2" r="1.2" {...stroke} />
-          <circle cx="7.5" cy="14.5" r="1.2" {...stroke} />
-          <circle cx="12" cy="14.5" r="1.2" {...stroke} />
-          <circle cx="16.5" cy="14.5" r="1.2" {...stroke} />
-        </svg>
-      )
-    case 'sterilization-material':
-      return (
-        <svg {...common}>
-          <path d="M6.2 7.2h11.6v10.6H6.2V7.2Z" {...stroke} />
-          <path d="M8.2 7.2V5.4h7.6v1.8" {...stroke} />
-          <path d="M9.2 11.2h5.6M9.2 14.2h5.6" {...stroke} />
-          <path d="M12 3.5v1.4M9.6 4.2l.7 1.1M14.4 4.2l-.7 1.1" {...stroke} />
-        </svg>
-      )
-    case 'tubes-vials':
-      return (
-        <svg {...common}>
-          <path d="M8.4 5.2h7.2v12.2a1.8 1.8 0 0 1-1.8 1.8H10.2a1.8 1.8 0 0 1-1.8-1.8V5.2Z" {...stroke} />
-          <path d="M10.2 5.2V3.6h3.6v1.6M8.4 9.2h7.2M10.1 12.8h3.8" {...stroke} />
-        </svg>
-      )
-    case 'microscope-slides':
-      return (
-        <svg {...common}>
-          <rect x="3.8" y="6.2" width="16.4" height="11.2" rx="1.2" {...stroke} />
-          <circle cx="10.2" cy="11.8" r="2.6" {...stroke} />
-          <path d="M14.4 9.2h3.4M14.4 11.8h3.4M14.4 14.4h2.4" {...stroke} />
-        </svg>
-      )
-    case 'formalin-containers':
-      return (
-        <svg {...common}>
-          <path
-            d="M8.2 4.2h7.6v2.2l1.8 1.6v9.4a2.1 2.1 0 0 1-2.1 2.1H8.5a2.1 2.1 0 0 1-2.1-2.1V8l1.8-1.6V4.2Z"
-            {...stroke}
-          />
-          <path d="M8.2 4.2V3h7.6v1.2M8.3 13.4h7.4" {...stroke} />
-          <path d="M10.2 10.4c.7.9 1.5 1.4 2.8 1.4s2.1-.5 2.8-1.4" {...stroke} />
-        </svg>
-      )
-    case 'resin-capsules':
-      return (
-        <svg {...common}>
-          <path d="M8.2 6.2a3.8 3.8 0 0 1 7.6 0v11.2a3.8 3.8 0 0 1-7.6 0V6.2Z" {...stroke} />
-          <path d="M8.2 11.8h7.6" {...stroke} />
-          <path d="M9.8 7.6h4.4" {...stroke} />
-        </svg>
-      )
-    case 'paraffin-wax':
-      return (
-        <svg {...common}>
-          <path d="M5.2 16.8 7.1 6.4h9.8l1.9 10.4H5.2Z" {...stroke} />
-          <path d="M7.8 10.4h8.4M6.9 13.6h10.2" {...stroke} />
-          <path d="M9.4 6.4c.8-1.4 1.8-2.2 2.6-2.2s1.8.8 2.6 2.2" {...stroke} />
-        </svg>
-      )
-    case 'wax-blocks':
-      return (
-        <svg {...common}>
-          <path d="M5.2 8.4h13.6v9.2H5.2V8.4Z" {...stroke} />
-          <path d="M5.2 8.4 12 4.8l6.8 3.6" {...stroke} />
-          <path d="M8.4 12.2h7.2M8.4 15.2h7.2" {...stroke} />
-        </svg>
-      )
-    case 'pcr-containers':
-      return (
-        <svg {...common}>
-          <path d="M4.2 6.4h15.6v2.4l-1.2 9.4H5.4L4.2 8.8V6.4Z" {...stroke} />
-          <path d="M7 10.4v5.6M12 10.4v5.6M17 10.4v5.6M6.2 7.8h11.6" {...stroke} />
-        </svg>
-      )
-    case 'frozen-vials-surfaces':
-      return (
-        <svg {...common}>
-          <path d="M8.6 5h6.8v12.4a1.7 1.7 0 0 1-1.7 1.7h-3.4A1.7 1.7 0 0 1 8.6 17.4V5Z" {...stroke} />
-          <path d="M10.4 5V3.5h3.2V5" {...stroke} />
-          <path d="M12 8.2v6.2M9.9 9.6 12 11l2.1-1.4M9.9 12.4 12 11l2.1 1.4" {...stroke} />
-          <path d="M5.4 9.2 6.8 10.4M5.4 14.2 6.8 13M18.6 9.2 17.2 10.4M18.6 14.2 17.2 13" {...stroke} />
-        </svg>
-      )
-    case 'microcentrifuge-tubes':
-      return (
-        <svg {...common}>
-          <path
-            d="M9.1 3.6h5.8l1.4 3.2v9.4a2.2 2.2 0 0 1-2.2 2.2h-4.2a2.2 2.2 0 0 1-2.2-2.2V6.8l1.4-3.2Z"
-            {...stroke}
-          />
-          <path d="M7.8 6.8h8.4M10.2 11h3.6M10.8 14.2h2.4" {...stroke} />
-        </svg>
-      )
-    case 'volumetric-labware':
-      return (
-        <svg {...common}>
-          <path d="M9 3.6h6v3.2L18.4 19H5.6L9 6.8V3.6Z" {...stroke} />
-          <path d="M8 10.4h8M7.2 13.4h9.6M6.5 16.4h11" {...stroke} />
-        </svg>
-      )
-  }
-}
-
 function ContainersFilter({
   value,
   onChange,
@@ -533,10 +381,8 @@ function ContainersFilter({
   collapsed?: boolean
 }) {
   const [open, setOpen] = useState(false)
-  const [filterQuery, setFilterQuery] = useState('')
   const rootRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const searchRef = useRef<HTMLInputElement>(null)
   const [panelStyle, setPanelStyle] = useState<CSSProperties>({})
   const clickMenu = useClickMenu(setOpen)
 
@@ -564,18 +410,10 @@ function ContainersFilter({
         CONTAINER_LABELS[a].localeCompare(CONTAINER_LABELS[b]),
     )
 
-  const matchesQuery = (kind: ContainerKind, q: string) => {
-    if (!q) return true
-    return (
-      CONTAINER_LABELS[kind].toLowerCase().includes(q) ||
-      CONTAINER_BLURBS[kind].toLowerCase().includes(q)
-    )
-  }
-
-  const visibleOptions = useMemo(() => {
-    const q = filterQuery.trim().toLowerCase()
-    return sortByPopularity(containerOptions.filter((kind) => matchesQuery(kind, q)))
-  }, [containerOptions, filterQuery, counts])
+  const visibleOptions = useMemo(
+    () => sortByPopularity(containerOptions),
+    [containerOptions, counts],
+  )
 
   const placePanel = () => {
     const button = buttonRef.current
@@ -598,10 +436,12 @@ function ContainersFilter({
     })
   }
 
+  useLayoutEffect(() => {
+    if (open) placePanel()
+  }, [open, value])
+
   useEffect(() => {
     if (!open) return
-    placePanel()
-    if (clickMenu.focusSearchRef.current) searchRef.current?.focus()
 
     const onPointerDown = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
@@ -621,10 +461,6 @@ function ContainersFilter({
       window.removeEventListener('resize', onReposition)
       window.removeEventListener('scroll', onReposition, true)
     }
-  }, [open])
-
-  useEffect(() => {
-    if (!open) setFilterQuery('')
   }, [open])
 
   const toggle = (label: string) => {
@@ -661,9 +497,6 @@ function ContainersFilter({
                 />
               </svg>
             ) : null}
-          </span>
-          <span className="finder-containers-option-icon" aria-hidden="true">
-            <ContainerIcon kind={kind} />
           </span>
           <span className="finder-containers-option-copy">
             <span className="finder-containers-option-label">{label}</span>
@@ -716,18 +549,6 @@ function ContainersFilter({
                 </button>
               ) : null}
             </div>
-
-            <label className="finder-menu-search finder-containers-search">
-              <span className="sr-only">Filter containers</span>
-              <SearchIcon />
-              <input
-                ref={searchRef}
-                type="search"
-                placeholder="Search containers..."
-                value={filterQuery}
-                onChange={(event) => setFilterQuery(event.target.value)}
-              />
-            </label>
           </div>
 
           <div className="finder-containers-panel-body">
@@ -784,9 +605,12 @@ function TemperaturesFilter({
     })
   }
 
+  useLayoutEffect(() => {
+    if (open) placePanel()
+  }, [open, activeFields])
+
   useEffect(() => {
     if (!open) return
-    placePanel()
 
     const onPointerDown = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
@@ -912,9 +736,12 @@ function MenuFilter({
     })
   }
 
+  useLayoutEffect(() => {
+    if (open) placePanel()
+  }, [open, value])
+
   useEffect(() => {
     if (!open) return
-    placePanel()
     if (clickMenu.focusSearchRef.current) searchRef.current?.focus()
 
     const onPointerDown = (event: MouseEvent) => {
@@ -1040,8 +867,10 @@ function MenuFilter({
 }
 
 export function LabelFinderPage() {
-  const [filters, setFilters] = useState<Filters>({})
-  const [tempRange, setTempRange] = useState<TempRangeFilter>(EMPTY_TEMP_RANGE)
+  const [searchParams] = useSearchParams()
+  const finderQuery = searchParams.toString()
+  const [filters, setFilters] = useState<Filters>(() => stateFromFinderParams(searchParams).filters)
+  const [tempRange, setTempRange] = useState<TempRangeFilter>(() => stateFromFinderParams(searchParams).tempRange)
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<FinderSort>('Best Match')
   const [columnSort, setColumnSort] = useState<FinderColumnSort | null>(null)
@@ -1061,6 +890,26 @@ export function LabelFinderPage() {
     if (!select || !mirror) return
     select.style.width = `${Math.ceil(mirror.getBoundingClientRect().width) + 2}px`
   }, [sort])
+
+  useLayoutEffect(() => {
+    const row = toolbarRowRef.current
+    const toolbar = row?.closest('.finder-toolbar')
+    if (!(toolbar instanceof HTMLElement)) return
+    const publish = () => {
+      const height = Math.round(toolbar.getBoundingClientRect().height)
+      if (height > 0) document.documentElement.style.setProperty('--finder-toolbar-h', `${height}px`)
+    }
+    publish()
+    const observer = new ResizeObserver(publish)
+    observer.observe(toolbar)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const next = stateFromFinderParams(new URLSearchParams(finderQuery))
+    setFilters(next.filters)
+    setTempRange(next.tempRange)
+  }, [finderQuery])
 
   const rows = useMemo(() => {
     const matched = LABEL_CLASSES.filter((row) => rowMatches(row, filters, query, tempRange))
@@ -1086,10 +935,66 @@ export function LabelFinderPage() {
     })
   }
 
-  const activeCount =
-    Object.values(filters).reduce((sum, values) => sum + (values?.length ?? 0), 0) +
-    tempRangeActiveCount(tempRange) +
-    (query.trim() ? 1 : 0)
+  const appliedChips = useMemo(() => {
+    const chips: { id: string; label: string; remove: () => void }[] = []
+    const prefix: Record<Exclude<FinderFilterKey, 'temperatures'>, string> = {
+      containers: 'Container',
+      resistances: 'Resistance',
+      feature: 'Feature',
+      printingMethods: 'Printing Method',
+      brands: 'Brand',
+      classes: 'Class',
+      productType: 'Product type',
+    }
+    for (const key of FINDER_FILTER_ORDER) {
+      if (key === 'temperatures') continue
+      for (const value of filters[key] ?? []) {
+        chips.push({
+          id: `${key}:${value}`,
+          label: `${prefix[key]}: ${value}`,
+          remove: () => toggleFilterValue(key, value),
+        })
+      }
+    }
+    const tagFor = (field: 'min' | 'max', value: string) =>
+      (Object.entries(TEMP_TAG_RANGE) as [TempTag, { min?: string; max?: string }][]).find(
+        ([, patch]) => patch[field] === value,
+      )?.[0]
+    if (tempRange.min) {
+      const tag = tagFor('min', tempRange.min)
+      chips.push({
+        id: `temp-min:${tempRange.min}`,
+        label: tag ? `Temperature: ${tag}` : `Min: ${tempRange.min}°C`,
+        remove: () => setTempRange((prev) => ({ ...prev, min: '' })),
+      })
+    }
+    if (tempRange.max) {
+      const tag = tagFor('max', tempRange.max)
+      chips.push({
+        id: `temp-max:${tempRange.max}`,
+        label: tag ? `Temperature: ${tag}` : `Max: ${tempRange.max}°C`,
+        remove: () => setTempRange((prev) => ({ ...prev, max: '' })),
+      })
+    }
+    if (tempRange.application) {
+      chips.push({
+        id: `temp-app:${tempRange.application}`,
+        label: `Application: ${tempRange.application}°C`,
+        remove: () => setTempRange((prev) => ({ ...prev, application: '' })),
+      })
+    }
+    const q = query.trim()
+    if (q) {
+      chips.push({
+        id: `query:${q}`,
+        label: `Search: ${q}`,
+        remove: () => setQuery(''),
+      })
+    }
+    return chips
+  }, [filters, query, tempRange])
+
+  const activeCount = appliedChips.length
 
   const setFilter = (key: Exclude<FinderFilterKey, 'temperatures'>, value: string[]) => {
     setFilters((prev) => {
@@ -1110,23 +1015,6 @@ export function LabelFinderPage() {
 
   const isFilterActive = (key: Exclude<FinderFilterKey, 'temperatures'>, value: string) =>
     (filters[key] ?? []).includes(value)
-
-  const isTempTagActive = (tag: TempTag) => {
-    const patch = TEMP_TAG_RANGE[tag]
-    if (patch.min != null) return tempRange.min === patch.min
-    if (patch.max != null) return tempRange.max === patch.max
-    return false
-  }
-
-  const toggleTempTag = (tag: TempTag) => {
-    const patch = TEMP_TAG_RANGE[tag]
-    setTempRange((prev) => {
-      const next = { ...prev }
-      if (patch.min != null) next.min = prev.min === patch.min ? '' : patch.min
-      if (patch.max != null) next.max = prev.max === patch.max ? '' : patch.max
-      return next
-    })
-  }
 
   const clearFilters = () => {
     setFilters({})
@@ -1193,17 +1081,16 @@ export function LabelFinderPage() {
   }
 
   useLayoutEffect(() => {
+    recomputeOverflow()
     const row = toolbarRowRef.current
     const host = chipsHostRef.current
     if (!row || !host) return
 
-    const frame = window.requestAnimationFrame(() => recomputeOverflow())
     const observer = new ResizeObserver(() => recomputeOverflow())
     observer.observe(row)
     observer.observe(host)
     window.addEventListener('resize', recomputeOverflow)
     return () => {
-      window.cancelAnimationFrame(frame)
       observer.disconnect()
       window.removeEventListener('resize', recomputeOverflow)
     }
@@ -1429,12 +1316,26 @@ export function LabelFinderPage() {
 
       <div className="finder-count-row">
         <p className="finder-count" aria-live="polite">
-          {rows.length} {rows.length === 1 ? 'class' : 'classes'}
-          {activeCount ? ' match' : ''}
+          {rows.length.toLocaleString('en-US')} {rows.length === 1 ? 'result' : 'results'}
         </p>
+        {appliedChips.length ? (
+          <ul className="finder-applied">
+            {appliedChips.map((chip) => (
+              <li key={chip.id}>
+                <button type="button" className="finder-applied-chip" onClick={chip.remove}>
+                  <span>{chip.label}</span>
+                  <span className="finder-applied-x" aria-hidden="true">
+                    ×
+                  </span>
+                  <span className="sr-only">{`Remove ${chip.label}`}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {activeCount ? (
           <button type="button" className="finder-clear-all" onClick={clearFilters}>
-            Clear all filters
+            Clear all
           </button>
         ) : null}
       </div>
@@ -1470,7 +1371,7 @@ export function LabelFinderPage() {
               return (
                 <tr key={row.id} className="finder-row">
                   <td className="finder-class">
-                    <Link className="finder-class-link" to={row.href}>
+                    <Link className="finder-class-link" to={classPath(row.code)}>
                       <span className="finder-thumb" aria-hidden="true">
                         <img src={CLASS_PLACEHOLDER} alt="" width={72} height={54} loading="lazy" />
                       </span>
@@ -1491,21 +1392,29 @@ export function LabelFinderPage() {
                       )}
                     </span>
                     {row.tempMin != null && row.tempMax != null ? (
-                      <span className="finder-temp-track" aria-hidden="true">
-                        <span className="finder-temp-fill" style={bar} />
+                      <span className="finder-temp-scale">
+                        <span className="finder-temp-track" aria-hidden="true">
+                          <span className="finder-temp-fill" style={bar} />
+                        </span>
+                        {row.tempApp != null ? (
+                          <span className="finder-temp-app">
+                            Min. Application Temp {formatTemp(row.tempApp)}
+                          </span>
+                        ) : null}
                       </span>
                     ) : null}
                   </td>
                   <td className="finder-temp-tags">
-                    {row.tempTags.length ? (
+                    <span className="finder-stack-label">Resistances</span>
+                    {row.resistances.length ? (
                       <ul className="finder-meta-chips">
-                        {row.tempTags.map((tag: TempTag) => (
+                        {row.resistances.map((item) => (
                           <FilterChip
-                            key={tag}
-                            label={tag}
-                            className={`is-resistance ${tempTagClass(tag)}`}
-                            active={isTempTagActive(tag)}
-                            onToggle={() => toggleTempTag(tag)}
+                            key={item}
+                            label={resistanceLabel(item)}
+                            className={`is-resistance ${resistanceClass(item)}`}
+                            active={isFilterActive('resistances', item)}
+                            onToggle={() => toggleFilterValue('resistances', item)}
                           />
                         ))}
                       </ul>
@@ -1514,6 +1423,7 @@ export function LabelFinderPage() {
                     )}
                   </td>
                   <td className="finder-features">
+                    <span className="finder-stack-label">Features</span>
                     {row.features.length ? (
                       <ul className="finder-meta-chips">
                         {row.features.map((item) => (
@@ -1531,6 +1441,7 @@ export function LabelFinderPage() {
                     )}
                   </td>
                   <td className="finder-containers">
+                    <span className="finder-stack-label">Containers</span>
                     {row.containers.length ? (
                       <ul className="finder-meta-chips">
                         {row.containers.map((kind) => {
@@ -1551,6 +1462,7 @@ export function LabelFinderPage() {
                     )}
                   </td>
                   <td className="finder-print">
+                    <span className="finder-stack-label">Printing Method</span>
                     {row.printers.length ? (
                       <ul className="finder-meta-chips">
                         {row.printers.map((method) => (
@@ -1570,11 +1482,11 @@ export function LabelFinderPage() {
                   <td className="finder-sizes">
                     <Link
                       className="finder-go"
-                      to={row.href}
-                      aria-label={`View ${formatSizeCount(row.formats)} sizes for ${row.code}`}
+                      to={classPath(row.code)}
+                      aria-label={`View ${classSizeCount(row)} sizes for ${row.code}`}
                     >
                       <span className="finder-go-label">
-                        View <span className="finder-go-count">{formatSizeCount(row.formats)}</span> Sizes
+                        View <span className="finder-go-count">{classSizeCount(row)}</span> Sizes
                       </span>
                       <RowChevronIcon />
                     </Link>

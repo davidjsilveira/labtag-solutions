@@ -1,3 +1,5 @@
+import { JTTA_SKUS } from '@/content/classMocks'
+
 export type ContainerKind =
   | 'cryo-boxes'
   | 'storage-boxes'
@@ -75,6 +77,12 @@ export function formatSizeCount(formats: string) {
     .split(/[·,|/]/)
     .map((part) => part.trim())
     .filter(Boolean).length
+}
+
+/** Catalog size count when we have real SKUs; otherwise the formats label. */
+export function classSizeCount(row: Pick<LabelClass, 'code' | 'formats'>) {
+  if (row.code === 'JTTA') return JTTA_SKUS.length
+  return formatSizeCount(row.formats)
 }
 
 /** Display order matches the LabTAG container taxonomy. */
@@ -218,6 +226,11 @@ export function tempBarStyle(min: number | null, max: number | null) {
   }
 }
 
+export function findLabelClass(code: string) {
+  const key = code.trim().toLowerCase()
+  return LABEL_CLASSES.find((row) => row.code.toLowerCase() === key || row.id === key)
+}
+
 export function formatTemp(celsius: number | null) {
   if (celsius == null) return '—'
   const sign = celsius > 0 ? '+' : ''
@@ -308,22 +321,19 @@ export const FINDER_TABLE_COLUMNS: FinderTableColumn[] = [
     id: 'temperature',
     label: 'Temp Range',
     className: 'finder-temp',
-    sortKey: 'temperature',
   },
   {
-    id: 'tempTags',
-    label: 'Temperature',
+    id: 'resistances',
+    label: 'Resistances',
     className: 'finder-temp-tags',
-    sortKey: 'tempTags',
   },
-  { id: 'features', label: 'Features', className: 'finder-features', sortKey: 'features' },
+  { id: 'features', label: 'Features', className: 'finder-features' },
   {
     id: 'containers',
     label: 'Containers',
     className: 'finder-containers',
-    sortKey: 'containers',
   },
-  { id: 'print', label: 'Printing Method', className: 'finder-print', sortKey: 'print' },
+  { id: 'print', label: 'Printing Method', className: 'finder-print' },
   {
     id: 'sizes',
     label: 'Sizes',
@@ -362,7 +372,7 @@ export function sortLabelClassesByColumn(rows: LabelClass[], sort: FinderColumnS
           maxOr(a.tempMax, Number.POSITIVE_INFINITY) - maxOr(b.tempMax, Number.POSITIVE_INFINITY)
         break
       case 'tempTags':
-        result = compareText(joinList(a.tempTags), joinList(b.tempTags)) || compareText(a.code, b.code)
+        result = compareText(joinList(a.resistances), joinList(b.resistances)) || compareText(a.code, b.code)
         break
       case 'features':
         result = compareText(joinList(a.features), joinList(b.features)) || compareText(a.code, b.code)
@@ -381,7 +391,7 @@ export function sortLabelClassesByColumn(rows: LabelClass[], sort: FinderColumnS
         break
       case 'sizes':
         result =
-          formatSizeCount(a.formats) - formatSizeCount(b.formats) ||
+          classSizeCount(a) - classSizeCount(b) ||
           compareText(a.formats, b.formats) ||
           compareText(a.code, b.code)
         break
@@ -394,11 +404,20 @@ export function sortLabelClassesByColumn(rows: LabelClass[], sort: FinderColumnS
   return next
 }
 
+function pinClass(rows: LabelClass[], code: string) {
+  const index = rows.findIndex((row) => row.code === code)
+  if (index <= 0) return rows
+  const next = rows.slice()
+  const [row] = next.splice(index, 1)
+  next.unshift(row)
+  return next
+}
+
 export function sortLabelClasses(rows: LabelClass[], sort: FinderSort) {
   switch (sort) {
     case 'Best Match':
-      // Default: most size/format options first.
-      return sortLabelClassesByColumn(rows, { key: 'sizes', direction: 'desc' })
+      // Default catalog view leads with the class that has a full size table.
+      return pinClass(sortLabelClassesByColumn(rows, { key: 'sizes', direction: 'desc' }), 'JTTA')
     case 'Name A–Z':
       return sortLabelClassesByColumn(rows, { key: 'code', direction: 'asc' })
     case 'Name Z–A':
@@ -463,4 +482,30 @@ export function tempTagClass(tag: TempTag) {
     case 'Autoclave':
       return 'is-autoclave'
   }
+}
+
+/** Short chip label for a resistance filter value. */
+export function resistanceLabel(value: string) {
+  if (value.startsWith('Cryogenic')) return 'Cryo'
+  if (value.startsWith('Deep-Freeze')) return 'Deep-Freeze'
+  if (value.startsWith('Heat')) return 'Heat'
+  if (value.startsWith('Autoclave')) return 'Autoclave'
+  return value
+}
+
+/** Color class for each resistance category in the filter list. */
+export function resistanceClass(value: string) {
+  if (value.startsWith('Cryogenic')) return 'is-cryo'
+  if (value.startsWith('Deep-Freeze')) return 'is-deep-freeze'
+  if (value.startsWith('Heat')) return 'is-heat'
+  if (value.startsWith('Autoclave')) return 'is-autoclave'
+  if (value === 'Alcohol Wiping') return 'is-alcohol-wipe'
+  if (value === 'Alcohol Immersion') return 'is-alcohol-immersion'
+  if (value === 'Xylene & Chemicals') return 'is-xylene'
+  if (value === 'Acid & Base') return 'is-acid'
+  if (value === 'Gamma Irradiation') return 'is-gamma'
+  if (value === 'Histology Stains') return 'is-histo'
+  if (value === 'Oil') return 'is-oil'
+  if (value === 'Abrasion/Scratching') return 'is-abrasion'
+  return 'is-feature'
 }

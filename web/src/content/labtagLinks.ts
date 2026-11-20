@@ -57,6 +57,22 @@ export const LABTAG_LITERATURE_URL = 'https://www.labtag.com/resources/catalogs/
 export const LABTAG_CASE_STUDIES_URL = 'https://www.labtag.com/case-studies/'
 export const LABTAG_FINDER_URL = 'https://www.labtag.com/resources/label-finder/'
 export const FINDER_PATH = '/label-finder'
+export const CLASS_PATH = '/classes'
+
+export function classPath(code: string) {
+  return `${CLASS_PATH}/${encodeURIComponent(code.trim().toLowerCase())}`
+}
+
+/** Label finder with one filter already selected. `temp` is a temperature chip (Cryo, Heat). */
+export function finderFilterPath(key: string, value: string) {
+  const params = new URLSearchParams()
+  params.set(key, value)
+  return `${FINDER_PATH}?${params.toString()}`
+}
+
+export function labtagClassUrl(code: string) {
+  return `https://www.labtag.com/label_class/${encodeURIComponent(code.trim().toLowerCase())}/`
+}
 export const LABTAG_VIDEOS_URL = 'https://www.labtag.com/resources/videos/'
 export const LABTAG_TEMPLATES_URL = 'https://www.labtag.com/resources/label-templates/'
 export const LABTAG_TEMPLATES_HUB_URL = 'https://www.labtag.com/resources/templates/'
