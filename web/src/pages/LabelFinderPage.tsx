@@ -932,22 +932,14 @@ export function LabelFinderPage() {
   }
 
   const appliedChips = useMemo(() => {
-    const chips: { id: string; label: string; remove: () => void }[] = []
-    const prefix: Record<Exclude<FinderFilterKey, 'temperatures'>, string> = {
-      containers: 'Container',
-      resistances: 'Resistance',
-      feature: 'Feature',
-      printingMethods: 'Printing Method',
-      brands: 'Brand',
-      classes: 'Class',
-      productType: 'Product type',
-    }
+    const chips: { id: string; label: string; filterKey: FinderFilterKey | null; remove: () => void }[] = []
     for (const key of FINDER_FILTER_ORDER) {
       if (key === 'temperatures') continue
       for (const value of filters[key] ?? []) {
         chips.push({
           id: `${key}:${value}`,
-          label: `${prefix[key]}: ${value}`,
+          label: value,
+          filterKey: key,
           remove: () => toggleFilterValue(key, value),
         })
       }
@@ -960,7 +952,8 @@ export function LabelFinderPage() {
       const tag = tagFor('min', tempRange.min)
       chips.push({
         id: `temp-min:${tempRange.min}`,
-        label: tag ? `Temperature: ${tag}` : `Min: ${tempRange.min}°C`,
+        label: tag ?? `${tempRange.min}°C`,
+        filterKey: 'temperatures',
         remove: () => setTempRange((prev) => ({ ...prev, min: '' })),
       })
     }
@@ -968,14 +961,16 @@ export function LabelFinderPage() {
       const tag = tagFor('max', tempRange.max)
       chips.push({
         id: `temp-max:${tempRange.max}`,
-        label: tag ? `Temperature: ${tag}` : `Max: ${tempRange.max}°C`,
+        label: tag ?? `${tempRange.max}°C`,
+        filterKey: 'temperatures',
         remove: () => setTempRange((prev) => ({ ...prev, max: '' })),
       })
     }
     if (tempRange.application) {
       chips.push({
         id: `temp-app:${tempRange.application}`,
-        label: `Application: ${tempRange.application}°C`,
+        label: `${tempRange.application}°C`,
+        filterKey: 'temperatures',
         remove: () => setTempRange((prev) => ({ ...prev, application: '' })),
       })
     }
@@ -983,7 +978,8 @@ export function LabelFinderPage() {
     if (q) {
       chips.push({
         id: `query:${q}`,
-        label: `Search: ${q}`,
+        label: q,
+        filterKey: null,
         remove: () => setQuery(''),
       })
     }
@@ -1313,17 +1309,27 @@ export function LabelFinderPage() {
         </p>
         {appliedChips.length ? (
           <ul className="finder-applied">
-            {appliedChips.map((chip) => (
-              <li key={chip.id}>
-                <button type="button" className="finder-applied-chip" onClick={chip.remove}>
-                  <span>{chip.label}</span>
-                  <span className="finder-applied-x" aria-hidden="true">
-                    ×
-                  </span>
-                  <span className="sr-only">{`Remove ${chip.label}`}</span>
-                </button>
-              </li>
-            ))}
+            {appliedChips.map((chip, index) => {
+              const previous = appliedChips[index - 1]
+              const sameGroup = chip.filterKey != null && previous?.filterKey === chip.filterKey
+              const join = !previous
+                ? null
+                : sameGroup && chip.filterKey && filterLogic(chip.filterKey) === 'or'
+                  ? 'or'
+                  : 'and'
+              return (
+                <li key={chip.id} className="finder-applied-item">
+                  {join ? <span className="finder-applied-join">{join}</span> : null}
+                  <button type="button" className="finder-applied-chip" onClick={chip.remove}>
+                    <span>{chip.label}</span>
+                    <span className="finder-applied-x" aria-hidden="true">
+                      ×
+                    </span>
+                    <span className="sr-only">{`Remove ${chip.label}`}</span>
+                  </button>
+                </li>
+              )
+            })}
           </ul>
         ) : null}
         {activeCount ? (
