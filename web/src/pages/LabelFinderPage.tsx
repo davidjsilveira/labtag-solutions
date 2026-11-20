@@ -8,7 +8,7 @@ import {
   type Dispatch,
   type SetStateAction,
 } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { classPath } from '@/content/labtagLinks'
 import {
   CONTAINER_BLURBS,
@@ -78,19 +78,54 @@ function hasTempResistances(row: LabelClass) {
   return row.tempMin != null && row.tempMax != null
 }
 
-const VIEW_ALL = 'View all'
-const FINDER_CATALOG_COUNT = LABEL_CLASSES.filter(hasTempResistances).length
-
-function filterLogic(key: FinderFilterKey): 'and' | 'or' | null {
-  if (key === 'brands' || key === 'classes') return null
-  if (key === 'temperatures') return 'and'
-  return 'or'
+const FILTER_LOGIC: Record<FinderFilterKey, { mode: 'and' | 'or'; note: string }> = {
+  containers: {
+    mode: 'and',
+    note: 'The material must be applicable on all selected containers',
+  },
+  resistances: {
+    mode: 'and',
+    note: 'The material must resist to all selected resistances',
+  },
+  temperatures: {
+    mode: 'and',
+    note: 'The material must resist to all specified temperatures',
+  },
+  feature: {
+    mode: 'and',
+    note: 'The material must have all specified features',
+  },
+  printingMethods: {
+    mode: 'or',
+    note: 'The material must match at least one of the specified printing methods',
+  },
+  brands: {
+    mode: 'or',
+    note: 'The material must match at least one of the specified brands',
+  },
+  classes: {
+    mode: 'or',
+    note: 'The material must match at least one of the specified classes',
+  },
+  productType: {
+    mode: 'or',
+    note: 'The material must match at least one of the specified product types',
+  },
 }
 
-function FilterLogic({ mode }: { mode: 'and' | 'or' }) {
+function filterLogic(key: FinderFilterKey): 'and' | 'or' {
+  return FILTER_LOGIC[key].mode
+}
+
+function filterLogicNote(key: FinderFilterKey) {
+  return FILTER_LOGIC[key].note
+}
+
+function FilterLogic({ mode, detail }: { mode: 'and' | 'or'; detail: string }) {
+  const label = mode === 'and' ? 'Match all' : 'Match or'
   return (
-    <span className={`finder-logic is-${mode}`} title={mode === 'and' ? 'All of these must match' : 'Any of these can match'}>
-      {mode === 'and' ? 'And' : 'Or'}
+    <span className={`finder-logic is-${mode}`} title={detail}>
+      {label}
     </span>
   )
 }
@@ -107,9 +142,9 @@ function rowMatches(row: LabelClass, filters: Filters, query: string, tempRange:
 
   for (const [key, values] of Object.entries(filters) as [keyof Filters, string[]][]) {
     if (!values?.length) continue
-    if (key === 'containers' && !row.containers.some((c) => values.includes(CONTAINER_LABELS[c]))) return false
-    if (key === 'resistances' && !values.some((value) => row.resistances.includes(value))) return false
-    if (key === 'feature' && !values.some((value) => row.features.includes(value))) return false
+    if (key === 'containers' && !values.every((value) => row.containers.some((c) => CONTAINER_LABELS[c] === value))) return false
+    if (key === 'resistances' && !values.every((value) => row.resistances.includes(value))) return false
+    if (key === 'feature' && !values.every((value) => row.features.includes(value))) return false
     if (key === 'printingMethods' && !values.some((value) => row.printers.includes(value))) return false
     if (key === 'brands' && !values.includes(row.brand)) return false
     if (key === 'classes' && !values.includes(row.code)) return false
@@ -377,12 +412,10 @@ const CLASS_PLACEHOLDER = '/media/label-finder/class-placeholder.webp'
 function ContainersFilter({
   value,
   onChange,
-  matchedCount,
   collapsed = false,
 }: {
   value: string[]
   onChange: (next: string[]) => void
-  matchedCount: number
   collapsed?: boolean
 }) {
   const [open, setOpen] = useState(false)
@@ -500,8 +533,8 @@ function ContainersFilter({
                 <strong>Compatible containers</strong>
                 <p>Pick the vessels or surfaces these labels need to stick to.</p>
                 <p className="finder-logic-note">
-                  <FilterLogic mode="or" />
-                  <span>Any selected container can match</span>
+                  <FilterLogic mode="and" detail={filterLogicNote('containers')} />
+                  <span>{filterLogicNote('containers')}</span>
                 </p>
               </div>
               {value.length ? (
@@ -537,14 +570,6 @@ function ContainersFilter({
                 )
               })}
             </ul>
-          </div>
-          <div className="finder-containers-panel-foot">
-            <span className="finder-containers-foot-meta">
-              {matchedCount.toLocaleString('en-US')} {matchedCount === 1 ? 'class matches' : 'classes match'}
-            </span>
-            <button type="button" className="finder-containers-done" onClick={() => setOpen(false)}>
-              Done
-            </button>
           </div>
         </div>
       ) : null}
@@ -638,8 +663,8 @@ function TemperaturesFilter({
       {open && !collapsed ? (
         <div className="finder-temp-panel" style={panelStyle} role="dialog" aria-label="Temperatures">
           <p className="finder-logic-note">
-            <FilterLogic mode="and" />
-            <span>Minimum, maximum, and application must all match</span>
+            <FilterLogic mode="and" detail={filterLogicNote('temperatures')} />
+            <span>{filterLogicNote('temperatures')}</span>
           </p>
           <TempRangeFields value={value} onChange={onChange} idPrefix="finder-toolbar-temp" />
         </div>
@@ -674,7 +699,6 @@ function MenuFilter({
   value,
   onChange,
   collapsed = false,
-  exclusive = false,
   searchable = true,
 }: {
   filterKey: Exclude<FinderFilterKey, 'temperatures'>
@@ -683,7 +707,6 @@ function MenuFilter({
   value: string[]
   onChange: (next: string[]) => void
   collapsed?: boolean
-  exclusive?: boolean
   searchable?: boolean
 }) {
   const [open, setOpen] = useState(false)
@@ -753,10 +776,6 @@ function MenuFilter({
   }, [open])
 
   const choose = (option: string) => {
-    if (exclusive) {
-      onChange(option === VIEW_ALL ? [] : [option])
-      return
-    }
     onChange(value.includes(option) ? value.filter((item) => item !== option) : [...value, option])
   }
 
@@ -789,9 +808,9 @@ function MenuFilter({
         <div
           className="finder-menu-panel"
           style={panelStyle}
-          role={exclusive ? 'radiogroup' : 'listbox'}
+          role="listbox"
           aria-label={label}
-          aria-multiselectable={exclusive ? undefined : true}
+          aria-multiselectable
         >
           {searchable ? (
             <>
@@ -809,48 +828,30 @@ function MenuFilter({
               <div className="finder-menu-divider" aria-hidden="true" />
             </>
           ) : null}
-          {exclusive ? null : (
-            <p className="finder-logic-note">
-              <FilterLogic mode="or" />
-              <span>Any selected value can match</span>
-            </p>
-          )}
+          <p className="finder-logic-note">
+            <FilterLogic mode={filterLogic(filterKey)} detail={filterLogicNote(filterKey)} />
+            <span>{filterLogicNote(filterKey)}</span>
+          </p>
           <ul className="finder-menu-list">
-            {exclusive && (!filterQuery.trim() || VIEW_ALL.toLowerCase().includes(filterQuery.trim().toLowerCase())) ? (
-              <li>
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked={value.length === 0}
-                  className={`finder-menu-option is-view-all${value.length === 0 ? ' is-selected' : ''}`}
-                  onClick={() => choose(VIEW_ALL)}
-                >
-                  <SelectionMark checked={value.length === 0} radio />
-                  <span className="finder-menu-option-label">{VIEW_ALL}</span>
-                  <span className="finder-menu-option-count">{FINDER_CATALOG_COUNT}</span>
-                </button>
-              </li>
-            ) : null}
             {filteredOptions.map((option) => {
               const checked = value.includes(option)
               return (
                 <li key={option}>
                   <button
                     type="button"
-                    role={exclusive ? 'radio' : 'option'}
-                    aria-checked={exclusive ? checked : undefined}
-                    aria-selected={exclusive ? undefined : checked}
+                    role="option"
+                    aria-selected={checked}
                     className={`finder-menu-option${checked ? ' is-selected' : ''}`}
                     onClick={() => choose(option)}
                   >
-                    <SelectionMark checked={checked} radio={exclusive} />
+                    <SelectionMark checked={checked} />
                     <span className="finder-menu-option-label">{option}</span>
                     <span className="finder-menu-option-count">{counts[option] ?? 0}</span>
                   </button>
                 </li>
               )
             })}
-            {!filteredOptions.length && !(exclusive && (!filterQuery.trim() || VIEW_ALL.toLowerCase().includes(filterQuery.trim().toLowerCase()))) ? (
+            {!filteredOptions.length ? (
               <li className="finder-menu-empty">No matches</li>
             ) : null}
           </ul>
@@ -861,6 +862,7 @@ function MenuFilter({
 }
 
 export function LabelFinderPage() {
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const finderQuery = searchParams.toString()
   const [filters, setFilters] = useState<Filters>(() => stateFromFinderParams(searchParams).filters)
@@ -1106,10 +1108,6 @@ export function LabelFinderPage() {
 
   const toggleDrawerOption = (key: Exclude<FinderFilterKey, 'temperatures'>, option: string) => {
     const current = filters[key] ?? []
-    if (key === 'brands' || key === 'classes') {
-      setFilter(key, option === VIEW_ALL ? [] : [option])
-      return
-    }
     setFilter(key, current.includes(option) ? current.filter((item) => item !== option) : [...current, option])
   }
 
@@ -1165,7 +1163,6 @@ export function LabelFinderPage() {
                     key={key}
                     value={filters.containers ?? []}
                     onChange={(next) => setFilter('containers', next)}
-                    matchedCount={rows.length}
                     collapsed={overflowKeys.has('containers')}
                   />
                 )
@@ -1189,7 +1186,6 @@ export function LabelFinderPage() {
                   value={filters[key] ?? []}
                   onChange={(next) => setFilter(key, next)}
                   collapsed={overflowKeys.has(key)}
-                  exclusive={key === 'brands' || key === 'classes'}
                 />
               )
             })}
@@ -1248,12 +1244,8 @@ export function LabelFinderPage() {
                       <>
                         {filterLogic(key) ? (
                           <p className="finder-logic-note">
-                            <FilterLogic mode={filterLogic(key)!} />
-                            <span>
-                              {filterLogic(key) === 'and'
-                                ? 'Minimum, maximum, and application must all match'
-                                : 'Any selected value can match'}
-                            </span>
+                            <FilterLogic mode={filterLogic(key)} detail={filterLogicNote(key)} />
+                            <span>{filterLogicNote(key)}</span>
                           </p>
                         ) : null}
                         {key === 'temperatures' ? (
@@ -1274,30 +1266,25 @@ export function LabelFinderPage() {
                           ) : null}
                         </div>
                       ) : (
-                        <ul className="finder-drawer-options" role={key === 'brands' || key === 'classes' ? 'radiogroup' : undefined}>
-                          {(key === 'brands' || key === 'classes' ? [VIEW_ALL, ...FINDER_FILTERS[key]] : FINDER_FILTERS[key]).map(
-                            (option) => {
-                            const radio = key === 'brands' || key === 'classes'
-                            const checked = option === VIEW_ALL ? !(filters[key]?.length) : (filters[key] ?? []).includes(option)
+                        <ul className="finder-drawer-options">
+                          {FINDER_FILTERS[key].map((option) => {
+                            const checked = (filters[key] ?? []).includes(option)
                             return (
                               <li key={option}>
                                 <button
                                   type="button"
-                                  role={radio ? 'radio' : 'checkbox'}
+                                  role="checkbox"
                                   aria-checked={checked}
-                                  className={`finder-drawer-option${option === VIEW_ALL ? ' is-view-all' : ''}${checked ? ' is-selected' : ''}`}
+                                  className={`finder-drawer-option${checked ? ' is-selected' : ''}`}
                                   onClick={() => toggleDrawerOption(key, option)}
                                 >
-                                  <SelectionMark checked={checked} radio={radio} />
+                                  <SelectionMark checked={checked} />
                                   <span className="finder-drawer-option-label">{option}</span>
-                                  <span className="finder-drawer-option-count">
-                                    {option === VIEW_ALL ? FINDER_CATALOG_COUNT : filterOptionCount(key, option)}
-                                  </span>
+                                  <span className="finder-drawer-option-count">{filterOptionCount(key, option)}</span>
                                 </button>
                               </li>
                             )
-                          },
-                          )}
+                          })}
                         </ul>
                         )}
                       </>
@@ -1375,7 +1362,15 @@ export function LabelFinderPage() {
             {rows.map((row) => {
               const bar = tempBarStyle(row.tempMin, row.tempMax)
               return (
-                <tr key={row.id} className="finder-row">
+                <tr
+                  key={row.id}
+                  className="finder-row"
+                  onClick={(event) => {
+                    const target = event.target as HTMLElement
+                    if (target.closest('a, button')) return
+                    navigate(classPath(row.code))
+                  }}
+                >
                   <td className="finder-class">
                     <Link className="finder-class-link" to={classPath(row.code)}>
                       <span className="finder-thumb" aria-hidden="true">
