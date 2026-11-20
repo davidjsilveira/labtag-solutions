@@ -354,7 +354,6 @@ main:focus {
   position: relative;
   z-index: 1;
   background: #fff;
-  box-shadow: 0 14px 18px -16px color-mix(in srgb, #b85a68 45%, transparent);
 }
 
 .site-breadcrumb-list {
@@ -16619,6 +16618,36 @@ a.why-reason:hover h2 {
   display: none !important;
 }
 
+.finder-logic-note {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.55rem;
+  color: #6b647c;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.finder-logic {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.38rem;
+  border-radius: 6px;
+  background: #f3f0f6;
+  color: #5c5470;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.finder-menu-panel .finder-logic-note,
+.finder-temp-panel .finder-logic-note {
+  margin: 0 0.15rem 0.55rem;
+}
+
 .finder-chip {
   position: relative;
   display: inline-flex;
@@ -17152,7 +17181,7 @@ a.why-reason:hover h2 {
 
 .finder-containers-option {
   display: grid;
-  grid-template-columns: 1.05rem 2.15rem minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.55rem;
   width: 100%;
@@ -17219,11 +17248,19 @@ a.why-reason:hover h2 {
   min-width: 0;
 }
 
+.finder-containers-option input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: #4a445c;
+}
+
 .finder-containers-option-label {
   color: #1f1638;
   font-size: 0.8rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
+  white-space: normal;
 }
 
 .finder-containers-option-blurb {
@@ -17718,10 +17755,11 @@ a.why-reason:hover h2 {
 
 .finder-table-wrap {
   overflow: visible;
-  border: 1px solid #e4e0ea;
-  border-radius: 0.75rem;
+  margin-top: 0.75rem;
+  border: 1px solid #ece7f1;
+  border-radius: 12px;
   background: #fff;
-  box-shadow: 0 1px 2px color-mix(in srgb, #130b24 4%, transparent);
+  box-shadow: none;
 }
 
 .finder-table {
@@ -17750,20 +17788,32 @@ a.why-reason:hover h2 {
   border-bottom: 1px solid #eceaf1;
 }
 
+.finder-table td {
+  vertical-align: middle;
+}
+
 .finder-table th {
   overflow: hidden;
-  background: #f7f5fa;
-  color: #3d2f63;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  background: #fff;
+  color: #6e687c;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
   white-space: normal;
+}
+
+.finder-table th:first-child {
+  border-top-left-radius: 12px;
 }
 
 .finder-table th:last-child,
 .finder-sizes {
   text-align: right;
+}
+
+.finder-table th:last-child {
+  border-top-right-radius: 12px;
 }
 
 .finder-th-sortable {
@@ -17777,8 +17827,8 @@ a.why-reason:hover h2 {
 .finder-table thead th {
   overflow: visible;
   vertical-align: top;
-  background: #f7f5fa;
-  box-shadow: 0 2px 0 #f7f5fa, inset 0 -1px 0 #eceaf1;
+  background: #fff;
+  box-shadow: inset 0 -1px 0 #ece7f1;
 }
 
 .finder-table tbody {
@@ -17788,15 +17838,15 @@ a.why-reason:hover h2 {
 
 .finder-th-button {
   display: inline-flex;
-  align-items: flex-start;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.2rem;
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 0.55rem 0.4rem;
+  padding: 0.85rem 0.15rem;
   border: 0;
-  border-radius: 0.4rem;
+  border-radius: 8px;
   background: transparent;
   color: inherit;
   font: inherit;
@@ -17810,8 +17860,8 @@ a.why-reason:hover h2 {
   overflow-wrap: break-word;
   cursor: pointer;
   transition:
-    background-color 140ms ease,
-    color 140ms ease;
+    background-color 160ms ease,
+    color 160ms ease;
 }
 
 .finder-th-button > span {
@@ -17835,25 +17885,26 @@ a.why-reason:hover h2 {
 
 .finder-th-button:hover,
 .finder-th-button:focus-visible {
-  background: color-mix(in srgb, #3d2f63 8%, transparent);
-  color: #241a3d;
+  background: color-mix(in srgb, #1d1b20 8%, transparent);
+  color: #1d1b20;
   outline: none;
 }
 
 .finder-th-button.is-active {
-  color: #1f1638;
+  color: #6750a4;
 }
 
 .finder-th-sort-icon {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.85rem;
+  height: 0.85rem;
   flex: 0 0 auto;
-  color: currentColor;
-  opacity: 0.72;
+  margin-top: 0;
+  color: #9a93a8;
+  opacity: 1;
 }
 
 .finder-th-button.is-active .finder-th-sort-icon {
-  opacity: 1;
+  color: #6750a4;
 }
 
 .finder-table tbody tr:last-child td {
@@ -18065,6 +18116,10 @@ a.why-reason:hover h2 {
   min-width: 12rem;
   padding-left: 1.85rem;
   padding-right: 1.85rem;
+}
+
+.finder-table td.finder-temp {
+  vertical-align: middle;
 }
 
 .finder-table th.finder-temp .finder-th-button {
@@ -18322,11 +18377,11 @@ button.finder-meta-chip.is-filter.is-active {
   box-shadow: 0 2px 6px rgb(23 40 60 / 8%);
 }
 
-.finder-features,
-.finder-print,
-.finder-sizes,
-.finder-containers,
-.finder-temp-tags {
+.finder-table th.finder-features,
+.finder-table th.finder-print,
+.finder-table th.finder-sizes,
+.finder-table th.finder-containers,
+.finder-table th.finder-temp-tags {
   vertical-align: top;
 }
 
@@ -18508,23 +18563,32 @@ button.finder-meta-chip.is-filter.is-active {
   }
 
   .finder-stack-label {
+    position: static;
     display: block;
-    margin-bottom: 0.28rem;
+    width: auto;
+    min-width: 0;
+    margin: 0 0 0.28rem;
     color: #8b849c;
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1.2;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  .finder-row > .finder-temp-tags,
-  .finder-row > .finder-features,
-  .finder-row > .finder-containers,
-  .finder-row > .finder-print {
+  .finder-row > td.finder-temp-tags,
+  .finder-row > td.finder-features,
+  .finder-row > td.finder-containers,
+  .finder-row > td.finder-print {
+    position: relative;
     order: 5;
-    flex: 1 0 100%;
+    display: block;
+    flex: 0 0 auto;
+    width: max-content;
     max-width: 100%;
+    padding: 0;
+    overflow: visible;
   }
 
   .finder-row > td:has(> .finder-empty) {

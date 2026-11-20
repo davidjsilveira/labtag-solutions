@@ -35,7 +35,6 @@ import {
   resistanceClass,
   resistanceLabel,
   toolbarSortFromColumn,
-  type ContainerKind,
   type FinderColumnSort,
   type FinderColumnSortKey,
   type FinderFilterKey,
@@ -81,6 +80,20 @@ function hasTempResistances(row: LabelClass) {
 
 const VIEW_ALL = 'View all'
 const FINDER_CATALOG_COUNT = LABEL_CLASSES.filter(hasTempResistances).length
+
+function filterLogic(key: FinderFilterKey): 'and' | 'or' | null {
+  if (key === 'brands' || key === 'classes') return null
+  if (key === 'temperatures') return 'and'
+  return 'or'
+}
+
+function FilterLogic({ mode }: { mode: 'and' | 'or' }) {
+  return (
+    <span className={`finder-logic is-${mode}`} title={mode === 'and' ? 'All of these must match' : 'Any of these can match'}>
+      {mode === 'and' ? 'And' : 'Or'}
+    </span>
+  )
+}
 
 function rowMatches(row: LabelClass, filters: Filters, query: string, tempRange: TempRangeFilter = EMPTY_TEMP_RANGE) {
   if (!hasTempResistances(row)) return false
@@ -258,25 +271,17 @@ function ChevronIcon() {
 }
 
 function ColumnSortIcon({ direction }: { direction: 'asc' | 'desc' | null }) {
+  const pointingDown = direction === 'desc'
   return (
-    <svg className="finder-th-sort-icon" viewBox="0 0 12 12" aria-hidden="true">
+    <svg className="finder-th-sort-icon" viewBox="0 0 24 24" aria-hidden="true">
       <path
-        d="M3.25 4.6 6 2.2l2.75 2.4"
+        d={pointingDown ? 'M7 10l5 5 5-5' : 'M7 14l5-5 5 5'}
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity={direction === 'asc' ? 1 : 0.35}
-      />
-      <path
-        d="M3.25 7.4 6 9.8l2.75-2.4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity={direction === 'desc' ? 1 : 0.35}
+        opacity={direction ? 1 : 0.45}
       />
     </svg>
   )
@@ -387,8 +392,7 @@ function ContainersFilter({
   const clickMenu = useClickMenu(setOpen)
 
   const containerOptions = useMemo(
-    () =>
-      CONTAINER_KINDS.filter((kind) => FINDER_FILTERS.containers.includes(CONTAINER_LABELS[kind])),
+    () => CONTAINER_KINDS.filter((kind) => FINDER_FILTERS.containers.includes(CONTAINER_LABELS[kind])),
     [],
   )
 
@@ -403,15 +407,13 @@ function ContainersFilter({
     [containerOptions],
   )
 
-  const sortByPopularity = (kinds: ContainerKind[]) =>
-    [...kinds].sort(
-      (a, b) =>
-        (counts[CONTAINER_LABELS[b]] ?? 0) - (counts[CONTAINER_LABELS[a]] ?? 0) ||
-        CONTAINER_LABELS[a].localeCompare(CONTAINER_LABELS[b]),
-    )
-
   const visibleOptions = useMemo(
-    () => sortByPopularity(containerOptions),
+    () =>
+      [...containerOptions].sort(
+        (a, b) =>
+          (counts[CONTAINER_LABELS[b]] ?? 0) - (counts[CONTAINER_LABELS[a]] ?? 0) ||
+          CONTAINER_LABELS[a].localeCompare(CONTAINER_LABELS[b]),
+      ),
     [containerOptions, counts],
   )
 
@@ -419,8 +421,8 @@ function ContainersFilter({
     const button = buttonRef.current
     if (!button) return
     const rect = button.getBoundingClientRect()
-    const panelWidth = Math.min(48 * 16, window.innerWidth - 24)
-    const estimatedHeight = Math.min(window.innerHeight * 0.72, 36 * 16)
+    const panelWidth = Math.min(46 * 16, window.innerWidth - 24)
+    const estimatedHeight = Math.min(window.innerHeight * 0.72, 34 * 16)
     const spaceBelow = window.innerHeight - rect.bottom - 12
     const spaceAbove = rect.top - 12
     const openUp = spaceBelow < estimatedHeight && spaceAbove > spaceBelow
@@ -442,7 +444,6 @@ function ContainersFilter({
 
   useEffect(() => {
     if (!open) return
-
     const onPointerDown = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
     }
@@ -450,7 +451,6 @@ function ContainersFilter({
       if (event.key === 'Escape') setOpen(false)
     }
     const onReposition = () => placePanel()
-
     document.addEventListener('mousedown', onPointerDown)
     document.addEventListener('keydown', onKeyDown)
     window.addEventListener('resize', onReposition)
@@ -471,43 +471,6 @@ function ContainersFilter({
     if (collapsed) setOpen(false)
   }, [collapsed])
 
-  const renderOption = (kind: ContainerKind) => {
-    const label = CONTAINER_LABELS[kind]
-    const checked = value.includes(label)
-    const count = counts[label] ?? 0
-    return (
-      <li key={kind}>
-        <button
-          type="button"
-          role="option"
-          aria-selected={checked}
-          className={`finder-containers-option${checked ? ' is-selected' : ''}${count === 0 ? ' is-empty' : ''}`}
-          onClick={() => toggle(label)}
-        >
-          <span className={`finder-menu-check${checked ? ' is-checked' : ''}`} aria-hidden="true">
-            {checked ? (
-              <svg viewBox="0 0 12 12">
-                <path
-                  d="M2.5 6.2 4.8 8.5 9.5 3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            ) : null}
-          </span>
-          <span className="finder-containers-option-copy">
-            <span className="finder-containers-option-label">{label}</span>
-            <span className="finder-containers-option-blurb">{CONTAINER_BLURBS[kind]}</span>
-          </span>
-          <span className="finder-containers-option-count">{count}</span>
-        </button>
-      </li>
-    )
-  }
-
   return (
     <div
       className={`finder-containers-menu${open || value.length ? ' is-active' : ''}${collapsed ? ' is-collapsed' : ''}`}
@@ -519,7 +482,7 @@ function ContainersFilter({
         ref={buttonRef}
         type="button"
         className={`finder-chip finder-chip-action${value.length ? ' is-active' : ''}${open ? ' is-open' : ''}`}
-        aria-haspopup="listbox"
+        aria-haspopup="dialog"
         aria-expanded={open}
         tabIndex={collapsed ? -1 : 0}
         onClick={clickMenu.toggleByClick}
@@ -530,18 +493,16 @@ function ContainersFilter({
       </button>
 
       {open && !collapsed ? (
-        <div
-          className="finder-containers-panel"
-          style={panelStyle}
-          role="listbox"
-          aria-label="Compatible containers"
-          aria-multiselectable="true"
-        >
+        <div className="finder-containers-panel" style={panelStyle} role="dialog" aria-label="Compatible containers">
           <div className="finder-containers-panel-top">
             <div className="finder-containers-panel-head">
               <div className="finder-containers-panel-copy">
                 <strong>Compatible containers</strong>
                 <p>Pick the vessels or surfaces these labels need to stick to.</p>
+                <p className="finder-logic-note">
+                  <FilterLogic mode="or" />
+                  <span>Any selected container can match</span>
+                </p>
               </div>
               {value.length ? (
                 <button type="button" className="finder-containers-clear" onClick={() => onChange([])}>
@@ -550,19 +511,36 @@ function ContainersFilter({
               ) : null}
             </div>
           </div>
-
           <div className="finder-containers-panel-body">
-            {visibleOptions.length ? (
-              <ul className="finder-containers-options">{visibleOptions.map(renderOption)}</ul>
-            ) : (
-              <p className="finder-menu-empty">No matching containers</p>
-            )}
+            <ul className="finder-containers-options">
+              {visibleOptions.map((kind) => {
+                const label = CONTAINER_LABELS[kind]
+                const checked = value.includes(label)
+                const count = counts[label] ?? 0
+                return (
+                  <li key={kind}>
+                    <label
+                      className={`finder-containers-option${checked ? ' is-selected' : ''}${count === 0 ? ' is-empty' : ''}`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => toggle(label)}
+                      />
+                      <span className="finder-containers-option-copy">
+                        <span className="finder-containers-option-label">{label}</span>
+                        <span className="finder-containers-option-blurb">{CONTAINER_BLURBS[kind]}</span>
+                      </span>
+                      <span className="finder-containers-option-count">{count}</span>
+                    </label>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
-
           <div className="finder-containers-panel-foot">
             <span className="finder-containers-foot-meta">
-              {matchedCount.toLocaleString('en-US')}{' '}
-              {matchedCount === 1 ? 'class matches' : 'classes match'}
+              {matchedCount.toLocaleString('en-US')} {matchedCount === 1 ? 'class matches' : 'classes match'}
             </span>
             <button type="button" className="finder-containers-done" onClick={() => setOpen(false)}>
               Done
@@ -659,6 +637,10 @@ function TemperaturesFilter({
 
       {open && !collapsed ? (
         <div className="finder-temp-panel" style={panelStyle} role="dialog" aria-label="Temperatures">
+          <p className="finder-logic-note">
+            <FilterLogic mode="and" />
+            <span>Minimum, maximum, and application must all match</span>
+          </p>
           <TempRangeFields value={value} onChange={onChange} idPrefix="finder-toolbar-temp" />
         </div>
       ) : null}
@@ -693,6 +675,7 @@ function MenuFilter({
   onChange,
   collapsed = false,
   exclusive = false,
+  searchable = true,
 }: {
   filterKey: Exclude<FinderFilterKey, 'temperatures'>
   label: string
@@ -701,6 +684,7 @@ function MenuFilter({
   onChange: (next: string[]) => void
   collapsed?: boolean
   exclusive?: boolean
+  searchable?: boolean
 }) {
   const [open, setOpen] = useState(false)
   const [filterQuery, setFilterQuery] = useState('')
@@ -742,7 +726,7 @@ function MenuFilter({
 
   useEffect(() => {
     if (!open) return
-    if (clickMenu.focusSearchRef.current) searchRef.current?.focus()
+    if (searchable && clickMenu.focusSearchRef.current) searchRef.current?.focus()
 
     const onPointerDown = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
@@ -809,18 +793,28 @@ function MenuFilter({
           aria-label={label}
           aria-multiselectable={exclusive ? undefined : true}
         >
-          <label className="finder-menu-search">
-            <span className="sr-only">Filter {label}</span>
-            <SearchIcon />
-            <input
-              ref={searchRef}
-              type="search"
-              placeholder="Filter..."
-              value={filterQuery}
-              onChange={(event) => setFilterQuery(event.target.value)}
-            />
-          </label>
-          <div className="finder-menu-divider" aria-hidden="true" />
+          {searchable ? (
+            <>
+              <label className="finder-menu-search">
+                <span className="sr-only">Filter {label}</span>
+                <SearchIcon />
+                <input
+                  ref={searchRef}
+                  type="search"
+                  placeholder="Filter..."
+                  value={filterQuery}
+                  onChange={(event) => setFilterQuery(event.target.value)}
+                />
+              </label>
+              <div className="finder-menu-divider" aria-hidden="true" />
+            </>
+          ) : null}
+          {exclusive ? null : (
+            <p className="finder-logic-note">
+              <FilterLogic mode="or" />
+              <span>Any selected value can match</span>
+            </p>
+          )}
           <ul className="finder-menu-list">
             {exclusive && (!filterQuery.trim() || VIEW_ALL.toLowerCase().includes(filterQuery.trim().toLowerCase())) ? (
               <li>
@@ -1251,7 +1245,18 @@ export function LabelFinderPage() {
                       <ChevronIcon />
                     </button>
                     {expanded ? (
-                      key === 'temperatures' ? (
+                      <>
+                        {filterLogic(key) ? (
+                          <p className="finder-logic-note">
+                            <FilterLogic mode={filterLogic(key)!} />
+                            <span>
+                              {filterLogic(key) === 'and'
+                                ? 'Minimum, maximum, and application must all match'
+                                : 'Any selected value can match'}
+                            </span>
+                          </p>
+                        ) : null}
+                        {key === 'temperatures' ? (
                         <div className="finder-drawer-temp">
                           <TempRangeFields
                             value={tempRange}
@@ -1294,7 +1299,8 @@ export function LabelFinderPage() {
                           },
                           )}
                         </ul>
-                      )
+                        )}
+                      </>
                     ) : null}
                   </section>
                 )
