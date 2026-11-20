@@ -59,7 +59,7 @@ Freezer-grade alcohol-resistant labels for slide storage boxes and containers. W
 
 ### Metal-Detectable Blocks
 
-![ParafiGARD metal-detectable paraffin block labels](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif "/media/labels-for-hard-to-stick-surfaces/ParafiGARD-Application400x400px-1-2.gif")
+![Patent Pending](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application800x600px-1.gif "/media/histology-labels/ParafiGARD-Application800x600px-1.webm")
 
 ParafiGARD™ metal-detectable labels for paraffin wax blocks include a metallic layer so labeled blocks can be tracked with a metal detector—improving sample tracking and helping prevent accidental loss of paraffin blocks and histology samples. Adheres to hard-to-stick paraffin and resists xylene, alcohols, and related solvents.
 

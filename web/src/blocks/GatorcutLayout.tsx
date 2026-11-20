@@ -76,7 +76,7 @@ export function GatorcutLayout({ blocks }: { blocks: ContentBlock[] }) {
           </div>
           {mapped.shopHref ? (
             <div className="block-cta-actions">
-              <a className="btn btn-on-accent" href={mapped.shopHref} target="_blank" rel="noreferrer">
+              <a className="btn btn-primary" href={mapped.shopHref} target="_blank" rel="noreferrer">
                 Shop Products
               </a>
             </div>

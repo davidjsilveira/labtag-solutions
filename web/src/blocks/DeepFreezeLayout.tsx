@@ -79,7 +79,7 @@ export function DeepFreezeLayout({ blocks }: { blocks: ContentBlock[] }) {
           key={block.title}
           title={block.title}
           body={block.paragraphs[0]}
-          href="https://www.labtag.com/samples/"
+          href="/samples"
           label="Order Free Samples"
         />,
       )

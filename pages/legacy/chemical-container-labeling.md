@@ -12,25 +12,25 @@ Chemical manufacturers must follow labeling requirements when identifying chemic
 
 ![](https://cdn.labtag.com/wp-content/uploads/Xylene-Chemica-Resistant-Labels.png)
 
-Chemical-resistant and solvent-resistant labels
+Thermal-transfer printers paired with solvent-resistant resin ribbons produce durable printouts that withstand harsh solvents, extreme temperatures, smudging, and scratching—ideal for primary and secondary chemical container identification.
 
 ### Direct Thermal
 
 ![](https://cdn.labtag.com/wp-content/uploads/Cryogenic-Labels-1.png)
 
-Cryo & Chemical-Resistant Labels for Frozen Surfaces
+Specialty direct-thermal labels resist chemical exposure without a ribbon, making them a practical option for cryo and chemical-resistant labeling on frozen surfaces and secondary containers.
 
 ### DYMO-Compatible
 
 ![](https://cdn.labtag.com/wp-content/uploads/DymoCard.png)
 
-Chemical-Resistant Labels for DYMO® LabelWriter™ 450-Series
+Chemical-resistant labels for DYMO® LabelWriter™ 450-series printers that also withstand cryogenic and deep-freeze storage, so desktop workflows can still mark hazardous secondary containers.
 
 ### Inkjet
 
 ![](https://cdn.labtag.com/wp-content/uploads/Inkjet.png)
 
-Chemical-resistant labels for inkjet printers
+Inkjet-printable chemical-resistant labels in sheet and roll formats support full-color branding while resisting alcohols and prolonged low-temperature storage.
 
 ### GHS Container Labels
 

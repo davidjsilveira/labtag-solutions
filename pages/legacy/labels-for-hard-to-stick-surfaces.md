@@ -22,7 +22,7 @@ Temperature range -55°C to +70°C (-67°F to +158°F)
 
 ## Metal-Detectable Thermal-Transfer Labels for Paraffin Wax Blocks
 
-![Patent Pending](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif)
+![Patent Pending](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif "/media/labels-for-hard-to-stick-surfaces/ParafiGARD-Application400x400px-1-2.webm")
 
 ParafiGARD™
 

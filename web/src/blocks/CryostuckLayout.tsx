@@ -111,7 +111,7 @@ export function CryostuckLayout({ blocks }: { blocks: ContentBlock[] }) {
         <SampleBanner
           key={section.title}
           title={section.title}
-          href={action?.href ?? 'https://www.labtag.com/cryostuck-sample-kit/'}
+          href={action?.href ?? '/samples'}
           label={action?.label ?? 'Order Free Samples Now'}
         />,
       )

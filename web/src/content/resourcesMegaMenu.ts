@@ -4,10 +4,10 @@ import {
   LABTAG_BLOG_URL,
   LABTAG_CRYO_VIDEOS_URL,
   LABTAG_FAQ_URL,
-  LABTAG_FINDER_URL,
+  FINDER_PATH,
   LABTAG_ORDERS_URL,
   LABTAG_PROMOS_URL,
-  LABTAG_RESOURCES_URL,
+  RESOURCES_PATH,
   TEMPLATES_PATH,
   LABTAG_VIDEOS_URL,
   SAMPLE_PATH,
@@ -49,7 +49,7 @@ export type ResourcesMegaColumn = {
 
 export const RESOURCES_MEGA_VIEW_ALL = {
   label: 'Browse all resources',
-  href: LABTAG_RESOURCES_URL,
+  href: RESOURCES_PATH,
 } as const
 
 /** Wide featured panel — the local template library. */
@@ -143,7 +143,7 @@ export const RESOURCES_MEGA_COLUMNS: ResourcesMegaColumn[] = [
     links: [
       {
         label: 'Label Finder',
-        href: LABTAG_FINDER_URL,
+        href: FINDER_PATH,
         note: 'Match a stock to the container and printer.',
       },
       {
@@ -175,6 +175,11 @@ export const RESOURCES_MEGA_COLUMNS: ResourcesMegaColumn[] = [
   {
     heading: 'Reading',
     links: [
+      {
+        label: 'Literature',
+        href: RESOURCES_PATH,
+        note: 'Catalogs, guides, and whitepapers.',
+      },
       { label: 'Blog', href: LABTAG_BLOG_URL, note: 'Notes on lab labeling.' },
       { label: 'Promotions', href: LABTAG_PROMOS_URL, note: 'Current offers.' },
     ],

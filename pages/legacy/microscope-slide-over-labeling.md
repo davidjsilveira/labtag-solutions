@@ -2,7 +2,7 @@
 
 Source: [https://www.labtag.com/solutions/microscope-slide-over-labeling/](https://www.labtag.com/solutions/microscope-slide-over-labeling/)
 
-![Histo-PinTAG](https://cdn.labtag.com/wp-content/uploads/Histo-PinTAG-postProd-2026-2.gif "/media/microscope-slide-over-labeling/Histo-PinTAG-postProd-2026-2.gif")
+![Histo-PinTAG](https://cdn.labtag.com/wp-content/uploads/Histo-PinTAG-postProd-2026-2.gif "/media/microscope-slide-over-labeling/Histo-PinTAG-postProd-2026-2.webm")
 
 Histology consulting facilities are tasked with re-processing a large number of tissue slides originating from a variety of locations. This requires the incoming [microscope slides](https://www.labtag.com/shop/category/chemical-resistant-labels/microscope-slide-labels/) to be re-labeled with a new unique identifier to ensure compatibility with the facility’s internal digital scanners and databases. LabTAG offers an innovative solution to this labeling challenge, designed to improve efficiency without compromising the information and integrity of the original label.
 

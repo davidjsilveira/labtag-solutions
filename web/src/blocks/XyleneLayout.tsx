@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom'
-import { CONTACT_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { YoutubeLink, youtubeVideoId } from '@/components/YoutubeLink'
 import { ImageSlider } from './ImageSlider'
 import { RichText } from './RichText'
+import { SampleBanner } from './SampleBanner'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
 
@@ -94,9 +93,13 @@ export function XyleneLayout({ blocks }: { blocks: ContentBlock[] }) {
         if (/chemical-resistant label guide/i.test(section.title)) {
           const action = linksOf(section.paragraphs)[0]
           return (
-            <section key={section.title} className="xylene-guide">
-              {images[0] ? <Photo image={images[0]} /> : null}
-              <div>
+            <section key={section.title} className="guide-banner">
+              {images[0] ? (
+                <div className="guide-banner-media">
+                  <Photo image={images[0]} />
+                </div>
+              ) : null}
+              <div className="guide-banner-copy">
                 <h2>{section.title}</h2>
                 {prose(section.paragraphs).map((paragraph) => (
                   <p key={paragraph.slice(0, 40)}>
@@ -134,19 +137,13 @@ export function XyleneLayout({ blocks }: { blocks: ContentBlock[] }) {
 
         if (/^get in touch$/i.test(section.title)) {
           return (
-            <section key={section.title} className="xylene-contact">
-              <div>
-                <h2>{section.title}</h2>
-                {prose(section.paragraphs).map((paragraph) => (
-                  <p key={paragraph.slice(0, 40)}>
-                    <RichText text={paragraph} />
-                  </p>
-                ))}
-              </div>
-              <Link className="btn btn-primary" to={`${CONTACT_PATH}#contact-request`}>
-                Contact us
-              </Link>
-            </section>
+            <SampleBanner
+              key={section.title}
+              title={section.title}
+              body={prose(section.paragraphs).join(' ')}
+              href="/samples"
+              label="Order Free Samples"
+            />
           )
         }
 

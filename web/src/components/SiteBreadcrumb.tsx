@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { CrumbChevron } from '@/components/CrumbChevron'
-import { TEMPLATES_PATH } from '@/content/labtagLinks'
+import { FINDER_PATH, RESOURCES_PATH, TEMPLATES_PATH } from '@/content/labtagLinks'
 import { getPage } from '@/content/loadPages'
 import { TEMPLATE_PAGES } from '@/content/templates'
 
@@ -30,10 +30,24 @@ function crumbsForPath(pathname: string): Crumb[] {
     ]
   }
 
+  if (pathname === RESOURCES_PATH) {
+    return [
+      { label: 'Home', to: '/' },
+      { label: 'Resources' },
+    ]
+  }
+
   if (pathname === TEMPLATES_PATH) {
     return [
       { label: 'Home', to: '/' },
       { label: 'Templates' },
+    ]
+  }
+
+  if (pathname === FINDER_PATH) {
+    return [
+      { label: 'Home', to: '/' },
+      { label: 'Label Finder' },
     ]
   }
 

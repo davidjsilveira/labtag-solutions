@@ -38,9 +38,9 @@ import {
   LABTAG_SHOP_URL,
   LABTAG_SIGN_IN_URL,
   QUOTE_PATH,
+  RESOURCES_PATH,
   SAMPLE_PATH,
   SOLUTIONS_PATH,
-  WHY_CHOOSE_PATH,
 } from '@/content/labtagLinks'
 
 const PHONE_TOLL_FREE = { label: '1 800 518 0364', href: 'tel:+18005180364' }
@@ -83,19 +83,35 @@ export function SiteNav() {
   const sectionActive = CONTACT_PATHS.has(pathname)
   const [open, setOpen] = useState(false)
   const [accountOpen, setAccountOpen] = useState(false)
+  const [promoOpen, setPromoOpen] = useState<'lang' | 'units' | null>(null)
   const [primaryOpen, setPrimaryOpen] = useState<'products' | 'solutions' | 'resources' | null>(
     null,
   )
   const [primaryLocked, setPrimaryLocked] = useState(false)
   const [query, setQuery] = useState('')
+  const [language, setLanguage] = useState<(typeof LANGUAGE_OPTIONS)[number]['label']>('English')
   const [unit, setUnit] = useState<UnitId>('metric')
   const rootRef = useRef<HTMLDivElement>(null)
   const accountRef = useRef<HTMLDivElement>(null)
+  const promoRef = useRef<HTMLDivElement>(null)
+  const promoCloseTimer = useRef(0)
   const primaryRef = useRef<HTMLElement>(null)
   const megaSlotRef = useRef<HTMLDivElement>(null)
   const megaCloseTimerRef = useRef<number | null>(null)
   const megaOpen =
     primaryOpen === 'products' || primaryOpen === 'solutions' || primaryOpen === 'resources'
+
+  const openPromo = (id: 'lang' | 'units') => {
+    window.clearTimeout(promoCloseTimer.current)
+    setPromoOpen(id)
+  }
+
+  const closePromo = (id: 'lang' | 'units') => {
+    window.clearTimeout(promoCloseTimer.current)
+    promoCloseTimer.current = window.setTimeout(() => {
+      setPromoOpen((value) => (value === id ? null : value))
+    }, 140)
+  }
 
   const clearMegaCloseTimer = () => {
     if (megaCloseTimerRef.current == null) return
@@ -143,7 +159,11 @@ export function SiteNav() {
 
   const closeMegaMenu = () => closePrimary(true)
   const solutionsCurrent = pathname === SOLUTIONS_PATH || pathname.startsWith('/solutions/')
-  const resourcesCurrent = pathname === HELP_PATH || pathname === TAGI_PATH
+  const resourcesCurrent =
+    pathname === HELP_PATH ||
+    pathname === TAGI_PATH ||
+    pathname === RESOURCES_PATH ||
+    pathname.startsWith(`${RESOURCES_PATH}/`)
 
   useEffect(() => {
     setUnit(readUnit())
@@ -158,12 +178,20 @@ export function SiteNav() {
   useEffect(() => {
     setOpen(false)
     setAccountOpen(false)
+    setPromoOpen(null)
     setPrimaryOpen(null)
     setPrimaryLocked(false)
     clearMegaCloseTimer()
+    window.clearTimeout(promoCloseTimer.current)
   }, [pathname])
 
-  useEffect(() => () => clearMegaCloseTimer(), [])
+  useEffect(
+    () => () => {
+      clearMegaCloseTimer()
+      window.clearTimeout(promoCloseTimer.current)
+    },
+    [],
+  )
 
   useEffect(() => {
     if (!megaOpen) {
@@ -217,6 +245,7 @@ export function SiteNav() {
       header.classList.toggle('is-compact', compact)
       if (compact) {
         setAccountOpen(false)
+        setPromoOpen(null)
         setPrimaryOpen(null)
       }
       window.requestAnimationFrame(() => syncAnchorScrollMargin())
@@ -236,6 +265,7 @@ export function SiteNav() {
           header.classList.add('is-away')
           setOpen(false)
           setAccountOpen(false)
+          setPromoOpen(null)
           setPrimaryOpen(null)
         } else if (y < lastY - 2) {
           header.classList.remove('is-away')
@@ -255,12 +285,13 @@ export function SiteNav() {
   }, [])
 
   useEffect(() => {
-    if (!open && !accountOpen && !primaryOpen) return
+    if (!open && !accountOpen && !promoOpen && !primaryOpen) return
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
       setOpen(false)
       setAccountOpen(false)
+      setPromoOpen(null)
       setPrimaryOpen(null)
       clearMegaCloseTimer()
     }
@@ -268,6 +299,7 @@ export function SiteNav() {
       const target = event.target as Node
       if (!rootRef.current?.contains(target)) setOpen(false)
       if (!accountRef.current?.contains(target)) setAccountOpen(false)
+      if (!promoRef.current?.contains(target)) setPromoOpen(null)
       // Mega panels render in `.site-nav-mega-slot`, outside the primary trigger nav.
       // Treat that slot as inside the open mega so pointerdown on a link doesn't
       // close the panel before the click navigates.
@@ -285,7 +317,7 @@ export function SiteNav() {
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('pointerdown', onPointer)
     }
-  }, [open, accountOpen, primaryOpen])
+  }, [open, accountOpen, promoOpen, primaryOpen])
 
   const goToQuery = (next: string) => {
     const q = next.trim()
@@ -320,11 +352,101 @@ export function SiteNav() {
               See details
             </a>
           </p>
-          <p className="site-promo-iso">
-            <Link to={WHY_CHOOSE_PATH}>ISO 9001:2015 certified</Link>
-            <span aria-hidden="true">·</span>
-            <Link to={WHY_CHOOSE_PATH}>ISO 22301 compliant</Link>
-          </p>
+          <div className="site-promo-links" ref={promoRef}>
+            <div
+              className={['site-promo-menu', 'site-promo-menu-lang', promoOpen === 'lang' ? 'is-open' : '']
+                .filter(Boolean)
+                .join(' ')}
+              onMouseEnter={() => openPromo('lang')}
+              onMouseLeave={() => closePromo('lang')}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node)) closePromo('lang')
+              }}
+            >
+              <button
+                type="button"
+                className="site-promo-menu-trigger"
+                aria-expanded={promoOpen === 'lang'}
+                aria-haspopup="true"
+                aria-controls="site-promo-lang-menu"
+                onClick={() => openPromo('lang')}
+              >
+                {language}
+                <CaretDown size={10} weight="bold" aria-hidden />
+              </button>
+              <div
+                id="site-promo-lang-menu"
+                className="site-promo-menu-card"
+                role="menu"
+                aria-label="Language"
+              >
+                {LANGUAGE_OPTIONS.map((item, index) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    role="menuitem"
+                    className="site-promo-menu-item"
+                    style={{ '--i': String(index) } as CSSProperties}
+                    aria-current={language === item.label ? 'true' : undefined}
+                    onClick={() => setLanguage(item.label)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div
+              className={[
+                'site-promo-menu',
+                'site-promo-menu-units',
+                promoOpen === 'units' ? 'is-open' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              onMouseEnter={() => openPromo('units')}
+              onMouseLeave={() => closePromo('units')}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node)) closePromo('units')
+              }}
+            >
+              <button
+                type="button"
+                className="site-promo-menu-trigger"
+                aria-expanded={promoOpen === 'units'}
+                aria-haspopup="true"
+                aria-controls="site-promo-units-menu"
+                onClick={() => openPromo('units')}
+              >
+                {UNIT_OPTIONS.find((item) => item.id === unit)?.label}
+                <CaretDown size={10} weight="bold" aria-hidden />
+              </button>
+              <div
+                id="site-promo-units-menu"
+                className="site-promo-menu-card"
+                role="menu"
+                aria-label="Units of measurement"
+              >
+                {UNIT_OPTIONS.map((item, index) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="menuitem"
+                    className="site-promo-menu-item"
+                    style={{ '--i': String(index) } as CSSProperties}
+                    aria-current={unit === item.id ? 'true' : undefined}
+                    onClick={() => {
+                      writeUnit(item.id)
+                      setPromoOpen(null)
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -606,44 +728,6 @@ export function SiteNav() {
                       >
                         My orders
                       </a>
-                    </div>
-                    <div className="site-nav-account-group">
-                      <p className="site-nav-account-heading">Language</p>
-                      <div className="site-nav-account-choices" role="group" aria-label="Language">
-                        {LANGUAGE_OPTIONS.map((item) => (
-                          <a
-                            key={item.label}
-                            href={item.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            role="menuitem"
-                            className="site-nav-account-choice"
-                          >
-                            {item.label}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="site-nav-account-group">
-                      <p className="site-nav-account-heading">Units of measurement</p>
-                      <div
-                        className="site-nav-account-choices"
-                        role="group"
-                        aria-label="Units of measurement"
-                      >
-                        {UNIT_OPTIONS.map((item) => (
-                          <button
-                            key={item.id}
-                            type="button"
-                            role="menuitemradio"
-                            className="site-nav-account-choice"
-                            aria-checked={unit === item.id}
-                            onClick={() => writeUnit(item.id)}
-                          >
-                            {item.label}
-                          </button>
-                        ))}
-                      </div>
                     </div>
                   </div>
                 </div>

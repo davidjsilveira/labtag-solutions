@@ -694,13 +694,13 @@ export function parseMarkdown(slug: string, markdown: string): SolutionPage {
   const contentBlocks = [...refined]
 
   let heroImage: SolutionPage['heroImage']
-  const leadImage = contentBlocks[0]
-  if (leadImage?.type === 'image') {
+  const leadMedia = contentBlocks[0]
+  if (leadMedia?.type === 'image' || leadMedia?.type === 'video') {
     contentBlocks.shift()
     heroImage = {
-      src: leadImage.src,
-      alt: leadImage.alt,
-      fallbackSrc: leadImage.fallbackSrc,
+      src: leadMedia.src,
+      alt: leadMedia.alt,
+      fallbackSrc: leadMedia.fallbackSrc,
     }
   }
 

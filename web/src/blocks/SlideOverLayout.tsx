@@ -115,7 +115,7 @@ export function SlideOverLayout({ blocks }: { blocks: ContentBlock[] }) {
           key={title}
           title={title}
           body={prose(current.section.paragraphs).join(' ')}
-          href={action?.href ?? 'https://www.labtag.com/histology-sample-kit/'}
+          href={action?.href ?? '/samples'}
           label={action?.label ?? 'Order Free Samples Now'}
         />,
       )

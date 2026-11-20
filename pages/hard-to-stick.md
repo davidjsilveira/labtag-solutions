@@ -24,7 +24,7 @@ Chemical-resistant labels for hard-to-stick surfaces, including Formalin-Fixed P
 
 ### ParafiGARD™
 
-![ParafiGARD metal-detectable application on paraffin wax block](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif "/media/labels-for-hard-to-stick-surfaces/ParafiGARD-Application400x400px-1-2.gif")
+![Patent Pending](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application400x400px-1-2.gif "/media/labels-for-hard-to-stick-surfaces/ParafiGARD-Application400x400px-1-2.webm")
 
 Metal-detectable thermal-transfer labels incorporate a unique metallic layer that can be detected with a hand-held metal detector. Perfect for identifying paraffin-embedded cassettes, ParafiGARD™ helps reduce the chance of accidental loss of wax blocks and other valuable samples when used with an appropriate lab waste screening program. They also offer excellent chemical and solvent resistance so printed text remains legible and barcodes scannable. Temperature range: −20°C to +120°C (−4°F to +248°F). Patent pending.
 

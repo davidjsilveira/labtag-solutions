@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react'
-import type { ContentBlock, CtaBlock, ImageBlock, SectionBlock } from '@/content/types'
+import type { ContentBlock, CtaBlock, ImageBlock, SectionBlock, VideoBlock } from '@/content/types'
 import { ImageBlockView } from './ImageBlock'
 import { RichText } from './RichText'
 import { SampleBanner } from './SampleBanner'
+import { VideoBlockView } from './VideoBlock'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
+
+type MediaBlock = ImageBlock | VideoBlock
 
 function asSection(block: ContentBlock | undefined): SectionBlock | null {
   return block?.type === 'section' ? block : null
@@ -20,14 +23,14 @@ function prose(paragraphs: string[]) {
   return paragraphs.filter((item) => !LINK_ONLY.test(item.trim()))
 }
 
-function takeImages(blocks: ContentBlock[], start: number) {
-  const images: ImageBlock[] = []
+function takeMedia(blocks: ContentBlock[], start: number) {
+  const media: MediaBlock[] = []
   let i = start
-  while (blocks[i]?.type === 'image') {
-    images.push(blocks[i] as ImageBlock)
+  while (blocks[i]?.type === 'image' || blocks[i]?.type === 'video') {
+    media.push(blocks[i] as MediaBlock)
     i += 1
   }
-  return { images, next: i }
+  return { media, next: i }
 }
 
 function Action({ href, label }: { href: string; label: string }) {
@@ -38,11 +41,15 @@ function Action({ href, label }: { href: string; label: string }) {
   )
 }
 
-function Photo({ image }: { image?: ImageBlock }) {
-  if (!image) return null
+function Photo({ media }: { media?: MediaBlock }) {
+  if (!media) return null
   return (
     <div className="stick-media">
-      <ImageBlockView src={image.src} alt={image.alt} fallbackSrc={image.fallbackSrc} />
+      {media.type === 'video' ? (
+        <VideoBlockView src={media.src} alt={media.alt} fallbackSrc={media.fallbackSrc} />
+      ) : (
+        <ImageBlockView src={media.src} alt={media.alt} fallbackSrc={media.fallbackSrc} />
+      )}
     </div>
   )
 }
@@ -57,7 +64,7 @@ export function HardStickLayout({ blocks }: { blocks: ContentBlock[] }) {
     if (block.type === 'cta' || (block.type === 'section' && block.title === 'Laboratory Labels')) {
       const cta = block.type === 'cta' ? (block as CtaBlock) : null
       const section = asSection(block)
-      const media = takeImages(blocks, i + 1)
+      const taken = takeMedia(blocks, i + 1)
       const action = cta?.actionHref
         ? { label: cta.actionLabel || 'Order Free Samples Now', href: cta.actionHref }
         : linkFrom(section?.paragraphs ?? [])
@@ -67,11 +74,11 @@ export function HardStickLayout({ blocks }: { blocks: ContentBlock[] }) {
           key="samples"
           title="Laboratory Labels"
           body={question || undefined}
-          href={action?.href ?? 'https://www.labtag.com/samples/'}
+          href={action?.href ?? '/samples'}
           label={action?.label ?? 'Order Free Samples Now'}
         />,
       )
-      i = media.next
+      i = taken.next
       continue
     }
 
@@ -81,7 +88,7 @@ export function HardStickLayout({ blocks }: { blocks: ContentBlock[] }) {
       continue
     }
 
-    const media = takeImages(blocks, i + 1)
+    const taken = takeMedia(blocks, i + 1)
     const lines = prose(section.paragraphs)
     const kicker = lines[0] && !lines[0].startsWith('Temperature range') && lines[0].length < 40 ? lines[0] : undefined
     const body = kicker ? lines.slice(1) : lines
@@ -98,10 +105,10 @@ export function HardStickLayout({ blocks }: { blocks: ContentBlock[] }) {
           ))}
           {action ? <Action href={action.href} label={action.label} /> : null}
         </div>
-        <Photo image={media.images[0]} />
+        <Photo media={taken.media[0]} />
       </section>,
     )
-    i = media.next
+    i = taken.next
   }
 
   return <div className="stick-layout">{nodes}</div>

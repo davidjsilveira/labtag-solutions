@@ -1,6 +1,6 @@
 import {
   LABTAG_ACCESSORIES_URL,
-  LABTAG_FINDER_URL,
+  FINDER_PATH,
   LABTAG_LABELS_URL,
   LABTAG_PRINT_URL,
   LABTAG_SHOP_URL,
@@ -42,7 +42,7 @@ export type ShopMegaCategory = {
 
 export const SHOP_MEGA_FOOTER = [
   { label: 'Shop by label class', href: LABTAG_LABELS_URL, icon: 'tag' as const },
-  { label: 'Find a label', href: LABTAG_FINDER_URL, icon: 'finder' as const },
+  { label: 'Find a label', href: FINDER_PATH, icon: 'finder' as const },
   { label: 'Browse by template', href: TEMPLATES_PATH, icon: 'template' as const },
 ] as const
 
@@ -199,7 +199,7 @@ export const SHOP_MEGA_CATEGORIES: ShopMegaCategory[] = [
         heading: 'Find a fit',
         links: [
           { label: 'Browse label classes', href: LABTAG_LABELS_URL },
-          { label: 'Use the label finder', href: LABTAG_FINDER_URL },
+          { label: 'Use the label finder', href: FINDER_PATH },
           { label: 'Request free samples', href: SAMPLE_PATH },
         ],
       },
@@ -252,7 +252,7 @@ export const SHOP_MEGA_CATEGORIES: ShopMegaCategory[] = [
       {
         heading: 'Planning tools',
         links: [
-          { label: 'Label finder', href: LABTAG_FINDER_URL },
+          { label: 'Label finder', href: FINDER_PATH },
           { label: 'Request samples', href: SAMPLE_PATH },
         ],
       },

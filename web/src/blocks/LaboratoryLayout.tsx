@@ -109,7 +109,7 @@ export function LaboratoryLayout({ blocks }: { blocks: ContentBlock[] }) {
           key="samples"
           title="Laboratory Labels"
           body={body || undefined}
-          href={action?.href ?? 'https://www.labtag.com/samples/'}
+          href={action?.href ?? '/samples'}
           label={action?.label ?? 'Order Free Samples Now'}
         />,
       )

@@ -15,12 +15,28 @@ export type SolutionsMegaLink = {
   href: string
 }
 
+export type SolutionsMegaGroup = 'labels' | 'more'
+
 export type SolutionsMegaSection = {
   heading: string
+  group: SolutionsMegaGroup
   featured: SolutionsMegaLink & {
     image?: HeroImage
   }
   links: SolutionsMegaLink[]
+}
+
+/** Prefer product photos over guide thumbs / tiny step crops for mega tiles. */
+const SOLUTIONS_MEGA_FEATURED_IMAGES: Partial<Record<string, HeroImage>> = {
+  gatorcut: {
+    src: '/media/gatorcut/TXC-25-use3.jpg',
+    alt: 'GatorCUT lab tape',
+  },
+  'xylene-chemical-resistant-labels': {
+    src: '/media/xylene-chemical-resistant-labels/FTT-152-Use3-605x348px.jpg',
+    alt: 'Xylene-resistant labels on microscope slides',
+    fallbackSrc: '/media/xylene-chemical-resistant-labels/ACT-28-use2.png',
+  },
 }
 
 /** Short mega labels for live solution articles, keyed by slug. */
@@ -58,9 +74,13 @@ const SOLUTIONS_MEGA_LABELS: Record<string, string> = {
   'xylene-chemical-resistant-labels': 'Xylene resistant',
 }
 
-/** Sectioned mega layout: featured article image + related live articles. */
+/**
+ * Mega layout mirrors the footer taxonomy:
+ * Label solutions (By product / feature / surface), then Print and apply + Applications.
+ */
 const SOLUTIONS_MEGA_SECTION_DEFS = [
   {
+    group: 'labels' as const,
     heading: 'By product',
     featuredSlug: 'cryogenic-labels',
     labels: {
@@ -78,6 +98,7 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
     ],
   },
   {
+    group: 'labels' as const,
     heading: 'By feature',
     featuredSlug: 'gatorcut',
     slugs: [
@@ -91,6 +112,7 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
     ],
   },
   {
+    group: 'labels' as const,
     heading: 'By surface',
     featuredSlug: 'xylene-chemical-resistant-labels',
     labels: {
@@ -104,10 +126,12 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
       'pcr-labels-and-tags',
       'histology-labels',
       'xylene-chemical-resistant-labels',
+      'microscope-slide-over-labeling',
       'chemical-container-labeling',
     ],
   },
   {
+    group: 'more' as const,
     heading: 'Print and apply',
     featuredSlug: 'label-printing-solutions',
     labels: {
@@ -122,6 +146,7 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
     ],
   },
   {
+    group: 'more' as const,
     heading: 'Applications',
     featuredSlug: 'biobanking-labels',
     slugs: [
@@ -133,6 +158,7 @@ const SOLUTIONS_MEGA_SECTION_DEFS = [
       'animal-healthcare',
       'industrial-labels',
       'cannabis-labels',
+      'cryogenic-clinical-requisition-forms',
     ],
   },
 ] as const
@@ -166,14 +192,25 @@ export const SOLUTIONS_MEGA_SECTIONS: SolutionsMegaSection[] = SOLUTIONS_MEGA_SE
     return [
       {
         heading: section.heading,
+        group: section.group,
         featured: {
           ...featured,
-          image: previewImage(featuredPage),
+          image:
+            SOLUTIONS_MEGA_FEATURED_IMAGES[section.featuredSlug] ??
+            previewImage(featuredPage),
         },
         links,
       },
     ]
   },
+)
+
+export const SOLUTIONS_MEGA_LABEL_SECTIONS = SOLUTIONS_MEGA_SECTIONS.filter(
+  (section) => section.group === 'labels',
+)
+
+export const SOLUTIONS_MEGA_MORE_SECTIONS = SOLUTIONS_MEGA_SECTIONS.filter(
+  (section) => section.group === 'more',
 )
 
 /** Flat list kept for any callers that still need every mega destination. */

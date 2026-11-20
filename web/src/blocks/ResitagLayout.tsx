@@ -1,9 +1,8 @@
 import type { ReactNode } from 'react'
 import type { BulletListBlock, ContentBlock, CtaBlock, ImageBlock, SectionBlock } from '@/content/types'
+import { SampleBanner } from './SampleBanner'
 
-const PRODUCT =
-  'https://www.labtag.com/shop/product/chemical-resistant-labels-for-resin-embedding-1-x-0-25-xst-251-patent-pending/'
-const CONTACT = 'https://www.labtag.com/contact-us/'
+const SAMPLES = '/samples'
 
 function asSection(block: ContentBlock | undefined): SectionBlock | null {
   return block?.type === 'section' ? block : null
@@ -114,18 +113,13 @@ export function ResitagLayout({ blocks }: { blocks: ContentBlock[] }) {
   }
 
   nodes.push(
-    <section key="close" className="resi-close">
-      <h2>{closeTitle}</h2>
-      {closeBody ? <p>{closeBody}</p> : null}
-      <div className="resi-actions">
-        <a className="btn btn-primary" href={CONTACT} target="_blank" rel="noreferrer">
-          Get in Touch
-        </a>
-        <a className="btn btn-secondary" href={PRODUCT} target="_blank" rel="noreferrer">
-          View Product
-        </a>
-      </div>
-    </section>,
+    <SampleBanner
+      key="close"
+      title={closeTitle}
+      body={closeBody || undefined}
+      href={SAMPLES}
+      label="Order Free Samples"
+    />,
   )
 
   return <div className="resi-layout">{nodes}</div>

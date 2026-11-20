@@ -80,28 +80,11 @@ export function ClinicalLayout({ blocks }: { blocks: ContentBlock[] }) {
         continue
       }
 
-      const specs: { section: SectionBlock; items: string[] }[] = []
+      // Skip format/method/material/resistance jump-link rows.
       while (asSection(blocks[i]) && blocks[i + 1]?.type === 'bulletList') {
-        specs.push({
-          section: blocks[i] as SectionBlock,
-          items: (blocks[i + 1] as BulletListBlock).items,
-        })
+        if (/partner to/i.test((blocks[i] as SectionBlock).title)) break
         i += 2
       }
-      nodes.push(
-        <div key={`specs-${specs[0].section.title}`} className="clinical-specs">
-          {specs.map(({ section, items }) => (
-            <article key={section.title} id={slugify(section.title)}>
-              <h2>{section.title}</h2>
-              <ul>
-                {items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>,
-      )
       continue
     }
 

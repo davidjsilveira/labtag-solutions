@@ -54,10 +54,10 @@ export function HomePage() {
           </p>
         </div>
         <div className="block-cta-actions">
-          <Link className="btn btn-on-accent" to={SAMPLE_PATH}>
+          <Link className="btn btn-primary" to={SAMPLE_PATH}>
             Request a free sample
           </Link>
-          <a className="btn btn-on-accent-ghost" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
+          <a className="btn btn-secondary" href={LABTAG_SHOP_URL} target="_blank" rel="noreferrer">
             Go to the shop
           </a>
         </div>

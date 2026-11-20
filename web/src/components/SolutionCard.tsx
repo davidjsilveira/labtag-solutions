@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { previewImage } from '@/content/previewImage'
+import { isVideoSrc, previewImage } from '@/content/previewImage'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { SolutionPage } from '@/content/types'
 
@@ -10,21 +10,39 @@ type Props = {
 export function SolutionCard({ page }: Props) {
   const image = previewImage(page)
   const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
+  const video = resolved ? isVideoSrc(resolved.primary) : false
 
   return (
     <Link to={`/solutions/${page.slug}`} className="solution-card">
       {resolved ? (
         <div className="solution-card-media">
-          <img
-            src={resolved.primary}
-            alt=""
-            loading="lazy"
-            onError={(event) => {
-              if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
-                event.currentTarget.src = resolved.fallback
-              }
-            }}
-          />
+          {video ? (
+            <video
+              src={resolved.primary}
+              aria-hidden="true"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onError={(event) => {
+                if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
+                  event.currentTarget.src = resolved.fallback
+                }
+              }}
+            />
+          ) : (
+            <img
+              src={resolved.primary}
+              alt=""
+              loading="lazy"
+              onError={(event) => {
+                if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
+                  event.currentTarget.src = resolved.fallback
+                }
+              }}
+            />
+          )}
         </div>
       ) : (
         <div className="solution-card-media solution-card-media-empty" aria-hidden="true" />

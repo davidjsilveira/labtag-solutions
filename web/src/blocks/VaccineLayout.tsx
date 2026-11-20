@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom'
-import { CONTACT_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { RichText } from './RichText'
+import { SampleBanner } from './SampleBanner'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
 
@@ -49,19 +48,13 @@ function Photo({ image, href }: { image?: ImageBlock; href?: string }) {
 
 function ExpertHelp({ title, body }: { title: string; body: string }) {
   return (
-    <section className="vaccine-help" id="contact-us">
-      <div>
-        <h2>{title}</h2>
-        {body ? (
-          <p>
-            <RichText text={body} />
-          </p>
-        ) : null}
-      </div>
-      <Link className="btn btn-primary" to={`${CONTACT_PATH}#contact-request`}>
-        Contact us
-      </Link>
-    </section>
+    <SampleBanner
+      id="contact-us"
+      title={title}
+      body={body}
+      href="/samples"
+      label="Order Free Samples"
+    />
   )
 }
 

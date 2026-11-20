@@ -68,35 +68,42 @@ function CompareSection({
   const count = Math.max(challengeItems.length, solutionItems.length)
   return (
     <section className="pcr-compare" aria-label={`${challengeTitle} and ${solutionTitle}`}>
-      <div className="pcr-compare-intro">
-        <div>
+      <div className="pcr-compare-inner">
+        <div className="pcr-compare-panel is-challenge">
           <h3>{challengeTitle}</h3>
-          <p>{challengeBody}</p>
+          <p className="pcr-compare-lede">{challengeBody}</p>
+          <ol className="pcr-compare-list">
+            {Array.from({ length: count }, (_, index) => {
+              const problem = challengeItems[index]
+              if (!problem) return null
+              return (
+                <li key={problem}>
+                  <span className="pcr-pair-index">{String(index + 1).padStart(2, '0')}</span>
+                  <img src={WARN} alt="" />
+                  <span>{problem}</span>
+                </li>
+              )
+            })}
+          </ol>
         </div>
-        <div>
+        <div className="pcr-compare-panel is-solution">
           <h3>{solutionTitle}</h3>
-          <p>{solutionBody}</p>
+          <p className="pcr-compare-lede">{solutionBody}</p>
+          <ol className="pcr-compare-list">
+            {Array.from({ length: count }, (_, index) => {
+              const answer = solutionItems[index]
+              if (!answer) return null
+              return (
+                <li key={answer}>
+                  <span className="pcr-pair-index">{String(index + 1).padStart(2, '0')}</span>
+                  <img src={CHECK} alt="" />
+                  <span>{answer}</span>
+                </li>
+              )
+            })}
+          </ol>
         </div>
       </div>
-      <ol className="pcr-pairs">
-        {Array.from({ length: count }, (_, index) => {
-          const problem = challengeItems[index]
-          const answer = solutionItems[index]
-          return (
-            <li key={problem ?? answer ?? index}>
-              <span className="pcr-pair-index">{String(index + 1).padStart(2, '0')}</span>
-              <p className="pcr-pair-problem">
-                <img src={WARN} alt="" />
-                <span>{problem}</span>
-              </p>
-              <p className="pcr-pair-answer">
-                <img src={CHECK} alt="" />
-                <span>{answer}</span>
-              </p>
-            </li>
-          )
-        })}
-      </ol>
     </section>
   )
 }

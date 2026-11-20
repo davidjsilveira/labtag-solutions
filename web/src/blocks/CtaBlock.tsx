@@ -1,58 +1,24 @@
-import { Link } from 'react-router-dom'
-import { CONTACT_PATH, LABTAG_SAMPLE_URL, SAMPLE_PATH } from '@/content/labtagLinks'
+import { CONTACT_PATH, SAMPLE_PATH, isSampleHref } from '@/content/labtagLinks'
 import type { CtaBlock } from '@/content/types'
-
-function AccentLink({
-  href,
-  label,
-  className,
-}: {
-  href: string
-  label: string
-  className: string
-}) {
-  if (href.startsWith('http')) {
-    return (
-      <a className={className} href={href} target="_blank" rel="noreferrer">
-        {label}
-      </a>
-    )
-  }
-  return (
-    <Link className={className} to={href}>
-      {label}
-    </Link>
-  )
-}
+import { SampleBanner } from './SampleBanner'
 
 export function CtaBlockView({ block }: { block: CtaBlock }) {
   const customHref = block.actionHref?.trim()
   const customLabel = block.actionLabel?.trim()
-  const primaryHref = customHref || CONTACT_PATH
-  const primaryLabel = customHref && customLabel ? customLabel : 'Chat with an expert'
-  const showSample =
-    primaryHref !== LABTAG_SAMPLE_URL &&
-    primaryHref !== SAMPLE_PATH &&
-    !/^make your project/i.test(block.title) &&
-    !/^get in touch/i.test(block.title) &&
-    !/^experience the benefits/i.test(block.title)
+  const isGetInTouch = /^get in touch/i.test(block.title)
+  const href = customHref
+    ? isSampleHref(customHref)
+      ? SAMPLE_PATH
+      : customHref
+    : isGetInTouch
+      ? SAMPLE_PATH
+      : CONTACT_PATH
+  const label =
+    customHref && customLabel
+      ? customLabel
+      : isGetInTouch
+        ? 'Order Free Samples'
+        : 'Chat with an expert'
 
-  return (
-    <aside className="block block-cta">
-      <div className="block-cta-copy">
-        <h2>{block.title}</h2>
-        {block.body ? <p>{block.body}</p> : null}
-      </div>
-      <div className="block-cta-actions">
-        <AccentLink href={primaryHref} label={primaryLabel} className="btn btn-on-accent" />
-        {showSample ? (
-          <AccentLink
-            href={SAMPLE_PATH}
-            label="Request a free sample"
-            className="btn btn-on-accent-ghost"
-          />
-        ) : null}
-      </div>
-    </aside>
-  )
+  return <SampleBanner title={block.title} body={block.body} href={href} label={label} />
 }

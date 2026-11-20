@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
-import { CONTACT_PATH } from '@/content/labtagLinks'
 import type { ImageBlock, SectionBlock } from '@/content/types'
 import { ImageSlider } from './ImageSlider'
+import { SampleBanner } from './SampleBanner'
 
 const LINK = /\[([^\]]+)\]\(([^)]+)\)/
 
@@ -26,11 +25,11 @@ export function AutoclaveGuide({
 }) {
   const action = paragraphLink(section.paragraphs)
   return (
-    <section className="autoclave-guide" id="autoclave-resistant-label-guide">
-      <div className="autoclave-guide-media">
+    <section className="guide-banner" id="autoclave-resistant-label-guide">
+      <div className="guide-banner-media">
         <ImageSlider images={images} />
       </div>
-      <div className="autoclave-guide-copy">
+      <div className="guide-banner-copy">
         <h2>{section.title}</h2>
         {proseParagraphs(section.paragraphs).map((paragraph) => (
           <p key={paragraph.slice(0, 48)}>{paragraph}</p>
@@ -47,15 +46,13 @@ export function AutoclaveGuide({
 
 export function AutoclaveContact({ body }: { body: string }) {
   return (
-    <section className="autoclave-contact" id="get-in-touch">
-      <div>
-        <h2>Get in Touch</h2>
-        {body ? <p>{body}</p> : null}
-      </div>
-      <Link className="btn btn-primary" to={CONTACT_PATH}>
-        Get in Touch
-      </Link>
-    </section>
+    <SampleBanner
+      id="get-in-touch"
+      title="Get in Touch"
+      body={body}
+      href="/samples"
+      label="Order Free Samples"
+    />
   )
 }
 

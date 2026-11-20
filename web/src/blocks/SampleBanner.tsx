@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { isSampleHref, toInternalSampleHref } from '@/content/labtagLinks'
 
 const FOLDER =
   '/media/histology-labels/Sample-kit-img-1.png'
@@ -12,13 +13,14 @@ type Props = {
 }
 
 export function SampleBanner({ title, body, href, label, id }: Props) {
-  const external = /^https?:/i.test(href)
+  const resolvedHref = toInternalSampleHref(href)
+  const external = /^https?:/i.test(resolvedHref) && !isSampleHref(resolvedHref)
   const action = external ? (
-    <a className="btn btn-primary" href={href} target="_blank" rel="noreferrer">
+    <a className="btn btn-primary" href={resolvedHref} target="_blank" rel="noreferrer">
       {label}
     </a>
   ) : (
-    <Link className="btn btn-primary" to={href}>
+    <Link className="btn btn-primary" to={resolvedHref}>
       {label}
     </Link>
   )

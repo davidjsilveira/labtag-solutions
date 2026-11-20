@@ -68,27 +68,27 @@ export function LabelPrintingLayout({ blocks }: { blocks: ContentBlock[] }) {
         i = card.next
       }
       nodes.push(
-        <div key="print-cards" className="print-grid">
+        <div key="print-cards" className="print-tool-stack">
           {cards.map((card) => {
             const action = linkFrom(card.section.paragraphs)
-            const inner = (
-              <>
-                <Photo image={card.images[0]} />
-                <h2>{card.section.title}</h2>
-                {prose(card.section.paragraphs).map((paragraph) => (
-                  <p key={paragraph}>
-                    <RichText text={paragraph} />
-                  </p>
-                ))}
-              </>
-            )
-            return action ? (
-              <a key={card.section.title} className="print-card" href={action.href} target="_blank" rel="noreferrer">
-                {inner}
-              </a>
-            ) : (
-              <article key={card.section.title} className="print-card">
-                {inner}
+            return (
+              <article key={card.section.title} className="print-row print-tool-row">
+                <div className="print-media">
+                  <Photo image={card.images[0]} />
+                </div>
+                <div className="print-copy">
+                  <h2>{card.section.title}</h2>
+                  {prose(card.section.paragraphs).map((paragraph) => (
+                    <p key={paragraph}>
+                      <RichText text={paragraph} />
+                    </p>
+                  ))}
+                  {action ? (
+                    <a className="btn btn-primary" href={action.href} target="_blank" rel="noreferrer">
+                      {action.label}
+                    </a>
+                  ) : null}
+                </div>
               </article>
             )
           })}
@@ -101,24 +101,45 @@ export function LabelPrintingLayout({ blocks }: { blocks: ContentBlock[] }) {
     const action = linkFrom(section.paragraphs)
     const guide = section.title === 'Label Printer Buying Guide'
     nodes.push(
-      <section key={section.title} className={`print-row${guide ? ' is-guide' : ''}`}>
-        <div className="print-copy">
-          <h2>{section.title}</h2>
-          {prose(section.paragraphs).map((paragraph) => (
-            <p key={paragraph}>
-              <RichText text={paragraph} />
-            </p>
-          ))}
-          {action ? (
-            <a className="btn btn-primary" href={action.href} target="_blank" rel="noreferrer">
-              {action.label}
-            </a>
-          ) : null}
-        </div>
-        <div className="print-media">
-          <Photo image={item.images[0]} />
-        </div>
-      </section>,
+      guide ? (
+        <section key={section.title} className="guide-banner">
+          <div className="guide-banner-media">
+            <Photo image={item.images[0]} />
+          </div>
+          <div className="guide-banner-copy">
+            <h2>{section.title}</h2>
+            {prose(section.paragraphs).map((paragraph) => (
+              <p key={paragraph}>
+                <RichText text={paragraph} />
+              </p>
+            ))}
+            {action ? (
+              <a className="btn btn-primary" href={action.href} target="_blank" rel="noreferrer">
+                {action.label}
+              </a>
+            ) : null}
+          </div>
+        </section>
+      ) : (
+        <section key={section.title} className="print-row">
+          <div className="print-copy">
+            <h2>{section.title}</h2>
+            {prose(section.paragraphs).map((paragraph) => (
+              <p key={paragraph}>
+                <RichText text={paragraph} />
+              </p>
+            ))}
+            {action ? (
+              <a className="btn btn-primary" href={action.href} target="_blank" rel="noreferrer">
+                {action.label}
+              </a>
+            ) : null}
+          </div>
+          <div className="print-media">
+            <Photo image={item.images[0]} />
+          </div>
+        </section>
+      ),
     )
     i = item.next
   }

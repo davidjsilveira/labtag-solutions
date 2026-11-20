@@ -48,7 +48,7 @@ Our chemical-resistant labels withstand direct exposure to and immersion in xyle
 
 ## Histo-PinTAG™
 
-![](https://cdn.labtag.com/wp-content/uploads/Histo-PinTAG-postProd-2026-2.gif)
+![](https://cdn.labtag.com/wp-content/uploads/Histo-PinTAG-postProd-2026-2.gif "/media/histology-labels/Histo-PinTAG-postProd-2026-2.webm")
 
 (Patented)
 
@@ -61,7 +61,7 @@ Labels for Microscope Slide Re-Identification
 
 ## HistoLAM™
 
-![](https://cdn.labtag.com/wp-content/uploads/AFT-1.gif)
+![](https://cdn.labtag.com/wp-content/uploads/AFT-1.gif "/media/histology-labels/AFT-1.webm")
 
 Self-Laminating Labels for Microscope Slides
 
@@ -89,7 +89,7 @@ Xylene-Resistant Labels for Paraffin Wax Blocks
 
 ## ParafiGARD™
 
-![](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application800x600px-1.gif)
+![Patent Pending](https://cdn.labtag.com/wp-content/uploads/ParafiGARD-Application800x600px-1.gif "/media/histology-labels/ParafiGARD-Application800x600px-1.webm")
 
 (Patent Pending)
 
@@ -121,19 +121,25 @@ Equip your lab with a complete labeling solution. LabTAG offers printers, barcod
 
 ![A zebra thermal-transfer 300 dpi printer, with digital display, as well as USB, Bluetooth and Ethernet interfaces, for printing barcode labels.](https://cdn.labtag.com/wp-content/uploads/ivf-printers.jpg "/media/histology-labels/ivf-printers.jpg")
 
-[Printers](https://www.labtag.com/shop/category/printing-solution/printers/)
+Desktop and industrial thermal printers for barcode slide, cassette, and container labels that stay readable through histology workflows.
+
+[View Products](https://www.labtag.com/shop/category/printing-solution/printers/)
 
 ### Scanners
 
 ![A black Honeywell voyager 1452G omni-directional scanner, for scanning 1D and 2D barcodes. Scanner is standing upright, while sitting in its base.](https://cdn.labtag.com/wp-content/uploads/ivf-scanner.jpg "/media/histology-labels/ivf-scanner.jpg")
 
-[Scanners](https://www.labtag.com/shop/category/printing-solution/scanners/)
+Handheld 1D and 2D barcode scanners for tracking slides, blocks, and samples through accessioning, staining, and storage.
+
+[View Products](https://www.labtag.com/shop/category/printing-solution/scanners/)
 
 ### Printing Kits
 
 ![PKCT-MA-without-software_600x427px-v3](https://cdn.labtag.com/wp-content/uploads/PKCT-MA-without-software_600x427px-v3.png "/media/histology-labels/PKCT-MA-without-software_600x427px-v3.png")
 
-[Printing Kits](https://www.labtag.com/shop/category/label-printing-system-for-histology/)
+Complete kits that combine a printer, histology labels, ribbon, and software so your lab can print and apply identifiers immediately.
+
+[View Products](https://www.labtag.com/shop/category/label-printing-system-for-histology/)
 
 ## Get in Touch
 

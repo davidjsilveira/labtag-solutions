@@ -6,9 +6,7 @@ Source: [https://www.labtag.com/solutions/cannabis-labels/](https://www.labtag.c
 
 Cannabis Labels for Growing, Testing & Selling
 
-Cannabis labeling is a tightly regulated industry, with strict guidelines to follow from seed to sale. Nonetheless, GA International has the labeling solutions for all aspects of the industry, from growing, to packaging, and testing, to meet your unique needs. We offer CBD labels for plants that identify the plant itself, for improved traceability, and can even be provided with RFID tags, for real-time tracking. Our CBD product labels are perfect for all your branding and packaging needs, and are FDA approved for indirect food contact, great for use with edibles. We also have durable chemical-resistant labels, that will withstand exposure to alcohols, CBD oils and creams, as well as high moisture environments, perfect for use by testing and quality control facilities to identify tubes, vials, and other containers.
-
-As a label manufacturer, GA International is also able to provide detailed custom manufacturing services for all your CBD label needs. We can offer custom cannabis labels pre-printed with full-color company logos, detailed product information, or variable data. This includes tamper-evident labels for securely sealing bottles, jars, pouches, vials, and tubes. Our in-house RFID label manufacturing capabilities allow us to produce custom CBD labels using our various resistant materials, of any size or configuration, that incorporate an RFID tag. Along with our barcode labels, this provides you a greater flexibility when tracking products through your supply chain. We can also provide state and country specific warning and compliance labels for your CBD and hemp product packaging.
+Labeling for grow, packaging, and testing—from plant ID and RFID tracking to FDA food-contact packaging and chemical-resistant lab labels.
 
 ### Packaging Labels for Cannabis Brands, Distributors, & Retailers
 
@@ -47,10 +45,16 @@ Equip your grow-op, lab, or business with a complete labeling solution from GA I
 
 ![A zebra thermal-transfer 300 dpi printer, with digital display, as well as USB, Bluetooth and Ethernet interfaces, for printing barcode labels.](https://cdn.labtag.com/wp-content/uploads/ivf-printers.jpg)
 
+Desktop and industrial thermal-transfer and direct-thermal printers for barcode, compliance, and branding labels across grow, packaging, and testing workflows.
+
 ### Scanners
 
 ![A black Honeywell voyager 1452G omni-directional scanner, for scanning 1D and 2D barcodes. Scanner is standing upright, while sitting in its base.](https://cdn.labtag.com/wp-content/uploads/ivf-scanner.jpg)
 
+Handheld 1D and 2D barcode scanners for tracking plants, packages, and lab samples through seed-to-sale and quality-control workflows.
+
 ### Printing Kits
 
 ![Printing kit for IVF labs, with a Zebra ZD620t printer, resin ribbon, scanner, copy of BarTender barcoding software, and cryo straw thermal labels.](https://cdn.labtag.com/wp-content/uploads/ivf-softwarepkt.jpg)
+
+Ready-made kits that pair a printer, labels, ribbon, and software so you can start identifying cannabis products and samples right away.

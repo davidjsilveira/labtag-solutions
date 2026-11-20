@@ -435,7 +435,7 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
           <SampleBanner
             key={`biobank-sample-${i}`}
             title={block.title}
-            href={action?.href ?? 'https://www.labtag.com/cryogenic-sample-kit'}
+            href={action?.href ?? '/samples'}
             label={action?.label ?? 'Order Free Samples'}
           />,
         )
@@ -444,7 +444,14 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
       }
 
       if (solutionSlug === 'biobanking-labels' && slugify(block.title) === 'view-all-cryogenic-labels') {
-        // Rendered on the preceding product row when present; skip the orphan heading.
+        // Standalone catalog CTA after the recommended-products grid — not on one product row.
+        pushNonSplit(
+          <p key={`biobank-view-all-${i}`} className="biobank-more">
+            <Link className="btn btn-primary" to="/solutions/cryogenic-labels">
+              View All Cryogenic Labels
+            </Link>
+          </p>,
+        )
         i += 1
         continue
       }
@@ -611,21 +618,18 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
           solutionSlug === 'biobanking-labels' && sectionAnchor
             ? biobankTileHref(sectionAnchor)
             : undefined
-        const followingBlock = blocks[absorbed.next]
-        const biobankViewAll =
-          solutionSlug === 'biobanking-labels' &&
-          followingBlock?.type === 'section' &&
-          slugify(followingBlock.title) === 'view-all-cryogenic-labels'
         const media = <ImageSlider images={images} className="content-split-media" />
         const mediaFirst =
           solutionSlug === 'cannabis-labels' &&
           absorbed.bullets?.type === 'bulletList' &&
           cannabisRow++ % 2 === 0
+        const titleCtaOnly =
+          absorbed.section.paragraphs.length === 0 && absorbed.bullets?.type !== 'bulletList'
         const split = (
           <div
             key={`split-${i}`}
             id={sectionAnchor}
-            className={`content-split${mediaFirst ? ' is-media-first' : ''}`}
+            className={`content-split${mediaFirst ? ' is-media-first' : ''}${titleCtaOnly ? ' is-title-cta' : ''}`}
           >
             <div className="content-split-copy">
               <SectionBlockView block={absorbed.section} withAnchor={false} />
@@ -650,13 +654,6 @@ export function BlockRenderer({ blocks, solutionSlug, variant }: Props) {
                     {biobankResource.label}
                   </a>
                 </div>
-              ) : null}
-              {biobankViewAll ? (
-                <p className="biobank-more">
-                  <Link className="btn btn-primary" to="/solutions/cryogenic-labels">
-                    View All Cryogenic Labels
-                  </Link>
-                </p>
               ) : null}
             </div>
             {biobankTile ? (

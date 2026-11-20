@@ -1,7 +1,7 @@
 import {
   LABTAG_CRYO_SHOP_URL,
   LABTAG_CRYO_VIDEOS_URL,
-  LABTAG_SAMPLE_URL,
+  SAMPLE_PATH,
   LABTAG_SHOP_URL,
   LABTAG_VIDEOS_URL,
 } from '@/content/labtagLinks'
@@ -758,7 +758,7 @@ const BIOBANK_RESOURCES: Record<string, { href: string; label: string }> = {
     label: 'Read the Guide',
   },
   'try-before-you-buy': {
-    href: 'https://www.labtag.com/cryogenic-sample-kit',
+    href: SAMPLE_PATH,
     label: 'Order Free Samples',
   },
   'breakthrough-labeling-technologies-for-biobank': {
@@ -1034,7 +1034,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: section.href,
         shopLabel: 'Products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         videoHref: section.video,
       }
     }
@@ -1046,7 +1046,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: section.href,
         shopLabel: 'Products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         videoHref: section.video,
       }
     }
@@ -1058,7 +1058,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: section.href,
         shopLabel: 'products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         actionLabel: section.label,
         quote: section.quote,
       }
@@ -1071,7 +1071,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: href,
         shopLabel: 'products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         actionLabel: 'View Products',
       }
     }
@@ -1083,7 +1083,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: href,
         shopLabel: 'Products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         actionLabel: 'Shop Products',
       }
     }
@@ -1095,7 +1095,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: href,
         shopLabel: 'Products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         actionLabel: 'View Products',
       }
     }
@@ -1107,7 +1107,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: section.href,
         shopLabel: 'Products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         actionLabel: section.label,
         videoHref: section.video,
         videoLabel: section.videoLabel,
@@ -1121,7 +1121,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: section.href,
         shopLabel: 'Products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         actionLabel: section.label,
         videoHref: section.video,
         videoLabel: section.videoLabel,
@@ -1136,7 +1136,7 @@ export function resolveSplitCardActions(
       return {
         shopHref: href,
         shopLabel: 'Products',
-        sampleHref: LABTAG_SAMPLE_URL,
+        sampleHref: SAMPLE_PATH,
         actionLabel: 'Shop Products',
       }
     }
@@ -1156,7 +1156,7 @@ export function resolveSplitCardActions(
   return {
     shopHref,
     shopLabel,
-    sampleHref: LABTAG_SAMPLE_URL,
+    sampleHref: SAMPLE_PATH,
     videoHref: resolveVideoHref(sectionSlug),
   }
 }

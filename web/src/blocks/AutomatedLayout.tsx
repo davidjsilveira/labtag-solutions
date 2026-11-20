@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { SAMPLE_PATH } from '@/content/labtagLinks'
 import { slugify } from '@/content/slugify'
 import type { BulletListBlock, ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { paragraphLink, proseParagraphs } from './AutoclaveSections'
 import { ImageBlockView } from './ImageBlock'
 import { RichText } from './RichText'
+import { SampleBanner } from './SampleBanner'
 
 type ProductItem = {
   section: SectionBlock
@@ -57,22 +58,6 @@ function readProducts(blocks: ContentBlock[], start: number) {
     i = next
   }
   return { items, next: i }
-}
-
-function ActionLink({ href, label }: { href: string; label: string }) {
-  if (href.startsWith('/')) {
-    return (
-      <Link className="btn btn-primary" to={href}>
-        {label}
-      </Link>
-    )
-  }
-  const external = !href.startsWith('#')
-  return (
-    <a className="btn btn-primary" href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
-      {label}
-    </a>
-  )
 }
 
 function Points({ items }: { items: string[] }) {
@@ -161,13 +146,13 @@ function Contact({
   label?: string
 }) {
   return (
-    <aside className="automated-contact" id={id}>
-      <div>
-        {title ? <h2>{title}</h2> : null}
-        {body ? <p>{body}</p> : null}
-      </div>
-      {href && label ? <ActionLink href={href} label={label} /> : null}
-    </aside>
+    <SampleBanner
+      id={id}
+      title={title || 'Get in Touch'}
+      body={body}
+      href={href || SAMPLE_PATH}
+      label={label || 'Order Free Samples'}
+    />
   )
 }
 

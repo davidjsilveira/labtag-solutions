@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { BlockRenderer } from '@/blocks/BlockRenderer'
 import { PageHero } from '@/blocks/PageHero'
-import { RichText } from '@/blocks/RichText'
 import { pagesForBrowseAll } from '@/content/categories'
 import { getPage } from '@/content/loadPages'
 import type { HeroImage } from '@/content/types'
@@ -96,8 +95,6 @@ export function SolutionPage() {
   const pcrBlocks = pcrPoints && pcrNote ? page.blocks.slice(2) : pcrPoints ? page.blocks.slice(1) : page.blocks
   const heroPoints = covidPoints ?? cryostuckPoints ?? hardstickPoints ?? pcrPoints
   const bodyBlocks = pcr ? pcrBlocks : cryostuck ? cryostuckBlocks : hardstick ? hardstickBlocks : covidBlocks
-  const heroDescription = cannabis ? page.description.slice(0, 1) : page.description
-  const cannabisLead = cannabis ? page.description.slice(1) : []
   return (
     <article
       className={`solution-page${animalHealthcare ? ' is-animal-healthcare' : ''}${autoclave ? ' is-autoclave' : ''}${automated ? ' is-automated' : ''}${biobanking ? ' is-biobanking' : ''}${cannabis ? ' is-cannabis' : ''}${chemical ? ' is-chemical' : ''}${clinical ? ' is-clinical' : ''}${covid ? ' is-covid' : ''}${cryogenic ? ' is-cryogenic' : ''}${cryostuck ? ' is-cryostuck' : ''}${custom ? ' is-custom' : ''}${deepFreeze ? ' is-deep-freeze' : ''}${gatorcut ? ' is-gatorcut' : ''}${snappeel ? ' is-snappeel' : ''}`}
@@ -105,7 +102,7 @@ export function SolutionPage() {
       <PageHero
         key={page.slug}
         title={page.title}
-        description={heroDescription}
+        description={page.description}
         image={page.heroImage}
         solutionSlug={page.slug}
         layout="split"
@@ -114,15 +111,6 @@ export function SolutionPage() {
         gallery={cryostuckGallery}
         cycle={<AdjacentPager prev={prev} next={next} />}
       />
-      {cannabisLead.length ? (
-        <div className="cannabis-lead">
-          {cannabisLead.map((paragraph) => (
-            <p key={paragraph.slice(0, 48)}>
-              <RichText text={paragraph} />
-            </p>
-          ))}
-        </div>
-      ) : null}
       <BlockRenderer blocks={bodyBlocks} solutionSlug={page.slug} />
 
       <AdjacentPager prev={prev} next={next} />

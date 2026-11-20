@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, X } from '@phosphor-icons/react'
 import {
   SOLUTIONS_MEGA_FOOTER,
+  SOLUTIONS_MEGA_LABEL_SECTIONS,
   SOLUTIONS_MEGA_SECTIONS,
   SOLUTIONS_MEGA_VIEW_ALL,
+  type SolutionsMegaSection,
 } from '@/content/solutionsMegaMenu'
 import { resolveImageSrc } from '@/content/resolveImage'
 
@@ -15,6 +17,70 @@ type SolutionsMegaMenuProps = {
 
 function isInternalPath(href: string) {
   return href.startsWith('/')
+}
+
+function FeaturedTile({
+  section,
+  onClose,
+}: {
+  section: SolutionsMegaSection
+  onClose: () => void
+}) {
+  const image = section.featured.image
+  const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
+
+  return (
+    <Link
+      className="nav-mega-section-media solutions-mega-tile"
+      to={section.featured.href}
+      onClick={onClose}
+    >
+      {resolved ? (
+        <img
+          src={resolved.primary}
+          alt=""
+          loading="lazy"
+          onError={(event) => {
+            if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
+              event.currentTarget.src = resolved.fallback
+            }
+          }}
+        />
+      ) : (
+        <span className="nav-mega-section-media-empty" aria-hidden="true" />
+      )}
+      <span className="nav-mega-section-caption">
+        <span className="solutions-mega-tile-meta">
+          <span className="solutions-mega-tile-kicker">{section.heading}</span>
+          <span className="solutions-mega-tile-label">{section.featured.label}</span>
+        </span>
+        <ArrowRight size={14} weight="bold" aria-hidden />
+      </span>
+    </Link>
+  )
+}
+
+function DirectoryColumn({
+  section,
+  onClose,
+}: {
+  section: SolutionsMegaSection
+  onClose: () => void
+}) {
+  return (
+    <section className="solutions-mega-column">
+      <h3>{section.heading}</h3>
+      <ul>
+        {section.links.map((link) => (
+          <li key={`${section.heading}-${link.href}`}>
+            <Link to={link.href} onClick={onClose}>
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
 }
 
 export function SolutionsMegaMenu({ open, onClose }: SolutionsMegaMenuProps) {
@@ -49,54 +115,17 @@ export function SolutionsMegaMenu({ open, onClose }: SolutionsMegaMenuProps) {
         </button>
       </div>
 
-      <div className="nav-mega-body">
-        <div className="nav-mega-sections">
-          {SOLUTIONS_MEGA_SECTIONS.map((section) => {
-            const image = section.featured.image
-            const resolved = image ? resolveImageSrc(image.src, image.fallbackSrc) : null
+      <div className="nav-mega-body solutions-mega-body">
+        <div className="solutions-mega-featured" aria-label="Featured solutions">
+          {SOLUTIONS_MEGA_LABEL_SECTIONS.map((section) => (
+            <FeaturedTile key={section.heading} section={section} onClose={onClose} />
+          ))}
+        </div>
 
-            return (
-              <section key={section.heading} className="nav-mega-section">
-                <Link
-                  className="nav-mega-section-media"
-                  to={section.featured.href}
-                  onClick={onClose}
-                >
-                  {resolved ? (
-                    <img
-                      src={resolved.primary}
-                      alt=""
-                      loading="lazy"
-                      onError={(event) => {
-                        if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
-                          event.currentTarget.src = resolved.fallback
-                        }
-                      }}
-                    />
-                  ) : (
-                    <span className="nav-mega-section-media-empty" aria-hidden="true" />
-                  )}
-                  <span className="nav-mega-section-caption">
-                    {section.featured.label}
-                    <ArrowRight size={14} weight="bold" aria-hidden />
-                  </span>
-                </Link>
-
-                <h3>{section.heading}</h3>
-                <ul>
-                  {section.links
-                    .filter((link) => link.href !== section.featured.href)
-                    .map((link) => (
-                      <li key={link.href}>
-                        <Link to={link.href} onClick={onClose}>
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                </ul>
-              </section>
-            )
-          })}
+        <div className="solutions-mega-directory">
+          {SOLUTIONS_MEGA_SECTIONS.map((section) => (
+            <DirectoryColumn key={section.heading} section={section} onClose={onClose} />
+          ))}
         </div>
       </div>
 

@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom'
-import { CONTACT_PATH } from '@/content/labtagLinks'
 import { resolveImageSrc } from '@/content/resolveImage'
 import type { ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { RichText } from './RichText'
+import { SampleBanner } from './SampleBanner'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
 
@@ -42,19 +41,12 @@ function ShopLink({ href, label, button = false }: { href: string; label: string
 
 function Contact({ title, body }: { title: string; body: string }) {
   return (
-    <section className="rfid-contact">
-      <div>
-        <h2>{title}</h2>
-        {body ? (
-          <p>
-            <RichText text={body} />
-          </p>
-        ) : null}
-      </div>
-      <Link className="btn btn-primary" to={`${CONTACT_PATH}#contact-request`}>
-        Contact us
-      </Link>
-    </section>
+    <SampleBanner
+      title={title}
+      body={body}
+      href="/samples"
+      label="Order Free Samples"
+    />
   )
 }
 

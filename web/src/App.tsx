@@ -14,6 +14,8 @@ import {
   TAGI_PATH,
   QUOTE_PATH,
   RESELLER_PATH,
+  FINDER_PATH,
+  RESOURCES_PATH,
   SAMPLE_PATH,
   TEMPLATES_PATH,
   WHY_CHOOSE_PATH,
@@ -21,6 +23,7 @@ import {
 import { AboutPage } from '@/pages/AboutPage'
 import { ContactPage } from '@/pages/ContactPage'
 import { HelpPage } from '@/pages/HelpPage'
+import { ResourcesPage } from '@/pages/ResourcesPage'
 import { TagiPage } from '@/pages/TagiPage'
 import { CustomLabelsPage } from '@/pages/CustomLabelsPage'
 import { HomePage } from '@/pages/HomePage'
@@ -31,6 +34,7 @@ import { SamplesPage } from '@/pages/SamplesPage'
 import { WhyChoosePage } from '@/pages/WhyChoosePage'
 import { SolutionPage } from '@/pages/SolutionPage'
 import { TemplatePage } from '@/pages/TemplatePage'
+import { LabelFinderPage } from '@/pages/LabelFinderPage'
 import { TemplatesIndexPage } from '@/pages/TemplatesIndexPage'
 import { TEMPLATE_SR28_PATH } from '@/content/templateSr28'
 
@@ -86,10 +90,12 @@ export default function App() {
           <Route path={RESELLER_PATH} element={<ResellerPage />} />
           <Route path={CONTACT_PATH} element={<ContactPage />} />
           <Route path={HELP_PATH} element={<HelpPage />} />
+          <Route path={RESOURCES_PATH} element={<ResourcesPage />} />
           <Route path={TAGI_PATH} element={<TagiPage />} />
           <Route path={TEMPLATES_PATH} element={<TemplatesIndexPage />} />
           <Route path="/templates/sr-1" element={<Navigate to={TEMPLATE_SR28_PATH} replace />} />
           <Route path="/templates/:templateSlug" element={<TemplatePage />} />
+          <Route path={FINDER_PATH} element={<LabelFinderPage />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"

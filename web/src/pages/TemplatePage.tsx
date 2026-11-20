@@ -217,10 +217,10 @@ function TemplateArticle({ slug }: { slug: TemplateSlug }) {
           <p>{template.cta.body}</p>
         </div>
         <div className="block-cta-actions">
-          <Link className="btn btn-on-accent" to={template.cta.primary.href}>
+          <Link className="btn btn-primary" to={template.cta.primary.href}>
             {template.cta.primary.label}
           </Link>
-          <Link className="btn btn-on-accent-ghost" to={template.cta.secondary.href}>
+          <Link className="btn btn-secondary" to={template.cta.secondary.href}>
             {template.cta.secondary.label}
           </Link>
         </div>

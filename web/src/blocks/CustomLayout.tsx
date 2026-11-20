@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { slugify } from '@/content/slugify'
-import type { BulletListBlock, ContentBlock, CtaBlock, ImageBlock, SectionBlock } from '@/content/types'
+import { resolveSplitCardActions } from '@/content/splitActions'
+import type { ContentBlock, CtaBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { CtaBlockView } from './CtaBlock'
 import { RichText } from './RichText'
 
@@ -24,45 +25,38 @@ export function CustomLayout({ blocks }: { blocks: ContentBlock[] }) {
       }
       nodes.push(
         <div key={`cards-${cards[0].section.title}`} className="custom-cards">
-          {cards.map(({ section, image }) => (
-            <article key={section.title} id={slugify(section.title)}>
-              <img src={image.src} alt={image.alt || section.title} decoding="async" />
-              <h3>{section.title}</h3>
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>
-                  <RichText text={paragraph} />
-                </p>
-              ))}
-            </article>
-          ))}
+          {cards.map(({ section, image }) => {
+            const id = slugify(section.title)
+            const mapped = resolveSplitCardActions(id, 'custom-laboratory-labels', section.title)
+            return (
+              <article key={section.title} id={id} className="custom-card">
+                <img src={image.src} alt={image.alt || section.title} decoding="async" />
+                <div className="custom-card-copy">
+                  <h3>{section.title}</h3>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)}>
+                      <RichText text={paragraph} />
+                    </p>
+                  ))}
+                  {mapped.shopHref ? (
+                    <a className="btn btn-primary" href={mapped.shopHref} target="_blank" rel="noreferrer">
+                      {mapped.actionLabel ?? 'Shop Products'}
+                    </a>
+                  ) : null}
+                </div>
+              </article>
+            )
+          })}
         </div>,
       )
       continue
     }
 
+    // Skip the old format/material/resistance anchor rows (section + bullet list).
     if (block.type === 'section' && blocks[i + 1]?.type === 'bulletList') {
-      const specs: { section: SectionBlock; items: string[] }[] = []
       while (blocks[i]?.type === 'section' && blocks[i + 1]?.type === 'bulletList') {
-        specs.push({
-          section: blocks[i] as SectionBlock,
-          items: (blocks[i + 1] as BulletListBlock).items,
-        })
         i += 2
       }
-      nodes.push(
-        <div key={`specs-${specs[0].section.title}`} className="clinical-specs">
-          {specs.map(({ section, items }) => (
-            <article key={section.title} id={slugify(section.title)}>
-              <h2>{section.title}</h2>
-              <ul>
-                {items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>,
-      )
       continue
     }
 

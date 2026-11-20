@@ -1,7 +1,7 @@
 import { type ReactNode, useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { VimeoLightbox, YoutubeLightbox } from '@/components/YoutubeLink'
-import { REQUEST_FORM_PATHS, SAMPLE_PATH } from '@/content/labtagLinks'
+import { REQUEST_FORM_PATHS, SAMPLE_PATH, isSampleHref, toInternalSampleHref } from '@/content/labtagLinks'
 import { RichText } from './RichText'
 import { resolveSolutionShopHref } from '@/content/splitActions'
 import { resolveImageSrc } from '@/content/resolveImage'
@@ -60,8 +60,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Get Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
       secondary: {
         label: 'Get in Touch',
@@ -79,8 +78,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
       },
       secondary: {
         label: 'Order Free Sample Kit',
-        href: 'https://www.labtag.com/xylene-and-chemical-resistant-sample-kit/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -89,8 +87,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Get Free Samples',
-        href: 'https://www.labtag.com/histology-sample-kit/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -99,8 +96,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Get Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -144,8 +140,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
       },
       secondary: {
         label: 'Get Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -154,8 +149,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Get Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -164,8 +158,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Get Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -174,8 +167,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Order Free Samples',
-        href: 'https://www.labtag.com/histology-sample-kit/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -194,8 +186,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Order Free Sample Kit',
-        href: 'https://www.labtag.com/ivf-sample-kit/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -204,8 +195,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Get Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -239,8 +229,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
     return {
       primary: {
         label: 'Order Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -254,8 +243,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
       },
       secondary: {
         label: 'Order Free Samples',
-        href: 'https://www.labtag.com/samples/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -269,8 +257,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
       },
       secondary: {
         label: 'Free Samples',
-        href: 'https://www.labtag.com/cryogenic-sample-kit',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -284,8 +271,7 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
       },
       secondary: {
         label: 'Order Free Sample Kit',
-        href: 'https://www.labtag.com/cryogenic-sample-kit/',
-        external: true,
+        href: SAMPLE_PATH,
       },
     }
   }
@@ -319,6 +305,13 @@ function resolveHeroActions(title: string, solutionSlug?: string): {
 }
 
 function HeroActionLink({ action, className }: { action: HeroAction; className: string }) {
+  if (isSampleHref(action.href)) {
+    return (
+      <Link className={className} to={toInternalSampleHref(action.href)}>
+        {action.label}
+      </Link>
+    )
+  }
   if (action.external) {
     return (
       <a className={className} href={action.href} target="_blank" rel="noreferrer">
@@ -349,6 +342,7 @@ export function PageHero({
   const [current, setCurrent] = useState(resolved?.primary ?? '')
   const [imageFailed, setImageFailed] = useState(false)
   const showImage = Boolean(image && resolved && !imageFailed)
+  const heroIsVideo = /\.(mp4|webm|ogg)(?:$|[?#])/i.test(current)
   const actions = resolveHeroActions(title, solutionSlug)
   const stacked = layout === 'stack'
   const covidVideo = solutionSlug === 'covid-19-laboratory-labels'
@@ -436,6 +430,23 @@ export function PageHero({
             </svg>
           </span>
         </button>
+      ) : heroIsVideo ? (
+        <video
+          src={current}
+          aria-label={image?.alt || title}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onError={() => {
+            if (resolved?.fallback && current !== resolved.fallback) {
+              setCurrent(resolved.fallback)
+              return
+            }
+            setImageFailed(true)
+          }}
+        />
       ) : (
         <img
           src={current}
@@ -504,6 +515,30 @@ export function PageHero({
     </figure>
   ) : null
 
+  const hideActions =
+    solutionSlug === 'label-printing-solutions' || solutionSlug === 'cryostuck' || rfidVideo
+  const actionsRow = hideActions ? null : solutionSlug === 'label-software' ? (
+    <div className="page-hero-actions">
+      <a className="btn btn-primary" href="#design">
+        Design Software
+      </a>
+      <a className="btn btn-primary" href="#informatics">
+        Informatics Software
+      </a>
+    </div>
+  ) : (
+    <div className="page-hero-actions">
+      <HeroActionLink action={actions.primary} className="btn btn-primary" />
+      {solutionSlug === 'microscope-slide-over-labeling' ? (
+        <button type="button" className="btn btn-secondary" onClick={() => setVideoOpen(true)}>
+          Watch Video
+        </button>
+      ) : actions.secondary ? (
+        <HeroActionLink action={actions.secondary} className="btn btn-secondary" />
+      ) : null}
+    </div>
+  )
+
   return (
     <header
       className={`page-hero${solutionSlug === 'pcr-labels-and-tags' ? ' page-hero-pcr' : ''}${solutionSlug === 'pre-labeled-labware' ? ' page-hero-prelab' : ''}${rfidVideo ? ' page-hero-rfid' : ''}${showImage || playable ? (stacked ? ' page-hero-stack' : ' page-hero-split') : ''}`}
@@ -533,27 +568,7 @@ export function PageHero({
           </p>
         ) : null}
         {stacked ? media : null}
-        {solutionSlug === 'label-printing-solutions' || solutionSlug === 'cryostuck' || rfidVideo ? null : solutionSlug === 'label-software' ? (
-          <div className="page-hero-actions">
-            <a className="btn btn-primary" href="#design">
-              Design Software
-            </a>
-            <a className="btn btn-primary" href="#informatics">
-              Informatics Software
-            </a>
-          </div>
-        ) : (
-          <div className="page-hero-actions">
-            <HeroActionLink action={actions.primary} className="btn btn-primary" />
-            {solutionSlug === 'microscope-slide-over-labeling' ? (
-              <button type="button" className="btn btn-secondary" onClick={() => setVideoOpen(true)}>
-                Watch Video
-              </button>
-            ) : actions.secondary ? (
-              <HeroActionLink action={actions.secondary} className="btn btn-secondary" />
-            ) : null}
-          </div>
-        )}
+        {actionsRow}
         {related}
       </div>
 

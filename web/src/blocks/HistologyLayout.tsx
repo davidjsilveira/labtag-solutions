@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { histologyHasProductSection } from '@/content/splitActions'
 import { slugify } from '@/content/slugify'
-import type { BulletListBlock, ContentBlock, CtaBlock, ImageBlock, SectionBlock } from '@/content/types'
+import type { BulletListBlock, ContentBlock, CtaBlock, ImageBlock, SectionBlock, VideoBlock } from '@/content/types'
 import { BulletListBlockView } from './BulletListBlock'
 import { ContentSplitActions } from './ContentSplitActions'
 import { CtaBlockView } from './CtaBlock'
@@ -9,8 +9,11 @@ import { ImageBlockView } from './ImageBlock'
 import { ImageSlider } from './ImageSlider'
 import { RichText } from './RichText'
 import { SampleBanner } from './SampleBanner'
+import { VideoBlockView } from './VideoBlock'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
+
+type MediaBlock = ImageBlock | VideoBlock
 
 function asSection(block: ContentBlock | undefined): SectionBlock | null {
   return block?.type === 'section' ? block : null
@@ -24,6 +27,16 @@ function takeImages(blocks: ContentBlock[], start: number) {
     i += 1
   }
   return { images, next: i }
+}
+
+function takeMedia(blocks: ContentBlock[], start: number) {
+  const media: MediaBlock[] = []
+  let i = start
+  while (blocks[i]?.type === 'image' || blocks[i]?.type === 'video') {
+    media.push(blocks[i] as MediaBlock)
+    i += 1
+  }
+  return { media, next: i }
 }
 
 function linkFrom(paragraphs: string[]) {
@@ -48,11 +61,20 @@ function ActionLink({ href, label }: { href: string; label: string }) {
   )
 }
 
-function Media({ images }: { images: ImageBlock[] }) {
+function Media({ media }: { media: MediaBlock[] }) {
+  if (!media.length) return null
+  const video = media.find((item): item is VideoBlock => item.type === 'video')
+  if (video && media.length === 1) {
+    return (
+      <div className="histo-media is-motion">
+        <VideoBlockView src={video.src} alt={video.alt} fallbackSrc={video.fallbackSrc} />
+      </div>
+    )
+  }
+  const images = media.filter((item): item is ImageBlock => item.type === 'image')
   if (!images.length) return null
-  const gif = images.some((image) => /\.gif(?:$|\?)/i.test(image.src))
   return (
-    <div className={`histo-media${gif ? ' is-gif' : ''}`}>
+    <div className="histo-media">
       <ImageSlider images={images.map((image) => ({ ...image, alt: '' }))} />
     </div>
   )
@@ -71,7 +93,7 @@ export function HistologyLayout({ blocks }: { blocks: ContentBlock[] }) {
       continue
     }
 
-    if (block.type === 'image') {
+    if (block.type === 'image' || block.type === 'video') {
       i += 1
       continue
     }
@@ -114,19 +136,21 @@ export function HistologyLayout({ blocks }: { blocks: ContentBlock[] }) {
       const guideMedia = takeImages(blocks, i + 1)
       const guideAction = linkFrom(section.paragraphs)
       nodes.push(
-        <article key={section.title} className="histo-offer">
+        <section key={section.title} className="guide-banner">
           {guideMedia.images[0] ? (
-            <ImageBlockView
-              src={guideMedia.images[0].src}
-              alt=""
-              fallbackSrc={guideMedia.images[0].fallbackSrc}
-            />
+            <div className="guide-banner-media">
+              <ImageBlockView
+                src={guideMedia.images[0].src}
+                alt=""
+                fallbackSrc={guideMedia.images[0].fallbackSrc}
+              />
+            </div>
           ) : null}
-          <div>
+          <div className="guide-banner-copy">
             <h2>{section.title}</h2>
             {guideAction ? <ActionLink href={guideAction.href} label={guideAction.label} /> : null}
           </div>
-        </article>,
+        </section>,
       )
       let next = guideMedia.next
       const sample = asSection(blocks[next])
@@ -137,7 +161,7 @@ export function HistologyLayout({ blocks }: { blocks: ContentBlock[] }) {
           <SampleBanner
             key={sample.title}
             title={sample.title}
-            href={sampleAction?.href ?? 'https://www.labtag.com/histology-sample-kit/'}
+            href={sampleAction?.href ?? '/samples'}
             label={sampleAction?.label ?? 'Order Free Samples'}
           />,
         )
@@ -153,35 +177,45 @@ export function HistologyLayout({ blocks }: { blocks: ContentBlock[] }) {
       while (asSection(blocks[j])?.level === 3) {
         const tool = asSection(blocks[j])!
         const media = takeImages(blocks, j + 1)
-        tools.push({ section: tool, image: media.images[0] })
-        j = media.next
+        let next = media.next
+        let paragraphs = [...tool.paragraphs]
+        const following = blocks[next]
+        if (following?.type === 'text') {
+          paragraphs = [...paragraphs, ...following.paragraphs]
+          next += 1
+        }
+        tools.push({ section: { ...tool, paragraphs }, image: media.images[0] })
+        j = next
       }
       nodes.push(
-        <section key="printers" className="histo-group">
+        <section key="printers" className="histo-group histo-tools-group">
           <h2>{section.title}</h2>
           {prose(section.paragraphs).map((paragraph) => (
             <p key={paragraph} className="histo-intro">
               <RichText text={paragraph} />
             </p>
           ))}
-          <div className="histo-tools">
+          <div className="histo-tool-stack">
             {tools.map((tool) => {
               const action = linkFrom(tool.section.paragraphs)
-              const inner = (
-                <>
-                  {tool.image ? (
-                    <ImageBlockView src={tool.image.src} alt="" fallbackSrc={tool.image.fallbackSrc} />
-                  ) : null}
-                  <h3>{tool.section.title}</h3>
-                </>
-              )
-              return action ? (
-                <a key={tool.section.title} className="histo-tool" href={action.href} target="_blank" rel="noreferrer">
-                  {inner}
-                </a>
-              ) : (
-                <article key={tool.section.title} className="histo-tool">
-                  {inner}
+              const body = prose(tool.section.paragraphs)
+              const id = slugify(tool.section.title)
+              return (
+                <article key={tool.section.title} id={id} className="histo-row histo-tool-row">
+                  <div className="histo-media">
+                    {tool.image ? (
+                      <ImageBlockView src={tool.image.src} alt="" fallbackSrc={tool.image.fallbackSrc} />
+                    ) : null}
+                  </div>
+                  <div className="histo-copy">
+                    <h3>{tool.section.title}</h3>
+                    {body.map((paragraph) => (
+                      <p key={paragraph} className="histo-tool-body">
+                        <RichText text={paragraph} />
+                      </p>
+                    ))}
+                    {action ? <ActionLink href={action.href} label={action.label} /> : null}
+                  </div>
                 </article>
               )
             })}
@@ -192,22 +226,24 @@ export function HistologyLayout({ blocks }: { blocks: ContentBlock[] }) {
       continue
     }
 
-    const media = takeImages(blocks, i + 1)
-    const bullets = blocks[media.next]?.type === 'bulletList' ? (blocks[media.next] as BulletListBlock) : null
-    const next = bullets ? media.next + 1 : media.next
+    const taken = takeMedia(blocks, i + 1)
+    const bullets = blocks[taken.next]?.type === 'bulletList' ? (blocks[taken.next] as BulletListBlock) : null
+    const next = bullets ? taken.next + 1 : taken.next
     const anchor = slugify(section.title)
     const showActions = histologyHasProductSection(anchor)
 
-    if (!media.images.length && !showActions) {
+    if (!taken.media.length && !showActions) {
+      const body = prose(section.paragraphs).join(' ')
+      const action = linkFrom(section.paragraphs)
       nodes.push(
-        <section key={section.title} className="histo-close">
-          <h2>{section.title}</h2>
-          {prose(section.paragraphs).map((paragraph) => (
-            <p key={paragraph}>
-              <RichText text={paragraph} />
-            </p>
-          ))}
-        </section>,
+        <SampleBanner
+          key={section.title}
+          id={anchor}
+          title={section.title}
+          body={body || undefined}
+          href={action?.href ?? '/samples'}
+          label={action?.label ?? 'Order Free Samples'}
+        />,
       )
       i = next
       continue
@@ -231,7 +267,7 @@ export function HistologyLayout({ blocks }: { blocks: ContentBlock[] }) {
             />
           ) : null}
         </div>
-        <Media images={media.images} />
+        <Media media={taken.media} />
       </section>,
     )
     i = next

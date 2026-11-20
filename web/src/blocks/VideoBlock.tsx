@@ -7,13 +7,24 @@ type Props = {
   className?: string
 }
 
+const GIF_SRC = /\.gif(?:$|\?)/i
+
 export function VideoBlockView({ src, alt, fallbackSrc, className = '' }: Props) {
   const resolved = resolveImageSrc(src, fallbackSrc)
+  const primary = GIF_SRC.test(resolved.primary) && resolved.fallback && !GIF_SRC.test(resolved.fallback)
+    ? resolved.fallback
+    : resolved.primary
+  const fallback =
+    resolved.fallback &&
+    resolved.fallback !== primary &&
+    !GIF_SRC.test(resolved.fallback)
+      ? resolved.fallback
+      : undefined
 
   return (
     <figure className={`block block-video ${className}`.trim()}>
       <video
-        src={resolved.primary}
+        src={primary}
         aria-label={alt}
         autoPlay
         muted
@@ -21,8 +32,8 @@ export function VideoBlockView({ src, alt, fallbackSrc, className = '' }: Props)
         playsInline
         preload="metadata"
         onError={(event) => {
-          if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
-            event.currentTarget.src = resolved.fallback
+          if (fallback && event.currentTarget.src !== fallback) {
+            event.currentTarget.src = fallback
           }
         }}
       />

@@ -2,12 +2,14 @@ import type { ReactNode } from 'react'
 import type { BulletListBlock, ContentBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { ImageBlockView } from './ImageBlock'
 import { RichText } from './RichText'
+import { SampleBanner } from './SampleBanner'
 
 const LINK_ONLY = /^\[([^\]]+)\]\(([^)]+)\)$/
 
 const SECTION_ID: Record<string, string> = {
   'Label Design Software': 'design',
   'Informatics Software': 'informatics',
+  'Which software is right for you?': 'contact-us',
 }
 
 function asSection(block: ContentBlock | undefined): SectionBlock | null {
@@ -33,6 +35,20 @@ function takeImages(blocks: ContentBlock[], start: number) {
   return { images, next: i }
 }
 
+function ShopLink({ href, label }: { href: string; label: string }) {
+  const external = /^https?:/i.test(href)
+  return (
+    <a className="btn btn-primary" href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
+      {label}
+    </a>
+  )
+}
+
+function Photo({ image }: { image?: ImageBlock }) {
+  if (!image) return null
+  return <ImageBlockView src={image.src} alt="" fallbackSrc={image.fallbackSrc} />
+}
+
 export function LabelSoftwareLayout({ blocks }: { blocks: ContentBlock[] }) {
   const nodes: ReactNode[] = []
   let i = 0
@@ -45,21 +61,41 @@ export function LabelSoftwareLayout({ blocks }: { blocks: ContentBlock[] }) {
     }
 
     const media = takeImages(blocks, i + 1)
-    const bullets = blocks[media.next]?.type === 'bulletList' ? (blocks[media.next] as BulletListBlock) : null
+    const bullets =
+      blocks[media.next]?.type === 'bulletList' ? (blocks[media.next] as BulletListBlock) : null
     const next = bullets ? media.next + 1 : media.next
     const id = SECTION_ID[section.title]
     const action = section.paragraphs.map(linkFrom).find(Boolean)
-    const hasBody = prose(section.paragraphs).length > 0 || media.images.length > 0 || Boolean(bullets) || Boolean(action)
-    if (!hasBody) {
+    const body = prose(section.paragraphs)
+
+    // Empty markdown stubs (e.g. "Comparing Products We Offer").
+    if (!body.length && !media.images.length && !bullets && !action) {
+      i = next
+      continue
+    }
+
+    if (/which software is right for you/i.test(section.title)) {
+      nodes.push(
+        <SampleBanner
+          key={section.title}
+          id={id}
+          title={section.title}
+          body={body.join(' ')}
+          href={action?.href || 'https://www.labtag.com/contact-us/'}
+          label={action?.label || 'Get in Touch'}
+        />,
+      )
       i = next
       continue
     }
 
     if (section.title === 'Our Informatics Software Partners' && bullets) {
-      const partners = bullets.items.map(linkFrom).filter((item): item is { label: string; href: string } => Boolean(item))
+      const partners = bullets.items
+        .map(linkFrom)
+        .filter((item): item is { label: string; href: string } => Boolean(item))
       nodes.push(
         <section key={section.title} className="software-logos">
-          <h3>{section.title}</h3>
+          <h2>{section.title}</h2>
           <div className="software-logo-grid">
             {media.images.map((image, index) => {
               const partner = partners[index]
@@ -80,18 +116,19 @@ export function LabelSoftwareLayout({ blocks }: { blocks: ContentBlock[] }) {
     }
 
     nodes.push(
-      <section key={section.title} className="software-section" id={id}>
-        {section.level === 2 ? <h2>{section.title}</h2> : <h3>{section.title}</h3>}
-        {prose(section.paragraphs).map((paragraph) => (
-          <p key={paragraph}>
-            <RichText text={paragraph} />
-          </p>
-        ))}
-        {action ? (
-          <a className="btn btn-primary" href={action.href} target="_blank" rel="noreferrer">
-            {action.label}
-          </a>
-        ) : null}
+      <section key={section.title} className="software-row" id={id}>
+        <div className="software-media">
+          <Photo image={media.images[0]} />
+        </div>
+        <div className="software-copy">
+          {section.level === 2 ? <h2>{section.title}</h2> : <h3>{section.title}</h3>}
+          {body.map((paragraph) => (
+            <p key={paragraph}>
+              <RichText text={paragraph} />
+            </p>
+          ))}
+          {action ? <ShopLink href={action.href} label={action.label} /> : null}
+        </div>
       </section>,
     )
     i = next

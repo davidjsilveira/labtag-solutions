@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import type { BulletListBlock, ContentBlock, CtaBlock, ImageBlock, SectionBlock } from '@/content/types'
 import { BulletListBlockView } from './BulletListBlock'
-import { CtaBlockView } from './CtaBlock'
 import { ImageBlockView } from './ImageBlock'
 import { RichText } from './RichText'
 import { SampleBanner } from './SampleBanner'
@@ -77,18 +76,17 @@ export function IvfLayout({ blocks }: { blocks: ContentBlock[] }) {
     const block = blocks[i]
     if (block.type === 'cta') {
       const cta = block as CtaBlock
-      if (/sample/i.test(cta.title) || /sample/i.test(cta.actionLabel ?? '')) {
+      // Keep only the closing samples banner; skip mid-page "claim your FREE samples" CTAs.
+      if (/^get free samples$/i.test(cta.title.trim())) {
         nodes.push(
           <SampleBanner
             key={cta.title + i}
             title={cta.title}
             body={cta.body}
-            href={cta.actionHref || '#contact-us'}
+            href={cta.actionHref || '/samples'}
             label={cta.actionLabel || 'Get Free Samples'}
           />,
         )
-      } else {
-        nodes.push(<CtaBlockView key={cta.title + i} block={cta} />)
       }
       i += 1
       continue
@@ -103,7 +101,61 @@ export function IvfLayout({ blocks }: { blocks: ContentBlock[] }) {
     const group = readSection(blocks, i)
     const id = SECTION_ID[section.title]
 
-    if (section.title === 'Find Your Products' || section.title === 'Additional Solutions' || section.title === 'Labeling of Tubes and Vials') {
+    // Drop the old in-page jump-card strip.
+    if (section.title === 'Find Your Products') {
+      let j = group.next
+      while (asSection(blocks[j])?.level === 3) {
+        j = readSection(blocks, j).next
+      }
+      i = j
+      continue
+    }
+
+    if (section.title === 'Additional Solutions') {
+      const tools = []
+      let j = group.next
+      while (asSection(blocks[j])?.level === 3) {
+        const tool = readSection(blocks, j)
+        tools.push(tool)
+        j = tool.next
+      }
+      nodes.push(
+        <section key={section.title} className="ivf-group ivf-tools-group" id={id}>
+          <h2>{section.title}</h2>
+          {prose(section.paragraphs).map((paragraph) => (
+            <p key={paragraph} className="ivf-intro">
+              <RichText text={paragraph} />
+            </p>
+          ))}
+          <div className="ivf-tool-stack">
+            {tools.map((tool) => {
+              const action = linkFrom(tool.section.paragraphs)
+              const body = prose(tool.section.paragraphs)
+              return (
+                <article key={tool.section.title} className="ivf-row ivf-tool-row">
+                  <div className="ivf-media">
+                    <Photo image={tool.images[0]} />
+                  </div>
+                  <div className="ivf-copy">
+                    <h3>{tool.section.title}</h3>
+                    {body.map((paragraph) => (
+                      <p key={paragraph} className="ivf-tool-body">
+                        <RichText text={paragraph} />
+                      </p>
+                    ))}
+                    {action ? <ShopLink href={action.href} label={action.label} /> : null}
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </section>,
+      )
+      i = j
+      continue
+    }
+
+    if (section.title === 'Labeling of Tubes and Vials') {
       const cards = []
       let j = group.next
       while (asSection(blocks[j])?.level === 3) {
@@ -111,7 +163,6 @@ export function IvfLayout({ blocks }: { blocks: ContentBlock[] }) {
         cards.push(card)
         j = card.next
       }
-      const wide = section.title === 'Find Your Products'
       nodes.push(
         <section key={section.title} className="ivf-group" id={id}>
           <h2>{section.title}</h2>
@@ -120,26 +171,24 @@ export function IvfLayout({ blocks }: { blocks: ContentBlock[] }) {
               <RichText text={paragraph} />
             </p>
           ))}
-          <div className={wide ? 'ivf-find' : 'ivf-cards'}>
+          <div className="ivf-card-stack">
             {cards.map((card) => {
               const action = linkFrom(card.section.paragraphs)
-              const inner = (
-                <>
-                  <Photo image={card.images[0]} />
-                  <h3>{card.section.title}</h3>
-                  {action && !wide ? <ShopLink href={action.href} label={action.label} /> : null}
-                </>
-              )
-              if (wide && action) {
-                return (
-                  <a key={card.section.title} className="ivf-find-card" href={action.href}>
-                    {inner}
-                  </a>
-                )
-              }
+              const body = prose(card.section.paragraphs)
               return (
-                <article key={card.section.title} className="ivf-card">
-                  {inner}
+                <article key={card.section.title} className="ivf-row ivf-card-row">
+                  <div className="ivf-media">
+                    <Photo image={card.images[0]} />
+                  </div>
+                  <div className="ivf-copy">
+                    <h3>{card.section.title}</h3>
+                    {body.map((paragraph) => (
+                      <p key={paragraph} className="ivf-tool-body">
+                        <RichText text={paragraph} />
+                      </p>
+                    ))}
+                    {action ? <ShopLink href={action.href} label={action.label} /> : null}
+                  </div>
                 </article>
               )
             })}
@@ -169,12 +218,22 @@ export function IvfLayout({ blocks }: { blocks: ContentBlock[] }) {
           <div className="ivf-pair">
             {cards.map((card) => {
               const action = linkFrom(card.section.paragraphs)
+              const body = prose(card.section.paragraphs)
               return (
-                <article key={card.section.title} className="ivf-plate">
-                  <Photo image={card.images[0]} />
-                  <h3>{card.section.title}</h3>
-                  {card.bullets ? <BulletListBlockView block={card.bullets} variant="plain" /> : null}
-                  {action ? <ShopLink href={action.href} label={action.label} /> : null}
+                <article key={card.section.title} className="ivf-row ivf-card-row">
+                  <div className="ivf-media">
+                    <Photo image={card.images[0]} />
+                  </div>
+                  <div className="ivf-copy">
+                    <h3>{card.section.title}</h3>
+                    {body.map((paragraph) => (
+                      <p key={paragraph} className="ivf-tool-body">
+                        <RichText text={paragraph} />
+                      </p>
+                    ))}
+                    {card.bullets ? <BulletListBlockView block={card.bullets} variant="plain" /> : null}
+                    {action ? <ShopLink href={action.href} label={action.label} /> : null}
+                  </div>
                 </article>
               )
             })}
@@ -192,7 +251,7 @@ export function IvfLayout({ blocks }: { blocks: ContentBlock[] }) {
           id={id}
           title={section.title}
           body={prose(section.paragraphs).join(' ')}
-          href="https://www.labtag.com/ivf-sample-kit/"
+          href="/samples"
           label="Get Free Samples"
         />,
       )
@@ -200,21 +259,27 @@ export function IvfLayout({ blocks }: { blocks: ContentBlock[] }) {
       continue
     }
 
+    // Skip leftover mid-page sample prompts that were not parsed as CTAs.
+    if (/free samples/i.test(section.title) && /get in touch/i.test(section.title)) {
+      i = group.next
+      continue
+    }
+
     const action = linkFrom(section.paragraphs)
     nodes.push(
       <section key={section.title} className="ivf-row" id={id}>
+        <div className="ivf-media">
+          <Photo image={group.images[0]} />
+        </div>
         <div className="ivf-copy">
           <h2>{section.title}</h2>
           {prose(section.paragraphs).map((paragraph) => (
-            <p key={paragraph}>
+            <p key={paragraph} className="ivf-tool-body">
               <RichText text={paragraph} />
             </p>
           ))}
           {group.bullets ? <BulletListBlockView block={group.bullets} variant="plain" /> : null}
           {action ? <ShopLink href={action.href} label={action.label} /> : null}
-        </div>
-        <div className="ivf-media">
-          <Photo image={group.images[0]} />
         </div>
       </section>,
     )

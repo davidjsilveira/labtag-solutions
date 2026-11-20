@@ -1,3 +1,4 @@
+import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { useId, useState, type KeyboardEvent } from 'react'
 import type { ImageBlock } from '@/content/types'
 import { ImageBlockView } from './ImageBlock'
@@ -5,9 +6,11 @@ import { ImageBlockView } from './ImageBlock'
 type Props = {
   images: ImageBlock[]
   className?: string
+  /** `arrows` hides dots/count — prev/next only. */
+  controls?: 'full' | 'arrows'
 }
 
-export function ImageSlider({ images, className = '' }: Props) {
+export function ImageSlider({ images, className = '', controls = 'full' }: Props) {
   const labelId = useId()
   const [index, setIndex] = useState(0)
 
@@ -89,36 +92,38 @@ export function ImageSlider({ images, className = '' }: Props) {
         />
       </div>
 
-      <div className="image-slider-chrome">
+      <div className={`image-slider-chrome${controls === 'arrows' ? ' is-arrows' : ''}`}>
         <button
           type="button"
           className="image-slider-nav"
           onClick={() => go(-1)}
           aria-label="Previous image"
         >
-          <span aria-hidden="true">‹</span>
+          <CaretLeft size={18} weight="bold" aria-hidden />
         </button>
 
-        <div className="image-slider-meta">
-          <div className="image-slider-dots" role="tablist" aria-label="Choose image">
-            {images.map((image, dotIndex) => (
-              <button
-                key={`${image.src}-${dotIndex}`}
-                type="button"
-                role="tab"
-                aria-selected={dotIndex === index}
-                aria-label={`Show image ${dotIndex + 1}`}
-                className={dotIndex === index ? 'is-active' : undefined}
-                onClick={() => setIndex(dotIndex)}
-              />
-            ))}
+        {controls === 'full' ? (
+          <div className="image-slider-meta">
+            <div className="image-slider-dots" role="tablist" aria-label="Choose image">
+              {images.map((image, dotIndex) => (
+                <button
+                  key={`${image.src}-${dotIndex}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={dotIndex === index}
+                  aria-label={`Show image ${dotIndex + 1}`}
+                  className={dotIndex === index ? 'is-active' : undefined}
+                  onClick={() => setIndex(dotIndex)}
+                />
+              ))}
+            </div>
+            <p className="image-slider-count" aria-hidden="true">
+              {index + 1}
+              <span className="image-slider-count-sep">/</span>
+              {images.length}
+            </p>
           </div>
-          <p className="image-slider-count" aria-hidden="true">
-            {index + 1}
-            <span className="image-slider-count-sep">/</span>
-            {images.length}
-          </p>
-        </div>
+        ) : null}
 
         <button
           type="button"
@@ -126,7 +131,7 @@ export function ImageSlider({ images, className = '' }: Props) {
           onClick={() => go(1)}
           aria-label="Next image"
         >
-          <span aria-hidden="true">›</span>
+          <CaretRight size={18} weight="bold" aria-hidden />
         </button>
       </div>
     </div>

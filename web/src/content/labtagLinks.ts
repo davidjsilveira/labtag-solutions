@@ -12,6 +12,32 @@ export const LABTAG_ORDERS_URL = 'https://www.labtag.com/my-account/orders/'
 export const LABTAG_CART_URL = 'https://www.labtag.com/cart/'
 export const LABTAG_SAMPLE_URL = 'https://www.labtag.com/contact-us/samples'
 export const SAMPLE_PATH = '/samples'
+
+/** True for in-app `/samples` or LabTAG sample / sample-kit destinations. */
+export function isSampleHref(href: string): boolean {
+  const value = href.trim().toLowerCase()
+  if (!value) return false
+  if (
+    value === SAMPLE_PATH ||
+    value.startsWith(`${SAMPLE_PATH}?`) ||
+    value.startsWith(`${SAMPLE_PATH}/`)
+  ) {
+    return true
+  }
+  if (!value.includes('sample')) return false
+  return (
+    value.includes('labtag.com') &&
+    (value.includes('sample-kit') ||
+      value.includes('/samples') ||
+      value.includes('contact-us/samples'))
+  )
+}
+
+/** Always send sample CTAs to the in-app sample form. */
+export function toInternalSampleHref(href?: string | null): string {
+  if (!href?.trim()) return SAMPLE_PATH
+  return isSampleHref(href) ? SAMPLE_PATH : href.trim()
+}
 export const QUOTE_PATH = '/quote'
 export const LABTAG_ABOUT_URL = 'https://www.labtag.com/about-labtag'
 export const SOLUTIONS_PATH = '/'
@@ -22,11 +48,15 @@ export const RESELLER_PATH = '/become-a-reseller'
 export const CONTACT_PATH = '/contact-us'
 export const HELP_PATH = '/help'
 export const TAGI_PATH = '/tagi'
+export const RESOURCES_PATH = '/resources'
 export const LABTAG_CONTACT_URL = 'https://www.labtag.com/contact-us/'
 export const LABTAG_QUOTE_URL = 'https://www.labtag.com/contact-us/quote/'
 export const LABTAG_RESELLER_URL = 'https://www.labtag.com/contact-us/become-a-reseller/'
 export const LABTAG_RESOURCES_URL = 'https://www.labtag.com/resources/'
+export const LABTAG_LITERATURE_URL = 'https://www.labtag.com/resources/catalogs/'
+export const LABTAG_CASE_STUDIES_URL = 'https://www.labtag.com/case-studies/'
 export const LABTAG_FINDER_URL = 'https://www.labtag.com/resources/label-finder/'
+export const FINDER_PATH = '/label-finder'
 export const LABTAG_VIDEOS_URL = 'https://www.labtag.com/resources/videos/'
 export const LABTAG_TEMPLATES_URL = 'https://www.labtag.com/resources/label-templates/'
 export const LABTAG_TEMPLATES_HUB_URL = 'https://www.labtag.com/resources/templates/'
