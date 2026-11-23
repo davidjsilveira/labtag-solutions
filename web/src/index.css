@@ -18984,6 +18984,10 @@ button.finder-meta-chip.is-filter.is-active {
   margin-top: 1rem;
 }
 
+.class-hero-actions .class-action {
+  flex: 1 1 0;
+}
+
 .class-action {
   display: inline-flex;
   align-items: center;
@@ -19029,6 +19033,7 @@ button.finder-meta-chip.is-filter.is-active {
   display: flex;
   flex: 1 1 9rem;
   flex-direction: column;
+  justify-content: center;
   gap: 0.4rem;
   min-width: 0;
   padding: 0.7rem 0.9rem;
