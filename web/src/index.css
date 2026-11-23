@@ -18366,7 +18366,7 @@ a.finder-meta-chip:hover {
   background: #f1f3f5;
   color: #3a4553;
   font: inherit;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.1;
@@ -18411,7 +18411,7 @@ button.finder-meta-chip.is-filter.is-active {
   background-color: #f3f4f6;
   background-image: none;
   color: #3f4654;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 600;
   line-height: 1.1;
 }
