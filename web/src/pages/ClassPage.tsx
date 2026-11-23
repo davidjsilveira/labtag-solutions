@@ -316,6 +316,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
     color: [],
   })
   const [allOpen, setAllOpen] = useState(false)
+  const [drawerSection, setDrawerSection] = useState<ClassFilterKey | null>('container')
   const [pageSize, setPageSize] = useState<(typeof PAGE_SIZES)[number] | 'all'>(25)
   const [page, setPage] = useState(1)
   const catalog = labtagClassUrl(row.code)
@@ -617,9 +618,24 @@ function ClassArticle({ row }: { row: LabelClass }) {
                 </button>
               </header>
               <div className="finder-drawer-body">
-                {CLASS_FILTERS.map((filter) => (
-                  <section key={filter.key} className="finder-drawer-section is-open">
-                    <h3 className="class-drawer-label">{filter.label}</h3>
+                {CLASS_FILTERS.map((filter) => {
+                  const expanded = drawerSection === filter.key
+                  const selectedCount = filters[filter.key].length
+                  return (
+                  <section key={filter.key} className={`finder-drawer-section${expanded ? ' is-open' : ''}`}>
+                    <button
+                      type="button"
+                      className="finder-drawer-section-trigger"
+                      aria-expanded={expanded}
+                      onClick={() => setDrawerSection((current) => (current === filter.key ? null : filter.key))}
+                    >
+                      <span>
+                        {filter.label}
+                        {selectedCount ? <em>{selectedCount}</em> : null}
+                      </span>
+                      <ChevronIcon />
+                    </button>
+                    {expanded ? (
                     <ul className="finder-drawer-options">
                       {options[filter.key].map((option) => {
                         const checked = filters[filter.key].includes(option)
@@ -648,8 +664,10 @@ function ClassArticle({ row }: { row: LabelClass }) {
                         )
                       })}
                     </ul>
+                    ) : null}
                   </section>
-                ))}
+                  )
+                })}
               </div>
               <footer className="finder-drawer-foot">
                 <button
