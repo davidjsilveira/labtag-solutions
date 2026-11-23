@@ -9,7 +9,7 @@ import {
   resistanceLabel,
   type LabelClass,
 } from '@/content/labelFinder'
-import { FINDER_PATH, SAMPLE_PATH, finderFilterPath, labtagClassUrl } from '@/content/labtagLinks'
+import { FINDER_PATH, SAMPLE_PATH, labtagClassUrl } from '@/content/labtagLinks'
 import { FilterChip, ColumnSortIcon } from '@/pages/LabelFinderPage'
 import { COLOR_SWATCH, JTTA_DESCRIPTION, JTTA_SKUS, JTTA_SUMMARY, type ClassSku } from '@/content/classMocks'
 
@@ -424,9 +424,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
           <section className="class-spec">
             <h2>Brand</h2>
             <p>
-              <Link className="finder-meta-chip is-feature" to={finderFilterPath('brands', row.brand)}>
-                {row.brand}
-              </Link>
+              <span className="finder-meta-chip is-feature">{row.brand}</span>
             </p>
           </section>
           <section className="class-spec">
@@ -447,9 +445,9 @@ function ClassArticle({ row }: { row: LabelClass }) {
               <ul className="finder-meta-chips class-spec-chips">
                 {row.resistances.map((item) => (
                   <li key={item}>
-                    <Link className={`finder-meta-chip is-resistance ${resistanceClass(item)}`} to={finderFilterPath('resistances', item)}>
+                    <span className={`finder-meta-chip is-resistance ${resistanceClass(item)}`}>
                       {resistanceLabel(item)}
-                    </Link>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -463,9 +461,14 @@ function ClassArticle({ row }: { row: LabelClass }) {
               <ul className="finder-meta-chips class-spec-chips">
                 {featureLabels.map((item) => (
                   <li key={item}>
-                    <Link className="finder-meta-chip is-feature" to={finderFilterPath('feature', item)}>
+                    <button
+                      type="button"
+                      className={`finder-meta-chip is-feature is-filter${filters.feature.includes(item) ? ' is-active' : ''}`}
+                      aria-pressed={filters.feature.includes(item)}
+                      onClick={() => toggleFilter('feature', item)}
+                    >
                       {item}
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -479,9 +482,14 @@ function ClassArticle({ row }: { row: LabelClass }) {
               <ul className="finder-meta-chips class-spec-chips">
                 {row.containers.map((kind) => (
                   <li key={kind}>
-                    <Link className="finder-meta-chip is-container" to={finderFilterPath('containers', CONTAINER_LABELS[kind])}>
+                    <button
+                      type="button"
+                      className={`finder-meta-chip is-container is-filter${filters.container.includes(CONTAINER_LABELS[kind]) ? ' is-active' : ''}`}
+                      aria-pressed={filters.container.includes(CONTAINER_LABELS[kind])}
+                      onClick={() => toggleFilter('container', CONTAINER_LABELS[kind])}
+                    >
                       {CONTAINER_LABELS[kind]}
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -516,9 +524,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
               <ul className="finder-meta-chips class-spec-chips">
                 {row.printers.map((method) => (
                   <li key={method}>
-                    <Link className="finder-meta-chip is-print" to={finderFilterPath('printingMethods', method)}>
-                      {method}
-                    </Link>
+                    <span className="finder-meta-chip is-print">{method}</span>
                   </li>
                 ))}
               </ul>
