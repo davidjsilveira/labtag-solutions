@@ -43,6 +43,10 @@ function sortValue(
   }
 }
 
+function shapeGlyphClass(shape: string) {
+  return shape.toLowerCase().includes('circle') && !shape.includes('+') ? 'is-circle' : 'is-rect'
+}
+
 function ClassSortHeader({ label, sortKey, sort, onSort, className }: { label: string; sortKey: ClassSortKey; sort: ClassSort; onSort: (key: ClassSortKey) => void; className?: string }) {
   const active = sort.key === sortKey
   return (
@@ -472,6 +476,25 @@ function ClassArticle({ row }: { row: LabelClass }) {
         </div>
         <div className="class-specs">
           <section className="class-spec">
+            <h2>Shape</h2>
+            {options.shape.length ? (
+              <ul className="finder-meta-chips class-spec-chips">
+                {options.shape.map((shape) => (
+                  <FilterChip
+                    key={shape}
+                    label={shape}
+                    className="is-shape"
+                    icon={<span className={`class-shape-glyph ${shapeGlyphClass(shape)}`} aria-hidden="true" />}
+                    active={filters.shape.includes(shape)}
+                    onToggle={() => toggleFilter('shape', shape)}
+                  />
+                ))}
+              </ul>
+            ) : (
+              <span className="finder-empty">—</span>
+            )}
+          </section>
+          <section className="class-spec">
             <h2>Features</h2>
             {featureLabels.length ? (
               <ul className="finder-meta-chips class-spec-chips">
@@ -733,12 +756,15 @@ function ClassArticle({ row }: { row: LabelClass }) {
                       </span>
                     </td>
                     <td>
-                      <span className="class-shape-cell">
-                        <span className={`class-shape is-${item.shape.toLowerCase().includes('circle') && !item.shape.includes('+') ? 'circle' : 'rect'}`} aria-hidden="true" />
-                        <ul className="finder-meta-chips">
-                          <FilterChip label={item.shape} active={filters.shape.includes(item.shape)} onToggle={() => toggleFilter('shape', item.shape)} />
-                        </ul>
-                      </span>
+                      <ul className="finder-meta-chips">
+                        <FilterChip
+                          label={item.shape}
+                          className="is-shape"
+                          icon={<span className={`class-shape-glyph ${shapeGlyphClass(item.shape)}`} aria-hidden="true" />}
+                          active={filters.shape.includes(item.shape)}
+                          onToggle={() => toggleFilter('shape', item.shape)}
+                        />
+                      </ul>
                     </td>
                     <td>
                       {w ? (

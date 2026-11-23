@@ -6,6 +6,7 @@ import {
   useState,
   type CSSProperties,
   type Dispatch,
+  type ReactNode,
   type SetStateAction,
 } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
@@ -325,11 +326,13 @@ export function FilterChip({
   active,
   className,
   onToggle,
+  icon,
 }: {
   label: string
   active: boolean
   className?: string
   onToggle: () => void
+  icon?: ReactNode
 }) {
   return (
     <li>
@@ -343,6 +346,7 @@ export function FilterChip({
           onToggle()
         }}
       >
+        {icon}
         {label}
       </button>
     </li>
