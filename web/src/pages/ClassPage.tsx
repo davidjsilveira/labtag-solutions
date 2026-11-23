@@ -890,7 +890,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
                   </tr>
                   </Fragment>
                   )
-                })}
+                })
               ) : (
                 <tr>
                   <td colSpan={10} className="class-none">
