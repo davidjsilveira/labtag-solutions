@@ -19299,6 +19299,21 @@ button.finder-meta-chip.is-filter.is-active {
   font-weight: 500;
 }
 
+.class-row.is-unmatched {
+  opacity: 0.5;
+}
+
+.class-unmatched-divider td {
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid #f0eef4;
+  background: #faf9fc;
+  color: #8b95a5;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
 .class-go {
   width: 2.5rem;
   text-align: right;

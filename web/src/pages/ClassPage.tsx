@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom'
 import { CaretDown, DownloadSimple } from '@phosphor-icons/react'
 import {
@@ -343,7 +343,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
     setPage(1)
   }
 
-  const rows = useMemo(() => {
+  const { rows, unmatched } = useMemo(() => {
     const q = query.trim().toLowerCase()
     const matches = (selected: string[], values: string[]) =>
       !selected.length || selected.some((item) => values.includes(item))
@@ -357,19 +357,11 @@ function ClassArticle({ row }: { row: LabelClass }) {
       colors: [],
       price: 'See catalog',
     }))
-    return source
+    const sorted = source
       .map((item) => {
         const size = sizeOf(item.dimensions)
-        return { ...item, id: item.model, headline: row.headline, size, dims: dimsOf(size) }
+        return { ...item, id: item.model, headline: row.headline, size, dims: dimsOf(size), unmatched: false }
       })
-      .filter((item) => matches(filters.width, item.dims.w ? [item.dims.w] : []))
-      .filter((item) => matches(filters.length, item.dims.l ? [item.dims.l] : []))
-      .filter((item) => matches(filters.diameter, item.dims.d ? [item.dims.d] : []))
-      .filter((item) => matches(filters.container, [item.container]))
-      .filter((item) => matches(filters.shape, [item.shape]))
-      .filter((item) => matches(filters.feature, [item.feature]))
-      .filter((item) => matches(filters.color, item.colors.length ? item.colors : [NOT_SPECIFIED]))
-      .filter((item) => !q || `${item.model} ${item.dimensions} ${item.shape} ${item.container} ${item.feature}`.toLowerCase().includes(q))
       .sort((a, b) => {
         const av = sortValue(a, sort.key)
         const bv = sortValue(b, sort.key)
@@ -382,11 +374,26 @@ function ClassArticle({ row }: { row: LabelClass }) {
         if (aMissing || bMissing) return aMissing === bMissing ? 0 : aMissing ? 1 : -1
         return sort.dir === 'asc' ? av - bv : bv - av
       })
+    // Non-matching items stay visible, sorted underneath the matches.
+    const isMatch = (item: (typeof sorted)[number]) =>
+      matches(filters.width, item.dims.w ? [item.dims.w] : []) &&
+      matches(filters.length, item.dims.l ? [item.dims.l] : []) &&
+      matches(filters.diameter, item.dims.d ? [item.dims.d] : []) &&
+      matches(filters.container, [item.container]) &&
+      matches(filters.shape, [item.shape]) &&
+      matches(filters.feature, [item.feature]) &&
+      matches(filters.color, item.colors.length ? item.colors : [NOT_SPECIFIED]) &&
+      (!q || `${item.model} ${item.dimensions} ${item.shape} ${item.container} ${item.feature}`.toLowerCase().includes(q))
+    return {
+      rows: sorted.filter(isMatch),
+      unmatched: sorted.filter((item) => !isMatch(item)).map((item) => ({ ...item, unmatched: true })),
+    }
   }, [catalogSkus, fallbackContainers, fallbackFeatures, filters, formats, query, row.code, row.headline, row.productType, sort])
 
-  const pageCount = pageSize === 'all' ? 1 : Math.max(1, Math.ceil(rows.length / pageSize))
+  const combined = [...rows, ...unmatched]
+  const pageCount = pageSize === 'all' ? 1 : Math.max(1, Math.ceil(combined.length / pageSize))
   const safePage = Math.min(page, pageCount)
-  const visible = pageSize === 'all' ? rows : rows.slice((safePage - 1) * pageSize, safePage * pageSize)
+  const visible = pageSize === 'all' ? combined : combined.slice((safePage - 1) * pageSize, safePage * pageSize)
   const summary = row.code === 'JTTA' ? JTTA_SUMMARY : classBlurb(row)
   const detail = row.code === 'JTTA' ? JTTA_DESCRIPTION : classDetail(row)
   const featureLabels = row.features.length
@@ -755,11 +762,18 @@ function ClassArticle({ row }: { row: LabelClass }) {
             </thead>
             <tbody>
               {visible.length ? (
-                visible.map((item) => {
+                visible.map((item, index) => {
                   const { w, l, d } = item.dims
                   const [priceAmount, priceUnit] = item.price.split('/')
+                  const showDivider = item.unmatched && (index === 0 || !visible[index - 1].unmatched)
                   return (
-                  <tr className="class-row" key={item.id}>
+                  <Fragment key={item.id}>
+                  {showDivider ? (
+                    <tr className="class-unmatched-divider">
+                      <td colSpan={10}>Not matching your filters</td>
+                    </tr>
+                  ) : null}
+                  <tr className={`class-row${item.unmatched ? ' is-unmatched' : ''}`}>
                     <td>
                       <span className="class-model-cell">
                         <span className="finder-thumb" aria-hidden="true">
@@ -874,8 +888,9 @@ function ClassArticle({ row }: { row: LabelClass }) {
                       </a>
                     </td>
                   </tr>
+                  </Fragment>
                   )
-                })
+                })}
               ) : (
                 <tr>
                   <td colSpan={10} className="class-none">
