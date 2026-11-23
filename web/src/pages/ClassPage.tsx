@@ -389,8 +389,10 @@ function ClassArticle({ row }: { row: LabelClass }) {
             <figure className="class-gallery">
               <img src={CLASS_IMAGE} alt="" width={640} height={420} />
             </figure>
-            <h1>{row.code}</h1>
-            <p className="class-subtitle">{row.headline}</p>
+            <div className="class-hero-title">
+              <h1>{row.code}</h1>
+              <p className="class-subtitle">{row.headline}</p>
+            </div>
           </div>
           <div className="class-hero-copy">
             <p className="class-lead">
