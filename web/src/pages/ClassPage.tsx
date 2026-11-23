@@ -385,12 +385,14 @@ function ClassArticle({ row }: { row: LabelClass }) {
     <article className="class-page">
       <section className="class-hero">
         <div className="class-hero-identity">
-          <figure className="class-gallery">
-            <img src={CLASS_IMAGE} alt="" width={640} height={420} />
-          </figure>
-          <div className="class-hero-copy">
+          <div className="class-hero-left">
+            <figure className="class-gallery">
+              <img src={CLASS_IMAGE} alt="" width={640} height={420} />
+            </figure>
             <h1>{row.code}</h1>
             <p className="class-subtitle">{row.headline}</p>
+          </div>
+          <div className="class-hero-copy">
             <p className="class-lead">
               {expanded ? detail : summary}
               {detail !== summary ? (
