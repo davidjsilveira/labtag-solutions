@@ -102,11 +102,13 @@ function SearchIcon() {
 
 function ClassChipFilter({
   label,
+  filterKey,
   options,
   value,
   onChange,
 }: {
   label: string
+  filterKey: ClassFilterKey
   options: string[]
   value: string[]
   onChange: (next: string[]) => void
@@ -202,6 +204,9 @@ function ClassChipFilter({
                           </svg>
                         ) : null}
                       </span>
+                      {filterKey === 'color' && COLOR_SWATCH[option] ? (
+                        <span className="class-menu-swatch" style={{ background: COLOR_SWATCH[option] }} aria-hidden="true" />
+                      ) : null}
                       <span className="finder-menu-option-label">{option}</span>
                     </button>
                   </li>
@@ -543,6 +548,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
               <ClassChipFilter
                 key={filter.key}
                 label={filter.label}
+                filterKey={filter.key}
                 options={options[filter.key]}
                 value={filters[filter.key]}
                 onChange={(next) => {
@@ -602,6 +608,9 @@ function ClassArticle({ row }: { row: LabelClass }) {
                               }}
                             >
                               <span className={`finder-menu-check${checked ? ' is-checked' : ''}`} aria-hidden="true" />
+                              {filter.key === 'color' && COLOR_SWATCH[option] ? (
+                                <span className="class-menu-swatch" style={{ background: COLOR_SWATCH[option] }} aria-hidden="true" />
+                              ) : null}
                               <span className="finder-drawer-option-label">{option}</span>
                             </button>
                           </li>
