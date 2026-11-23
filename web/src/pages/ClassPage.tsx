@@ -417,9 +417,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
             <div className="class-hero-specs">
               <section className="class-spec">
                 <h2>Brand</h2>
-                <p>
-                  <span className="finder-meta-chip is-feature">{row.brand}</span>
-                </p>
+                <p className="class-spec-range">{row.brand}</p>
               </section>
               <section className="class-spec">
                 <h2>Temperature</h2>
@@ -452,13 +450,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
               <section className="class-spec">
                 <h2>Printing Method</h2>
                 {row.printers.length ? (
-                  <ul className="finder-meta-chips class-spec-chips">
-                    {row.printers.map((method) => (
-                      <li key={method}>
-                        <span className="finder-meta-chip is-print">{method}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="class-spec-range">{row.printers.join(', ')}</p>
                 ) : (
                   <span className="finder-empty">—</span>
                 )}
