@@ -426,48 +426,6 @@ function ClassArticle({ row }: { row: LabelClass }) {
                 </button>
               ) : null}
             </p>
-            <div className="class-hero-specs">
-              <section className="class-spec">
-                <h2>Brand</h2>
-                <p className="class-spec-range">{row.brand}</p>
-              </section>
-              <section className="class-spec">
-                <h2>Temperature</h2>
-                <p className="class-spec-range">
-                  {row.tempMin == null && row.tempMax == null ? (
-                    'Not specified'
-                  ) : (
-                    <>
-                      {formatTemp(row.tempMin)} to {formatTemp(row.tempMax)}
-                    </>
-                  )}
-                </p>
-              </section>
-              <section className="class-spec">
-                <h2>Resistances</h2>
-                {row.resistances.length ? (
-                  <ul className="finder-meta-chips class-spec-chips">
-                    {row.resistances.map((item) => (
-                      <li key={item}>
-                        <span className={`finder-meta-chip is-resistance ${resistanceClass(item)}`}>
-                          {resistanceLabel(item)}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <span className="finder-empty">—</span>
-                )}
-              </section>
-              <section className="class-spec">
-                <h2>Printing Method</h2>
-                {row.printers.length ? (
-                  <p className="class-spec-range">{row.printers.join(', ')}</p>
-                ) : (
-                  <span className="finder-empty">—</span>
-                )}
-              </section>
-            </div>
             <div className="class-hero-actions">
               <Link className="class-action is-primary" to={SAMPLE_PATH}>
                 Request Free Sample
@@ -478,6 +436,48 @@ function ClassArticle({ row }: { row: LabelClass }) {
               </a>
             </div>
           </div>
+        </div>
+        <div className="class-hero-specs">
+          <section className="class-spec">
+            <h2>Brand</h2>
+            <p className="class-spec-range">{row.brand}</p>
+          </section>
+          <section className="class-spec">
+            <h2>Temperature</h2>
+            <p className="class-spec-range">
+              {row.tempMin == null && row.tempMax == null ? (
+                'Not specified'
+              ) : (
+                <>
+                  {formatTemp(row.tempMin)} to {formatTemp(row.tempMax)}
+                </>
+              )}
+            </p>
+          </section>
+          <section className="class-spec">
+            <h2>Resistances</h2>
+            {row.resistances.length ? (
+              <ul className="finder-meta-chips class-spec-chips">
+                {row.resistances.map((item) => (
+                  <li key={item}>
+                    <span className={`finder-meta-chip is-resistance ${resistanceClass(item)}`}>
+                      {resistanceLabel(item)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <span className="finder-empty">—</span>
+            )}
+          </section>
+          <section className="class-spec">
+            <h2>Printing Method</h2>
+            {row.printers.length ? (
+              <p className="class-spec-range">{row.printers.join(', ')}</p>
+            ) : (
+              <span className="finder-empty">—</span>
+            )}
+          </section>
         </div>
         <div className="class-specs">
           <section className="class-spec">
