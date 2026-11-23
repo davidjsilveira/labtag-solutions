@@ -18425,10 +18425,10 @@ button.finder-meta-chip.is-filter.is-active {
   border-radius: 999px;
 }
 
-/* Hero chips sit on the gray page background; white fill keeps them visible. */
+/* Fact boxes are white; gray chip fill keeps them visible inside the boxes. */
 .class-spec .finder-meta-chip:not(.is-resistance) {
   border-color: #e2e5ea;
-  background-color: #fff;
+  background-color: #f3f4f6;
 }
 
 .finder-meta-glyph {
@@ -19027,10 +19027,10 @@ button.finder-meta-chip.is-filter.is-active {
 
 .class-spec {
   display: flex;
+  flex: 1 1 9rem;
   flex-direction: column;
   gap: 0.4rem;
   min-width: 0;
-  max-width: 13rem;
   padding: 0.7rem 0.9rem;
   border: 1px solid #e4e0ea;
   border-radius: 0.65rem;
