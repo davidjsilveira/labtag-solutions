@@ -177,7 +177,7 @@ function ClassChipFilter({
       </button>
       {open ? (
         <div className="finder-menu-panel" style={panelStyle} role="listbox" aria-label={label} aria-multiselectable="true">
-          <ul className="finder-menu-list">
+          <ul className={`finder-menu-list${filterKey === 'color' ? ' is-color-grid' : ''}`}>
             {options.length ? (
               options.map((option) => {
                 const checked = value.includes(option)
@@ -187,7 +187,7 @@ function ClassChipFilter({
                       type="button"
                       role="option"
                       aria-selected={checked}
-                      className={`finder-menu-option${checked ? ' is-selected' : ''}`}
+                      className={`finder-menu-option${filterKey === 'color' ? ' is-color' : ''}${checked ? ' is-selected' : ''}`}
                       onClick={() => toggle(option)}
                     >
                       <span className={`finder-menu-check${checked ? ' is-checked' : ''}`} aria-hidden="true">
@@ -596,7 +596,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
                           <li key={option}>
                             <button
                               type="button"
-                              className={`finder-drawer-option${checked ? ' is-selected' : ''}`}
+                              className={`finder-drawer-option${filter.key === 'color' ? ' is-color' : ''}${checked ? ' is-selected' : ''}`}
                               onClick={() => {
                                 setFilters((current) => ({
                                   ...current,
