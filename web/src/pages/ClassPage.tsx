@@ -5,24 +5,63 @@ import {
   CONTAINER_LABELS,
   findLabelClass,
   formatTemp,
-  tempTagClass,
+  resistanceClass,
+  resistanceLabel,
   type LabelClass,
 } from '@/content/labelFinder'
 import { FINDER_PATH, SAMPLE_PATH, finderFilterPath, labtagClassUrl } from '@/content/labtagLinks'
+import { FilterChip, ColumnSortIcon } from '@/pages/LabelFinderPage'
 import { COLOR_SWATCH, JTTA_DESCRIPTION, JTTA_SKUS, JTTA_SUMMARY, type ClassSku } from '@/content/classMocks'
 
 const CLASS_IMAGE = '/media/label-finder/class-placeholder.webp'
 const PAGE_SIZES = [25, 50, 100] as const
-const WIDTH_SORTS = ['Width: Small to Large', 'Width: Large to Small'] as const
 const NOT_SPECIFIED = 'Not specified'
 
-type WidthSort = (typeof WIDTH_SORTS)[number]
-type ClassFilterKey = 'container' | 'shape' | 'dimensions' | 'feature' | 'color'
+type ClassSortKey = 'model' | 'width' | 'length' | 'diameter' | 'colors' | 'price'
+type ClassSort = { key: ClassSortKey; dir: 'asc' | 'desc' }
+
+/** Missing measurements/prices sort last in both directions. */
+function sortValue(
+  item: { model: string; width: number | null; dims: { l: string | null; d: string | null }; colors: string[]; price: string },
+  key: ClassSortKey,
+): number | string {
+  switch (key) {
+    case 'model':
+      return item.model
+    case 'width':
+      return item.width ?? Number.POSITIVE_INFINITY
+    case 'length':
+      return item.dims.l ? parseFloat(item.dims.l) : Number.POSITIVE_INFINITY
+    case 'diameter':
+      return item.dims.d ? parseFloat(item.dims.d) : Number.POSITIVE_INFINITY
+    case 'colors':
+      return item.colors.length
+    case 'price': {
+      const amount = parseFloat(item.price.replace(/[^0-9.]/g, ''))
+      return Number.isNaN(amount) ? Number.POSITIVE_INFINITY : amount
+    }
+  }
+}
+
+function ClassSortHeader({ label, sortKey, sort, onSort, className }: { label: string; sortKey: ClassSortKey; sort: ClassSort; onSort: (key: ClassSortKey) => void; className?: string }) {
+  const active = sort.key === sortKey
+  return (
+    <th scope="col" className={className} aria-sort={active ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'}>
+      <button type="button" className={`class-th-sort${active ? ' is-active' : ''}`} onClick={() => onSort(sortKey)}>
+        <span>{label}</span>
+        <ColumnSortIcon direction={active ? sort.dir : null} />
+      </button>
+    </th>
+  )
+}
+type ClassFilterKey = 'container' | 'shape' | 'width' | 'length' | 'diameter' | 'feature' | 'color'
 
 const CLASS_FILTERS: { key: ClassFilterKey; label: string }[] = [
   { key: 'container', label: 'Container' },
   { key: 'shape', label: 'Shape' },
-  { key: 'dimensions', label: 'Dimensions' },
+  { key: 'width', label: 'Width' },
+  { key: 'length', label: 'Length' },
+  { key: 'diameter', label: 'Diameter' },
   { key: 'feature', label: 'Feature' },
   { key: 'color', label: 'Color' },
 ]
@@ -40,21 +79,6 @@ function FiltersIcon() {
       <circle cx="5.25" cy="4.25" r="1.35" fill="currentColor" />
       <circle cx="10.5" cy="8" r="1.35" fill="currentColor" />
       <circle cx="8.25" cy="11.75" r="1.35" fill="currentColor" />
-    </svg>
-  )
-}
-
-function SortIcon() {
-  return (
-    <svg className="finder-chip-icon" viewBox="0 0 16 16" aria-hidden="true">
-      <path
-        d="M5 2.75v10.5M5 2.75 3.25 4.75M5 2.75 6.75 4.75M11 13.25V2.75M11 13.25 9.25 11.25M11 13.25 12.75 11.25"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
     </svg>
   )
 }
@@ -200,6 +224,21 @@ function formatsOf(row: LabelClass) {
     .filter(Boolean)
 }
 
+/** Dimensions strings can carry a trailing shape word ("0.25\" Circle"); size and shape render in separate columns. */
+function sizeOf(dimensions: string) {
+  const size = dimensions.replace(/(?:\s*(?:Circle|Rectangle|Square|Oval))+\s*$/i, '').trim()
+  return size || dimensions
+}
+
+/** Split a size into width/length/diameter; circles are specified by diameter. Non-measurements (N/A, Roll) return nulls. */
+function dimsOf(size: string) {
+  const rect = size.match(/^([\d.]+)" x ([\d.]+)"(?: \+ ([\d.]+)")?$/)
+  if (rect) return { w: `${rect[1]}"`, l: `${rect[2]}"`, d: rect[3] ? `${rect[3]}"` : null }
+  const circle = size.match(/^([\d.]+)"$/)
+  if (circle) return { w: null, l: null, d: `${circle[1]}"` }
+  return { w: null, l: null, d: null }
+}
+
 function classBlurb(row: LabelClass) {
   const containers = row.containers.map((kind) => CONTAINER_LABELS[kind])
   const range =
@@ -236,24 +275,34 @@ function ClassArticle({ row }: { row: LabelClass }) {
     ? {
         container: unique(catalogSkus.map((item) => item.container)),
         shape: unique(catalogSkus.map((item) => item.shape)),
-        dimensions: unique(catalogSkus.map((item) => item.dimensions)),
+        width: unique(catalogSkus.flatMap((item) => dimsOf(sizeOf(item.dimensions)).w ?? [])),
+        length: unique(catalogSkus.flatMap((item) => dimsOf(sizeOf(item.dimensions)).l ?? [])),
+        diameter: unique(catalogSkus.flatMap((item) => dimsOf(sizeOf(item.dimensions)).d ?? [])),
         feature: unique(catalogSkus.map((item) => item.feature)),
         color: unique(catalogSkus.flatMap((item) => item.colors)),
       }
     : {
         container: fallbackContainers,
         shape: [row.productType],
-        dimensions: formats,
+        width: [],
+        length: [],
+        diameter: [],
         feature: fallbackFeatures,
         color: [NOT_SPECIFIED],
       }
   const [expanded, setExpanded] = useState(false)
   const [query, setQuery] = useState('')
-  const [widthSort, setWidthSort] = useState<WidthSort>('Width: Small to Large')
+  const [sort, setSort] = useState<ClassSort>({ key: 'width', dir: 'asc' })
+  const toggleSort = (key: ClassSortKey) => {
+    setSort((current) => ({ key, dir: current.key === key && current.dir === 'asc' ? 'desc' : 'asc' }))
+    setPage(1)
+  }
   const [filters, setFilters] = useState<Record<ClassFilterKey, string[]>>({
     container: [],
     shape: [],
-    dimensions: [],
+    width: [],
+    length: [],
+    diameter: [],
     feature: [],
     color: [],
   })
@@ -262,6 +311,22 @@ function ClassArticle({ row }: { row: LabelClass }) {
   const [page, setPage] = useState(1)
   const catalog = labtagClassUrl(row.code)
   const activeCount = Object.values(filters).reduce((sum, values) => sum + values.length, 0) + (query.trim() ? 1 : 0)
+  const toggleFilter = (key: ClassFilterKey, option: string) => {
+    setFilters((current) => ({
+      ...current,
+      [key]: current[key].includes(option) ? current[key].filter((item) => item !== option) : [...current[key], option],
+    }))
+    setPage(1)
+  }
+  // Single-value rows: values within a filter are OR, filters combine with AND.
+  const appliedChips = CLASS_FILTERS.flatMap(({ key }) =>
+    filters[key].map((value) => ({ id: `${key}:${value}`, label: value, filterKey: key, remove: () => toggleFilter(key, value) })),
+  )
+  const clearAll = () => {
+    setFilters({ container: [], shape: [], width: [], length: [], diameter: [], feature: [], color: [] })
+    setQuery('')
+    setPage(1)
+  }
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -278,19 +343,31 @@ function ClassArticle({ row }: { row: LabelClass }) {
       price: 'See catalog',
     }))
     return source
-      .map((item) => ({ ...item, id: item.model, headline: row.headline }))
-      .filter((item) => matches(filters.dimensions, [item.dimensions]))
+      .map((item) => {
+        const size = sizeOf(item.dimensions)
+        return { ...item, id: item.model, headline: row.headline, size, dims: dimsOf(size) }
+      })
+      .filter((item) => matches(filters.width, item.dims.w ? [item.dims.w] : []))
+      .filter((item) => matches(filters.length, item.dims.l ? [item.dims.l] : []))
+      .filter((item) => matches(filters.diameter, item.dims.d ? [item.dims.d] : []))
       .filter((item) => matches(filters.container, [item.container]))
       .filter((item) => matches(filters.shape, [item.shape]))
       .filter((item) => matches(filters.feature, [item.feature]))
       .filter((item) => matches(filters.color, item.colors.length ? item.colors : [NOT_SPECIFIED]))
       .filter((item) => !q || `${item.model} ${item.dimensions} ${item.shape} ${item.container} ${item.feature}`.toLowerCase().includes(q))
       .sort((a, b) => {
-        const aw = a.width ?? Number.POSITIVE_INFINITY
-        const bw = b.width ?? Number.POSITIVE_INFINITY
-        return widthSort === 'Width: Small to Large' ? aw - bw : bw - aw
+        const av = sortValue(a, sort.key)
+        const bv = sortValue(b, sort.key)
+        if (typeof av === 'string' || typeof bv === 'string') {
+          const cmp = String(av).localeCompare(String(bv), undefined, { numeric: true })
+          return sort.dir === 'asc' ? cmp : -cmp
+        }
+        const aMissing = av === Number.POSITIVE_INFINITY
+        const bMissing = bv === Number.POSITIVE_INFINITY
+        if (aMissing || bMissing) return aMissing === bMissing ? 0 : aMissing ? 1 : -1
+        return sort.dir === 'asc' ? av - bv : bv - av
       })
-  }, [catalogSkus, fallbackContainers, fallbackFeatures, filters, formats, query, row.code, row.headline, row.productType, widthSort])
+  }, [catalogSkus, fallbackContainers, fallbackFeatures, filters, formats, query, row.code, row.headline, row.productType, sort])
 
   const pageCount = pageSize === 'all' ? 1 : Math.max(1, Math.ceil(rows.length / pageSize))
   const safePage = Math.min(page, pageCount)
@@ -302,6 +379,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
     : catalogSkus
       ? [...new Set(catalogSkus.map((item) => item.feature))]
       : []
+  const heroColors = catalogSkus ? unique(catalogSkus.flatMap((item) => item.colors)) : []
 
   return (
     <article className="class-page">
@@ -313,6 +391,15 @@ function ClassArticle({ row }: { row: LabelClass }) {
           <div className="class-hero-copy">
             <h1>{row.code}</h1>
             <p className="class-subtitle">{row.headline}</p>
+            <p className="class-lead">
+              {expanded ? detail : summary}
+              {detail !== summary ? (
+                <button type="button" className="class-read-more" onClick={() => setExpanded((open) => !open)}>
+                  {expanded ? 'Show less' : 'Read more'}
+                  <CaretDown aria-hidden="true" />
+                </button>
+              ) : null}
+            </p>
             <div className="class-hero-actions">
               <Link className="class-action is-primary" to={SAMPLE_PATH}>
                 Request Free Sample
@@ -323,15 +410,6 @@ function ClassArticle({ row }: { row: LabelClass }) {
               </a>
             </div>
           </div>
-          <p className="class-lead">
-            {expanded ? detail : summary}
-            {detail !== summary ? (
-              <button type="button" className="class-read-more" onClick={() => setExpanded((open) => !open)}>
-                {expanded ? 'Show less' : 'Read more'}
-                <CaretDown aria-hidden="true" />
-              </button>
-            ) : null}
-          </p>
         </div>
         <div className="class-specs">
           <section className="class-spec">
@@ -353,12 +431,15 @@ function ClassArticle({ row }: { row: LabelClass }) {
                 </>
               )}
             </p>
-            {row.tempTags.length ? (
+          </section>
+          <section className="class-spec">
+            <h2>Resistances</h2>
+            {row.resistances.length ? (
               <ul className="finder-meta-chips class-spec-chips">
-                {row.tempTags.map((tag) => (
-                  <li key={tag}>
-                    <Link className={`finder-meta-chip is-resistance ${tempTagClass(tag)}`} to={finderFilterPath('temp', tag)}>
-                      {tag}
+                {row.resistances.map((item) => (
+                  <li key={item}>
+                    <Link className={`finder-meta-chip is-resistance ${resistanceClass(item)}`} to={finderFilterPath('resistances', item)}>
+                      {resistanceLabel(item)}
                     </Link>
                   </li>
                 ))}
@@ -400,6 +481,27 @@ function ClassArticle({ row }: { row: LabelClass }) {
             )}
           </section>
           <section className="class-spec">
+            <h2>Colors</h2>
+            {heroColors.length ? (
+              <ul className="finder-meta-chips class-spec-chips class-hero-colors">
+                {heroColors.map((color) => (
+                  <li key={color} className="class-swatch-wrap" data-color={color}>
+                    <button
+                      type="button"
+                      className={`class-swatch${filters.color.includes(color) ? ' is-active' : ''}`}
+                      style={{ background: COLOR_SWATCH[color] ?? '#d7d3de' }}
+                      aria-label={color}
+                      aria-pressed={filters.color.includes(color)}
+                      onClick={() => toggleFilter('color', color)}
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <span className="finder-empty">—</span>
+            )}
+          </section>
+          <section className="class-spec">
             <h2>Printing Method</h2>
             {row.printers.length ? (
               <ul className="finder-meta-chips class-spec-chips">
@@ -418,7 +520,8 @@ function ClassArticle({ row }: { row: LabelClass }) {
         </div>
       </section>
 
-      <section className="class-catalog finder-toolbar" aria-label={`${row.code} sizes`}>
+      <section className="class-catalog" aria-label={`${row.code} sizes`}>
+        <div className="class-catalog finder-toolbar">
         <div className="finder-toolbar-row">
           <button
             type="button"
@@ -430,23 +533,6 @@ function ClassArticle({ row }: { row: LabelClass }) {
             <span>All Filters</span>
             {activeCount ? <span className="finder-chip-count">{activeCount}</span> : null}
           </button>
-
-          <label className="finder-chip finder-chip-select">
-            <SortIcon />
-            <span className="sr-only">Sort by width</span>
-            <select
-              value={widthSort}
-              onChange={(event) => {
-                setWidthSort(event.target.value as WidthSort)
-                setPage(1)
-              }}
-            >
-              {WIDTH_SORTS.map((option) => (
-                <option key={option}>{option}</option>
-              ))}
-            </select>
-            <ChevronIcon />
-          </label>
 
           <div className="finder-toolbar-chips">
             {CLASS_FILTERS.map((filter) => (
@@ -476,6 +562,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
               }}
             />
           </label>
+        </div>
         </div>
 
         {allOpen ? (
@@ -525,7 +612,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
                   type="button"
                   className="finder-drawer-clear"
                   onClick={() =>
-                    setFilters({ container: [], shape: [], dimensions: [], feature: [], color: [] })
+                    setFilters({ container: [], shape: [], width: [], length: [], diameter: [], feature: [], color: [] })
                   }
                   disabled={!activeCount}
                 >
@@ -543,6 +630,31 @@ function ClassArticle({ row }: { row: LabelClass }) {
           <p>
             <strong>{rows.length}</strong> {rows.length === 1 ? 'result' : 'results'}
           </p>
+          {appliedChips.length ? (
+            <ul className="finder-applied">
+              {appliedChips.map((chip, index) => {
+                const previous = appliedChips[index - 1]
+                const join = !previous ? null : previous.filterKey === chip.filterKey ? 'or' : 'and'
+                return (
+                  <li key={chip.id} className="finder-applied-item">
+                    {join ? <span className="finder-applied-join">{join}</span> : null}
+                    <button type="button" className="finder-applied-chip" onClick={chip.remove}>
+                      <span>{chip.label}</span>
+                      <span className="finder-applied-x" aria-hidden="true">
+                        ×
+                      </span>
+                      <span className="sr-only">{`Remove ${chip.label}`}</span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          ) : null}
+          {activeCount ? (
+            <button type="button" className="finder-clear-all" onClick={clearAll}>
+              Clear all
+            </button>
+          ) : null}
           <p className="class-count-note">
             {catalogSkus ? 'Sample sizes for this class. Prices are mock values.' : 'SKU prices and dimensions open in the LabTAG catalog.'}
           </p>
@@ -570,43 +682,121 @@ function ClassArticle({ row }: { row: LabelClass }) {
           <table className="class-table">
             <thead>
               <tr>
+                <ClassSortHeader label="Product model" sortKey="model" sort={sort} onSort={toggleSort} />
                 <th>Shape</th>
-                <th>Product model</th>
-                <th>Dimensions</th>
-                <th>Available colors</th>
-                <th>Price per label</th>
+                <ClassSortHeader label="Width" sortKey="width" sort={sort} onSort={toggleSort} />
+                <ClassSortHeader label="Length" sortKey="length" sort={sort} onSort={toggleSort} />
+                <ClassSortHeader label="Diameter" sortKey="diameter" sort={sort} onSort={toggleSort} />
+                <th>Container</th>
+                <th>Feature</th>
+                <ClassSortHeader label="Available colors" sortKey="colors" sort={sort} onSort={toggleSort} />
+                <ClassSortHeader label="Price per label" sortKey="price" sort={sort} onSort={toggleSort} className="class-price" />
                 <th className="class-go" aria-label="View product" />
               </tr>
             </thead>
             <tbody>
               {visible.length ? (
-                visible.map((item) => (
+                visible.map((item) => {
+                  const { w, l, d } = item.dims
+                  const [priceAmount, priceUnit] = item.price.split('/')
+                  return (
                   <tr className="class-row" key={item.id}>
                     <td>
-                      <span className={`class-shape is-${item.shape.toLowerCase().includes('circle') && !item.shape.includes('+') ? 'circle' : 'rect'}`} aria-hidden="true" />
+                      <span className="class-model-cell">
+                        <span className="finder-thumb" aria-hidden="true">
+                          <img src={CLASS_IMAGE} alt="" width={72} height={54} loading="lazy" />
+                        </span>
+                        <a className="class-model" href={catalog} target="_blank" rel="noreferrer">
+                          {item.model}
+                        </a>
+                      </span>
                     </td>
                     <td>
-                      <a className="class-model" href={catalog} target="_blank" rel="noreferrer">
-                        {item.model}
-                      </a>
+                      <span className="class-shape-cell">
+                        <span className={`class-shape is-${item.shape.toLowerCase().includes('circle') && !item.shape.includes('+') ? 'circle' : 'rect'}`} aria-hidden="true" />
+                        <ul className="finder-meta-chips">
+                          <FilterChip label={item.shape} active={filters.shape.includes(item.shape)} onToggle={() => toggleFilter('shape', item.shape)} />
+                        </ul>
+                      </span>
                     </td>
                     <td>
-                      {item.dimensions}
-                      <span className="class-model-note">{item.shape}</span>
+                      {w ? (
+                        <ul className="finder-meta-chips">
+                          <FilterChip label={w} active={filters.width.includes(w)} onToggle={() => toggleFilter('width', w)} />
+                        </ul>
+                      ) : (
+                        <span className="class-muted">—</span>
+                      )}
+                    </td>
+                    <td>
+                      {l ? (
+                        <ul className="finder-meta-chips">
+                          <FilterChip label={l} active={filters.length.includes(l)} onToggle={() => toggleFilter('length', l)} />
+                        </ul>
+                      ) : (
+                        <span className="class-muted">—</span>
+                      )}
+                    </td>
+                    <td>
+                      {d ? (
+                        <ul className="finder-meta-chips">
+                          <FilterChip label={d} active={filters.diameter.includes(d)} onToggle={() => toggleFilter('diameter', d)} />
+                        </ul>
+                      ) : (
+                        <span className="class-muted">—</span>
+                      )}
+                    </td>
+                    <td>
+                      <ul className="finder-meta-chips">
+                        <FilterChip
+                          label={item.container}
+                          className="is-container"
+                          active={filters.container.includes(item.container)}
+                          onToggle={() => toggleFilter('container', item.container)}
+                        />
+                      </ul>
+                    </td>
+                    <td>
+                      <ul className="finder-meta-chips">
+                        <FilterChip
+                          label={item.feature}
+                          className="is-feature"
+                          active={filters.feature.includes(item.feature)}
+                          onToggle={() => toggleFilter('feature', item.feature)}
+                        />
+                      </ul>
                     </td>
                     <td>
                       {item.colors.length ? (
-                        <span className="class-colors" aria-label={item.colors.join(', ')}>
+                        <span className="class-colors">
                           {item.colors.slice(0, 6).map((color) => (
-                            <span key={color} className="class-swatch" style={{ background: COLOR_SWATCH[color] ?? '#d7d3de' }} title={color} />
+                            <span key={color} className="class-swatch-wrap" data-color={color}>
+                              <button
+                                type="button"
+                                className={`class-swatch${filters.color.includes(color) ? ' is-active' : ''}`}
+                                style={{ background: COLOR_SWATCH[color] ?? '#d7d3de' }}
+                                aria-label={color}
+                                aria-pressed={filters.color.includes(color)}
+                                onClick={() => toggleFilter('color', color)}
+                              />
+                            </span>
                           ))}
-                          <span className="class-color-count">({item.colors.length})</span>
+                          {item.colors.length > 6 ? <span className="class-color-count">+{item.colors.length - 6}</span> : null}
                         </span>
                       ) : (
                         <span className="class-muted">—</span>
                       )}
                     </td>
-                    <td>{item.price}</td>
+                    <td className="class-price">
+                      {priceUnit ? (
+                        <>
+                          <span className="class-price-amount">{priceAmount}</span>
+                          <span className="class-price-unit">/{priceUnit}</span>
+                        </>
+                      ) : (
+                        <span className="class-muted">{priceAmount}</span>
+                      )}
+                    </td>
                     <td className="class-go">
                       <a className="class-go-link" href={catalog} target="_blank" rel="noreferrer" aria-label={`View ${item.model}`}>
                         <svg className="finder-go-icon" viewBox="0 0 20 20" aria-hidden="true">
@@ -622,10 +812,11 @@ function ClassArticle({ row }: { row: LabelClass }) {
                       </a>
                     </td>
                   </tr>
-                ))
+                  )
+                })
               ) : (
                 <tr>
-                  <td colSpan={6} className="class-none">
+                  <td colSpan={10} className="class-none">
                     No formats match this filter.
                   </td>
                 </tr>

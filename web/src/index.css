@@ -17935,10 +17935,10 @@ a.why-reason:hover h2 {
   overflow: hidden;
   padding-top: 0;
   padding-bottom: 0;
-  background: #f6f4f8;
-  color: #49454f;
+  background: #f1eef5;
+  color: #1f1638;
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.006em;
   text-transform: none;
   white-space: normal;
@@ -17968,7 +17968,7 @@ a.why-reason:hover h2 {
 .finder-table thead th {
   overflow: visible;
   vertical-align: middle;
-  background: #f6f4f8;
+  background: #f1eef5;
   box-shadow: inset 0 -1px 0 #e6e0e9;
 }
 
@@ -18026,9 +18026,14 @@ a.why-reason:hover h2 {
 
 .finder-th-button:hover,
 .finder-th-button:focus-visible {
-  background: color-mix(in srgb, #1d1b20 8%, transparent);
+  background: color-mix(in srgb, #1d1b20 15%, transparent);
   color: #1d1b20;
   outline: none;
+}
+
+.finder-th-button:hover .finder-th-sort-icon,
+.finder-th-button:focus-visible .finder-th-sort-icon {
+  color: #1d1b20;
 }
 
 .finder-th-button.is-active {
@@ -18397,6 +18402,7 @@ button.finder-meta-chip.is-filter.is-active {
 }
 
 .finder-table .finder-meta-chip:not(.is-resistance),
+.class-table .finder-meta-chip:not(.is-resistance),
 .class-spec-chips .finder-meta-chip:not(.is-resistance) {
   min-height: 1.65rem;
   padding: 0.2rem 0.55rem;
@@ -18408,6 +18414,21 @@ button.finder-meta-chip.is-filter.is-active {
   font-size: 0.7rem;
   font-weight: 600;
   line-height: 1.1;
+}
+
+.finder-table .finder-meta-chip,
+.finder-table .finder-meta-chip:not(.is-resistance),
+.class-table .finder-meta-chip,
+.class-table .finder-meta-chip:not(.is-resistance),
+.class-spec .finder-meta-chip,
+.class-spec .finder-meta-chip:not(.is-resistance) {
+  border-radius: 999px;
+}
+
+/* Hero chips sit on the gray page background; white fill keeps them visible. */
+.class-spec .finder-meta-chip:not(.is-resistance) {
+  border-color: #e2e5ea;
+  background-color: #fff;
 }
 
 .finder-meta-glyph {
@@ -18846,8 +18867,8 @@ button.finder-meta-chip.is-filter.is-active {
 
 .class-hero-identity {
   display: grid;
-  grid-template-columns: auto minmax(14rem, 20rem) minmax(0, 1fr);
-  align-items: start;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: stretch;
   gap: 0.85rem 1.5rem;
 }
 
@@ -18859,7 +18880,7 @@ button.finder-meta-chip.is-filter.is-active {
 
 .class-gallery {
   width: 15rem;
-  height: 11.4rem;
+  min-height: 11.4rem;
   margin: 0;
   overflow: hidden;
   border: 1px solid #d7e8ef;
@@ -18912,7 +18933,7 @@ button.finder-meta-chip.is-filter.is-active {
 }
 
 .class-lead {
-  max-width: none;
+  max-width: 62ch;
   margin: 0.15rem 0 0;
   color: #5c6b7c;
   font-size: 0.95rem;
@@ -18942,7 +18963,7 @@ button.finder-meta-chip.is-filter.is-active {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.55rem;
-  margin-top: 0.15rem;
+  margin-top: 1rem;
 }
 
 .class-action {
@@ -18979,9 +19000,10 @@ button.finder-meta-chip.is-filter.is-active {
 }
 
 .class-specs {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1.15rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem 2.25rem;
   margin: 0.35rem 0 0;
 }
 
@@ -18990,6 +19012,7 @@ button.finder-meta-chip.is-filter.is-active {
   flex-direction: column;
   gap: 0.4rem;
   min-width: 0;
+  max-width: 13rem;
   padding: 0;
   border: 0;
   background: none;
@@ -19010,10 +19033,6 @@ button.finder-meta-chip.is-filter.is-active {
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.35;
-}
-
-.class-spec-chips {
-  margin-top: auto;
 }
 
 .class-toolbar,
@@ -19089,7 +19108,7 @@ button.finder-meta-chip.is-filter.is-active {
 }
 
 .class-count-row {
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 1rem 0 0.7rem;
 }
 
@@ -19200,6 +19219,57 @@ button.finder-meta-chip.is-filter.is-active {
   color: #4a4460;
 }
 
+.class-table .class-price {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.class-th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.class-price .class-th-sort {
+  justify-content: flex-end;
+}
+
+.class-th-sort:hover {
+  color: #1d1b20;
+}
+
+.class-th-sort.is-active {
+  color: #6750a4;
+}
+
+.class-th-sort.is-active .finder-th-sort-icon {
+  color: #6750a4;
+}
+
+.class-price-amount {
+  color: #1f1638;
+  font-weight: 700;
+}
+
+.class-price-unit {
+  color: #6d7890;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
 .class-go {
   width: 2.5rem;
   text-align: right;
@@ -19267,6 +19337,34 @@ button.finder-meta-chip.is-filter.is-active {
   border-radius: 999px;
 }
 
+.class-model-cell {
+  display: inline-grid;
+  grid-template-columns: 3.75rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.class-row:hover .finder-thumb,
+.class-row:focus-within .finder-thumb {
+  border-color: #d2cdda;
+  box-shadow: 0 6px 14px rgb(19 11 36 / 8%);
+  transform: translateY(-1px);
+}
+
+.class-shape-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.class-shape-label {
+  color: #4a445c;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 .class-colors {
   display: inline-flex;
   align-items: center;
@@ -19274,11 +19372,62 @@ button.finder-meta-chip.is-filter.is-active {
 }
 
 .class-swatch {
-  width: 0.72rem;
-  height: 0.72rem;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
   border: 1px solid #c5ced8;
   border-radius: 999px;
   box-shadow: inset 0 0 0 1px #fff;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.class-swatch:hover {
+  transform: scale(1.12);
+}
+
+.class-swatch:focus-visible {
+  outline: 2px solid color-mix(in srgb, currentColor 40%, #c9c1d6);
+  outline-offset: 2px;
+}
+
+.class-swatch.is-active {
+  box-shadow:
+    inset 0 0 0 1px #fff,
+    0 0 0 1.5px #fff,
+    0 0 0 3px #4a445c;
+}
+
+.class-swatch-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.class-swatch-wrap::after {
+  content: attr(data-color);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.22rem 0.45rem;
+  border-radius: 0.35rem;
+  background: #1f1638;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+  z-index: 10;
+}
+
+.class-swatch-wrap:hover::after,
+.class-swatch-wrap:focus-within::after {
+  opacity: 1;
 }
 
 .class-color-count {
@@ -19314,15 +19463,5 @@ button.finder-meta-chip.is-filter.is-active {
 .class-pager button:disabled {
   opacity: 0.45;
   cursor: default;
-}
-
-@media (max-width: 900px) {
-  .class-hero-identity {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-
-  .class-lead {
-    grid-column: 1 / -1;
-  }
 }
 

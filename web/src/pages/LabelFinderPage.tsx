@@ -303,7 +303,7 @@ function ChevronIcon() {
   )
 }
 
-function ColumnSortIcon({ direction }: { direction: 'asc' | 'desc' | null }) {
+export function ColumnSortIcon({ direction }: { direction: 'asc' | 'desc' | null }) {
   const pointingDown = direction === 'desc'
   return (
     <svg className="finder-th-sort-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -320,7 +320,7 @@ function ColumnSortIcon({ direction }: { direction: 'asc' | 'desc' | null }) {
   )
 }
 
-function FilterChip({
+export function FilterChip({
   label,
   active,
   className,
