@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom'
 import { CaretDown, DownloadSimple } from '@phosphor-icons/react'
 import {
   CONTAINER_LABELS,
@@ -275,6 +275,7 @@ export function ClassPage() {
 }
 
 function ClassArticle({ row }: { row: LabelClass }) {
+  const [searchParams] = useSearchParams()
   const catalogSkus = row.code === 'JTTA' ? JTTA_SKUS : null
   const formats = formatsOf(row)
   const fallbackContainers = row.containers.length ? row.containers.map((kind) => CONTAINER_LABELS[kind]) : [NOT_SPECIFIED]
@@ -306,14 +307,18 @@ function ClassArticle({ row }: { row: LabelClass }) {
     setSort((current) => ({ key, dir: current.key === key && current.dir === 'asc' ? 'desc' : 'asc' }))
     setPage(1)
   }
-  const [filters, setFilters] = useState<Record<ClassFilterKey, string[]>>({
-    container: [],
-    shape: [],
-    width: [],
-    length: [],
-    diameter: [],
-    feature: [],
-    color: [],
+  const [filters, setFilters] = useState<Record<ClassFilterKey, string[]>>(() => {
+    // Selections carried over from the label finder; keep only values this class offers.
+    const carried = (param: string, valid: string[]) => searchParams.getAll(param).filter((value) => valid.includes(value))
+    return {
+      container: carried('containers', options.container),
+      shape: [],
+      width: [],
+      length: [],
+      diameter: [],
+      feature: carried('feature', options.feature),
+      color: [],
+    }
   })
   const [allOpen, setAllOpen] = useState(false)
   const [drawerSection, setDrawerSection] = useState<ClassFilterKey | null>('container')

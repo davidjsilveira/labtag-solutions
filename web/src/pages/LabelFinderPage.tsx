@@ -709,6 +709,14 @@ export function LabelFinderPage() {
   const [allOpen, setAllOpen] = useState(false)
   const [drawerSection, setDrawerSection] = useState<FinderFilterKey | null>('containers')
   const [overflowKeys, setOverflowKeys] = useState<Set<FinderFilterKey>>(() => new Set())
+  // Carry applicable finder selections into the class page.
+  const classPathWithFilters = (code: string) => {
+    const params = new URLSearchParams()
+    for (const value of filters.containers ?? []) params.append('containers', value)
+    for (const value of filters.feature ?? []) params.append('feature', value)
+    const query = params.toString()
+    return query ? `${classPath(code)}?${query}` : classPath(code)
+  }
   const toolbarRowRef = useRef<HTMLDivElement>(null)
   const chipsHostRef = useRef<HTMLDivElement>(null)
   const sortSelectRef = useRef<HTMLSelectElement>(null)
@@ -1215,11 +1223,11 @@ export function LabelFinderPage() {
                   onClick={(event) => {
                     const target = event.target as HTMLElement
                     if (target.closest('a, button')) return
-                    navigate(classPath(row.code))
+                    navigate(classPathWithFilters(row.code))
                   }}
                 >
                   <td className="finder-class">
-                    <Link className="finder-class-link" to={classPath(row.code)}>
+                    <Link className="finder-class-link" to={classPathWithFilters(row.code)}>
                       <span className="finder-thumb" aria-hidden="true">
                         <img src={CLASS_PLACEHOLDER} alt="" width={72} height={54} loading="lazy" />
                       </span>
@@ -1330,7 +1338,7 @@ export function LabelFinderPage() {
                   <td className="finder-sizes">
                     <Link
                       className="finder-go"
-                      to={classPath(row.code)}
+                      to={classPathWithFilters(row.code)}
                       aria-label={`View ${classSizeCount(row)} sizes for ${row.code}`}
                     >
                       <span className="finder-go-label">
