@@ -19077,14 +19077,6 @@ button.finder-meta-chip.is-filter.is-active {
   overflow: visible;
 }
 
-.class-catalog .finder-search {
-  flex: 1 1 12rem;
-  width: auto;
-  min-width: 12rem;
-  max-width: none;
-  margin-left: 0;
-}
-
 .class-drawer-label {
   margin: 0.85rem 0.35rem 0.25rem;
   color: #3d2f63;
