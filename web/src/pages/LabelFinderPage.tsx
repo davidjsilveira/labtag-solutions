@@ -9,8 +9,9 @@ import {
   type ReactNode,
   type SetStateAction,
 } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { classPath } from '@/content/labtagLinks'
+import { MdPager } from '@/components/MdPager'
 import {
   CONTAINER_LABELS,
   EMPTY_TEMP_RANGE,
@@ -699,8 +700,14 @@ function MenuFilter({
 
 export function LabelFinderPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
-  const finderQuery = searchParams.toString()
+  const finderQuery = useMemo(() => {
+    const next = new URLSearchParams(searchParams)
+    next.delete('page')
+    next.delete('limit')
+    return next.toString()
+  }, [searchParams])
   const [filters, setFilters] = useState<Filters>(() => stateFromFinderParams(searchParams).filters)
   const [tempRange, setTempRange] = useState<TempRangeFilter>(() => stateFromFinderParams(searchParams).tempRange)
   const [query, setQuery] = useState('')
@@ -709,6 +716,19 @@ export function LabelFinderPage() {
   const [allOpen, setAllOpen] = useState(false)
   const [drawerSection, setDrawerSection] = useState<FinderFilterKey | null>('containers')
   const [overflowKeys, setOverflowKeys] = useState<Set<FinderFilterKey>>(() => new Set())
+  const page = Math.max(1, Number.parseInt(searchParams.get('page') ?? '1', 10) || 1)
+  const pageSize = [10, 25, 30, 50, 100].includes(Number(searchParams.get('limit')))
+    ? Number(searchParams.get('limit'))
+    : 10
+  const setPager = (nextPage: number, size = pageSize) => {
+    const next = new URLSearchParams(location.search)
+    if (nextPage <= 1) next.delete('page')
+    else next.set('page', String(nextPage))
+    if (size === 10) next.delete('limit')
+    else next.set('limit', String(size))
+    const search = next.toString()
+    navigate({ pathname: location.pathname, search: search ? `?${search}` : '' })
+  }
   // Carry applicable finder selections into the class page.
   const classPathWithFilters = (code: string) => {
     const params = new URLSearchParams()
@@ -756,6 +776,22 @@ export function LabelFinderPage() {
     if (columnSort) return sortLabelClassesByColumn(matched, columnSort)
     return sortLabelClasses(matched, sort)
   }, [filters, query, sort, columnSort, tempRange])
+  const pageCount = Math.max(1, Math.ceil(rows.length / pageSize))
+  const safePage = Math.min(page, pageCount)
+  const visibleRows = rows.slice((safePage - 1) * pageSize, safePage * pageSize)
+  const filterSig = `${query}|${sort}|${JSON.stringify(filters)}|${JSON.stringify(tempRange)}|${JSON.stringify(columnSort)}`
+  const skipPageReset = useRef(true)
+  useEffect(() => {
+    if (skipPageReset.current) {
+      skipPageReset.current = false
+      return
+    }
+    const next = new URLSearchParams(location.search)
+    if (!next.has('page')) return
+    next.delete('page')
+    const search = next.toString()
+    navigate({ pathname: location.pathname, search: search ? `?${search}` : '' }, { replace: true })
+  }, [filterSig])
 
   const handleToolbarSort = (next: FinderSort) => {
     setSort(next)
@@ -1199,6 +1235,7 @@ export function LabelFinderPage() {
           </button>
         </div>
       ) : (
+      <>
       <div className="finder-table-wrap">
         <table className="finder-table">
           <thead>
@@ -1214,7 +1251,7 @@ export function LabelFinderPage() {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => {
+            {visibleRows.map((row) => {
               const bar = tempBarStyle(row.tempMin, row.tempMax)
               return (
                 <tr
@@ -1353,6 +1390,8 @@ export function LabelFinderPage() {
           </tbody>
         </table>
       </div>
+      <MdPager page={safePage} pageSize={pageSize} total={rows.length} onPage={(next) => setPager(next)} onPageSize={(size) => setPager(1, size)} />
+      </>
       )}
     </article>
   )

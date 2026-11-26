@@ -31,3 +31,6 @@ scripts/browser_scrape_expr.json
 
 # Empty / unused local folder at repo root
 /assets/
+
+# Superpowers brainstorm mockups
+.superpowers/

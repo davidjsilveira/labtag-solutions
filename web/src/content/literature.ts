@@ -1,8 +1,8 @@
-/** Downloadable literature and case-study articles for the Resources page. */
+/** Downloadable literature for the Resources page. Sourced from labtag.com/resources/catalogs. */
 
-export type LiteratureType = 'catalogs-flyers' | 'guides' | 'whitepapers'
+export type LiteratureType = 'case-studies' | 'catalogs-flyers' | 'guides' | 'whitepapers'
 
-export type LiteratureFilter = 'literature' | LiteratureType
+export type LiteratureFilter = 'all' | LiteratureType
 
 export type LiteratureLanguage = 'en' | 'fr' | 'de' | 'es'
 
@@ -15,15 +15,6 @@ export type LiteratureItem = {
   image: string
 }
 
-export type CaseStudyItem = {
-  id: string
-  category: string
-  title: string
-  href: string
-  image: string
-  tags: string[]
-}
-
 export const LITERATURE_LANGUAGES: { id: LiteratureLanguage | 'all'; label: string }[] = [
   { id: 'all', label: 'All languages' },
   { id: 'en', label: 'English' },
@@ -33,19 +24,29 @@ export const LITERATURE_LANGUAGES: { id: LiteratureLanguage | 'all'; label: stri
 ]
 
 export const LITERATURE_FILTERS: { id: LiteratureFilter; label: string }[] = [
-  { id: 'literature', label: 'Literature' },
-  { id: 'whitepapers', label: 'Whitepapers' },
+  { id: 'all', label: 'All types' },
+  { id: 'case-studies', label: 'Case Studies' },
   { id: 'catalogs-flyers', label: 'Catalogs & Flyers' },
   { id: 'guides', label: 'Guides' },
+  { id: 'whitepapers', label: 'Whitepapers' },
 ]
 
 export const LITERATURE_TYPE_LABEL: Record<LiteratureType, string> = {
+  'case-studies': 'Case Studies',
   'catalogs-flyers': 'Catalogs & Flyers',
   guides: 'Guides',
   whitepapers: 'Whitepapers',
 }
 
 export const LITERATURE_ITEMS: LiteratureItem[] = [
+  {
+    id: 'optimiser-le-suivi-des-chantillons-gr-ce-aux-tiquettes-cryog-niques-et-l',
+    title: 'Optimiser le suivi des échantillons grâce aux étiquettes cryogéniques et à l\'imprimante DYMO® LabelWriter™ 550',
+    type: 'case-studies',
+    language: 'fr',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-Cas-Cryogenique-a-limprimante-DYMO-550-Justus-Liebig-University-FR072026.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-Cas-Cryogenique-a-limprimante-DYMO-550-Justus-Liebig-University-FR072026.jpg',
+  },
   {
     id: 'healthcare-catalog',
     title: 'Healthcare Catalog',
@@ -67,7 +68,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     title: 'SnapPEEL™ Catalog',
     type: 'catalogs-flyers',
     language: 'en',
-    href: 'https://cdn.labtag.com/wp-content/uploads/Catalogue_SnapPEEL-EN052026-May_27_2026.pdf',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Catalog-SnapPEEL-EN112026-NOV-19-2026.pdf',
     image: 'https://cdn.labtag.com/wp-content/uploads/Catalogue-SnapPEEL-EN052026-May-27-2026.jpg',
   },
   {
@@ -143,12 +144,76 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_122241.jpg',
   },
   {
-    id: 'dymo-labelwriter-550-series-add-on-for-elabnext-guid',
+    id: 'dymo-labelwriter-550-series-add-on-for-elabnext-guide',
     title: 'DYMO® LabelWriter™ 550 Series Add-On for eLabNext Guide',
     type: 'guides',
     language: 'en',
     href: 'https://cdn.labtag.com/wp-content/uploads/Guide-DYMO-550-Add-On-for-eLab-EN042025-APR-11-2025.pdf',
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_124167.jpg',
+  },
+  {
+    id: 'laboratory-tapes',
+    title: 'Laboratory Tapes',
+    type: 'catalogs-flyers',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Flyer-Laboratory-Tapes-EN112026-November-24-2026.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Flyer-Laboratory-Tapes-EN112026-November-24-2026-COVER-2.jpg',
+  },
+  {
+    id: 'modernisation-de-la-cryoconservation-optimisation-de-la-gestion-de-13-00',
+    title: 'Modernisation de la cryoconservation : optimisation de la gestion de 13 000 échantillons',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-cas-Modernisation-de-la-cryoconservation-optimisation-de-la-gestion-de-13-000-echantillons-June-9-2026.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/COVER-Etude-de-cas-Modernisation-de-la-cryoconservation-optimisation-de-la-gestion-de-13-000-echantillons-June-9-2026.jpg',
+  },
+  {
+    id: 'modernizing-sample-tracking-and-storage-for-a-13-000-sample-biobank',
+    title: 'Modernizing Sample Tracking and Storage for a 13,000-Sample Biobank',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-Modernizing-Sample-Tracking-and-Storage-for-a-13000-Sample-Biobank-June-9-2026-2.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/COVER-Case-Study-Modernizing-Sample-Tracking-and-Storage-for-a-13000-Sample-Biobank-June-9-2026-4.jpg',
+  },
+  {
+    id: 'the-cryo-labels-cvis-needed-to-eliminate-sample-loss',
+    title: 'The Cryo Labels CVIS Needed to Eliminate Sample Loss',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-The-Cryo-Labels-CVIS-Needed-JAN-14-2026.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-The-Cryo-Labels-CVIS-Needed-JAN-14-2026.jpg',
+  },
+  {
+    id: 'helio-s-workflow-hack-labtag-s-snappeel-labels',
+    title: 'Helio\'s Workflow Hack: LabTAG\'s SnapPEEL™ Labels',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-HELIOS-Eureka-December-4-2025.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-HELIOS-Eureka-Thumb.jpg',
+  },
+  {
+    id: 'relabeling-challenge-how-labtag-helped-montreal-neurological-institute-h',
+    title: 'Relabeling Challenge: How LabTAG Helped Montreal Neurological Institute-Hospital Reduce Sample Errors and Optimize Storage',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-Montreal-Neurological-Institute-August-7-2025.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-Montreal-Neurological-Institute-August-7-2025.jpg',
+  },
+  {
+    id: 'cryo-labeling-challenge-solved-with-cryostuck-dymo-550-at-the-living-lab',
+    title: 'Cryo Labeling Challenge: Solved with CryoSTUCK & DYMO 550 at the living Lab',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-Cryo-Labeling-Challenge-JUL-02-2025-1.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-Cryo-Labeling-Challenge-JUL-02-2025-1.jpg',
+  },
+  {
+    id: 'inside-ceymh-a-smarter-approach-to-sample-identification',
+    title: 'Inside CEYMH: A Smarter Approach to Sample Identification',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-Inside-CEYMH-A-Smarter-Approach-to-Sample-Identification-JUNE-18-2025.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-Inside-CEYMH-A-Smarter-Approach-to-Sample-Identification-JUNE-18-2025.jpg',
   },
   {
     id: 'whitepaper-gatorcut-technology',
@@ -165,6 +230,14 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     language: 'en',
     href: 'https://info.labtag.com/biobank-white-paper',
     image: 'https://cdn.labtag.com/wp-content/uploads/Thumb-WhitePaper.jpg',
+  },
+  {
+    id: 'printparts-case-study',
+    title: 'PrintParts Case Study',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Case-Study-PrintParts-EN102022-October-28-2022-web-1.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_95681.jpg',
   },
   {
     id: 'about-us',
@@ -319,7 +392,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_120133.jpg',
   },
   {
-    id: 'cryogenic-deep-freeze-labels-for-microcentrifuge-tub',
+    id: 'cryogenic-deep-freeze-labels-for-microcentrifuge-tubes',
     title: 'Cryogenic & Deep-Freeze Labels for Microcentrifuge Tubes',
     type: 'catalogs-flyers',
     language: 'en',
@@ -583,7 +656,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_44467.jpg',
   },
   {
-    id: 'fr-qui-sommes-nous',
+    id: 'qui-sommes-nous',
     title: 'Qui Sommes-Nous',
     type: 'catalogs-flyers',
     language: 'fr',
@@ -591,7 +664,39 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_84919.jpg',
   },
   {
-    id: 'de-ber-labtag',
+    id: 'les-tiquettes-cryo-dont-le-smvc-avait-besoin-pour-liminer-la-perte-d-cha',
+    title: 'Les étiquettes Cryo dont le SMVC avait besoin pour éliminer la perte d\'échantillons',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-cas-Les-etiquettes-Cryo-dont-le-SMVC-avait-besoin-JAN-15-2026.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-cas-Les-etiquettes-Cryo-dont-le-SMVC-avait-besoin-JAN-15-2026.jpg',
+  },
+  {
+    id: 'd-fi-de-r-tiquetage-comment-labtag-a-aid-l-institut-neurologique-r-duire',
+    title: 'Défi de réétiquetage: Comment LabTAG a aidé l\'Institut neurologique à réduire les erreurs et à optimiser le stockage des échantillons',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-cas-Institut-hopital-neurologique-de-Montreal-7-aout-2025.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-cas-Institut-hopital-neurologique-de-Montreal-7-aout-2025.jpg',
+  },
+  {
+    id: 'le-d-fi-de-l-tiquetage-cryog-nique',
+    title: 'Le défi de l\'étiquetage cryogénique',
+    type: 'catalogs-flyers',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/EDC-Le-defi-de-letiquetage-cryo-JUL-14-2025-FR.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/EDC-Le-defi-de-letiquetage-cryo-JUL-14-2025-FR.jpg',
+  },
+  {
+    id: 'au-coeur-du-cesmj-une-approche-plus-intelligente-pour-l-identification-d',
+    title: 'Au coeur du CESMJ: Une approche plus intelligente pour l\'identification des échantillons',
+    type: 'case-studies',
+    language: 'en',
+    href: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-Cas-Au-Coeur-du-CEYMH-JUN-18-2025.pdf',
+    image: 'https://cdn.labtag.com/wp-content/uploads/Etude-de-Cas-Au-Coeur-du-CEYMH-JUN-18-2025.jpg',
+  },
+  {
+    id: 'ber-labtag',
     title: 'Über LabTAG',
     type: 'catalogs-flyers',
     language: 'de',
@@ -599,7 +704,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_73447.jpg',
   },
   {
-    id: 'de-etiketten-f-r-die-histologie',
+    id: 'etiketten-f-r-die-histologie',
     title: 'Etiketten für die Histologie',
     type: 'catalogs-flyers',
     language: 'de',
@@ -607,7 +712,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_93744.jpg',
   },
   {
-    id: 'de-pcr-tagtrax-german',
+    id: 'pcr-tagtrax-german',
     title: 'PCR-TagTrax® (German)',
     type: 'catalogs-flyers',
     language: 'de',
@@ -615,7 +720,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_82437.jpg',
   },
   {
-    id: 'de-leitfaden-f-r-objekttr-geretiketten',
+    id: 'leitfaden-f-r-objekttr-geretiketten',
     title: 'Leitfaden für Objektträgeretiketten',
     type: 'guides',
     language: 'de',
@@ -623,7 +728,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_68133.jpg',
   },
   {
-    id: 'de-umfassende-etikettierungs-l-sungen-f-r-ivf-einrichtu',
+    id: 'umfassende-etikettierungs-l-sungen-f-r-ivf-einrichtungen',
     title: 'Umfassende Etikettierungs-Lösungen für IVF-Einrichtungen',
     type: 'catalogs-flyers',
     language: 'de',
@@ -631,7 +736,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_68108.jpg',
   },
   {
-    id: 'de-cryostuck-german',
+    id: 'cryostuck-german',
     title: 'CryoSTUCK® (German)',
     type: 'catalogs-flyers',
     language: 'de',
@@ -639,7 +744,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_82526.jpg',
   },
   {
-    id: 'de-etiketten-tags-f-r-die-pcr-kennzeichnung',
+    id: 'etiketten-tags-f-r-die-pcr-kennzeichnung',
     title: 'Etiketten & Tags für die PCR-Kennzeichnung',
     type: 'catalogs-flyers',
     language: 'de',
@@ -647,7 +752,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_68157.jpg',
   },
   {
-    id: 'de-autoklavierbare-etiketten-klebeb-nder',
+    id: 'autoklavierbare-etiketten-klebeb-nder',
     title: 'Autoklavierbare Etiketten & Klebebänder',
     type: 'catalogs-flyers',
     language: 'de',
@@ -655,7 +760,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_68161.jpg',
   },
   {
-    id: 'de-metalitag-german',
+    id: 'metalitag-german',
     title: 'MetaliTAG™ (German)',
     type: 'catalogs-flyers',
     language: 'de',
@@ -663,7 +768,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_68165.jpg',
   },
   {
-    id: 'de-cryo-lazrtag-german',
+    id: 'cryo-lazrtag-german',
     title: 'Cryo-LazrTAG™ (German)',
     type: 'catalogs-flyers',
     language: 'de',
@@ -671,7 +776,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_68167.jpg',
   },
   {
-    id: 'de-nitrotag-german',
+    id: 'nitrotag-german',
     title: 'NitroTAG® (German)',
     type: 'catalogs-flyers',
     language: 'de',
@@ -679,7 +784,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_68169.jpg',
   },
   {
-    id: 'es-etiquetas-para-histolog-a',
+    id: 'etiquetas-para-histolog-a',
     title: 'Etiquetas para Histología',
     type: 'catalogs-flyers',
     language: 'es',
@@ -687,7 +792,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_93750.jpg',
   },
   {
-    id: 'es-etiquetas-y-cintas-autoclave',
+    id: 'etiquetas-y-cintas-autoclave',
     title: 'Etiquetas y Cintas Autoclave',
     type: 'catalogs-flyers',
     language: 'es',
@@ -695,7 +800,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_88198.jpg',
   },
   {
-    id: 'es-etiquetas-para-la-identificaci-n-de-pcr',
+    id: 'etiquetas-para-la-identificaci-n-de-pcr',
     title: 'Etiquetas para la Identificación de PCR',
     type: 'catalogs-flyers',
     language: 'es',
@@ -703,7 +808,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_88765.jpg',
   },
   {
-    id: 'es-soluciones-rfid-para-laboratorio',
+    id: 'soluciones-rfid-para-laboratorio',
     title: 'Soluciones RFID para Laboratorio',
     type: 'catalogs-flyers',
     language: 'es',
@@ -711,7 +816,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_91715.jpg',
   },
   {
-    id: 'es-cryostuck-etiquetas-criog-nicas-para-superficies-con',
+    id: 'cryostuck-etiquetas-criog-nicas-para-superficies-congeladas',
     title: 'CryoSTUCK® Etiquetas Criogénicas para Superficies Congeladas',
     type: 'catalogs-flyers',
     language: 'es',
@@ -719,7 +824,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_88405.jpg',
   },
   {
-    id: 'es-etiquetas-para-ensayos-cl-nicos',
+    id: 'etiquetas-para-ensayos-cl-nicos',
     title: 'Etiquetas para Ensayos Clínicos',
     type: 'catalogs-flyers',
     language: 'es',
@@ -727,7 +832,7 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_89297.jpg',
   },
   {
-    id: 'es-etiquetas-criog-nicas-y-de-congelaci-n',
+    id: 'etiquetas-criog-nicas-y-de-congelaci-n',
     title: 'Etiquetas Criogénicas y de Congelación',
     type: 'catalogs-flyers',
     language: 'es',
@@ -735,63 +840,12 @@ export const LITERATURE_ITEMS: LiteratureItem[] = [
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_90487.jpg',
   },
   {
-    id: 'es-etiquetas-de-transferencia-t-rmica-para-almacenamien',
+    id: 'etiquetas-de-transferencia-t-rmica-para-almacenamiento-criog-nico',
     title: 'Etiquetas de Transferencia Térmica para Almacenamiento Criogénico',
     type: 'catalogs-flyers',
     language: 'es',
     href: 'https://cdn.labtag.com/wp-content/uploads/Folleto-NitroTAG-ES042022-April-05-2022.pdf',
     image: 'https://cdn.labtag.com/wp-content/uploads/catalog_thumbnail_91721-1.jpg',
-  },
-]
-
-export const CASE_STUDY_ITEMS: CaseStudyItem[] = [
-  {
-    id: 'cvis',
-    category: 'University',
-    title: 'The Cryo Labels CVIS Needed to Eliminate Sample Loss',
-    href: 'https://www.labtag.com/case-studies/case-study-the-cryo-labels-cvis-needed-to-eliminate-sample-loss/',
-    image: 'https://cdn.labtag.com/wp-content/uploads/Mcgill.svg',
-    tags: ['Cryo-LazrTAG™', 'CryoSTUCK®'],
-  },
-  {
-    id: 'dymo-550-tracking',
-    category: 'University',
-    title: 'Streamlining Sample Tracking with Cryogenic Labels and the DYMO® LabelWriter™ 550',
-    href: 'https://www.labtag.com/case-studies/case-study-streamlining-sample-tracking-with-cryogenic-labels-and-the-dymolabelwriter-550/',
-    image: 'https://cdn.labtag.com/wp-content/uploads/logo.png',
-    tags: ['CryoSTUCK®', 'DYMO® LabelWriter™ 550'],
-  },
-  {
-    id: 'c-bigr',
-    category: 'Neuroscience',
-    title: 'How LabTAG Helped C-BIGR Optimize Sample Storage',
-    href: 'https://www.labtag.com/case-studies/case-study-how-labtag-helped-c-bigr-at-montreal-neurological-institute-hospital-optimize-sample-storage/',
-    image: 'https://cdn.labtag.com/wp-content/uploads/neuro_logo_horiz.png',
-    tags: ['NitroTAG®', 'Blackout CryoSTUCK®'],
-  },
-  {
-    id: 'ceymh',
-    category: 'Healthcare',
-    title: 'Inside CEYMH: A Smarter Approach to Sample Identification',
-    href: 'https://www.labtag.com/case-studies/case-study-inside-ceymh-a-smarter-approach-to-sample-identification/',
-    image: 'https://cdn.labtag.com/wp-content/uploads/logo_Fr_transp.png',
-    tags: ['Inkjet Labels', 'Cryogenic'],
-  },
-  {
-    id: 'biobank-13000',
-    category: 'Research',
-    title: 'Modernizing cryostorage solutions to optimize laboratory sample management',
-    href: 'https://www.labtag.com/case-studies/case-study-modernizing-cryostorage-solutions-to-optimize-laboratory-sample-management-and-tracking-for-a-13000-sample-international-multi-omics-biobank/',
-    image: 'https://cdn.labtag.com/wp-content/uploads/logo-inta-01.png',
-    tags: ['CryoSTUCK®', 'SnapPEEL™'],
-  },
-  {
-    id: 'helios-snappeel',
-    category: 'Research',
-    title: 'Helios’ Workflow Hack: LabTAG’s SnapPEEL™ Labels',
-    href: 'https://www.labtag.com/case-studies/helios-workflow-hack-labtags-snappeel%ef%b8%8f-labels/',
-    image: 'https://cdn.labtag.com/wp-content/uploads/Screenshot-2026-07-17-at-12.36.38-PM.png',
-    tags: ['DYMO® LabelWriter™ 550', 'SnapPEEL™'],
   },
 ]
 

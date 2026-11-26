@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { CrumbChevron } from '@/components/CrumbChevron'
-import { FINDER_PATH, RESOURCES_PATH, TEMPLATES_PATH } from '@/content/labtagLinks'
+import { FINDER_PATH, RESOURCES_PATH, SHOP_PATH, TEMPLATES_PATH } from '@/content/labtagLinks'
 import { findLabelClass } from '@/content/labelFinder'
+import { SHOP_FAMILIES, childrenOf, findShopCategory } from '@/content/shopCatalog'
 import { getPage } from '@/content/loadPages'
 import { TEMPLATE_PAGES } from '@/content/templates'
 
@@ -52,6 +53,50 @@ function crumbsForPath(pathname: string): Crumb[] {
     ]
   }
 
+  if (pathname === SHOP_PATH) {
+    return [
+      { label: 'Home', to: '/' },
+      { label: 'Shop' },
+    ]
+  }
+
+  const shopProduct = pathname.match(/^\/shop\/([^/]+)\/([^/]+)$/)
+  if (shopProduct) {
+    const parentSlug = decodeURIComponent(shopProduct[1])
+    const leafSlug = decodeURIComponent(shopProduct[2])
+    const child = childrenOf(parentSlug).find((item) => item.slug === leafSlug)
+    const parent = findShopCategory(parentSlug)
+    if (child) {
+      return [
+        { label: 'Home', to: '/' },
+        { label: 'Shop', to: SHOP_PATH },
+        { label: 'Labels', to: `${SHOP_PATH}/labels` },
+        { label: parent?.title ?? 'Category', to: `${SHOP_PATH}/${parentSlug}` },
+        { label: child.title },
+      ]
+    }
+    return [
+      { label: 'Home', to: '/' },
+      { label: 'Shop', to: SHOP_PATH },
+      { label: 'Labels', to: `${SHOP_PATH}/labels` },
+      { label: parent?.title ?? 'Category', to: `${SHOP_PATH}/${parentSlug}` },
+      { label: leafSlug },
+    ]
+  }
+
+  const shopCategory = pathname.match(/^\/shop\/([^/]+)$/)
+  if (shopCategory) {
+    const slug = decodeURIComponent(shopCategory[1])
+    const cat = findShopCategory(slug)
+    const family = SHOP_FAMILIES.some((item) => item.slug === slug)
+    return [
+      { label: 'Home', to: '/' },
+      { label: 'Shop', to: SHOP_PATH },
+      ...(family ? [{ label: 'Labels', to: `${SHOP_PATH}/labels` }] : []),
+      { label: cat?.title ?? 'Category' },
+    ]
+  }
+
   const labelClass = pathname.match(/^\/classes\/([^/]+)$/)
   if (labelClass) {
     const row = findLabelClass(decodeURIComponent(labelClass[1]))
@@ -59,6 +104,18 @@ function crumbsForPath(pathname: string): Crumb[] {
       { label: 'Home', to: '/' },
       { label: 'Label Finder', to: FINDER_PATH },
       { label: row ? `${row.code} - ${row.headline}` : 'Class' },
+    ]
+  }
+
+  const product = pathname.match(/^\/classes\/([^/]+)\/([^/]+)$/)
+  if (product) {
+    const row = findLabelClass(decodeURIComponent(product[1]))
+    const model = decodeURIComponent(product[2])
+    return [
+      { label: 'Home', to: '/' },
+      { label: 'Label Finder', to: FINDER_PATH },
+      { label: row ? row.code : 'Class', to: row ? `/classes/${product[1]}` : FINDER_PATH },
+      { label: model },
     ]
   }
 
@@ -78,9 +135,14 @@ export function SiteBreadcrumb() {
   const { pathname } = useLocation()
   const crumbs = crumbsForPath(pathname)
   if (crumbs.length < 2) return null
+  const shopLeaf = pathname.match(/^\/shop\/([^/]+)\/([^/]+)$/)
+  const productPage = Boolean(
+    pathname.match(/^\/classes\/[^/]+\/[^/]+$/) ||
+      (shopLeaf && !childrenOf(decodeURIComponent(shopLeaf[1])).some((item) => item.slug === decodeURIComponent(shopLeaf[2]))),
+  )
 
   return (
-    <nav className="site-breadcrumb" aria-label="Breadcrumb">
+    <nav className={`site-breadcrumb${productPage ? ' is-product' : ''}`} aria-label="Breadcrumb">
       <ol className="site-breadcrumb-list">
         {crumbs.map((crumb, index) => {
           const last = index === crumbs.length - 1

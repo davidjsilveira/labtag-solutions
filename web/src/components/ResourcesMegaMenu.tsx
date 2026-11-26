@@ -1,12 +1,12 @@
 import { useEffect, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowSquareOut, ChatCircle, X } from '@phosphor-icons/react'
+import { ArrowRight, ArrowSquareOut, BookOpen, Files, SquaresFour, X } from '@phosphor-icons/react'
 import {
-  RESOURCES_MEGA_COLUMNS,
   RESOURCES_MEGA_FOOTER,
+  RESOURCES_MEGA_LINKS,
   RESOURCES_MEGA_SPOTLIGHT,
   RESOURCES_MEGA_TAGI,
-  RESOURCES_MEGA_TEMPLATES_CARD,
+  RESOURCES_MEGA_TOOLS,
   RESOURCES_MEGA_VIEW_ALL,
   type ResourcesMegaImage,
 } from '@/content/resourcesMegaMenu'
@@ -49,12 +49,18 @@ function MegaLink({
   )
 }
 
+const TOOL_ICONS = {
+  'Label Templates': Files,
+  Guides: BookOpen,
+  'Brands & Classes': SquaresFour,
+} as const
+
 function MegaImage({ image }: { image: ResourcesMegaImage }) {
   const resolved = resolveImageSrc(image.src, image.fallbackSrc)
   return (
     <img
       src={resolved.primary}
-      alt=""
+      alt={image.alt}
       loading="lazy"
       onError={(event) => {
         if (resolved.fallback && event.currentTarget.src !== resolved.fallback) {
@@ -98,78 +104,52 @@ export function ResourcesMegaMenu({ open, onClose }: ResourcesMegaMenuProps) {
       </div>
 
       <div className="nav-mega-body resources-mega-body">
-        <div className="resources-mega-feature-row">
-          <MegaLink
-            className="resources-mega-spotlight is-finder"
-            href={RESOURCES_MEGA_SPOTLIGHT.href}
-            onClose={onClose}
-          >
-            <span className="resources-mega-spotlight-media">
-              <MegaImage image={RESOURCES_MEGA_SPOTLIGHT.image} />
+        <MegaLink className="resources-mega-banner" href={RESOURCES_MEGA_SPOTLIGHT.href} onClose={onClose}>
+          <MegaImage image={RESOURCES_MEGA_SPOTLIGHT.image} />
+          <span className="resources-mega-banner-copy">
+            <span className="resources-mega-eyebrow">{RESOURCES_MEGA_SPOTLIGHT.eyebrow}</span>
+            <span className="resources-mega-banner-title">{RESOURCES_MEGA_SPOTLIGHT.label}</span>
+            <span className="resources-mega-banner-desc">{RESOURCES_MEGA_SPOTLIGHT.description}</span>
+            <span className="resources-mega-banner-cta">
+              {RESOURCES_MEGA_SPOTLIGHT.cta}
+              <ArrowRight size={14} weight="bold" aria-hidden />
             </span>
-            <span className="resources-mega-spotlight-copy">
-              <span className="resources-mega-eyebrow">{RESOURCES_MEGA_SPOTLIGHT.eyebrow}</span>
-              <span className="resources-mega-spotlight-title">{RESOURCES_MEGA_SPOTLIGHT.label}</span>
-              <span className="resources-mega-spotlight-desc">{RESOURCES_MEGA_SPOTLIGHT.description}</span>
-              <span className="resources-mega-spotlight-cta">
-                {RESOURCES_MEGA_SPOTLIGHT.cta}
-                <ArrowRight size={14} weight="bold" aria-hidden />
-              </span>
-            </span>
-          </MegaLink>
+          </span>
+        </MegaLink>
 
+        <div className="resources-mega-aside">
           <MegaLink className="resources-mega-tagi" href={RESOURCES_MEGA_TAGI.href} onClose={onClose}>
-            <span className="resources-mega-tagi-icon" aria-hidden="true">
-              <ChatCircle size={28} weight="duotone" />
+            <span className="resources-mega-eyebrow">Assistant</span>
+            <span className="resources-mega-tagi-title">
+              {RESOURCES_MEGA_TAGI.label}
+              <ArrowRight size={16} weight="bold" aria-hidden />
             </span>
-            <span className="resources-mega-tagi-copy">
-              <span className="resources-mega-eyebrow">Assistant</span>
-              <span className="resources-mega-tagi-title">
-                {RESOURCES_MEGA_TAGI.label}
-                <ArrowRight size={14} weight="bold" aria-hidden />
-              </span>
-              <span className="resources-mega-tagi-desc">{RESOURCES_MEGA_TAGI.description}</span>
-            </span>
+            <span className="resources-mega-tagi-desc">{RESOURCES_MEGA_TAGI.description}</span>
           </MegaLink>
 
-          <MegaLink
-            className="resources-mega-template is-single"
-            href={RESOURCES_MEGA_TEMPLATES_CARD.href}
-            onClose={onClose}
-          >
-            <span className="resources-mega-template-media is-contain">
-              <MegaImage image={RESOURCES_MEGA_TEMPLATES_CARD.image} />
-            </span>
-            <span className="resources-mega-template-copy">
-              <span className="resources-mega-eyebrow">{RESOURCES_MEGA_TEMPLATES_CARD.eyebrow}</span>
-              <span className="resources-mega-template-label">{RESOURCES_MEGA_TEMPLATES_CARD.label}</span>
-              <span className="resources-mega-template-detail">{RESOURCES_MEGA_TEMPLATES_CARD.description}</span>
-            </span>
-            <ArrowRight size={14} weight="bold" aria-hidden />
-          </MegaLink>
-        </div>
-
-        <div className="resources-mega-columns">
-          {RESOURCES_MEGA_COLUMNS.map((column) => (
-            <div key={column.heading} className="resources-mega-column">
-              <h3>{column.heading}</h3>
-              <ul>
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    <MegaLink href={link.href} onClose={onClose}>
-                      <span className="resources-mega-link-label">
-                        {link.label}
-                        {isInternalPath(link.href) ? null : (
-                          <ArrowSquareOut size={13} weight="bold" aria-hidden />
-                        )}
-                      </span>
-                      {link.note ? <span className="resources-mega-link-note">{link.note}</span> : null}
-                    </MegaLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <ul className="resources-mega-tools">
+            {RESOURCES_MEGA_TOOLS.map((link) => {
+              const Icon = TOOL_ICONS[link.label as keyof typeof TOOL_ICONS]
+              return (
+                <li key={link.label}>
+                  <MegaLink className="resources-mega-tool" href={link.href} onClose={onClose}>
+                    {Icon ? <Icon size={22} weight="duotone" aria-hidden /> : null}
+                    <span>{link.label}</span>
+                  </MegaLink>
+                </li>
+              )
+            })}
+          </ul>
+          <ul className="resources-mega-links">
+            {RESOURCES_MEGA_LINKS.map((link) => (
+              <li key={link.label}>
+                <MegaLink href={link.href} onClose={onClose}>
+                  {link.label}
+                  {isInternalPath(link.href) ? null : <ArrowSquareOut size={13} weight="bold" aria-hidden />}
+                </MegaLink>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

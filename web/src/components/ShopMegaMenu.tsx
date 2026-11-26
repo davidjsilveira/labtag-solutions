@@ -116,10 +116,17 @@ export function ShopMegaMenu({ open, onClose }: ShopMegaMenuProps) {
               <p className="shop-mega-kicker">Products</p>
               <h2>{active.label}</h2>
             </div>
-            <a className="shop-mega-shop-all" href={active.href} target="_blank" rel="noreferrer">
-              Shop all
-              <ArrowRight size={14} weight="bold" aria-hidden />
-            </a>
+            {isInternalPath(active.href) ? (
+              <Link className="shop-mega-shop-all" to={active.href} onClick={onClose}>
+                Shop all
+                <ArrowRight size={14} weight="bold" aria-hidden />
+              </Link>
+            ) : (
+              <a className="shop-mega-shop-all" href={active.href} target="_blank" rel="noreferrer">
+                Shop all
+                <ArrowRight size={14} weight="bold" aria-hidden />
+              </a>
+            )}
           </header>
 
           <div
@@ -149,23 +156,33 @@ export function ShopMegaMenu({ open, onClose }: ShopMegaMenuProps) {
           </div>
         </div>
 
-        <a
-          className="shop-mega-promo"
-          href={SHOP_MEGA_PROMO.href}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img className="shop-mega-promo-image" src={active.image} alt="" />
-          <span className="sr-only">{active.imageAlt}. </span>
-          <span className="shop-mega-promo-copy">
-            <span className="shop-mega-promo-kicker">{SHOP_MEGA_PROMO.kicker}</span>
-            <span className="shop-mega-promo-title">{SHOP_MEGA_PROMO.title}</span>
-            <span className="shop-mega-promo-cta">
-              {SHOP_MEGA_PROMO.cta}
-              <ArrowRight size={14} weight="bold" aria-hidden />
+        {isInternalPath(SHOP_MEGA_PROMO.href) ? (
+          <Link className="shop-mega-promo" to={SHOP_MEGA_PROMO.href} onClick={onClose}>
+            <img className="shop-mega-promo-image" src={active.image} alt="" />
+            <span className="sr-only">{active.imageAlt}. </span>
+            <span className="shop-mega-promo-copy">
+              <span className="shop-mega-promo-kicker">{SHOP_MEGA_PROMO.kicker}</span>
+              <span className="shop-mega-promo-title">{SHOP_MEGA_PROMO.title}</span>
+              <span className="shop-mega-promo-cta">
+                {SHOP_MEGA_PROMO.cta}
+                <ArrowRight size={14} weight="bold" aria-hidden />
+              </span>
             </span>
-          </span>
-        </a>
+          </Link>
+        ) : (
+          <a className="shop-mega-promo" href={SHOP_MEGA_PROMO.href} target="_blank" rel="noreferrer">
+            <img className="shop-mega-promo-image" src={active.image} alt="" />
+            <span className="sr-only">{active.imageAlt}. </span>
+            <span className="shop-mega-promo-copy">
+              <span className="shop-mega-promo-kicker">{SHOP_MEGA_PROMO.kicker}</span>
+              <span className="shop-mega-promo-title">{SHOP_MEGA_PROMO.title}</span>
+              <span className="shop-mega-promo-cta">
+                {SHOP_MEGA_PROMO.cta}
+                <ArrowRight size={14} weight="bold" aria-hidden />
+              </span>
+            </span>
+          </a>
+        )}
       </div>
 
       <div className="shop-mega-footer">

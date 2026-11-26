@@ -58,9 +58,16 @@ export const LABTAG_CASE_STUDIES_URL = 'https://www.labtag.com/case-studies/'
 export const LABTAG_FINDER_URL = 'https://www.labtag.com/resources/label-finder/'
 export const FINDER_PATH = '/label-finder'
 export const CLASS_PATH = '/classes'
+export const SHOP_PATH = '/shop'
+export const SHOP_TUBE_VIAL_PATH = `${SHOP_PATH}/tube-vial-container-cryo-labels`
 
 export function classPath(code: string) {
   return `${CLASS_PATH}/${encodeURIComponent(code.trim().toLowerCase())}`
+}
+
+export function productPath(listing: string, model: string) {
+  const category = listing.trim().toLowerCase() === 'jtta' ? 'tube-vial-container-cryo-labels' : listing.trim()
+  return `${SHOP_PATH}/${category}/${encodeURIComponent(model.trim())}`
 }
 
 /** Label finder with one filter already selected. `temp` is a temperature chip (Cryo, Heat). */

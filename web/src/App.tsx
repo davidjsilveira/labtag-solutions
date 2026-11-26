@@ -17,8 +17,10 @@ import {
   FINDER_PATH,
   RESOURCES_PATH,
   SAMPLE_PATH,
+  SHOP_PATH,
   TEMPLATES_PATH,
   WHY_CHOOSE_PATH,
+  productPath,
 } from '@/content/labtagLinks'
 import { AboutPage } from '@/pages/AboutPage'
 import { ContactPage } from '@/pages/ContactPage'
@@ -36,12 +38,24 @@ import { SolutionPage } from '@/pages/SolutionPage'
 import { TemplatePage } from '@/pages/TemplatePage'
 import { LabelFinderPage } from '@/pages/LabelFinderPage'
 import { ClassPage } from '@/pages/ClassPage'
+import { ProductPage } from '@/pages/ProductPage'
+import { ShopPage } from '@/pages/ShopPage'
+import { childrenOf } from '@/content/shopCatalog'
 import { TemplatesIndexPage } from '@/pages/TemplatesIndexPage'
 import { TEMPLATE_SR28_PATH } from '@/content/templateSr28'
 
 const LEGACY_CATEGORY_IDS = new Set(['use-cases', 'features', 'services'])
 
-/** Old `/solutions/:category/:slug` URLs redirect to `/solutions/:slug`. */
+function ShopBranch() {
+  const { category = '', model = '' } = useParams()
+  if (childrenOf(category).some((item) => item.slug === model)) return <ShopPage />
+  return <ProductPage />
+}
+
+function LegacyProductRedirect() {
+  const { model = '' } = useParams()
+  return <Navigate to={productPath('JTTA', model)} replace />
+}
 function LegacyCategorySolutionRedirect() {
   const { slug = '' } = useParams()
   const canonical = canonicalSolutionPath(slug)
@@ -97,7 +111,11 @@ export default function App() {
           <Route path="/templates/sr-1" element={<Navigate to={TEMPLATE_SR28_PATH} replace />} />
           <Route path="/templates/:templateSlug" element={<TemplatePage />} />
           <Route path={FINDER_PATH} element={<LabelFinderPage />} />
+          <Route path={SHOP_PATH} element={<ShopPage />} />
+          <Route path={`${SHOP_PATH}/:category`} element={<ShopPage />} />
+          <Route path={`${SHOP_PATH}/:category/:model`} element={<ShopBranch />} />
           <Route path="/classes/:code" element={<ClassPage />} />
+          <Route path="/classes/:code/:model" element={<LegacyProductRedirect />} />
           <Route path="/solutions/:slug" element={<SolutionsSlugRoute />} />
           <Route
             path="/solutions/:categoryId/:slug"
