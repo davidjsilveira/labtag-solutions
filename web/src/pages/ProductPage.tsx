@@ -364,6 +364,19 @@ export function ProductPage() {
         </div>
         <div className="sku-buy">
           <p className="sku-id">#{variantSku}</p>
+          <label className="sku-pack">
+            <span>Core Size / Qty Per Roll</span>
+            <select
+              value={pack.qty}
+              onChange={(event) => setPackQty(Number(event.target.value) as (typeof PACKS)[number]['qty'])}
+            >
+              {PACKS.map((item) => (
+                <option key={item.qty} value={item.qty}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
           {sku.colors.length ? (
             <div className="sku-colors">
               <span>Color: {color}</span>
@@ -383,24 +396,11 @@ export function ProductPage() {
               </ul>
             </div>
           ) : null}
-          <label className="sku-pack">
-            <span>Core Size / Qty Per Roll</span>
-            <select
-              value={pack.qty}
-              onChange={(event) => setPackQty(Number(event.target.value) as (typeof PACKS)[number]['qty'])}
-            >
-              {PACKS.map((item) => (
-                <option key={item.qty} value={item.qty}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p className="sku-price">
-            <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
-            <em>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</em>
-          </p>
-          <div className="sku-cta-row">
+          <div className="sku-price-row">
+            <p className="sku-price">
+              <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
+              <em>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</em>
+            </p>
             <label className="sku-pack">
               <span>Quantity</span>
               <input
@@ -411,6 +411,8 @@ export function ProductPage() {
                 onChange={(event) => setQuantity(Math.max(1, Number(event.target.value) || 1))}
               />
             </label>
+          </div>
+          <div className="sku-cta-row">
             <button type="button" className="class-action is-primary">
               <ShoppingCart aria-hidden="true" />
               Add to cart

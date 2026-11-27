@@ -20436,8 +20436,18 @@ button.finder-meta-chip.is-filter.is-active {
   font-style: normal;
 }
 
-/* Baymard order: price first and prominent, selectors next, quantity + single dominant CTA,
-   demoted secondary link, reassurance last */
+/* price left, quantity field flush right on one row */
+.sku-price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.sku-price-row .sku-pack {
+  margin-left: auto;
+}
+
 .sku-price {
   display: flex;
   align-items: baseline;
@@ -20684,6 +20694,14 @@ button.finder-meta-chip.is-filter.is-active {
   letter-spacing: -0.02em;
 }
 
+/* Color selector is a framed field box matching .sku-pack (per the reference layout) */
+.sku-colors {
+  padding: 0.4rem 0.75rem 0.55rem;
+  border: 1px solid #ddd8e4;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
 .sku-colors span {
   display: block;
   color: #6e687c;
@@ -20707,7 +20725,7 @@ button.finder-meta-chip.is-filter.is-active {
   border-radius: 0.4rem;
 }
 
-/* quantity + dominant add-to-cart on one line; button stretches to the field's full height */
+/* full-width stacked CTAs: solid add-to-cart, then orange-outlined free sample */
 .sku-cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -20715,23 +20733,21 @@ button.finder-meta-chip.is-filter.is-active {
   gap: 0.85rem;
 }
 
-.sku-cta-row .sku-pack {
-  flex: 0 0 auto;
-}
-
 .sku-cta-row .class-action {
-  flex: 1 1 10rem;
-  min-height: 2.9rem;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 3.75rem;
   padding: 0.6rem 1.1rem;
-  font-size: 0.98rem;
+  font-size: 1rem;
 }
 
-/* free sample stays a full button — user wants it as prominent as the primary CTA row */
 .sku-sample {
   width: 100%;
-  min-height: 2.9rem;
-  padding: 0.6rem 1.1rem;
-  font-size: 0.98rem;
+  min-height: 3.25rem;
+  padding: 0.5rem 1.1rem;
+  border-color: var(--labtag-highlight-main, #fc7a22);
+  color: var(--labtag-highlight-main, #fc7a22);
+  font-size: 0.92rem;
   justify-content: center;
 }
 
