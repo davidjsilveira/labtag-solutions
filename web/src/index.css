@@ -19128,7 +19128,7 @@ button.finder-meta-chip.is-filter.is-active {
   overflow: hidden;
   border: 0;
   border-radius: 1.15rem;
-  background: #edf1f5;
+  background: #fff;
   box-shadow: 0 1px 3px rgb(31 22 56 / 10%), 0 8px 20px rgb(31 22 56 / 12%);
 }
 
@@ -19150,7 +19150,8 @@ button.finder-meta-chip.is-filter.is-active {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* feature photos come in mixed ratios — contain shows them whole instead of cover-cropping up to 40% */
+  object-fit: contain;
 }
 
 .class-gallery-nav {
@@ -20351,10 +20352,15 @@ button.finder-meta-chip.is-filter.is-active {
   height: 4.4rem;
   padding: 0.25rem;
   overflow: hidden;
-  border: 1px solid #e6e0e9;
+  border: 1px solid #cac4d0;
   border-radius: 0.45rem;
   background: #fff;
   cursor: pointer;
+}
+
+/* stroke marks the idle thumb; it clears on hover (active keeps its purple ring) */
+.sku-thumbs button:hover {
+  border-color: transparent;
 }
 
 .sku-thumbs button.is-active {
@@ -21334,6 +21340,27 @@ button.finder-meta-chip.is-filter.is-active {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* Below 1320px the feature image would shrink under the 36rem buy box — rebalance instead:
+   equal columns, and the thumbnail rail drops under the feature image */
+@media (max-width: 1320px) {
+  .sku-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sku-media {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sku-gallery {
+    order: 1;
+  }
+
+  .sku-thumbs {
+    order: 2;
+    flex-direction: row;
+  }
 }
 
 @media (max-width: 900px) {
