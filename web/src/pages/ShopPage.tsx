@@ -7,7 +7,18 @@ import { MdPager } from '@/components/MdPager'
 import { COLOR_SWATCH, SHOP_MOCK_SKUS, rollPriceFromUnit, type ClassSku } from '@/content/classMocks'
 import { dimMatches, dimsOf, sizeFieldLabel, sizeFieldsForShapes, sizeOf, type SizeField } from '@/content/classDims'
 import { SHOP_DEPARTMENTS, SHOP_HOME, childrenOf, findShopCategory, isLabelListing, parentOf } from '@/content/shopCatalog'
-import { findLabelClass, resistanceLabel } from '@/content/labelFinder'
+import {
+  EMPTY_TEMP_RANGE,
+  TEMP_TAG_RANGE,
+  findLabelClass,
+  isTempRangeEmpty,
+  matchesTempRangeFilter,
+  resistanceLabel,
+  tempRangeActiveCount,
+  type TempRangeFilter,
+  type TempTag,
+} from '@/content/labelFinder'
+import { TemperaturesFilter, TempRangeFields } from '@/pages/LabelFinderPage'
 
 const CLASS_IMAGE = '/media/label-finder/class-placeholder.webp'
 const CLASS_ROW = findLabelClass('JTTA')
@@ -286,6 +297,7 @@ export function ShopPage() {
   const parent = parentOf(slug)
   const [query, setQuery] = useState('')
   const [filters, setFilters] = useState<ShopFilters>(BLANK_FILTERS)
+  const [tempRange, setTempRange] = useState<TempRangeFilter>(EMPTY_TEMP_RANGE)
   const [sort, setSort] = useState<SortKey>('popularity')
   const [menu, setMenu] = useState('')
   const [allOpen, setAllOpen] = useState(false)
@@ -293,7 +305,7 @@ export function ShopPage() {
   const toolbarRowRef = useRef<HTMLDivElement>(null)
   const [toolbarRef, toolbarStuck] = useStuckBar<HTMLDivElement>()
   const chipsHostRef = useRef<HTMLDivElement>(null)
-  const [drawerSection, setDrawerSection] = useState<'shape' | 'resistance' | 'printer' | 'feature' | 'color' | 'brand' | 'klass' | 'size' | null>('shape')
+  const [drawerSection, setDrawerSection] = useState<'shape' | 'resistance' | 'printer' | 'feature' | 'color' | 'brand' | 'klass' | 'size' | 'temperatures' | null>('shape')
   const [slide, setSlide] = useState(0)
   const location = useLocation()
   const navigate = useNavigate()
@@ -345,6 +357,7 @@ export function ShopPage() {
           .filter(Boolean)
         if (!picked.every((key) => CLASS_ROW.resistances.includes(key as string))) return false
       }
+      if (CLASS_ROW && !matchesTempRangeFilter(CLASS_ROW, tempRange)) return false
       if (!q) return true
       return `${item.model} ${item.shape} ${item.dimensions} ${item.feature} ${CLASS_ROW?.headline ?? ''}`
         .toLowerCase()
@@ -361,13 +374,13 @@ export function ShopPage() {
       })
     }
     return sorted
-  }, [query, filters, sort])
+  }, [query, filters, sort, tempRange])
   const pageCount = Math.max(1, Math.ceil(items.length / pageSize))
   const safePage = Math.min(listPage, pageCount)
   const visibleItems = items.slice((safePage - 1) * pageSize, safePage * pageSize)
   const rangeStart = items.length ? (safePage - 1) * pageSize + 1 : 0
   const rangeEnd = Math.min(safePage * pageSize, items.length)
-  const filterSig = `${slug}|${query}|${sort}|${JSON.stringify(filters)}`
+  const filterSig = `${slug}|${query}|${sort}|${JSON.stringify(filters)}|${JSON.stringify(tempRange)}`
   const skipPageReset = useRef(true)
   useEffect(() => {
     if (skipPageReset.current) {
@@ -525,6 +538,24 @@ export function ShopPage() {
         remove: () => setSize(key, ''),
       })),
     ),
+    ...(['min', 'max', 'application'] as const).flatMap((field) => {
+      const value = tempRange[field]
+      if (!value) return []
+      const tag =
+        field === 'application'
+          ? undefined
+          : (Object.entries(TEMP_TAG_RANGE) as [TempTag, { min?: string; max?: string }][]).find(
+              ([, patch]) => patch[field] === value,
+            )?.[0]
+      return [
+        {
+          id: `temp-${field}:${value}`,
+          label: tag ?? `${value}°C`,
+          filterKey: 'temperatures',
+          remove: () => setTempRange((prev) => ({ ...prev, [field]: '' })),
+        },
+      ]
+    }),
     ...(query.trim()
       ? [
           {
@@ -538,6 +569,7 @@ export function ShopPage() {
   ]
   const clearAll = () => {
     setFilters(BLANK_FILTERS)
+    setTempRange(EMPTY_TEMP_RANGE)
     setQuery('')
   }
   const activeCount = appliedChips.length
@@ -727,6 +759,7 @@ export function ShopPage() {
           onChange={setSize}
         />
         <ShopMenu label="Resistance" logicKey="resistance" options={options.resistance} value={filters.resistance} open={menu === 'resistance'} collapsed={overflowKeys.has('resistance')} onOpen={() => openMenu('resistance')} onToggle={(value) => toggle('resistance', value)} />
+        <TemperaturesFilter value={tempRange} onChange={setTempRange} collapsed={overflowKeys.has('temperatures')} />
         <ShopMenu label="Printing Method" logicKey="printer" options={options.printer} value={filters.printer} open={menu === 'printer'} collapsed={overflowKeys.has('printer')} onOpen={() => openMenu('printer')} onToggle={(value) => toggle('printer', value)} />
         <ShopMenu label="Feature" logicKey="feature" options={options.feature} value={filters.feature} open={menu === 'feature'} collapsed={overflowKeys.has('feature')} onOpen={() => openMenu('feature')} onToggle={(value) => toggle('feature', value)} />
         <ShopMenu label="Color" logicKey="color" options={options.color} value={filters.color} open={menu === 'color'} swatch collapsed={overflowKeys.has('color')} onOpen={() => openMenu('color')} onToggle={(value) => toggle('color', value)} />
@@ -788,6 +821,37 @@ export function ShopPage() {
                       </label>
                     ))}
                   </div>
+                  </>
+                ) : null}
+              </section>
+              <section className={`finder-drawer-section${drawerSection === 'temperatures' ? ' is-open' : ''}`}>
+                <button
+                  type="button"
+                  className="finder-drawer-section-trigger"
+                  aria-expanded={drawerSection === 'temperatures'}
+                  onClick={() => setDrawerSection((current) => (current === 'temperatures' ? null : 'temperatures'))}
+                >
+                  <span>
+                    Temperatures
+                    {tempRangeActiveCount(tempRange) ? <em>{tempRangeActiveCount(tempRange)}</em> : null}
+                  </span>
+                  <ChevronIcon />
+                </button>
+                {drawerSection === 'temperatures' ? (
+                  <>
+                    <FilterLogic mode="and" detail="The material must resist to all specified temperatures" />
+                    <div className="finder-drawer-temp">
+                      <TempRangeFields value={tempRange} onChange={setTempRange} idPrefix="shop-drawer-temp" />
+                      {!isTempRangeEmpty(tempRange) ? (
+                        <button
+                          type="button"
+                          className="finder-drawer-temp-clear"
+                          onClick={() => setTempRange(EMPTY_TEMP_RANGE)}
+                        >
+                          Clear temperatures
+                        </button>
+                      ) : null}
+                    </div>
                   </>
                 ) : null}
               </section>

@@ -158,7 +158,7 @@ function filterOptionCount(key: Exclude<FinderFilterKey, 'temperatures'>, option
   return LABEL_CLASSES.filter((row) => rowMatches(row, { [key]: [option] }, '')).length
 }
 
-function TempRangeFields({
+export function TempRangeFields({
   value,
   onChange,
   idPrefix = 'finder-temp',
@@ -413,7 +413,7 @@ function RowChevronIcon() {
 
 const CLASS_PLACEHOLDER = '/media/label-finder/class-placeholder.webp'
 
-function TemperaturesFilter({
+export function TemperaturesFilter({
   value,
   onChange,
   collapsed = false,

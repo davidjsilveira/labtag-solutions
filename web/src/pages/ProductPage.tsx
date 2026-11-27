@@ -363,10 +363,6 @@ export function ProductPage() {
           </ol>
         </div>
         <div className="sku-buy">
-          <p className="sku-price">
-            <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
-            <em>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</em>
-          </p>
           <p className="sku-id">#{variantSku}</p>
           {sku.colors.length ? (
             <div className="sku-colors">
@@ -400,6 +396,10 @@ export function ProductPage() {
               ))}
             </select>
           </label>
+          <p className="sku-price">
+            <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
+            <em>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</em>
+          </p>
           <div className="sku-cta-row">
             <label className="sku-pack">
               <span>Quantity</span>
@@ -416,7 +416,7 @@ export function ProductPage() {
               Add to cart
             </button>
           </div>
-          <Link className="sku-sample-link" to={SAMPLE_PATH}>
+          <Link className="class-action sku-sample" to={SAMPLE_PATH}>
             Get a free sample
           </Link>
           <ul className="sku-trust">
