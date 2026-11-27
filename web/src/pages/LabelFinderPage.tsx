@@ -10,6 +10,7 @@ import {
   type SetStateAction,
 } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useStuckBar } from '@/useStuckBar'
 import { classPath } from '@/content/labtagLinks'
 import { MdPager } from '@/components/MdPager'
 import {
@@ -738,6 +739,7 @@ export function LabelFinderPage() {
     return query ? `${classPath(code)}?${query}` : classPath(code)
   }
   const toolbarRowRef = useRef<HTMLDivElement>(null)
+  const [toolbarRef, toolbarStuck] = useStuckBar<HTMLElement>()
   const chipsHostRef = useRef<HTMLDivElement>(null)
   const sortSelectRef = useRef<HTMLSelectElement>(null)
   const sortMirrorRef = useRef<HTMLSpanElement>(null)
@@ -998,7 +1000,7 @@ export function LabelFinderPage() {
         </p>
       </header>
 
-      <section className="finder-toolbar" aria-label="Filter label classes">
+      <section ref={toolbarRef} className={`finder-toolbar${toolbarStuck ? ' is-stuck' : ''}`} aria-label="Filter label classes">
         <div className="finder-toolbar-row" ref={toolbarRowRef}>
           <button
             type="button"

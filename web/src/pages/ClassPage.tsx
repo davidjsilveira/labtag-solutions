@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useStuckBar } from '@/useStuckBar'
 import { CaretLeft, CaretRight, DownloadSimple, List, SquaresFour } from '@phosphor-icons/react'
 import {
   CONTAINER_LABELS,
@@ -473,6 +474,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
   const [allOpen, setAllOpen] = useState(false)
   const [overflowKeys, setOverflowKeys] = useState<Set<string>>(() => new Set())
   const toolbarRowRef = useRef<HTMLDivElement>(null)
+  const [toolbarRef, toolbarStuck] = useStuckBar<HTMLDivElement>()
   const chipsHostRef = useRef<HTMLDivElement>(null)
   const [drawerSection, setDrawerSection] = useState<ClassFilterKey | 'size' | null>('container')
   const catalog = labtagClassUrl(row.code)
@@ -724,7 +726,7 @@ function ClassArticle({ row }: { row: LabelClass }) {
       </section>
 
       <section className="class-catalog" aria-label={`${row.code} sizes`}>
-        <div className="class-catalog finder-toolbar">
+        <div ref={toolbarRef} className={`class-catalog finder-toolbar${toolbarStuck ? ' is-stuck' : ''}`}>
         <div className="finder-toolbar-row" ref={toolbarRowRef}>
           <button
             type="button"

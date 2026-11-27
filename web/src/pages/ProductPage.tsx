@@ -363,6 +363,10 @@ export function ProductPage() {
           </ol>
         </div>
         <div className="sku-buy">
+          <p className="sku-price">
+            <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
+            <em>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</em>
+          </p>
           <p className="sku-id">#{variantSku}</p>
           {sku.colors.length ? (
             <div className="sku-colors">
@@ -396,14 +400,7 @@ export function ProductPage() {
               ))}
             </select>
           </label>
-          <div className="sku-price-row">
-            <div className="sku-price">
-              <span>Price</span>
-              <p>
-                <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
-                <em>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</em>
-              </p>
-            </div>
+          <div className="sku-cta-row">
             <label className="sku-pack">
               <span>Quantity</span>
               <input
@@ -414,12 +411,12 @@ export function ProductPage() {
                 onChange={(event) => setQuantity(Math.max(1, Number(event.target.value) || 1))}
               />
             </label>
+            <button type="button" className="class-action is-primary">
+              <ShoppingCart aria-hidden="true" />
+              Add to cart
+            </button>
           </div>
-          <button type="button" className="class-action is-primary">
-            <ShoppingCart aria-hidden="true" />
-            Add to cart
-          </button>
-          <Link className="class-action" to={SAMPLE_PATH}>
+          <Link className="sku-sample-link" to={SAMPLE_PATH}>
             Get a free sample
           </Link>
           <ul className="sku-trust">
@@ -564,7 +561,7 @@ export function ProductPage() {
         <h2>FAQ</h2>
         <div className="sku-faq">
           {FAQS.map((item, index) => (
-            <details key={item.q} open={index === 0}>
+            <details key={item.q} name="sku-faq" open={index === 0}>
               <summary>
                 <span>{item.q}</span>
                 <CaretDown weight="bold" aria-hidden="true" />

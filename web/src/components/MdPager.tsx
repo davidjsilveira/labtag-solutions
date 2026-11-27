@@ -1,4 +1,5 @@
 import { CaretDown, CaretLeft, CaretRight, SkipBack, SkipForward } from '@phosphor-icons/react'
+import { pagerItems } from '@/pagerPages'
 
 const PAGE_SIZE_OPTIONS = [10, 25, 30, 50, 100]
 
@@ -46,6 +47,28 @@ export function MdPager({ page, pageSize, total, onPage, onPageSize }: MdPagerPr
         <button type="button" className="md-pager-nav" aria-label="Previous page" disabled={atStart} onClick={() => onPage(page - 1)}>
           <CaretLeft weight="bold" aria-hidden="true" />
         </button>
+        {total > 0 ? (
+          <span className="md-pager-pages">
+            {pagerItems(page, pageCount).map((item, index) =>
+              item === '…' ? (
+                <span key={`gap-${index}`} className="md-pager-gap" aria-hidden="true">
+                  …
+                </span>
+              ) : (
+                <button
+                  key={item}
+                  type="button"
+                  className={`md-pager-page${item === page ? ' is-current' : ''}`}
+                  aria-label={`Page ${item}`}
+                  aria-current={item === page ? 'page' : undefined}
+                  onClick={() => onPage(item)}
+                >
+                  {item}
+                </button>
+              ),
+            )}
+          </span>
+        ) : null}
         <button type="button" className="md-pager-nav" aria-label="Next page" disabled={atEnd} onClick={() => onPage(page + 1)}>
           <CaretRight weight="bold" aria-hidden="true" />
         </button>

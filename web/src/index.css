@@ -15,6 +15,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* lets block-size transitions target auto (FAQ accordion animation) */
+  interpolate-size: allow-keywords;
 }
 
 html,
@@ -16818,36 +16820,41 @@ a.why-reason:hover h2 {
   max-width: 100%;
   min-width: 0;
   margin: 0;
-  padding: 0.75rem 0 1.65rem;
+  padding: 0.9rem 0;
   border: 0;
+  border-bottom: 1px solid #e6e0e9;
   border-radius: 0;
   position: sticky;
   top: calc(var(--site-nav-h, 4.5rem) + var(--promo-h, 2.25rem));
   z-index: 24;
   background: transparent;
   overflow: visible;
-  transition: top 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    top 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 160ms ease;
 }
 
+/* stuck band: same treatment as the PDP anchor menu — full-viewport wash + hairline +
+   downward shadow on an overshooting ::before, clipped by the global overflow-x: clip */
 .finder-toolbar::before {
   content: '';
   position: absolute;
-  inset: 0 0 1.15rem;
-  z-index: 0;
+  inset: 0 -100vw -1px;
+  z-index: -1;
   pointer-events: none;
-  background: var(--color-paper);
+  border-bottom: 1px solid #e6e0e9;
+  background: color-mix(in srgb, var(--color-paper) 92%, #fff);
+  box-shadow: 0 12px 22px -18px rgba(31, 22, 56, 0.45);
+  opacity: 0;
+  transition: opacity 160ms ease;
 }
 
-.finder-toolbar::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  height: 1.65rem;
-  pointer-events: none;
-  background: linear-gradient(180deg, var(--color-paper) 0%, color-mix(in srgb, var(--color-paper) 70%, transparent) 45%, transparent 100%);
+.finder-toolbar.is-stuck {
+  border-bottom-color: transparent;
+}
+
+.finder-toolbar.is-stuck::before {
+  opacity: 1;
 }
 
 .finder-toolbar-row {
@@ -19487,7 +19494,7 @@ button.finder-meta-chip.is-filter.is-active {
 
 .class-catalog.finder-toolbar {
   margin-top: 0.85rem;
-  padding-top: 0.85rem;
+  padding-top: 0.9rem;
 }
 
 .class-catalog .finder-toolbar-row {
@@ -20239,6 +20246,47 @@ button.finder-meta-chip.is-filter.is-active {
   cursor: default;
 }
 
+/* truncated page numbers between the prev and next groups */
+.md-pager-pages {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0 0.35rem;
+}
+
+.md-pager-page {
+  display: grid;
+  place-items: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #3d4558;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 140ms ease,
+    color 140ms ease;
+}
+
+.md-pager-page:hover {
+  background: rgb(31 22 56 / 6%);
+}
+
+.md-pager-page.is-current {
+  background: #6750a4;
+  color: #fff;
+}
+
+.md-pager-gap {
+  padding: 0 0.1rem;
+  color: #8b8698;
+}
+
 .md-pager-nav svg {
   width: 1.15rem;
   height: 1.15rem;
@@ -20388,43 +20436,21 @@ button.finder-meta-chip.is-filter.is-active {
   font-style: normal;
 }
 
-.sku-price-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 0.85rem;
-}
-
-/* Price block: keeps .sku-pack metrics for alignment but frameless — it is not interactive */
+/* Baymard order: price first and prominent, selectors next, quantity + single dominant CTA,
+   demoted secondary link, reassurance last */
 .sku-price {
-  display: grid;
-  gap: 0.1rem;
-  padding: 0.4rem 0.75rem 0.45rem;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-  margin: 0;
-}
-
-.sku-price > span {
-  color: #6e687c;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.sku-price p {
   display: flex;
   align-items: baseline;
-  gap: 0.55rem;
-  height: 1.65rem;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
   margin: 0;
 }
 
 .sku-price strong {
   color: #1f1638;
-  font-size: 1.15rem;
+  font-size: 1.45rem;
   font-weight: 750;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .sku-price em {
@@ -20652,16 +20678,18 @@ button.finder-meta-chip.is-filter.is-active {
 
 .sku-id {
   margin: 0;
-  color: #1f1638;
-  font-size: 1.15rem;
-  font-weight: 750;
-  letter-spacing: -0.02em;
+  color: #6e687c;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
 }
 
 .sku-colors span {
   display: block;
   color: #6e687c;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .sku-colors ul {
@@ -20679,8 +20707,34 @@ button.finder-meta-chip.is-filter.is-active {
   border-radius: 0.4rem;
 }
 
-.sku-buy .class-action {
-  justify-content: center;
+/* quantity + dominant add-to-cart on one line, bottoms aligned */
+.sku-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.85rem;
+}
+
+.sku-cta-row .sku-pack {
+  flex: 0 0 auto;
+}
+
+.sku-cta-row .class-action {
+  flex: 1 1 10rem;
+  min-height: 2.9rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.98rem;
+}
+
+.sku-sample-link {
+  align-self: center;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.sku-cta-row .class-action svg {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .sku-trust {
@@ -20702,7 +20756,6 @@ button.finder-meta-chip.is-filter.is-active {
   padding: 0.75rem 0.7rem;
   border: 0;
   border-radius: 0.85rem;
-  background: #f3f6fa;
   color: #5b6578;
   font-size: 0.7rem;
   font-weight: 500;
@@ -21148,6 +21201,8 @@ button.finder-meta-chip.is-filter.is-active {
 .sku-faq {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* cards size to their own content; a closed card must not stretch to its open row-mate */
+  align-items: start;
   gap: 0.65rem;
   margin: 0;
 }
@@ -21170,7 +21225,23 @@ button.finder-meta-chip.is-filter.is-active {
   font-weight: 650;
   cursor: pointer;
   list-style: none;
-  transition: background-color 140ms ease;
+  transition:
+    background-color 140ms ease,
+    padding-bottom 240ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* smooth open/close: animate the native details content box (Chromium 129+, instant elsewhere) */
+.sku-faq details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 240ms cubic-bezier(0.2, 0, 0, 1),
+    content-visibility 240ms;
+  transition-behavior: allow-discrete;
+}
+
+.sku-faq details[open]::details-content {
+  block-size: auto;
 }
 
 .sku-faq summary::-webkit-details-marker {

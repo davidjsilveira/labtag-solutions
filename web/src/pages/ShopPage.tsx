@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useStuckBar } from '@/useStuckBar'
 import { CaretLeft, CaretRight, MagnifyingGlass } from '@phosphor-icons/react'
 import { SHOP_PATH, productPath } from '@/content/labtagLinks'
 import { MdPager } from '@/components/MdPager'
@@ -290,6 +291,7 @@ export function ShopPage() {
   const [allOpen, setAllOpen] = useState(false)
   const [overflowKeys, setOverflowKeys] = useState<Set<string>>(() => new Set())
   const toolbarRowRef = useRef<HTMLDivElement>(null)
+  const [toolbarRef, toolbarStuck] = useStuckBar<HTMLDivElement>()
   const chipsHostRef = useRef<HTMLDivElement>(null)
   const [drawerSection, setDrawerSection] = useState<'shape' | 'resistance' | 'printer' | 'feature' | 'color' | 'brand' | 'klass' | 'size' | null>('shape')
   const [slide, setSlide] = useState(0)
@@ -662,7 +664,7 @@ export function ShopPage() {
 
       {isLabelListing(slug) ? (
       <>
-      <div className="class-catalog finder-toolbar">
+      <div ref={toolbarRef} className={`class-catalog finder-toolbar${toolbarStuck ? ' is-stuck' : ''}`}>
         <div className="finder-toolbar-row" ref={toolbarRowRef}>
         <button
           type="button"
