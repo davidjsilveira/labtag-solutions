@@ -383,29 +383,31 @@ export function ProductPage() {
               </ul>
             </div>
           ) : null}
-          <label className="sku-pack">
-            <span>Core Size / Qty Per Roll</span>
-            <select
-              value={pack.qty}
-              onChange={(event) => setPackQty(Number(event.target.value) as (typeof PACKS)[number]['qty'])}
-            >
-              {PACKS.map((item) => (
-                <option key={item.qty} value={item.qty}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="sku-pack">
-            <span>Quantity</span>
-            <input
-              type="number"
-              min={1}
-              step={1}
-              value={quantity}
-              onChange={(event) => setQuantity(Math.max(1, Number(event.target.value) || 1))}
-            />
-          </label>
+          <div className="sku-pack-row">
+            <label className="sku-pack">
+              <span>Core Size / Qty Per Roll</span>
+              <select
+                value={pack.qty}
+                onChange={(event) => setPackQty(Number(event.target.value) as (typeof PACKS)[number]['qty'])}
+              >
+                {PACKS.map((item) => (
+                  <option key={item.qty} value={item.qty}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="sku-pack">
+              <span>Quantity</span>
+              <input
+                type="number"
+                min={1}
+                step={1}
+                value={quantity}
+                onChange={(event) => setQuantity(Math.max(1, Number(event.target.value) || 1))}
+              />
+            </label>
+          </div>
           <p className="sku-price">
             <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
             <span>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</span>
