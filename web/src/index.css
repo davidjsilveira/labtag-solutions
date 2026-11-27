@@ -20388,45 +20388,139 @@ button.finder-meta-chip.is-filter.is-active {
   font-style: normal;
 }
 
-.sku-pack-row {
+.sku-price-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   gap: 0.85rem;
 }
 
-.sku-pack-row .sku-pack:first-child {
-  flex: 1 1 12rem;
+/* Price block: keeps .sku-pack metrics for alignment but frameless — it is not interactive */
+.sku-price {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.4rem 0.75rem 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  margin: 0;
+}
+
+.sku-price > span {
+  color: #6e687c;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.sku-price p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  height: 1.65rem;
+  margin: 0;
+}
+
+.sku-price strong {
+  color: #1f1638;
+  font-size: 1.15rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.sku-price em {
+  color: #6e687c;
+  font-size: 0.85rem;
+  font-style: normal;
 }
 
 .sku-pack {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.1rem;
+  padding: 0.4rem 0.75rem 0.45rem;
+  border: 1px solid #ddd8e4;
+  border-radius: 0.5rem;
+  background: #fff;
   color: #6e687c;
-  font-size: 0.78rem;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+/* M3 outlined field: focus rings the frame, not the inner control */
+.sku-pack:focus-within {
+  border-color: #6750a4;
+  box-shadow: inset 0 0 0 1px #6750a4;
+}
+
+.sku-pack span {
+  font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .sku-pack select,
 .sku-pack input[type='number'] {
   appearance: none;
-  height: 2.25rem;
-  padding: 0 2rem 0 0.8rem;
-  border: 1px solid #ddd8e4;
-  border-radius: 8px;
-  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%234a445c' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5'/%3E%3C/svg%3E") no-repeat right 0.65rem center;
+  width: 100%;
+  height: 1.65rem;
+  padding: 0 1.6rem 0 0;
+  border: 0;
+  border-radius: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%234a445c' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5'/%3E%3C/svg%3E") no-repeat right center;
   color: #2d2348;
   font: inherit;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
 }
 
+.sku-pack select:focus,
+.sku-pack input[type='number']:focus {
+  outline: none;
+}
+
 .sku-pack input[type='number'] {
   width: 5.75rem;
-  padding: 0 0.5rem 0 0.7rem;
-  background: #fff;
+  padding: 0;
+  background: none;
   cursor: text;
   appearance: auto;
+}
+
+/* customizable <select> (Chrome 135+): M3 exposed-dropdown menu; other browsers keep the native picker */
+.sku-pack select,
+.sku-pack select::picker(select) {
+  appearance: base-select;
+}
+
+.sku-pack select::picker-icon {
+  display: none; /* the field already draws its own chevron */
+}
+
+.sku-pack select::picker(select) {
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+  border: 1px solid #e6e0e9;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 12px 28px -14px rgba(31, 22, 56, 0.4);
+}
+
+.sku-pack select option {
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.45rem;
+  color: #2d2348;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sku-pack select option:hover {
+  background: #f4f1f8;
+}
+
+.sku-pack select option:checked {
+  background: #ede8f4;
+  color: #1f1638;
 }
 
 .sku-lightbox {
@@ -20585,24 +20679,6 @@ button.finder-meta-chip.is-filter.is-active {
   border-radius: 0.4rem;
 }
 
-.sku-price {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  margin: 0;
-}
-
-.sku-price strong {
-  color: #1f1638;
-  font-size: 1.45rem;
-  font-weight: 750;
-}
-
-.sku-price span {
-  color: #6e687c;
-  font-size: 0.85rem;
-}
-
 .sku-buy .class-action {
   justify-content: center;
 }
@@ -20619,9 +20695,11 @@ button.finder-meta-chip.is-filter.is-active {
 
 .sku-trust li {
   display: grid;
-  justify-items: center;
-  gap: 0.25rem;
-  padding: 0.75rem 0.45rem 0.7rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.55rem;
+  row-gap: 0.15rem;
+  justify-items: start;
+  padding: 0.75rem 0.7rem;
   border: 0;
   border-radius: 0.85rem;
   background: #f3f6fa;
@@ -20629,13 +20707,14 @@ button.finder-meta-chip.is-filter.is-active {
   font-size: 0.7rem;
   font-weight: 500;
   line-height: 1.3;
-  text-align: center;
+  text-align: left;
 }
 
 .sku-trust svg {
+  grid-row: 1 / span 2;
+  align-self: center;
   width: 1.35rem;
   height: 1.35rem;
-  color: var(--labtag-highlight-main);
 }
 
 .sku-trust strong {

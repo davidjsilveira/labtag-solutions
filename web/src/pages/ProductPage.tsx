@@ -383,20 +383,27 @@ export function ProductPage() {
               </ul>
             </div>
           ) : null}
-          <div className="sku-pack-row">
-            <label className="sku-pack">
-              <span>Core Size / Qty Per Roll</span>
-              <select
-                value={pack.qty}
-                onChange={(event) => setPackQty(Number(event.target.value) as (typeof PACKS)[number]['qty'])}
-              >
-                {PACKS.map((item) => (
-                  <option key={item.qty} value={item.qty}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+          <label className="sku-pack">
+            <span>Core Size / Qty Per Roll</span>
+            <select
+              value={pack.qty}
+              onChange={(event) => setPackQty(Number(event.target.value) as (typeof PACKS)[number]['qty'])}
+            >
+              {PACKS.map((item) => (
+                <option key={item.qty} value={item.qty}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="sku-price-row">
+            <div className="sku-price">
+              <span>Price</span>
+              <p>
+                <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
+                <em>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</em>
+              </p>
+            </div>
             <label className="sku-pack">
               <span>Quantity</span>
               <input
@@ -408,10 +415,6 @@ export function ProductPage() {
               />
             </label>
           </div>
-          <p className="sku-price">
-            <strong>{rollUnit ? `${rollAmount}/${rollUnit}` : roll}</strong>
-            <span>{unitUnit ? `${unitAmount}/${unitUnit}` : sku.price}</span>
-          </p>
           <button type="button" className="class-action is-primary">
             <ShoppingCart aria-hidden="true" />
             Add to cart
@@ -421,17 +424,17 @@ export function ProductPage() {
           </Link>
           <ul className="sku-trust">
             <li>
-              <Headset weight="regular" aria-hidden="true" />
+              <Headset weight="duotone" aria-hidden="true" />
               <strong>Application support</strong>
               <span>Specialists help you spec the right label</span>
             </li>
             <li>
-              <FileText weight="regular" aria-hidden="true" />
+              <FileText weight="duotone" aria-hidden="true" />
               <strong>Full documentation</strong>
               <span>Data sheets and sizing guides</span>
             </li>
             <li>
-              <Flask weight="regular" aria-hidden="true" />
+              <Flask weight="duotone" aria-hidden="true" />
               <strong>Made for labs</strong>
               <span>Designed for laboratory workflows</span>
             </li>
