@@ -233,6 +233,38 @@ export function ProductPage() {
     return () => window.removeEventListener('keydown', onKey)
   }, [lightbox])
 
+  // sticky the shorter two-col column while the longer one scrolls — only if it fits under the bars
+  const twoColRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const wrap = twoColRef.current
+    if (!wrap) return
+    const apply = () => {
+      const cols = [...wrap.querySelectorAll<HTMLElement>(':scope > .sku-section')]
+      cols.forEach((col) => col.classList.remove('is-sticky-col'))
+      if (cols.length < 2) return
+      const [a, b] = cols
+      const shortCol = a.offsetHeight <= b.offsetHeight ? a : b
+      const longCol = shortCol === a ? b : a
+      if (longCol.offsetHeight <= shortCol.offsetHeight + 40) return // near-equal: nothing to gain
+      // pin below the actual stuck tab bar (nav-h var alone underestimates it)
+      const tabs = document.querySelector<HTMLElement>('.sku-tabs')
+      const stickTop = tabs
+        ? (parseFloat(getComputedStyle(tabs).top) || 0) + tabs.offsetHeight + 12
+        : 132
+      wrap.style.setProperty('--sticky-col-top', `${stickTop}px`)
+      if (shortCol.offsetHeight + stickTop + 16 <= window.innerHeight) shortCol.classList.add('is-sticky-col')
+    }
+    apply()
+    const observer = new ResizeObserver(apply)
+    observer.observe(wrap)
+    for (const col of wrap.children) observer.observe(col)
+    window.addEventListener('resize', apply)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', apply)
+    }
+  }, [])
+
   const tabsRef = useRef<HTMLElement>(null)
   const [activeTab, setActiveTab] = useState<string>('overview')
   const [tabsStuck, setTabsStuck] = useState(false)
@@ -428,11 +460,6 @@ export function ProductPage() {
               <span>Specialists help you spec the right label</span>
             </li>
             <li>
-              <FileText weight="duotone" aria-hidden="true" />
-              <strong>Full documentation</strong>
-              <span>Data sheets and sizing guides</span>
-            </li>
-            <li>
               <Flask weight="duotone" aria-hidden="true" />
               <strong>Made for labs</strong>
               <span>Designed for laboratory workflows</span>
@@ -454,7 +481,7 @@ export function ProductPage() {
         ))}
       </nav>
 
-      <div className="sku-two-col">
+      <div className="sku-two-col" ref={twoColRef}>
       <section className="sku-section" id="overview">
         <h2>Overview</h2>
         <h3 className="sku-overview-heading">{JTTA29_DESCRIPTION.heading}</h3>

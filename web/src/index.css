@@ -20311,7 +20311,8 @@ button.finder-meta-chip.is-filter.is-active {
 
 .sku-hero {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* buy box capped at 36rem; the gallery soaks up the extra width */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 36rem);
   gap: 1.25rem 1.5rem;
   align-items: start;
   min-width: 0;
@@ -20320,13 +20321,21 @@ button.finder-meta-chip.is-filter.is-active {
 
 .sku-media {
   display: grid;
+  /* thumbnails rail left of the feature image */
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 0.65rem;
+  align-items: start;
   min-width: 0;
+}
+
+.sku-gallery {
+  order: 2;
 }
 
 .sku-thumbs {
   display: flex;
-  flex-direction: row;
+  order: 1;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 0.4rem;
   margin: 0;
@@ -20380,9 +20389,15 @@ button.finder-meta-chip.is-filter.is-active {
   margin: 0;
   overflow: hidden;
   aspect-ratio: 3 / 2;
-  border: 1px solid #e6e0e9;
   border-radius: 0.75rem;
   background: #fff;
+  transition: box-shadow 160ms cubic-bezier(0.2, 0, 0, 1), transform 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* house hover lift, same recipe as .shop-card */
+.sku-gallery:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgb(31 22 56 / 14%), 0 10px 22px rgb(31 22 56 / 12%);
 }
 
 .sku-gallery-open {
@@ -20448,11 +20463,12 @@ button.finder-meta-chip.is-filter.is-active {
   margin-left: auto;
 }
 
+/* cost/roll above cost/label, stacked */
 .sku-price {
   display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.2rem 0.6rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
   margin: 0;
 }
 
@@ -20749,6 +20765,14 @@ button.finder-meta-chip.is-filter.is-active {
   color: var(--labtag-highlight-main, #fc7a22);
   font-size: 0.92rem;
   justify-content: center;
+  transition: background-color 140ms ease;
+}
+
+/* the shared brightness() hover muddies white+orange and the global a:hover turns text blue — pin both */
+.sku-sample:hover {
+  filter: none;
+  color: var(--labtag-highlight-main, #fc7a22);
+  background: color-mix(in srgb, var(--labtag-highlight-main, #fc7a22) 8%, #fff);
 }
 
 .sku-cta-row .class-action svg {
@@ -20757,24 +20781,26 @@ button.finder-meta-chip.is-filter.is-active {
 }
 
 .sku-trust {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
   margin: 0.35rem 0 0;
   padding: 0.9rem 0 0;
   border-top: 1px solid #ece8f0;
   list-style: none;
 }
 
+/* items size to content and pack left, flush with the buttons above — no stretched 1fr cells */
 .sku-trust li {
   display: grid;
+  flex: 0 0 auto;
+  max-width: 100%;
   grid-template-columns: auto minmax(0, 1fr);
   column-gap: 0.55rem;
   row-gap: 0.15rem;
   justify-items: start;
-  padding: 0.75rem 0.7rem;
+  padding: 0;
   border: 0;
-  border-radius: 0.85rem;
   color: #5b6578;
   font-size: 0.7rem;
   font-weight: 500;
@@ -20911,7 +20937,9 @@ button.finder-meta-chip.is-filter.is-active {
   grid-template-columns: auto minmax(0, 1fr);
   align-items: baseline;
   gap: 0.9rem 1.25rem;
-  max-width: 30rem;
+  /* fixed width: the two-col grid's `auto` column sizes to max-content, so max-width alone won't widen it; matches the 36rem buy box */
+  width: 36rem;
+  max-width: 100%;
   margin: 0;
   padding: 1.1rem 1.2rem;
   border: 1px solid #e6e0e9;
@@ -20936,7 +20964,7 @@ button.finder-meta-chip.is-filter.is-active {
 .sku-specs dd {
   margin: 0;
   color: #1f1638;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 650;
   line-height: 1.35;
 }
@@ -20975,6 +21003,12 @@ button.finder-meta-chip.is-filter.is-active {
   .sku-two-col .sku-section p,
   .sku-two-col .sku-overview-list {
     max-width: 52rem;
+  }
+
+  /* shorter column rides along under nav + tab bar while the longer one scrolls */
+  .sku-two-col .is-sticky-col {
+    position: sticky;
+    top: var(--sticky-col-top, calc(var(--site-nav-h, 4.5rem) + 3.75rem));
   }
 }
 
@@ -21038,20 +21072,17 @@ button.finder-meta-chip.is-filter.is-active {
   width: 100%;
 }
 
+/* single frameless line: score, stars + count, then the two action pills right-aligned */
 .sku-reviews-average {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem 0.75rem;
-  padding: 0.9rem 1.1rem;
-  border: 1px solid #e6e0e9;
-  border-radius: 0.75rem;
-  background: #fff;
 }
 
 .sku-reviews-score {
   color: #1b2433;
-  font-size: 1.9rem;
+  font-size: 1.4rem;
   font-weight: 750;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -21059,8 +21090,8 @@ button.finder-meta-chip.is-filter.is-active {
 
 .sku-reviews-meta {
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 0.45rem;
 }
 
 .sku-reviews-meta > span {
@@ -21308,6 +21339,20 @@ button.finder-meta-chip.is-filter.is-active {
 @media (max-width: 900px) {
   .sku-hero {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* stacked: feature image first, thumbnails as a row under it */
+  .sku-media {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sku-gallery {
+    order: 1;
+  }
+
+  .sku-thumbs {
+    order: 2;
+    flex-direction: row;
   }
 
   .sku-reviews-grid,
@@ -21780,6 +21825,11 @@ button.finder-meta-chip.is-filter.is-active {
   text-decoration: none;
   box-shadow: 0 1px 3px rgb(31 22 56 / 10%), 0 4px 12px rgb(31 22 56 / 8%);
   transition: box-shadow 160ms cubic-bezier(0.2, 0, 0, 1), transform 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* card fills its stretched grid cell so bottoms (and bottom-pinned prices) align in a row */
+.shop-grid li > .shop-card {
+  height: 100%;
 }
 
 .shop-card:hover {
