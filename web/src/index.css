@@ -20707,11 +20707,11 @@ button.finder-meta-chip.is-filter.is-active {
   border-radius: 0.4rem;
 }
 
-/* quantity + dominant add-to-cart on one line, bottoms aligned */
+/* quantity + dominant add-to-cart on one line; button stretches to the field's full height */
 .sku-cta-row {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: stretch;
   gap: 0.85rem;
 }
 
